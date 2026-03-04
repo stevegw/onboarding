@@ -1,0 +1,232 @@
+{
+  "title": "PTC Training Catalog",
+  "description": "Interactive onboarding courses for PTC products",
+  "families": [
+    {
+      "id": "windchill",
+      "name": "Windchill",
+      "color": "#4EA8DE",
+      "icon": "&#9881;",
+      "courses": [
+        {
+          "id": "wc-overview",
+          "title": "Windchill Fundamentals Overview",
+          "description": "Comprehensive introduction to Windchill PLM fundamentals, navigation, and core concepts.",
+          "pdfFile": "WCFD-OVER-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 4,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "wc-context",
+          "title": "Introduction and Context Administration",
+          "description": "Learn context administration including organizations, products, libraries, and projects.",
+          "pdfFile": "WCBA-CNTX-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 3,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "wc-teams",
+          "title": "Participants and Teams",
+          "description": "Manage participants, teams, roles, and organizational structures in Windchill.",
+          "pdfFile": "WCBA-TEAM-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 4,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "wc-objtypes",
+          "title": "Object Types",
+          "description": "Configure and manage Windchill object types, subtypes, and type hierarchies.",
+          "pdfFile": "WCBA-OBTY-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 4,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "wc-access",
+          "title": "Access Control",
+          "description": "Implement access control policies, permissions, and security configurations.",
+          "pdfFile": "WCBA-ACCS-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 3,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "wc-reporting",
+          "title": "Reporting",
+          "description": "Create and manage reports, queries, and data visualization in Windchill.",
+          "pdfFile": "WCBA-RPTG-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 3,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "wc-abtt",
+          "title": "Advanced BOM Transformation Topics",
+          "description": "Advanced techniques for BOM transformation, restructuring, and manufacturing views.",
+          "pdfFile": "WCBM-ABTT-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 3,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "wc-autochange",
+          "title": "Automate Change",
+          "description": "Configure and automate change management workflows and processes.",
+          "pdfFile": "WCCM-AUTO-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 4,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "wc-changeimpl",
+          "title": "Change Implementation",
+          "description": "Implement change processes including change requests, notices, and tasks.",
+          "pdfFile": "WCCM-CHIM-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 3,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "wc-ocp1",
+          "title": "Options & Configurable Products 1",
+          "description": "Learn business approaches to configurable products, explore options and variants terminology, investigate rules, and master option sets.",
+          "pdfFile": "WCCB-OCP1-Training-Guide.pdf",
+          "modules": 4,
+          "estimatedHours": 2,
+          "locales": ["en", "fr", "de", "ja", "zh", "ko", "es"],
+          "comingSoon": false
+        },
+        {
+          "id": "wc-ocp2",
+          "title": "Options & Configurable Products 2",
+          "description": "Advanced OCP topics including complex rules, advanced option sets, and integration patterns.",
+          "pdfFile": "WCCB-OCP2-Training-Guide.pdf",
+          "prerequisite": "wc-ocp1",
+          "modules": 0,
+          "estimatedHours": 3,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "wc-rest",
+          "title": "REST Services",
+          "description": "Build and consume Windchill REST APIs for integration and automation.",
+          "pdfFile": "WCEC-REST-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 4,
+          "locales": ["en"],
+          "comingSoon": true
+        }
+      ]
+    },
+    {
+      "id": "codebeamer",
+      "name": "Codebeamer",
+      "color": "#A78BFA",
+      "icon": "&#128202;",
+      "courses": [
+        {
+          "id": "cb-overview",
+          "title": "Codebeamer Fundamentals Overview",
+          "description": "Introduction to Codebeamer ALM platform — trackers, requirements management, test management, and data visualization.",
+          "pdfFile": "CBFD-OVER-Training-Guide.pdf",
+          "modules": 4,
+          "estimatedHours": 2,
+          "locales": ["en"],
+          "comingSoon": false
+        },
+        {
+          "id": "cb-reqmgmt",
+          "title": "Requirements Management",
+          "description": "Manage requirements lifecycle, traceability, and baselines in Codebeamer.",
+          "pdfFile": "CBFD-REQM-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 3,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "cb-testmgmt",
+          "title": "Test Management",
+          "description": "Plan, execute, and track testing activities and test cases.",
+          "pdfFile": "CBFD-TEST-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 3,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "cb-projrptg",
+          "title": "Project Management and Reporting",
+          "description": "Manage projects, sprints, and generate reports in Codebeamer.",
+          "pdfFile": "CBFD-RPTG-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 3,
+          "locales": ["en"],
+          "comingSoon": true
+        }
+      ]
+    },
+    {
+      "id": "creo",
+      "name": "Creo",
+      "color": "#6EE7B7",
+      "icon": "&#9998;",
+      "courses": [
+        {
+          "id": "creo-mdl1",
+          "title": "Fundamentals Modeling 1",
+          "description": "Core 3D modeling fundamentals including sketching, extrusions, and revolutions.",
+          "pdfFile": "CRFD-MDL1-Training-Guidebook.pdf",
+          "modules": 0,
+          "estimatedHours": 4,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "creo-mdl2",
+          "title": "Fundamentals Modeling 2",
+          "description": "Advanced modeling techniques including sweeps, blends, patterns, and surface modeling.",
+          "pdfFile": "CRFD-MDL2-Training-Guidebook.pdf",
+          "prerequisite": "creo-mdl1",
+          "modules": 0,
+          "estimatedHours": 4,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "creo-assy",
+          "title": "Fundamentals Assembly",
+          "description": "Assembly design fundamentals including constraints, mechanisms, and BOM management.",
+          "pdfFile": "CRFD-ASBY-Training-Guidebook.pdf",
+          "modules": 0,
+          "estimatedHours": 4,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "creo-drawing",
+          "title": "Fundamentals 2D Drawing",
+          "description": "Create engineering drawings with views, dimensions, annotations, and drawing standards.",
+          "pdfFile": "CRFD-DRWG-Training-Guidebook.pdf",
+          "modules": 0,
+          "estimatedHours": 4,
+          "locales": ["en"],
+          "comingSoon": true
+        }
+      ]
+    }
+  ]
+}

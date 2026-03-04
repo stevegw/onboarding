@@ -1,0 +1,2128 @@
+/**
+ * OB -- Content Bundle
+ * =====================
+ * All content embedded as JS for file:// compatibility.
+ * Loaded before content.js. When present, content.js uses this
+ * instead of fetch(). Regenerate by copying JSON file contents here.
+ */
+(function () {
+  "use strict";
+  var OB = window.OB = window.OB || {};
+
+  OB._courseBundle = {
+    "course.json": 
+{
+  "id": "cb-overview",
+  "title": "Codebeamer: Fundamentals Overview",
+  "description": "Introduction to Codebeamer ALM platform — trackers, requirements management, test management, and data visualization.",
+  "prerequisite": null,
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Introduction to Codebeamer and ALM",
+      "description": "Explore Application Lifecycle Management concepts, discover Codebeamer as an ALM solution, and understand the ALM development framework.",
+      "estimatedMinutes": 25,
+      "topicCount": 5,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m1-intro-codebeamer-alm.json",
+      "quizFile": "quizzes/q1-intro-codebeamer-alm.json"
+    },
+    {
+      "id": "m2",
+      "title": "Trackers and Requirements Management",
+      "description": "Work with trackers, manage requirements through their lifecycle, understand tracker item workflows, and explore multiple view options.",
+      "estimatedMinutes": 35,
+      "topicCount": 7,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m2-trackers-requirements.json",
+      "quizFile": "quizzes/q2-trackers-requirements.json"
+    },
+    {
+      "id": "m3",
+      "title": "Test Management",
+      "description": "Understand test management concepts, explore test entities including configurations, cases, runs, and sets.",
+      "estimatedMinutes": 20,
+      "topicCount": 4,
+      "exerciseTopicStart": 3,
+      "contentFile": "modules/m3-test-management.json",
+      "quizFile": "quizzes/q3-test-management.json"
+    },
+    {
+      "id": "m4",
+      "title": "Data Visualization and Reporting",
+      "description": "Filter and report on data using cbQL, explore traceability views, export data, and build wiki dashboards with widgets.",
+      "estimatedMinutes": 30,
+      "topicCount": 8,
+      "exerciseTopicStart": 3,
+      "contentFile": "modules/m4-data-visualization-reporting.json",
+      "quizFile": "quizzes/q4-data-visualization-reporting.json"
+    }
+  ]
+}
+,
+    "modules/m1-intro-codebeamer-alm.json": 
+{
+  "id": "m1",
+  "title": "Introduction to Codebeamer and ALM",
+  "description": "Explore Application Lifecycle Management concepts, discover Codebeamer as an ALM solution, and understand the ALM development framework.",
+  "topics": [
+    {
+      "id": "m1t1",
+      "title": "Application Lifecycle Management",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Application Lifecycle Management (ALM) is a continuous process of managing the life of a software or systems application from initial planning through development, testing, deployment, and eventual retirement. ALM integrates people, processes, and tools to coordinate activities across the entire product lifecycle."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Why ALM Matters"
+        },
+        {
+          "type": "paragraph",
+          "text": "Modern products contain increasingly complex software. A modern car, for example, can contain over 100 million lines of code — more than a fighter jet or a commercial operating system. Managing this complexity without a structured approach leads to missed requirements, untested features, and costly defects discovered late in the development cycle."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Challenge", "Without ALM", "With ALM"],
+          "rows": [
+            ["Requirements tracking", "Scattered across documents and emails", "Centralized, versioned, and traceable"],
+            ["Cross-team visibility", "Siloed tools per discipline", "Unified platform linking all artifacts"],
+            ["Compliance evidence", "Manual assembly before audits", "Automatic traceability reports"],
+            ["Change impact analysis", "Guesswork and meetings", "Instant upstream/downstream impact view"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "A modern car can contain over 100 million lines of code. ALM provides the structure to manage this complexity by connecting requirements, design, development, and testing in a single traceable chain."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Key Benefits of ALM"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "End-to-End Traceability",
+              "back": "Link every requirement to its design, implementation, and test — providing a complete audit trail from stakeholder need to verified product."
+            },
+            {
+              "front": "Improved Collaboration",
+              "back": "Break down silos between requirements engineers, developers, testers, and project managers by sharing a common data model and tool platform."
+            },
+            {
+              "front": "Regulatory Compliance",
+              "back": "Demonstrate compliance with standards such as ISO 26262 (automotive), IEC 62304 (medical devices), and DO-178C (aerospace) through built-in traceability and reporting."
+            },
+            {
+              "front": "Faster Time to Market",
+              "back": "Reduce rework and late-stage defects by catching issues early when requirements, design, and tests are connected and continuously validated."
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "ALM integrates people, processes, and tools across the entire product lifecycle",
+        "Modern product complexity (100M+ lines of code) makes structured lifecycle management essential",
+        "Key ALM benefits include traceability, collaboration, compliance, and faster delivery"
+      ]
+    },
+    {
+      "id": "m1t2",
+      "title": "Codebeamer as an ALM Solution",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Codebeamer is PTC's ALM platform designed for organizations developing complex products in regulated industries. It provides an integrated environment for requirements management, test management, project tracking, and analytics — all connected through configurable trackers and workflows."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Core Capabilities"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Requirements Management",
+              "back": "Capture, organize, and trace requirements at multiple levels — stakeholder, system, software, and hardware. Support for baselines, reviews, and approval workflows."
+            },
+            {
+              "front": "Test Management",
+              "back": "Define test configurations, test cases, and test runs. Link tests to requirements for coverage analysis. Track bugs and defects back to their source."
+            },
+            {
+              "front": "Project Tracking & Analytics",
+              "back": "Dashboards, burndown charts, velocity tracking, and custom reports. Support for Agile (Scrum, Kanban) and traditional (V-model, Waterfall) development methodologies."
+            },
+            {
+              "front": "Industry Templates",
+              "back": "Pre-built project templates for automotive (ASPICE, ISO 26262), medical devices (IEC 62304), aviation (DO-178C), and other regulated industries."
+            },
+            {
+              "front": "Integrations & APIs",
+              "back": "REST API, integrations with Jira, Jenkins, Git, DOORS, and other tools. Enables Codebeamer to fit into existing toolchains."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Real-World Example: Navya"
+        },
+        {
+          "type": "paragraph",
+          "text": "Navya, a manufacturer of autonomous vehicles, adopted Codebeamer to manage the development of their self-driving shuttle systems. By centralizing requirements, tests, and traceability in Codebeamer, Navya was able to demonstrate compliance with automotive safety standards while accelerating their development cycles."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Codebeamer supports both Agile and traditional methodologies. Teams can use Scrum boards and sprints alongside V-model traceability — or combine approaches in a hybrid workflow."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each Codebeamer capability to what it provides:",
+          "pairs": [
+            {"left": "Requirements Management", "right": "Capture, organize, and trace requirements with baselines"},
+            {"left": "Test Management", "right": "Define test cases and runs, link to requirements for coverage"},
+            {"left": "Industry Templates", "right": "Pre-built compliance frameworks for regulated industries"},
+            {"left": "Project Tracking", "right": "Dashboards, burndown charts, and velocity metrics"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Codebeamer is PTC's ALM platform for complex, regulated product development",
+        "Core capabilities include requirements management, test management, project tracking, and analytics",
+        "Industry templates accelerate compliance with standards like ISO 26262 and IEC 62304"
+      ]
+    },
+    {
+      "id": "m1t3",
+      "title": "The ALM Development Framework",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "The ALM development framework describes the iterative cycle of activities that transform stakeholder needs into a verified, validated product. In Codebeamer, every phase of this framework is supported by trackers, workflows, and traceability links."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Development Lifecycle Phases"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Phase", "Activities", "Key Deliverables"],
+          "rows": [
+            ["Requirements", "Elicit, analyze, and document what the product must do", "Stakeholder requirements, system requirements, requirement specifications"],
+            ["Design", "Define how the product will satisfy the requirements", "Architecture documents, design specifications, interface definitions"],
+            ["Development", "Build the product according to the design", "Source code, hardware designs, configuration files, build artifacts"],
+            ["Testing", "Verify the product meets its requirements", "Test cases, test runs, bug reports, coverage reports"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "The cycle is iterative — testing may reveal requirement gaps that restart the cycle. Codebeamer's traceability links make it easy to trace a bug back through development and design to the original requirement."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "PTC Electric Car Scenario"
+        },
+        {
+          "type": "paragraph",
+          "text": "Throughout this course, we use the PTC Electric Car project as a practical scenario. This sample project demonstrates how a cross-functional team uses Codebeamer to manage the development of an electric vehicle — from capturing customer requirements through system design, implementation, and testing."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the ALM development framework phases in the correct order:",
+          "correctOrder": ["Requirements", "Design", "Development", "Testing"]
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each development phase to its primary deliverable:",
+          "pairs": [
+            {"left": "Requirements", "right": "Requirement specifications and stakeholder needs"},
+            {"left": "Design", "right": "Architecture documents and interface definitions"},
+            {"left": "Development", "right": "Source code and build artifacts"},
+            {"left": "Testing", "right": "Test cases, test runs, and coverage reports"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The ALM framework follows an iterative cycle: Requirements → Design → Development → Testing",
+        "Each phase produces specific deliverables that are traceable to artifacts in adjacent phases",
+        "The PTC Electric Car project is used throughout this course as the hands-on scenario"
+      ]
+    },
+    {
+      "id": "m1t4",
+      "title": "Set Up Your Environment",
+      "estimatedMinutes": 4,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will log in to the Codebeamer training environment, navigate the main interface, and locate the PTC Electric Car project that you will use throughout the remaining exercises."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "You need access to the Codebeamer training server to complete this exercise. Your instructor will provide the URL and login credentials."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex1",
+          "title": "Set Up Your Environment",
+          "objective": "Log in to Codebeamer, familiarize yourself with the main navigation, and open the PTC Electric Car project.",
+          "tasks": [
+            {
+              "id": "ex1-t1",
+              "title": "Log In and Explore the Interface",
+              "steps": [
+                {
+                  "action": "Open the Codebeamer training URL in your browser and log in with the credentials provided by your instructor.",
+                  "detail": "Codebeamer is a web-based application. After logging in, you will see the main dashboard which provides quick access to your projects, recent items, and notifications.",
+                  "hint": "Use a modern browser (Chrome, Firefox, Edge) for the best experience."
+                },
+                {
+                  "action": "Explore the top navigation bar. Identify the links to Projects, Trackers, and your user profile.",
+                  "detail": "The top navigation bar is your primary way to move around Codebeamer. Projects contain all the trackers, documents, and artifacts for a specific product or initiative.",
+                  "hint": "Look for a 'Projects' link or icon in the top-left area of the page."
+                },
+                {
+                  "action": "Navigate to the Projects list and locate the PTC Electric Car project.",
+                  "detail": "The PTC Electric Car project is the sample project used throughout this course. It contains pre-built trackers for customer requirements, system requirements, test cases, and more.",
+                  "hint": "You can use the search bar to filter projects by name."
+                },
+                {
+                  "action": "Open the PTC Electric Car project and review its project dashboard.",
+                  "detail": "The project dashboard gives an overview of the project including recent activity, tracker summaries, and key metrics. This is your home base when working within a project.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Codebeamer is accessed through a web browser",
+        "The top navigation bar provides access to Projects, Trackers, and user settings",
+        "The PTC Electric Car project serves as the hands-on scenario for all exercises"
+      ]
+    },
+    {
+      "id": "m1t5",
+      "title": "Explore Customer Requirements",
+      "estimatedMinutes": 4,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will open the Customer Requirements tracker in the PTC Electric Car project, browse existing requirements, and examine how requirements are structured with attributes, descriptions, and relationships."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Make sure you are logged in and have the PTC Electric Car project open before starting this exercise."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex2",
+          "title": "Explore Customer Requirements",
+          "objective": "Navigate to the Customer Requirements tracker, browse existing items, and understand requirement structure and attributes.",
+          "tasks": [
+            {
+              "id": "ex2-t1",
+              "title": "Open and Browse Customer Requirements",
+              "steps": [
+                {
+                  "action": "In the PTC Electric Car project, locate the Trackers section and open the Customer Requirements tracker.",
+                  "detail": "Trackers are the core data containers in Codebeamer. The Customer Requirements tracker holds the top-level requirements that describe what the customer expects from the electric car.",
+                  "hint": "Look for a 'Trackers' section in the project navigation sidebar or the project dashboard."
+                },
+                {
+                  "action": "Browse the list of customer requirements. Note how they are organized in a hierarchical structure.",
+                  "detail": "Customer requirements are often organized in a parent-child hierarchy. Parent items represent high-level needs (e.g., 'Vehicle Performance') while children are more specific (e.g., 'Acceleration 0-60 mph under 6 seconds').",
+                  "hint": "Expand the tree view or use the Document view to see the hierarchy."
+                },
+                {
+                  "action": "Click on a requirement to open its detail view. Examine the attributes such as Status, Priority, Owner, and Description.",
+                  "detail": "Each tracker item (requirement) has configurable attributes. The Status field shows where the item is in its lifecycle (e.g., Draft, Approved, Implemented). Priority indicates the relative importance. The Description field contains the detailed requirement text.",
+                  "hint": null
+                },
+                {
+                  "action": "Look at the Associations or References section of the requirement. Note any downstream links to system requirements or test cases.",
+                  "detail": "Associations create traceability links between tracker items. A customer requirement may be linked downstream to system requirements (which break it into technical specifications) and ultimately to test cases that verify it.",
+                  "hint": "Scroll down on the requirement detail page to find the Associations or Relations section."
+                },
+                {
+                  "action": "Navigate back to the tracker list and try switching between the Document view and the Table view.",
+                  "detail": "Codebeamer offers multiple view options for the same tracker data. Document view shows items in a document-like hierarchy. Table view displays items in a spreadsheet-like grid with sortable columns.",
+                  "hint": "Look for view toggle buttons or a view selector dropdown near the top of the tracker page."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Customer requirements are stored in a dedicated tracker and organized hierarchically",
+        "Each requirement has configurable attributes such as Status, Priority, and Owner",
+        "Associations link requirements downstream to system requirements and test cases for traceability",
+        "Multiple view options (Document, Table) present the same data in different formats"
+      ]
+    }
+  ]
+}
+,
+    "modules/m2-trackers-requirements.json": 
+{
+  "id": "m2",
+  "title": "Trackers and Requirements Management",
+  "description": "Work with trackers, manage requirements through their lifecycle, understand tracker item workflows, and explore multiple view options.",
+  "topics": [
+    {
+      "id": "m2t1",
+      "title": "Trackers",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Trackers are the fundamental data containers in Codebeamer. Every piece of managed information — requirements, bugs, tasks, test cases, risks — lives inside a tracker. Understanding trackers is the key to working effectively in Codebeamer."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What Is a Tracker?"
+        },
+        {
+          "type": "paragraph",
+          "text": "A tracker is a configurable container that holds a collection of related items. Each tracker defines the fields (attributes), workflows (state transitions), and permissions for its items. Think of a tracker as a specialized database table, but with built-in workflow, notification, and traceability capabilities."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Tracker Types"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Tracker Type", "Purpose", "Examples"],
+          "rows": [
+            ["Requirements", "Capture and manage requirements at different levels", "Customer Requirements, System Requirements, Software Requirements"],
+            ["Development", "Track development work items and code artifacts", "Tasks, User Stories, Epics, Bugs"],
+            ["Testing", "Manage test planning and execution", "Test Cases, Test Runs, Test Configurations"],
+            ["Project Management", "Track project activities and milestones", "Releases, Sprints, Risks, Change Requests"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Tracker Structure"
+        },
+        {
+          "type": "paragraph",
+          "text": "Projects organize trackers in a tracker tree — a hierarchical structure that groups related trackers together. Each project has its own set of trackers, and each tracker contains items. Items within a tracker can also be organized hierarchically (parent-child relationships)."
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Codebeamer provides a set of default trackers when you create a new project from a template. For example, the Agile template includes trackers for Epics, User Stories, Tasks, and Bugs. Industry templates add specialized trackers for compliance."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each tracker type to its primary purpose:",
+          "pairs": [
+            {"left": "Requirements tracker", "right": "Capture and manage product requirements"},
+            {"left": "Bug tracker", "right": "Track defects found during development and testing"},
+            {"left": "Test Case tracker", "right": "Define and manage test specifications"},
+            {"left": "Release tracker", "right": "Track project milestones and delivery schedules"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Trackers are configurable containers that hold related items with defined fields, workflows, and permissions",
+        "Tracker types include requirements, development, testing, and project management",
+        "Projects organize trackers in a hierarchical tracker tree",
+        "Default trackers are provided by project templates"
+      ]
+    },
+    {
+      "id": "m2t2",
+      "title": "Requirements Management",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Requirements management in Codebeamer follows a structured lifecycle: gather stakeholder needs, analyze and refine them into actionable requirements, confirm them through reviews, and document them with full traceability. This process ensures that development work is always aligned with what the customer actually needs."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Requirements Lifecycle"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Gather",
+              "back": "Collect stakeholder needs from interviews, workshops, and existing documentation. Capture them as items in the Customer Requirements tracker."
+            },
+            {
+              "front": "Analyze",
+              "back": "Refine gathered needs into clear, testable requirements. Decompose high-level requirements into system-level and component-level specifications."
+            },
+            {
+              "front": "Confirm",
+              "back": "Review requirements with stakeholders for accuracy and completeness. Use Codebeamer's review workflows and baseline capabilities to formally approve requirements."
+            },
+            {
+              "front": "Document",
+              "back": "Organize approved requirements in a structured hierarchy. Establish traceability links to design, implementation, and test artifacts."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Requirements Hierarchy"
+        },
+        {
+          "type": "paragraph",
+          "text": "Codebeamer supports multi-level requirement hierarchies. A typical hierarchy flows from Customer Requirements (what the customer wants) to System Requirements (how the system will meet those needs) to Software/Hardware Requirements (detailed technical specifications). Each level is stored in its own tracker, with traceability links connecting them."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Level", "Tracker", "Audience"],
+          "rows": [
+            ["Stakeholder / Customer", "Customer Requirements", "Business stakeholders, product owners"],
+            ["System", "System Requirements", "Systems engineers, architects"],
+            ["Software / Hardware", "Software Requirements, Hardware Requirements", "Developers, hardware engineers"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Use the Requirements Library to store reusable requirement specifications that can be referenced across multiple projects. This prevents duplication and ensures consistency."
+        }
+      ],
+      "keyTakeaways": [
+        "The requirements lifecycle is: Gather → Analyze → Confirm → Document",
+        "Requirements are organized in a multi-level hierarchy: Customer → System → Software/Hardware",
+        "Traceability links connect requirements across levels and to downstream artifacts",
+        "The Requirements Library enables reuse across projects"
+      ]
+    },
+    {
+      "id": "m2t3",
+      "title": "Tracker Item Workflows",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Every tracker item in Codebeamer follows a workflow — a defined set of states and transitions that control the item's lifecycle. Workflows enforce process discipline by ensuring items move through approved stages (e.g., Draft → In Review → Approved → Implemented)."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Workflow Concepts"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Concept", "Description"],
+          "rows": [
+            ["State", "A named stage in the item's lifecycle (e.g., New, In Progress, Resolved, Closed)"],
+            ["Transition", "A defined path from one state to another (e.g., New → In Progress). Transitions can have guards and actions."],
+            ["Guard", "A condition that must be met before a transition can occur (e.g., all required fields filled)"],
+            ["Action", "An automatic operation triggered by a transition (e.g., send notification, update field)"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Workflows are configured per tracker. Different tracker types typically have different workflows. For example, a Bug tracker might have states like New → Confirmed → In Progress → Fixed → Verified → Closed, while a Requirements tracker uses Draft → In Review → Approved."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "View Options for Tracker Items"
+        },
+        {
+          "type": "paragraph",
+          "text": "Codebeamer provides several ways to view tracker items, each suited to different tasks:"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Document View",
+              "back": "Displays items in a document-like hierarchy, ideal for reading and editing requirements in context. Supports rich text editing inline."
+            },
+            {
+              "front": "Table View",
+              "back": "Spreadsheet-like grid view with sortable, filterable columns. Best for bulk editing and comparing items across many attributes."
+            },
+            {
+              "front": "Kanban View",
+              "back": "Visual board with columns representing workflow states. Drag and drop items between states. Ideal for tracking progress of tasks and bugs."
+            }
+          ]
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each view option to its best use case:",
+          "pairs": [
+            {"left": "Document View", "right": "Reading and editing requirements in context"},
+            {"left": "Table View", "right": "Bulk editing and comparing items across attributes"},
+            {"left": "Kanban View", "right": "Visual tracking of item progress through workflow states"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Workflows define the states and transitions that control a tracker item's lifecycle",
+        "Transitions can have guards (conditions) and actions (automated operations)",
+        "Three primary views — Document, Table, and Kanban — serve different working styles",
+        "Workflows are configured per tracker and can differ between tracker types"
+      ]
+    },
+    {
+      "id": "m2t4",
+      "title": "Manage Customer Requirements",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create a new customer requirement in the PTC Electric Car project, set its attributes, and move it through the workflow from Draft to In Review."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Make sure you are logged in to the Codebeamer training environment and have the PTC Electric Car project open."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex3",
+          "title": "Manage Customer Requirements",
+          "objective": "Create a new customer requirement, configure its attributes, and advance it through the workflow.",
+          "tasks": [
+            {
+              "id": "ex3-t1",
+              "title": "Create and Configure a Customer Requirement",
+              "steps": [
+                {
+                  "action": "Navigate to the Customer Requirements tracker in the PTC Electric Car project.",
+                  "detail": "The Customer Requirements tracker contains the top-level requirements that describe what the customer expects from the electric car product.",
+                  "hint": "Look for the Trackers section in the project sidebar."
+                },
+                {
+                  "action": "Create a new tracker item by clicking the 'New Item' or '+' button. Enter a name such as 'Battery Range: Minimum 300 miles per charge'.",
+                  "detail": "When creating a new item, Codebeamer assigns it the initial workflow state (typically 'Draft' or 'New'). The name should be a clear, concise statement of the requirement.",
+                  "hint": "You may see a 'New Item' button in the toolbar or a '+' icon at the top or bottom of the item list."
+                },
+                {
+                  "action": "Fill in the Description field with detailed requirement text explaining the expected battery range under normal driving conditions.",
+                  "detail": "A good requirement description is specific, measurable, and testable. Include conditions and acceptance criteria where possible.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the Priority field to 'High' and assign the Owner to yourself.",
+                  "detail": "Priority helps the team focus on the most important requirements first. The Owner field identifies who is responsible for managing this requirement through its lifecycle.",
+                  "hint": null
+                },
+                {
+                  "action": "Save the requirement and verify it appears in the tracker list with status 'Draft'.",
+                  "detail": "After saving, the requirement is created with its initial workflow state. You will advance it through the workflow in the next step.",
+                  "hint": null
+                },
+                {
+                  "action": "Open the requirement and use the workflow transition to move it from 'Draft' to 'In Review'.",
+                  "detail": "Workflow transitions move items through their lifecycle. The 'In Review' state indicates the requirement is ready for stakeholder review and approval.",
+                  "hint": "Look for a 'Status' dropdown or transition buttons near the top of the item detail view."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "New tracker items start in the initial workflow state (typically Draft)",
+        "Requirements should be specific, measurable, and testable",
+        "Workflow transitions move items through defined lifecycle stages",
+        "The Owner field identifies who is responsible for managing the requirement"
+      ]
+    },
+    {
+      "id": "m2t5",
+      "title": "System Requirements and Downstream References",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create system requirements that decompose a customer requirement, and establish traceability links (downstream references) between the customer requirement and its system-level specifications."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex4",
+          "title": "System Requirements and Downstream References",
+          "objective": "Create system requirements from a customer requirement and establish downstream traceability links.",
+          "tasks": [
+            {
+              "id": "ex4-t1",
+              "title": "Create System Requirements with Traceability",
+              "steps": [
+                {
+                  "action": "Navigate to the System Requirements tracker in the PTC Electric Car project.",
+                  "detail": "System requirements break down customer needs into specific, implementable technical specifications. They bridge the gap between what the customer wants and what the engineering team will build.",
+                  "hint": "Find the System Requirements tracker in the project's Trackers section."
+                },
+                {
+                  "action": "Create a new system requirement related to battery performance, for example: 'Battery pack shall provide minimum 75 kWh usable capacity'.",
+                  "detail": "This system requirement is a technical decomposition of the customer's 300-mile range need. System requirements translate customer language into engineering specifications.",
+                  "hint": null
+                },
+                {
+                  "action": "In the new system requirement's detail view, find the Associations or References section and add a reference back to the parent customer requirement.",
+                  "detail": "This creates a traceability link showing that this system requirement derives from a specific customer requirement. This link is critical for impact analysis and compliance auditing.",
+                  "hint": "Look for an 'Add Association' or 'Add Reference' button. Select 'Derived From' or 'Upstream Reference' as the relationship type."
+                },
+                {
+                  "action": "Create a second system requirement (e.g., 'Battery management system shall support fast charging at 150 kW') and link it to the same customer requirement.",
+                  "detail": "A single customer requirement often decomposes into multiple system requirements. Each system requirement covers a different technical aspect needed to satisfy the customer need.",
+                  "hint": null
+                },
+                {
+                  "action": "Navigate back to the customer requirement and verify that the downstream references to both system requirements are visible.",
+                  "detail": "Traceability links are bidirectional. When viewed from the customer requirement, you can see all system requirements derived from it. This downstream view is essential for completeness analysis.",
+                  "hint": "Open the customer requirement and scroll to the Associations section to see linked items."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "System requirements decompose customer needs into technical specifications",
+        "Downstream references create traceability links from customer to system requirements",
+        "A single customer requirement often maps to multiple system requirements",
+        "Traceability links are bidirectional and visible from both ends"
+      ]
+    },
+    {
+      "id": "m2t6",
+      "title": "Tasks, Releases, and Traceability",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create development tasks linked to system requirements, assign them to a release, and explore the resulting traceability chain from customer requirement through system requirement to task."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex5",
+          "title": "Tasks, Releases, and Traceability",
+          "objective": "Create tasks linked to requirements, assign to a release, and explore the full traceability chain.",
+          "tasks": [
+            {
+              "id": "ex5-t1",
+              "title": "Create Tasks and Explore Traceability",
+              "steps": [
+                {
+                  "action": "Navigate to the Tasks tracker and create a new task related to implementing the battery management system requirement.",
+                  "detail": "Tasks represent the actual development work that needs to be done. Linking a task to a requirement ensures that all development work is traceable back to a stakeholder need.",
+                  "hint": "Find the Tasks tracker in the Trackers section."
+                },
+                {
+                  "action": "Link the task to the system requirement you created in the previous exercise using the Associations section.",
+                  "detail": "This extends the traceability chain: Customer Requirement → System Requirement → Task. Each link shows how high-level needs flow down to actual work items.",
+                  "hint": "Use 'Add Association' and select the appropriate relationship type."
+                },
+                {
+                  "action": "Navigate to the Releases tracker and open an existing release (or create one named 'Sprint 1').",
+                  "detail": "Releases group work items into deliverable increments. Assigning tasks to releases helps teams plan their work and track progress toward delivery milestones.",
+                  "hint": "Look for a 'Releases' or 'Versions' tracker in the project."
+                },
+                {
+                  "action": "Assign your task to the release by setting the Release or Version field on the task.",
+                  "detail": "With the task assigned to a release, project managers can see what work is planned for each delivery increment and track completion status.",
+                  "hint": "Edit the task and look for a 'Release' or 'Version' field."
+                },
+                {
+                  "action": "Navigate back to the original customer requirement and trace the full chain: Customer Requirement → System Requirement → Task → Release.",
+                  "detail": "This end-to-end traceability is the core value of ALM. From a single customer requirement, you can see every specification, implementation task, and delivery milestone connected to it.",
+                  "hint": "Use the Associations or Traceability view on the customer requirement to see all linked items."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Tasks represent development work and should be linked to requirements for traceability",
+        "Releases group tasks into deliverable increments for planning and tracking",
+        "The full traceability chain connects Customer Requirements → System Requirements → Tasks → Releases",
+        "End-to-end traceability is the core value proposition of ALM"
+      ]
+    },
+    {
+      "id": "m2t7",
+      "title": "Multiple Tracker View Options",
+      "estimatedMinutes": 8,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Codebeamer provides multiple ways to visualize tracker data. Each view serves a different purpose — from detailed document editing to high-level progress tracking. Choosing the right view for the task at hand makes you more productive."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Available View Options"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["View", "Best For", "Key Features"],
+          "rows": [
+            ["Document View", "Authoring and reviewing requirements in context", "Hierarchical display, inline editing, rich text support"],
+            ["Table View", "Bulk operations and data comparison", "Sortable columns, inline editing, column customization"],
+            ["Kanban View", "Visual progress tracking", "Drag-and-drop state transitions, WIP limits, swimlanes"],
+            ["Document Edit View", "Focused document authoring", "Full-screen editing, section numbering, export support"],
+            ["Traceability Report", "Analyzing cross-tracker relationships", "Graph of links between items across trackers"],
+            ["Test Coverage", "Verifying requirement test coverage", "Shows which requirements have linked test cases and their pass/fail status"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "You can save customized views with specific column selections, filters, and sort orders. Saved views are available to all project members, making it easy to standardize how the team works with tracker data."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Choosing the Right View"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Writing requirements?",
+              "back": "Use Document View or Document Edit View. These provide a natural reading flow and support rich text editing in context."
+            },
+            {
+              "front": "Managing a sprint backlog?",
+              "back": "Use Kanban View. Drag items between columns to update their status. Configure WIP limits to prevent overloading."
+            },
+            {
+              "front": "Checking test coverage?",
+              "back": "Use the Test Coverage view. It shows which requirements have linked tests and whether those tests are passing, failing, or not yet executed."
+            },
+            {
+              "front": "Analyzing impact of a change?",
+              "back": "Use the Traceability Report. Follow links upstream and downstream to see every artifact affected by a proposed change."
+            }
+          ]
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each scenario to the best tracker view:",
+          "pairs": [
+            {"left": "A requirements engineer is writing a specification document", "right": "Document View"},
+            {"left": "A project manager wants to see sprint progress at a glance", "right": "Kanban View"},
+            {"left": "A test lead needs to verify all requirements have tests", "right": "Test Coverage"},
+            {"left": "An engineer needs to see all items affected by a requirement change", "right": "Traceability Report"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Codebeamer offers six primary views: Document, Table, Kanban, Document Edit, Traceability Report, and Test Coverage",
+        "Each view is optimized for specific tasks — choose the right view for your current activity",
+        "Custom views can be saved and shared with the team",
+        "Traceability Report and Test Coverage views provide cross-tracker analysis"
+      ]
+    }
+  ]
+}
+,
+    "modules/m3-test-management.json": 
+{
+  "id": "m3",
+  "title": "Test Management",
+  "description": "Understand test management concepts, explore test entities including configurations, cases, runs, and sets.",
+  "topics": [
+    {
+      "id": "m3t1",
+      "title": "Test Management Concepts",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Test management in Codebeamer is tightly integrated with requirements and development trackers. This integration means every test case can be linked to the requirements it verifies, and every bug can be traced back to the test that discovered it and the requirement that was violated."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Why Integrated Test Management?"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Approach", "How It Works", "Limitation"],
+          "rows": [
+            ["Standalone test tools", "Tests managed in a separate tool (e.g., spreadsheets, dedicated test tools)", "No direct link to requirements — manual effort to maintain traceability"],
+            ["Integrated ALM testing", "Tests live in the same platform as requirements and development items", "Requires ALM platform adoption — but gains automatic traceability and coverage analysis"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "In regulated industries, demonstrating that every requirement has been tested is not optional — it is a compliance requirement. Integrated test management makes this evidence automatic rather than manually assembled."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Test Management Workflow"
+        },
+        {
+          "type": "paragraph",
+          "text": "The test management workflow in Codebeamer follows a structured process:"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Plan",
+              "back": "Define test configurations (what environments to test in), create test cases (what to test), and organize them into test sets."
+            },
+            {
+              "front": "Execute",
+              "back": "Run test cases in test runs, recording pass/fail results for each step. Associate test runs with specific releases or sprints."
+            },
+            {
+              "front": "Report",
+              "back": "Analyze results through coverage reports, pass rates, and defect metrics. Identify untested requirements and failing areas."
+            },
+            {
+              "front": "Track Defects",
+              "back": "When tests fail, create bug tracker items linked to the failing test and the violated requirement. Track bugs through their resolution workflow."
+            }
+          ]
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the test management workflow steps in the correct order:",
+          "correctOrder": ["Plan", "Execute", "Report", "Track Defects"]
+        }
+      ],
+      "keyTakeaways": [
+        "Codebeamer integrates test management with requirements and development for automatic traceability",
+        "Integrated testing provides compliance evidence without manual assembly",
+        "The test workflow is: Plan → Execute → Report → Track Defects",
+        "Bugs discovered during testing are linked back to both the test and the requirement"
+      ]
+    },
+    {
+      "id": "m3t2",
+      "title": "Test Management Entities",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Codebeamer's test management capability is built around four core entities: Test Configurations, Test Cases, Test Runs, and Test Sets. Understanding how these entities relate to each other is essential for effective test planning and execution."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Core Test Entities"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Entity", "Purpose", "Example"],
+          "rows": [
+            ["Test Configuration", "Defines the environment or conditions under which tests are executed", "OS: Windows 11, Browser: Chrome 120, Database: PostgreSQL 15"],
+            ["Test Case", "Describes what to test, including steps and expected results", "Verify login with valid credentials: enter username, enter password, click Login, verify dashboard loads"],
+            ["Test Run", "A specific execution of test cases against a configuration", "Sprint 3 Regression — run all login test cases on the Windows 11 + Chrome configuration"],
+            ["Test Set", "A collection of test cases grouped for a specific purpose", "Smoke Tests, Regression Suite, Performance Tests"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "How Entities Relate"
+        },
+        {
+          "type": "paragraph",
+          "text": "Test Cases define what to test. Test Configurations define where/how to test. Test Sets group test cases for organization. Test Runs combine test cases (or sets) with a configuration to produce actual results. Each test run records pass/fail outcomes for every test case step."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Test Configuration",
+              "back": "Defines environment parameters (OS, browser, hardware). A single test case may be run across multiple configurations to verify cross-platform compatibility."
+            },
+            {
+              "front": "Test Case",
+              "back": "Contains a sequence of steps, each with an action and expected result. Test cases link to the requirements they verify. Well-written test cases are reusable across multiple test runs."
+            },
+            {
+              "front": "Test Run",
+              "back": "An instance of executing one or more test cases. Records the actual result for each step (pass, fail, blocked). Links to the test configuration used."
+            },
+            {
+              "front": "Test Set",
+              "back": "A named group of test cases. Use test sets to organize tests by feature area, risk level, or execution purpose (smoke, regression, acceptance)."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "When a test step fails during a test run, you can create a bug directly from the test run result. The bug is automatically linked to both the failing test case and the requirement it verifies."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each test entity to its role:",
+          "pairs": [
+            {"left": "Test Configuration", "right": "Defines the environment for test execution"},
+            {"left": "Test Case", "right": "Describes steps and expected results for a specific test"},
+            {"left": "Test Run", "right": "Records actual pass/fail results from executing tests"},
+            {"left": "Test Set", "right": "Groups related test cases for organizational purposes"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Four core entities: Test Configurations, Test Cases, Test Runs, and Test Sets",
+        "Test Cases define what to test; Test Configurations define where; Test Runs record results",
+        "Test Sets group test cases by purpose (smoke, regression, acceptance)",
+        "Bugs can be created directly from failing test run results with automatic linking"
+      ]
+    },
+    {
+      "id": "m3t3",
+      "title": "Test Configurations and Test Cases",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create a test configuration for the PTC Electric Car project, then create test cases linked to system requirements from Module 2."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Make sure you have completed the Module 2 exercises so that system requirements exist to link test cases to."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex6",
+          "title": "Test Configurations and Test Cases",
+          "objective": "Create a test configuration and write test cases linked to system requirements.",
+          "tasks": [
+            {
+              "id": "ex6-t1",
+              "title": "Create a Test Configuration",
+              "steps": [
+                {
+                  "action": "Navigate to the Test Configurations tracker in the PTC Electric Car project.",
+                  "detail": "Test configurations define the environment or conditions for test execution. For the electric car, this could be a specific vehicle model, firmware version, or test bench setup.",
+                  "hint": "Find the Test Configurations tracker in the Trackers section."
+                },
+                {
+                  "action": "Create a new test configuration named 'Standard Test Bench — Firmware v2.1'.",
+                  "detail": "The configuration name should clearly identify the test environment. Include key parameters like firmware version, hardware model, or operating conditions.",
+                  "hint": "Click the 'New Item' button in the Test Configurations tracker."
+                },
+                {
+                  "action": "Fill in relevant attributes such as description and any environment-specific fields.",
+                  "detail": "A good test configuration description helps testers set up the correct environment before executing tests. Include any prerequisites or setup instructions.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex6-t2",
+              "title": "Create Test Cases Linked to Requirements",
+              "steps": [
+                {
+                  "action": "Navigate to the Test Cases tracker and create a new test case: 'Verify battery capacity meets 75 kWh minimum'.",
+                  "detail": "This test case verifies the system requirement you created in Module 2. The test case name should clearly state what is being verified.",
+                  "hint": "Click the 'New Item' button in the Test Cases tracker."
+                },
+                {
+                  "action": "Add test steps with actions and expected results. For example: Step 1 — Fully charge battery, expected: Charge indicator shows 100%. Step 2 — Run discharge test, expected: Usable capacity ≥ 75 kWh.",
+                  "detail": "Each test step should have a clear action (what the tester does) and an expected result (what should happen). This makes tests repeatable and results unambiguous.",
+                  "hint": "Look for an 'Add Step' or 'Test Steps' section in the test case form."
+                },
+                {
+                  "action": "Link the test case to the system requirement 'Battery pack shall provide minimum 75 kWh usable capacity' using the Associations section.",
+                  "detail": "This traceability link connects the test to the requirement it verifies. The Test Coverage view will use this link to show whether the requirement has been tested.",
+                  "hint": "Use 'Add Association' and select the 'Verifies' relationship type."
+                },
+                {
+                  "action": "Create a second test case for the fast charging requirement and link it similarly.",
+                  "detail": "Each system requirement should have at least one test case. Complex requirements may need multiple test cases covering different scenarios.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Test configurations define the environment parameters for test execution",
+        "Test cases contain numbered steps with actions and expected results",
+        "Test cases should be linked to the requirements they verify using associations",
+        "Each system requirement should have at least one linked test case"
+      ]
+    },
+    {
+      "id": "m3t4",
+      "title": "Execute Test Runs",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will execute a test run using the test cases and configuration you created, record results, and report a bug for a failing test step."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex7",
+          "title": "Execute Test Runs",
+          "objective": "Run test cases against a configuration, record pass/fail results, and create a bug from a failing test.",
+          "tasks": [
+            {
+              "id": "ex7-t1",
+              "title": "Create and Execute a Test Run",
+              "steps": [
+                {
+                  "action": "Navigate to the Test Runs tracker and create a new test run. Assign it the test configuration you created ('Standard Test Bench — Firmware v2.1').",
+                  "detail": "A test run is an instance of executing a set of test cases in a specific configuration. It captures the actual results for each test step.",
+                  "hint": "Click 'New Item' in the Test Runs tracker. Select the test configuration from the available options."
+                },
+                {
+                  "action": "Add the test cases you created to this test run.",
+                  "detail": "A test run can include individual test cases or entire test sets. Adding test cases defines the scope of what will be tested in this execution.",
+                  "hint": "Look for an 'Add Test Cases' or 'Select Test Cases' option within the test run."
+                },
+                {
+                  "action": "Execute the first test case. For each step, mark the result as 'Passed' or 'Failed'. For this exercise, mark all steps of the battery capacity test as 'Passed'.",
+                  "detail": "During execution, the tester works through each step, performing the action and comparing the actual result to the expected result. The status is recorded directly in the test run.",
+                  "hint": "Open the test run and click on a test case to begin execution. Use the pass/fail buttons for each step."
+                },
+                {
+                  "action": "Execute the second test case (fast charging). Mark Step 1 as Passed but mark Step 2 as 'Failed'.",
+                  "detail": "When a step fails, the tester should note the actual result that was observed. This information is critical for the development team to diagnose and fix the issue.",
+                  "hint": "Add a comment on the failed step describing what actually happened."
+                },
+                {
+                  "action": "From the failed test step, create a new Bug. The bug should describe the failure, for example: 'Fast charging rate drops below 100 kW after 50% charge'.",
+                  "detail": "Creating a bug directly from a test run failure automatically links the bug to the test case and (through the test case) to the requirement. This maintains the traceability chain.",
+                  "hint": "Look for a 'Report Bug' or 'Create Bug' action on the failed step."
+                },
+                {
+                  "action": "Verify the bug appears in the Bugs tracker and has associations back to the test case and the original requirement.",
+                  "detail": "The traceability chain is now complete: Customer Requirement → System Requirement → Test Case → Test Run (Failed) → Bug. This chain makes it clear which customer need is impacted by this defect.",
+                  "hint": "Open the bug and check its Associations section."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Test runs execute test cases against a specific configuration and record results",
+        "Each test step is marked as Passed, Failed, or Blocked during execution",
+        "Bugs can be created directly from failed test steps with automatic traceability linking",
+        "The full traceability chain connects requirements through tests to bugs"
+      ]
+    }
+  ]
+}
+,
+    "modules/m4-data-visualization-reporting.json": 
+{
+  "id": "m4",
+  "title": "Data Visualization and Reporting",
+  "description": "Filter and report on data using cbQL, explore traceability views, export data, and build wiki dashboards with widgets.",
+  "topics": [
+    {
+      "id": "m4t1",
+      "title": "Filtering and Reporting Capabilities",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Codebeamer provides powerful filtering and reporting capabilities to help you find, analyze, and present data from your trackers. From simple column filters to the advanced Codebeamer Query Language (cbQL), you can slice data in virtually any way needed."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Filtering Methods"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Method", "Complexity", "Use Case"],
+          "rows": [
+            ["Column filters", "Low", "Quick ad-hoc filtering on visible columns in Table view"],
+            ["Saved filters", "Low", "Reusable named filter combinations for common queries"],
+            ["cbQL (Codebeamer Query Language)", "Medium–High", "Complex queries with boolean logic, field comparisons, and cross-tracker conditions"],
+            ["Reports", "Medium", "Formatted output combining data from multiple trackers with charts and tables"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Codebeamer Query Language (cbQL)"
+        },
+        {
+          "type": "paragraph",
+          "text": "cbQL is a SQL-like query language for searching tracker items across the Codebeamer platform. It supports field-based filtering, boolean operators (AND, OR, NOT), comparisons, and functions."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Example cbQL query: tracker.id IN (1234) AND status = 'In Progress' AND priority = 'High' — this finds all high-priority in-progress items in tracker 1234."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Wiki Pages and Reports"
+        },
+        {
+          "type": "paragraph",
+          "text": "Codebeamer wiki pages serve as project documentation and dashboards. You can embed live widgets — charts, tables, query results — directly in wiki pages. Reports combine data from multiple sources into formatted, shareable documents."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Wiki Pages",
+              "back": "Project-level documentation pages with rich text, embedded widgets, and live data. Use for team dashboards, process documentation, and status reports."
+            },
+            {
+              "front": "Widgets",
+              "back": "Embeddable components that display live tracker data — tables, charts, query results, and metrics. Widgets auto-update as underlying data changes."
+            },
+            {
+              "front": "Reports",
+              "back": "Formatted documents combining data from multiple trackers. Can include charts, tables, and narrative text. Exportable to Word, Excel, and PDF formats."
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Codebeamer offers four filtering methods from simple column filters to complex cbQL queries",
+        "cbQL is a SQL-like language for advanced cross-tracker searching",
+        "Wiki pages serve as project dashboards with embeddable live widgets",
+        "Reports combine multi-tracker data into formatted, exportable documents"
+      ]
+    },
+    {
+      "id": "m4t2",
+      "title": "Traceability Views",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Traceability views in Codebeamer let you visualize the relationships between items across trackers. These views are essential for impact analysis, coverage verification, and compliance reporting."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Types of Traceability Views"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["View", "Direction", "Use Case"],
+          "rows": [
+            ["Top-Down Traceability", "From high-level to detailed items", "Start from a customer requirement and see all derived system requirements, tasks, and tests"],
+            ["Bottom-Up Traceability", "From detailed items to high-level", "Start from a bug or test result and trace back to the impacted requirements"],
+            ["Test Coverage Browser", "Requirements to test results", "Show which requirements have linked test cases and their current pass/fail/not-run status"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Using Traceability for Impact Analysis"
+        },
+        {
+          "type": "paragraph",
+          "text": "When a requirement changes, top-down traceability shows every downstream artifact that may be affected — system requirements that need updating, tasks that need rework, and tests that need re-execution. When a test fails, bottom-up traceability shows which requirements are impacted, helping the team prioritize the fix."
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "The Test Coverage Browser is a compliance auditor's best friend. It shows at a glance which requirements have been tested, which passed, and which have gaps — without manually cross-referencing spreadsheets."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each traceability view to its starting point and direction:",
+          "pairs": [
+            {"left": "Top-Down Traceability", "right": "Starts from a requirement and follows links downstream"},
+            {"left": "Bottom-Up Traceability", "right": "Starts from a bug or test and traces back to requirements"},
+            {"left": "Test Coverage Browser", "right": "Shows requirement-to-test links with pass/fail status"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Three traceability views: Top-Down, Bottom-Up, and Test Coverage Browser",
+        "Top-down traceability is used for change impact analysis",
+        "Bottom-up traceability helps identify which requirements are affected by defects",
+        "Test Coverage Browser provides at-a-glance compliance evidence"
+      ]
+    },
+    {
+      "id": "m4t3",
+      "title": "Filter Items in a Tracker View",
+      "estimatedMinutes": 4,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will apply column filters and saved filters to a tracker view to find specific items quickly."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex8",
+          "title": "Filter Items in a Tracker View",
+          "objective": "Use column filters and saved filters to locate specific tracker items.",
+          "tasks": [
+            {
+              "id": "ex8-t1",
+              "title": "Apply Column Filters",
+              "steps": [
+                {
+                  "action": "Open the System Requirements tracker in Table View.",
+                  "detail": "Table View provides column-based filtering similar to a spreadsheet. Each column header can be used to filter items by that field's value.",
+                  "hint": "Switch to Table View using the view selector if not already active."
+                },
+                {
+                  "action": "Click the filter icon on the Status column and select 'Approved' to show only approved requirements.",
+                  "detail": "Column filters quickly narrow the view to items matching specific criteria. This is the fastest way to find items when you know the value you are looking for.",
+                  "hint": "The filter icon appears when you hover over or click the column header."
+                },
+                {
+                  "action": "Add a second filter on the Priority column to show only 'High' priority items.",
+                  "detail": "Multiple column filters combine with AND logic — items must match ALL active filters. This progressively narrows the result set.",
+                  "hint": null
+                },
+                {
+                  "action": "Save this filter combination as a named filter called 'High Priority Approved Requirements'.",
+                  "detail": "Saved filters are reusable and available to all project members. They standardize how the team finds and works with specific subsets of data.",
+                  "hint": "Look for a 'Save Filter' or 'Save View' button near the filter bar."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Column filters provide quick, ad-hoc filtering in Table View",
+        "Multiple column filters combine with AND logic",
+        "Saved filters are reusable and shared with all project members"
+      ]
+    },
+    {
+      "id": "m4t4",
+      "title": "Traceability Filter Views",
+      "estimatedMinutes": 4,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will use the top-down traceability view to follow the chain from a customer requirement to its system requirements, tasks, and tests."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex9",
+          "title": "Traceability Filter Views",
+          "objective": "Navigate the top-down traceability view to explore cross-tracker relationships.",
+          "tasks": [
+            {
+              "id": "ex9-t1",
+              "title": "Explore Top-Down Traceability",
+              "steps": [
+                {
+                  "action": "Open the Customer Requirements tracker and select a requirement that has downstream links (e.g., the battery range requirement from Module 2).",
+                  "detail": "You need a requirement with existing downstream traceability links to see the full chain.",
+                  "hint": "Look for requirements you created and linked in the Module 2 exercises."
+                },
+                {
+                  "action": "Open the Traceability view for this requirement. Look for a 'Traceability' tab or action in the item detail view.",
+                  "detail": "The traceability view displays a graphical representation of all linked items, showing how they connect across trackers.",
+                  "hint": "The traceability view may be accessible from the item's actions menu or a dedicated tab."
+                },
+                {
+                  "action": "Follow the links downstream: Customer Requirement → System Requirements → Test Cases. Note the status of each linked item.",
+                  "detail": "Each node in the traceability graph shows the item's current status. This lets you quickly identify if downstream items are keeping pace with the requirement (e.g., are all linked test cases passing?).",
+                  "hint": "Click on linked items to expand their connections."
+                },
+                {
+                  "action": "Identify any requirements that have no downstream test cases (coverage gaps).",
+                  "detail": "A requirement without linked test cases is a traceability gap. In regulated industries, these gaps must be resolved before the product can be released.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Top-down traceability follows links from requirements to downstream artifacts",
+        "The traceability graph shows the status of every linked item",
+        "Coverage gaps (requirements without test links) indicate incomplete verification"
+      ]
+    },
+    {
+      "id": "m4t5",
+      "title": "Filter Tasks and Export to Excel",
+      "estimatedMinutes": 3,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will filter the Tasks tracker to find specific items and export the filtered results to Excel for offline analysis or sharing."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex10",
+          "title": "Filter Tasks and Export to Excel",
+          "objective": "Filter tracker items and export the results to an Excel spreadsheet.",
+          "tasks": [
+            {
+              "id": "ex10-t1",
+              "title": "Filter and Export Tasks",
+              "steps": [
+                {
+                  "action": "Open the Tasks tracker in Table View and apply a filter to show only tasks assigned to you.",
+                  "detail": "Filtering by assignee helps you focus on your own work items. This is a common daily workflow for developers and testers.",
+                  "hint": "Filter on the 'Assigned To' or 'Owner' column."
+                },
+                {
+                  "action": "Further filter to show only tasks in 'In Progress' status.",
+                  "detail": "Combining assignee and status filters gives you a focused view of your active work items.",
+                  "hint": null
+                },
+                {
+                  "action": "Use the Export function to export the filtered results to Excel. Select the columns you want to include in the export.",
+                  "detail": "Codebeamer can export tracker views to Excel (XLSX), CSV, and other formats. The export respects your current filters and column selections, so you get exactly the data you see on screen.",
+                  "hint": "Look for an 'Export' or 'Download' button in the toolbar. Choose Excel format."
+                },
+                {
+                  "action": "Open the exported file and verify the data matches what was displayed in the filtered view.",
+                  "detail": "Exported data is useful for offline analysis, sharing with stakeholders who do not have Codebeamer access, and creating custom presentations or reports.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Exports respect the current filter and column selection",
+        "Excel export is useful for offline analysis and stakeholder sharing",
+        "Common export formats include XLSX, CSV, and PDF"
+      ]
+    },
+    {
+      "id": "m4t6",
+      "title": "Bottom-Up Traceability Report",
+      "estimatedMinutes": 3,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will use the bottom-up traceability view to trace from a bug back to the requirement it impacts, understanding the full chain of affected artifacts."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex11",
+          "title": "Bottom-Up Traceability Report",
+          "objective": "Trace from a bug upstream through test cases and requirements to understand impact.",
+          "tasks": [
+            {
+              "id": "ex11-t1",
+              "title": "Trace a Bug Upstream",
+              "steps": [
+                {
+                  "action": "Open the Bugs tracker and find the bug you created in the Module 3 exercise (e.g., the fast charging issue).",
+                  "detail": "Bottom-up traceability starts from a detailed item (bug, test result) and traces back to the high-level items it affects.",
+                  "hint": "Navigate to the Bugs tracker in the Trackers section."
+                },
+                {
+                  "action": "Open the traceability view for this bug and follow the links upstream: Bug → Test Case → System Requirement → Customer Requirement.",
+                  "detail": "This upstream chain shows exactly which customer need is impacted by this bug. Project managers can use this information to assess the business impact of the defect.",
+                  "hint": "Use the Traceability tab or action on the bug detail page."
+                },
+                {
+                  "action": "Note the customer requirement at the top of the chain. Consider how the bug affects the customer's stated need.",
+                  "detail": "The bottom-up view is invaluable during release decisions. If a bug traces up to a critical customer requirement, it may block the release until fixed.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Bottom-up traceability traces from bugs and test results up to impacted requirements",
+        "This view helps assess the business impact of defects",
+        "Bottom-up analysis supports release go/no-go decisions"
+      ]
+    },
+    {
+      "id": "m4t7",
+      "title": "Test Coverage Browser",
+      "estimatedMinutes": 3,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will use the Test Coverage Browser to verify which requirements have linked test cases and review their current pass/fail status."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex12",
+          "title": "Test Coverage Browser",
+          "objective": "Use the Test Coverage Browser to assess requirement test coverage and identify gaps.",
+          "tasks": [
+            {
+              "id": "ex12-t1",
+              "title": "Review Test Coverage",
+              "steps": [
+                {
+                  "action": "Navigate to the System Requirements tracker and open the Test Coverage view (or find it under the Traceability/Reports menu).",
+                  "detail": "The Test Coverage Browser shows each requirement alongside its linked test cases and their execution status. This is the primary tool for verifying that all requirements have been tested.",
+                  "hint": "Look for a 'Test Coverage' view option or a link in the tracker's view selector."
+                },
+                {
+                  "action": "Review the coverage status. Identify requirements that are fully covered (all tests passing), partially covered (some tests failing), and uncovered (no linked tests).",
+                  "detail": "Color coding typically indicates status: green for passed, red for failed, yellow for not yet executed, and gray for no linked tests. The goal is to eliminate gray and red before release.",
+                  "hint": null
+                },
+                {
+                  "action": "Click on a requirement with failing tests to see the details of which test cases failed and in which test runs.",
+                  "detail": "Drilling down from the coverage view helps you prioritize which test failures to address first based on the importance of the affected requirement.",
+                  "hint": "Click the coverage status indicator or the test case link to see details."
+                },
+                {
+                  "action": "Identify any requirements with no linked test cases and note them as coverage gaps that need test cases created.",
+                  "detail": "In regulated industries, 100% requirement coverage is often a release gate. The Test Coverage Browser makes these gaps immediately visible.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Test Coverage Browser shows requirement-to-test links with execution status",
+        "Color coding indicates passed (green), failed (red), not run (yellow), and uncovered (gray)",
+        "Coverage gaps are immediately visible and should be resolved before release",
+        "Drilling down shows specific test case failures per requirement"
+      ]
+    },
+    {
+      "id": "m4t8",
+      "title": "Wiki Dashboard with Widgets",
+      "estimatedMinutes": 4,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create a project wiki page and add live widgets that display tracker data — creating a custom project dashboard."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex13",
+          "title": "Wiki Dashboard with Widgets",
+          "objective": "Create a wiki page dashboard with live data widgets showing project metrics.",
+          "tasks": [
+            {
+              "id": "ex13-t1",
+              "title": "Create a Wiki Dashboard",
+              "steps": [
+                {
+                  "action": "Navigate to the Wiki section of the PTC Electric Car project and create a new wiki page called 'Project Dashboard'.",
+                  "detail": "Wiki pages in Codebeamer support rich text, embedded images, and live data widgets. They are commonly used for team dashboards, meeting agendas, and process documentation.",
+                  "hint": "Look for a 'Wiki' or 'Documents' section in the project navigation."
+                },
+                {
+                  "action": "Add a heading 'Requirement Status' and insert a tracker widget showing the count of requirements by status (Draft, In Review, Approved, etc.).",
+                  "detail": "Tracker widgets pull live data from your project trackers. When items change status, the widget automatically updates. No manual data entry needed.",
+                  "hint": "Look for an 'Insert Widget' or 'Add Widget' option in the wiki editor toolbar. Select a chart or table widget type."
+                },
+                {
+                  "action": "Add a second section 'Open Bugs' and insert a table widget showing all bugs with status 'New' or 'In Progress'.",
+                  "detail": "A table widget can display filtered tracker data directly in the wiki page. This gives the team a quick view of active bugs without navigating to the bug tracker.",
+                  "hint": "Configure the widget with a filter on the Bugs tracker for non-closed statuses."
+                },
+                {
+                  "action": "Add a third section 'Test Coverage Summary' and insert a widget showing overall test pass/fail metrics.",
+                  "detail": "Combining multiple widgets on a single wiki page creates a comprehensive project dashboard. Stakeholders can see requirements status, bug count, and test results all in one place.",
+                  "hint": "Look for a test-related widget type or use a cbQL-based query widget."
+                },
+                {
+                  "action": "Save the wiki page and verify that all widgets display live data from your project.",
+                  "detail": "Your project dashboard is now a live, self-updating summary of project health. Share the page URL with stakeholders for easy access.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Wiki pages support embedded live data widgets that auto-update",
+        "Common dashboard widgets include status charts, filtered tables, and coverage metrics",
+        "Combining multiple widgets creates comprehensive project dashboards",
+        "Wiki dashboards eliminate the need for manual status reports"
+      ]
+    }
+  ]
+}
+,
+    "quizzes/q1-intro-codebeamer-alm.json": 
+{
+  "moduleId": "m1",
+  "title": "Introduction to Codebeamer and ALM Knowledge Check",
+  "questions": [
+    {
+      "id": "m1-kc-001",
+      "question": "What is the primary purpose of Application Lifecycle Management (ALM)?",
+      "options": [
+        "To replace all development tools with a single application",
+        "To manage the life of an application from planning through retirement by integrating people, processes, and tools",
+        "To automate all testing activities in a software project",
+        "To provide version control for source code repositories"
+      ],
+      "answerIndex": 1,
+      "rationale": "ALM is a continuous process that manages the entire application lifecycle — from planning through development, testing, deployment, and retirement — by integrating people, processes, and tools. It is not limited to testing, version control, or tool replacement.",
+      "topic": "m1t1"
+    },
+    {
+      "id": "m1-kc-002",
+      "question": "Which of the following is a key benefit of ALM that is especially important in regulated industries?",
+      "options": [
+        "Faster code compilation times",
+        "Automatic generation of source code from requirements",
+        "End-to-end traceability for compliance evidence",
+        "Elimination of the need for manual testing"
+      ],
+      "answerIndex": 2,
+      "rationale": "End-to-end traceability is critical in regulated industries because standards like ISO 26262 and IEC 62304 require demonstrating that every requirement has been verified. ALM makes this traceability automatic rather than manually assembled.",
+      "topic": "m1t1"
+    },
+    {
+      "id": "m1-kc-003",
+      "question": "Which Codebeamer capability provides pre-built frameworks for automotive safety (ISO 26262) and medical device (IEC 62304) compliance?",
+      "options": [
+        "Requirements Management",
+        "Project Tracking & Analytics",
+        "Industry Templates",
+        "REST API Integrations"
+      ],
+      "answerIndex": 2,
+      "rationale": "Codebeamer provides industry templates — pre-built project templates for automotive (ASPICE, ISO 26262), medical devices (IEC 62304), aviation (DO-178C), and other regulated industries. These templates include pre-configured trackers, workflows, and traceability structures.",
+      "topic": "m1t2"
+    },
+    {
+      "id": "m1-kc-004",
+      "question": "What is the correct order of phases in the ALM development framework?",
+      "options": [
+        "Design → Requirements → Testing → Development",
+        "Requirements → Design → Development → Testing",
+        "Testing → Requirements → Design → Development",
+        "Development → Design → Requirements → Testing"
+      ],
+      "answerIndex": 1,
+      "rationale": "The ALM development framework follows the cycle: Requirements (what must the product do) → Design (how will it work) → Development (build it) → Testing (verify it meets requirements). This cycle is iterative — testing may reveal gaps that restart the cycle.",
+      "topic": "m1t3"
+    },
+    {
+      "id": "m1-kc-005",
+      "question": "How many lines of code can a modern car contain, illustrating the need for structured lifecycle management?",
+      "options": [
+        "Around 1 million lines",
+        "Around 10 million lines",
+        "Over 100 million lines",
+        "Over 1 billion lines"
+      ],
+      "answerIndex": 2,
+      "rationale": "A modern car can contain over 100 million lines of code — more than a fighter jet or a commercial operating system. This staggering complexity makes structured Application Lifecycle Management essential for managing requirements, development, and testing.",
+      "topic": "m1t1"
+    }
+  ]
+}
+,
+    "quizzes/q2-trackers-requirements.json": 
+{
+  "moduleId": "m2",
+  "title": "Trackers and Requirements Management Knowledge Check",
+  "questions": [
+    {
+      "id": "m2-kc-001",
+      "question": "What is a tracker in Codebeamer?",
+      "options": [
+        "A report that tracks project costs and budgets",
+        "A configurable container that holds related items with defined fields, workflows, and permissions",
+        "A log file that records user activity in the system",
+        "A real-time monitoring dashboard for system performance"
+      ],
+      "answerIndex": 1,
+      "rationale": "A tracker is a configurable container that holds a collection of related items. Each tracker defines the fields (attributes), workflows (state transitions), and permissions for its items. Trackers are the fundamental data containers in Codebeamer.",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-002",
+      "question": "What is the correct sequence in the requirements lifecycle?",
+      "options": [
+        "Document → Confirm → Analyze → Gather",
+        "Gather → Analyze → Confirm → Document",
+        "Analyze → Gather → Document → Confirm",
+        "Confirm → Document → Gather → Analyze"
+      ],
+      "answerIndex": 1,
+      "rationale": "The requirements lifecycle follows: Gather (collect stakeholder needs) → Analyze (refine into actionable requirements) → Confirm (review and approve) → Document (organize with traceability). This ensures requirements are validated before formal documentation.",
+      "topic": "m2t2"
+    },
+    {
+      "id": "m2-kc-003",
+      "question": "Which tracker view is best suited for visually tracking item progress through workflow states using drag-and-drop?",
+      "options": [
+        "Document View",
+        "Table View",
+        "Kanban View",
+        "Traceability Report"
+      ],
+      "answerIndex": 2,
+      "rationale": "Kanban View displays items as cards in columns that represent workflow states. Items can be moved between states by dragging and dropping. This visual approach is ideal for tracking progress of tasks, bugs, and other work items.",
+      "topic": "m2t3"
+    },
+    {
+      "id": "m2-kc-004",
+      "question": "In a requirements hierarchy, what is the relationship between customer requirements and system requirements?",
+      "options": [
+        "They are the same level of detail in different formats",
+        "System requirements decompose customer requirements into technical specifications",
+        "Customer requirements are derived from system requirements",
+        "System requirements replace customer requirements after approval"
+      ],
+      "answerIndex": 1,
+      "rationale": "System requirements decompose customer requirements into specific, implementable technical specifications. They translate what the customer wants (customer requirements) into how the system will satisfy those needs. The two levels are connected through traceability links.",
+      "topic": "m2t2"
+    },
+    {
+      "id": "m2-kc-005",
+      "question": "What is a workflow guard in Codebeamer?",
+      "options": [
+        "A user role that prevents unauthorized access to a tracker",
+        "A condition that must be met before a workflow transition can occur",
+        "A visual indicator showing the current state of a tracker item",
+        "An automatic backup triggered when items change state"
+      ],
+      "answerIndex": 1,
+      "rationale": "A guard is a condition on a workflow transition that must be met before the transition can occur. For example, a guard might require all mandatory fields to be filled before a requirement can transition from 'Draft' to 'In Review'.",
+      "topic": "m2t3"
+    }
+  ]
+}
+,
+    "quizzes/q3-test-management.json": 
+{
+  "moduleId": "m3",
+  "title": "Test Management Knowledge Check",
+  "questions": [
+    {
+      "id": "m3-kc-001",
+      "question": "What is the main advantage of integrated test management over standalone test tools?",
+      "options": [
+        "Integrated testing is faster to execute",
+        "Standalone tools cannot create test cases",
+        "Integrated testing provides automatic traceability between tests and requirements",
+        "Standalone tools do not support test case management"
+      ],
+      "answerIndex": 2,
+      "rationale": "The main advantage of integrated test management in an ALM platform is automatic traceability. Tests are linked directly to the requirements they verify, enabling automatic coverage analysis and compliance evidence without manual cross-referencing.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-002",
+      "question": "Which test entity defines the environment or conditions under which tests are executed?",
+      "options": [
+        "Test Case",
+        "Test Configuration",
+        "Test Run",
+        "Test Set"
+      ],
+      "answerIndex": 1,
+      "rationale": "A Test Configuration defines the environment parameters for test execution — such as operating system, browser version, hardware model, or firmware version. A single test case can be executed across multiple configurations to verify cross-platform compatibility.",
+      "topic": "m3t2"
+    },
+    {
+      "id": "m3-kc-003",
+      "question": "What is the correct order of the test management workflow in Codebeamer?",
+      "options": [
+        "Execute → Plan → Track Defects → Report",
+        "Report → Plan → Execute → Track Defects",
+        "Plan → Execute → Report → Track Defects",
+        "Track Defects → Plan → Execute → Report"
+      ],
+      "answerIndex": 2,
+      "rationale": "The test management workflow follows: Plan (define configurations, create test cases) → Execute (run tests and record results) → Report (analyze results and coverage) → Track Defects (create and manage bugs from failures).",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-004",
+      "question": "When a test step fails during a test run, what can be created directly from the failure?",
+      "options": [
+        "A new test configuration",
+        "A bug tracker item linked to the test case and requirement",
+        "A new system requirement to replace the failing one",
+        "A release notification to stakeholders"
+      ],
+      "answerIndex": 1,
+      "rationale": "When a test step fails, you can create a bug directly from the test run result. The bug is automatically linked to both the failing test case and (through the test case) to the requirement it verifies, maintaining the complete traceability chain.",
+      "topic": "m3t2"
+    },
+    {
+      "id": "m3-kc-005",
+      "question": "What is the purpose of a Test Set?",
+      "options": [
+        "To define the environment parameters for test execution",
+        "To record the actual results of test execution",
+        "To group related test cases for a specific purpose such as regression or smoke testing",
+        "To link test cases to requirements for coverage analysis"
+      ],
+      "answerIndex": 2,
+      "rationale": "A Test Set is a named collection of test cases grouped for a specific purpose. Common test sets include smoke tests (basic functionality), regression suites (full verification), and acceptance tests (stakeholder sign-off criteria).",
+      "topic": "m3t2"
+    }
+  ]
+}
+,
+    "quizzes/q4-data-visualization-reporting.json": 
+{
+  "moduleId": "m4",
+  "title": "Data Visualization and Reporting Knowledge Check",
+  "questions": [
+    {
+      "id": "m4-kc-001",
+      "question": "What is cbQL?",
+      "options": [
+        "A programming language for creating Codebeamer plugins",
+        "A SQL-like query language for searching and filtering tracker items",
+        "A markup language for formatting wiki pages",
+        "A scripting language for automating workflow transitions"
+      ],
+      "answerIndex": 1,
+      "rationale": "cbQL (Codebeamer Query Language) is a SQL-like query language for searching and filtering tracker items across the Codebeamer platform. It supports field-based filtering, boolean operators (AND, OR, NOT), comparisons, and functions.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-002",
+      "question": "Which traceability view starts from a high-level requirement and follows links to all downstream artifacts?",
+      "options": [
+        "Bottom-Up Traceability",
+        "Test Coverage Browser",
+        "Top-Down Traceability",
+        "Kanban View"
+      ],
+      "answerIndex": 2,
+      "rationale": "Top-Down Traceability starts from a high-level item (like a customer requirement) and follows links downstream to system requirements, tasks, test cases, and other derived artifacts. It is used for change impact analysis.",
+      "topic": "m4t2"
+    },
+    {
+      "id": "m4-kc-003",
+      "question": "What does the Test Coverage Browser show?",
+      "options": [
+        "The percentage of source code covered by unit tests",
+        "Which requirements have linked test cases and their current pass/fail status",
+        "A timeline of test execution history over the past year",
+        "The number of bugs found per developer"
+      ],
+      "answerIndex": 1,
+      "rationale": "The Test Coverage Browser shows which requirements have linked test cases and their current execution status (passed, failed, not yet run, or no linked tests). It is the primary tool for verifying requirement test coverage and identifying gaps.",
+      "topic": "m4t2"
+    },
+    {
+      "id": "m4-kc-004",
+      "question": "What are widgets in the context of Codebeamer wiki pages?",
+      "options": [
+        "Downloadable plugins that extend Codebeamer functionality",
+        "Embeddable components that display live tracker data such as charts and tables",
+        "Pre-built report templates for exporting to PDF",
+        "User interface themes that customize the look of Codebeamer"
+      ],
+      "answerIndex": 1,
+      "rationale": "Widgets are embeddable components on wiki pages that display live tracker data — including tables, charts, query results, and metrics. They auto-update as the underlying data changes, making wiki pages effective as project dashboards.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-005",
+      "question": "When would you use Bottom-Up Traceability?",
+      "options": [
+        "When you want to see all requirements in a project",
+        "When you need to create a new requirement from a design document",
+        "When you want to trace from a bug or test result back to the impacted requirements",
+        "When you need to export tracker data to Excel"
+      ],
+      "answerIndex": 2,
+      "rationale": "Bottom-Up Traceability starts from a detailed item (bug, test result) and traces links upstream to the impacted requirements. This view helps assess the business impact of defects and supports release go/no-go decisions.",
+      "topic": "m4t2"
+    }
+  ]
+}
+,
+    "glossary.json": 
+{
+  "terms": [
+    {
+      "term": "Application Lifecycle Management (ALM)",
+      "definition": "A continuous process of managing the life of a software or systems application from initial planning through development, testing, deployment, and retirement. Integrates people, processes, and tools across the entire product lifecycle."
+    },
+    {
+      "term": "Association",
+      "definition": "A traceability link between two tracker items. Associations define relationships such as 'derives from', 'verifies', or 'related to', enabling cross-tracker traceability."
+    },
+    {
+      "term": "Baseline",
+      "definition": "A snapshot of a set of tracker items at a specific point in time. Baselines are used to freeze a version of requirements, designs, or test plans for review, approval, or comparison."
+    },
+    {
+      "term": "Bug",
+      "definition": "A tracker item representing a defect found during testing or operation. Bugs are linked to the test that discovered them and the requirement that was violated."
+    },
+    {
+      "term": "cbQL (Codebeamer Query Language)",
+      "definition": "A SQL-like query language for searching and filtering tracker items across the Codebeamer platform. Supports boolean operators, field comparisons, and cross-tracker conditions."
+    },
+    {
+      "term": "Customer Requirement",
+      "definition": "A high-level statement of what the customer or stakeholder expects from the product. Captured in the Customer Requirements tracker and decomposed into system-level specifications."
+    },
+    {
+      "term": "Document View",
+      "definition": "A tracker view that displays items in a document-like hierarchy, ideal for reading and editing requirements in context with support for rich text editing."
+    },
+    {
+      "term": "Downstream Reference",
+      "definition": "A traceability link pointing from a higher-level item to a more detailed item. For example, a customer requirement linked to the system requirements derived from it."
+    },
+    {
+      "term": "Guard",
+      "definition": "A condition on a workflow transition that must be met before the transition can occur. For example, requiring all mandatory fields to be filled before a requirement can move to 'Approved'."
+    },
+    {
+      "term": "Kanban View",
+      "definition": "A visual board view where columns represent workflow states and items are displayed as cards. Supports drag-and-drop state transitions and work-in-progress limits."
+    },
+    {
+      "term": "Project",
+      "definition": "A container in Codebeamer that holds all trackers, wiki pages, documents, and artifacts for a specific product or initiative."
+    },
+    {
+      "term": "Release",
+      "definition": "A tracker item representing a planned delivery milestone. Tasks and other work items are assigned to releases to support planning and progress tracking."
+    },
+    {
+      "term": "Report",
+      "definition": "A formatted document combining data from multiple trackers with charts, tables, and narrative text. Exportable to Word, Excel, and PDF formats."
+    },
+    {
+      "term": "Requirements Library",
+      "definition": "A repository of reusable requirement specifications that can be referenced across multiple projects to prevent duplication and ensure consistency."
+    },
+    {
+      "term": "System Requirement",
+      "definition": "A technical specification decomposed from a customer requirement. Describes how the system will meet a specific stakeholder need. Stored in the System Requirements tracker."
+    },
+    {
+      "term": "Table View",
+      "definition": "A spreadsheet-like grid view of tracker items with sortable and filterable columns. Best suited for bulk editing and comparing items across many attributes."
+    },
+    {
+      "term": "Test Case",
+      "definition": "A tracker item that defines what to test, including a sequence of steps with actions and expected results. Test cases are linked to the requirements they verify."
+    },
+    {
+      "term": "Test Configuration",
+      "definition": "A tracker item that defines the environment or conditions under which tests are executed. Examples include operating system, browser version, and hardware setup."
+    },
+    {
+      "term": "Test Coverage Browser",
+      "definition": "A view that shows which requirements have linked test cases and their current execution status (passed, failed, not run). Used for compliance verification and gap analysis."
+    },
+    {
+      "term": "Test Run",
+      "definition": "A specific execution of one or more test cases against a test configuration. Records the actual pass/fail/blocked result for each test step."
+    },
+    {
+      "term": "Test Set",
+      "definition": "A named collection of test cases grouped for a specific purpose, such as smoke testing, regression testing, or acceptance testing."
+    },
+    {
+      "term": "Traceability",
+      "definition": "The ability to link and follow relationships between artifacts across the product lifecycle — from requirements through design, implementation, and testing."
+    },
+    {
+      "term": "Tracker",
+      "definition": "A configurable container in Codebeamer that holds a collection of related items. Each tracker defines the fields, workflows, and permissions for its items. Examples include Requirements, Bugs, Tasks, and Test Cases."
+    },
+    {
+      "term": "Tracker Item",
+      "definition": "A single entry within a tracker. Each item has configurable attributes (fields), a workflow state, associations to other items, and a change history."
+    },
+    {
+      "term": "Transition",
+      "definition": "A defined path from one workflow state to another. Transitions can have guards (conditions) and actions (automated operations). Example: 'Draft' → 'In Review'."
+    },
+    {
+      "term": "Upstream Reference",
+      "definition": "A traceability link pointing from a detailed item back to its parent or source item. For example, a system requirement linked to the customer requirement it derives from."
+    },
+    {
+      "term": "Widget",
+      "definition": "An embeddable component on a wiki page that displays live tracker data — tables, charts, query results, or metrics. Widgets auto-update as underlying data changes."
+    },
+    {
+      "term": "Wiki Page",
+      "definition": "A project-level documentation page in Codebeamer that supports rich text, embedded images, and live data widgets. Commonly used for dashboards and process documentation."
+    },
+    {
+      "term": "Workflow",
+      "definition": "A defined set of states and transitions that control a tracker item's lifecycle. Workflows enforce process discipline by ensuring items move through approved stages."
+    }
+  ]
+}
+,
+    "i18n/ui-en.json": 
+{
+  "app.title": "Windchill OCP",
+  "app.subtitle": "Onboarding",
+  "app.courseProgress": "Course Progress",
+  "app.courseProgressPct": "Course Progress: {pct}%",
+  "app.resetProgress": "Reset Progress",
+  "app.resetConfirm": "Reset all progress and notes?",
+  "app.openMenu": "Open menu",
+  "app.toggleTheme": "Toggle theme",
+
+  "sidebar.dashboard": "Dashboard",
+  "sidebar.modules": "Modules",
+  "sidebar.resources": "Resources",
+  "sidebar.glossary": "Glossary",
+  "sidebar.knowledgeCheck": "Knowledge Check",
+  "sidebar.comingSoon": "Coming soon",
+  "sidebar.topicLabel": "Topic {mod}.{topic}",
+  "sidebar.exerciseLabel": "Exercise {num}",
+
+  "dashboard.continueLabel": "Continue where you left off",
+  "dashboard.statComplete": "Complete",
+  "dashboard.statTopics": "Topics",
+  "dashboard.statEstimated": "Estimated",
+  "dashboard.modules": "Modules",
+  "dashboard.moduleNum": "Module {num}",
+  "dashboard.moduleComingSoon": "Module {num} - Coming Soon",
+  "dashboard.topicsProgress": "{done}/{total} topics",
+  "dashboard.estimatedMin": "~{min} min",
+  "dashboard.routeTopic": "Topic {label}",
+  "dashboard.routeModule": "Module {label}",
+  "dashboard.routeQuiz": "Quiz {label}",
+  "dashboard.routeGlossary": "Glossary",
+
+  "topic.breadcrumbDashboard": "Dashboard",
+  "topic.breadcrumbModule": "Module {num}",
+  "topic.topicNum": "Topic {mod}.{topic}",
+  "topic.exerciseNum": "Exercise {num}",
+  "topic.estimated": "Estimated: ~{min} min",
+  "topic.keyTakeaways": "Key Takeaways",
+  "topic.markComplete": "Mark as Complete",
+  "topic.completedUndo": "Completed - Click to undo",
+  "topic.previous": "Previous",
+  "topic.next": "Next",
+  "topic.moduleOverview": "Module Overview",
+  "topic.takeQuiz": "Take Quiz",
+  "topic.clickToReveal": "Click to reveal",
+  "topic.allMatchedCorrectly": "All matched correctly!",
+  "topic.scenarioLabel": "Scenario",
+  "topic.strategyLabel": "Strategy",
+  "topic.showHint": "Show hint",
+  "topic.hideHint": "Hide hint",
+  "topic.objective": "Objective",
+  "topic.stepsCompleted": "{done}/{total} steps completed",
+  "topic.stepsProgress": "{done}/{total} steps",
+  "topic.doThis": "Do This",
+  "topic.whyItMatters": "Why It Matters",
+  "topic.doneNextStep": "Done — Next Step",
+  "topic.topicsComplete": "{done}/{total} topics complete",
+  "topic.moduleBadge": "Module {num}",
+  "topic.topics": "Topics",
+  "topic.startModule": "Start Module",
+  "topic.backToDashboard": "Dashboard",
+  "topic.knowledgeCheck": "Module {num} Knowledge Check",
+  "topic.quizBest": "Best: {score}/{total}",
+  "topic.quizNotAttempted": "Not attempted yet",
+
+  "quiz.moduleKnowledgeCheck": "Module {num} Knowledge Check",
+  "quiz.questionProgress": "Question {current} of {total}",
+  "quiz.previous": "Previous",
+  "quiz.back": "Back",
+  "quiz.next": "Next",
+  "quiz.seeResults": "See Results",
+  "quiz.retryQuiz": "Retry Quiz",
+  "quiz.backToModule": "Back to Module",
+  "quiz.greatJob": "Great job!",
+  "quiz.goodEffort": "Good effort!",
+  "quiz.keepStudying": "Keep studying!",
+  "quiz.scoreMessage": "You scored {pct}% on the Module {num} Knowledge Check.",
+  "quiz.review": "Review",
+  "quiz.yourAnswer": "Your answer: {answer}",
+  "quiz.correct": "Correct: {answer}",
+  "quiz.notAvailable": "Quiz not available yet.",
+  "quiz.topicNotFound": "Topic not found.",
+  "quiz.moduleNotFound": "Module not found.",
+
+  "glossary.title": "Glossary",
+  "glossary.subtitle": "Options and Configurable Products terminology ({count} terms)",
+  "glossary.searchPlaceholder": "Search terms...",
+  "glossary.noResults": "No terms match your search.",
+  "glossary.notAvailable": "Glossary not available.",
+
+  "notepad.title": "Notes",
+  "notepad.placeholder": "Take notes as you learn...",
+  "notepad.charCount": "{count} chars",
+  "notepad.openNotepad": "Open notepad",
+
+  "error.loadingContent": "Error Loading Content",
+  "error.serverRequired": "Make sure you are serving this from an HTTP server (e.g., python -m http.server). The fetch() API does not work with file:// URLs.",
+
+  "catalog.title": "Training Catalog",
+  "catalog.subtitle": "Interactive onboarding courses for PTC products",
+  "catalog.platformTitle": "PTC Training",
+  "catalog.platformSubtitle": "Course Catalog",
+  "catalog.productFamilies": "Product Families",
+  "catalog.courses": "{count} courses",
+  "catalog.languages": "languages",
+  "catalog.comingSoon": "Coming Soon",
+  "catalog.prerequisite": "Prerequisite",
+  "catalog.backToCatalog": "All Courses",
+
+  "locale.en": "English",
+  "locale.fr": "Français",
+  "locale.de": "Deutsch",
+  "locale.ja": "日本語",
+  "locale.zh": "中文",
+  "locale.ko": "한국어",
+  "locale.es": "Español"
+}
+
+  };
+})();

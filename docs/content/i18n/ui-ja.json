@@ -97,6 +97,17 @@
   "error.loadingContent": "コンテンツの読み込みエラー",
   "error.serverRequired": "HTTPサーバーから配信していることを確認してください（例: python -m http.server）。fetch() APIはfile:// URLでは動作しません。",
 
+  "catalog.title": "トレーニングカタログ",
+  "catalog.subtitle": "PTC製品のインタラクティブなオンボーディングコース",
+  "catalog.platformTitle": "PTCトレーニング",
+  "catalog.platformSubtitle": "コースカタログ",
+  "catalog.productFamilies": "製品ファミリー",
+  "catalog.courses": "{count} コース",
+  "catalog.languages": "言語",
+  "catalog.comingSoon": "近日公開",
+  "catalog.prerequisite": "前提条件",
+  "catalog.backToCatalog": "全コース",
+
   "locale.en": "English",
   "locale.fr": "Français",
   "locale.de": "Deutsch",

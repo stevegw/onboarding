@@ -97,6 +97,17 @@
   "error.loadingContent": "内容加载错误",
   "error.serverRequired": "请确保通过 HTTP 服务器提供此页面（例如 python -m http.server）。fetch() API 不支持 file:// URL。",
 
+  "catalog.title": "培训目录",
+  "catalog.subtitle": "PTC 产品交互式入门培训课程",
+  "catalog.platformTitle": "PTC 培训",
+  "catalog.platformSubtitle": "课程目录",
+  "catalog.productFamilies": "产品系列",
+  "catalog.courses": "{count} 门课程",
+  "catalog.languages": "种语言",
+  "catalog.comingSoon": "即将推出",
+  "catalog.prerequisite": "先决条件",
+  "catalog.backToCatalog": "所有课程",
+
   "locale.en": "English",
   "locale.fr": "Français",
   "locale.de": "Deutsch",

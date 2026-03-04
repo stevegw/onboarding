@@ -2,6 +2,7 @@
  * OB -- Onboarding -- Sidebar Navigation
  * =========================================
  * Renders module/topic navigation tree with progress indicators.
+ * In catalog mode, shows minimal sidebar with catalog info.
  * Attached to window.OB.sidebar.
  */
 (function () {
@@ -11,12 +12,64 @@
 
   var expandedModules = {};
 
+  /**
+   * Render sidebar for catalog mode (no course selected).
+   */
+  function renderCatalog(catalog) {
+    var nav = document.getElementById("nav");
+    if (!nav) return;
+
+    var t = OB.i18n.t;
+    var html = "";
+
+    html += '<div class="sb-nav-item active" data-route="#/">';
+    html += '<span class="nav-icon">&#128218;</span>';
+    html += '<span class="nav-label">' + t("catalog.title") + '</span>';
+    html += '</div>';
+
+    // Show family sections
+    html += '<div class="sb-nav-section">' + t("catalog.productFamilies") + '</div>';
+    catalog.families.forEach(function (family) {
+      var activeCount = family.courses.filter(function (c) { return !c.comingSoon; }).length;
+      html += '<div class="sb-nav-item">';
+      html += '<span class="nav-icon" style="color:' + family.color + '">' + family.icon + '</span>';
+      html += '<span class="nav-label">' + OB.ui.esc(family.name) + '</span>';
+      html += '<span class="module-progress">' + activeCount + '/' + family.courses.length + '</span>';
+      html += '</div>';
+    });
+
+    nav.innerHTML = html;
+
+    // Hide course-specific progress bar
+    var progressSection = document.querySelector(".sb-progress");
+    if (progressSection) progressSection.style.display = "none";
+
+    // Hide reset button in catalog mode
+    var resetSection = document.querySelector(".sb-actions");
+    if (resetSection) resetSection.style.display = "none";
+
+    // Update logo text for catalog
+    var logoTitle = document.querySelector(".sb-logo-text h2");
+    var logoSub = document.querySelector(".sb-logo-text p");
+    if (logoTitle) logoTitle.textContent = t("catalog.platformTitle");
+    if (logoSub) logoSub.textContent = t("catalog.platformSubtitle");
+  }
+
+  /**
+   * Render sidebar for course mode (course selected).
+   */
   function render(course, activeRoute) {
     var nav = document.getElementById("nav");
     if (!nav) return;
 
     var t = OB.i18n.t;
     var html = "";
+
+    // "All Courses" back link
+    html += '<div class="sb-nav-item sb-back-link" id="back-to-catalog">';
+    html += '<span class="nav-icon">&#8592;</span>';
+    html += '<span class="nav-label">' + t("catalog.backToCatalog") + '</span>';
+    html += '</div>';
 
     // Dashboard link
     var dashActive = (!activeRoute || activeRoute === "#/" || activeRoute === "") ? " active" : "";
@@ -92,6 +145,18 @@
 
     nav.innerHTML = html;
 
+    // Show course-specific sections
+    var progressSection = document.querySelector(".sb-progress");
+    if (progressSection) progressSection.style.display = "";
+    var resetSection = document.querySelector(".sb-actions");
+    if (resetSection) resetSection.style.display = "";
+
+    // Update logo text for course
+    var logoTitle = document.querySelector(".sb-logo-text h2");
+    var logoSub = document.querySelector(".sb-logo-text p");
+    if (logoTitle) logoTitle.textContent = course.title;
+    if (logoSub) logoSub.textContent = OB.i18n.t("app.subtitle");
+
     // Bind clicks
     nav.querySelectorAll("[data-route]").forEach(function (el) {
       el.addEventListener("click", function () {
@@ -109,6 +174,15 @@
         el.classList.toggle("expanded");
       });
     });
+
+    // Back to catalog link
+    var backLink = document.getElementById("back-to-catalog");
+    if (backLink) {
+      backLink.addEventListener("click", function () {
+        closeMobile();
+        OB.router.goToCatalog();
+      });
+    }
 
     updateProgress(course);
   }
@@ -154,6 +228,7 @@
 
   OB.sidebar = {
     render: render,
+    renderCatalog: renderCatalog,
     updateProgress: updateProgress,
     initMobile: initMobile,
     openMobile: openMobile,

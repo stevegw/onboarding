@@ -1,0 +1,48 @@
+{
+  "id": "cb-overview",
+  "title": "Codebeamer: Fundamentals Overview",
+  "description": "Introduction to Codebeamer ALM platform — trackers, requirements management, test management, and data visualization.",
+  "prerequisite": null,
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Introduction to Codebeamer and ALM",
+      "description": "Explore Application Lifecycle Management concepts, discover Codebeamer as an ALM solution, and understand the ALM development framework.",
+      "estimatedMinutes": 25,
+      "topicCount": 5,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m1-intro-codebeamer-alm.json",
+      "quizFile": "quizzes/q1-intro-codebeamer-alm.json"
+    },
+    {
+      "id": "m2",
+      "title": "Trackers and Requirements Management",
+      "description": "Work with trackers, manage requirements through their lifecycle, understand tracker item workflows, and explore multiple view options.",
+      "estimatedMinutes": 35,
+      "topicCount": 7,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m2-trackers-requirements.json",
+      "quizFile": "quizzes/q2-trackers-requirements.json"
+    },
+    {
+      "id": "m3",
+      "title": "Test Management",
+      "description": "Understand test management concepts, explore test entities including configurations, cases, runs, and sets.",
+      "estimatedMinutes": 20,
+      "topicCount": 4,
+      "exerciseTopicStart": 3,
+      "contentFile": "modules/m3-test-management.json",
+      "quizFile": "quizzes/q3-test-management.json"
+    },
+    {
+      "id": "m4",
+      "title": "Data Visualization and Reporting",
+      "description": "Filter and report on data using cbQL, explore traceability views, export data, and build wiki dashboards with widgets.",
+      "estimatedMinutes": 30,
+      "topicCount": 8,
+      "exerciseTopicStart": 3,
+      "contentFile": "modules/m4-data-visualization-reporting.json",
+      "quizFile": "quizzes/q4-data-visualization-reporting.json"
+    }
+  ]
+}

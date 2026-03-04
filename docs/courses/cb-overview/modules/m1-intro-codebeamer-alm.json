@@ -1,0 +1,321 @@
+{
+  "id": "m1",
+  "title": "Introduction to Codebeamer and ALM",
+  "description": "Explore Application Lifecycle Management concepts, discover Codebeamer as an ALM solution, and understand the ALM development framework.",
+  "topics": [
+    {
+      "id": "m1t1",
+      "title": "Application Lifecycle Management",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Application Lifecycle Management (ALM) is a continuous process of managing the life of a software or systems application from initial planning through development, testing, deployment, and eventual retirement. ALM integrates people, processes, and tools to coordinate activities across the entire product lifecycle."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Why ALM Matters"
+        },
+        {
+          "type": "paragraph",
+          "text": "Modern products contain increasingly complex software. A modern car, for example, can contain over 100 million lines of code — more than a fighter jet or a commercial operating system. Managing this complexity without a structured approach leads to missed requirements, untested features, and costly defects discovered late in the development cycle."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Challenge", "Without ALM", "With ALM"],
+          "rows": [
+            ["Requirements tracking", "Scattered across documents and emails", "Centralized, versioned, and traceable"],
+            ["Cross-team visibility", "Siloed tools per discipline", "Unified platform linking all artifacts"],
+            ["Compliance evidence", "Manual assembly before audits", "Automatic traceability reports"],
+            ["Change impact analysis", "Guesswork and meetings", "Instant upstream/downstream impact view"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "A modern car can contain over 100 million lines of code. ALM provides the structure to manage this complexity by connecting requirements, design, development, and testing in a single traceable chain."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Key Benefits of ALM"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "End-to-End Traceability",
+              "back": "Link every requirement to its design, implementation, and test — providing a complete audit trail from stakeholder need to verified product."
+            },
+            {
+              "front": "Improved Collaboration",
+              "back": "Break down silos between requirements engineers, developers, testers, and project managers by sharing a common data model and tool platform."
+            },
+            {
+              "front": "Regulatory Compliance",
+              "back": "Demonstrate compliance with standards such as ISO 26262 (automotive), IEC 62304 (medical devices), and DO-178C (aerospace) through built-in traceability and reporting."
+            },
+            {
+              "front": "Faster Time to Market",
+              "back": "Reduce rework and late-stage defects by catching issues early when requirements, design, and tests are connected and continuously validated."
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "ALM integrates people, processes, and tools across the entire product lifecycle",
+        "Modern product complexity (100M+ lines of code) makes structured lifecycle management essential",
+        "Key ALM benefits include traceability, collaboration, compliance, and faster delivery"
+      ]
+    },
+    {
+      "id": "m1t2",
+      "title": "Codebeamer as an ALM Solution",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Codebeamer is PTC's ALM platform designed for organizations developing complex products in regulated industries. It provides an integrated environment for requirements management, test management, project tracking, and analytics — all connected through configurable trackers and workflows."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Core Capabilities"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Requirements Management",
+              "back": "Capture, organize, and trace requirements at multiple levels — stakeholder, system, software, and hardware. Support for baselines, reviews, and approval workflows."
+            },
+            {
+              "front": "Test Management",
+              "back": "Define test configurations, test cases, and test runs. Link tests to requirements for coverage analysis. Track bugs and defects back to their source."
+            },
+            {
+              "front": "Project Tracking & Analytics",
+              "back": "Dashboards, burndown charts, velocity tracking, and custom reports. Support for Agile (Scrum, Kanban) and traditional (V-model, Waterfall) development methodologies."
+            },
+            {
+              "front": "Industry Templates",
+              "back": "Pre-built project templates for automotive (ASPICE, ISO 26262), medical devices (IEC 62304), aviation (DO-178C), and other regulated industries."
+            },
+            {
+              "front": "Integrations & APIs",
+              "back": "REST API, integrations with Jira, Jenkins, Git, DOORS, and other tools. Enables Codebeamer to fit into existing toolchains."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Real-World Example: Navya"
+        },
+        {
+          "type": "paragraph",
+          "text": "Navya, a manufacturer of autonomous vehicles, adopted Codebeamer to manage the development of their self-driving shuttle systems. By centralizing requirements, tests, and traceability in Codebeamer, Navya was able to demonstrate compliance with automotive safety standards while accelerating their development cycles."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Codebeamer supports both Agile and traditional methodologies. Teams can use Scrum boards and sprints alongside V-model traceability — or combine approaches in a hybrid workflow."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each Codebeamer capability to what it provides:",
+          "pairs": [
+            {"left": "Requirements Management", "right": "Capture, organize, and trace requirements with baselines"},
+            {"left": "Test Management", "right": "Define test cases and runs, link to requirements for coverage"},
+            {"left": "Industry Templates", "right": "Pre-built compliance frameworks for regulated industries"},
+            {"left": "Project Tracking", "right": "Dashboards, burndown charts, and velocity metrics"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Codebeamer is PTC's ALM platform for complex, regulated product development",
+        "Core capabilities include requirements management, test management, project tracking, and analytics",
+        "Industry templates accelerate compliance with standards like ISO 26262 and IEC 62304"
+      ]
+    },
+    {
+      "id": "m1t3",
+      "title": "The ALM Development Framework",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "The ALM development framework describes the iterative cycle of activities that transform stakeholder needs into a verified, validated product. In Codebeamer, every phase of this framework is supported by trackers, workflows, and traceability links."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Development Lifecycle Phases"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Phase", "Activities", "Key Deliverables"],
+          "rows": [
+            ["Requirements", "Elicit, analyze, and document what the product must do", "Stakeholder requirements, system requirements, requirement specifications"],
+            ["Design", "Define how the product will satisfy the requirements", "Architecture documents, design specifications, interface definitions"],
+            ["Development", "Build the product according to the design", "Source code, hardware designs, configuration files, build artifacts"],
+            ["Testing", "Verify the product meets its requirements", "Test cases, test runs, bug reports, coverage reports"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "The cycle is iterative — testing may reveal requirement gaps that restart the cycle. Codebeamer's traceability links make it easy to trace a bug back through development and design to the original requirement."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "PTC Electric Car Scenario"
+        },
+        {
+          "type": "paragraph",
+          "text": "Throughout this course, we use the PTC Electric Car project as a practical scenario. This sample project demonstrates how a cross-functional team uses Codebeamer to manage the development of an electric vehicle — from capturing customer requirements through system design, implementation, and testing."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the ALM development framework phases in the correct order:",
+          "correctOrder": ["Requirements", "Design", "Development", "Testing"]
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each development phase to its primary deliverable:",
+          "pairs": [
+            {"left": "Requirements", "right": "Requirement specifications and stakeholder needs"},
+            {"left": "Design", "right": "Architecture documents and interface definitions"},
+            {"left": "Development", "right": "Source code and build artifacts"},
+            {"left": "Testing", "right": "Test cases, test runs, and coverage reports"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The ALM framework follows an iterative cycle: Requirements → Design → Development → Testing",
+        "Each phase produces specific deliverables that are traceable to artifacts in adjacent phases",
+        "The PTC Electric Car project is used throughout this course as the hands-on scenario"
+      ]
+    },
+    {
+      "id": "m1t4",
+      "title": "Set Up Your Environment",
+      "estimatedMinutes": 4,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will log in to the Codebeamer training environment, navigate the main interface, and locate the PTC Electric Car project that you will use throughout the remaining exercises."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "You need access to the Codebeamer training server to complete this exercise. Your instructor will provide the URL and login credentials."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex1",
+          "title": "Set Up Your Environment",
+          "objective": "Log in to Codebeamer, familiarize yourself with the main navigation, and open the PTC Electric Car project.",
+          "tasks": [
+            {
+              "id": "ex1-t1",
+              "title": "Log In and Explore the Interface",
+              "steps": [
+                {
+                  "action": "Open the Codebeamer training URL in your browser and log in with the credentials provided by your instructor.",
+                  "detail": "Codebeamer is a web-based application. After logging in, you will see the main dashboard which provides quick access to your projects, recent items, and notifications.",
+                  "hint": "Use a modern browser (Chrome, Firefox, Edge) for the best experience."
+                },
+                {
+                  "action": "Explore the top navigation bar. Identify the links to Projects, Trackers, and your user profile.",
+                  "detail": "The top navigation bar is your primary way to move around Codebeamer. Projects contain all the trackers, documents, and artifacts for a specific product or initiative.",
+                  "hint": "Look for a 'Projects' link or icon in the top-left area of the page."
+                },
+                {
+                  "action": "Navigate to the Projects list and locate the PTC Electric Car project.",
+                  "detail": "The PTC Electric Car project is the sample project used throughout this course. It contains pre-built trackers for customer requirements, system requirements, test cases, and more.",
+                  "hint": "You can use the search bar to filter projects by name."
+                },
+                {
+                  "action": "Open the PTC Electric Car project and review its project dashboard.",
+                  "detail": "The project dashboard gives an overview of the project including recent activity, tracker summaries, and key metrics. This is your home base when working within a project.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Codebeamer is accessed through a web browser",
+        "The top navigation bar provides access to Projects, Trackers, and user settings",
+        "The PTC Electric Car project serves as the hands-on scenario for all exercises"
+      ]
+    },
+    {
+      "id": "m1t5",
+      "title": "Explore Customer Requirements",
+      "estimatedMinutes": 4,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will open the Customer Requirements tracker in the PTC Electric Car project, browse existing requirements, and examine how requirements are structured with attributes, descriptions, and relationships."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Make sure you are logged in and have the PTC Electric Car project open before starting this exercise."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex2",
+          "title": "Explore Customer Requirements",
+          "objective": "Navigate to the Customer Requirements tracker, browse existing items, and understand requirement structure and attributes.",
+          "tasks": [
+            {
+              "id": "ex2-t1",
+              "title": "Open and Browse Customer Requirements",
+              "steps": [
+                {
+                  "action": "In the PTC Electric Car project, locate the Trackers section and open the Customer Requirements tracker.",
+                  "detail": "Trackers are the core data containers in Codebeamer. The Customer Requirements tracker holds the top-level requirements that describe what the customer expects from the electric car.",
+                  "hint": "Look for a 'Trackers' section in the project navigation sidebar or the project dashboard."
+                },
+                {
+                  "action": "Browse the list of customer requirements. Note how they are organized in a hierarchical structure.",
+                  "detail": "Customer requirements are often organized in a parent-child hierarchy. Parent items represent high-level needs (e.g., 'Vehicle Performance') while children are more specific (e.g., 'Acceleration 0-60 mph under 6 seconds').",
+                  "hint": "Expand the tree view or use the Document view to see the hierarchy."
+                },
+                {
+                  "action": "Click on a requirement to open its detail view. Examine the attributes such as Status, Priority, Owner, and Description.",
+                  "detail": "Each tracker item (requirement) has configurable attributes. The Status field shows where the item is in its lifecycle (e.g., Draft, Approved, Implemented). Priority indicates the relative importance. The Description field contains the detailed requirement text.",
+                  "hint": null
+                },
+                {
+                  "action": "Look at the Associations or References section of the requirement. Note any downstream links to system requirements or test cases.",
+                  "detail": "Associations create traceability links between tracker items. A customer requirement may be linked downstream to system requirements (which break it into technical specifications) and ultimately to test cases that verify it.",
+                  "hint": "Scroll down on the requirement detail page to find the Associations or Relations section."
+                },
+                {
+                  "action": "Navigate back to the tracker list and try switching between the Document view and the Table view.",
+                  "detail": "Codebeamer offers multiple view options for the same tracker data. Document view shows items in a document-like hierarchy. Table view displays items in a spreadsheet-like grid with sortable columns.",
+                  "hint": "Look for view toggle buttons or a view selector dropdown near the top of the tracker page."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Customer requirements are stored in a dedicated tracker and organized hierarchically",
+        "Each requirement has configurable attributes such as Status, Priority, and Owner",
+        "Associations link requirements downstream to system requirements and test cases for traceability",
+        "Multiple view options (Document, Table) present the same data in different formats"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "moduleId": "m3",
+  "title": "Test Management Knowledge Check",
+  "questions": [
+    {
+      "id": "m3-kc-001",
+      "question": "What is the main advantage of integrated test management over standalone test tools?",
+      "options": [
+        "Integrated testing is faster to execute",
+        "Standalone tools cannot create test cases",
+        "Integrated testing provides automatic traceability between tests and requirements",
+        "Standalone tools do not support test case management"
+      ],
+      "answerIndex": 2,
+      "rationale": "The main advantage of integrated test management in an ALM platform is automatic traceability. Tests are linked directly to the requirements they verify, enabling automatic coverage analysis and compliance evidence without manual cross-referencing.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-002",
+      "question": "Which test entity defines the environment or conditions under which tests are executed?",
+      "options": [
+        "Test Case",
+        "Test Configuration",
+        "Test Run",
+        "Test Set"
+      ],
+      "answerIndex": 1,
+      "rationale": "A Test Configuration defines the environment parameters for test execution — such as operating system, browser version, hardware model, or firmware version. A single test case can be executed across multiple configurations to verify cross-platform compatibility.",
+      "topic": "m3t2"
+    },
+    {
+      "id": "m3-kc-003",
+      "question": "What is the correct order of the test management workflow in Codebeamer?",
+      "options": [
+        "Execute → Plan → Track Defects → Report",
+        "Report → Plan → Execute → Track Defects",
+        "Plan → Execute → Report → Track Defects",
+        "Track Defects → Plan → Execute → Report"
+      ],
+      "answerIndex": 2,
+      "rationale": "The test management workflow follows: Plan (define configurations, create test cases) → Execute (run tests and record results) → Report (analyze results and coverage) → Track Defects (create and manage bugs from failures).",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-004",
+      "question": "When a test step fails during a test run, what can be created directly from the failure?",
+      "options": [
+        "A new test configuration",
+        "A bug tracker item linked to the test case and requirement",
+        "A new system requirement to replace the failing one",
+        "A release notification to stakeholders"
+      ],
+      "answerIndex": 1,
+      "rationale": "When a test step fails, you can create a bug directly from the test run result. The bug is automatically linked to both the failing test case and (through the test case) to the requirement it verifies, maintaining the complete traceability chain.",
+      "topic": "m3t2"
+    },
+    {
+      "id": "m3-kc-005",
+      "question": "What is the purpose of a Test Set?",
+      "options": [
+        "To define the environment parameters for test execution",
+        "To record the actual results of test execution",
+        "To group related test cases for a specific purpose such as regression or smoke testing",
+        "To link test cases to requirements for coverage analysis"
+      ],
+      "answerIndex": 2,
+      "rationale": "A Test Set is a named collection of test cases grouped for a specific purpose. Common test sets include smoke tests (basic functionality), regression suites (full verification), and acceptance tests (stakeholder sign-off criteria).",
+      "topic": "m3t2"
+    }
+  ]
+}

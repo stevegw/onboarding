@@ -9,7 +9,7 @@
   "use strict";
   var OB = window.OB = window.OB || {};
 
-  OB._bundleEs = {
+  OB._courseBundleEs = {
   "i18n/ui-es.json": {
     "app.title": "Windchill OCP",
     "app.subtitle": "Formación",

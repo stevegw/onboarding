@@ -1,0 +1,71 @@
+{
+  "moduleId": "m1",
+  "title": "Introduction to Codebeamer and ALM Knowledge Check",
+  "questions": [
+    {
+      "id": "m1-kc-001",
+      "question": "What is the primary purpose of Application Lifecycle Management (ALM)?",
+      "options": [
+        "To replace all development tools with a single application",
+        "To manage the life of an application from planning through retirement by integrating people, processes, and tools",
+        "To automate all testing activities in a software project",
+        "To provide version control for source code repositories"
+      ],
+      "answerIndex": 1,
+      "rationale": "ALM is a continuous process that manages the entire application lifecycle — from planning through development, testing, deployment, and retirement — by integrating people, processes, and tools. It is not limited to testing, version control, or tool replacement.",
+      "topic": "m1t1"
+    },
+    {
+      "id": "m1-kc-002",
+      "question": "Which of the following is a key benefit of ALM that is especially important in regulated industries?",
+      "options": [
+        "Faster code compilation times",
+        "Automatic generation of source code from requirements",
+        "End-to-end traceability for compliance evidence",
+        "Elimination of the need for manual testing"
+      ],
+      "answerIndex": 2,
+      "rationale": "End-to-end traceability is critical in regulated industries because standards like ISO 26262 and IEC 62304 require demonstrating that every requirement has been verified. ALM makes this traceability automatic rather than manually assembled.",
+      "topic": "m1t1"
+    },
+    {
+      "id": "m1-kc-003",
+      "question": "Which Codebeamer capability provides pre-built frameworks for automotive safety (ISO 26262) and medical device (IEC 62304) compliance?",
+      "options": [
+        "Requirements Management",
+        "Project Tracking & Analytics",
+        "Industry Templates",
+        "REST API Integrations"
+      ],
+      "answerIndex": 2,
+      "rationale": "Codebeamer provides industry templates — pre-built project templates for automotive (ASPICE, ISO 26262), medical devices (IEC 62304), aviation (DO-178C), and other regulated industries. These templates include pre-configured trackers, workflows, and traceability structures.",
+      "topic": "m1t2"
+    },
+    {
+      "id": "m1-kc-004",
+      "question": "What is the correct order of phases in the ALM development framework?",
+      "options": [
+        "Design → Requirements → Testing → Development",
+        "Requirements → Design → Development → Testing",
+        "Testing → Requirements → Design → Development",
+        "Development → Design → Requirements → Testing"
+      ],
+      "answerIndex": 1,
+      "rationale": "The ALM development framework follows the cycle: Requirements (what must the product do) → Design (how will it work) → Development (build it) → Testing (verify it meets requirements). This cycle is iterative — testing may reveal gaps that restart the cycle.",
+      "topic": "m1t3"
+    },
+    {
+      "id": "m1-kc-005",
+      "question": "How many lines of code can a modern car contain, illustrating the need for structured lifecycle management?",
+      "options": [
+        "Around 1 million lines",
+        "Around 10 million lines",
+        "Over 100 million lines",
+        "Over 1 billion lines"
+      ],
+      "answerIndex": 2,
+      "rationale": "A modern car can contain over 100 million lines of code — more than a fighter jet or a commercial operating system. This staggering complexity makes structured Application Lifecycle Management essential for managing requirements, development, and testing.",
+      "topic": "m1t1"
+    }
+  ]
+}

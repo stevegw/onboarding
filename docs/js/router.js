@@ -2,6 +2,8 @@
  * OB -- Onboarding -- Router
  * ============================
  * Hash-based SPA routing. Dispatches to view renderers.
+ * Reads ?course=xxx query param to set course context.
+ * No course param → catalog view.
  * Must be loaded last.
  * Attached to window.OB.router.
  */
@@ -10,30 +12,94 @@
 
   var OB = window.OB = window.OB || {};
 
+  /**
+   * Read the ?course= query parameter.
+   */
+  function getCourseParam() {
+    var params = new URLSearchParams(window.location.search);
+    return params.get("course") || null;
+  }
+
+  /**
+   * Navigate to a course (sets ?course= param).
+   */
+  function goToCourse(courseId) {
+    var params = new URLSearchParams(window.location.search);
+    params.set("course", courseId);
+    // Preserve lang param if present
+    var url = window.location.pathname + "?" + params.toString() + "#/";
+    window.location.href = url;
+  }
+
+  /**
+   * Return to catalog (remove course param).
+   */
+  function goToCatalog() {
+    var params = new URLSearchParams(window.location.search);
+    params.delete("course");
+    var qs = params.toString();
+    var url = window.location.pathname + (qs ? "?" + qs : "") + "#/";
+    window.location.href = url;
+  }
+
   function init() {
     // Init subsystems
     OB.theme.init();
-    OB.sidebar.initMobile();
     OB.notepad.init();
 
-    // Reset button
-    var resetBtn = document.getElementById("reset-btn");
-    if (resetBtn) {
-      resetBtn.addEventListener("click", function () {
-        if (confirm(OB.i18n.t("app.resetConfirm"))) {
-          OB.state.resetAll();
-          OB.notepad.clearNotes();
-          window.location.hash = "#/";
-          navigate();
-        }
-      });
+    var courseId = getCourseParam();
+
+    if (!courseId) {
+      // Catalog mode — no course selected
+      initCatalogMode();
+      return;
     }
 
-    // Listen for hash changes
-    window.addEventListener("hashchange", navigate);
+    // Course mode — set context and proceed
+    OB.content.setCourse(courseId);
+    OB.state.setCourse(courseId);
 
-    // Initial navigation
-    navigate();
+    // Load course-specific bundles, then init
+    OB.i18n.loadCourseBundle(courseId).then(function () {
+      OB.sidebar.initMobile();
+      OB.notepad.loadNotes();
+
+      // Reset button
+      var resetBtn = document.getElementById("reset-btn");
+      if (resetBtn) {
+        resetBtn.addEventListener("click", function () {
+          if (confirm(OB.i18n.t("app.resetConfirm"))) {
+            OB.state.resetAll();
+            OB.notepad.clearNotes();
+            window.location.hash = "#/";
+            navigate();
+          }
+        });
+      }
+
+      // Listen for hash changes
+      window.addEventListener("hashchange", navigate);
+
+      // Initial navigation
+      navigate();
+    });
+  }
+
+  function initCatalogMode() {
+    // Hide course-specific UI
+    var sidebar = document.getElementById("sidebar");
+    if (sidebar) sidebar.classList.add("catalog-mode");
+
+    OB.sidebar.initMobile();
+
+    // Render catalog
+    OB.content.loadCatalog().then(function (catalog) {
+      OB.sidebar.renderCatalog(catalog);
+      OB.dashboard.renderCatalog(catalog);
+    }).catch(function (err) {
+      OB.ui.setMain('<div class="card"><h2>' + OB.i18n.t("error.loadingContent") + '</h2><p class="text-muted">' +
+        OB.ui.esc(err.message) + '</p></div>');
+    });
   }
 
   function navigate() {
@@ -104,5 +170,11 @@
     OB.quiz.render(moduleId);
   }
 
-  OB.router = { init: init, navigate: navigate };
+  OB.router = {
+    init: init,
+    navigate: navigate,
+    goToCourse: goToCourse,
+    goToCatalog: goToCatalog,
+    getCourseParam: getCourseParam,
+  };
 })();

@@ -2,6 +2,8 @@
  * OB -- Onboarding -- State Management
  * ======================================
  * localStorage persistence for progress, quiz results, and preferences.
+ * Per-course namespacing: topic/quiz/exercise/notepad/route keys are prefixed
+ * with the course ID. Theme and locale are global.
  * Attached to window.OB.state.
  */
 (function () {
@@ -9,39 +11,50 @@
 
   var OB = window.OB = window.OB || {};
 
-  var KEYS = {
-    topics: "ob_topics",
-    quizzes: "ob_quizzes",
-    exercises: "ob_exercises",
-    currentRoute: "ob_currentRoute",
-    notepad: "ob_notepad",
-    notepadOpen: "ob_notepad_open",
+  var coursePrefix = "ob_";
+
+  /* Global keys (not per-course) */
+  var GLOBAL_KEYS = {
     theme: "ob_theme",
     locale: "ob_locale",
   };
 
-  function load(key) {
+  /**
+   * Set the active course for state namespacing.
+   */
+  function setCourse(id) {
+    coursePrefix = id ? ("ob_" + id + "_") : "ob_";
+  }
+
+  /**
+   * Get per-course key names (computed from current prefix).
+   */
+  function key(name) {
+    return coursePrefix + name;
+  }
+
+  function load(k) {
     try {
-      var val = localStorage.getItem(key);
+      var val = localStorage.getItem(k);
       return val ? JSON.parse(val) : null;
     } catch (e) { return null; }
   }
 
-  function save(key, val) {
-    try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) { /* ignore */ }
+  function save(k, val) {
+    try { localStorage.setItem(k, JSON.stringify(val)); } catch (e) { /* ignore */ }
   }
 
-  function loadRaw(key) {
-    try { return localStorage.getItem(key); } catch (e) { return null; }
+  function loadRaw(k) {
+    try { return localStorage.getItem(k); } catch (e) { return null; }
   }
 
-  function saveRaw(key, val) {
-    try { localStorage.setItem(key, val); } catch (e) { /* ignore */ }
+  function saveRaw(k, val) {
+    try { localStorage.setItem(k, val); } catch (e) { /* ignore */ }
   }
 
   /* Topics progress */
   function getTopics() {
-    return load(KEYS.topics) || {};
+    return load(key("topics")) || {};
   }
 
   function isTopicCompleted(topicId) {
@@ -52,18 +65,18 @@
   function completeTopic(topicId) {
     var topics = getTopics();
     topics[topicId] = { completed: true, completedAt: new Date().toISOString() };
-    save(KEYS.topics, topics);
+    save(key("topics"), topics);
   }
 
   function uncompleteTopic(topicId) {
     var topics = getTopics();
     delete topics[topicId];
-    save(KEYS.topics, topics);
+    save(key("topics"), topics);
   }
 
   /* Quiz results */
   function getQuizzes() {
-    return load(KEYS.quizzes) || {};
+    return load(key("quizzes")) || {};
   }
 
   function getQuizResult(moduleId) {
@@ -82,7 +95,7 @@
       total: total,
       lastAttempt: new Date().toISOString(),
     };
-    save(KEYS.quizzes, quizzes);
+    save(key("quizzes"), quizzes);
   }
 
   /* Module progress: count completed topics / total */
@@ -107,7 +120,7 @@
 
   /* Exercise step progress */
   function getExercises() {
-    return load(KEYS.exercises) || {};
+    return load(key("exercises")) || {};
   }
 
   function isStepDone(exerciseId, taskId, stepIdx) {
@@ -121,14 +134,14 @@
     var data = getExercises();
     if (!data[exerciseId]) data[exerciseId] = { steps: {} };
     data[exerciseId].steps[taskId + "-" + stepIdx] = true;
-    save(KEYS.exercises, data);
+    save(key("exercises"), data);
   }
 
   function uncompleteStep(exerciseId, taskId, stepIdx) {
     var data = getExercises();
     if (!data[exerciseId] || !data[exerciseId].steps) return;
     delete data[exerciseId].steps[taskId + "-" + stepIdx];
-    save(KEYS.exercises, data);
+    save(key("exercises"), data);
   }
 
   function getExerciseProgress(exerciseId, tasks) {
@@ -145,24 +158,35 @@
     return { done: done, total: total };
   }
 
-  /* Route memory */
+  /* Route memory (per-course) */
   function saveRoute(hash) {
-    saveRaw(KEYS.currentRoute, hash);
+    saveRaw(key("currentRoute"), hash);
   }
 
   function getLastRoute() {
-    return loadRaw(KEYS.currentRoute) || "";
+    return loadRaw(key("currentRoute")) || "";
   }
 
-  /* Reset */
+  /* Notepad (per-course) */
+  function getNotepadKey() {
+    return key("notepad");
+  }
+
+  function getNotepadOpenKey() {
+    return key("notepad_open");
+  }
+
+  /* Reset current course progress */
   function resetAll() {
-    Object.keys(KEYS).forEach(function (k) {
-      try { localStorage.removeItem(KEYS[k]); } catch (e) { /* ignore */ }
+    var keysToRemove = ["topics", "quizzes", "exercises", "currentRoute", "notepad", "notepad_open"];
+    keysToRemove.forEach(function (k) {
+      try { localStorage.removeItem(key(k)); } catch (e) { /* ignore */ }
     });
   }
 
   OB.state = {
-    KEYS: KEYS,
+    GLOBAL_KEYS: GLOBAL_KEYS,
+    setCourse: setCourse,
     load: load,
     save: save,
     loadRaw: loadRaw,
@@ -182,6 +206,8 @@
     getCourseProgress: getCourseProgress,
     saveRoute: saveRoute,
     getLastRoute: getLastRoute,
+    getNotepadKey: getNotepadKey,
+    getNotepadOpenKey: getNotepadOpenKey,
     resetAll: resetAll,
   };
 })();

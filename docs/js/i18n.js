@@ -10,6 +10,10 @@
  *   3. navigator.language
  *   4. "en" fallback
  *
+ * Multi-course: content bundles are loaded per-course from
+ * courses/{courseId}/bundles/{locale}.js
+ * UI strings remain global at content/i18n/ui-{locale}.json.
+ *
  * Attached to window.OB.i18n.
  * Must be loaded after state.js and before all view modules.
  */
@@ -54,23 +58,31 @@
   }
 
   /**
-   * Load UI strings for a locale. Uses bundle (file://) or fetch (HTTP).
+   * Load UI strings for a locale. Uses fetch from content/i18n/.
+   * Also checks course bundle for embedded UI strings.
    */
   function loadStrings(locale) {
     var bundleKey = "i18n/ui-" + locale + ".json";
 
-    // Try locale-specific bundle first (e.g. OB._bundleFr)
-    var bundleVar = "_bundle" + locale.charAt(0).toUpperCase() + locale.slice(1);
-    if (OB[bundleVar] && OB[bundleVar][bundleKey]) {
-      return Promise.resolve(OB[bundleVar][bundleKey]);
+    // Try embedded UI strings bundle (from catalog-bundle.js)
+    if (locale === "en" && OB._uiStringsEn) {
+      return Promise.resolve(OB._uiStringsEn);
     }
 
-    // Try main bundle
-    if (OB._bundle && OB._bundle[bundleKey]) {
-      return Promise.resolve(OB._bundle[bundleKey]);
+    // Try course-specific locale bundle for embedded UI strings
+    if (locale !== "en") {
+      var locBundleKey = "_courseBundle" + locale.charAt(0).toUpperCase() + locale.slice(1);
+      if (OB[locBundleKey] && OB[locBundleKey][bundleKey]) {
+        return Promise.resolve(OB[locBundleKey][bundleKey]);
+      }
     }
 
-    // Fall back to fetch
+    // Try English course bundle
+    if (OB._courseBundle && OB._courseBundle[bundleKey]) {
+      return Promise.resolve(OB._courseBundle[bundleKey]);
+    }
+
+    // Fall back to fetch from global i18n path
     return fetch("content/" + bundleKey)
       .then(function (res) {
         if (!res.ok) throw new Error("Failed to load " + bundleKey);
@@ -80,27 +92,40 @@
   }
 
   /**
-   * Dynamically load a locale-specific content bundle script.
-   * Returns a Promise that resolves once the script is loaded (or immediately
-   * if the bundle is already present).
+   * Dynamically load a course-specific content bundle script.
+   * Bundles are at courses/{courseId}/bundles/{locale}.js
    */
-  function loadLocaleBundle(locale) {
-    if (locale === "en") return Promise.resolve();
-    var bundleVar = "_bundle" + locale.charAt(0).toUpperCase() + locale.slice(1);
-    if (OB[bundleVar]) return Promise.resolve(); // already loaded
+  function loadCourseBundle(courseId) {
+    if (!courseId) return Promise.resolve();
+    var locale = currentLocale;
 
+    // Load English bundle for the course
+    var enLoaded = loadBundleScript("courses/" + courseId + "/bundles/en.js");
+
+    if (locale === "en") return enLoaded;
+
+    // Load locale-specific bundle too
+    return enLoaded.then(function () {
+      return loadBundleScript("courses/" + courseId + "/bundles/" + locale + ".js");
+    });
+  }
+
+  /**
+   * Load a single bundle script file. Returns a Promise.
+   */
+  function loadBundleScript(src) {
     return new Promise(function (resolve) {
       var script = document.createElement("script");
-      script.src = "js/content-bundle-" + locale + ".js";
+      script.src = src;
       script.onload = resolve;
-      script.onerror = resolve; // graceful — strings will fall back to English
+      script.onerror = resolve; // graceful — will fall back to fetch
       document.head.appendChild(script);
     });
   }
 
   /**
    * Initialize i18n. Must be called before router.init().
-   * Returns a Promise that resolves when strings are loaded.
+   * Returns a Promise that resolves when UI strings are loaded.
    */
   function init() {
     currentLocale = detectLocale();
@@ -108,27 +133,24 @@
     // Set html lang attribute
     document.documentElement.lang = currentLocale;
 
-    // Load locale bundle (for file:// support), then load strings
-    return loadLocaleBundle(currentLocale).then(function () {
-      // Always load English as fallback
-      var loadEn = loadStrings("en").then(function (data) {
-        fallback = data;
-      });
+    // Always load English UI strings as fallback
+    var loadEn = loadStrings("en").then(function (data) {
+      fallback = data;
+    });
 
-      if (currentLocale === "en") {
-        return loadEn.then(function () {
-          strings = fallback;
-          patchHTML();
-          renderLocaleSelector();
-        });
-      }
-
-      // Load target locale + English fallback
-      return Promise.all([loadEn, loadStrings(currentLocale)]).then(function (results) {
-        strings = results[1] || {};
+    if (currentLocale === "en") {
+      return loadEn.then(function () {
+        strings = fallback;
         patchHTML();
         renderLocaleSelector();
       });
+    }
+
+    // Load target locale + English fallback
+    return Promise.all([loadEn, loadStrings(currentLocale)]).then(function (results) {
+      strings = results[1] || {};
+      patchHTML();
+      renderLocaleSelector();
     });
   }
 
@@ -176,6 +198,9 @@
     var container = document.getElementById("locale-selector");
     if (!container) return;
 
+    // Clear existing
+    container.innerHTML = "";
+
     var select = document.createElement("select");
     select.className = "locale-select";
     select.setAttribute("aria-label", "Language");
@@ -217,5 +242,6 @@
     t: t,
     getLocale: getLocale,
     getSupported: getSupported,
+    loadCourseBundle: loadCourseBundle,
   };
 })();

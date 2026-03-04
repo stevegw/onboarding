@@ -1,0 +1,466 @@
+{
+  "id": "m2",
+  "title": "Trackers and Requirements Management",
+  "description": "Work with trackers, manage requirements through their lifecycle, understand tracker item workflows, and explore multiple view options.",
+  "topics": [
+    {
+      "id": "m2t1",
+      "title": "Trackers",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Trackers are the fundamental data containers in Codebeamer. Every piece of managed information — requirements, bugs, tasks, test cases, risks — lives inside a tracker. Understanding trackers is the key to working effectively in Codebeamer."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What Is a Tracker?"
+        },
+        {
+          "type": "paragraph",
+          "text": "A tracker is a configurable container that holds a collection of related items. Each tracker defines the fields (attributes), workflows (state transitions), and permissions for its items. Think of a tracker as a specialized database table, but with built-in workflow, notification, and traceability capabilities."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Tracker Types"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Tracker Type", "Purpose", "Examples"],
+          "rows": [
+            ["Requirements", "Capture and manage requirements at different levels", "Customer Requirements, System Requirements, Software Requirements"],
+            ["Development", "Track development work items and code artifacts", "Tasks, User Stories, Epics, Bugs"],
+            ["Testing", "Manage test planning and execution", "Test Cases, Test Runs, Test Configurations"],
+            ["Project Management", "Track project activities and milestones", "Releases, Sprints, Risks, Change Requests"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Tracker Structure"
+        },
+        {
+          "type": "paragraph",
+          "text": "Projects organize trackers in a tracker tree — a hierarchical structure that groups related trackers together. Each project has its own set of trackers, and each tracker contains items. Items within a tracker can also be organized hierarchically (parent-child relationships)."
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Codebeamer provides a set of default trackers when you create a new project from a template. For example, the Agile template includes trackers for Epics, User Stories, Tasks, and Bugs. Industry templates add specialized trackers for compliance."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each tracker type to its primary purpose:",
+          "pairs": [
+            {"left": "Requirements tracker", "right": "Capture and manage product requirements"},
+            {"left": "Bug tracker", "right": "Track defects found during development and testing"},
+            {"left": "Test Case tracker", "right": "Define and manage test specifications"},
+            {"left": "Release tracker", "right": "Track project milestones and delivery schedules"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Trackers are configurable containers that hold related items with defined fields, workflows, and permissions",
+        "Tracker types include requirements, development, testing, and project management",
+        "Projects organize trackers in a hierarchical tracker tree",
+        "Default trackers are provided by project templates"
+      ]
+    },
+    {
+      "id": "m2t2",
+      "title": "Requirements Management",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Requirements management in Codebeamer follows a structured lifecycle: gather stakeholder needs, analyze and refine them into actionable requirements, confirm them through reviews, and document them with full traceability. This process ensures that development work is always aligned with what the customer actually needs."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Requirements Lifecycle"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Gather",
+              "back": "Collect stakeholder needs from interviews, workshops, and existing documentation. Capture them as items in the Customer Requirements tracker."
+            },
+            {
+              "front": "Analyze",
+              "back": "Refine gathered needs into clear, testable requirements. Decompose high-level requirements into system-level and component-level specifications."
+            },
+            {
+              "front": "Confirm",
+              "back": "Review requirements with stakeholders for accuracy and completeness. Use Codebeamer's review workflows and baseline capabilities to formally approve requirements."
+            },
+            {
+              "front": "Document",
+              "back": "Organize approved requirements in a structured hierarchy. Establish traceability links to design, implementation, and test artifacts."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Requirements Hierarchy"
+        },
+        {
+          "type": "paragraph",
+          "text": "Codebeamer supports multi-level requirement hierarchies. A typical hierarchy flows from Customer Requirements (what the customer wants) to System Requirements (how the system will meet those needs) to Software/Hardware Requirements (detailed technical specifications). Each level is stored in its own tracker, with traceability links connecting them."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Level", "Tracker", "Audience"],
+          "rows": [
+            ["Stakeholder / Customer", "Customer Requirements", "Business stakeholders, product owners"],
+            ["System", "System Requirements", "Systems engineers, architects"],
+            ["Software / Hardware", "Software Requirements, Hardware Requirements", "Developers, hardware engineers"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Use the Requirements Library to store reusable requirement specifications that can be referenced across multiple projects. This prevents duplication and ensures consistency."
+        }
+      ],
+      "keyTakeaways": [
+        "The requirements lifecycle is: Gather → Analyze → Confirm → Document",
+        "Requirements are organized in a multi-level hierarchy: Customer → System → Software/Hardware",
+        "Traceability links connect requirements across levels and to downstream artifacts",
+        "The Requirements Library enables reuse across projects"
+      ]
+    },
+    {
+      "id": "m2t3",
+      "title": "Tracker Item Workflows",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Every tracker item in Codebeamer follows a workflow — a defined set of states and transitions that control the item's lifecycle. Workflows enforce process discipline by ensuring items move through approved stages (e.g., Draft → In Review → Approved → Implemented)."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Workflow Concepts"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Concept", "Description"],
+          "rows": [
+            ["State", "A named stage in the item's lifecycle (e.g., New, In Progress, Resolved, Closed)"],
+            ["Transition", "A defined path from one state to another (e.g., New → In Progress). Transitions can have guards and actions."],
+            ["Guard", "A condition that must be met before a transition can occur (e.g., all required fields filled)"],
+            ["Action", "An automatic operation triggered by a transition (e.g., send notification, update field)"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Workflows are configured per tracker. Different tracker types typically have different workflows. For example, a Bug tracker might have states like New → Confirmed → In Progress → Fixed → Verified → Closed, while a Requirements tracker uses Draft → In Review → Approved."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "View Options for Tracker Items"
+        },
+        {
+          "type": "paragraph",
+          "text": "Codebeamer provides several ways to view tracker items, each suited to different tasks:"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Document View",
+              "back": "Displays items in a document-like hierarchy, ideal for reading and editing requirements in context. Supports rich text editing inline."
+            },
+            {
+              "front": "Table View",
+              "back": "Spreadsheet-like grid view with sortable, filterable columns. Best for bulk editing and comparing items across many attributes."
+            },
+            {
+              "front": "Kanban View",
+              "back": "Visual board with columns representing workflow states. Drag and drop items between states. Ideal for tracking progress of tasks and bugs."
+            }
+          ]
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each view option to its best use case:",
+          "pairs": [
+            {"left": "Document View", "right": "Reading and editing requirements in context"},
+            {"left": "Table View", "right": "Bulk editing and comparing items across attributes"},
+            {"left": "Kanban View", "right": "Visual tracking of item progress through workflow states"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Workflows define the states and transitions that control a tracker item's lifecycle",
+        "Transitions can have guards (conditions) and actions (automated operations)",
+        "Three primary views — Document, Table, and Kanban — serve different working styles",
+        "Workflows are configured per tracker and can differ between tracker types"
+      ]
+    },
+    {
+      "id": "m2t4",
+      "title": "Manage Customer Requirements",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create a new customer requirement in the PTC Electric Car project, set its attributes, and move it through the workflow from Draft to In Review."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Make sure you are logged in to the Codebeamer training environment and have the PTC Electric Car project open."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex3",
+          "title": "Manage Customer Requirements",
+          "objective": "Create a new customer requirement, configure its attributes, and advance it through the workflow.",
+          "tasks": [
+            {
+              "id": "ex3-t1",
+              "title": "Create and Configure a Customer Requirement",
+              "steps": [
+                {
+                  "action": "Navigate to the Customer Requirements tracker in the PTC Electric Car project.",
+                  "detail": "The Customer Requirements tracker contains the top-level requirements that describe what the customer expects from the electric car product.",
+                  "hint": "Look for the Trackers section in the project sidebar."
+                },
+                {
+                  "action": "Create a new tracker item by clicking the 'New Item' or '+' button. Enter a name such as 'Battery Range: Minimum 300 miles per charge'.",
+                  "detail": "When creating a new item, Codebeamer assigns it the initial workflow state (typically 'Draft' or 'New'). The name should be a clear, concise statement of the requirement.",
+                  "hint": "You may see a 'New Item' button in the toolbar or a '+' icon at the top or bottom of the item list."
+                },
+                {
+                  "action": "Fill in the Description field with detailed requirement text explaining the expected battery range under normal driving conditions.",
+                  "detail": "A good requirement description is specific, measurable, and testable. Include conditions and acceptance criteria where possible.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the Priority field to 'High' and assign the Owner to yourself.",
+                  "detail": "Priority helps the team focus on the most important requirements first. The Owner field identifies who is responsible for managing this requirement through its lifecycle.",
+                  "hint": null
+                },
+                {
+                  "action": "Save the requirement and verify it appears in the tracker list with status 'Draft'.",
+                  "detail": "After saving, the requirement is created with its initial workflow state. You will advance it through the workflow in the next step.",
+                  "hint": null
+                },
+                {
+                  "action": "Open the requirement and use the workflow transition to move it from 'Draft' to 'In Review'.",
+                  "detail": "Workflow transitions move items through their lifecycle. The 'In Review' state indicates the requirement is ready for stakeholder review and approval.",
+                  "hint": "Look for a 'Status' dropdown or transition buttons near the top of the item detail view."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "New tracker items start in the initial workflow state (typically Draft)",
+        "Requirements should be specific, measurable, and testable",
+        "Workflow transitions move items through defined lifecycle stages",
+        "The Owner field identifies who is responsible for managing the requirement"
+      ]
+    },
+    {
+      "id": "m2t5",
+      "title": "System Requirements and Downstream References",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create system requirements that decompose a customer requirement, and establish traceability links (downstream references) between the customer requirement and its system-level specifications."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex4",
+          "title": "System Requirements and Downstream References",
+          "objective": "Create system requirements from a customer requirement and establish downstream traceability links.",
+          "tasks": [
+            {
+              "id": "ex4-t1",
+              "title": "Create System Requirements with Traceability",
+              "steps": [
+                {
+                  "action": "Navigate to the System Requirements tracker in the PTC Electric Car project.",
+                  "detail": "System requirements break down customer needs into specific, implementable technical specifications. They bridge the gap between what the customer wants and what the engineering team will build.",
+                  "hint": "Find the System Requirements tracker in the project's Trackers section."
+                },
+                {
+                  "action": "Create a new system requirement related to battery performance, for example: 'Battery pack shall provide minimum 75 kWh usable capacity'.",
+                  "detail": "This system requirement is a technical decomposition of the customer's 300-mile range need. System requirements translate customer language into engineering specifications.",
+                  "hint": null
+                },
+                {
+                  "action": "In the new system requirement's detail view, find the Associations or References section and add a reference back to the parent customer requirement.",
+                  "detail": "This creates a traceability link showing that this system requirement derives from a specific customer requirement. This link is critical for impact analysis and compliance auditing.",
+                  "hint": "Look for an 'Add Association' or 'Add Reference' button. Select 'Derived From' or 'Upstream Reference' as the relationship type."
+                },
+                {
+                  "action": "Create a second system requirement (e.g., 'Battery management system shall support fast charging at 150 kW') and link it to the same customer requirement.",
+                  "detail": "A single customer requirement often decomposes into multiple system requirements. Each system requirement covers a different technical aspect needed to satisfy the customer need.",
+                  "hint": null
+                },
+                {
+                  "action": "Navigate back to the customer requirement and verify that the downstream references to both system requirements are visible.",
+                  "detail": "Traceability links are bidirectional. When viewed from the customer requirement, you can see all system requirements derived from it. This downstream view is essential for completeness analysis.",
+                  "hint": "Open the customer requirement and scroll to the Associations section to see linked items."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "System requirements decompose customer needs into technical specifications",
+        "Downstream references create traceability links from customer to system requirements",
+        "A single customer requirement often maps to multiple system requirements",
+        "Traceability links are bidirectional and visible from both ends"
+      ]
+    },
+    {
+      "id": "m2t6",
+      "title": "Tasks, Releases, and Traceability",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create development tasks linked to system requirements, assign them to a release, and explore the resulting traceability chain from customer requirement through system requirement to task."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex5",
+          "title": "Tasks, Releases, and Traceability",
+          "objective": "Create tasks linked to requirements, assign to a release, and explore the full traceability chain.",
+          "tasks": [
+            {
+              "id": "ex5-t1",
+              "title": "Create Tasks and Explore Traceability",
+              "steps": [
+                {
+                  "action": "Navigate to the Tasks tracker and create a new task related to implementing the battery management system requirement.",
+                  "detail": "Tasks represent the actual development work that needs to be done. Linking a task to a requirement ensures that all development work is traceable back to a stakeholder need.",
+                  "hint": "Find the Tasks tracker in the Trackers section."
+                },
+                {
+                  "action": "Link the task to the system requirement you created in the previous exercise using the Associations section.",
+                  "detail": "This extends the traceability chain: Customer Requirement → System Requirement → Task. Each link shows how high-level needs flow down to actual work items.",
+                  "hint": "Use 'Add Association' and select the appropriate relationship type."
+                },
+                {
+                  "action": "Navigate to the Releases tracker and open an existing release (or create one named 'Sprint 1').",
+                  "detail": "Releases group work items into deliverable increments. Assigning tasks to releases helps teams plan their work and track progress toward delivery milestones.",
+                  "hint": "Look for a 'Releases' or 'Versions' tracker in the project."
+                },
+                {
+                  "action": "Assign your task to the release by setting the Release or Version field on the task.",
+                  "detail": "With the task assigned to a release, project managers can see what work is planned for each delivery increment and track completion status.",
+                  "hint": "Edit the task and look for a 'Release' or 'Version' field."
+                },
+                {
+                  "action": "Navigate back to the original customer requirement and trace the full chain: Customer Requirement → System Requirement → Task → Release.",
+                  "detail": "This end-to-end traceability is the core value of ALM. From a single customer requirement, you can see every specification, implementation task, and delivery milestone connected to it.",
+                  "hint": "Use the Associations or Traceability view on the customer requirement to see all linked items."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Tasks represent development work and should be linked to requirements for traceability",
+        "Releases group tasks into deliverable increments for planning and tracking",
+        "The full traceability chain connects Customer Requirements → System Requirements → Tasks → Releases",
+        "End-to-end traceability is the core value proposition of ALM"
+      ]
+    },
+    {
+      "id": "m2t7",
+      "title": "Multiple Tracker View Options",
+      "estimatedMinutes": 8,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Codebeamer provides multiple ways to visualize tracker data. Each view serves a different purpose — from detailed document editing to high-level progress tracking. Choosing the right view for the task at hand makes you more productive."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Available View Options"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["View", "Best For", "Key Features"],
+          "rows": [
+            ["Document View", "Authoring and reviewing requirements in context", "Hierarchical display, inline editing, rich text support"],
+            ["Table View", "Bulk operations and data comparison", "Sortable columns, inline editing, column customization"],
+            ["Kanban View", "Visual progress tracking", "Drag-and-drop state transitions, WIP limits, swimlanes"],
+            ["Document Edit View", "Focused document authoring", "Full-screen editing, section numbering, export support"],
+            ["Traceability Report", "Analyzing cross-tracker relationships", "Graph of links between items across trackers"],
+            ["Test Coverage", "Verifying requirement test coverage", "Shows which requirements have linked test cases and their pass/fail status"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "You can save customized views with specific column selections, filters, and sort orders. Saved views are available to all project members, making it easy to standardize how the team works with tracker data."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Choosing the Right View"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Writing requirements?",
+              "back": "Use Document View or Document Edit View. These provide a natural reading flow and support rich text editing in context."
+            },
+            {
+              "front": "Managing a sprint backlog?",
+              "back": "Use Kanban View. Drag items between columns to update their status. Configure WIP limits to prevent overloading."
+            },
+            {
+              "front": "Checking test coverage?",
+              "back": "Use the Test Coverage view. It shows which requirements have linked tests and whether those tests are passing, failing, or not yet executed."
+            },
+            {
+              "front": "Analyzing impact of a change?",
+              "back": "Use the Traceability Report. Follow links upstream and downstream to see every artifact affected by a proposed change."
+            }
+          ]
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each scenario to the best tracker view:",
+          "pairs": [
+            {"left": "A requirements engineer is writing a specification document", "right": "Document View"},
+            {"left": "A project manager wants to see sprint progress at a glance", "right": "Kanban View"},
+            {"left": "A test lead needs to verify all requirements have tests", "right": "Test Coverage"},
+            {"left": "An engineer needs to see all items affected by a requirement change", "right": "Traceability Report"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Codebeamer offers six primary views: Document, Table, Kanban, Document Edit, Traceability Report, and Test Coverage",
+        "Each view is optimized for specific tasks — choose the right view for your current activity",
+        "Custom views can be saved and shared with the team",
+        "Traceability Report and Test Coverage views provide cross-tracker analysis"
+      ]
+    }
+  ]
+}

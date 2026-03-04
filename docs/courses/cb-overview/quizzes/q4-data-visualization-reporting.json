@@ -1,0 +1,71 @@
+{
+  "moduleId": "m4",
+  "title": "Data Visualization and Reporting Knowledge Check",
+  "questions": [
+    {
+      "id": "m4-kc-001",
+      "question": "What is cbQL?",
+      "options": [
+        "A programming language for creating Codebeamer plugins",
+        "A SQL-like query language for searching and filtering tracker items",
+        "A markup language for formatting wiki pages",
+        "A scripting language for automating workflow transitions"
+      ],
+      "answerIndex": 1,
+      "rationale": "cbQL (Codebeamer Query Language) is a SQL-like query language for searching and filtering tracker items across the Codebeamer platform. It supports field-based filtering, boolean operators (AND, OR, NOT), comparisons, and functions.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-002",
+      "question": "Which traceability view starts from a high-level requirement and follows links to all downstream artifacts?",
+      "options": [
+        "Bottom-Up Traceability",
+        "Test Coverage Browser",
+        "Top-Down Traceability",
+        "Kanban View"
+      ],
+      "answerIndex": 2,
+      "rationale": "Top-Down Traceability starts from a high-level item (like a customer requirement) and follows links downstream to system requirements, tasks, test cases, and other derived artifacts. It is used for change impact analysis.",
+      "topic": "m4t2"
+    },
+    {
+      "id": "m4-kc-003",
+      "question": "What does the Test Coverage Browser show?",
+      "options": [
+        "The percentage of source code covered by unit tests",
+        "Which requirements have linked test cases and their current pass/fail status",
+        "A timeline of test execution history over the past year",
+        "The number of bugs found per developer"
+      ],
+      "answerIndex": 1,
+      "rationale": "The Test Coverage Browser shows which requirements have linked test cases and their current execution status (passed, failed, not yet run, or no linked tests). It is the primary tool for verifying requirement test coverage and identifying gaps.",
+      "topic": "m4t2"
+    },
+    {
+      "id": "m4-kc-004",
+      "question": "What are widgets in the context of Codebeamer wiki pages?",
+      "options": [
+        "Downloadable plugins that extend Codebeamer functionality",
+        "Embeddable components that display live tracker data such as charts and tables",
+        "Pre-built report templates for exporting to PDF",
+        "User interface themes that customize the look of Codebeamer"
+      ],
+      "answerIndex": 1,
+      "rationale": "Widgets are embeddable components on wiki pages that display live tracker data — including tables, charts, query results, and metrics. They auto-update as the underlying data changes, making wiki pages effective as project dashboards.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-005",
+      "question": "When would you use Bottom-Up Traceability?",
+      "options": [
+        "When you want to see all requirements in a project",
+        "When you need to create a new requirement from a design document",
+        "When you want to trace from a bug or test result back to the impacted requirements",
+        "When you need to export tracker data to Excel"
+      ],
+      "answerIndex": 2,
+      "rationale": "Bottom-Up Traceability starts from a detailed item (bug, test result) and traces links upstream to the impacted requirements. This view helps assess the business impact of defects and supports release go/no-go decisions.",
+      "topic": "m4t2"
+    }
+  ]
+}

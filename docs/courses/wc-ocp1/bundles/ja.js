@@ -9,7 +9,7 @@
   "use strict";
   var OB = window.OB = window.OB || {};
 
-  OB._bundleJa = {
+  OB._courseBundleJa = {
     "course.json": {
   "id": "wc-ocp1",
   "title": "Windchill: オプションおよびコンフィギュラブル製品 1",

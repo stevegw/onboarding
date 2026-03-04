@@ -1,0 +1,71 @@
+{
+  "moduleId": "m2",
+  "title": "Trackers and Requirements Management Knowledge Check",
+  "questions": [
+    {
+      "id": "m2-kc-001",
+      "question": "What is a tracker in Codebeamer?",
+      "options": [
+        "A report that tracks project costs and budgets",
+        "A configurable container that holds related items with defined fields, workflows, and permissions",
+        "A log file that records user activity in the system",
+        "A real-time monitoring dashboard for system performance"
+      ],
+      "answerIndex": 1,
+      "rationale": "A tracker is a configurable container that holds a collection of related items. Each tracker defines the fields (attributes), workflows (state transitions), and permissions for its items. Trackers are the fundamental data containers in Codebeamer.",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-002",
+      "question": "What is the correct sequence in the requirements lifecycle?",
+      "options": [
+        "Document → Confirm → Analyze → Gather",
+        "Gather → Analyze → Confirm → Document",
+        "Analyze → Gather → Document → Confirm",
+        "Confirm → Document → Gather → Analyze"
+      ],
+      "answerIndex": 1,
+      "rationale": "The requirements lifecycle follows: Gather (collect stakeholder needs) → Analyze (refine into actionable requirements) → Confirm (review and approve) → Document (organize with traceability). This ensures requirements are validated before formal documentation.",
+      "topic": "m2t2"
+    },
+    {
+      "id": "m2-kc-003",
+      "question": "Which tracker view is best suited for visually tracking item progress through workflow states using drag-and-drop?",
+      "options": [
+        "Document View",
+        "Table View",
+        "Kanban View",
+        "Traceability Report"
+      ],
+      "answerIndex": 2,
+      "rationale": "Kanban View displays items as cards in columns that represent workflow states. Items can be moved between states by dragging and dropping. This visual approach is ideal for tracking progress of tasks, bugs, and other work items.",
+      "topic": "m2t3"
+    },
+    {
+      "id": "m2-kc-004",
+      "question": "In a requirements hierarchy, what is the relationship between customer requirements and system requirements?",
+      "options": [
+        "They are the same level of detail in different formats",
+        "System requirements decompose customer requirements into technical specifications",
+        "Customer requirements are derived from system requirements",
+        "System requirements replace customer requirements after approval"
+      ],
+      "answerIndex": 1,
+      "rationale": "System requirements decompose customer requirements into specific, implementable technical specifications. They translate what the customer wants (customer requirements) into how the system will satisfy those needs. The two levels are connected through traceability links.",
+      "topic": "m2t2"
+    },
+    {
+      "id": "m2-kc-005",
+      "question": "What is a workflow guard in Codebeamer?",
+      "options": [
+        "A user role that prevents unauthorized access to a tracker",
+        "A condition that must be met before a workflow transition can occur",
+        "A visual indicator showing the current state of a tracker item",
+        "An automatic backup triggered when items change state"
+      ],
+      "answerIndex": 1,
+      "rationale": "A guard is a condition on a workflow transition that must be met before the transition can occur. For example, a guard might require all mandatory fields to be filled before a requirement can transition from 'Draft' to 'In Review'.",
+      "topic": "m2t3"
+    }
+  ]
+}

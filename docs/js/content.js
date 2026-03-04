@@ -1,10 +1,12 @@
 /**
  * OB -- Onboarding -- Content Loader
  * ====================================
- * Loads content from the embedded bundle (OB._bundle) for file:// compatibility.
+ * Loads content from the embedded bundle (OB._courseBundle) for file:// compatibility.
  * Falls back to fetch() if bundle is missing (HTTP server mode).
  * Supports i18n: non-English locales load from {locale}/ prefixed paths
  * with automatic fallback to English on missing content.
+ *
+ * Multi-course: paths resolve relative to courses/{courseId}/.
  * Attached to window.OB.content.
  */
 (function () {
@@ -14,14 +16,38 @@
 
   var cache = {};
   var courseData = null;
+  var catalogData = null;
+  var currentCourseId = null;
 
   /**
-   * Get the locale-specific bundle object (e.g., OB._bundleFr for "fr").
+   * Set the active course. Resets cache and courseData.
+   */
+  function setCourse(id) {
+    if (id === currentCourseId) return;
+    currentCourseId = id;
+    cache = {};
+    courseData = null;
+  }
+
+  function getCourseId() {
+    return currentCourseId;
+  }
+
+  /**
+   * Get the course-specific bundle for a given locale.
+   * After multi-course refactor, all bundles write to OB._courseBundle / OB._courseBundleLocale.
    */
   function getLocaleBundle(locale) {
-    if (locale === "en") return OB._bundle;
-    var key = "_bundle" + locale.charAt(0).toUpperCase() + locale.slice(1);
+    if (locale === "en") return OB._courseBundle || null;
+    var key = "_courseBundle" + locale.charAt(0).toUpperCase() + locale.slice(1);
     return OB[key] || null;
+  }
+
+  /**
+   * Build the fetch URL base for the current course.
+   */
+  function courseBase() {
+    return "courses/" + currentCourseId + "/";
   }
 
   /**
@@ -34,9 +60,6 @@
 
     // Check cache first (locale-specific path)
     if (cache[localePath]) return Promise.resolve(cache[localePath]);
-    if (locale !== "en" && cache[path]) {
-      // If locale-specific not cached but English is, try loading locale first
-    }
 
     // Try locale-specific bundle
     var localeBundle = getLocaleBundle(locale);
@@ -46,21 +69,21 @@
     }
 
     // Try main bundle (English)
-    if (OB._bundle && OB._bundle[path]) {
-      // For English locale or as fallback
+    var enBundle = OB._courseBundle;
+    if (enBundle && enBundle[path]) {
       if (locale === "en") {
-        cache[path] = OB._bundle[path];
+        cache[path] = enBundle[path];
         return Promise.resolve(cache[path]);
       }
       // Non-English: use English bundle as fallback
-      cache[localePath] = OB._bundle[path];
+      cache[localePath] = enBundle[path];
       return Promise.resolve(cache[localePath]);
     }
 
-    // Fall back to fetch (works on HTTP)
+    // Fall back to fetch (works on HTTP) — resolve against course dir
+    var base = courseBase();
     if (locale !== "en") {
-      // Try locale-specific fetch, then fall back to English
-      return fetch("content/" + localePath)
+      return fetch(base + localePath)
         .then(function (res) {
           if (!res.ok) throw new Error("Not found");
           return res.json();
@@ -71,7 +94,7 @@
         })
         .catch(function () {
           // Fallback to English
-          return fetch("content/" + path)
+          return fetch(base + path)
             .then(function (res) {
               if (!res.ok) throw new Error("Failed to load " + path + ": " + res.status);
               return res.json();
@@ -83,13 +106,34 @@
         });
     }
 
-    return fetch("content/" + path)
+    return fetch(base + path)
       .then(function (res) {
         if (!res.ok) throw new Error("Failed to load " + path + ": " + res.status);
         return res.json();
       })
       .then(function (data) {
         cache[path] = data;
+        return data;
+      });
+  }
+
+  /**
+   * Load the catalog.json (product-family-grouped course list).
+   */
+  function loadCatalog() {
+    if (catalogData) return Promise.resolve(catalogData);
+    // Try bundle first
+    if (OB._catalogBundle) {
+      catalogData = OB._catalogBundle;
+      return Promise.resolve(catalogData);
+    }
+    return fetch("catalog.json")
+      .then(function (res) {
+        if (!res.ok) throw new Error("Failed to load catalog: " + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        catalogData = data;
         return data;
       });
   }
@@ -147,11 +191,14 @@
   }
 
   OB.content = {
+    setCourse: setCourse,
+    getCourseId: getCourseId,
     getCourse: getCourse,
     getModule: getModule,
     getQuiz: getQuiz,
     getGlossary: getGlossary,
     getAllTopicIds: getAllTopicIds,
     loadAllModules: loadAllModules,
+    loadCatalog: loadCatalog,
   };
 })();

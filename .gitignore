@@ -4,3 +4,8 @@ Thumbs.db
 
 # PDF source material (not for deployment)
 docs/*.pdf
+docs/pdfs/
+
+# Local tool config
+.agents/
+.claude/

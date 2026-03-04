@@ -9,7 +9,7 @@
   "use strict";
   var OB = window.OB = window.OB || {};
 
-  OB._bundleKo = {
+  OB._courseBundleKo = {
     "i18n/ui-ko.json": {
   "app.title": "Windchill OCP",
   "app.subtitle": "온보딩",

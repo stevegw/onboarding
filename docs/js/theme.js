@@ -10,12 +10,12 @@
   var OB = window.OB = window.OB || {};
 
   function getTheme() {
-    return OB.state.loadRaw(OB.state.KEYS.theme) || "dark";
+    return OB.state.loadRaw(OB.state.GLOBAL_KEYS.theme) || "dark";
   }
 
   function setTheme(theme) {
     document.documentElement.setAttribute("data-theme", theme);
-    OB.state.saveRaw(OB.state.KEYS.theme, theme);
+    OB.state.saveRaw(OB.state.GLOBAL_KEYS.theme, theme);
     var btn = document.getElementById("theme-toggle-btn");
     if (btn) btn.innerHTML = theme === "dark" ? "&#9790;" : "&#9728;";
   }

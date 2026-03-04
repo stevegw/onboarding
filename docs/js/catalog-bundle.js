@@ -1,0 +1,353 @@
+/**
+ * OB -- Catalog Bundle
+ * =====================
+ * Catalog data embedded as JS for file:// compatibility.
+ * When present, content.js uses this instead of fetch("catalog.json").
+ */
+(function () {
+  "use strict";
+  var OB = window.OB = window.OB || {};
+
+  OB._uiStringsEn = {
+  "app.title": "Windchill OCP",
+  "app.subtitle": "Onboarding",
+  "app.courseProgress": "Course Progress",
+  "app.courseProgressPct": "Course Progress: {pct}%",
+  "app.resetProgress": "Reset Progress",
+  "app.resetConfirm": "Reset all progress and notes?",
+  "app.openMenu": "Open menu",
+  "app.toggleTheme": "Toggle theme",
+  "sidebar.dashboard": "Dashboard",
+  "sidebar.modules": "Modules",
+  "sidebar.resources": "Resources",
+  "sidebar.glossary": "Glossary",
+  "sidebar.knowledgeCheck": "Knowledge Check",
+  "sidebar.comingSoon": "Coming soon",
+  "sidebar.topicLabel": "Topic {mod}.{topic}",
+  "sidebar.exerciseLabel": "Exercise {num}",
+  "dashboard.continueLabel": "Continue where you left off",
+  "dashboard.statComplete": "Complete",
+  "dashboard.statTopics": "Topics",
+  "dashboard.statEstimated": "Estimated",
+  "dashboard.modules": "Modules",
+  "dashboard.moduleNum": "Module {num}",
+  "dashboard.moduleComingSoon": "Module {num} - Coming Soon",
+  "dashboard.topicsProgress": "{done}/{total} topics",
+  "dashboard.estimatedMin": "~{min} min",
+  "dashboard.routeTopic": "Topic {label}",
+  "dashboard.routeModule": "Module {label}",
+  "dashboard.routeQuiz": "Quiz {label}",
+  "dashboard.routeGlossary": "Glossary",
+  "topic.breadcrumbDashboard": "Dashboard",
+  "topic.breadcrumbModule": "Module {num}",
+  "topic.topicNum": "Topic {mod}.{topic}",
+  "topic.exerciseNum": "Exercise {num}",
+  "topic.estimated": "Estimated: ~{min} min",
+  "topic.keyTakeaways": "Key Takeaways",
+  "topic.markComplete": "Mark as Complete",
+  "topic.completedUndo": "Completed - Click to undo",
+  "topic.previous": "Previous",
+  "topic.next": "Next",
+  "topic.moduleOverview": "Module Overview",
+  "topic.takeQuiz": "Take Quiz",
+  "topic.clickToReveal": "Click to reveal",
+  "topic.allMatchedCorrectly": "All matched correctly!",
+  "topic.scenarioLabel": "Scenario",
+  "topic.strategyLabel": "Strategy",
+  "topic.showHint": "Show hint",
+  "topic.hideHint": "Hide hint",
+  "topic.objective": "Objective",
+  "topic.stepsCompleted": "{done}/{total} steps completed",
+  "topic.stepsProgress": "{done}/{total} steps",
+  "topic.doThis": "Do This",
+  "topic.whyItMatters": "Why It Matters",
+  "topic.doneNextStep": "Done — Next Step",
+  "topic.topicsComplete": "{done}/{total} topics complete",
+  "topic.moduleBadge": "Module {num}",
+  "topic.topics": "Topics",
+  "topic.startModule": "Start Module",
+  "topic.backToDashboard": "Dashboard",
+  "topic.knowledgeCheck": "Module {num} Knowledge Check",
+  "topic.quizBest": "Best: {score}/{total}",
+  "topic.quizNotAttempted": "Not attempted yet",
+  "quiz.moduleKnowledgeCheck": "Module {num} Knowledge Check",
+  "quiz.questionProgress": "Question {current} of {total}",
+  "quiz.previous": "Previous",
+  "quiz.back": "Back",
+  "quiz.next": "Next",
+  "quiz.seeResults": "See Results",
+  "quiz.retryQuiz": "Retry Quiz",
+  "quiz.backToModule": "Back to Module",
+  "quiz.greatJob": "Great job!",
+  "quiz.goodEffort": "Good effort!",
+  "quiz.keepStudying": "Keep studying!",
+  "quiz.scoreMessage": "You scored {pct}% on the Module {num} Knowledge Check.",
+  "quiz.review": "Review",
+  "quiz.yourAnswer": "Your answer: {answer}",
+  "quiz.correct": "Correct: {answer}",
+  "quiz.notAvailable": "Quiz not available yet.",
+  "quiz.topicNotFound": "Topic not found.",
+  "quiz.moduleNotFound": "Module not found.",
+  "glossary.title": "Glossary",
+  "glossary.subtitle": "Options and Configurable Products terminology ({count} terms)",
+  "glossary.searchPlaceholder": "Search terms...",
+  "glossary.noResults": "No terms match your search.",
+  "glossary.notAvailable": "Glossary not available.",
+  "notepad.title": "Notes",
+  "notepad.placeholder": "Take notes as you learn...",
+  "notepad.charCount": "{count} chars",
+  "notepad.openNotepad": "Open notepad",
+  "error.loadingContent": "Error Loading Content",
+  "error.serverRequired": "Make sure you are serving this from an HTTP server (e.g., python -m http.server). The fetch() API does not work with file:// URLs.",
+  "catalog.title": "Training Catalog",
+  "catalog.subtitle": "Interactive onboarding courses for PTC products",
+  "catalog.platformTitle": "PTC Training",
+  "catalog.platformSubtitle": "Course Catalog",
+  "catalog.productFamilies": "Product Families",
+  "catalog.courses": "{count} courses",
+  "catalog.languages": "languages",
+  "catalog.comingSoon": "Coming Soon",
+  "catalog.prerequisite": "Prerequisite",
+  "catalog.backToCatalog": "All Courses",
+  "locale.en": "English",
+  "locale.fr": "Français",
+  "locale.de": "Deutsch",
+  "locale.ja": "日本語",
+  "locale.zh": "中文",
+  "locale.ko": "한국어",
+  "locale.es": "Español"
+  };
+
+  OB._catalogBundle = {
+  "title": "PTC Training Catalog",
+  "description": "Interactive onboarding courses for PTC products",
+  "families": [
+    {
+      "id": "windchill",
+      "name": "Windchill",
+      "color": "#4EA8DE",
+      "icon": "&#9881;",
+      "courses": [
+        {
+          "id": "wc-overview",
+          "title": "Windchill Fundamentals Overview",
+          "description": "Comprehensive introduction to Windchill PLM fundamentals, navigation, and core concepts.",
+          "pdfFile": "WCFD-OVER-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 4,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "wc-context",
+          "title": "Introduction and Context Administration",
+          "description": "Learn context administration including organizations, products, libraries, and projects.",
+          "pdfFile": "WCBA-CNTX-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 3,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "wc-teams",
+          "title": "Participants and Teams",
+          "description": "Manage participants, teams, roles, and organizational structures in Windchill.",
+          "pdfFile": "WCBA-TEAM-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 4,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "wc-objtypes",
+          "title": "Object Types",
+          "description": "Configure and manage Windchill object types, subtypes, and type hierarchies.",
+          "pdfFile": "WCBA-OBTY-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 4,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "wc-access",
+          "title": "Access Control",
+          "description": "Implement access control policies, permissions, and security configurations.",
+          "pdfFile": "WCBA-ACCS-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 3,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "wc-reporting",
+          "title": "Reporting",
+          "description": "Create and manage reports, queries, and data visualization in Windchill.",
+          "pdfFile": "WCBA-RPTG-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 3,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "wc-abtt",
+          "title": "Advanced BOM Transformation Topics",
+          "description": "Advanced techniques for BOM transformation, restructuring, and manufacturing views.",
+          "pdfFile": "WCBM-ABTT-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 3,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "wc-autochange",
+          "title": "Automate Change",
+          "description": "Configure and automate change management workflows and processes.",
+          "pdfFile": "WCCM-AUTO-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 4,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "wc-changeimpl",
+          "title": "Change Implementation",
+          "description": "Implement change processes including change requests, notices, and tasks.",
+          "pdfFile": "WCCM-CHIM-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 3,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "wc-ocp1",
+          "title": "Options & Configurable Products 1",
+          "description": "Learn business approaches to configurable products, explore options and variants terminology, investigate rules, and master option sets.",
+          "pdfFile": "WCCB-OCP1-Training-Guide.pdf",
+          "modules": 4,
+          "estimatedHours": 2,
+          "locales": ["en", "fr", "de", "ja", "zh", "ko", "es"],
+          "comingSoon": false
+        },
+        {
+          "id": "wc-ocp2",
+          "title": "Options & Configurable Products 2",
+          "description": "Advanced OCP topics including complex rules, advanced option sets, and integration patterns.",
+          "pdfFile": "WCCB-OCP2-Training-Guide.pdf",
+          "prerequisite": "wc-ocp1",
+          "modules": 0,
+          "estimatedHours": 3,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "wc-rest",
+          "title": "REST Services",
+          "description": "Build and consume Windchill REST APIs for integration and automation.",
+          "pdfFile": "WCEC-REST-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 4,
+          "locales": ["en"],
+          "comingSoon": true
+        }
+      ]
+    },
+    {
+      "id": "codebeamer",
+      "name": "Codebeamer",
+      "color": "#A78BFA",
+      "icon": "&#128202;",
+      "courses": [
+        {
+          "id": "cb-overview",
+          "title": "Codebeamer Fundamentals Overview",
+          "description": "Introduction to Codebeamer ALM platform — trackers, requirements management, test management, and data visualization.",
+          "pdfFile": "CBFD-OVER-Training-Guide.pdf",
+          "modules": 4,
+          "estimatedHours": 2,
+          "locales": ["en"],
+          "comingSoon": false
+        },
+        {
+          "id": "cb-reqmgmt",
+          "title": "Requirements Management",
+          "description": "Manage requirements lifecycle, traceability, and baselines in Codebeamer.",
+          "pdfFile": "CBFD-REQM-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 3,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "cb-testmgmt",
+          "title": "Test Management",
+          "description": "Plan, execute, and track testing activities and test cases.",
+          "pdfFile": "CBFD-TEST-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 3,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "cb-projrptg",
+          "title": "Project Management and Reporting",
+          "description": "Manage projects, sprints, and generate reports in Codebeamer.",
+          "pdfFile": "CBFD-RPTG-Training-Guide.pdf",
+          "modules": 0,
+          "estimatedHours": 3,
+          "locales": ["en"],
+          "comingSoon": true
+        }
+      ]
+    },
+    {
+      "id": "creo",
+      "name": "Creo",
+      "color": "#6EE7B7",
+      "icon": "&#9998;",
+      "courses": [
+        {
+          "id": "creo-mdl1",
+          "title": "Fundamentals Modeling 1",
+          "description": "Core 3D modeling fundamentals including sketching, extrusions, and revolutions.",
+          "pdfFile": "CRFD-MDL1-Training-Guidebook.pdf",
+          "modules": 0,
+          "estimatedHours": 4,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "creo-mdl2",
+          "title": "Fundamentals Modeling 2",
+          "description": "Advanced modeling techniques including sweeps, blends, patterns, and surface modeling.",
+          "pdfFile": "CRFD-MDL2-Training-Guidebook.pdf",
+          "prerequisite": "creo-mdl1",
+          "modules": 0,
+          "estimatedHours": 4,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "creo-assy",
+          "title": "Fundamentals Assembly",
+          "description": "Assembly design fundamentals including constraints, mechanisms, and BOM management.",
+          "pdfFile": "CRFD-ASBY-Training-Guidebook.pdf",
+          "modules": 0,
+          "estimatedHours": 4,
+          "locales": ["en"],
+          "comingSoon": true
+        },
+        {
+          "id": "creo-drawing",
+          "title": "Fundamentals 2D Drawing",
+          "description": "Create engineering drawings with views, dimensions, annotations, and drawing standards.",
+          "pdfFile": "CRFD-DRWG-Training-Guidebook.pdf",
+          "modules": 0,
+          "estimatedHours": 4,
+          "locales": ["en"],
+          "comingSoon": true
+        }
+      ]
+    }
+  ]
+};
+})();

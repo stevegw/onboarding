@@ -25,10 +25,7 @@
     if (!fab || !panel || !textarea) return;
 
     // Load saved notes
-    try {
-      var saved = localStorage.getItem(OB.state.KEYS.notepad);
-      if (saved) textarea.value = saved;
-    } catch (e) { /* ignore */ }
+    loadNotes();
 
     // Auto-save on input
     textarea.addEventListener("input", function () {
@@ -48,28 +45,37 @@
 
     // Restore open state
     try {
-      if (localStorage.getItem(OB.state.KEYS.notepadOpen) === "true") {
+      if (localStorage.getItem(OB.state.getNotepadOpenKey()) === "true") {
         openPanel();
       }
     } catch (e) { /* ignore */ }
   }
 
+  function loadNotes() {
+    if (!textarea) return;
+    try {
+      var saved = localStorage.getItem(OB.state.getNotepadKey());
+      textarea.value = saved || "";
+    } catch (e) { /* ignore */ }
+    updateCount();
+  }
+
   function openPanel() {
     if (panel) panel.classList.add("open");
     if (fab) fab.style.display = "none";
-    try { localStorage.setItem(OB.state.KEYS.notepadOpen, "true"); } catch (e) { /* ignore */ }
+    try { localStorage.setItem(OB.state.getNotepadOpenKey(), "true"); } catch (e) { /* ignore */ }
     if (textarea) textarea.focus();
   }
 
   function closePanel() {
     if (panel) panel.classList.remove("open");
     if (fab) fab.style.display = "";
-    try { localStorage.setItem(OB.state.KEYS.notepadOpen, "false"); } catch (e) { /* ignore */ }
+    try { localStorage.setItem(OB.state.getNotepadOpenKey(), "false"); } catch (e) { /* ignore */ }
   }
 
   function saveNotes() {
     try {
-      localStorage.setItem(OB.state.KEYS.notepad, textarea.value);
+      localStorage.setItem(OB.state.getNotepadKey(), textarea.value);
     } catch (e) { /* ignore */ }
   }
 
@@ -82,8 +88,8 @@
   function clearNotes() {
     if (textarea) textarea.value = "";
     try {
-      localStorage.removeItem(OB.state.KEYS.notepad);
-      localStorage.removeItem(OB.state.KEYS.notepadOpen);
+      localStorage.removeItem(OB.state.getNotepadKey());
+      localStorage.removeItem(OB.state.getNotepadOpenKey());
     } catch (e) { /* ignore */ }
     updateCount();
     closePanel();
@@ -93,6 +99,7 @@
     init: init,
     open: openPanel,
     close: closePanel,
+    loadNotes: loadNotes,
     clearNotes: clearNotes,
   };
 })();

@@ -2,6 +2,7 @@
  * OB -- Onboarding -- Dashboard View
  * =====================================
  * Course overview with module cards, progress, and continue banner.
+ * Also renders the multi-course catalog when no course is selected.
  * Attached to window.OB.dashboard.
  */
 (function () {
@@ -9,6 +10,97 @@
 
   var OB = window.OB = window.OB || {};
 
+  /* ============================================================
+     Catalog View (no course selected)
+     ============================================================ */
+  function renderCatalog(catalog) {
+    var esc = OB.ui.esc;
+    var t = OB.i18n.t;
+    var html = "";
+
+    // Header
+    html += '<div class="catalog-header">';
+    html += '<h1>' + esc(t("catalog.title")) + '</h1>';
+    html += '<p class="subtitle">' + esc(t("catalog.subtitle")) + '</p>';
+    html += '</div>';
+
+    // Product families
+    catalog.families.forEach(function (family) {
+      html += '<div class="catalog-family" data-family="' + family.id + '">';
+      html += '<div class="catalog-family-header">';
+      html += '<span class="catalog-family-icon" style="color:' + family.color + '">' + family.icon + '</span>';
+      html += '<h2>' + esc(family.name) + '</h2>';
+      html += '<span class="catalog-family-count">' + t("catalog.courses", { count: family.courses.length }) + '</span>';
+      html += '</div>';
+
+      html += '<div class="catalog-grid">';
+      family.courses.forEach(function (course) {
+        var isComingSoon = course.comingSoon;
+        html += '<div class="catalog-card' + (isComingSoon ? " coming-soon" : " card-clickable") + '"' +
+          (isComingSoon ? "" : ' data-course="' + course.id + '"') + '>';
+
+        // Card header with family accent
+        html += '<div class="catalog-card-header" style="border-color:' + family.color + '">';
+        html += '<span class="catalog-card-title">' + esc(course.title) + '</span>';
+        if (isComingSoon) {
+          html += '<span class="catalog-badge coming-soon-badge">' + t("catalog.comingSoon") + '</span>';
+        }
+        html += '</div>';
+
+        // Description
+        html += '<p class="catalog-card-desc">' + esc(course.description) + '</p>';
+
+        // Meta
+        html += '<div class="catalog-card-meta">';
+        if (course.modules > 0) {
+          html += '<span>' + course.modules + ' ' + t("sidebar.modules").toLowerCase() + '</span>';
+        }
+        html += '<span>~' + course.estimatedHours + 'h</span>';
+        if (course.locales && course.locales.length > 1) {
+          html += '<span>' + course.locales.length + ' ' + t("catalog.languages") + '</span>';
+        }
+        html += '</div>';
+
+        // Prerequisite badge
+        if (course.prerequisite) {
+          html += '<div class="catalog-card-prereq">';
+          html += '<span class="prereq-label">' + t("catalog.prerequisite") + ':</span> ';
+          html += '<span class="prereq-course">' + esc(getCourseTitleById(catalog, course.prerequisite)) + '</span>';
+          html += '</div>';
+        }
+
+        html += '</div>';
+      });
+      html += '</div>';
+      html += '</div>';
+    });
+
+    OB.ui.setMain(html);
+
+    // Bind card clicks
+    document.querySelectorAll("[data-course]").forEach(function (el) {
+      el.addEventListener("click", function () {
+        OB.router.goToCourse(el.getAttribute("data-course"));
+      });
+    });
+  }
+
+  /**
+   * Find a course title by ID across all families.
+   */
+  function getCourseTitleById(catalog, courseId) {
+    for (var i = 0; i < catalog.families.length; i++) {
+      var fam = catalog.families[i];
+      for (var j = 0; j < fam.courses.length; j++) {
+        if (fam.courses[j].id === courseId) return fam.courses[j].title;
+      }
+    }
+    return courseId;
+  }
+
+  /* ============================================================
+     Course Dashboard View (course selected)
+     ============================================================ */
   function render(course) {
     var esc = OB.ui.esc;
     var t = OB.i18n.t;
@@ -121,5 +213,5 @@
     return null;
   }
 
-  OB.dashboard = { render: render };
+  OB.dashboard = { render: render, renderCatalog: renderCatalog };
 })();

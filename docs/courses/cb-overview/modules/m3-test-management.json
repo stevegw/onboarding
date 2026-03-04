@@ -1,0 +1,294 @@
+{
+  "id": "m3",
+  "title": "Test Management",
+  "description": "Understand test management concepts, explore test entities including configurations, cases, runs, and sets.",
+  "topics": [
+    {
+      "id": "m3t1",
+      "title": "Test Management Concepts",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Test management in Codebeamer is tightly integrated with requirements and development trackers. This integration means every test case can be linked to the requirements it verifies, and every bug can be traced back to the test that discovered it and the requirement that was violated."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Why Integrated Test Management?"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Approach", "How It Works", "Limitation"],
+          "rows": [
+            ["Standalone test tools", "Tests managed in a separate tool (e.g., spreadsheets, dedicated test tools)", "No direct link to requirements — manual effort to maintain traceability"],
+            ["Integrated ALM testing", "Tests live in the same platform as requirements and development items", "Requires ALM platform adoption — but gains automatic traceability and coverage analysis"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "In regulated industries, demonstrating that every requirement has been tested is not optional — it is a compliance requirement. Integrated test management makes this evidence automatic rather than manually assembled."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Test Management Workflow"
+        },
+        {
+          "type": "paragraph",
+          "text": "The test management workflow in Codebeamer follows a structured process:"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Plan",
+              "back": "Define test configurations (what environments to test in), create test cases (what to test), and organize them into test sets."
+            },
+            {
+              "front": "Execute",
+              "back": "Run test cases in test runs, recording pass/fail results for each step. Associate test runs with specific releases or sprints."
+            },
+            {
+              "front": "Report",
+              "back": "Analyze results through coverage reports, pass rates, and defect metrics. Identify untested requirements and failing areas."
+            },
+            {
+              "front": "Track Defects",
+              "back": "When tests fail, create bug tracker items linked to the failing test and the violated requirement. Track bugs through their resolution workflow."
+            }
+          ]
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the test management workflow steps in the correct order:",
+          "correctOrder": ["Plan", "Execute", "Report", "Track Defects"]
+        }
+      ],
+      "keyTakeaways": [
+        "Codebeamer integrates test management with requirements and development for automatic traceability",
+        "Integrated testing provides compliance evidence without manual assembly",
+        "The test workflow is: Plan → Execute → Report → Track Defects",
+        "Bugs discovered during testing are linked back to both the test and the requirement"
+      ]
+    },
+    {
+      "id": "m3t2",
+      "title": "Test Management Entities",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Codebeamer's test management capability is built around four core entities: Test Configurations, Test Cases, Test Runs, and Test Sets. Understanding how these entities relate to each other is essential for effective test planning and execution."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Core Test Entities"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Entity", "Purpose", "Example"],
+          "rows": [
+            ["Test Configuration", "Defines the environment or conditions under which tests are executed", "OS: Windows 11, Browser: Chrome 120, Database: PostgreSQL 15"],
+            ["Test Case", "Describes what to test, including steps and expected results", "Verify login with valid credentials: enter username, enter password, click Login, verify dashboard loads"],
+            ["Test Run", "A specific execution of test cases against a configuration", "Sprint 3 Regression — run all login test cases on the Windows 11 + Chrome configuration"],
+            ["Test Set", "A collection of test cases grouped for a specific purpose", "Smoke Tests, Regression Suite, Performance Tests"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "How Entities Relate"
+        },
+        {
+          "type": "paragraph",
+          "text": "Test Cases define what to test. Test Configurations define where/how to test. Test Sets group test cases for organization. Test Runs combine test cases (or sets) with a configuration to produce actual results. Each test run records pass/fail outcomes for every test case step."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Test Configuration",
+              "back": "Defines environment parameters (OS, browser, hardware). A single test case may be run across multiple configurations to verify cross-platform compatibility."
+            },
+            {
+              "front": "Test Case",
+              "back": "Contains a sequence of steps, each with an action and expected result. Test cases link to the requirements they verify. Well-written test cases are reusable across multiple test runs."
+            },
+            {
+              "front": "Test Run",
+              "back": "An instance of executing one or more test cases. Records the actual result for each step (pass, fail, blocked). Links to the test configuration used."
+            },
+            {
+              "front": "Test Set",
+              "back": "A named group of test cases. Use test sets to organize tests by feature area, risk level, or execution purpose (smoke, regression, acceptance)."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "When a test step fails during a test run, you can create a bug directly from the test run result. The bug is automatically linked to both the failing test case and the requirement it verifies."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each test entity to its role:",
+          "pairs": [
+            {"left": "Test Configuration", "right": "Defines the environment for test execution"},
+            {"left": "Test Case", "right": "Describes steps and expected results for a specific test"},
+            {"left": "Test Run", "right": "Records actual pass/fail results from executing tests"},
+            {"left": "Test Set", "right": "Groups related test cases for organizational purposes"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Four core entities: Test Configurations, Test Cases, Test Runs, and Test Sets",
+        "Test Cases define what to test; Test Configurations define where; Test Runs record results",
+        "Test Sets group test cases by purpose (smoke, regression, acceptance)",
+        "Bugs can be created directly from failing test run results with automatic linking"
+      ]
+    },
+    {
+      "id": "m3t3",
+      "title": "Test Configurations and Test Cases",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create a test configuration for the PTC Electric Car project, then create test cases linked to system requirements from Module 2."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Make sure you have completed the Module 2 exercises so that system requirements exist to link test cases to."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex6",
+          "title": "Test Configurations and Test Cases",
+          "objective": "Create a test configuration and write test cases linked to system requirements.",
+          "tasks": [
+            {
+              "id": "ex6-t1",
+              "title": "Create a Test Configuration",
+              "steps": [
+                {
+                  "action": "Navigate to the Test Configurations tracker in the PTC Electric Car project.",
+                  "detail": "Test configurations define the environment or conditions for test execution. For the electric car, this could be a specific vehicle model, firmware version, or test bench setup.",
+                  "hint": "Find the Test Configurations tracker in the Trackers section."
+                },
+                {
+                  "action": "Create a new test configuration named 'Standard Test Bench — Firmware v2.1'.",
+                  "detail": "The configuration name should clearly identify the test environment. Include key parameters like firmware version, hardware model, or operating conditions.",
+                  "hint": "Click the 'New Item' button in the Test Configurations tracker."
+                },
+                {
+                  "action": "Fill in relevant attributes such as description and any environment-specific fields.",
+                  "detail": "A good test configuration description helps testers set up the correct environment before executing tests. Include any prerequisites or setup instructions.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex6-t2",
+              "title": "Create Test Cases Linked to Requirements",
+              "steps": [
+                {
+                  "action": "Navigate to the Test Cases tracker and create a new test case: 'Verify battery capacity meets 75 kWh minimum'.",
+                  "detail": "This test case verifies the system requirement you created in Module 2. The test case name should clearly state what is being verified.",
+                  "hint": "Click the 'New Item' button in the Test Cases tracker."
+                },
+                {
+                  "action": "Add test steps with actions and expected results. For example: Step 1 — Fully charge battery, expected: Charge indicator shows 100%. Step 2 — Run discharge test, expected: Usable capacity ≥ 75 kWh.",
+                  "detail": "Each test step should have a clear action (what the tester does) and an expected result (what should happen). This makes tests repeatable and results unambiguous.",
+                  "hint": "Look for an 'Add Step' or 'Test Steps' section in the test case form."
+                },
+                {
+                  "action": "Link the test case to the system requirement 'Battery pack shall provide minimum 75 kWh usable capacity' using the Associations section.",
+                  "detail": "This traceability link connects the test to the requirement it verifies. The Test Coverage view will use this link to show whether the requirement has been tested.",
+                  "hint": "Use 'Add Association' and select the 'Verifies' relationship type."
+                },
+                {
+                  "action": "Create a second test case for the fast charging requirement and link it similarly.",
+                  "detail": "Each system requirement should have at least one test case. Complex requirements may need multiple test cases covering different scenarios.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Test configurations define the environment parameters for test execution",
+        "Test cases contain numbered steps with actions and expected results",
+        "Test cases should be linked to the requirements they verify using associations",
+        "Each system requirement should have at least one linked test case"
+      ]
+    },
+    {
+      "id": "m3t4",
+      "title": "Execute Test Runs",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will execute a test run using the test cases and configuration you created, record results, and report a bug for a failing test step."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex7",
+          "title": "Execute Test Runs",
+          "objective": "Run test cases against a configuration, record pass/fail results, and create a bug from a failing test.",
+          "tasks": [
+            {
+              "id": "ex7-t1",
+              "title": "Create and Execute a Test Run",
+              "steps": [
+                {
+                  "action": "Navigate to the Test Runs tracker and create a new test run. Assign it the test configuration you created ('Standard Test Bench — Firmware v2.1').",
+                  "detail": "A test run is an instance of executing a set of test cases in a specific configuration. It captures the actual results for each test step.",
+                  "hint": "Click 'New Item' in the Test Runs tracker. Select the test configuration from the available options."
+                },
+                {
+                  "action": "Add the test cases you created to this test run.",
+                  "detail": "A test run can include individual test cases or entire test sets. Adding test cases defines the scope of what will be tested in this execution.",
+                  "hint": "Look for an 'Add Test Cases' or 'Select Test Cases' option within the test run."
+                },
+                {
+                  "action": "Execute the first test case. For each step, mark the result as 'Passed' or 'Failed'. For this exercise, mark all steps of the battery capacity test as 'Passed'.",
+                  "detail": "During execution, the tester works through each step, performing the action and comparing the actual result to the expected result. The status is recorded directly in the test run.",
+                  "hint": "Open the test run and click on a test case to begin execution. Use the pass/fail buttons for each step."
+                },
+                {
+                  "action": "Execute the second test case (fast charging). Mark Step 1 as Passed but mark Step 2 as 'Failed'.",
+                  "detail": "When a step fails, the tester should note the actual result that was observed. This information is critical for the development team to diagnose and fix the issue.",
+                  "hint": "Add a comment on the failed step describing what actually happened."
+                },
+                {
+                  "action": "From the failed test step, create a new Bug. The bug should describe the failure, for example: 'Fast charging rate drops below 100 kW after 50% charge'.",
+                  "detail": "Creating a bug directly from a test run failure automatically links the bug to the test case and (through the test case) to the requirement. This maintains the traceability chain.",
+                  "hint": "Look for a 'Report Bug' or 'Create Bug' action on the failed step."
+                },
+                {
+                  "action": "Verify the bug appears in the Bugs tracker and has associations back to the test case and the original requirement.",
+                  "detail": "The traceability chain is now complete: Customer Requirement → System Requirement → Test Case → Test Run (Failed) → Bug. This chain makes it clear which customer need is impacted by this defect.",
+                  "hint": "Open the bug and check its Associations section."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Test runs execute test cases against a specific configuration and record results",
+        "Each test step is marked as Passed, Failed, or Blocked during execution",
+        "Bugs can be created directly from failed test steps with automatic traceability linking",
+        "The full traceability chain connects requirements through tests to bugs"
+      ]
+    }
+  ]
+}

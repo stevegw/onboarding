@@ -97,6 +97,17 @@
   "error.loadingContent": "콘텐츠 로딩 오류",
   "error.serverRequired": "HTTP 서버에서 이 페이지를 제공하고 있는지 확인하세요 (예: python -m http.server). fetch() API는 file:// URL에서 작동하지 않습니다.",
 
+  "catalog.title": "교육 카탈로그",
+  "catalog.subtitle": "PTC 제품을 위한 대화형 온보딩 과정",
+  "catalog.platformTitle": "PTC 교육",
+  "catalog.platformSubtitle": "과정 카탈로그",
+  "catalog.productFamilies": "제품군",
+  "catalog.courses": "{count}개 과정",
+  "catalog.languages": "개 언어",
+  "catalog.comingSoon": "곧 제공 예정",
+  "catalog.prerequisite": "선수 과정",
+  "catalog.backToCatalog": "모든 과정",
+
   "locale.en": "English",
   "locale.fr": "Français",
   "locale.de": "Deutsch",

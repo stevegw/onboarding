@@ -1,0 +1,441 @@
+{
+  "id": "m4",
+  "title": "Data Visualization and Reporting",
+  "description": "Filter and report on data using cbQL, explore traceability views, export data, and build wiki dashboards with widgets.",
+  "topics": [
+    {
+      "id": "m4t1",
+      "title": "Filtering and Reporting Capabilities",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Codebeamer provides powerful filtering and reporting capabilities to help you find, analyze, and present data from your trackers. From simple column filters to the advanced Codebeamer Query Language (cbQL), you can slice data in virtually any way needed."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Filtering Methods"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Method", "Complexity", "Use Case"],
+          "rows": [
+            ["Column filters", "Low", "Quick ad-hoc filtering on visible columns in Table view"],
+            ["Saved filters", "Low", "Reusable named filter combinations for common queries"],
+            ["cbQL (Codebeamer Query Language)", "Medium–High", "Complex queries with boolean logic, field comparisons, and cross-tracker conditions"],
+            ["Reports", "Medium", "Formatted output combining data from multiple trackers with charts and tables"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Codebeamer Query Language (cbQL)"
+        },
+        {
+          "type": "paragraph",
+          "text": "cbQL is a SQL-like query language for searching tracker items across the Codebeamer platform. It supports field-based filtering, boolean operators (AND, OR, NOT), comparisons, and functions."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Example cbQL query: tracker.id IN (1234) AND status = 'In Progress' AND priority = 'High' — this finds all high-priority in-progress items in tracker 1234."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Wiki Pages and Reports"
+        },
+        {
+          "type": "paragraph",
+          "text": "Codebeamer wiki pages serve as project documentation and dashboards. You can embed live widgets — charts, tables, query results — directly in wiki pages. Reports combine data from multiple sources into formatted, shareable documents."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Wiki Pages",
+              "back": "Project-level documentation pages with rich text, embedded widgets, and live data. Use for team dashboards, process documentation, and status reports."
+            },
+            {
+              "front": "Widgets",
+              "back": "Embeddable components that display live tracker data — tables, charts, query results, and metrics. Widgets auto-update as underlying data changes."
+            },
+            {
+              "front": "Reports",
+              "back": "Formatted documents combining data from multiple trackers. Can include charts, tables, and narrative text. Exportable to Word, Excel, and PDF formats."
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Codebeamer offers four filtering methods from simple column filters to complex cbQL queries",
+        "cbQL is a SQL-like language for advanced cross-tracker searching",
+        "Wiki pages serve as project dashboards with embeddable live widgets",
+        "Reports combine multi-tracker data into formatted, exportable documents"
+      ]
+    },
+    {
+      "id": "m4t2",
+      "title": "Traceability Views",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Traceability views in Codebeamer let you visualize the relationships between items across trackers. These views are essential for impact analysis, coverage verification, and compliance reporting."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Types of Traceability Views"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["View", "Direction", "Use Case"],
+          "rows": [
+            ["Top-Down Traceability", "From high-level to detailed items", "Start from a customer requirement and see all derived system requirements, tasks, and tests"],
+            ["Bottom-Up Traceability", "From detailed items to high-level", "Start from a bug or test result and trace back to the impacted requirements"],
+            ["Test Coverage Browser", "Requirements to test results", "Show which requirements have linked test cases and their current pass/fail/not-run status"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Using Traceability for Impact Analysis"
+        },
+        {
+          "type": "paragraph",
+          "text": "When a requirement changes, top-down traceability shows every downstream artifact that may be affected — system requirements that need updating, tasks that need rework, and tests that need re-execution. When a test fails, bottom-up traceability shows which requirements are impacted, helping the team prioritize the fix."
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "The Test Coverage Browser is a compliance auditor's best friend. It shows at a glance which requirements have been tested, which passed, and which have gaps — without manually cross-referencing spreadsheets."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each traceability view to its starting point and direction:",
+          "pairs": [
+            {"left": "Top-Down Traceability", "right": "Starts from a requirement and follows links downstream"},
+            {"left": "Bottom-Up Traceability", "right": "Starts from a bug or test and traces back to requirements"},
+            {"left": "Test Coverage Browser", "right": "Shows requirement-to-test links with pass/fail status"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Three traceability views: Top-Down, Bottom-Up, and Test Coverage Browser",
+        "Top-down traceability is used for change impact analysis",
+        "Bottom-up traceability helps identify which requirements are affected by defects",
+        "Test Coverage Browser provides at-a-glance compliance evidence"
+      ]
+    },
+    {
+      "id": "m4t3",
+      "title": "Filter Items in a Tracker View",
+      "estimatedMinutes": 4,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will apply column filters and saved filters to a tracker view to find specific items quickly."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex8",
+          "title": "Filter Items in a Tracker View",
+          "objective": "Use column filters and saved filters to locate specific tracker items.",
+          "tasks": [
+            {
+              "id": "ex8-t1",
+              "title": "Apply Column Filters",
+              "steps": [
+                {
+                  "action": "Open the System Requirements tracker in Table View.",
+                  "detail": "Table View provides column-based filtering similar to a spreadsheet. Each column header can be used to filter items by that field's value.",
+                  "hint": "Switch to Table View using the view selector if not already active."
+                },
+                {
+                  "action": "Click the filter icon on the Status column and select 'Approved' to show only approved requirements.",
+                  "detail": "Column filters quickly narrow the view to items matching specific criteria. This is the fastest way to find items when you know the value you are looking for.",
+                  "hint": "The filter icon appears when you hover over or click the column header."
+                },
+                {
+                  "action": "Add a second filter on the Priority column to show only 'High' priority items.",
+                  "detail": "Multiple column filters combine with AND logic — items must match ALL active filters. This progressively narrows the result set.",
+                  "hint": null
+                },
+                {
+                  "action": "Save this filter combination as a named filter called 'High Priority Approved Requirements'.",
+                  "detail": "Saved filters are reusable and available to all project members. They standardize how the team finds and works with specific subsets of data.",
+                  "hint": "Look for a 'Save Filter' or 'Save View' button near the filter bar."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Column filters provide quick, ad-hoc filtering in Table View",
+        "Multiple column filters combine with AND logic",
+        "Saved filters are reusable and shared with all project members"
+      ]
+    },
+    {
+      "id": "m4t4",
+      "title": "Traceability Filter Views",
+      "estimatedMinutes": 4,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will use the top-down traceability view to follow the chain from a customer requirement to its system requirements, tasks, and tests."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex9",
+          "title": "Traceability Filter Views",
+          "objective": "Navigate the top-down traceability view to explore cross-tracker relationships.",
+          "tasks": [
+            {
+              "id": "ex9-t1",
+              "title": "Explore Top-Down Traceability",
+              "steps": [
+                {
+                  "action": "Open the Customer Requirements tracker and select a requirement that has downstream links (e.g., the battery range requirement from Module 2).",
+                  "detail": "You need a requirement with existing downstream traceability links to see the full chain.",
+                  "hint": "Look for requirements you created and linked in the Module 2 exercises."
+                },
+                {
+                  "action": "Open the Traceability view for this requirement. Look for a 'Traceability' tab or action in the item detail view.",
+                  "detail": "The traceability view displays a graphical representation of all linked items, showing how they connect across trackers.",
+                  "hint": "The traceability view may be accessible from the item's actions menu or a dedicated tab."
+                },
+                {
+                  "action": "Follow the links downstream: Customer Requirement → System Requirements → Test Cases. Note the status of each linked item.",
+                  "detail": "Each node in the traceability graph shows the item's current status. This lets you quickly identify if downstream items are keeping pace with the requirement (e.g., are all linked test cases passing?).",
+                  "hint": "Click on linked items to expand their connections."
+                },
+                {
+                  "action": "Identify any requirements that have no downstream test cases (coverage gaps).",
+                  "detail": "A requirement without linked test cases is a traceability gap. In regulated industries, these gaps must be resolved before the product can be released.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Top-down traceability follows links from requirements to downstream artifacts",
+        "The traceability graph shows the status of every linked item",
+        "Coverage gaps (requirements without test links) indicate incomplete verification"
+      ]
+    },
+    {
+      "id": "m4t5",
+      "title": "Filter Tasks and Export to Excel",
+      "estimatedMinutes": 3,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will filter the Tasks tracker to find specific items and export the filtered results to Excel for offline analysis or sharing."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex10",
+          "title": "Filter Tasks and Export to Excel",
+          "objective": "Filter tracker items and export the results to an Excel spreadsheet.",
+          "tasks": [
+            {
+              "id": "ex10-t1",
+              "title": "Filter and Export Tasks",
+              "steps": [
+                {
+                  "action": "Open the Tasks tracker in Table View and apply a filter to show only tasks assigned to you.",
+                  "detail": "Filtering by assignee helps you focus on your own work items. This is a common daily workflow for developers and testers.",
+                  "hint": "Filter on the 'Assigned To' or 'Owner' column."
+                },
+                {
+                  "action": "Further filter to show only tasks in 'In Progress' status.",
+                  "detail": "Combining assignee and status filters gives you a focused view of your active work items.",
+                  "hint": null
+                },
+                {
+                  "action": "Use the Export function to export the filtered results to Excel. Select the columns you want to include in the export.",
+                  "detail": "Codebeamer can export tracker views to Excel (XLSX), CSV, and other formats. The export respects your current filters and column selections, so you get exactly the data you see on screen.",
+                  "hint": "Look for an 'Export' or 'Download' button in the toolbar. Choose Excel format."
+                },
+                {
+                  "action": "Open the exported file and verify the data matches what was displayed in the filtered view.",
+                  "detail": "Exported data is useful for offline analysis, sharing with stakeholders who do not have Codebeamer access, and creating custom presentations or reports.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Exports respect the current filter and column selection",
+        "Excel export is useful for offline analysis and stakeholder sharing",
+        "Common export formats include XLSX, CSV, and PDF"
+      ]
+    },
+    {
+      "id": "m4t6",
+      "title": "Bottom-Up Traceability Report",
+      "estimatedMinutes": 3,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will use the bottom-up traceability view to trace from a bug back to the requirement it impacts, understanding the full chain of affected artifacts."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex11",
+          "title": "Bottom-Up Traceability Report",
+          "objective": "Trace from a bug upstream through test cases and requirements to understand impact.",
+          "tasks": [
+            {
+              "id": "ex11-t1",
+              "title": "Trace a Bug Upstream",
+              "steps": [
+                {
+                  "action": "Open the Bugs tracker and find the bug you created in the Module 3 exercise (e.g., the fast charging issue).",
+                  "detail": "Bottom-up traceability starts from a detailed item (bug, test result) and traces back to the high-level items it affects.",
+                  "hint": "Navigate to the Bugs tracker in the Trackers section."
+                },
+                {
+                  "action": "Open the traceability view for this bug and follow the links upstream: Bug → Test Case → System Requirement → Customer Requirement.",
+                  "detail": "This upstream chain shows exactly which customer need is impacted by this bug. Project managers can use this information to assess the business impact of the defect.",
+                  "hint": "Use the Traceability tab or action on the bug detail page."
+                },
+                {
+                  "action": "Note the customer requirement at the top of the chain. Consider how the bug affects the customer's stated need.",
+                  "detail": "The bottom-up view is invaluable during release decisions. If a bug traces up to a critical customer requirement, it may block the release until fixed.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Bottom-up traceability traces from bugs and test results up to impacted requirements",
+        "This view helps assess the business impact of defects",
+        "Bottom-up analysis supports release go/no-go decisions"
+      ]
+    },
+    {
+      "id": "m4t7",
+      "title": "Test Coverage Browser",
+      "estimatedMinutes": 3,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will use the Test Coverage Browser to verify which requirements have linked test cases and review their current pass/fail status."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex12",
+          "title": "Test Coverage Browser",
+          "objective": "Use the Test Coverage Browser to assess requirement test coverage and identify gaps.",
+          "tasks": [
+            {
+              "id": "ex12-t1",
+              "title": "Review Test Coverage",
+              "steps": [
+                {
+                  "action": "Navigate to the System Requirements tracker and open the Test Coverage view (or find it under the Traceability/Reports menu).",
+                  "detail": "The Test Coverage Browser shows each requirement alongside its linked test cases and their execution status. This is the primary tool for verifying that all requirements have been tested.",
+                  "hint": "Look for a 'Test Coverage' view option or a link in the tracker's view selector."
+                },
+                {
+                  "action": "Review the coverage status. Identify requirements that are fully covered (all tests passing), partially covered (some tests failing), and uncovered (no linked tests).",
+                  "detail": "Color coding typically indicates status: green for passed, red for failed, yellow for not yet executed, and gray for no linked tests. The goal is to eliminate gray and red before release.",
+                  "hint": null
+                },
+                {
+                  "action": "Click on a requirement with failing tests to see the details of which test cases failed and in which test runs.",
+                  "detail": "Drilling down from the coverage view helps you prioritize which test failures to address first based on the importance of the affected requirement.",
+                  "hint": "Click the coverage status indicator or the test case link to see details."
+                },
+                {
+                  "action": "Identify any requirements with no linked test cases and note them as coverage gaps that need test cases created.",
+                  "detail": "In regulated industries, 100% requirement coverage is often a release gate. The Test Coverage Browser makes these gaps immediately visible.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Test Coverage Browser shows requirement-to-test links with execution status",
+        "Color coding indicates passed (green), failed (red), not run (yellow), and uncovered (gray)",
+        "Coverage gaps are immediately visible and should be resolved before release",
+        "Drilling down shows specific test case failures per requirement"
+      ]
+    },
+    {
+      "id": "m4t8",
+      "title": "Wiki Dashboard with Widgets",
+      "estimatedMinutes": 4,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create a project wiki page and add live widgets that display tracker data — creating a custom project dashboard."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex13",
+          "title": "Wiki Dashboard with Widgets",
+          "objective": "Create a wiki page dashboard with live data widgets showing project metrics.",
+          "tasks": [
+            {
+              "id": "ex13-t1",
+              "title": "Create a Wiki Dashboard",
+              "steps": [
+                {
+                  "action": "Navigate to the Wiki section of the PTC Electric Car project and create a new wiki page called 'Project Dashboard'.",
+                  "detail": "Wiki pages in Codebeamer support rich text, embedded images, and live data widgets. They are commonly used for team dashboards, meeting agendas, and process documentation.",
+                  "hint": "Look for a 'Wiki' or 'Documents' section in the project navigation."
+                },
+                {
+                  "action": "Add a heading 'Requirement Status' and insert a tracker widget showing the count of requirements by status (Draft, In Review, Approved, etc.).",
+                  "detail": "Tracker widgets pull live data from your project trackers. When items change status, the widget automatically updates. No manual data entry needed.",
+                  "hint": "Look for an 'Insert Widget' or 'Add Widget' option in the wiki editor toolbar. Select a chart or table widget type."
+                },
+                {
+                  "action": "Add a second section 'Open Bugs' and insert a table widget showing all bugs with status 'New' or 'In Progress'.",
+                  "detail": "A table widget can display filtered tracker data directly in the wiki page. This gives the team a quick view of active bugs without navigating to the bug tracker.",
+                  "hint": "Configure the widget with a filter on the Bugs tracker for non-closed statuses."
+                },
+                {
+                  "action": "Add a third section 'Test Coverage Summary' and insert a widget showing overall test pass/fail metrics.",
+                  "detail": "Combining multiple widgets on a single wiki page creates a comprehensive project dashboard. Stakeholders can see requirements status, bug count, and test results all in one place.",
+                  "hint": "Look for a test-related widget type or use a cbQL-based query widget."
+                },
+                {
+                  "action": "Save the wiki page and verify that all widgets display live data from your project.",
+                  "detail": "Your project dashboard is now a live, self-updating summary of project health. Share the page URL with stakeholders for easy access.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Wiki pages support embedded live data widgets that auto-update",
+        "Common dashboard widgets include status charts, filtered tables, and coverage metrics",
+        "Combining multiple widgets creates comprehensive project dashboards",
+        "Wiki dashboards eliminate the need for manual status reports"
+      ]
+    }
+  ]
+}

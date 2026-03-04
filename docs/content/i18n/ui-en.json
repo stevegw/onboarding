@@ -97,6 +97,17 @@
   "error.loadingContent": "Error Loading Content",
   "error.serverRequired": "Make sure you are serving this from an HTTP server (e.g., python -m http.server). The fetch() API does not work with file:// URLs.",
 
+  "catalog.title": "Training Catalog",
+  "catalog.subtitle": "Interactive onboarding courses for PTC products",
+  "catalog.platformTitle": "PTC Training",
+  "catalog.platformSubtitle": "Course Catalog",
+  "catalog.productFamilies": "Product Families",
+  "catalog.courses": "{count} courses",
+  "catalog.languages": "languages",
+  "catalog.comingSoon": "Coming Soon",
+  "catalog.prerequisite": "Prerequisite",
+  "catalog.backToCatalog": "All Courses",
+
   "locale.en": "English",
   "locale.fr": "Français",
   "locale.de": "Deutsch",

@@ -97,6 +97,17 @@
   "error.loadingContent": "Fehler beim Laden des Inhalts",
   "error.serverRequired": "Stellen Sie sicher, dass Sie diese Seite über einen HTTP-Server bereitstellen (z. B. python -m http.server). Die fetch()-API funktioniert nicht mit file://-URLs.",
 
+  "catalog.title": "Schulungskatalog",
+  "catalog.subtitle": "Interaktive Einarbeitungskurse für PTC-Produkte",
+  "catalog.platformTitle": "PTC Schulung",
+  "catalog.platformSubtitle": "Kurskatalog",
+  "catalog.productFamilies": "Produktfamilien",
+  "catalog.courses": "{count} Kurse",
+  "catalog.languages": "Sprachen",
+  "catalog.comingSoon": "Demnächst verfügbar",
+  "catalog.prerequisite": "Voraussetzung",
+  "catalog.backToCatalog": "Alle Kurse",
+
   "locale.en": "English",
   "locale.fr": "Français",
   "locale.de": "Deutsch",

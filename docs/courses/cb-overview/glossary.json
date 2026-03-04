@@ -1,0 +1,120 @@
+{
+  "terms": [
+    {
+      "term": "Application Lifecycle Management (ALM)",
+      "definition": "A continuous process of managing the life of a software or systems application from initial planning through development, testing, deployment, and retirement. Integrates people, processes, and tools across the entire product lifecycle."
+    },
+    {
+      "term": "Association",
+      "definition": "A traceability link between two tracker items. Associations define relationships such as 'derives from', 'verifies', or 'related to', enabling cross-tracker traceability."
+    },
+    {
+      "term": "Baseline",
+      "definition": "A snapshot of a set of tracker items at a specific point in time. Baselines are used to freeze a version of requirements, designs, or test plans for review, approval, or comparison."
+    },
+    {
+      "term": "Bug",
+      "definition": "A tracker item representing a defect found during testing or operation. Bugs are linked to the test that discovered them and the requirement that was violated."
+    },
+    {
+      "term": "cbQL (Codebeamer Query Language)",
+      "definition": "A SQL-like query language for searching and filtering tracker items across the Codebeamer platform. Supports boolean operators, field comparisons, and cross-tracker conditions."
+    },
+    {
+      "term": "Customer Requirement",
+      "definition": "A high-level statement of what the customer or stakeholder expects from the product. Captured in the Customer Requirements tracker and decomposed into system-level specifications."
+    },
+    {
+      "term": "Document View",
+      "definition": "A tracker view that displays items in a document-like hierarchy, ideal for reading and editing requirements in context with support for rich text editing."
+    },
+    {
+      "term": "Downstream Reference",
+      "definition": "A traceability link pointing from a higher-level item to a more detailed item. For example, a customer requirement linked to the system requirements derived from it."
+    },
+    {
+      "term": "Guard",
+      "definition": "A condition on a workflow transition that must be met before the transition can occur. For example, requiring all mandatory fields to be filled before a requirement can move to 'Approved'."
+    },
+    {
+      "term": "Kanban View",
+      "definition": "A visual board view where columns represent workflow states and items are displayed as cards. Supports drag-and-drop state transitions and work-in-progress limits."
+    },
+    {
+      "term": "Project",
+      "definition": "A container in Codebeamer that holds all trackers, wiki pages, documents, and artifacts for a specific product or initiative."
+    },
+    {
+      "term": "Release",
+      "definition": "A tracker item representing a planned delivery milestone. Tasks and other work items are assigned to releases to support planning and progress tracking."
+    },
+    {
+      "term": "Report",
+      "definition": "A formatted document combining data from multiple trackers with charts, tables, and narrative text. Exportable to Word, Excel, and PDF formats."
+    },
+    {
+      "term": "Requirements Library",
+      "definition": "A repository of reusable requirement specifications that can be referenced across multiple projects to prevent duplication and ensure consistency."
+    },
+    {
+      "term": "System Requirement",
+      "definition": "A technical specification decomposed from a customer requirement. Describes how the system will meet a specific stakeholder need. Stored in the System Requirements tracker."
+    },
+    {
+      "term": "Table View",
+      "definition": "A spreadsheet-like grid view of tracker items with sortable and filterable columns. Best suited for bulk editing and comparing items across many attributes."
+    },
+    {
+      "term": "Test Case",
+      "definition": "A tracker item that defines what to test, including a sequence of steps with actions and expected results. Test cases are linked to the requirements they verify."
+    },
+    {
+      "term": "Test Configuration",
+      "definition": "A tracker item that defines the environment or conditions under which tests are executed. Examples include operating system, browser version, and hardware setup."
+    },
+    {
+      "term": "Test Coverage Browser",
+      "definition": "A view that shows which requirements have linked test cases and their current execution status (passed, failed, not run). Used for compliance verification and gap analysis."
+    },
+    {
+      "term": "Test Run",
+      "definition": "A specific execution of one or more test cases against a test configuration. Records the actual pass/fail/blocked result for each test step."
+    },
+    {
+      "term": "Test Set",
+      "definition": "A named collection of test cases grouped for a specific purpose, such as smoke testing, regression testing, or acceptance testing."
+    },
+    {
+      "term": "Traceability",
+      "definition": "The ability to link and follow relationships between artifacts across the product lifecycle — from requirements through design, implementation, and testing."
+    },
+    {
+      "term": "Tracker",
+      "definition": "A configurable container in Codebeamer that holds a collection of related items. Each tracker defines the fields, workflows, and permissions for its items. Examples include Requirements, Bugs, Tasks, and Test Cases."
+    },
+    {
+      "term": "Tracker Item",
+      "definition": "A single entry within a tracker. Each item has configurable attributes (fields), a workflow state, associations to other items, and a change history."
+    },
+    {
+      "term": "Transition",
+      "definition": "A defined path from one workflow state to another. Transitions can have guards (conditions) and actions (automated operations). Example: 'Draft' → 'In Review'."
+    },
+    {
+      "term": "Upstream Reference",
+      "definition": "A traceability link pointing from a detailed item back to its parent or source item. For example, a system requirement linked to the customer requirement it derives from."
+    },
+    {
+      "term": "Widget",
+      "definition": "An embeddable component on a wiki page that displays live tracker data — tables, charts, query results, or metrics. Widgets auto-update as underlying data changes."
+    },
+    {
+      "term": "Wiki Page",
+      "definition": "A project-level documentation page in Codebeamer that supports rich text, embedded images, and live data widgets. Commonly used for dashboards and process documentation."
+    },
+    {
+      "term": "Workflow",
+      "definition": "A defined set of states and transitions that control a tracker item's lifecycle. Workflows enforce process discipline by ensuring items move through approved stages."
+    }
+  ]
+}

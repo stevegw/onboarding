@@ -97,6 +97,17 @@
   "error.loadingContent": "Erreur de chargement du contenu",
   "error.serverRequired": "Assurez-vous de servir cette page depuis un serveur HTTP (par ex., python -m http.server). L'API fetch() ne fonctionne pas avec les URL file://.",
 
+  "catalog.title": "Catalogue de formations",
+  "catalog.subtitle": "Formations interactives pour les produits PTC",
+  "catalog.platformTitle": "Formation PTC",
+  "catalog.platformSubtitle": "Catalogue de cours",
+  "catalog.productFamilies": "Familles de produits",
+  "catalog.courses": "{count} cours",
+  "catalog.languages": "langues",
+  "catalog.comingSoon": "Bientôt disponible",
+  "catalog.prerequisite": "Prérequis",
+  "catalog.backToCatalog": "Tous les cours",
+
   "locale.en": "English",
   "locale.fr": "Français",
   "locale.de": "Deutsch",
