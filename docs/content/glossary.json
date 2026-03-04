@@ -1,0 +1,88 @@
+{
+  "terms": [
+    {
+      "term": "Advanced Expression",
+      "definition": "An expression that includes choices, operators, and functions. Can be assigned to parts and part usage links to specify conditions when a component should be included in the product structure."
+    },
+    {
+      "term": "Basic Expression",
+      "definition": "Option choices that you can assign to parts and part usage links to specify the conditions when a component should be included in the product structure."
+    },
+    {
+      "term": "Configurable Module",
+      "definition": "A Windchill part that may have one or more child parts representing variations in the design and configuration of a component or functional unit."
+    },
+    {
+      "term": "Configurable Product",
+      "definition": "A top-level end item that represents a collection of product variations. An example is a product family with different models sharing some standard components."
+    },
+    {
+      "term": "Configurable Product Structure",
+      "definition": "Includes configurable modules to support the ability to create multiple product variants from the same product structure."
+    },
+    {
+      "term": "Conditional Rule",
+      "definition": "A rule using IF/THEN statements to specify when certain option choices should be included, turned on, or turned off based on other choice selections in the option filter."
+    },
+    {
+      "term": "Enable Rule",
+      "definition": "A rule that makes only specific choices appear for selection once a certain target choice is selected."
+    },
+    {
+      "term": "Exclude Rule",
+      "definition": "A rule that restricts the selection of incompatible choices. For example, selecting 110 Volts prevents selecting 50 Hz frequency."
+    },
+    {
+      "term": "Expression Alias",
+      "definition": "A named logical statement that can be reused when authoring conditional rules, advanced expressions, and other aliases. Captures common definitions for global product management."
+    },
+    {
+      "term": "Include Rule",
+      "definition": "A rule that associates a selection of one option choice to one or more related option choices. Selecting the source choice automatically selects the target choices."
+    },
+    {
+      "term": "Module Variant",
+      "definition": "The specific parts selected from a configurable module's optional parts and components based on selection criteria and choice assignments during variant generation."
+    },
+    {
+      "term": "Option",
+      "definition": "A particular product feature. An option has one or more choices, can be required or single-selection, and is applicable to specific product variations."
+    },
+    {
+      "term": "Option Filter",
+      "definition": "A set of criteria used to filter the product structure based on choices assigned to parts and the usage of a part in a structure."
+    },
+    {
+      "term": "Option Manager",
+      "definition": "A Windchill context role with authority to create options and choices and maintain option sets and other related information."
+    },
+    {
+      "term": "Option Pool",
+      "definition": "A container that holds all available options and their choices for a product. Options and choices are managed within the option pool."
+    },
+    {
+      "term": "Option Set",
+      "definition": "A subset of options and choices from one or more option pools, used to define variations within a product family. Option sets are change-managed objects."
+    },
+    {
+      "term": "Parameter",
+      "definition": "An attribute defined locally within the context of a configurable module to support advanced selection logic during the part configuration process."
+    },
+    {
+      "term": "Product Family",
+      "definition": "A set of related products that offer a range of capabilities and share a substantial percentage of the same parts."
+    },
+    {
+      "term": "Variant",
+      "definition": "A part or part structure representing a specific configuration of a configurable product structure, created during a configure process."
+    },
+    {
+      "term": "Variant Specification",
+      "definition": "A record of user inputs of option choices and parameter values provided during a configure process, used to generate a variant part structure."
+    },
+    {
+      "term": "Configurable Module Support",
+      "definition": "A Windchill preference that controls the ability to create optional product structures. Must be set to Yes to use Options and Variants functionality."
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "moduleId": "m1",
+  "title": "Configurable Products Knowledge Check",
+  "questions": [
+    {
+      "id": "m1-kc-001",
+      "question": "Which statement correctly reflects a configure-to-order business approach?",
+      "options": [
+        "A strategy to design products with a finite list of discrete option choices for key product features.",
+        "A strategy to design flexible products, which can be configured or customized to fit the unique needs of each customer order.",
+        "A strategy that involves fitting a general product to unique customer requirements with engineering involvement.",
+        "A strategy to custom design and custom manufacture a product to fulfill the unique requirements of a specific customer."
+      ],
+      "answerIndex": 1,
+      "rationale": "Configure-to-order is specifically about designing flexible products that can be configured or customized to fit unique customer needs, typically using a configurator with rules. Option A describes assemble-to-order, option C describes engineer-to-order, and option D describes contract product development.",
+      "topic": "m1t1"
+    },
+    {
+      "id": "m1-kc-002",
+      "question": "What is the first step in the Generic Platform Design process?",
+      "options": [
+        "Create the generic product definition",
+        "Assess current products for reuse",
+        "Analyze platform optionality requirements",
+        "Release and maintain the platform"
+      ],
+      "answerIndex": 2,
+      "rationale": "The platform design process begins with analyzing requirements. You need to understand what options are required before assessing reuse opportunities or building anything.",
+      "topic": "m1t2"
+    },
+    {
+      "id": "m1-kc-003",
+      "question": "What is an overloaded product structure?",
+      "options": [
+        "A product structure with too many parts to manage efficiently",
+        "A structure where sections contain multiple designs to satisfy different capability levels",
+        "A structure that has been exported and reimported multiple times",
+        "A product structure that exceeds the maximum number of configurable modules"
+      ],
+      "answerIndex": 1,
+      "rationale": "An overloaded product structure contains multiple designs within the same section to support a range of options. During variant generation, the structure is filtered down to the specific designs needed for a given configuration.",
+      "topic": "m1t3"
+    },
+    {
+      "id": "m1-kc-004",
+      "question": "For assemble-to-order and assemble-to-stock strategies, what Windchill capability is primarily used?",
+      "options": [
+        "Parameters for advanced selection logic",
+        "Workflow-based approval processes",
+        "Options and choices for filtering an overloaded product structure",
+        "CAD-driven product configuration"
+      ],
+      "answerIndex": 2,
+      "rationale": "Assemble-to-order and assemble-to-stock strategies use options and choices to filter an overloaded product structure. Parameters are used additionally for configure-to-order and engineer-to-order strategies that need more advanced selection logic.",
+      "topic": "m1t4"
+    }
+  ]
+}

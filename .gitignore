@@ -1,0 +1,6 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# PDF source material (not for deployment)
+docs/*.pdf

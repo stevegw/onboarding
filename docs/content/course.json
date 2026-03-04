@@ -1,0 +1,47 @@
+{
+  "id": "wc-ocp1",
+  "title": "Windchill: Options and Configurable Products 1",
+  "description": "Learn business approaches to configurable products, explore options and variants terminology, investigate rules, and master option sets.",
+  "prerequisite": "Windchill: BOM Restructuring",
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Introduce Configurable Products",
+      "description": "Examine business strategies for product variability, product platforms, product variants, and Windchill configuration approaches.",
+      "estimatedMinutes": 20,
+      "topicCount": 4,
+      "contentFile": "modules/m1-configurable-products.json",
+      "quizFile": "quizzes/q1-configurable-products.json"
+    },
+    {
+      "id": "m2",
+      "title": "Review Windchill Options and Variants",
+      "description": "Examine options and variants terminology, discuss options and choices, explore preferences, and create configurable modules.",
+      "estimatedMinutes": 25,
+      "topicCount": 5,
+      "contentFile": "modules/m2-options-and-variants.json",
+      "quizFile": "quizzes/q2-options-and-variants.json",
+      "comingSoon": true
+    },
+    {
+      "id": "m3",
+      "title": "Investigate Options and Variants Rules",
+      "description": "Examine include, exclude, enable, and conditional rules. Explore rule validation and expression aliases.",
+      "estimatedMinutes": 20,
+      "topicCount": 4,
+      "contentFile": "modules/m3-rules.json",
+      "quizFile": "quizzes/q3-rules.json",
+      "comingSoon": true
+    },
+    {
+      "id": "m4",
+      "title": "Explore Option Sets",
+      "description": "Define option sets, explore change management, assign option sets, apply expressions, and use option filters.",
+      "estimatedMinutes": 25,
+      "topicCount": 5,
+      "contentFile": "modules/m4-option-sets.json",
+      "quizFile": "quizzes/q4-option-sets.json",
+      "comingSoon": true
+    }
+  ]
+}
