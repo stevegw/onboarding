@@ -59,6 +59,18 @@
     OB.content.setCourse(courseId);
     OB.state.setCourse(courseId);
 
+    // Check if current locale is available for this course (sync from bundle)
+    checkCourseLocale(courseId);
+    OB.i18n.refreshLocaleSelector();
+
+    // If no bundle was available, try async catalog load for locale check
+    if (!OB._catalogBundle && OB.i18n.getLocale() !== "en") {
+      OB.content.loadCatalog().then(function (catalog) {
+        checkCourseLocaleFromCatalog(courseId, catalog);
+        OB.i18n.refreshLocaleSelector();
+      }).catch(function () { /* ignore */ });
+    }
+
     // Load course-specific bundles, then init
     OB.i18n.loadCourseBundle(courseId).then(function () {
       OB.sidebar.initMobile();
@@ -168,6 +180,41 @@
   function routeQuiz(moduleId) {
     if (!moduleId) { window.location.hash = "#/"; return; }
     OB.quiz.render(moduleId);
+  }
+
+  /**
+   * Check if the current locale is available for this course.
+   * Sets OB._localeNotice with info if locale is not supported.
+   * Also stores the course's available locales for the locale selector.
+   */
+  function checkCourseLocale(courseId) {
+    var catalog = OB._catalogBundle || null;
+    OB._localeNotice = null;
+    OB._courseLocales = null;
+    if (catalog) checkCourseLocaleFromCatalog(courseId, catalog);
+  }
+
+  function checkCourseLocaleFromCatalog(courseId, catalog) {
+    var locale = OB.i18n.getLocale();
+    if (locale === "en" || !catalog) return;
+
+    for (var i = 0; i < catalog.families.length; i++) {
+      var fam = catalog.families[i];
+      for (var j = 0; j < fam.courses.length; j++) {
+        if (fam.courses[j].id === courseId) {
+          var courseLocales = fam.courses[j].locales || ["en"];
+          OB._courseLocales = courseLocales;
+          if (courseLocales.indexOf(locale) === -1) {
+            var supported = OB.i18n.getSupported();
+            OB._localeNotice = {
+              locale: locale,
+              localeName: supported[locale] || locale
+            };
+          }
+          return;
+        }
+      }
+    }
   }
 
   OB.router = {

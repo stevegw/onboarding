@@ -205,10 +205,17 @@
     select.className = "locale-select";
     select.setAttribute("aria-label", "Language");
 
+    var courseLocales = OB._courseLocales || null;
+
     Object.keys(SUPPORTED).forEach(function (code) {
       var opt = document.createElement("option");
       opt.value = code;
-      opt.textContent = SUPPORTED[code];
+      var label = SUPPORTED[code];
+      if (courseLocales && courseLocales.indexOf(code) === -1) {
+        label += " *";
+        opt.className = "locale-unavailable";
+      }
+      opt.textContent = label;
       if (code === currentLocale) opt.selected = true;
       select.appendChild(opt);
     });
@@ -243,5 +250,6 @@
     getLocale: getLocale,
     getSupported: getSupported,
     loadCourseBundle: loadCourseBundle,
+    refreshLocaleSelector: renderLocaleSelector,
   };
 })();

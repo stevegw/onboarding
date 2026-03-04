@@ -48,8 +48,17 @@
 
   function setMain(html) {
     var main = document.getElementById("main");
-    if (main) main.innerHTML = html;
-    if (main) main.scrollTop = 0;
+    if (!main) return;
+    var notice = "";
+    if (OB._localeNotice) {
+      notice = '<div class="locale-notice">' +
+        '<span class="locale-notice-icon">&#127760;</span>' +
+        '<span>This course is not yet available in <strong>' + esc(OB._localeNotice.localeName) +
+        '</strong>. Showing English content.</span>' +
+        '</div>';
+    }
+    main.innerHTML = notice + html;
+    main.scrollTop = 0;
   }
 
   OB.ui = {

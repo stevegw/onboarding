@@ -48,6 +48,7 @@
 }
 .locale-select:hover { border-color: var(--c-border-hover); color: var(--c-text-muted); background: var(--c-bg-surface-hover); }
 .locale-select:focus { outline: none; border-color: var(--c-accent); }
+.locale-select option.locale-unavailable { color: var(--c-text-dim); }
 
 /* Navigation */
 .sb-nav { list-style: none; flex: 1; overflow-y: auto; min-height: 0; padding: 0 0 8px; }
