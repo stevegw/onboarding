@@ -1,0 +1,45 @@
+{
+  "moduleId": "m4",
+  "title": "Wissensüberprüfung Optionssätze",
+  "questions": [
+    {
+      "id": "m4-kc-001",
+      "question": "Welche Aussage beschreibt einen Optionssatz korrekt?",
+      "options": [
+        "Ein Hauptverzeichnis, das alle Optionen und Auswahlmöglichkeiten für jedes Produkt im System enthält",
+        "Eine kuratierte Sammlung von Optionen, Auswahlmöglichkeiten und Regeln, die zur Definition von Konfigurationen innerhalb einer bestimmten Produktfamilie verwendet wird",
+        "Ein Filter, der ungültige Auswahlmöglichkeiten während der Konfiguration aus dem Optionspool entfernt",
+        "Ein Bericht, der alle für ein Produkt generierten Variantenspezifikationen anzeigt"
+      ],
+      "answerIndex": 1,
+      "rationale": "Ein Optionssatz ist eine kuratierte Sammlung von Optionen, Auswahlmöglichkeiten und Regeln, die zur Definition von Konfigurationen innerhalb einer bestimmten Produktfamilie verwendet wird. Option A beschreibt einen Optionspool, Option C beschreibt einen Optionsfilter und Option D beschreibt einen Variantenbericht.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-002",
+      "question": "Was muss geschehen, bevor ein Optionssatz für die Produktkonfiguration verwendet werden kann?",
+      "options": [
+        "Der Optionssatz muss zuerst in ein CAD-System exportiert werden",
+        "Der Optionssatz muss einem konfigurierbaren Produkt oder konfigurierbaren Modul zugewiesen werden",
+        "Der Optionssatz muss nur von einem Standortadministrator genehmigt werden",
+        "Der Optionssatz muss mindestens zehn Optionen enthalten, um gültig zu sein"
+      ],
+      "answerIndex": 1,
+      "rationale": "Ein Optionssatz muss einem konfigurierbaren Produkt oder konfigurierbaren Modul zugewiesen werden, bevor er für die Konfiguration verwendet werden kann. Diese Zuweisung stellt die Verknüpfung zwischen den verfügbaren Optionen und der zu konfigurierenden Produktstruktur her.",
+      "topic": "m4t2"
+    },
+    {
+      "id": "m4-kc-003",
+      "question": "Was ist der Zweck eines Optionsfilters in Windchill?",
+      "options": [
+        "Nicht mehr benötigte Auswahlmöglichkeiten dauerhaft aus dem Optionspool zu löschen",
+        "Automatisch neue Varianten ohne Benutzereingabe zu erstellen",
+        "Eine konfigurierbare Produktstruktur basierend auf den Teilen zugewiesenen Auswahlmöglichkeiten zu filtern und eine Variante zu erzeugen",
+        "Einzuschränken, welche Benutzer auf die Oberfläche zur Optionssatzverwaltung zugreifen können"
+      ],
+      "answerIndex": 2,
+      "rationale": "Ein Optionsfilter verwendet Kriterien basierend auf ausgewählten Auswahlmöglichkeiten, um eine konfigurierbare Produktstruktur zu filtern und nur die Teile einzubeziehen, deren zugewiesene Auswahlmöglichkeiten mit den Selektionen übereinstimmen. So wird eine überladene Struktur auf eine bestimmte Variante reduziert.",
+      "topic": "m4t3"
+    }
+  ]
+}

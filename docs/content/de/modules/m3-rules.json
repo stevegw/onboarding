@@ -1,0 +1,350 @@
+{
+  "id": "m3",
+  "title": "Regeln für Optionen und Varianten untersuchen",
+  "description": "Untersuchen Sie Einschluss-, Ausschluss-, Aktivierungs- und bedingte Regeln. Erkunden Sie die Regelvalidierung und Ausdrucksaliase.",
+  "exerciseTopicStart": 4,
+  "topics": [
+    {
+      "id": "m3t1",
+      "title": "Regeltypen und Geschäftslogik",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Optionen- und Varianten-Regeln definieren die gültigen Kombinationen von Auswahlmöglichkeiten, die bei der Konfiguration eines Produkts zusammen ausgewählt werden können. Windchill bietet vier Regeltypen, die steuern, wie Auswahlmöglichkeiten interagieren, und sicherstellen, dass nur gültige Produktkonfigurationen erstellt werden können."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Vier Regeltypen"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Regeltyp", "Beschreibung", "Beispiel"],
+          "rows": [
+            ["Einschlussregel", "Verknüpft die Auswahl einer Auswahlmöglichkeit mit zugehörigen Auswahlmöglichkeiten. Wenn eine Quellauswahl getroffen wird, werden die Zielauswahlmöglichkeiten automatisch ebenfalls ausgewählt.", "Land=USA schließt automatisch Spannung=110 Volt ein"],
+            ["Ausschlussregel", "Beschränkt die gleichzeitige Auswahl inkompatibler Auswahlmöglichkeiten. Wenn eine Quellauswahl getroffen wird, sind die Zielauswahlmöglichkeiten nicht erlaubt.", "Spannung=110V schließt Frequenz=50Hz aus, da sie inkompatibel sind"],
+            ["Aktivierungsregel", "Lässt nur bestimmte Auswahlmöglichkeiten zur Auswahl erscheinen, sobald eine Quellauswahl getroffen wurde. Steuert, welche Optionsauswahlmöglichkeiten abhängig von einer Bedingung verfügbar sind.", "Die Auswahl von Auswahl 1 aktiviert Auswahlmöglichkeiten 7, 8, 13 und deaktiviert Auswahlmöglichkeiten 9, 12"],
+            ["Bedingte Regel", "WENN/DANN-Anweisungen, die festlegen, wann Auswahlmöglichkeiten eingeschlossen, aktiviert oder deaktiviert werden sollen. Bietet komplexe Logik mit mehreren Bedingungen.", "WENN Auswahlmöglichkeiten 1 UND 4 ausgewählt sind, DANN werden Auswahlmöglichkeiten 7, 8 und 13 deaktiviert"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Methoden der Geschäftslogik"
+        },
+        {
+          "type": "paragraph",
+          "text": "Windchill bietet verschiedene Methoden zur Implementierung von Geschäftslogik, die die Produktkonfiguration steuert. Jede Methode dient einem bestimmten Zweck im gesamten Regelframework:"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Designoption",
+              "back": "Ermöglicht Aktionen an Optionen innerhalb des Optionspools. Dies ist die Grundlage für die Definition der variablen Merkmale eines Produkts und der für jedes Merkmal verfügbaren Auswahlmöglichkeiten."
+            },
+            {
+              "front": "Einschlussregeln",
+              "back": "Erfassen logische Verknüpfungen zwischen Produktmerkmalen. Wenn eine Auswahl getroffen wird, werden zugehörige Auswahlmöglichkeiten automatisch einbezogen, um die Produktintegrität zu gewährleisten."
+            },
+            {
+              "front": "Ausschlussregeln",
+              "back": "Erfassen inkompatible Auswahlmöglichkeiten, die nicht zusammen ausgewählt werden sollten. Verhindert ungültige Kombinationen, die zu nicht funktionsfähigen oder nicht fertigbaren Produkten führen würden."
+            },
+            {
+              "front": "Aktivierungsregeln",
+              "back": "Steuern, welche Optionsauswahlmöglichkeiten abhängig von einer Bedingung verfügbar sind. Passen die sichtbaren Auswahlmöglichkeiten basierend auf vorherigen Auswahlen dynamisch an, um Benutzer zu gültigen Konfigurationen zu führen."
+            },
+            {
+              "front": "Bedingte Regeln",
+              "back": "WENN/DANN-Konstruktionen für die Auswahlselektion im Optionsfilter. Bieten die flexibelste und komplexeste Logik zur Steuerung von Auswahlinteraktionen über mehrere Optionen hinweg."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Windchill überprüft, ob neue Regeln nicht mit bestehenden Regeln in Konflikt stehen oder diese duplizieren. Diese integrierte Regelvalidierung verhindert widersprüchliche Logik, die bestimmte Produktkonfigurationen unmöglich oder mehrdeutig machen könnte."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Ordnen Sie jeden Regeltyp seinem Verhalten zu:",
+          "pairs": [
+            {"left": "Einschlussregel", "right": "Wählt automatisch zugehörige Auswahlmöglichkeiten aus, wenn eine Quellauswahl getroffen wird"},
+            {"left": "Ausschlussregel", "right": "Verhindert, dass inkompatible Auswahlmöglichkeiten zusammen ausgewählt werden"},
+            {"left": "Aktivierungsregel", "right": "Steuert, welche Auswahlmöglichkeiten basierend auf einer Bedingung sichtbar oder verfügbar sind"},
+            {"left": "Bedingte Regel", "right": "Verwendet WENN/DANN-Logik, um Auswahlmöglichkeiten basierend auf mehreren Bedingungen zu aktivieren oder zu deaktivieren"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Vier Regeltypen steuern gültige Auswahlkombinationen: Einschluss, Ausschluss, Aktivierung und bedingt",
+        "Einschlussregeln erzwingen, dass zugehörige Auswahlen automatisch zusammen gewählt werden",
+        "Ausschlussregeln verhindern, dass inkompatible Kombinationen ausgewählt werden",
+        "Windchill validiert Regeln, um Konflikte und Duplikate zu verhindern"
+      ]
+    },
+    {
+      "id": "m3t2",
+      "title": "Einschluss-, Ausschluss- und bedingte Regeln",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Einschluss-, Ausschluss- und bedingte Regeln bilden den Kern der Produktkonfigurationslogik in Windchill. Jeder Regeltyp behandelt einen anderen Aspekt der Beziehung zwischen Auswahlmöglichkeiten, von der automatischen Auswahl über die Durchsetzung von Inkompatibilitäten bis hin zu komplexen Szenarien mit mehreren Bedingungen."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Regeldetails und Beispiele"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Einschlussregel",
+              "back": "Identifiziert Zielauswahlmöglichkeiten, die automatisch ausgewählt werden, wenn eine Quellauswahl getroffen wird. Wenn beispielsweise Auswahl 1 ausgewählt wird, werden die Auswahlmöglichkeiten 7 und 13 automatisch eingeschlossen. Dies stellt sicher, dass abhängige Merkmale immer zusammen ausgewählt werden."
+            },
+            {
+              "front": "Ausschlussregel",
+              "back": "Definiert inkompatible Auswahlmöglichkeiten, die nicht zusammen mit einer Quellauswahl ausgewählt werden können. Wenn beispielsweise Auswahl 1 ausgewählt wird, ist Auswahl 9 nicht erlaubt. Dies verhindert, dass Benutzer ungültige Produktkonfigurationen mit widersprüchlichen Merkmalen erstellen."
+            },
+            {
+              "front": "Bedingte Regel",
+              "back": "Verwendet WENN/DANN-Logik zur Handhabung komplexer Szenarien mit mehreren Auswahlmöglichkeiten. Wenn Sie beispielsweise die Auswahlmöglichkeiten 1 und 4 wählen, werden die Auswahlmöglichkeiten 7, 8 und 13 deaktiviert, sodass nur die Auswahlmöglichkeiten 9 und 12 verfügbar bleiben. Dies bietet die flexibelste Steuerung der Auswahlinteraktionen."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Einschluss- und Ausschlussregeln behandeln einfache Eins-zu-eins- oder Eins-zu-viele-Beziehungen zwischen Auswahlmöglichkeiten. Wenn Sie Logik benötigen, die von der gleichzeitigen Auswahl mehrerer Quellauswahlmöglichkeiten abhängt, verwenden Sie bedingte Regeln mit WENN/DANN-Anweisungen."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Wie die Regeln zusammenwirken"
+        },
+        {
+          "type": "paragraph",
+          "text": "In der Praxis verwenden Produkte eine Kombination aller drei Regeltypen. Einschlussregeln stellen sicher, dass Abhängigkeiten erfüllt werden, Ausschlussregeln verhindern Konflikte, und bedingte Regeln behandeln die komplexen Interaktionen, die nicht mit einfacher Einschluss- oder Ausschlusslogik ausgedrückt werden können. Zusammen bilden sie ein umfassendes Einschränkungssystem, das Benutzer zu gültigen Konfigurationen führt."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Regeltyp", "Quelle → Zielverhalten", "Anwendungsfall"],
+          "rows": [
+            ["Einschluss", "Quelle ausgewählt → Ziele automatisch ausgewählt", "Abhängige Merkmale, die immer zusammen erscheinen müssen"],
+            ["Ausschluss", "Quelle ausgewählt → Ziele nicht erlaubt", "Inkompatible Merkmale, die nicht koexistieren können"],
+            ["Bedingt", "WENN mehrere Quellen → DANN Ziele an/aus", "Komplexe Szenarien, bei denen das Ergebnis von einer Kombination von Auswahlen abhängt"]
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Einschlussregeln wählen automatisch zugehörige Auswahlmöglichkeiten aus, wenn eine Quellauswahl getroffen wird",
+        "Ausschlussregeln verhindern, dass widersprüchliche Auswahlen zusammen getroffen werden",
+        "Bedingte Regeln bieten komplexe WENN/DANN-Logik für Szenarien mit mehreren Auswahlmöglichkeiten"
+      ]
+    },
+    {
+      "id": "m3t3",
+      "title": "Aktivierungsregeln und Ausdrucksaliase",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Aktivierungsregeln und Ausdrucksaliase erweitern das Regelframework um zusätzliche Fähigkeiten. Aktivierungsregeln steuern die Sichtbarkeit und Verfügbarkeit von Auswahlmöglichkeiten basierend auf vorherigen Auswahlen, während Ausdrucksaliase die Erstellung komplexer Regeln vereinfachen, indem sie wiederverwendbare logische Anweisungen kapseln."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Aktivierungsregeln"
+        },
+        {
+          "type": "paragraph",
+          "text": "Aktivierungsregeln steuern, welche Optionsauswahlmöglichkeiten verfügbar sind, sobald eine Quellauswahl getroffen wurde. Im Gegensatz zu Einschluss- oder Ausschlussregeln, die Auswahlen erzwingen oder verhindern, passen Aktivierungsregeln dynamisch an, welche Auswahlmöglichkeiten sichtbar sind. Beispielsweise aktiviert die Auswahl von Auswahl 1 die Auswahlmöglichkeiten 7, 8 und 13 und deaktiviert die Auswahlmöglichkeiten 9 und 12. Nur die aktivierten Auswahlmöglichkeiten erscheinen als auswählbare Optionen während der Konfiguration."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Aspekt", "Aktivierungsregeln", "Bedingte Regeln"],
+          "rows": [
+            ["Auslöser", "Auswahl einer einzelnen Quellauswahl", "Mehrere ausgewählte Quellauswahlmöglichkeiten (WENN/DANN)"],
+            ["Wirkung", "Schaltet bestimmte Auswahlmöglichkeiten für die Sichtbarkeit ein oder aus", "Schaltet Auswahlmöglichkeiten basierend auf zusammengesetzten Bedingungen ein oder aus"],
+            ["Komplexität", "Einfache Eins-zu-viele-Sichtbarkeitssteuerung", "Komplexe Logik mit mehreren Bedingungen"],
+            ["Hauptverwendung", "Steuerung, welche Auswahlmöglichkeiten basierend auf einer einzelnen Auswahl erscheinen", "Handhabung von Interaktionen, die von Kombinationen vorheriger Auswahlen abhängen"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Aktivierungsregeln sind besonders nützlich, wenn bestimmte Auswahlmöglichkeiten nur im Kontext einer vorherigen Auswahl sinnvoll sind. Beispielsweise können bestimmte Reifengrößen nur relevant sein, wenn ein bestimmter Rahmentyp ausgewählt wurde."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Ausdrucksaliase"
+        },
+        {
+          "type": "paragraph",
+          "text": "Ausdrucksaliase repräsentieren logische Anweisungen, die über mehrere Regeln hinweg wiederverwendet werden können. Häufig verwendete Definitionen in der Produktkonfiguration können als Aliase erfasst werden, was die Regelerstellung vereinfacht und die Wartbarkeit verbessert."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Was ist ein Ausdrucksalias?",
+              "back": "Ein Ausdrucksalias ist eine benannte logische Anweisung, die eine häufig verwendete Bedingung oder eine Reihe von Auswahlmöglichkeiten kapselt. Beispielsweise könnte ein 'GroßeReifen'-Alias die Reifengrößen 48IN, 50IN, 52IN, 54IN und 56IN aus der REIFEN-Option repräsentieren."
+            },
+            {
+              "front": "Wo werden Aliase verwendet?",
+              "back": "Ausdrucksaliase können bei der Erstellung von bedingten Regeln, erweiterten Ausdrücken und anderen Aliasen verwendet werden. Sie dienen als Bausteine für komplexe Konfigurationslogik und reduzieren Duplikation, wodurch Regeln einfacher zu lesen und zu pflegen sind."
+            },
+            {
+              "front": "Wiederverwendbarkeit über Regeln hinweg",
+              "back": "Einmal definiert, kann ein Alias in mehreren bedingten Regeln und Ausdrücken in der gesamten Produktkonfiguration referenziert werden. Dies bedeutet, dass eine Änderung der Aliasdefinition automatisch an alle Regeln weitergegeben wird, die ihn referenzieren."
+            },
+            {
+              "front": "Lizenzanforderungen",
+              "back": "Ausdrucksaliase sind eine erweiterte Fähigkeit, die einer separaten Lizenzberechtigung unterliegt. Organisationen müssen über die entsprechende Windchill-Lizenz verfügen, um Ausdrucksaliase in ihren Produktkonfigurationen erstellen und verwenden zu können."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Ausdrucksaliase erfordern eine separate Lizenzberechtigung. Überprüfen Sie, ob die Windchill-Lizenz Ihrer Organisation diese Fähigkeit umfasst, bevor Sie den Einsatz von Aliasen in Ihren Regeldefinitionen planen."
+        }
+      ],
+      "keyTakeaways": [
+        "Aktivierungsregeln steuern die Sichtbarkeit von Auswahlmöglichkeiten basierend auf einer Quellauswahl",
+        "Ausdrucksaliase vereinfachen die Erstellung komplexer Regeln durch Kapselung wiederverwendbarer logischer Anweisungen",
+        "Aliase sind über bedingte Regeln und Ausdrücke hinweg wiederverwendbar",
+        "Ausdrucksaliase erfordern eine separate Lizenzberechtigung"
+      ]
+    },
+    {
+      "id": "m3t4",
+      "title": "Einschluss- und Ausschlussregeln erstellen",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In dieser Übung erstellen Sie Einschluss- und Ausschlussregeln für das PTC Motorcycle-Produkt. Anna Chen navigiert zum Optionspool, um eine Einschlussregel zu definieren, die den Geländemotorradtyp mit den richtigen Radauswahlmöglichkeiten verknüpft, und eine Ausschlussregel, die inkompatible Radauswahlen verhindert."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Diese Übung ändert die Produktkonfigurationsregeln. Folgen Sie den Schritten sorgfältig und verwenden Sie die genauen angegebenen Namen, um die Konsistenz mit späteren Übungen sicherzustellen."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex4",
+          "title": "Einschluss- und Ausschlussregeln erstellen",
+          "objective": "Lernen Sie, wie Sie Einschluss- und Ausschlussregeln in Windchill erstellen, indem Sie logische Verknüpfungen und inkompatible Auswahlbeschränkungen für das PTC Motorcycle-Produkt definieren.",
+          "tasks": [
+            {
+              "id": "ex4-t1",
+              "title": "Eine Einschlussregel erstellen",
+              "steps": [
+                {
+                  "action": "Navigieren Sie zum PTC Motorcycle-Produkt und öffnen Sie die Registerkarte Optionspool.",
+                  "detail": "Sie werden eine Einschlussregel erstellen, die den Geländemotorradtyp mit den entsprechenden Radauswahlmöglichkeiten verknüpft. Einschlussregeln werden im Optionspool erstellt.",
+                  "hint": null
+                },
+                {
+                  "action": "Erweitern Sie die Option Motorradtyp im Optionspool, um deren Auswahlmöglichkeiten anzuzeigen.",
+                  "detail": "Sie sollten die Auswahlmöglichkeiten Gelände und Straße/Straßenzulassung sehen, die in einer vorherigen Übung erstellt wurden. Die Auswahlmöglichkeit Gelände wird die Quelle der Einschlussregel sein.",
+                  "hint": "Klicken Sie auf den Erweiterungspfeil neben Motorradtyp, um die Auswahlmöglichkeiten anzuzeigen."
+                },
+                {
+                  "action": "Klicken Sie mit der rechten Maustaste auf die Auswahl 'Gelände' und wählen Sie 'Neue Einschlussregel'.",
+                  "detail": "Die Aktion Neue Einschlussregel öffnet einen Dialog, in dem Sie angeben, welche Zielauswahlmöglichkeiten automatisch ausgewählt werden sollen, wenn Gelände gewählt wird. Dies stellt sicher, dass die richtigen Räder immer bei einer Geländekonfiguration eingeschlossen werden.",
+                  "hint": "Die Option befindet sich möglicherweise in einem Kontextmenü oder unter einem Aktionen-Dropdown in der Auswahlzeile."
+                },
+                {
+                  "action": "Wählen Sie im Einschlussregel-Dialog die Option Räder und wählen Sie 'Gelände Vorne' und 'Gelände Hinten' als Zielauswahlmöglichkeiten.",
+                  "detail": "Indem Sie sowohl Gelände Vorne als auch Gelände Hinten Räder auswählen, definieren Sie, dass bei Auswahl des Gelände-Motorradtyps beide Geländeradtypen automatisch in die Konfiguration aufgenommen werden.",
+                  "hint": "Wenn die Option Räder keine Mehrfachauswahl erlaubt, müssen Sie sie zuerst bearbeiten (siehe nächste Aufgabe)."
+                },
+                {
+                  "action": "Wenn der Dialog die Auswahl mehrerer Radauswahlmöglichkeiten nicht zulässt, notieren Sie das Problem und fahren Sie mit der nächsten Aufgabe fort, um zuerst die Option Räder zu bearbeiten.",
+                  "detail": "Die Option Räder ist möglicherweise standardmäßig auf Einzelauswahl gesetzt. Damit eine Einschlussregel mehrere Auswahlmöglichkeiten aus derselben Option ansprechen kann, muss diese Option Mehrfachauswahl zulassen. Dies ist ein häufiger Konfigurationsschritt beim Einrichten von Einschlussregeln.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex4-t2",
+              "title": "Option Räder bearbeiten und Einschlussregel abschließen",
+              "steps": [
+                {
+                  "action": "Klicken Sie im Optionspool mit der rechten Maustaste auf die Option Räder und wählen Sie 'Bearbeiten'.",
+                  "detail": "Sie müssen die Option Räder von Einzelauswahl auf Mehrfachauswahl ändern, damit die Einschlussregel mehrere Radauswahlmöglichkeiten gleichzeitig ansprechen kann.",
+                  "hint": "Suchen Sie nach einer Bearbeiten-Aktion im Kontextmenü oder in der Aktionssymbolleiste, wenn die Option Räder ausgewählt ist."
+                },
+                {
+                  "action": "Ändern Sie die Einstellung 'Einzelauswahl' von 'Ja' auf 'Nein' und speichern Sie die Änderung.",
+                  "detail": "Das Setzen von Einzelauswahl auf Nein ermöglicht die Auswahl mehrerer Auswahlmöglichkeiten für die Option Räder. Dies ist erforderlich, da der Geländemotorradtyp sowohl Gelände Vorne als auch Gelände Hinten Räder gleichzeitig auswählen muss.",
+                  "hint": "Das Feld Einzelauswahl kann ein Kontrollkästchen oder ein Dropdown im Optionsbearbeitungsformular sein."
+                },
+                {
+                  "action": "Kehren Sie zur Option Motorradtyp zurück, klicken Sie mit der rechten Maustaste auf 'Gelände' und wählen Sie erneut 'Neue Einschlussregel'.",
+                  "detail": "Da die Option Räder jetzt Mehrfachauswahl unterstützt, können Sie die Einschlussregel erstellen, die sowohl Gelände Vorne als auch Gelände Hinten Radauswahlmöglichkeiten anspricht.",
+                  "hint": null
+                },
+                {
+                  "action": "Wählen Sie die Option Räder und wählen Sie sowohl 'Gelände Vorne' als auch 'Gelände Hinten' als Zielauswahlmöglichkeiten. Speichern Sie die Einschlussregel.",
+                  "detail": "Die Einschlussregel ist jetzt vollständig. Immer wenn ein Benutzer Gelände als Motorradtyp auswählt, werden sowohl Gelände Vorne als auch Gelände Hinten Räder automatisch in die Konfiguration aufgenommen.",
+                  "hint": "Halten Sie Strg gedrückt, während Sie klicken, um mehrere Auswahlmöglichkeiten in der Zielliste auszuwählen."
+                },
+                {
+                  "action": "Überprüfen Sie, ob die Einschlussregel in der Registerkarte Einschlussregeln für die Auswahl Gelände erscheint.",
+                  "detail": "Nach dem Speichern sollte die Regel in der Regelübersicht sichtbar sein. Bestätigen Sie, dass die Quelle Gelände und die Ziele Gelände Vorne und Gelände Hinten sind.",
+                  "hint": "Navigieren Sie zu den Details der Auswahl Gelände und überprüfen Sie die Registerkarte oder den Abschnitt Einschlussregeln."
+                }
+              ]
+            },
+            {
+              "id": "ex4-t3",
+              "title": "Eine Ausschlussregel erstellen",
+              "steps": [
+                {
+                  "action": "Navigieren Sie zum PTC Motorcycle-Teil der obersten Ebene in der Produktstruktur oder Optionspoolansicht.",
+                  "detail": "Ausschlussregeln können aus dem Produktkontext der obersten Ebene erstellt werden. Sie werden eine Regel erstellen, die verhindert, dass inkompatible Radauswahlmöglichkeiten mit dem Geländemotorradtyp ausgewählt werden.",
+                  "hint": "Wählen Sie das PTC Motorcycle-Produkt auf der obersten Ebene der Struktur aus."
+                },
+                {
+                  "action": "Gehen Sie zur Registerkarte Ausschlussregeln.",
+                  "detail": "Die Registerkarte Ausschlussregeln zeigt alle vorhandenen Ausschlussregeln für das Produkt an und bietet Aktionen zum Erstellen neuer Regeln. Diese zentrale Ansicht erleichtert die Verwaltung aller Inkompatibilitätsregeln.",
+                  "hint": "Die Registerkarte befindet sich möglicherweise neben Einschlussregeln, Aktivierungsregeln und anderen regelbezogenen Registerkarten."
+                },
+                {
+                  "action": "Klicken Sie auf 'Neue Ausschlussregel', um eine neue Ausschlussregel zu erstellen.",
+                  "detail": "Sie werden eine Ausschlussregel definieren, die verhindert, dass Straßenräder ausgewählt werden, wenn der Geländemotorradtyp gewählt wird, und so sicherstellen, dass nur kompatible Radtypen verfügbar sind.",
+                  "hint": "Suchen Sie nach einer Schaltfläche oder einem Symbol 'Neue Ausschlussregel' in der Symbolleiste über der Regeltabelle."
+                },
+                {
+                  "action": "Setzen Sie die Quelle auf Motorradtyp = Gelände. Setzen Sie die Ziele auf Räder = Straße Vorne und Räder = Straße Hinten.",
+                  "detail": "Diese Ausschlussregel besagt: Wenn Gelände als Motorradtyp ausgewählt wird, können die Auswahlmöglichkeiten Straße Vorne und Straße Hinten nicht ausgewählt werden. Dies verhindert, dass ein Benutzer versehentlich Straßenräder für ein Geländemotorrad auswählt.",
+                  "hint": "Wählen Sie zuerst die Quelloption und -auswahl aus, dann wählen Sie die Zieloption und die auszuschließenden Auswahlmöglichkeiten."
+                },
+                {
+                  "action": "Speichern Sie die Ausschlussregel und überprüfen Sie, ob sie in der Registerkarte Ausschlussregeln erscheint.",
+                  "detail": "Die Ausschlussregel ist jetzt aktiv. In Kombination mit der Einschlussregel aus der vorherigen Aufgabe wird bei Auswahl von Gelände als Motorradtyp automatisch die Geländeräder eingeschlossen und die Straßenräder von der Auswahl ausgeschlossen.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Einschlussregeln wählen automatisch zugehörige Auswahlmöglichkeiten aus, wenn eine Quellauswahl getroffen wird",
+        "Optionen müssen möglicherweise bearbeitet werden, um Mehrfachauswahl für Einschlussregeln zu unterstützen, die mehrere Auswahlmöglichkeiten ansprechen",
+        "Ausschlussregeln verhindern, dass inkompatible Auswahlmöglichkeiten zusammen ausgewählt werden",
+        "Regeln werden über die Registerkarten des Optionspools und die produktbezogenen Regelregisterkarten erstellt"
+      ]
+    }
+  ]
+}

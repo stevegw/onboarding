@@ -1,0 +1,472 @@
+{
+  "id": "m4",
+  "title": "Explore Option Sets",
+  "description": "Define option sets, explore change management for option sets, assign option sets, apply expressions, and use option filters to generate variants.",
+  "topics": [
+    {
+      "id": "m4t1",
+      "title": "Option Sets and Change Management",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "An option set is a curated collection of options, choices, and rules that defines the configuration vocabulary for a specific product family. While the option pool contains every option ever defined for a product context, an option set selects only the relevant subset needed for a particular product line. Understanding how option sets are managed, versioned, and governed is essential for maintaining reliable product configurations."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What Is an Option Set?"
+        },
+        {
+          "type": "paragraph",
+          "text": "An option set draws its content from the option pool and packages it for use with a specific configurable product or product family. It contains the options, choices, and rules that define valid configurations for that family. A single option pool can feed multiple option sets, each tailored to a different product line. This separation allows organizations to maintain a centralized repository of options while providing focused configuration vocabularies for individual products."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Option Pool vs. Option Set vs. Option Filter"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Concept", "What It Contains", "Scope", "Purpose"],
+          "rows": [
+            ["Option Pool", "All options, choices, and rules defined for a product context", "Entire product context (all product families)", "Master repository of all configurable features available across the organization's products"],
+            ["Option Set", "A curated subset of options, choices, and rules from the option pool", "Specific product family or configurable product", "Defines the valid configuration vocabulary for a particular product line, including applicable rules"],
+            ["Option Filter", "A specific set of choice selections applied to an option set", "A single configuration instance", "Filters an overloaded product structure down to the parts needed for one specific product variant"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Change Management for Option Sets"
+        },
+        {
+          "type": "paragraph",
+          "text": "Option sets in Windchill are managed objects that follow standard change management workflows. This means they support versioning, lifecycle states, and check-in/check-out operations, ensuring that changes to product configuration definitions are controlled and traceable."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Option sets follow the same change management principles as other Windchill objects. They can be checked out for editing, checked in to save changes, versioned to track evolution over time, and governed by lifecycle states (e.g., In Work, Released). This ensures that configuration definitions are always auditable and that unauthorized changes cannot affect released products."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Option Set Governance"
+        },
+        {
+          "type": "paragraph",
+          "text": "Governance of option sets involves controlling who can create, modify, and release them. The Option Manager role is responsible for maintaining option sets, adding or removing options and choices, defining rules, and managing the lifecycle of the option set. Organizations typically establish review and approval processes before an option set is released for production use."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Test Your Knowledge"
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each option set management concept to its description:",
+          "pairs": [
+            {"left": "Option Set Versioning", "right": "Tracks changes to the option set over time, creating a history of configuration definitions"},
+            {"left": "Check-In/Check-Out", "right": "Controls concurrent editing by locking the option set while it is being modified"},
+            {"left": "Lifecycle States", "right": "Governs the maturity of the option set (e.g., In Work, Under Review, Released)"},
+            {"left": "Option Manager Role", "right": "The Windchill role responsible for creating and maintaining option sets and their content"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "An option set is a curated collection of options, choices, and rules drawn from the option pool for a specific product family",
+        "The option pool is the master repository; the option set is a focused subset; the option filter applies specific choices to generate a variant",
+        "Option sets are managed objects with versioning, lifecycle states, and check-in/check-out support",
+        "The Option Manager role is responsible for creating, maintaining, and governing option sets"
+      ]
+    },
+    {
+      "id": "m4t2",
+      "title": "Assigning and Managing Option Sets",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Once an option set has been created and populated with the appropriate options, choices, and rules, it must be assigned to a configurable product or configurable module. The assignment process links the configuration vocabulary to the product structure, enabling option-based variant generation. Proper management of option set membership ensures that products remain configurable as requirements evolve."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Assigning Option Sets"
+        },
+        {
+          "type": "paragraph",
+          "text": "Option sets are assigned to configurable products and configurable modules through the Windchill user interface. A configurable product must have an assigned option set before option filters can be applied or variants can be generated. Configurable modules within the product structure can also have their own option sets, allowing different sections of the product to use different configuration vocabularies when needed."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Key Steps for Assigning Option Sets"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Step 1: Navigate to the Configurable Product",
+              "back": "Open the configurable product in Windchill and locate the actions menu or Option Set tab. The product must already be designated as a Configurable Product before an option set can be assigned to it."
+            },
+            {
+              "front": "Step 2: Select the Assign Option Set Action",
+              "back": "Use the Actions menu or the Option Set tab to initiate the assignment. Windchill presents a list of available option sets from the product context. Only option sets that belong to the same product context (or a shared context) are available for assignment."
+            },
+            {
+              "front": "Step 3: Choose the Appropriate Option Set",
+              "back": "Select the option set that contains the options, choices, and rules relevant to this product family. Review the option set contents to confirm it includes all necessary configuration parameters before completing the assignment."
+            },
+            {
+              "front": "Step 4: Verify the Assignment",
+              "back": "After assignment, verify that the option set appears on the product's Option Set tab. Confirm that the options and choices from the assigned set are now available for use in expressions and option filters on the product structure."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Managing Option Set Membership"
+        },
+        {
+          "type": "paragraph",
+          "text": "As product requirements evolve, option sets must be updated to reflect new options, additional choices, or modified rules. The Option Manager can add new options from the option pool, add new choices to existing options within the set, remove options or choices that are no longer relevant, and update rules to reflect changing business logic. All changes require the option set to be checked out first, and changes are only visible to others after check-in."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Best practice: organize option sets by product family, not by individual product. A well-designed option set covers all configurations within a product family. Avoid creating one option set per product variant, as this defeats the purpose of configurable products and creates unnecessary maintenance overhead."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Order the Assignment Process"
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the steps for assigning an option set to a configurable product in the correct order:",
+          "correctOrder": [
+            "Navigate to the configurable product in Windchill",
+            "Open the Actions menu and select Assign Option Set",
+            "Select the appropriate option set from the available list",
+            "Confirm the assignment and verify the option set appears on the product"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Option sets must be assigned to configurable products before option filters or variant generation can be used",
+        "The assignment process involves navigating to the product, selecting the Assign Option Set action, choosing the set, and verifying",
+        "Option set membership can be updated by adding or removing options, choices, and rules as requirements evolve",
+        "Best practice is to organize option sets by product family rather than by individual product variant"
+      ]
+    },
+    {
+      "id": "m4t3",
+      "title": "Expressions and Option Filters",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Expressions and option filters are the mechanisms that connect option choices to the product structure. Expressions are assigned to parts and usage links to specify when a component should be included in a variant. Option filters use the assigned expressions to evaluate which parts belong in a specific configuration based on the user's choice selections."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Basic vs. Advanced Expressions"
+        },
+        {
+          "type": "paragraph",
+          "text": "Windchill supports two types of expressions for assigning choices to parts and usage links. Basic expressions use simple choice references, while advanced expressions add operators and functions for complex selection logic. The type of expression you use depends on the complexity of your configuration requirements and whether Creo integration is needed."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Aspect", "Basic Expression", "Advanced Expression"],
+          "rows": [
+            ["Syntax", "Simple choice reference (e.g., Color=Red)", "Includes choices, operators (AND, OR, NOT), and functions"],
+            ["Capability", "Assigns a single choice or a simple list of choices to a part or usage link", "Supports complex logical conditions combining multiple options and choices with Boolean operators"],
+            ["Creo Support", "Passed from Windchill to Creo and supported in both systems", "Remains in Windchill only; NOT passed to Creo"],
+            ["Use Cases", "Straightforward configurations where a part is included when a single choice is selected", "Complex configurations where part inclusion depends on combinations of choices across multiple options"],
+            ["Example", "Motorcycle Type = Off Road", "(Motorcycle Type = Off Road) AND (Engine Size = 1200cc)"],
+            ["Preference Required", "Supported Expressions preference set to Basic or Both", "Supported Expressions preference set to Both"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Advanced expressions are NOT passed from Windchill to Creo. If your workflow involves configuring variants in Creo, you must use basic expressions for any choice assignments that need to be visible in Creo. Plan your expression strategy carefully based on your Creo integration requirements."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Option Filters"
+        },
+        {
+          "type": "paragraph",
+          "text": "An option filter is a set of choice selections that is applied to an overloaded product structure to generate a filtered variant. When you create an option filter, you select specific choices for each option in the assigned option set. Windchill then evaluates the expressions on each part and usage link in the structure, including only the parts whose expressions match the selected choices. The result is a reduced structure representing one specific product variant."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Option Filter Concepts"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Creating an Option Filter",
+              "back": "Navigate to the configurable product structure and select the Create Option Filter action. Windchill presents the options from the assigned option set. Select a choice for each option to define the filter criteria. Rules in the option set automatically enforce valid choice combinations."
+            },
+            {
+              "front": "Applying an Option Filter",
+              "back": "Once created, the option filter is applied to the overloaded structure. Windchill evaluates each part's expression against the filter's choices. Parts whose expressions match are included; parts whose expressions do not match are excluded. The result is a filtered structure showing only the components for that specific variant."
+            },
+            {
+              "front": "Variant Specification",
+              "back": "When an option filter is applied to generate a variant, Windchill creates a variant specification that records the exact choices used. This specification enables variant reuse -- if the same choices are requested later, Windchill can find and reuse the existing variant instead of generating a new one."
+            },
+            {
+              "front": "Rule Enforcement During Filtering",
+              "back": "Include, exclude, enable, and conditional rules are enforced during the option filter process. If a user selects a choice that triggers an include rule, the related choices are automatically selected. If a choice violates an exclude rule, it is prevented. This ensures every generated variant is valid."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "The option filter is where everything comes together: the option set provides the vocabulary, expressions link choices to parts, rules enforce valid combinations, and the filter applies specific choices to reduce the overloaded structure into a concrete variant. Mastering option filters is the key to effective product configuration in Windchill."
+        }
+      ],
+      "keyTakeaways": [
+        "Basic expressions use simple choice references and are passed to Creo; advanced expressions use Boolean logic and remain in Windchill only",
+        "Expressions are assigned to parts and usage links to specify when a component is included in a variant",
+        "Option filters apply specific choice selections to an overloaded structure to generate a filtered variant",
+        "Variant specifications record the choices used to generate a variant, enabling reuse of existing variants"
+      ]
+    },
+    {
+      "id": "m4t4",
+      "title": "Assign Option Set and Apply Filter",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will assign an option set to the PTC Motorcycle configurable product and then create and apply an option filter to generate a filtered variant structure. This exercise brings together the concepts from the previous topics: option sets, expressions, and option filters."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "This exercise builds on the previous exercises. Ensure you have completed the option and rule creation exercises before proceeding. The option set referenced in this exercise should already exist in the PTC Motorcycle product context."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex5",
+          "title": "Assign Option Set and Apply Filter",
+          "objective": "Learn to assign an option set to a configurable product and apply an option filter to generate a filtered variant structure.",
+          "tasks": [
+            {
+              "id": "ex5-t1",
+              "title": "Assign the Option Set to the Configurable Product",
+              "steps": [
+                {
+                  "action": "Navigate to the PTC Motorcycle configurable product. Go to Browse > Products and select PTC Motorcycle.",
+                  "detail": "The PTC Motorcycle is the configurable product used throughout this course. You will assign the existing option set to this product so that option filters can be applied to its overloaded structure.",
+                  "hint": "Sign in as Anna Chen or your assigned training user. The PTC Motorcycle should appear in the Products list."
+                },
+                {
+                  "action": "Open the Actions menu on the PTC Motorcycle product page and select 'Assign Option Set'.",
+                  "detail": "The Assign Option Set action links an option set to the configurable product. This action is available from the product-level Actions menu or from the Option Set tab. A product must have an assigned option set before option filters can be created.",
+                  "hint": "If you do not see the Assign Option Set action, verify that the product is designated as a Configurable Product and that you have the appropriate permissions."
+                },
+                {
+                  "action": "In the assignment dialog, select the PTC Motorcycle option set from the list of available option sets.",
+                  "detail": "The dialog displays option sets available in this product context. Select the option set that contains the Motorcycle Type, Engine Size, Color, Wheels, and Saddle Bag Location options along with the include and exclude rules created in previous exercises.",
+                  "hint": "If multiple option sets appear, choose the one that matches the options and rules you created in earlier exercises."
+                },
+                {
+                  "action": "Confirm the assignment and verify that the option set now appears on the PTC Motorcycle Option Set tab.",
+                  "detail": "After assignment, the Option Set tab should display the assigned option set with all its options, choices, and rules. Browse through the options to confirm the Motorcycle Type, Engine Size, Color, Wheels, and Saddle Bag Location options are present with their respective choices.",
+                  "hint": "Click the Option Set tab on the product page. Expand the options to verify choices and rules are intact."
+                }
+              ]
+            },
+            {
+              "id": "ex5-t2",
+              "title": "Create and Apply an Option Filter",
+              "steps": [
+                {
+                  "action": "Navigate to the PTC Motorcycle product structure by clicking the Structure tab.",
+                  "detail": "The Structure tab displays the overloaded product structure containing all possible design variations. You will create an option filter to reduce this structure to a specific variant based on your choice selections.",
+                  "hint": "The Structure tab shows the full Bill of Materials with all configurable modules and their child parts."
+                },
+                {
+                  "action": "Click the 'Create Option Filter' action in the structure view toolbar or Actions menu.",
+                  "detail": "The Create Option Filter action opens a dialog that presents all options from the assigned option set. You will select specific choices for each option to define the filter criteria for the variant you want to generate.",
+                  "hint": "Look for a filter icon or 'Option Filter' action in the toolbar above the structure tree."
+                },
+                {
+                  "action": "Select 'Off Road' for the Motorcycle Type option.",
+                  "detail": "Selecting Off Road defines this variant as an off-road motorcycle configuration. Notice that the include rule you created automatically selects Off Road Front and Off Road Rear for the Wheels option, and the exclude rule prevents On Road Front and On Road Rear from being selected.",
+                  "hint": "Watch the Wheels option choices update automatically as the include and exclude rules are applied."
+                },
+                {
+                  "action": "Select choices for the remaining options: choose an Engine Size (e.g., 1000cc), a Color (e.g., Black), and verify the Saddle Bag Location (e.g., Not Used).",
+                  "detail": "Complete the option filter by selecting a choice for each remaining option. The combination of all choices defines one specific product variant. Rules continue to enforce valid combinations as you make selections.",
+                  "hint": "If certain choices are grayed out or unavailable, check whether a rule is restricting them based on your prior selections."
+                },
+                {
+                  "action": "Click 'Apply' or 'OK' to apply the option filter to the product structure.",
+                  "detail": "Windchill evaluates the expressions assigned to each part and usage link in the overloaded structure against your selected choices. Parts whose expressions match are included in the filtered result; parts that do not match are excluded. The structure view updates to show only the components for this specific variant.",
+                  "hint": "The filtered structure should be noticeably smaller than the full overloaded structure, containing only the parts relevant to the Off Road variant."
+                }
+              ]
+            },
+            {
+              "id": "ex5-t3",
+              "title": "Review the Filtered Structure",
+              "steps": [
+                {
+                  "action": "Examine the filtered structure displayed in the Structure tab. Note which parts are included and which have been removed.",
+                  "detail": "The filtered structure represents the Off Road variant of the PTC Motorcycle. Compare it to the full overloaded structure you saw earlier. Parts associated with on-road components (e.g., on-road wheels, street-legal lighting) should be absent, while off-road-specific parts should be present.",
+                  "hint": "Expand the structure tree to see the full hierarchy of included parts."
+                },
+                {
+                  "action": "Compare the filtered structure to the full overloaded structure by toggling the option filter on and off (if the interface supports it) or by noting the differences.",
+                  "detail": "The overloaded structure contains all possible parts for all variants. The filtered structure contains only the parts for the Off Road configuration you specified. The difference between the two illustrates how option filters reduce complexity by narrowing the structure to a single valid configuration.",
+                  "hint": "Some Windchill versions allow you to clear the filter to return to the full overloaded view. Look for a 'Clear Filter' or 'Show All' action."
+                },
+                {
+                  "action": "Identify which configurable modules were affected by the filter and understand why specific parts were included or excluded based on the choices you selected.",
+                  "detail": "Each configurable module in the structure may have been filtered differently depending on which expressions were assigned to its child parts. For example, the Wheels module should now show only off-road wheel parts because the Off Road Front and Off Road Rear choices were selected (via the include rule) and the on-road choices were excluded.",
+                  "hint": "Click on individual parts to see their assigned expressions and understand why they were included or excluded by the filter."
+                },
+                {
+                  "action": "Note the variant specification that was created. Review the recorded choices to confirm they match your filter selections.",
+                  "detail": "Windchill records a variant specification documenting the exact choices used to generate this variant. This specification enables variant reuse: if someone requests the same combination of choices in the future, Windchill can find this existing variant instead of generating a new one, saving time and ensuring consistency.",
+                  "hint": "Look for a Variant Specification link or tab associated with the filtered structure view."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "An option set must be assigned to a configurable product before option filters can be created",
+        "Creating an option filter involves selecting specific choices for each option in the assigned option set",
+        "Rules are automatically enforced during the filter process, ensuring only valid choice combinations",
+        "The filtered structure shows only the parts relevant to the selected variant, reducing complexity from the full overloaded structure"
+      ]
+    },
+    {
+      "id": "m4t5",
+      "title": "Course Review and Summary",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "This final exercise reviews the key concepts from all four modules of the Options and Configurable Products course. Use this summary to validate your understanding and identify any areas that may need further review before applying these concepts in your day-to-day work with Windchill."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "This is a review exercise. Work through each task to revisit the major concepts from the course. Use the hints to refresh your memory on topics that feel less familiar."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex6",
+          "title": "Course Review and Summary",
+          "objective": "Review the key concepts from all four modules and validate your understanding of Options and Configurable Products.",
+          "tasks": [
+            {
+              "id": "ex6-t1",
+              "title": "Review Key Concepts",
+              "steps": [
+                {
+                  "action": "Recall the five business strategies for product variability: Assemble-to-Order, Assemble-to-Stock, Configure-to-Order, Engineer-to-Order, and Contract.",
+                  "detail": "Each strategy differs in the level of product development involvement per order. Assemble-to-Order requires no engineering involvement per order, while Contract requires full custom engineering. Windchill OCP primarily supports Assemble-to-Order and Configure-to-Order strategies.",
+                  "hint": "The key differentiator is how much engineering involvement is needed for each customer order."
+                },
+                {
+                  "action": "Review the four steps of generic platform design: analyze requirements, assess current products for reuse, create generic product definition, and release and maintain the platform.",
+                  "detail": "Platform design establishes the reusable foundation from which all product variants are derived. A well-designed platform maximizes part reuse and clearly identifies which sections are fixed versus variable.",
+                  "hint": "Always assess existing products for reuse before creating new designs from scratch."
+                },
+                {
+                  "action": "Recall the concept of an overloaded product structure and how it contains all possible design variations for a configurable product.",
+                  "detail": "An overloaded structure includes ALL design alternatives under configurable modules. During variant generation, option filters reduce this structure to only the parts needed for a specific configuration. The overloaded structure is the master structure from which all variants are derived.",
+                  "hint": "Think of the overloaded structure as a superset and the filtered variant as a subset."
+                },
+                {
+                  "action": "Review the three configurable objects and their hierarchy: Configurable Product, Configurable Module, and Module Variant.",
+                  "detail": "The Configurable Product is the top-level end item containing the full overloaded structure. Configurable Modules are sections that capture variability with multiple design alternatives. Module Variants are the specific parts selected from a configurable module after applying option filters.",
+                  "hint": "The hierarchy flows from broadest (Configurable Product) to most specific (Module Variant)."
+                }
+              ]
+            },
+            {
+              "id": "ex6-t2",
+              "title": "Review Options and Variants Setup",
+              "steps": [
+                {
+                  "action": "Review the key O&V terminology: options, choices, option pool, option set, option filter, expressions, variant specification, configurable module, and Option Manager role.",
+                  "detail": "Options represent variable product features, each with one or more choices. The option pool is the master repository; option sets are curated subsets for product families. Option filters apply choices to generate variants. Expressions link choices to parts. Variant specifications record the choices used.",
+                  "hint": "Terms fall into three categories: structure terms, logic terms, and management terms."
+                },
+                {
+                  "action": "Recall the difference between the option pool and the option set, and explain why both are needed.",
+                  "detail": "The option pool contains ALL options and choices for a product context -- it is the master catalog. The option set selects only the relevant options for a specific product family. This separation enables reuse: the same option (e.g., Color) can appear in multiple option sets for different product families without duplication.",
+                  "hint": "The option pool is the superset; the option set is a focused subset tailored for a product family."
+                },
+                {
+                  "action": "Review the two configuration approaches: top-down (Windchill first) and bottom-up (Creo first), and the limitation that only basic expressions transfer to Creo.",
+                  "detail": "Top-down starts with the part structure in Windchill and propagates to Creo. Bottom-up starts with the overloaded assembly in Creo and checks it in to Windchill. Regardless of approach, only basic expressions are passed from Windchill to Creo -- advanced expressions remain in Windchill only.",
+                  "hint": "The approach depends on whether PLM or CAD drives your product structure."
+                },
+                {
+                  "action": "Recall the Configurable Module Support preference and its importance, as well as how preferences inherit from site to organization to product level.",
+                  "detail": "Configurable Module Support must be set to Yes to use any O&V functionality -- its default is No. Preferences inherit from higher levels (site) to lower levels (organization, product) and can be locked or overridden at each level. Site Administrators, Organization Administrators, Product Managers, and Library Managers can modify O&V preferences.",
+                  "hint": "If O&V features are unavailable, the first thing to check is the Configurable Module Support preference at the appropriate level."
+                }
+              ]
+            },
+            {
+              "id": "ex6-t3",
+              "title": "Review Rules and Option Sets",
+              "steps": [
+                {
+                  "action": "Review the four rule types: include rules (auto-select related choices), exclude rules (prevent incompatible choices), enable rules (control choice visibility), and conditional rules (IF/THEN logic).",
+                  "detail": "Include rules force related choices to be selected together. Exclude rules prevent conflicting choices from coexisting. Enable rules dynamically show or hide choices based on prior selections. Conditional rules provide complex multi-condition IF/THEN logic. Windchill validates rules to prevent conflicts and duplicates.",
+                  "hint": "Include and exclude handle simple relationships; enable and conditional handle more complex scenarios."
+                },
+                {
+                  "action": "Review option sets, their change management (versioning, lifecycle states, check-in/check-out), and the process for assigning an option set to a configurable product.",
+                  "detail": "Option sets are managed objects with full change management support. They must be checked out for editing and checked in to save changes. The assignment process involves navigating to the configurable product, selecting Assign Option Set from the Actions menu, choosing the appropriate set, and verifying the assignment.",
+                  "hint": "Option sets follow the same change management workflows as other Windchill objects."
+                },
+                {
+                  "action": "Review expressions (basic vs. advanced) and how they link option choices to parts and usage links in the product structure.",
+                  "detail": "Basic expressions use simple choice references (e.g., Color=Red) and are supported in both Windchill and Creo. Advanced expressions use Boolean operators (AND, OR, NOT) for complex logic but remain in Windchill only. Expressions are assigned to parts and usage links to specify when a component is included in a variant.",
+                  "hint": "Advanced expressions are more powerful but cannot be passed to Creo."
+                },
+                {
+                  "action": "Review option filters and how they bring everything together: option set provides the vocabulary, expressions link choices to parts, rules enforce valid combinations, and the filter reduces the overloaded structure to a specific variant.",
+                  "detail": "Creating an option filter involves selecting choices from the assigned option set. Windchill evaluates each part's expression against the selected choices and includes only matching parts. The result is a filtered structure representing one specific product variant. A variant specification records the choices for future reuse.",
+                  "hint": "The option filter is the culmination of all O&V concepts working together."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The course covers four modules: configurable products overview, options and variants setup, rules, and option sets",
+        "Key concepts include business strategies, platform design, overloaded structures, options, choices, rules, expressions, option sets, and option filters",
+        "Option filters bring all concepts together by applying choices to an overloaded structure to generate specific product variants",
+        "Understanding the full O&V workflow from option pool to variant generation is essential for effective product configuration in Windchill"
+      ]
+    }
+  ]
+}

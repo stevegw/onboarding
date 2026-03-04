@@ -1,0 +1,45 @@
+{
+  "moduleId": "m3",
+  "title": "Wissensüberprüfung Optionen- und Varianten-Regeln",
+  "questions": [
+    {
+      "id": "m3-kc-001",
+      "question": "Was ist der Hauptzweck von Optionen- und Varianten-Regeln?",
+      "options": [
+        "Die visuelle Darstellung konfigurierbarer Module im Strukturbaum zu definieren",
+        "Den Benutzerzugriff auf bestimmte Optionen und Auswahlmöglichkeiten basierend auf ihrer Rolle einzuschränken",
+        "Geschäftslogik durchzusetzen, die gültige Beziehungen zwischen Auswahlmöglichkeiten und Teilen regelt",
+        "Automatisch neue Optionen zu erstellen, wenn eine Produktfamilie freigegeben wird"
+      ],
+      "answerIndex": 2,
+      "rationale": "O&V-Regeln setzen Geschäftslogik durch, die gültige Beziehungen zwischen Auswahlmöglichkeiten und Teilen regelt. Sie stellen sicher, dass nur gültige Kombinationen von Auswahlmöglichkeiten ausgewählt werden können und dass die richtigen Teile in Variantenstrukturen einbezogen werden.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-002",
+      "question": "Was passiert, wenn eine Ausschlussregel während der Konfiguration ausgelöst wird?",
+      "options": [
+        "Die ausgeschlossene Auswahlmöglichkeit wird automatisch ausgewählt",
+        "Die ausgeschlossene Auswahlmöglichkeit wird dauerhaft aus dem Optionspool entfernt",
+        "Die ausgeschlossene Auswahlmöglichkeit wird nicht verfügbar und verhindert, dass der Benutzer eine inkompatible Kombination auswählt",
+        "Die ausgeschlossene Auswahlmöglichkeit löst einen Workflow zur Konstruktionsprüfung aus"
+      ],
+      "answerIndex": 2,
+      "rationale": "Eine Ausschlussregel beschränkt die Auswahl inkompatibler Auswahlmöglichkeiten. Wenn sie ausgelöst wird, wird die ausgeschlossene Auswahlmöglichkeit in der Auswahlliste nicht verfügbar und verhindert, dass der Benutzer eine ungültige Konfiguration erstellt.",
+      "topic": "m3t2"
+    },
+    {
+      "id": "m3-kc-003",
+      "question": "Welche Aussage beschreibt eine Aktivierungsregel korrekt?",
+      "options": [
+        "Eine Regel, die automatisch alle Auswahlmöglichkeiten für eine bestimmte Option auswählt",
+        "Eine Regel, die während der Konfiguration dynamisch neue Auswahlmöglichkeiten erstellt",
+        "Eine Regel, die Auswahlmöglichkeiten sperrt, damit sie nach der ersten Auswahl nicht mehr geändert werden können",
+        "Eine Regel, die bewirkt, dass nur bestimmte Auswahlmöglichkeiten in der Auswahlliste erscheinen, sobald eine Zielauswahl getroffen wurde"
+      ],
+      "answerIndex": 3,
+      "rationale": "Eine Aktivierungsregel steuert, welche Auswahlmöglichkeiten basierend auf anderen Auswahlen in einer Auswahlliste erscheinen. Sobald eine Zielauswahl getroffen wurde, werden nur die aktivierten Auswahlmöglichkeiten sichtbar und grenzen die verfügbaren Optionen auf gültige Auswahlen für diesen Kontext ein.",
+      "topic": "m3t3"
+    }
+  ]
+}

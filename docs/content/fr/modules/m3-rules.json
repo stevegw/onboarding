@@ -1,0 +1,350 @@
+{
+  "id": "m3",
+  "title": "Étudier les règles des options et variantes",
+  "description": "Examinez les règles d'inclusion, d'exclusion, d'activation et conditionnelles. Explorez la validation des règles et les alias d'expressions.",
+  "exerciseTopicStart": 4,
+  "topics": [
+    {
+      "id": "m3t1",
+      "title": "Types de règles et logique métier",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Les règles des options et variantes définissent les combinaisons valides de choix pouvant être sélectionnés ensemble lors de la configuration d'un produit. Windchill fournit quatre types de règles qui contrôlent les interactions entre les choix, garantissant que seules des configurations de produit valides peuvent être créées."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Quatre types de règles"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Type de règle", "Description", "Exemple"],
+          "rows": [
+            ["Règle d'inclusion", "Associe la sélection d'un choix à des choix associés. Lorsqu'un choix source est sélectionné, les choix cibles sont automatiquement sélectionnés également.", "Pays=États-Unis inclut automatiquement Tension=110 Volts"],
+            ["Règle d'exclusion", "Restreint la sélection simultanée de choix incompatibles. Lorsqu'un choix source est sélectionné, les choix cibles sont interdits.", "Tension=110V exclut Fréquence=50Hz car ils sont incompatibles"],
+            ["Règle d'activation", "Fait apparaître uniquement des choix spécifiques à la sélection une fois qu'un choix source est sélectionné. Contrôle quels choix d'options sont disponibles en fonction d'une condition.", "La sélection du Choix 1 active les Choix 7, 8, 13 et désactive les Choix 9, 12"],
+            ["Règle conditionnelle", "Instructions SI/ALORS spécifiant quand des choix doivent être inclus, activés ou désactivés. Fournit une logique complexe à conditions multiples.", "SI les Choix 1 ET 4 sont sélectionnés, ALORS les Choix 7, 8 et 13 sont désactivés"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Méthodes de logique métier"
+        },
+        {
+          "type": "paragraph",
+          "text": "Windchill fournit plusieurs méthodes pour implémenter la logique métier qui contrôle la configuration des produits. Chaque méthode remplit un objectif spécifique dans le cadre global des règles :"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Conception d'option",
+              "back": "Permet des actions sur les options au sein du pool d'options. C'est la base pour définir les caractéristiques variables d'un produit et les choix disponibles pour chaque caractéristique."
+            },
+            {
+              "front": "Règles d'inclusion",
+              "back": "Capturent les associations logiques entre les caractéristiques du produit. Lorsqu'un choix est sélectionné, les choix associés sont automatiquement inclus pour maintenir l'intégrité du produit."
+            },
+            {
+              "front": "Règles d'exclusion",
+              "back": "Capturent les choix incompatibles qui ne doivent pas être sélectionnés ensemble. Empêchent les combinaisons invalides qui entraîneraient des produits non fonctionnels ou non fabricables."
+            },
+            {
+              "front": "Règles d'activation",
+              "back": "Contrôlent quels choix d'options sont disponibles en fonction d'une condition. Ajustent dynamiquement les choix visibles en fonction des sélections précédentes pour guider les utilisateurs vers des configurations valides."
+            },
+            {
+              "front": "Règles conditionnelles",
+              "back": "Constructions SI/ALORS pour la sélection de choix dans le filtre d'options. Fournissent la logique la plus flexible et la plus complexe pour contrôler les interactions entre les choix à travers plusieurs options."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Windchill vérifie que les nouvelles règles ne sont pas en conflit avec les règles existantes et ne les dupliquent pas. Cette validation intégrée des règles empêche une logique contradictoire qui pourrait rendre certaines configurations de produit impossibles ou ambiguës."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Associez chaque type de règle à son comportement :",
+          "pairs": [
+            {"left": "Règle d'inclusion", "right": "Sélectionne automatiquement les choix associés lorsqu'un choix source est sélectionné"},
+            {"left": "Règle d'exclusion", "right": "Empêche la sélection simultanée de choix incompatibles"},
+            {"left": "Règle d'activation", "right": "Contrôle quels choix sont visibles ou disponibles en fonction d'une condition"},
+            {"left": "Règle conditionnelle", "right": "Utilise la logique SI/ALORS pour activer ou désactiver des choix selon plusieurs conditions"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Quatre types de règles contrôlent les combinaisons de choix valides : inclusion, exclusion, activation et conditionnelle",
+        "Les règles d'inclusion forcent la sélection automatique des choix associés ensemble",
+        "Les règles d'exclusion empêchent la sélection de combinaisons incompatibles",
+        "Windchill valide les règles pour prévenir les conflits et les doublons"
+      ]
+    },
+    {
+      "id": "m3t2",
+      "title": "Règles d'inclusion, d'exclusion et conditionnelles",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Les règles d'inclusion, d'exclusion et conditionnelles forment le cœur de la logique de configuration des produits dans Windchill. Chaque type de règle traite un aspect différent de la façon dont les choix sont liés les uns aux autres, de la sélection automatique à l'application de l'incompatibilité en passant par les scénarios complexes à conditions multiples."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Détails et exemples de règles"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Règle d'inclusion",
+              "back": "Identifie les choix cibles qui sont automatiquement sélectionnés lorsqu'un choix source est sélectionné. Par exemple, lorsque le Choix 1 est sélectionné, les Choix 7 et 13 sont automatiquement inclus. Cela garantit que les caractéristiques dépendantes sont toujours sélectionnées ensemble."
+            },
+            {
+              "front": "Règle d'exclusion",
+              "back": "Définit les choix incompatibles qui ne peuvent pas être sélectionnés en même temps qu'un choix source. Par exemple, lorsque le Choix 1 est sélectionné, le Choix 9 est interdit. Cela empêche les utilisateurs de créer des configurations de produit invalides avec des caractéristiques conflictuelles."
+            },
+            {
+              "front": "Règle conditionnelle",
+              "back": "Utilise la logique SI/ALORS pour gérer des scénarios complexes à choix multiples. Par exemple, SI vous sélectionnez les Choix 1 et 4, alors les Choix 7, 8 et 13 sont désactivés, laissant uniquement les Choix 9 et 12 disponibles. Cela fournit le contrôle le plus flexible sur les interactions entre les choix."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Les règles d'inclusion et d'exclusion gèrent des relations simples un-à-un ou un-à-plusieurs entre les choix. Lorsque vous avez besoin d'une logique qui dépend de la sélection simultanée de plusieurs choix sources, utilisez des règles conditionnelles avec des instructions SI/ALORS."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Comment les règles fonctionnent ensemble"
+        },
+        {
+          "type": "paragraph",
+          "text": "En pratique, les produits utilisent une combinaison de ces trois types de règles. Les règles d'inclusion garantissent que les dépendances sont respectées, les règles d'exclusion empêchent les conflits, et les règles conditionnelles gèrent les interactions complexes qui ne peuvent pas être exprimées par une simple logique d'inclusion ou d'exclusion. Ensemble, elles forment un système de contraintes complet qui guide les utilisateurs vers des configurations valides."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Type de règle", "Comportement Source → Cible", "Cas d'utilisation"],
+          "rows": [
+            ["Inclusion", "Source sélectionnée → Cibles auto-sélectionnées", "Caractéristiques dépendantes qui doivent toujours apparaître ensemble"],
+            ["Exclusion", "Source sélectionnée → Cibles interdites", "Caractéristiques incompatibles qui ne peuvent pas coexister"],
+            ["Conditionnelle", "SI sources multiples → ALORS cibles activées/désactivées", "Scénarios complexes où le résultat dépend d'une combinaison de sélections"]
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Les règles d'inclusion sélectionnent automatiquement les choix associés lorsqu'un choix source est sélectionné",
+        "Les règles d'exclusion empêchent les sélections conflictuelles d'être choisies ensemble",
+        "Les règles conditionnelles fournissent une logique SI/ALORS complexe pour les scénarios à choix multiples"
+      ]
+    },
+    {
+      "id": "m3t3",
+      "title": "Règles d'activation et alias d'expressions",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Les règles d'activation et les alias d'expressions étendent le cadre des règles avec des capacités supplémentaires. Les règles d'activation contrôlent la visibilité et la disponibilité des choix en fonction des sélections précédentes, tandis que les alias d'expressions simplifient la création de règles complexes en encapsulant des instructions logiques réutilisables."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Règles d'activation"
+        },
+        {
+          "type": "paragraph",
+          "text": "Les règles d'activation contrôlent quels choix d'options sont disponibles une fois qu'un choix source est sélectionné. Contrairement aux règles d'inclusion ou d'exclusion qui forcent ou empêchent des sélections, les règles d'activation ajustent dynamiquement les choix visibles. Par exemple, la sélection du Choix 1 active les Choix 7, 8 et 13 tout en désactivant les Choix 9 et 12. Seuls les choix activés apparaissent comme options sélectionnables lors de la configuration."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Aspect", "Règles d'activation", "Règles conditionnelles"],
+          "rows": [
+            ["Déclencheur", "Sélection d'un seul choix source", "Sélection de plusieurs choix sources (SI/ALORS)"],
+            ["Effet", "Active ou désactive des choix spécifiques pour la visibilité", "Active ou désactive des choix en fonction de conditions composées"],
+            ["Complexité", "Contrôle de visibilité simple un-à-plusieurs", "Logique complexe à conditions multiples"],
+            ["Utilisation principale", "Contrôler quels choix apparaissent en fonction d'une seule sélection", "Gérer les interactions dépendant de combinaisons de sélections précédentes"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Les règles d'activation sont particulièrement utiles lorsque certains choix n'ont de sens que dans le contexte d'une sélection préalable. Par exemple, des tailles de pneus spécifiques peuvent n'être pertinentes que lorsqu'un type de cadre particulier est sélectionné."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Alias d'expressions"
+        },
+        {
+          "type": "paragraph",
+          "text": "Les alias d'expressions représentent des instructions logiques qui peuvent être réutilisées dans plusieurs règles. Les définitions communes fréquemment utilisées dans la configuration de produits peuvent être capturées sous forme d'alias, simplifiant la création de règles et améliorant la maintenabilité."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Qu'est-ce qu'un alias d'expression ?",
+              "back": "Un alias d'expression est une instruction logique nommée qui encapsule une condition ou un ensemble de choix couramment utilisés. Par exemple, un alias 'GrandsPneus' pourrait représenter l'ensemble des tailles de pneus 48PO, 50PO, 52PO, 54PO et 56PO de l'option PNEU."
+            },
+            {
+              "front": "Où les alias sont-ils utilisés ?",
+              "back": "Les alias d'expressions peuvent être utilisés lors de la création de règles conditionnelles, d'expressions avancées et d'autres alias. Ils servent de blocs de construction pour une logique de configuration complexe, réduisant la duplication et rendant les règles plus faciles à lire et à maintenir."
+            },
+            {
+              "front": "Réutilisabilité entre les règles",
+              "back": "Une fois défini, un alias peut être référencé dans plusieurs règles conditionnelles et expressions à travers la configuration du produit. Cela signifie qu'une modification de la définition de l'alias se propage automatiquement à toutes les règles qui le référencent."
+            },
+            {
+              "front": "Exigences de licence",
+              "back": "Les alias d'expressions sont une capacité avancée soumise à un droit de licence séparé. Les organisations doivent disposer de la licence Windchill appropriée pour créer et utiliser des alias d'expressions dans leurs configurations de produits."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Les alias d'expressions nécessitent un droit de licence séparé. Vérifiez que la licence Windchill de votre organisation inclut cette capacité avant de prévoir l'utilisation d'alias dans vos définitions de règles."
+        }
+      ],
+      "keyTakeaways": [
+        "Les règles d'activation contrôlent la visibilité des choix en fonction d'une sélection source",
+        "Les alias d'expressions simplifient la création de règles complexes en encapsulant des instructions logiques réutilisables",
+        "Les alias sont réutilisables dans les règles conditionnelles et les expressions",
+        "Les alias d'expressions nécessitent un droit de licence séparé"
+      ]
+    },
+    {
+      "id": "m3t4",
+      "title": "Créer des règles d'inclusion et d'exclusion",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Dans cet exercice, vous allez créer des règles d'inclusion et d'exclusion pour le produit PTC Motorcycle. Anna Chen naviguera dans le Pool d'options pour définir une règle d'inclusion qui associe le type de moto Tout-terrain aux choix de roues appropriés, et une règle d'exclusion qui empêche les sélections de roues incompatibles."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Cet exercice modifie les règles de configuration du produit. Suivez les étapes attentivement et utilisez les noms exacts spécifiés pour assurer la cohérence avec les exercices suivants."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex4",
+          "title": "Créer des règles d'inclusion et d'exclusion",
+          "objective": "Apprendre à créer des règles d'inclusion et d'exclusion dans Windchill en définissant des associations logiques et des restrictions de choix incompatibles pour le produit PTC Motorcycle.",
+          "tasks": [
+            {
+              "id": "ex4-t1",
+              "title": "Créer une règle d'inclusion",
+              "steps": [
+                {
+                  "action": "Naviguez vers le produit PTC Motorcycle et ouvrez l'onglet Pool d'options.",
+                  "detail": "Vous allez créer une règle d'inclusion qui associe le type de moto Tout-terrain aux choix de roues appropriés. Les règles d'inclusion sont créées depuis le Pool d'options.",
+                  "hint": null
+                },
+                {
+                  "action": "Développez l'option Type de moto dans le Pool d'options pour voir ses choix.",
+                  "detail": "Vous devriez voir les choix Tout-terrain et Route/Homologué créés dans un exercice précédent. Le choix Tout-terrain sera la source de la règle d'inclusion.",
+                  "hint": "Cliquez sur la flèche de développement à côté de Type de moto pour révéler ses choix."
+                },
+                {
+                  "action": "Faites un clic droit sur le choix 'Tout-terrain' et sélectionnez 'Nouvelle règle d'inclusion'.",
+                  "detail": "L'action Nouvelle règle d'inclusion ouvre une boîte de dialogue où vous spécifiez quels choix cibles doivent être automatiquement sélectionnés lorsque Tout-terrain est choisi. Cela garantit que les roues appropriées sont toujours incluses dans une configuration tout-terrain.",
+                  "hint": "L'option peut se trouver dans un menu contextuel ou sous un menu déroulant Actions sur la ligne du choix."
+                },
+                {
+                  "action": "Dans la boîte de dialogue de la règle d'inclusion, sélectionnez l'option Roues et choisissez 'Tout-terrain Avant' et 'Tout-terrain Arrière' comme choix cibles.",
+                  "detail": "En sélectionnant les deux roues Tout-terrain Avant et Tout-terrain Arrière, vous définissez que chaque fois qu'un client sélectionne le type de moto Tout-terrain, les deux types de roues tout-terrain sont automatiquement inclus dans la configuration.",
+                  "hint": "Si l'option Roues ne permet pas la sélection multiple, vous devrez d'abord la modifier (voir la tâche suivante)."
+                },
+                {
+                  "action": "Si la boîte de dialogue ne permet pas de sélectionner plusieurs choix de roues, notez le problème et passez à la tâche suivante pour modifier d'abord l'option Roues.",
+                  "detail": "L'option Roues peut être définie sur Sélection unique par défaut. Pour qu'une règle d'inclusion cible plusieurs choix de la même option, cette option doit permettre la sélection multiple. C'est une étape de configuration courante lors de la mise en place de règles d'inclusion.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex4-t2",
+              "title": "Modifier l'option Roues et terminer la règle d'inclusion",
+              "steps": [
+                {
+                  "action": "Dans le Pool d'options, faites un clic droit sur l'option Roues et sélectionnez 'Modifier'.",
+                  "detail": "Vous devez changer l'option Roues de sélection unique à sélection multiple afin que la règle d'inclusion puisse cibler simultanément plusieurs choix de roues.",
+                  "hint": "Cherchez une action Modifier dans le menu contextuel ou la barre d'outils d'actions lorsque l'option Roues est sélectionnée."
+                },
+                {
+                  "action": "Changez le paramètre 'Sélection unique' de 'Oui' à 'Non' et enregistrez la modification.",
+                  "detail": "Définir Sélection unique sur Non permet de sélectionner plusieurs choix pour l'option Roues. Cela est nécessaire car le type de moto Tout-terrain a besoin que les roues Tout-terrain Avant et Tout-terrain Arrière soient sélectionnées ensemble.",
+                  "hint": "Le champ Sélection unique peut être une case à cocher ou une liste déroulante dans le formulaire de modification de l'option."
+                },
+                {
+                  "action": "Retournez à l'option Type de moto, faites un clic droit sur 'Tout-terrain' et sélectionnez 'Nouvelle règle d'inclusion' à nouveau.",
+                  "detail": "Maintenant que l'option Roues prend en charge la sélection multiple, vous pouvez créer la règle d'inclusion ciblant les deux choix de roues Tout-terrain Avant et Tout-terrain Arrière.",
+                  "hint": null
+                },
+                {
+                  "action": "Sélectionnez l'option Roues et choisissez à la fois 'Tout-terrain Avant' et 'Tout-terrain Arrière' comme choix cibles. Enregistrez la règle d'inclusion.",
+                  "detail": "La règle d'inclusion est maintenant complète. Chaque fois qu'un utilisateur sélectionne Tout-terrain comme Type de moto, les roues Tout-terrain Avant et Tout-terrain Arrière seront automatiquement incluses dans la configuration.",
+                  "hint": "Maintenez Ctrl enfoncé tout en cliquant pour sélectionner plusieurs choix dans la liste cible."
+                },
+                {
+                  "action": "Vérifiez que la règle d'inclusion apparaît dans l'onglet Règles d'inclusion du choix Tout-terrain.",
+                  "detail": "Après l'enregistrement, la règle devrait être visible dans la liste des règles. Confirmez que la source est Tout-terrain et que les cibles sont Tout-terrain Avant et Tout-terrain Arrière.",
+                  "hint": "Naviguez vers les détails du choix Tout-terrain et vérifiez l'onglet ou la section Règles d'inclusion."
+                }
+              ]
+            },
+            {
+              "id": "ex4-t3",
+              "title": "Créer une règle d'exclusion",
+              "steps": [
+                {
+                  "action": "Naviguez vers l'article PTC Motorcycle de niveau supérieur dans la structure produit ou la vue du pool d'options.",
+                  "detail": "Les règles d'exclusion peuvent être créées depuis le contexte du produit de niveau supérieur. Vous allez créer une règle qui empêche la sélection de choix de roues incompatibles avec le type de moto Tout-terrain.",
+                  "hint": "Sélectionnez le produit PTC Motorcycle au niveau supérieur de la structure."
+                },
+                {
+                  "action": "Accédez à l'onglet Règles d'exclusion.",
+                  "detail": "L'onglet Règles d'exclusion affiche toutes les règles d'exclusion existantes pour le produit et fournit des actions pour en créer de nouvelles. Cette vue centralisée facilite la gestion de toutes les règles d'incompatibilité.",
+                  "hint": "L'onglet peut se trouver aux côtés des onglets Règles d'inclusion, Règles d'activation et d'autres onglets liés aux règles."
+                },
+                {
+                  "action": "Cliquez sur 'Nouvelle règle d'exclusion' pour créer une nouvelle règle d'exclusion.",
+                  "detail": "Vous allez définir une règle d'exclusion qui empêche la sélection des roues Route lorsque le type de moto Tout-terrain est choisi, garantissant que seuls les types de roues compatibles sont disponibles.",
+                  "hint": "Cherchez un bouton ou une icône 'Nouvelle règle d'exclusion' dans la barre d'outils au-dessus du tableau des règles."
+                },
+                {
+                  "action": "Définissez la source sur Type de moto = Tout-terrain. Définissez les cibles sur Roues = Route Avant et Roues = Route Arrière.",
+                  "detail": "Cette règle d'exclusion stipule : lorsque Tout-terrain est sélectionné comme Type de moto, les choix de roues Route Avant et Route Arrière ne peuvent pas être sélectionnés. Cela empêche un utilisateur de choisir accidentellement des roues de route pour une moto tout-terrain.",
+                  "hint": "Sélectionnez d'abord l'option et le choix source, puis sélectionnez l'option cible et les choix à exclure."
+                },
+                {
+                  "action": "Enregistrez la règle d'exclusion et vérifiez qu'elle apparaît dans l'onglet Règles d'exclusion.",
+                  "detail": "La règle d'exclusion est maintenant active. Combinée avec la règle d'inclusion de la tâche précédente, la sélection de Tout-terrain comme Type de moto inclura automatiquement les roues tout-terrain et empêchera la sélection des roues de route.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Les règles d'inclusion sélectionnent automatiquement les choix associés lorsqu'un choix source est sélectionné",
+        "Les options peuvent nécessiter une modification pour prendre en charge la sélection multiple pour les règles d'inclusion ciblant plusieurs choix",
+        "Les règles d'exclusion empêchent la sélection simultanée de choix incompatibles",
+        "Les règles sont créées depuis les onglets du Pool d'options et les onglets de règles au niveau du produit"
+      ]
+    }
+  ]
+}

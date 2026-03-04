@@ -1,0 +1,45 @@
+{
+  "moduleId": "m4",
+  "title": "Contrôle des connaissances : Ensembles d'options",
+  "questions": [
+    {
+      "id": "m4-kc-001",
+      "question": "Quelle affirmation décrit correctement un ensemble d'options ?",
+      "options": [
+        "Un référentiel maître contenant toutes les options et choix pour chaque produit du système",
+        "Une collection sélectionnée d'options, de choix et de règles utilisée pour définir les configurations au sein d'une famille de produits spécifique",
+        "Un filtre qui supprime les choix invalides du pool d'options pendant la configuration",
+        "Un rapport montrant toutes les spécifications de variantes générées pour un produit"
+      ],
+      "answerIndex": 1,
+      "rationale": "Un ensemble d'options est une collection sélectionnée d'options, de choix et de règles utilisée pour définir les configurations au sein d'une famille de produits spécifique. L'option A décrit un pool d'options, l'option C décrit un filtre d'options, et l'option D décrit un rapport de variantes.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-002",
+      "question": "Que doit-il se passer avant qu'un ensemble d'options puisse être utilisé pour la configuration de produit ?",
+      "options": [
+        "L'ensemble d'options doit d'abord être exporté vers un système CAO",
+        "L'ensemble d'options doit être affecté à un produit configurable ou un module configurable",
+        "L'ensemble d'options doit être approuvé uniquement par un administrateur du site",
+        "L'ensemble d'options doit contenir au moins dix options pour être valide"
+      ],
+      "answerIndex": 1,
+      "rationale": "Un ensemble d'options doit être affecté à un produit configurable ou un module configurable avant de pouvoir être utilisé pour la configuration. Cette affectation établit le lien entre l'ensemble d'options disponibles et la structure produit qui sera configurée.",
+      "topic": "m4t2"
+    },
+    {
+      "id": "m4-kc-003",
+      "question": "Quel est l'objectif d'un filtre d'options dans Windchill ?",
+      "options": [
+        "Supprimer définitivement du pool d'options les choix qui ne sont plus nécessaires",
+        "Créer automatiquement de nouvelles variantes sans intervention de l'utilisateur",
+        "Filtrer une structure de produit configurable en fonction des choix affectés aux articles, produisant une variante",
+        "Restreindre les utilisateurs pouvant accéder à l'interface de gestion des ensembles d'options"
+      ],
+      "answerIndex": 2,
+      "rationale": "Un filtre d'options utilise des critères basés sur les choix sélectionnés pour filtrer une structure de produit configurable, n'incluant que les articles dont les choix affectés correspondent aux sélections. C'est ainsi qu'une structure surchargée est réduite à une variante spécifique.",
+      "topic": "m4t3"
+    }
+  ]
+}

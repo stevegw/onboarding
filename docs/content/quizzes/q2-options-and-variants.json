@@ -1,0 +1,58 @@
+{
+  "moduleId": "m2",
+  "title": "Options and Variants Knowledge Check",
+  "questions": [
+    {
+      "id": "m2-kc-001",
+      "question": "Which statement correctly describes an option in Windchill Options and Variants?",
+      "options": [
+        "A container that holds all choices defined for every product in the system",
+        "A record of user inputs used to generate a specific variant",
+        "A curated collection of rules assigned to a product family",
+        "A particular product feature that can vary across configurations, with one or more available choices"
+      ],
+      "answerIndex": 3,
+      "rationale": "An option represents a particular product feature that can vary across configurations and has one or more choices defining valid values. Option A describes an option pool, option B describes a variant specification, and option C describes an option set (partially).",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-002",
+      "question": "What is the relationship between an option pool and an option set?",
+      "options": [
+        "They are identical containers used interchangeably",
+        "The option pool is a subset of the option set for a product family",
+        "The option set is a curated subset of the option pool, containing only options relevant to a specific product family",
+        "The option pool contains rules while the option set contains choices"
+      ],
+      "answerIndex": 2,
+      "rationale": "The option pool is the master repository of ALL options and choices for a product context, while an option set is a curated subset containing only the options relevant to a specific product family's configurations.",
+      "topic": "m2t2"
+    },
+    {
+      "id": "m2-kc-003",
+      "question": "Which configurable object represents the specific parts selected from optional parts within a configurable module?",
+      "options": [
+        "Configurable Product",
+        "Module Variant",
+        "Option Filter",
+        "Configurable Module"
+      ],
+      "answerIndex": 1,
+      "rationale": "A Module Variant represents the specific parts selected from the optional parts within a configurable module, based on selection criteria and choices. The Configurable Product is the top-level end item, the Configurable Module captures variability at the component level, and an Option Filter is the criteria used to filter the structure.",
+      "topic": "m2t3"
+    },
+    {
+      "id": "m2-kc-004",
+      "question": "What is a key limitation when using either top-down or bottom-up configuration approaches with Creo?",
+      "options": [
+        "Bottom-up configurations cannot use option sets",
+        "Top-down configurations require manual CAD updates",
+        "Only basic expressions are passed from Windchill to Creo — advanced expressions remain in Windchill only",
+        "Top-down and bottom-up configurations cannot produce the same variant results"
+      ],
+      "answerIndex": 2,
+      "rationale": "Regardless of which approach is used (top-down or bottom-up), only basic expressions are passed from Windchill to Creo. Advanced expressions remain in Windchill only. This is a critical limitation to consider when planning configuration strategy.",
+      "topic": "m2t4"
+    }
+  ]
+}

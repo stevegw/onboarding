@@ -1,0 +1,472 @@
+{
+  "id": "m4",
+  "title": "Explorer les ensembles d'options",
+  "description": "Définissez les ensembles d'options, explorez la gestion des modifications pour les ensembles d'options, affectez les ensembles d'options, appliquez les expressions et utilisez les filtres d'options pour générer des variantes.",
+  "topics": [
+    {
+      "id": "m4t1",
+      "title": "Ensembles d'options et gestion des modifications",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Un ensemble d'options est une collection sélectionnée d'options, de choix et de règles qui définit le vocabulaire de configuration pour une famille de produits spécifique. Alors que le pool d'options contient chaque option jamais définie pour un contexte produit, un ensemble d'options ne sélectionne que le sous-ensemble pertinent nécessaire pour une ligne de produits particulière. Comprendre comment les ensembles d'options sont gérés, versionnés et gouvernés est essentiel pour maintenir des configurations de produits fiables."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Qu'est-ce qu'un ensemble d'options ?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Un ensemble d'options puise son contenu dans le pool d'options et le conditionne pour une utilisation avec un produit configurable ou une famille de produits spécifique. Il contient les options, les choix et les règles qui définissent les configurations valides pour cette famille. Un seul pool d'options peut alimenter plusieurs ensembles d'options, chacun adapté à une ligne de produits différente. Cette séparation permet aux organisations de maintenir un référentiel centralisé d'options tout en fournissant des vocabulaires de configuration ciblés pour les produits individuels."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Pool d'options vs. Ensemble d'options vs. Filtre d'options"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Concept", "Contenu", "Portée", "Objectif"],
+          "rows": [
+            ["Pool d'options", "Toutes les options, choix et règles définis pour un contexte produit", "Contexte produit complet (toutes les familles de produits)", "Référentiel maître de toutes les caractéristiques configurables disponibles pour les produits de l'organisation"],
+            ["Ensemble d'options", "Un sous-ensemble sélectionné d'options, de choix et de règles du pool d'options", "Famille de produits ou produit configurable spécifique", "Définit le vocabulaire de configuration valide pour une ligne de produits particulière, y compris les règles applicables"],
+            ["Filtre d'options", "Un ensemble spécifique de sélections de choix appliqué à un ensemble d'options", "Une seule instance de configuration", "Filtre une structure produit surchargée pour ne conserver que les articles nécessaires pour une variante de produit spécifique"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Gestion des modifications pour les ensembles d'options"
+        },
+        {
+          "type": "paragraph",
+          "text": "Les ensembles d'options dans Windchill sont des objets gérés qui suivent les workflows standards de gestion des modifications. Cela signifie qu'ils prennent en charge le versionnement, les états du cycle de vie et les opérations d'archivage/extraction, garantissant que les modifications des définitions de configuration des produits sont contrôlées et traçables."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Les ensembles d'options suivent les mêmes principes de gestion des modifications que les autres objets Windchill. Ils peuvent être extraits pour modification, archivés pour enregistrer les modifications, versionnés pour suivre l'évolution dans le temps et gouvernés par des états du cycle de vie (par ex., En cours, Publié). Cela garantit que les définitions de configuration sont toujours auditables et que des modifications non autorisées ne peuvent pas affecter les produits publiés."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Gouvernance des ensembles d'options"
+        },
+        {
+          "type": "paragraph",
+          "text": "La gouvernance des ensembles d'options implique de contrôler qui peut les créer, les modifier et les publier. Le rôle de Gestionnaire d'options est responsable de la maintenance des ensembles d'options, de l'ajout ou de la suppression d'options et de choix, de la définition des règles et de la gestion du cycle de vie de l'ensemble d'options. Les organisations établissent généralement des processus de revue et d'approbation avant qu'un ensemble d'options ne soit publié pour une utilisation en production."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Testez vos connaissances"
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Associez chaque concept de gestion d'ensemble d'options à sa description :",
+          "pairs": [
+            {"left": "Versionnement de l'ensemble d'options", "right": "Suit les modifications de l'ensemble d'options dans le temps, créant un historique des définitions de configuration"},
+            {"left": "Archivage/Extraction", "right": "Contrôle l'édition concurrente en verrouillant l'ensemble d'options pendant sa modification"},
+            {"left": "États du cycle de vie", "right": "Gouverne la maturité de l'ensemble d'options (par ex., En cours, En revue, Publié)"},
+            {"left": "Rôle de Gestionnaire d'options", "right": "Le rôle Windchill responsable de la création et de la maintenance des ensembles d'options et de leur contenu"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Un ensemble d'options est une collection sélectionnée d'options, de choix et de règles puisée dans le pool d'options pour une famille de produits spécifique",
+        "Le pool d'options est le référentiel maître ; l'ensemble d'options est un sous-ensemble ciblé ; le filtre d'options applique des choix spécifiques pour générer une variante",
+        "Les ensembles d'options sont des objets gérés avec versionnement, états du cycle de vie et support d'archivage/extraction",
+        "Le rôle de Gestionnaire d'options est responsable de la création, de la maintenance et de la gouvernance des ensembles d'options"
+      ]
+    },
+    {
+      "id": "m4t2",
+      "title": "Affectation et gestion des ensembles d'options",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Une fois qu'un ensemble d'options a été créé et rempli avec les options, choix et règles appropriés, il doit être affecté à un produit configurable ou un module configurable. Le processus d'affectation lie le vocabulaire de configuration à la structure produit, permettant la génération de variantes basée sur les options. Une bonne gestion de l'appartenance aux ensembles d'options garantit que les produits restent configurables à mesure que les exigences évoluent."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Affectation des ensembles d'options"
+        },
+        {
+          "type": "paragraph",
+          "text": "Les ensembles d'options sont affectés aux produits configurables et aux modules configurables via l'interface utilisateur Windchill. Un produit configurable doit avoir un ensemble d'options affecté avant que les filtres d'options puissent être appliqués ou que les variantes puissent être générées. Les modules configurables au sein de la structure produit peuvent également avoir leurs propres ensembles d'options, permettant à différentes sections du produit d'utiliser différents vocabulaires de configuration si nécessaire."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Étapes clés pour l'affectation des ensembles d'options"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Étape 1 : Naviguer vers le produit configurable",
+              "back": "Ouvrez le produit configurable dans Windchill et localisez le menu d'actions ou l'onglet Ensemble d'options. Le produit doit déjà être désigné comme Produit configurable avant qu'un ensemble d'options puisse lui être affecté."
+            },
+            {
+              "front": "Étape 2 : Sélectionner l'action Affecter un ensemble d'options",
+              "back": "Utilisez le menu Actions ou l'onglet Ensemble d'options pour initier l'affectation. Windchill présente une liste des ensembles d'options disponibles dans le contexte produit. Seuls les ensembles d'options appartenant au même contexte produit (ou à un contexte partagé) sont disponibles pour l'affectation."
+            },
+            {
+              "front": "Étape 3 : Choisir l'ensemble d'options approprié",
+              "back": "Sélectionnez l'ensemble d'options contenant les options, les choix et les règles pertinents pour cette famille de produits. Passez en revue le contenu de l'ensemble d'options pour confirmer qu'il inclut tous les paramètres de configuration nécessaires avant de finaliser l'affectation."
+            },
+            {
+              "front": "Étape 4 : Vérifier l'affectation",
+              "back": "Après l'affectation, vérifiez que l'ensemble d'options apparaît dans l'onglet Ensemble d'options du produit. Confirmez que les options et les choix de l'ensemble affecté sont maintenant disponibles pour utilisation dans les expressions et les filtres d'options sur la structure produit."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Gestion de l'appartenance aux ensembles d'options"
+        },
+        {
+          "type": "paragraph",
+          "text": "À mesure que les exigences produit évoluent, les ensembles d'options doivent être mis à jour pour refléter de nouvelles options, des choix supplémentaires ou des règles modifiées. Le Gestionnaire d'options peut ajouter de nouvelles options depuis le pool d'options, ajouter de nouveaux choix aux options existantes dans l'ensemble, supprimer des options ou des choix qui ne sont plus pertinents et mettre à jour les règles pour refléter l'évolution de la logique métier. Toutes les modifications nécessitent que l'ensemble d'options soit d'abord extrait, et les modifications ne sont visibles par les autres qu'après l'archivage."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Bonne pratique : organisez les ensembles d'options par famille de produits, et non par produit individuel. Un ensemble d'options bien conçu couvre toutes les configurations au sein d'une famille de produits. Évitez de créer un ensemble d'options par variante de produit, car cela va à l'encontre de l'objectif des produits configurables et crée une charge de maintenance inutile."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Ordonnez le processus d'affectation"
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Classez les étapes d'affectation d'un ensemble d'options à un produit configurable dans le bon ordre :",
+          "correctOrder": [
+            "Naviguer vers le produit configurable dans Windchill",
+            "Ouvrir le menu Actions et sélectionner Affecter un ensemble d'options",
+            "Sélectionner l'ensemble d'options approprié dans la liste disponible",
+            "Confirmer l'affectation et vérifier que l'ensemble d'options apparaît sur le produit"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Les ensembles d'options doivent être affectés aux produits configurables avant que les filtres d'options ou la génération de variantes puissent être utilisés",
+        "Le processus d'affectation implique de naviguer vers le produit, de sélectionner l'action Affecter un ensemble d'options, de choisir l'ensemble et de vérifier",
+        "L'appartenance aux ensembles d'options peut être mise à jour en ajoutant ou supprimant des options, des choix et des règles à mesure que les exigences évoluent",
+        "La bonne pratique est d'organiser les ensembles d'options par famille de produits plutôt que par variante de produit individuelle"
+      ]
+    },
+    {
+      "id": "m4t3",
+      "title": "Expressions et filtres d'options",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Les expressions et les filtres d'options sont les mécanismes qui relient les choix d'options à la structure produit. Les expressions sont affectées aux articles et aux liens d'utilisation pour spécifier quand un composant doit être inclus dans une variante. Les filtres d'options utilisent les expressions affectées pour évaluer quels articles appartiennent à une configuration spécifique en fonction des sélections de choix de l'utilisateur."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Expressions de base vs. expressions avancées"
+        },
+        {
+          "type": "paragraph",
+          "text": "Windchill prend en charge deux types d'expressions pour affecter des choix aux articles et aux liens d'utilisation. Les expressions de base utilisent des références de choix simples, tandis que les expressions avancées ajoutent des opérateurs et des fonctions pour une logique de sélection complexe. Le type d'expression que vous utilisez dépend de la complexité de vos exigences de configuration et de la nécessité d'une intégration Creo."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Aspect", "Expression de base", "Expression avancée"],
+          "rows": [
+            ["Syntaxe", "Référence de choix simple (par ex., Couleur=Rouge)", "Inclut des choix, des opérateurs (ET, OU, NON) et des fonctions"],
+            ["Capacité", "Affecte un choix unique ou une liste simple de choix à un article ou un lien d'utilisation", "Prend en charge des conditions logiques complexes combinant plusieurs options et choix avec des opérateurs booléens"],
+            ["Support Creo", "Transmise de Windchill vers Creo et prise en charge dans les deux systèmes", "Reste uniquement dans Windchill ; NON transmise vers Creo"],
+            ["Cas d'utilisation", "Configurations simples où un article est inclus lorsqu'un seul choix est sélectionné", "Configurations complexes où l'inclusion d'un article dépend de combinaisons de choix à travers plusieurs options"],
+            ["Exemple", "Type de moto = Tout-terrain", "(Type de moto = Tout-terrain) ET (Cylindrée du moteur = 1200cc)"],
+            ["Préférence requise", "Préférence Expressions prises en charge définie sur De base ou Les deux", "Préférence Expressions prises en charge définie sur Les deux"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Les expressions avancées ne sont PAS transmises de Windchill vers Creo. Si votre flux de travail implique la configuration de variantes dans Creo, vous devez utiliser des expressions de base pour toute affectation de choix devant être visible dans Creo. Planifiez soigneusement votre stratégie d'expressions en fonction de vos exigences d'intégration Creo."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Filtres d'options"
+        },
+        {
+          "type": "paragraph",
+          "text": "Un filtre d'options est un ensemble de sélections de choix appliqué à une structure produit surchargée pour générer une variante filtrée. Lorsque vous créez un filtre d'options, vous sélectionnez des choix spécifiques pour chaque option dans l'ensemble d'options affecté. Windchill évalue ensuite les expressions sur chaque article et lien d'utilisation dans la structure, n'incluant que les articles dont les expressions correspondent aux choix sélectionnés. Le résultat est une structure réduite représentant une variante de produit spécifique."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Concepts des filtres d'options"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Création d'un filtre d'options",
+              "back": "Naviguez vers la structure du produit configurable et sélectionnez l'action Créer un filtre d'options. Windchill présente les options de l'ensemble d'options affecté. Sélectionnez un choix pour chaque option pour définir les critères de filtrage. Les règles de l'ensemble d'options appliquent automatiquement les combinaisons de choix valides."
+            },
+            {
+              "front": "Application d'un filtre d'options",
+              "back": "Une fois créé, le filtre d'options est appliqué à la structure surchargée. Windchill évalue l'expression de chaque article par rapport aux choix du filtre. Les articles dont les expressions correspondent sont inclus ; les articles dont les expressions ne correspondent pas sont exclus. Le résultat est une structure filtrée montrant uniquement les composants pour cette variante spécifique."
+            },
+            {
+              "front": "Spécification de variante",
+              "back": "Lorsqu'un filtre d'options est appliqué pour générer une variante, Windchill crée une spécification de variante qui enregistre les choix exacts utilisés. Cette spécification permet la réutilisation des variantes — si les mêmes choix sont demandés ultérieurement, Windchill peut trouver et réutiliser la variante existante au lieu d'en générer une nouvelle."
+            },
+            {
+              "front": "Application des règles lors du filtrage",
+              "back": "Les règles d'inclusion, d'exclusion, d'activation et conditionnelles sont appliquées pendant le processus de filtre d'options. Si un utilisateur sélectionne un choix qui déclenche une règle d'inclusion, les choix associés sont automatiquement sélectionnés. Si un choix viole une règle d'exclusion, il est empêché. Cela garantit que chaque variante générée est valide."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Le filtre d'options est l'endroit où tout converge : l'ensemble d'options fournit le vocabulaire, les expressions lient les choix aux articles, les règles appliquent les combinaisons valides et le filtre applique des choix spécifiques pour réduire la structure surchargée en une variante concrète. Maîtriser les filtres d'options est la clé d'une configuration de produit efficace dans Windchill."
+        }
+      ],
+      "keyTakeaways": [
+        "Les expressions de base utilisent des références de choix simples et sont transmises à Creo ; les expressions avancées utilisent la logique booléenne et restent uniquement dans Windchill",
+        "Les expressions sont affectées aux articles et aux liens d'utilisation pour spécifier quand un composant est inclus dans une variante",
+        "Les filtres d'options appliquent des sélections de choix spécifiques à une structure surchargée pour générer une variante filtrée",
+        "Les spécifications de variante enregistrent les choix utilisés pour générer une variante, permettant la réutilisation des variantes existantes"
+      ]
+    },
+    {
+      "id": "m4t4",
+      "title": "Affecter un ensemble d'options et appliquer un filtre",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Dans cet exercice, vous allez affecter un ensemble d'options au produit configurable PTC Motorcycle, puis créer et appliquer un filtre d'options pour générer une structure de variante filtrée. Cet exercice rassemble les concepts des sujets précédents : ensembles d'options, expressions et filtres d'options."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Cet exercice s'appuie sur les exercices précédents. Assurez-vous d'avoir terminé les exercices de création d'options et de règles avant de continuer. L'ensemble d'options référencé dans cet exercice devrait déjà exister dans le contexte du produit PTC Motorcycle."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex5",
+          "title": "Affecter un ensemble d'options et appliquer un filtre",
+          "objective": "Apprendre à affecter un ensemble d'options à un produit configurable et appliquer un filtre d'options pour générer une structure de variante filtrée.",
+          "tasks": [
+            {
+              "id": "ex5-t1",
+              "title": "Affecter l'ensemble d'options au produit configurable",
+              "steps": [
+                {
+                  "action": "Naviguez vers le produit configurable PTC Motorcycle. Allez dans Parcourir > Produits et sélectionnez PTC Motorcycle.",
+                  "detail": "Le PTC Motorcycle est le produit configurable utilisé tout au long de ce cours. Vous allez affecter l'ensemble d'options existant à ce produit afin que les filtres d'options puissent être appliqués à sa structure surchargée.",
+                  "hint": "Connectez-vous en tant qu'Anna Chen ou votre utilisateur de formation assigné. Le PTC Motorcycle devrait apparaître dans la liste des Produits."
+                },
+                {
+                  "action": "Ouvrez le menu Actions de la page du produit PTC Motorcycle et sélectionnez 'Affecter un ensemble d'options'.",
+                  "detail": "L'action Affecter un ensemble d'options lie un ensemble d'options au produit configurable. Cette action est disponible depuis le menu Actions au niveau du produit ou depuis l'onglet Ensemble d'options. Un produit doit avoir un ensemble d'options affecté avant que les filtres d'options puissent être créés.",
+                  "hint": "Si vous ne voyez pas l'action Affecter un ensemble d'options, vérifiez que le produit est désigné comme Produit configurable et que vous disposez des permissions appropriées."
+                },
+                {
+                  "action": "Dans la boîte de dialogue d'affectation, sélectionnez l'ensemble d'options PTC Motorcycle dans la liste des ensembles d'options disponibles.",
+                  "detail": "La boîte de dialogue affiche les ensembles d'options disponibles dans ce contexte produit. Sélectionnez l'ensemble d'options qui contient les options Type de moto, Cylindrée du moteur, Couleur, Roues et Emplacement des sacoches ainsi que les règles d'inclusion et d'exclusion créées dans les exercices précédents.",
+                  "hint": "Si plusieurs ensembles d'options apparaissent, choisissez celui qui correspond aux options et règles que vous avez créées dans les exercices précédents."
+                },
+                {
+                  "action": "Confirmez l'affectation et vérifiez que l'ensemble d'options apparaît maintenant dans l'onglet Ensemble d'options du PTC Motorcycle.",
+                  "detail": "Après l'affectation, l'onglet Ensemble d'options devrait afficher l'ensemble d'options affecté avec toutes ses options, choix et règles. Parcourez les options pour confirmer que Type de moto, Cylindrée du moteur, Couleur, Roues et Emplacement des sacoches sont présents avec leurs choix respectifs.",
+                  "hint": "Cliquez sur l'onglet Ensemble d'options de la page du produit. Développez les options pour vérifier que les choix et les règles sont intacts."
+                }
+              ]
+            },
+            {
+              "id": "ex5-t2",
+              "title": "Créer et appliquer un filtre d'options",
+              "steps": [
+                {
+                  "action": "Naviguez vers la structure du produit PTC Motorcycle en cliquant sur l'onglet Structure.",
+                  "detail": "L'onglet Structure affiche la structure produit surchargée contenant toutes les variations de conception possibles. Vous allez créer un filtre d'options pour réduire cette structure à une variante spécifique basée sur vos sélections de choix.",
+                  "hint": "L'onglet Structure montre la nomenclature complète avec tous les modules configurables et leurs articles enfants."
+                },
+                {
+                  "action": "Cliquez sur l'action 'Créer un filtre d'options' dans la barre d'outils de la vue de structure ou le menu Actions.",
+                  "detail": "L'action Créer un filtre d'options ouvre une boîte de dialogue qui présente toutes les options de l'ensemble d'options affecté. Vous sélectionnerez des choix spécifiques pour chaque option afin de définir les critères de filtrage pour la variante que vous souhaitez générer.",
+                  "hint": "Cherchez une icône de filtre ou l'action 'Filtre d'options' dans la barre d'outils au-dessus de l'arborescence de la structure."
+                },
+                {
+                  "action": "Sélectionnez 'Tout-terrain' pour l'option Type de moto.",
+                  "detail": "La sélection de Tout-terrain définit cette variante comme une configuration de moto tout-terrain. Remarquez que la règle d'inclusion que vous avez créée sélectionne automatiquement Tout-terrain Avant et Tout-terrain Arrière pour l'option Roues, et la règle d'exclusion empêche la sélection de Route Avant et Route Arrière.",
+                  "hint": "Observez la mise à jour automatique des choix de l'option Roues à mesure que les règles d'inclusion et d'exclusion sont appliquées."
+                },
+                {
+                  "action": "Sélectionnez des choix pour les options restantes : choisissez une Cylindrée du moteur (par ex., 1000cc), une Couleur (par ex., Noir) et vérifiez l'Emplacement des sacoches (par ex., Non utilisé).",
+                  "detail": "Complétez le filtre d'options en sélectionnant un choix pour chaque option restante. La combinaison de tous les choix définit une variante de produit spécifique. Les règles continuent d'appliquer les combinaisons valides au fur et à mesure de vos sélections.",
+                  "hint": "Si certains choix sont grisés ou indisponibles, vérifiez si une règle les restreint en fonction de vos sélections précédentes."
+                },
+                {
+                  "action": "Cliquez sur 'Appliquer' ou 'OK' pour appliquer le filtre d'options à la structure produit.",
+                  "detail": "Windchill évalue les expressions affectées à chaque article et lien d'utilisation dans la structure surchargée par rapport à vos choix sélectionnés. Les articles dont les expressions correspondent sont inclus dans le résultat filtré ; les articles qui ne correspondent pas sont exclus. La vue de structure se met à jour pour afficher uniquement les composants de cette variante spécifique.",
+                  "hint": "La structure filtrée devrait être sensiblement plus petite que la structure surchargée complète, ne contenant que les articles pertinents pour la variante Tout-terrain."
+                }
+              ]
+            },
+            {
+              "id": "ex5-t3",
+              "title": "Examiner la structure filtrée",
+              "steps": [
+                {
+                  "action": "Examinez la structure filtrée affichée dans l'onglet Structure. Notez quels articles sont inclus et lesquels ont été supprimés.",
+                  "detail": "La structure filtrée représente la variante Tout-terrain du PTC Motorcycle. Comparez-la à la structure surchargée complète que vous avez vue précédemment. Les articles associés aux composants de route (par ex., roues de route, éclairage homologué) devraient être absents, tandis que les articles spécifiques au tout-terrain devraient être présents.",
+                  "hint": "Développez l'arborescence de la structure pour voir la hiérarchie complète des articles inclus."
+                },
+                {
+                  "action": "Comparez la structure filtrée à la structure surchargée complète en activant et désactivant le filtre d'options (si l'interface le permet) ou en notant les différences.",
+                  "detail": "La structure surchargée contient tous les articles possibles pour toutes les variantes. La structure filtrée ne contient que les articles pour la configuration Tout-terrain que vous avez spécifiée. La différence entre les deux illustre comment les filtres d'options réduisent la complexité en restreignant la structure à une seule configuration valide.",
+                  "hint": "Certaines versions de Windchill permettent d'effacer le filtre pour revenir à la vue surchargée complète. Cherchez une action 'Effacer le filtre' ou 'Tout afficher'."
+                },
+                {
+                  "action": "Identifiez quels modules configurables ont été affectés par le filtre et comprenez pourquoi des articles spécifiques ont été inclus ou exclus en fonction des choix que vous avez sélectionnés.",
+                  "detail": "Chaque module configurable de la structure peut avoir été filtré différemment selon les expressions affectées à ses articles enfants. Par exemple, le module Roues ne devrait maintenant afficher que les articles de roues tout-terrain car les choix Tout-terrain Avant et Tout-terrain Arrière ont été sélectionnés (via la règle d'inclusion) et les choix de route ont été exclus.",
+                  "hint": "Cliquez sur des articles individuels pour voir leurs expressions affectées et comprendre pourquoi ils ont été inclus ou exclus par le filtre."
+                },
+                {
+                  "action": "Notez la spécification de variante qui a été créée. Passez en revue les choix enregistrés pour confirmer qu'ils correspondent à vos sélections de filtre.",
+                  "detail": "Windchill enregistre une spécification de variante documentant les choix exacts utilisés pour générer cette variante. Cette spécification permet la réutilisation des variantes : si quelqu'un demande la même combinaison de choix à l'avenir, Windchill peut trouver cette variante existante au lieu d'en générer une nouvelle, économisant du temps et assurant la cohérence.",
+                  "hint": "Cherchez un lien ou un onglet Spécification de variante associé à la vue de structure filtrée."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Un ensemble d'options doit être affecté à un produit configurable avant que les filtres d'options puissent être créés",
+        "La création d'un filtre d'options implique la sélection de choix spécifiques pour chaque option de l'ensemble d'options affecté",
+        "Les règles sont automatiquement appliquées pendant le processus de filtrage, garantissant que seules les combinaisons de choix valides sont possibles",
+        "La structure filtrée montre uniquement les articles pertinents pour la variante sélectionnée, réduisant la complexité de la structure surchargée complète"
+      ]
+    },
+    {
+      "id": "m4t5",
+      "title": "Révision et synthèse du cours",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Ce dernier exercice passe en revue les concepts clés des quatre modules du cours Options et Produits Configurables. Utilisez cette synthèse pour valider votre compréhension et identifier les domaines qui pourraient nécessiter une révision supplémentaire avant d'appliquer ces concepts dans votre travail quotidien avec Windchill."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Ceci est un exercice de révision. Travaillez sur chaque tâche pour revisiter les concepts majeurs du cours. Utilisez les indices pour rafraîchir votre mémoire sur les sujets qui vous semblent moins familiers."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex6",
+          "title": "Révision et synthèse du cours",
+          "objective": "Passer en revue les concepts clés des quatre modules et valider votre compréhension des Options et Produits Configurables.",
+          "tasks": [
+            {
+              "id": "ex6-t1",
+              "title": "Réviser les concepts clés",
+              "steps": [
+                {
+                  "action": "Rappelez les cinq stratégies métier pour la variabilité des produits : Assemblage à la commande, Assemblage sur stock, Configuration à la commande, Ingénierie à la commande et Contrat.",
+                  "detail": "Chaque stratégie diffère par le niveau d'implication du développement produit par commande. L'assemblage à la commande ne nécessite aucune implication d'ingénierie par commande, tandis que le contrat nécessite une ingénierie sur mesure complète. Windchill OCP prend principalement en charge les stratégies d'assemblage à la commande et de configuration à la commande.",
+                  "hint": "Le facteur clé de différenciation est le niveau d'implication d'ingénierie nécessaire pour chaque commande client."
+                },
+                {
+                  "action": "Passez en revue les quatre étapes de la conception de plateforme générique : analyser les exigences, évaluer les produits existants pour la réutilisation, créer la définition générique du produit, et publier et maintenir la plateforme.",
+                  "detail": "La conception de plateforme établit la fondation réutilisable à partir de laquelle toutes les variantes de produit sont dérivées. Une plateforme bien conçue maximise la réutilisation des pièces et identifie clairement les sections qui sont fixes par rapport aux sections variables.",
+                  "hint": "Toujours évaluer les produits existants pour la réutilisation avant de créer de nouvelles conceptions de zéro."
+                },
+                {
+                  "action": "Rappelez le concept de structure produit surchargée et comment elle contient toutes les variations de conception possibles pour un produit configurable.",
+                  "detail": "Une structure surchargée inclut TOUTES les alternatives de conception sous les modules configurables. Lors de la génération de variantes, les filtres d'options réduisent cette structure aux seuls articles nécessaires pour une configuration spécifique. La structure surchargée est la structure maîtresse à partir de laquelle toutes les variantes sont dérivées.",
+                  "hint": "Considérez la structure surchargée comme un surensemble et la variante filtrée comme un sous-ensemble."
+                },
+                {
+                  "action": "Passez en revue les trois objets configurables et leur hiérarchie : Produit configurable, Module configurable et Variante de module.",
+                  "detail": "Le Produit configurable est l'article final de niveau supérieur contenant la structure surchargée complète. Les Modules configurables sont des sections qui capturent la variabilité avec plusieurs alternatives de conception. Les Variantes de module sont les articles spécifiques sélectionnés d'un module configurable après application des filtres d'options.",
+                  "hint": "La hiérarchie va du plus large (Produit configurable) au plus spécifique (Variante de module)."
+                }
+              ]
+            },
+            {
+              "id": "ex6-t2",
+              "title": "Réviser la configuration des options et variantes",
+              "steps": [
+                {
+                  "action": "Passez en revue la terminologie clé O&V : options, choix, pool d'options, ensemble d'options, filtre d'options, expressions, spécification de variante, module configurable et rôle de Gestionnaire d'options.",
+                  "detail": "Les options représentent des caractéristiques variables du produit, chacune avec un ou plusieurs choix. Le pool d'options est le référentiel maître ; les ensembles d'options sont des sous-ensembles sélectionnés pour les familles de produits. Les filtres d'options appliquent des choix pour générer des variantes. Les expressions lient les choix aux articles. Les spécifications de variante enregistrent les choix utilisés.",
+                  "hint": "Les termes se répartissent en trois catégories : termes de structure, termes de logique et termes de gestion."
+                },
+                {
+                  "action": "Rappelez la différence entre le pool d'options et l'ensemble d'options, et expliquez pourquoi les deux sont nécessaires.",
+                  "detail": "Le pool d'options contient TOUTES les options et les choix pour un contexte produit — c'est le catalogue maître. L'ensemble d'options ne sélectionne que les options pertinentes pour une famille de produits spécifique. Cette séparation permet la réutilisation : la même option (par ex., Couleur) peut apparaître dans plusieurs ensembles d'options pour différentes familles de produits sans duplication.",
+                  "hint": "Le pool d'options est le surensemble ; l'ensemble d'options est un sous-ensemble ciblé adapté à une famille de produits."
+                },
+                {
+                  "action": "Passez en revue les deux approches de configuration : descendante (Windchill en premier) et ascendante (Creo en premier), et la limitation selon laquelle seules les expressions de base sont transférées vers Creo.",
+                  "detail": "L'approche descendante commence par la structure d'articles dans Windchill et se propage vers Creo. L'ascendante commence par l'assemblage surchargé dans Creo et l'archive dans Windchill. Quelle que soit l'approche, seules les expressions de base sont transmises de Windchill vers Creo — les expressions avancées restent uniquement dans Windchill.",
+                  "hint": "L'approche dépend du fait que le PLM ou la CAO pilote votre structure produit."
+                },
+                {
+                  "action": "Rappelez la préférence Support de module configurable et son importance, ainsi que la façon dont les préférences héritent du niveau site vers le niveau organisation puis produit.",
+                  "detail": "Le Support de module configurable doit être défini sur Oui pour utiliser toute fonctionnalité O&V — sa valeur par défaut est Non. Les préférences sont héritées des niveaux supérieurs (site) vers les niveaux inférieurs (organisation, produit) et peuvent être verrouillées ou remplacées à chaque niveau. Les Administrateurs du site, les Administrateurs d'organisation, les Chefs de produit et les Gestionnaires de bibliothèque peuvent modifier les préférences O&V.",
+                  "hint": "Si les fonctionnalités O&V ne sont pas disponibles, la première chose à vérifier est la préférence Support de module configurable au niveau approprié."
+                }
+              ]
+            },
+            {
+              "id": "ex6-t3",
+              "title": "Réviser les règles et les ensembles d'options",
+              "steps": [
+                {
+                  "action": "Passez en revue les quatre types de règles : règles d'inclusion (sélection automatique des choix associés), règles d'exclusion (prévention des choix incompatibles), règles d'activation (contrôle de la visibilité des choix) et règles conditionnelles (logique SI/ALORS).",
+                  "detail": "Les règles d'inclusion forcent la sélection des choix associés ensemble. Les règles d'exclusion empêchent la coexistence de choix conflictuels. Les règles d'activation affichent ou masquent dynamiquement les choix en fonction des sélections précédentes. Les règles conditionnelles fournissent une logique SI/ALORS complexe à conditions multiples. Windchill valide les règles pour prévenir les conflits et les doublons.",
+                  "hint": "Les règles d'inclusion et d'exclusion gèrent les relations simples ; les règles d'activation et conditionnelles gèrent les scénarios plus complexes."
+                },
+                {
+                  "action": "Passez en revue les ensembles d'options, leur gestion des modifications (versionnement, états du cycle de vie, archivage/extraction) et le processus d'affectation d'un ensemble d'options à un produit configurable.",
+                  "detail": "Les ensembles d'options sont des objets gérés avec un support complet de gestion des modifications. Ils doivent être extraits pour modification et archivés pour enregistrer les changements. Le processus d'affectation implique de naviguer vers le produit configurable, de sélectionner Affecter un ensemble d'options dans le menu Actions, de choisir l'ensemble approprié et de vérifier l'affectation.",
+                  "hint": "Les ensembles d'options suivent les mêmes workflows de gestion des modifications que les autres objets Windchill."
+                },
+                {
+                  "action": "Passez en revue les expressions (de base vs. avancées) et comment elles lient les choix d'options aux articles et aux liens d'utilisation dans la structure produit.",
+                  "detail": "Les expressions de base utilisent des références de choix simples (par ex., Couleur=Rouge) et sont prises en charge dans Windchill et Creo. Les expressions avancées utilisent des opérateurs booléens (ET, OU, NON) pour une logique complexe mais restent uniquement dans Windchill. Les expressions sont affectées aux articles et aux liens d'utilisation pour spécifier quand un composant est inclus dans une variante.",
+                  "hint": "Les expressions avancées sont plus puissantes mais ne peuvent pas être transmises à Creo."
+                },
+                {
+                  "action": "Passez en revue les filtres d'options et comment ils rassemblent tous les éléments : l'ensemble d'options fournit le vocabulaire, les expressions lient les choix aux articles, les règles appliquent les combinaisons valides et le filtre réduit la structure surchargée à une variante spécifique.",
+                  "detail": "La création d'un filtre d'options implique la sélection de choix dans l'ensemble d'options affecté. Windchill évalue l'expression de chaque article par rapport aux choix sélectionnés et n'inclut que les articles correspondants. Le résultat est une structure filtrée représentant une variante de produit spécifique. Une spécification de variante enregistre les choix pour une réutilisation future.",
+                  "hint": "Le filtre d'options est l'aboutissement de tous les concepts O&V travaillant ensemble."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Le cours couvre quatre modules : présentation des produits configurables, configuration des options et variantes, règles et ensembles d'options",
+        "Les concepts clés incluent les stratégies métier, la conception de plateforme, les structures surchargées, les options, les choix, les règles, les expressions, les ensembles d'options et les filtres d'options",
+        "Les filtres d'options rassemblent tous les concepts en appliquant des choix à une structure surchargée pour générer des variantes de produit spécifiques",
+        "Comprendre l'ensemble du workflow O&V, du pool d'options à la génération de variantes, est essentiel pour une configuration de produit efficace dans Windchill"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,350 @@
+{
+  "id": "m3",
+  "title": "Investigate Options and Variants Rules",
+  "description": "Examine include, exclude, enable, and conditional rules. Explore rule validation and expression aliases.",
+  "exerciseTopicStart": 4,
+  "topics": [
+    {
+      "id": "m3t1",
+      "title": "Rule Types and Business Logic",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Options and variants rules define the valid combinations of choices that can be selected together when configuring a product. Windchill provides four types of rules that control how choices interact, ensuring that only valid product configurations can be created."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Four Types of Rules"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Rule Type", "Description", "Example"],
+          "rows": [
+            ["Include Rule", "Associates the selection of one choice to related choices. When a source choice is selected, the target choices are automatically selected as well.", "Country=United States automatically includes Voltage=110 Volts"],
+            ["Exclude Rule", "Restricts incompatible choices from being selected together. When a source choice is selected, the target choices are disallowed.", "Voltage=110V excludes Frequency=50Hz because they are incompatible"],
+            ["Enable Rule", "Makes only specific choices appear for selection once a source choice is selected. Controls which option choices are available depending on a condition.", "Selecting Choice 1 turns on Choices 7, 8, 13 and turns off Choices 9, 12"],
+            ["Conditional Rule", "IF/THEN statements specifying when choices should be included, turned on, or turned off. Provides complex multi-condition logic.", "IF Choices 1 AND 4 are selected, THEN Choices 7, 8, and 13 are turned off"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Business Logic Methods"
+        },
+        {
+          "type": "paragraph",
+          "text": "Windchill provides several methods for implementing business logic that controls product configuration. Each method serves a specific purpose in the overall rule framework:"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Design Option",
+              "back": "Allows actions on options within the option pool. This is the foundation for defining the variable features of a product and the choices available for each feature."
+            },
+            {
+              "front": "Include Rules",
+              "back": "Capture logical associations between product features. When one choice is selected, related choices are automatically included to maintain product integrity."
+            },
+            {
+              "front": "Exclude Rules",
+              "back": "Capture incompatible choices that should not be selected together. Prevents invalid combinations that would result in non-functional or non-manufacturable products."
+            },
+            {
+              "front": "Enable Rules",
+              "back": "Control which option choices are available depending on a condition. Dynamically adjusts the visible choices based on prior selections to guide users toward valid configurations."
+            },
+            {
+              "front": "Conditional Rules",
+              "back": "IF/THEN constructions for choice selection in the Option filter. Provide the most flexible and complex logic for controlling choice interactions across multiple options."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Windchill verifies that new rules do not conflict with or duplicate existing rules. This built-in rule validation prevents contradictory logic that could make certain product configurations impossible or ambiguous."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each rule type to its behavior:",
+          "pairs": [
+            {"left": "Include Rule", "right": "Automatically selects related choices when a source choice is selected"},
+            {"left": "Exclude Rule", "right": "Prevents incompatible choices from being selected together"},
+            {"left": "Enable Rule", "right": "Controls which choices are visible or available based on a condition"},
+            {"left": "Conditional Rule", "right": "Uses IF/THEN logic to turn choices on or off based on multiple conditions"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Four rule types control valid choice combinations: include, exclude, enable, and conditional",
+        "Include rules force related selections to be automatically chosen together",
+        "Exclude rules prevent incompatible combinations from being selected",
+        "Windchill validates rules to prevent conflicts and duplicates"
+      ]
+    },
+    {
+      "id": "m3t2",
+      "title": "Include, Exclude, and Conditional Rules",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Include, exclude, and conditional rules form the core of product configuration logic in Windchill. Each rule type addresses a different aspect of how choices relate to one another, from automatic selection to incompatibility enforcement to complex multi-condition scenarios."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Rule Details and Examples"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Include Rule",
+              "back": "Identifies target choices that are automatically selected when a source choice is selected. For example, when Choice 1 is selected, Choices 7 and 13 are automatically included. This ensures that dependent features are always selected together."
+            },
+            {
+              "front": "Exclude Rule",
+              "back": "Defines incompatible choices that cannot be selected alongside a source choice. For example, when Choice 1 is selected, Choice 9 is disallowed. This prevents users from creating invalid product configurations with conflicting features."
+            },
+            {
+              "front": "Conditional Rule",
+              "back": "Uses IF/THEN logic to handle complex multi-choice scenarios. For example, IF you select Choices 1 and 4, then Choices 7, 8, and 13 are turned off, leaving only Choices 9 and 12 available. This provides the most flexible control over choice interactions."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Include and exclude rules handle simple one-to-one or one-to-many relationships between choices. When you need logic that depends on multiple source choices being selected simultaneously, use conditional rules with IF/THEN statements."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "How the Rules Work Together"
+        },
+        {
+          "type": "paragraph",
+          "text": "In practice, products use a combination of all three rule types. Include rules ensure dependencies are met, exclude rules prevent conflicts, and conditional rules handle the complex interactions that cannot be expressed with simple include or exclude logic. Together, they form a comprehensive constraint system that guides users to valid configurations."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Rule Type", "Source → Target Behavior", "Use Case"],
+          "rows": [
+            ["Include", "Source selected → Targets auto-selected", "Dependent features that must always appear together"],
+            ["Exclude", "Source selected → Targets disallowed", "Incompatible features that cannot coexist"],
+            ["Conditional", "IF multiple sources → THEN targets on/off", "Complex scenarios where the outcome depends on a combination of selections"]
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Include rules auto-select related choices when a source choice is selected",
+        "Exclude rules prevent conflicting selections from being chosen together",
+        "Conditional rules provide complex IF/THEN logic for multi-choice scenarios"
+      ]
+    },
+    {
+      "id": "m3t3",
+      "title": "Enable Rules and Expression Aliases",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Enable rules and expression aliases extend the rule framework with additional capabilities. Enable rules control the visibility and availability of choices based on prior selections, while expression aliases simplify complex rule authoring by encapsulating reusable logical statements."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Enable Rules"
+        },
+        {
+          "type": "paragraph",
+          "text": "Enable rules control which option choices are available once a source choice is selected. Unlike include or exclude rules that force or prevent selections, enable rules dynamically adjust which choices are visible. For example, selecting Choice 1 turns on Choices 7, 8, and 13 while turning off Choices 9 and 12. Only the enabled choices appear as selectable options during configuration."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Aspect", "Enable Rules", "Conditional Rules"],
+          "rows": [
+            ["Trigger", "Single source choice selection", "Multiple source choices selected (IF/THEN)"],
+            ["Effect", "Turns specific choices on or off for visibility", "Turns choices on or off based on compound conditions"],
+            ["Complexity", "Simple one-to-many visibility control", "Complex multi-condition logic"],
+            ["Primary Use", "Controlling which choices appear based on a single selection", "Handling interactions that depend on combinations of prior selections"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Enable rules are particularly useful when certain choices only make sense in the context of a prior selection. For instance, specific tire sizes may only be relevant when a particular frame type is selected."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Expression Aliases"
+        },
+        {
+          "type": "paragraph",
+          "text": "Expression aliases represent logical statements that can be reused across multiple rules. Common definitions used frequently in product configuration can be captured as aliases, simplifying rule authoring and improving maintainability."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "What Is an Expression Alias?",
+              "back": "An expression alias is a named logical statement that encapsulates a commonly used condition or set of choices. For example, a 'BigTires' alias might represent the set of tire sizes 48IN, 50IN, 52IN, 54IN, and 56IN from the TIRE option."
+            },
+            {
+              "front": "Where Are Aliases Used?",
+              "back": "Expression aliases can be used when authoring conditional rules, advanced expressions, and other aliases. They serve as building blocks for complex configuration logic, reducing duplication and making rules easier to read and maintain."
+            },
+            {
+              "front": "Reusability Across Rules",
+              "back": "Once defined, an alias can be referenced in multiple conditional rules and expressions throughout the product configuration. This means a change to the alias definition automatically propagates to all rules that reference it."
+            },
+            {
+              "front": "License Requirements",
+              "back": "Expression aliases are an advanced capability subject to separate license entitlement. Organizations must have the appropriate Windchill license to create and use expression aliases in their product configurations."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Expression aliases require a separate license entitlement. Verify your organization's Windchill license includes this capability before planning to use aliases in your rule definitions."
+        }
+      ],
+      "keyTakeaways": [
+        "Enable rules control visibility of choices based on a source selection",
+        "Expression aliases simplify complex rule authoring by encapsulating reusable logical statements",
+        "Aliases are reusable across conditional rules and expressions",
+        "Expression aliases require a separate license entitlement"
+      ]
+    },
+    {
+      "id": "m3t4",
+      "title": "Create Include and Exclude Rules",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create include and exclude rules for the PTC Motorcycle product. Anna Chen will navigate the Option Pool to define an include rule that associates Off Road motorcycle type with the correct wheel choices, and an exclude rule that prevents incompatible wheel selections."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "This exercise modifies the product configuration rules. Follow the steps carefully and use the exact names specified to ensure consistency with later exercises."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex4",
+          "title": "Create Include and Exclude Rules",
+          "objective": "Learn how to create include and exclude rules in Windchill by defining logical associations and incompatible choice restrictions for the PTC Motorcycle product.",
+          "tasks": [
+            {
+              "id": "ex4-t1",
+              "title": "Create an Include Rule",
+              "steps": [
+                {
+                  "action": "Navigate to the PTC Motorcycle product and open the Option Pool tab.",
+                  "detail": "You will create an include rule that associates the Off Road motorcycle type with the appropriate wheel choices. Include rules are created from within the Option Pool.",
+                  "hint": null
+                },
+                {
+                  "action": "Expand the Motorcycle Type option in the Option Pool to see its choices.",
+                  "detail": "You should see the Off Road and On Road/Street Legal choices that were created in a previous exercise. The Off Road choice will be the source of the include rule.",
+                  "hint": "Click the expand arrow next to Motorcycle Type to reveal its choices."
+                },
+                {
+                  "action": "Right-click on the 'Off Road' choice and select 'New Include Rule'.",
+                  "detail": "The New Include Rule action opens a dialog where you specify which target choices should be automatically selected when Off Road is chosen. This ensures the correct wheels are always included with an off-road configuration.",
+                  "hint": "The option may be in a context menu or under an Actions dropdown on the choice row."
+                },
+                {
+                  "action": "In the include rule dialog, select the Wheels option and choose 'Off Road Front' and 'Off Road Rear' as the target choices.",
+                  "detail": "By selecting both Off Road Front and Off Road Rear wheels, you are defining that whenever a customer selects the Off Road motorcycle type, both off-road wheel types are automatically included in the configuration.",
+                  "hint": "If the Wheels option does not allow multi-selection, you will need to edit it first (see the next task)."
+                },
+                {
+                  "action": "If the dialog does not allow selecting multiple wheel choices, note the issue and proceed to the next task to edit the Wheels option first.",
+                  "detail": "The Wheels option may be set to Single Selection by default. For an include rule to target multiple choices from the same option, that option must allow multi-selection. This is a common configuration step when setting up include rules.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex4-t2",
+              "title": "Edit Wheels Option and Complete Include Rule",
+              "steps": [
+                {
+                  "action": "In the Option Pool, right-click on the Wheels option and select 'Edit'.",
+                  "detail": "You need to change the Wheels option from single selection to multi-selection so that the include rule can target multiple wheel choices simultaneously.",
+                  "hint": "Look for an Edit action in the context menu or the actions toolbar when the Wheels option is selected."
+                },
+                {
+                  "action": "Change the 'Single Selection' setting from 'Yes' to 'No' and save the change.",
+                  "detail": "Setting Single Selection to No allows multiple choices to be selected for the Wheels option. This is required because the Off Road motorcycle type needs both Off Road Front and Off Road Rear wheels to be selected together.",
+                  "hint": "The Single Selection field may be a checkbox or a dropdown in the option edit form."
+                },
+                {
+                  "action": "Return to the Motorcycle Type option, right-click on 'Off Road', and select 'New Include Rule' again.",
+                  "detail": "Now that the Wheels option supports multi-selection, you can create the include rule that targets both Off Road Front and Off Road Rear wheel choices.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the Wheels option and choose both 'Off Road Front' and 'Off Road Rear' as the target choices. Save the include rule.",
+                  "detail": "The include rule is now complete. Whenever a user selects Off Road as the Motorcycle Type, both Off Road Front and Off Road Rear wheels will be automatically included in the configuration.",
+                  "hint": "Hold Ctrl while clicking to select multiple choices in the target list."
+                },
+                {
+                  "action": "Verify the include rule appears in the Include Rules tab for the Off Road choice.",
+                  "detail": "After saving, the rule should be visible in the rules listing. Confirm that the source is Off Road and the targets are Off Road Front and Off Road Rear.",
+                  "hint": "Navigate to the Off Road choice details and check the Include Rules tab or section."
+                }
+              ]
+            },
+            {
+              "id": "ex4-t3",
+              "title": "Create an Exclude Rule",
+              "steps": [
+                {
+                  "action": "Navigate to the top-level PTC Motorcycle part in the product structure or option pool view.",
+                  "detail": "Exclude rules can be created from the top-level product context. You will create a rule that prevents incompatible wheel choices from being selected with the Off Road motorcycle type.",
+                  "hint": "Select the PTC Motorcycle product at the top level of the structure."
+                },
+                {
+                  "action": "Go to the Exclude Rules tab.",
+                  "detail": "The Exclude Rules tab displays all existing exclude rules for the product and provides actions to create new ones. This centralized view makes it easy to manage all incompatibility rules.",
+                  "hint": "The tab may be alongside Include Rules, Enable Rules, and other rule-related tabs."
+                },
+                {
+                  "action": "Click 'New Exclude Rule' to create a new exclude rule.",
+                  "detail": "You will define an exclude rule that prevents On Road wheels from being selected when the Off Road motorcycle type is chosen, ensuring only compatible wheel types are available.",
+                  "hint": "Look for a 'New Exclude Rule' button or icon in the toolbar above the rules table."
+                },
+                {
+                  "action": "Set the source to Motorcycle Type = Off Road. Set the targets to Wheels = On Road Front and Wheels = On Road Rear.",
+                  "detail": "This exclude rule states: when Off Road is selected as the Motorcycle Type, the On Road Front and On Road Rear wheel choices cannot be selected. This prevents a user from accidentally choosing road wheels for an off-road motorcycle.",
+                  "hint": "Select the source option and choice first, then select the target option and the choices to exclude."
+                },
+                {
+                  "action": "Save the exclude rule and verify it appears in the Exclude Rules tab.",
+                  "detail": "The exclude rule is now active. Combined with the include rule from the previous task, selecting Off Road as the Motorcycle Type will automatically include the off-road wheels and prevent the on-road wheels from being selected.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Include rules auto-select related choices when a source choice is selected",
+        "Options may need editing to support multi-selection for include rules that target multiple choices",
+        "Exclude rules prevent incompatible choices from being selected together",
+        "Rules are created from the Option Pool tabs and the product-level rule tabs"
+      ]
+    }
+  ]
+}

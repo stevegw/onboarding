@@ -1,0 +1,45 @@
+{
+  "moduleId": "m4",
+  "title": "Option Sets Knowledge Check",
+  "questions": [
+    {
+      "id": "m4-kc-001",
+      "question": "Which statement correctly describes an option set?",
+      "options": [
+        "A master repository containing all options and choices for every product in the system",
+        "A curated collection of options, choices, and rules used to define configurations within a specific product family",
+        "A filter that removes invalid choices from the option pool during configuration",
+        "A report showing all variant specifications generated for a product"
+      ],
+      "answerIndex": 1,
+      "rationale": "An option set is a curated collection of options, choices, and rules used to define configurations within a specific product family. Option A describes an option pool, option C describes an option filter, and option D describes a variant report.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-002",
+      "question": "What must happen before an option set can be used for product configuration?",
+      "options": [
+        "The option set must be exported to a CAD system first",
+        "The option set must be assigned to a configurable product or configurable module",
+        "The option set must be approved by a site administrator only",
+        "The option set must contain at least ten options to be valid"
+      ],
+      "answerIndex": 1,
+      "rationale": "An option set must be assigned to a configurable product or configurable module before it can be used for configuration. This assignment establishes the link between the set of available options and the product structure that will be configured.",
+      "topic": "m4t2"
+    },
+    {
+      "id": "m4-kc-003",
+      "question": "What is the purpose of an option filter in Windchill?",
+      "options": [
+        "To permanently delete choices from the option pool that are no longer needed",
+        "To create new variants automatically without user input",
+        "To filter a configurable product structure based on choices assigned to parts, producing a variant",
+        "To restrict which users can access the option set management interface"
+      ],
+      "answerIndex": 2,
+      "rationale": "An option filter uses criteria based on selected choices to filter a configurable product structure, including only the parts whose assigned choices match the selections. This is how an overloaded structure is reduced to a specific variant.",
+      "topic": "m4t3"
+    }
+  ]
+}

@@ -1,0 +1,319 @@
+{
+  "id": "m2",
+  "title": "Review Windchill Options and Variants",
+  "description": "Examine options and variants terminology, discuss options and choices, explore configurable structures, compare configuration approaches, and review key preferences.",
+  "topics": [
+    {
+      "id": "m2t1",
+      "title": "Options and Variants Terminology",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Options and Variants (O&V) in Windchill uses a rich vocabulary of specialized terms. Mastering this terminology is essential before working with configurable products, as these terms appear throughout the Windchill interface and documentation."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Key O&V Terms"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Term", "Category", "Definition"],
+          "rows": [
+            ["Advanced Expression", "Logic", "Includes choices, operators, and functions. Can be assigned to parts and part usage links to define complex selection criteria."],
+            ["Advanced Selection Logic", "Logic", "Logic for a configurable module using parameters and constraints to guide user input during configuration."],
+            ["Basic Expression", "Logic", "Option choices assignable to parts and usage links to specify when a component is included in a variant."],
+            ["Conditional Rule", "Logic", "IF/THEN statements specifying when choices should be included, turned on, or turned off based on other selections."],
+            ["Configurable Module", "Structure", "A Windchill part with child parts representing design variations. The building block for product variability."],
+            ["Configurable Product Structure", "Structure", "A product structure containing configurable modules that support multiple product variants."],
+            ["Enable Rule", "Logic", "Makes only specific choices appear in the selection list once a target choice is selected."],
+            ["Exclude Rule", "Logic", "Restricts selection of incompatible choices, preventing invalid configurations."],
+            ["Include Rule", "Logic", "Associates selection of one choice to automatically include related choices."],
+            ["Option Filter", "Management", "Criteria used to filter a product structure based on choices assigned to parts."],
+            ["Option Manager", "Management", "A Windchill context role responsible for creating options and choices and maintaining option sets."],
+            ["Parameter", "Logic", "An attribute within a configurable module used for advanced selection logic with constraints."],
+            ["Product Family", "Structure", "A set of related products sharing substantial parts, defined by an option set and a configurable product structure."],
+            ["Variant", "Structure", "A part or structure representing a specific configuration, created during the configure process."],
+            ["Variant Specification", "Management", "A record of user inputs (choices and parameter values) used to generate a specific variant."]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "These 15 terms fall into three categories: Structure terms (configurable module, configurable product structure, product family, variant) define how products are organized; Logic terms (expressions, rules, parameters) define how configurations are determined; Management terms (option filter, option manager, variant specification) define how configurations are administered."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Test Your Knowledge"
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each O&V term to its definition:",
+          "pairs": [
+            {"left": "Configurable Module", "right": "A Windchill part with child parts representing design variations"},
+            {"left": "Variant Specification", "right": "A record of user inputs used to generate a specific variant"},
+            {"left": "Exclude Rule", "right": "Restricts selection of incompatible choices"},
+            {"left": "Option Filter", "right": "Criteria to filter product structure based on assigned choices"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Options and Variants has a vocabulary of 15+ specialized terms that you must understand",
+        "Terms fall into three categories: structure (configurable module, product family), logic (expressions, rules, parameters), and management (option filter, option manager)",
+        "Understanding terminology is essential before working with O&V in Windchill"
+      ]
+    },
+    {
+      "id": "m2t2",
+      "title": "Options and Choices",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Options and choices are the fundamental building blocks for defining product variability in Windchill. An option represents a particular product feature, and each option has one or more choices that define the valid values for that feature."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "How Options and Choices Work"
+        },
+        {
+          "type": "paragraph",
+          "text": "An option is a particular product feature that can vary across configurations. Each option has one to many available choices. Options can be marked as required (the user must select a choice) or single selection (only one choice can be selected at a time). Options are applicable to specific product variations, and choices can be assigned to parts, occurrences, or usage links in the product structure."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Option Pool vs. Option Set"
+        },
+        {
+          "type": "paragraph",
+          "text": "Options and choices are organized into two key containers: the option pool and the option set. Understanding the relationship between these two is critical for managing product configurability."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Option Pool",
+              "back": "The option pool contains ALL options and choices defined for a product context. It is the master repository from which option sets draw their content. Think of it as the complete catalog of every possible variable feature."
+            },
+            {
+              "front": "Option Set",
+              "back": "An option set is a curated collection of options, choices, and rules used to define configurations within a specific product family. It is a subset of the option pool, containing only the options relevant to a particular product line or configuration scenario."
+            },
+            {
+              "front": "Why Two Containers?",
+              "back": "The option pool may contain options for many product families. An option set selects only the relevant options for a specific product family. This separation allows reuse -- the same option (e.g., Color) can appear in multiple option sets for different product families."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Remember: the option pool is the superset, and the option set is a curated subset. A product may have many options in its pool, but a specific product family's option set contains only the options relevant to that family's configurations."
+        }
+      ],
+      "keyTakeaways": [
+        "An option represents a variable product feature; each option has one or more choices",
+        "Options can be required or single selection, and choices can be assigned to parts, occurrences, or usage links",
+        "The option pool is the master repository of all options and choices for a product context",
+        "An option set is a curated subset of the option pool used to define configurations for a specific product family"
+      ]
+    },
+    {
+      "id": "m2t3",
+      "title": "Elements of a Configurable Structure",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A configurable structure in Windchill contains both standard parts (present in every variant) and optional parts (included only when specific choices are selected). Three key configurable objects form a hierarchy that defines how product variability is captured and resolved."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Three Configurable Objects"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Object", "Role", "Description"],
+          "rows": [
+            ["Configurable Product", "Top-Level End Item", "The top-level product that represents a collection of product variations. It is the entry point for configuration and contains the full overloaded structure."],
+            ["Configurable Module", "Configurable Component", "A configurable component that captures variability at the component level. Represented by an overloaded structure containing all design variations for that section of the product."],
+            ["Module Variant", "Specific Selection", "The specific parts selected from the optional parts within a configurable module, based on selection criteria and choices. Represents one resolved configuration of a module."]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "An overloaded structure is a structure that contains ALL possible design variations for a configurable module. During the configure process, option filters reduce this overloaded structure down to only the parts needed for a specific configuration, producing a module variant."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Configurable Object Hierarchy"
+        },
+        {
+          "type": "paragraph",
+          "text": "The three configurable objects form a clear hierarchy from broadest to most specific. Understanding this hierarchy is key to working with configurable structures."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the configurable objects from the highest level (broadest) to the lowest level (most specific):",
+          "correctOrder": [
+            "Configurable Product",
+            "Configurable Module",
+            "Module Variant"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Three configurable objects form a hierarchy: Configurable Product, Configurable Module, and Module Variant",
+        "Configurable modules capture variability using overloaded structures that contain all design variations",
+        "Module variants are the specific parts selected from a configurable module after applying option filters",
+        "A configurable structure contains both standard parts (always present) and optional parts (conditionally included)"
+      ]
+    },
+    {
+      "id": "m2t4",
+      "title": "Top-Down and Bottom-Up Configuration",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Windchill supports two approaches for creating configurable products: top-down (starting in Windchill) and bottom-up (starting in Creo). The approach you choose depends on where your product design originates and how your organization manages CAD and PLM data."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Comparing the Two Approaches"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Aspect", "Top-Down (Windchill First)", "Bottom-Up (Creo First)"],
+          "rows": [
+            ["Starting Point", "Create the part structure in Windchill first", "Create the configurable product (overloaded assembly) in Creo first"],
+            ["Option Definition", "Create option pool and option set in Windchill, then assign choices to parts", "Open overloaded assembly in Creo, check in to Windchill, then define options and choices in Windchill"],
+            ["Structure Flow", "Generate CAD structure from Windchill structure, propagate to Creo", "Check in Creo assembly to Windchill, designate as configurable product, assign choices"],
+            ["Configuration", "Configure part structure in Windchill using variant spec, then open in Creo", "Configure variant in Creo, check in to Windchill, verify variant structures"],
+            ["Expression Limitation", "Only basic expressions are passed from Windchill to Creo", "Only basic expressions are passed from Windchill to Creo"],
+            ["Best For", "Organizations where PLM drives the product structure", "Organizations where CAD design drives the product structure"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Top-Down Workflow"
+        },
+        {
+          "type": "paragraph",
+          "text": "In the top-down approach, you start by creating the part structure in Windchill: create the option pool, create the option set, set up configurable modules, and assign choices to parts. Then you generate the CAD structure and configure the part structure. In Creo, you open the configurable product, check it in, configure using a variant specification, and associate the variant."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Bottom-Up Workflow"
+        },
+        {
+          "type": "paragraph",
+          "text": "In the bottom-up approach, you start in Creo by opening the overloaded assembly and checking it in to Windchill. Then in Windchill, you define options and choices, create and assign the option set, designate the configurable product, assign choices, configure, and propagate choices to CAD. Back in Creo, you review choice assignments, configure the variant, and check in. Finally, you verify the variant structures in Windchill."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Regardless of which approach you use, only basic expressions are passed from Windchill to Creo. Advanced expressions remain in Windchill only. This is a critical limitation to keep in mind when planning your configuration strategy."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Match the Steps"
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each step to the correct configuration approach:",
+          "pairs": [
+            {"left": "Create part structure in Windchill first", "right": "Top-Down"},
+            {"left": "Open overloaded assembly in Creo first", "right": "Bottom-Up"},
+            {"left": "Generate CAD structure from Windchill", "right": "Top-Down"},
+            {"left": "Check in Creo assembly to Windchill, then define options", "right": "Bottom-Up"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Top-down configuration starts in Windchill and propagates to Creo; bottom-up starts in Creo and propagates to Windchill",
+        "Only basic expressions transfer between Windchill and Creo -- advanced expressions remain in Windchill only",
+        "Both approaches ultimately end with verified variant structures in both systems",
+        "The choice of approach depends on whether PLM or CAD drives your product structure"
+      ]
+    },
+    {
+      "id": "m2t5",
+      "title": "Options and Variants Preferences",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Windchill uses a set of preferences to control Options and Variants behavior. The most critical preference is Configurable Module Support, which must be set to Yes before any O&V functionality can be used. Preferences follow an inheritance model from higher-level containers to lower-level contexts."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Key O&V Preferences"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Configurable Module Support",
+              "back": "Controls the ability to create optional product structures. Default is No. Must be set to Yes to use any O&V functionality. This is the gatekeeper preference -- if it is No, configurable modules cannot be created."
+            },
+            {
+              "front": "Advanced Logic",
+              "back": "Enables or disables advanced selection logic using parameters and constraints within configurable modules. Required for configure-to-order and engineer-to-order scenarios."
+            },
+            {
+              "front": "Choice Display Format",
+              "back": "Controls how choices are displayed to users during configuration. Options include showing choice name, number, or both. Affects the user experience during variant specification."
+            },
+            {
+              "front": "Supported Expressions",
+              "back": "Determines which expression types are available for use: basic expressions only, or both basic and advanced expressions. Limits the complexity of selection logic that can be authored."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Preference Inheritance and Roles"
+        },
+        {
+          "type": "paragraph",
+          "text": "O&V preferences are inherited from higher-level containers (site level) down to lower-level contexts (organization, product). Preferences set at the site level serve as defaults. Lower-level contexts can override inherited values or leave them as inherited. Preferences can also be locked at a higher level to prevent lower-level overrides."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Role", "Scope", "Capability"],
+          "rows": [
+            ["Site Administrator", "Entire Windchill site", "Sets site-wide default preferences that apply to all organizations and products unless overridden."],
+            ["Organization Administrator", "Specific organization", "Can override site-level preferences for their organization. Settings apply to all products within the organization."],
+            ["Product Manager", "Specific product", "Can override organization-level preferences for their product context. Most granular level of control."],
+            ["Library Manager", "Specific library", "Can override preferences for library contexts, controlling O&V behavior for shared library content."]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "If O&V features are unavailable in a specific product context, the first thing to check is the Configurable Module Support preference. Verify it is set to Yes at the appropriate level (site, organization, or product). Also check whether a higher-level lock is preventing the preference from being changed."
+        }
+      ],
+      "keyTakeaways": [
+        "Configurable Module Support must be set to Yes to use any Options and Variants functionality -- its default is No",
+        "Preferences inherit from higher levels (site) to lower levels (organization, product) and can be locked or overridden",
+        "Four roles can change O&V preferences: Site Administrator, Organization Administrator, Product Manager, and Library Manager",
+        "Understanding preference inheritance is essential for diagnosing O&V issues in specific product contexts"
+      ]
+    }
+  ]
+}

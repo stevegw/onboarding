@@ -21,8 +21,7 @@
       "estimatedMinutes": 25,
       "topicCount": 5,
       "contentFile": "modules/m2-options-and-variants.json",
-      "quizFile": "quizzes/q2-options-and-variants.json",
-      "comingSoon": true
+      "quizFile": "quizzes/q2-options-and-variants.json"
     },
     {
       "id": "m3",
@@ -30,9 +29,9 @@
       "description": "Examinez les règles d'inclusion, d'exclusion, d'activation et conditionnelles. Explorez la validation des règles et les alias d'expressions.",
       "estimatedMinutes": 20,
       "topicCount": 4,
+      "exerciseTopicStart": 4,
       "contentFile": "modules/m3-rules.json",
-      "quizFile": "quizzes/q3-rules.json",
-      "comingSoon": true
+      "quizFile": "quizzes/q3-rules.json"
     },
     {
       "id": "m4",
@@ -40,9 +39,9 @@
       "description": "Définissez les ensembles d'options, explorez la gestion des modifications, affectez les ensembles d'options, appliquez les expressions et utilisez les filtres d'options.",
       "estimatedMinutes": 25,
       "topicCount": 5,
+      "exerciseTopicStart": 4,
       "contentFile": "modules/m4-option-sets.json",
-      "quizFile": "quizzes/q4-option-sets.json",
-      "comingSoon": true
+      "quizFile": "quizzes/q4-option-sets.json"
     }
   ]
 }

@@ -1,0 +1,45 @@
+{
+  "moduleId": "m3",
+  "title": "Options and Variants Rules Knowledge Check",
+  "questions": [
+    {
+      "id": "m3-kc-001",
+      "question": "What is the primary purpose of Options and Variants rules?",
+      "options": [
+        "To define the visual appearance of configurable modules in the structure tree",
+        "To restrict user access to specific options and choices based on their role",
+        "To enforce business logic that governs valid relationships between choices and parts",
+        "To automatically create new options when a product family is released"
+      ],
+      "answerIndex": 2,
+      "rationale": "O&V rules enforce business logic that governs valid relationships between choices and parts. They ensure that only valid combinations of choices can be selected and that the correct parts are included in variant structures.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-002",
+      "question": "What happens when an exclude rule is triggered during configuration?",
+      "options": [
+        "The excluded choice is automatically selected",
+        "The excluded choice is removed from the option pool permanently",
+        "The excluded choice becomes unavailable, preventing the user from selecting an incompatible combination",
+        "The excluded choice triggers a workflow for engineering review"
+      ],
+      "answerIndex": 2,
+      "rationale": "An exclude rule restricts the selection of incompatible choices. When triggered, the excluded choice becomes unavailable in the selection list, preventing the user from creating an invalid configuration.",
+      "topic": "m3t2"
+    },
+    {
+      "id": "m3-kc-003",
+      "question": "Which statement correctly describes an enable rule?",
+      "options": [
+        "A rule that automatically selects all choices for a given option",
+        "A rule that creates new choices dynamically during configuration",
+        "A rule that locks choices so they cannot be changed after initial selection",
+        "A rule that makes only specific choices appear in the selection list once a target choice is selected"
+      ],
+      "answerIndex": 3,
+      "rationale": "An enable rule controls which choices appear in a selection list based on other selections. Once a target choice is selected, only the enabled choices become visible, narrowing the available options to valid selections for that context.",
+      "topic": "m3t3"
+    }
+  ]
+}

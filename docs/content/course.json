@@ -21,8 +21,7 @@
       "estimatedMinutes": 25,
       "topicCount": 5,
       "contentFile": "modules/m2-options-and-variants.json",
-      "quizFile": "quizzes/q2-options-and-variants.json",
-      "comingSoon": true
+      "quizFile": "quizzes/q2-options-and-variants.json"
     },
     {
       "id": "m3",
@@ -30,9 +29,9 @@
       "description": "Examine include, exclude, enable, and conditional rules. Explore rule validation and expression aliases.",
       "estimatedMinutes": 20,
       "topicCount": 4,
+      "exerciseTopicStart": 4,
       "contentFile": "modules/m3-rules.json",
-      "quizFile": "quizzes/q3-rules.json",
-      "comingSoon": true
+      "quizFile": "quizzes/q3-rules.json"
     },
     {
       "id": "m4",
@@ -40,9 +39,9 @@
       "description": "Define option sets, explore change management, assign option sets, apply expressions, and use option filters.",
       "estimatedMinutes": 25,
       "topicCount": 5,
+      "exerciseTopicStart": 4,
       "contentFile": "modules/m4-option-sets.json",
-      "quizFile": "quizzes/q4-option-sets.json",
-      "comingSoon": true
+      "quizFile": "quizzes/q4-option-sets.json"
     }
   ]
 }

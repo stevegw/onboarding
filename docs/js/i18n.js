@@ -18,7 +18,7 @@
 
   var OB = window.OB = window.OB || {};
 
-  var SUPPORTED = { en: "English", fr: "Français" };
+  var SUPPORTED = { en: "English", fr: "Français", de: "Deutsch" };
   var LOCALE_KEY = "ob_locale";
   var strings = {};      // current locale strings
   var fallback = {};     // English strings (always loaded)

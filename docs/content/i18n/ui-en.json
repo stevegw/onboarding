@@ -98,5 +98,6 @@
   "error.serverRequired": "Make sure you are serving this from an HTTP server (e.g., python -m http.server). The fetch() API does not work with file:// URLs.",
 
   "locale.en": "English",
-  "locale.fr": "Français"
+  "locale.fr": "Français",
+  "locale.de": "Deutsch"
 }

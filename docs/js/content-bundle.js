@@ -33,8 +33,7 @@
       "estimatedMinutes": 25,
       "topicCount": 5,
       "contentFile": "modules/m2-options-and-variants.json",
-      "quizFile": "quizzes/q2-options-and-variants.json",
-      "comingSoon": true
+      "quizFile": "quizzes/q2-options-and-variants.json"
     },
     {
       "id": "m3",
@@ -42,9 +41,9 @@
       "description": "Examine include, exclude, enable, and conditional rules. Explore rule validation and expression aliases.",
       "estimatedMinutes": 20,
       "topicCount": 4,
+      "exerciseTopicStart": 4,
       "contentFile": "modules/m3-rules.json",
-      "quizFile": "quizzes/q3-rules.json",
-      "comingSoon": true
+      "quizFile": "quizzes/q3-rules.json"
     },
     {
       "id": "m4",
@@ -52,13 +51,12 @@
       "description": "Define option sets, explore change management, assign option sets, apply expressions, and use option filters.",
       "estimatedMinutes": 25,
       "topicCount": 5,
+      "exerciseTopicStart": 4,
       "contentFile": "modules/m4-option-sets.json",
-      "quizFile": "quizzes/q4-option-sets.json",
-      "comingSoon": true
+      "quizFile": "quizzes/q4-option-sets.json"
     }
   ]
 },
-
     "modules/m1-configurable-products.json": {
   "id": "m1",
   "title": "Introduce Configurable Products",
@@ -308,8 +306,15 @@
       "estimatedMinutes": 15,
       "isExercise": true,
       "content": [
-        {"type": "paragraph", "text": "In this exercise, you will explore the PTC Motorcycle product in Windchill to understand how option pools, options, choices, and product structures are organized. You will navigate the Option Pool, examine existing options and their choices, and browse the product structure to identify configurable modules."},
-        {"type": "callout", "variant": "info", "text": "You need access to the Windchill training server to complete this exercise. Sign in as your assigned training user."},
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will explore the PTC Motorcycle product in Windchill to understand how option pools, options, choices, and product structures are organized. You will navigate the Option Pool, examine existing options and their choices, and browse the product structure to identify configurable modules."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "You need access to the Windchill training server to complete this exercise. Sign in as your assigned training user."
+        },
         {
           "type": "exercise",
           "exerciseId": "ex1",
@@ -320,25 +325,77 @@
               "id": "ex1-t1",
               "title": "Access the PTC Motorcycle Option Pool",
               "steps": [
-                {"action": "Sign in to Windchill and navigate to the Browse tab. Go to Products and select PTC Motorcycle.", "detail": "The Products area lists all products you have access to. PTC Motorcycle is the sample configurable product used throughout this course.", "hint": "Use the URL provided by your instructor. Your credentials are typically your training username and password."},
-                {"action": "Click the Option Pool tab on the PTC Motorcycle product page.", "detail": "The Option Pool tab shows all options defined for this product. Each option represents a variable feature of the motorcycle, such as engine size or color.", "hint": "The Option Pool tab is alongside other tabs like Details, Structure, and Change."},
-                {"action": "Examine the list of options displayed in the option pool. Note the option names and how many choices each has.", "detail": "Each option (e.g., Engine Size, Color, Saddle Bag Location) represents a configurable feature. The number of choices per option determines how many variations that feature supports.", "hint": null},
-                {"action": "Click on the Engine Size option to view its choices.", "detail": "Options contain choices that define the valid values for that feature. For Engine Size, you will see choices like 600cc, 1000cc, and 1200cc. Each choice can be assigned to parts in the product structure.", "hint": "Click the option name link or the information icon to open the option details page."},
-                {"action": "Review the choice names, descriptions, and any associated images or attributes for Engine Size.", "detail": "Choices often include descriptions that help users understand what each selection means. Well-documented choices reduce configuration errors during variant generation.", "hint": null},
-                {"action": "Navigate back to the Option Pool and click on the Color option. Examine its choices.", "detail": "Notice how Color choices (e.g., Red, Blue, Black) follow the same structure as Engine Size choices. All options follow a consistent pattern: option name, choice list, and optional descriptions.", "hint": "Use the browser back button or the breadcrumb navigation to return to the Option Pool."},
-                {"action": "Navigate back to the Option Pool and click on Saddle Bag Location. Examine its current choices.", "detail": "Saddle Bag Location controls where saddle bags are mounted on the motorcycle. Notice this option currently has specific location choices. You will modify this option in Exercise 2.", "hint": null}
+                {
+                  "action": "Sign in to Windchill and navigate to the Browse tab. Go to Products and select PTC Motorcycle.",
+                  "detail": "The Products area lists all products you have access to. PTC Motorcycle is the sample configurable product used throughout this course.",
+                  "hint": "Use the URL provided by your instructor. Your credentials are typically your training username and password."
+                },
+                {
+                  "action": "Click the Option Pool tab on the PTC Motorcycle product page.",
+                  "detail": "The Option Pool tab shows all options defined for this product. Each option represents a variable feature of the motorcycle, such as engine size or color.",
+                  "hint": "The Option Pool tab is alongside other tabs like Details, Structure, and Change."
+                },
+                {
+                  "action": "Examine the list of options displayed in the option pool. Note the option names and how many choices each has.",
+                  "detail": "Each option (e.g., Engine Size, Color, Saddle Bag Location) represents a configurable feature. The number of choices per option determines how many variations that feature supports.",
+                  "hint": null
+                },
+                {
+                  "action": "Click on the Engine Size option to view its choices.",
+                  "detail": "Options contain choices that define the valid values for that feature. For Engine Size, you will see choices like 600cc, 1000cc, and 1200cc. Each choice can be assigned to parts in the product structure.",
+                  "hint": "Click the option name link or the information icon to open the option details page."
+                },
+                {
+                  "action": "Review the choice names, descriptions, and any associated images or attributes for Engine Size.",
+                  "detail": "Choices often include descriptions that help users understand what each selection means. Well-documented choices reduce configuration errors during variant generation.",
+                  "hint": null
+                },
+                {
+                  "action": "Navigate back to the Option Pool and click on the Color option. Examine its choices.",
+                  "detail": "Notice how Color choices (e.g., Red, Blue, Black) follow the same structure as Engine Size choices. All options follow a consistent pattern: option name, choice list, and optional descriptions.",
+                  "hint": "Use the browser back button or the breadcrumb navigation to return to the Option Pool."
+                },
+                {
+                  "action": "Navigate back to the Option Pool and click on Saddle Bag Location. Examine its current choices.",
+                  "detail": "Saddle Bag Location controls where saddle bags are mounted on the motorcycle. Notice this option currently has specific location choices. You will modify this option in Exercise 2.",
+                  "hint": null
+                }
               ]
             },
             {
               "id": "ex1-t2",
               "title": "Browse Folders and View Product Structure",
               "steps": [
-                {"action": "Navigate to the Folder tab on the PTC Motorcycle product page. Browse the folder structure.", "detail": "Products organize their content in folders. Browsing folders helps you understand how design data, options, and other artifacts are organized within a product context.", "hint": "The Folder tab may be labeled 'Folder Contents' depending on your Windchill version."},
-                {"action": "Use the Search feature to find a specific part (e.g., search for 'engine' or 'frame').", "detail": "Windchill's search allows you to quickly find parts, documents, and other objects within a product. This is faster than browsing folders when you know what you're looking for.", "hint": "Use the search box at the top of the page, or go to the Search tab. Set the search scope to the current product."},
-                {"action": "Click on a part from the search results to open its details page. Look at the Part Type and other attributes.", "detail": "Each part has a type (e.g., Part, Assembly) and attributes that define its properties. Understanding part types is important because configurable modules must be specific part types.", "hint": null},
-                {"action": "Click the Structure tab for the PTC Motorcycle top-level part to view the product structure.", "detail": "The product structure shows how parts are organized in a parent-child hierarchy. This is the Bill of Materials (BOM). Some sections of this structure are overloaded with multiple design options.", "hint": "Navigate to the top-level PTC Motorcycle part and click the Structure tab."},
-                {"action": "Expand the structure tree and identify parts that are marked as Configurable Modules (look for the configurable module icon or designation).", "detail": "Configurable modules are sections of the structure that contain multiple design variations. They are the key building blocks for product configurability. You can recognize them by their icon or by the 'Configurable Module' designation in the part details.", "hint": "Configurable modules typically appear at major functional boundary points in the structure, such as 'Engine Assembly' or 'Frame Assembly'."},
-                {"action": "Click on a configurable module and examine its child parts. Note how multiple alternative designs appear under the same module.", "detail": "This is the overloaded structure concept from Topic 3. Multiple child parts under a configurable module represent alternative designs. During variant generation, option filters select which child parts to include based on the chosen option values.", "hint": null}
+                {
+                  "action": "Navigate to the Folder tab on the PTC Motorcycle product page. Browse the folder structure.",
+                  "detail": "Products organize their content in folders. Browsing folders helps you understand how design data, options, and other artifacts are organized within a product context.",
+                  "hint": "The Folder tab may be labeled 'Folder Contents' depending on your Windchill version."
+                },
+                {
+                  "action": "Use the Search feature to find a specific part (e.g., search for 'engine' or 'frame').",
+                  "detail": "Windchill's search allows you to quickly find parts, documents, and other objects within a product. This is faster than browsing folders when you know what you're looking for.",
+                  "hint": "Use the search box at the top of the page, or go to the Search tab. Set the search scope to the current product."
+                },
+                {
+                  "action": "Click on a part from the search results to open its details page. Look at the Part Type and other attributes.",
+                  "detail": "Each part has a type (e.g., Part, Assembly) and attributes that define its properties. Understanding part types is important because configurable modules must be specific part types.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the Structure tab for the PTC Motorcycle top-level part to view the product structure.",
+                  "detail": "The product structure shows how parts are organized in a parent-child hierarchy. This is the Bill of Materials (BOM). Some sections of this structure are overloaded with multiple design options.",
+                  "hint": "Navigate to the top-level PTC Motorcycle part and click the Structure tab."
+                },
+                {
+                  "action": "Expand the structure tree and identify parts that are marked as Configurable Modules (look for the configurable module icon or designation).",
+                  "detail": "Configurable modules are sections of the structure that contain multiple design variations. They are the key building blocks for product configurability. You can recognize them by their icon or by the 'Configurable Module' designation in the part details.",
+                  "hint": "Configurable modules typically appear at major functional boundary points in the structure, such as 'Engine Assembly' or 'Frame Assembly'."
+                },
+                {
+                  "action": "Click on a configurable module and examine its child parts. Note how multiple alternative designs appear under the same module.",
+                  "detail": "This is the overloaded structure concept from Topic 3. Multiple child parts under a configurable module represent alternative designs. During variant generation, option filters select which child parts to include based on the chosen option values.",
+                  "hint": null
+                }
               ]
             }
           ]
@@ -357,8 +414,15 @@
       "estimatedMinutes": 15,
       "isExercise": true,
       "content": [
-        {"type": "paragraph", "text": "In this exercise, you will create a new option called Motorcycle Type with two choices, add a new choice to the existing Saddle Bag Location option, and designate a part as a Configurable Module and End Item. These tasks demonstrate how to extend an existing product's configurability."},
-        {"type": "callout", "variant": "warning", "text": "This exercise modifies the product configuration. Follow the steps carefully and use the exact names specified to ensure consistency with later exercises."},
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create a new option called Motorcycle Type with two choices, add a new choice to the existing Saddle Bag Location option, and designate a part as a Configurable Module and End Item. These tasks demonstrate how to extend an existing product's configurability."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "This exercise modifies the product configuration. Follow the steps carefully and use the exact names specified to ensure consistency with later exercises."
+        },
         {
           "type": "exercise",
           "exerciseId": "ex2",
@@ -369,33 +433,93 @@
               "id": "ex2-t1",
               "title": "Create the Motorcycle Type Option with Choices",
               "steps": [
-                {"action": "Navigate to the PTC Motorcycle product and open the Option Pool tab.", "detail": "You will create a new option in this product's option pool. New options extend the configurability of the product by adding new variable features.", "hint": null},
-                {"action": "Click the 'New Option' button (or use the action menu) to create a new option.", "detail": "The New Option action opens a form where you define the option name, description, and initial choices. Each option represents one dimension of product variability.", "hint": "Look for a 'New Option' icon in the toolbar above the option pool table, or right-click for the context menu."},
-                {"action": "Enter 'Motorcycle Type' as the option name and provide a description such as 'Defines the intended use category of the motorcycle'.", "detail": "Clear, descriptive option names help everyone understand what the option controls. The name should be intuitive enough that someone configuring a variant knows exactly what they're choosing.", "hint": null},
-                {"action": "Add the first choice: 'Off Road'. Provide a description such as 'Motorcycle configured for off-road and dirt riding'.", "detail": "Choices define the valid values for an option. Each choice should have a clear name and description. Off Road motorcycles typically have different frame, suspension, and tire specifications.", "hint": "After entering the option details, look for an 'Add Choice' or 'New Choice' action within the option creation form."},
-                {"action": "Add the second choice: 'On Road/Street Legal'. Provide a description such as 'Motorcycle configured for on-road street-legal riding'.", "detail": "On Road/Street Legal motorcycles require different components to meet road regulations, such as lights, mirrors, and specific tire types. These two choices will drive major structural differences in the product.", "hint": null},
-                {"action": "Save the new Motorcycle Type option. Verify it appears in the Option Pool alongside the existing options.", "detail": "After saving, the option and its choices are available for use in option sets and can be assigned to parts in the product structure. The option is now part of the product's configuration vocabulary.", "hint": "If the option doesn't appear immediately, refresh the Option Pool view."}
+                {
+                  "action": "Navigate to the PTC Motorcycle product and open the Option Pool tab.",
+                  "detail": "You will create a new option in this product's option pool. New options extend the configurability of the product by adding new variable features.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the 'New Option' button (or use the action menu) to create a new option.",
+                  "detail": "The New Option action opens a form where you define the option name, description, and initial choices. Each option represents one dimension of product variability.",
+                  "hint": "Look for a 'New Option' icon in the toolbar above the option pool table, or right-click for the context menu."
+                },
+                {
+                  "action": "Enter 'Motorcycle Type' as the option name and provide a description such as 'Defines the intended use category of the motorcycle'.",
+                  "detail": "Clear, descriptive option names help everyone understand what the option controls. The name should be intuitive enough that someone configuring a variant knows exactly what they're choosing.",
+                  "hint": null
+                },
+                {
+                  "action": "Add the first choice: 'Off Road'. Provide a description such as 'Motorcycle configured for off-road and dirt riding'.",
+                  "detail": "Choices define the valid values for an option. Each choice should have a clear name and description. Off Road motorcycles typically have different frame, suspension, and tire specifications.",
+                  "hint": "After entering the option details, look for an 'Add Choice' or 'New Choice' action within the option creation form."
+                },
+                {
+                  "action": "Add the second choice: 'On Road/Street Legal'. Provide a description such as 'Motorcycle configured for on-road street-legal riding'.",
+                  "detail": "On Road/Street Legal motorcycles require different components to meet road regulations, such as lights, mirrors, and specific tire types. These two choices will drive major structural differences in the product.",
+                  "hint": null
+                },
+                {
+                  "action": "Save the new Motorcycle Type option. Verify it appears in the Option Pool alongside the existing options.",
+                  "detail": "After saving, the option and its choices are available for use in option sets and can be assigned to parts in the product structure. The option is now part of the product's configuration vocabulary.",
+                  "hint": "If the option doesn't appear immediately, refresh the Option Pool view."
+                }
               ]
             },
             {
               "id": "ex2-t2",
               "title": "Add a 'Not Used' Choice to Saddle Bag Location",
               "steps": [
-                {"action": "In the Option Pool, click on the existing Saddle Bag Location option to open it.", "detail": "You are modifying an existing option by adding a new choice. This is common as product requirements evolve — new valid values need to be added to existing options.", "hint": null},
-                {"action": "Click the 'New Choice' action to add a choice to Saddle Bag Location.", "detail": "Adding a 'Not Used' choice allows a variant to specify that saddle bags are not included at all. Without this choice, every variant would be forced to have saddle bags in some location.", "hint": "Look for a 'New Choice' or 'Add Choice' button in the option detail view's toolbar."},
-                {"action": "Enter 'Not Used' as the choice name. Add a description such as 'No saddle bags are included on this motorcycle configuration'.", "detail": "A 'Not Used' or 'None' choice is a common pattern in option management. It allows a feature to be explicitly excluded rather than requiring every configuration to include it.", "hint": null},
-                {"action": "Save the new choice and verify it appears in the Saddle Bag Location choice list.", "detail": "The Saddle Bag Location option now has an additional choice. This choice can be used in expressions and rules to control whether saddle bag components are included in a variant's structure.", "hint": null}
+                {
+                  "action": "In the Option Pool, click on the existing Saddle Bag Location option to open it.",
+                  "detail": "You are modifying an existing option by adding a new choice. This is common as product requirements evolve — new valid values need to be added to existing options.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the 'New Choice' action to add a choice to Saddle Bag Location.",
+                  "detail": "Adding a 'Not Used' choice allows a variant to specify that saddle bags are not included at all. Without this choice, every variant would be forced to have saddle bags in some location.",
+                  "hint": "Look for a 'New Choice' or 'Add Choice' button in the option detail view's toolbar."
+                },
+                {
+                  "action": "Enter 'Not Used' as the choice name. Add a description such as 'No saddle bags are included on this motorcycle configuration'.",
+                  "detail": "A 'Not Used' or 'None' choice is a common pattern in option management. It allows a feature to be explicitly excluded rather than requiring every configuration to include it.",
+                  "hint": null
+                },
+                {
+                  "action": "Save the new choice and verify it appears in the Saddle Bag Location choice list.",
+                  "detail": "The Saddle Bag Location option now has an additional choice. This choice can be used in expressions and rules to control whether saddle bag components are included in a variant's structure.",
+                  "hint": null
+                }
               ]
             },
             {
               "id": "ex2-t3",
               "title": "Designate a Part as Configurable Module and End Item",
               "steps": [
-                {"action": "Navigate to the Structure tab and locate the 'small-offroad_standalone' part in the product structure.", "detail": "This part represents a standalone off-road motorcycle subassembly. You will designate it as both a Configurable Module (to enable variant configuration) and an End Item (to indicate it can be independently ordered/manufactured).", "hint": "Use the search function or expand the structure tree to find this part. It may be nested several levels deep."},
-                {"action": "Right-click on the part (or use the actions menu) and select the option to set it as a 'Configurable Module'.", "detail": "Marking a part as a Configurable Module tells Windchill that this section of the structure supports multiple design configurations. Child parts under this module can be filtered using option choices.", "hint": "The action may be under 'Setup' > 'Configurable Module Support' or similar menu path depending on your Windchill version."},
-                {"action": "Similarly, designate the same part as an 'End Item'.", "detail": "An End Item is a product or subassembly that can be independently ordered, manufactured, or delivered. Setting this flag enables the part to appear as a selectable end item in variant generation workflows.", "hint": null},
-                {"action": "Verify the part now shows the Configurable Module icon and End Item designation in the structure view.", "detail": "Visual indicators in the structure view confirm the designations were applied correctly. This part is now ready to participate in option-driven product configuration.", "hint": "Look for updated icons or labels next to the part name in the structure tree."},
-                {"action": "Open the part details and review the attributes to confirm both designations are reflected in the part properties.", "detail": "The part attributes page provides a definitive view of all settings. Confirming here ensures the changes were saved correctly and will behave as expected during variant generation.", "hint": null}
+                {
+                  "action": "Navigate to the Structure tab and locate the 'small-offroad_standalone' part in the product structure.",
+                  "detail": "This part represents a standalone off-road motorcycle subassembly. You will designate it as both a Configurable Module (to enable variant configuration) and an End Item (to indicate it can be independently ordered/manufactured).",
+                  "hint": "Use the search function or expand the structure tree to find this part. It may be nested several levels deep."
+                },
+                {
+                  "action": "Right-click on the part (or use the actions menu) and select the option to set it as a 'Configurable Module'.",
+                  "detail": "Marking a part as a Configurable Module tells Windchill that this section of the structure supports multiple design configurations. Child parts under this module can be filtered using option choices.",
+                  "hint": "The action may be under 'Setup' > 'Configurable Module Support' or similar menu path depending on your Windchill version."
+                },
+                {
+                  "action": "Similarly, designate the same part as an 'End Item'.",
+                  "detail": "An End Item is a product or subassembly that can be independently ordered, manufactured, or delivered. Setting this flag enables the part to appear as a selectable end item in variant generation workflows.",
+                  "hint": null
+                },
+                {
+                  "action": "Verify the part now shows the Configurable Module icon and End Item designation in the structure view.",
+                  "detail": "Visual indicators in the structure view confirm the designations were applied correctly. This part is now ready to participate in option-driven product configuration.",
+                  "hint": "Look for updated icons or labels next to the part name in the structure tree."
+                },
+                {
+                  "action": "Open the part details and review the attributes to confirm both designations are reflected in the part properties.",
+                  "detail": "The part attributes page provides a definitive view of all settings. Confirming here ensures the changes were saved correctly and will behave as expected during variant generation.",
+                  "hint": null
+                }
               ]
             }
           ]
@@ -414,8 +538,15 @@
       "estimatedMinutes": 10,
       "isExercise": true,
       "content": [
-        {"type": "paragraph", "text": "In this exercise, you will explore the Options and Variants preferences at both the site level and the product level. Understanding preference inheritance is important because site-level settings establish defaults that products can override for their specific needs."},
-        {"type": "callout", "variant": "info", "text": "This exercise requires signing in as different users (wcadmin for site-level, Anna Chen for product-level). Your instructor will provide the credentials."},
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will explore the Options and Variants preferences at both the site level and the product level. Understanding preference inheritance is important because site-level settings establish defaults that products can override for their specific needs."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "This exercise requires signing in as different users (wcadmin for site-level, Anna Chen for product-level). Your instructor will provide the credentials."
+        },
         {
           "type": "exercise",
           "exerciseId": "ex3",
@@ -426,31 +557,59 @@
               "id": "ex3-t1",
               "title": "Sign In as Administrator",
               "steps": [
-                {"action": "Sign out of your current session and sign in as 'wcadmin' (the site administrator account).", "detail": "Site administrators have access to site-level preference settings that apply globally across all products. These settings establish the baseline configuration for Options and Variants functionality.", "hint": "The wcadmin password will be provided by your instructor. Use the same Windchill URL."}
+                {
+                  "action": "Sign out of your current session and sign in as 'wcadmin' (the site administrator account).",
+                  "detail": "Site administrators have access to site-level preference settings that apply globally across all products. These settings establish the baseline configuration for Options and Variants functionality.",
+                  "hint": "The wcadmin password will be provided by your instructor. Use the same Windchill URL."
+                }
               ]
             },
             {
               "id": "ex3-t2",
               "title": "View Site-Level Preferences",
               "steps": [
-                {"action": "Navigate to Site > Utilities > Preference Management (or Site > Administration > Preferences depending on your version).", "detail": "Site-level preferences establish the default behavior for all products and contexts in the system. Any preferences set here apply unless overridden at a lower level (organization or product).", "hint": "Look for 'Preference Management' under the Site administration area. You may need to expand the Utilities or Administration section."},
-                {"action": "Search for or navigate to the 'Options and Variants' preference category. Review the available preferences and their current values.", "detail": "Key preferences include 'Configurable Module Support' (must be Yes to use O&V), 'Option Pool Sharing', and various defaults for variant generation behavior. Note which preferences are enabled and which are disabled at the site level.", "hint": "You can filter or search for 'Options' or 'Configurable' in the preference list to find relevant settings."}
+                {
+                  "action": "Navigate to Site > Utilities > Preference Management (or Site > Administration > Preferences depending on your version).",
+                  "detail": "Site-level preferences establish the default behavior for all products and contexts in the system. Any preferences set here apply unless overridden at a lower level (organization or product).",
+                  "hint": "Look for 'Preference Management' under the Site administration area. You may need to expand the Utilities or Administration section."
+                },
+                {
+                  "action": "Search for or navigate to the 'Options and Variants' preference category. Review the available preferences and their current values.",
+                  "detail": "Key preferences include 'Configurable Module Support' (must be Yes to use O&V), 'Option Pool Sharing', and various defaults for variant generation behavior. Note which preferences are enabled and which are disabled at the site level.",
+                  "hint": "You can filter or search for 'Options' or 'Configurable' in the preference list to find relevant settings."
+                }
               ]
             },
             {
               "id": "ex3-t3",
               "title": "Sign In as Product Manager",
               "steps": [
-                {"action": "Sign out of wcadmin and sign in as 'Anna Chen' (or the designated product manager user).", "detail": "Product managers work within specific product contexts and may override site-level preferences for their products. This shows how different roles experience different preference configurations.", "hint": "Anna Chen's username and password will be provided by your instructor."}
+                {
+                  "action": "Sign out of wcadmin and sign in as 'Anna Chen' (or the designated product manager user).",
+                  "detail": "Product managers work within specific product contexts and may override site-level preferences for their products. This shows how different roles experience different preference configurations.",
+                  "hint": "Anna Chen's username and password will be provided by your instructor."
+                }
               ]
             },
             {
               "id": "ex3-t4",
               "title": "View Product-Level Preferences and Compare",
               "steps": [
-                {"action": "Navigate to the PTC Motorcycle product, then access its preference settings (typically under Product Utilities or Product Administration).", "detail": "Product-level preferences override site-level defaults for this specific product context. This allows different products to have different Options and Variants configurations.", "hint": "The path may be Product > Utilities > Preference Management or similar."},
-                {"action": "Find the 'Options and Variants' preferences at the product level. Compare them to the site-level settings you noted earlier.", "detail": "Notice which preferences are inherited from the site level (shown as inherited or grayed out) and which have been explicitly set at the product level. Product-level overrides take precedence over site-level settings for this product only.", "hint": null},
-                {"action": "Note the 'Configurable Module Support' preference value. Confirm it is set to 'Yes' for the PTC Motorcycle product.", "detail": "Configurable Module Support must be enabled (set to 'Yes') for Options and Variants functionality to work within a product. This is the most critical preference — if it is set to 'No', you cannot create configurable modules or use option-based variant generation for that product.", "hint": "If this preference is set at the site level and inherited, it will show as 'Yes (Inherited)'. If set at the product level, it will show as 'Yes' with a product-level indicator."}
+                {
+                  "action": "Navigate to the PTC Motorcycle product, then access its preference settings (typically under Product Utilities or Product Administration).",
+                  "detail": "Product-level preferences override site-level defaults for this specific product context. This allows different products to have different Options and Variants configurations.",
+                  "hint": "The path may be Product > Utilities > Preference Management or similar."
+                },
+                {
+                  "action": "Find the 'Options and Variants' preferences at the product level. Compare them to the site-level settings you noted earlier.",
+                  "detail": "Notice which preferences are inherited from the site level (shown as inherited or grayed out) and which have been explicitly set at the product level. Product-level overrides take precedence over site-level settings for this product only.",
+                  "hint": null
+                },
+                {
+                  "action": "Note the 'Configurable Module Support' preference value. Confirm it is set to 'Yes' for the PTC Motorcycle product.",
+                  "detail": "Configurable Module Support must be enabled (set to 'Yes') for Options and Variants functionality to work within a product. This is the most critical preference — if it is set to 'No', you cannot create configurable modules or use option-based variant generation for that product.",
+                  "hint": "If this preference is set at the site level and inherited, it will show as 'Yes (Inherited)'. If set at the product level, it will show as 'Yes' with a product-level indicator."
+                }
               ]
             }
           ]
@@ -465,7 +624,1147 @@
     }
   ]
 },
-
+    "modules/m2-options-and-variants.json": {
+  "id": "m2",
+  "title": "Review Windchill Options and Variants",
+  "description": "Examine options and variants terminology, discuss options and choices, explore configurable structures, compare configuration approaches, and review key preferences.",
+  "topics": [
+    {
+      "id": "m2t1",
+      "title": "Options and Variants Terminology",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Options and Variants (O&V) in Windchill uses a rich vocabulary of specialized terms. Mastering this terminology is essential before working with configurable products, as these terms appear throughout the Windchill interface and documentation."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Key O&V Terms"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Term", "Category", "Definition"],
+          "rows": [
+            ["Advanced Expression", "Logic", "Includes choices, operators, and functions. Can be assigned to parts and part usage links to define complex selection criteria."],
+            ["Advanced Selection Logic", "Logic", "Logic for a configurable module using parameters and constraints to guide user input during configuration."],
+            ["Basic Expression", "Logic", "Option choices assignable to parts and usage links to specify when a component is included in a variant."],
+            ["Conditional Rule", "Logic", "IF/THEN statements specifying when choices should be included, turned on, or turned off based on other selections."],
+            ["Configurable Module", "Structure", "A Windchill part with child parts representing design variations. The building block for product variability."],
+            ["Configurable Product Structure", "Structure", "A product structure containing configurable modules that support multiple product variants."],
+            ["Enable Rule", "Logic", "Makes only specific choices appear in the selection list once a target choice is selected."],
+            ["Exclude Rule", "Logic", "Restricts selection of incompatible choices, preventing invalid configurations."],
+            ["Include Rule", "Logic", "Associates selection of one choice to automatically include related choices."],
+            ["Option Filter", "Management", "Criteria used to filter a product structure based on choices assigned to parts."],
+            ["Option Manager", "Management", "A Windchill context role responsible for creating options and choices and maintaining option sets."],
+            ["Parameter", "Logic", "An attribute within a configurable module used for advanced selection logic with constraints."],
+            ["Product Family", "Structure", "A set of related products sharing substantial parts, defined by an option set and a configurable product structure."],
+            ["Variant", "Structure", "A part or structure representing a specific configuration, created during the configure process."],
+            ["Variant Specification", "Management", "A record of user inputs (choices and parameter values) used to generate a specific variant."]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "These 15 terms fall into three categories: Structure terms (configurable module, configurable product structure, product family, variant) define how products are organized; Logic terms (expressions, rules, parameters) define how configurations are determined; Management terms (option filter, option manager, variant specification) define how configurations are administered."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Test Your Knowledge"
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each O&V term to its definition:",
+          "pairs": [
+            {"left": "Configurable Module", "right": "A Windchill part with child parts representing design variations"},
+            {"left": "Variant Specification", "right": "A record of user inputs used to generate a specific variant"},
+            {"left": "Exclude Rule", "right": "Restricts selection of incompatible choices"},
+            {"left": "Option Filter", "right": "Criteria to filter product structure based on assigned choices"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Options and Variants has a vocabulary of 15+ specialized terms that you must understand",
+        "Terms fall into three categories: structure (configurable module, product family), logic (expressions, rules, parameters), and management (option filter, option manager)",
+        "Understanding terminology is essential before working with O&V in Windchill"
+      ]
+    },
+    {
+      "id": "m2t2",
+      "title": "Options and Choices",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Options and choices are the fundamental building blocks for defining product variability in Windchill. An option represents a particular product feature, and each option has one or more choices that define the valid values for that feature."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "How Options and Choices Work"
+        },
+        {
+          "type": "paragraph",
+          "text": "An option is a particular product feature that can vary across configurations. Each option has one to many available choices. Options can be marked as required (the user must select a choice) or single selection (only one choice can be selected at a time). Options are applicable to specific product variations, and choices can be assigned to parts, occurrences, or usage links in the product structure."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Option Pool vs. Option Set"
+        },
+        {
+          "type": "paragraph",
+          "text": "Options and choices are organized into two key containers: the option pool and the option set. Understanding the relationship between these two is critical for managing product configurability."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Option Pool",
+              "back": "The option pool contains ALL options and choices defined for a product context. It is the master repository from which option sets draw their content. Think of it as the complete catalog of every possible variable feature."
+            },
+            {
+              "front": "Option Set",
+              "back": "An option set is a curated collection of options, choices, and rules used to define configurations within a specific product family. It is a subset of the option pool, containing only the options relevant to a particular product line or configuration scenario."
+            },
+            {
+              "front": "Why Two Containers?",
+              "back": "The option pool may contain options for many product families. An option set selects only the relevant options for a specific product family. This separation allows reuse -- the same option (e.g., Color) can appear in multiple option sets for different product families."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Remember: the option pool is the superset, and the option set is a curated subset. A product may have many options in its pool, but a specific product family's option set contains only the options relevant to that family's configurations."
+        }
+      ],
+      "keyTakeaways": [
+        "An option represents a variable product feature; each option has one or more choices",
+        "Options can be required or single selection, and choices can be assigned to parts, occurrences, or usage links",
+        "The option pool is the master repository of all options and choices for a product context",
+        "An option set is a curated subset of the option pool used to define configurations for a specific product family"
+      ]
+    },
+    {
+      "id": "m2t3",
+      "title": "Elements of a Configurable Structure",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A configurable structure in Windchill contains both standard parts (present in every variant) and optional parts (included only when specific choices are selected). Three key configurable objects form a hierarchy that defines how product variability is captured and resolved."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Three Configurable Objects"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Object", "Role", "Description"],
+          "rows": [
+            ["Configurable Product", "Top-Level End Item", "The top-level product that represents a collection of product variations. It is the entry point for configuration and contains the full overloaded structure."],
+            ["Configurable Module", "Configurable Component", "A configurable component that captures variability at the component level. Represented by an overloaded structure containing all design variations for that section of the product."],
+            ["Module Variant", "Specific Selection", "The specific parts selected from the optional parts within a configurable module, based on selection criteria and choices. Represents one resolved configuration of a module."]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "An overloaded structure is a structure that contains ALL possible design variations for a configurable module. During the configure process, option filters reduce this overloaded structure down to only the parts needed for a specific configuration, producing a module variant."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Configurable Object Hierarchy"
+        },
+        {
+          "type": "paragraph",
+          "text": "The three configurable objects form a clear hierarchy from broadest to most specific. Understanding this hierarchy is key to working with configurable structures."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the configurable objects from the highest level (broadest) to the lowest level (most specific):",
+          "correctOrder": [
+            "Configurable Product",
+            "Configurable Module",
+            "Module Variant"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Three configurable objects form a hierarchy: Configurable Product, Configurable Module, and Module Variant",
+        "Configurable modules capture variability using overloaded structures that contain all design variations",
+        "Module variants are the specific parts selected from a configurable module after applying option filters",
+        "A configurable structure contains both standard parts (always present) and optional parts (conditionally included)"
+      ]
+    },
+    {
+      "id": "m2t4",
+      "title": "Top-Down and Bottom-Up Configuration",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Windchill supports two approaches for creating configurable products: top-down (starting in Windchill) and bottom-up (starting in Creo). The approach you choose depends on where your product design originates and how your organization manages CAD and PLM data."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Comparing the Two Approaches"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Aspect", "Top-Down (Windchill First)", "Bottom-Up (Creo First)"],
+          "rows": [
+            ["Starting Point", "Create the part structure in Windchill first", "Create the configurable product (overloaded assembly) in Creo first"],
+            ["Option Definition", "Create option pool and option set in Windchill, then assign choices to parts", "Open overloaded assembly in Creo, check in to Windchill, then define options and choices in Windchill"],
+            ["Structure Flow", "Generate CAD structure from Windchill structure, propagate to Creo", "Check in Creo assembly to Windchill, designate as configurable product, assign choices"],
+            ["Configuration", "Configure part structure in Windchill using variant spec, then open in Creo", "Configure variant in Creo, check in to Windchill, verify variant structures"],
+            ["Expression Limitation", "Only basic expressions are passed from Windchill to Creo", "Only basic expressions are passed from Windchill to Creo"],
+            ["Best For", "Organizations where PLM drives the product structure", "Organizations where CAD design drives the product structure"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Top-Down Workflow"
+        },
+        {
+          "type": "paragraph",
+          "text": "In the top-down approach, you start by creating the part structure in Windchill: create the option pool, create the option set, set up configurable modules, and assign choices to parts. Then you generate the CAD structure and configure the part structure. In Creo, you open the configurable product, check it in, configure using a variant specification, and associate the variant."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Bottom-Up Workflow"
+        },
+        {
+          "type": "paragraph",
+          "text": "In the bottom-up approach, you start in Creo by opening the overloaded assembly and checking it in to Windchill. Then in Windchill, you define options and choices, create and assign the option set, designate the configurable product, assign choices, configure, and propagate choices to CAD. Back in Creo, you review choice assignments, configure the variant, and check in. Finally, you verify the variant structures in Windchill."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Regardless of which approach you use, only basic expressions are passed from Windchill to Creo. Advanced expressions remain in Windchill only. This is a critical limitation to keep in mind when planning your configuration strategy."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Match the Steps"
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each step to the correct configuration approach:",
+          "pairs": [
+            {"left": "Create part structure in Windchill first", "right": "Top-Down"},
+            {"left": "Open overloaded assembly in Creo first", "right": "Bottom-Up"},
+            {"left": "Generate CAD structure from Windchill", "right": "Top-Down"},
+            {"left": "Check in Creo assembly to Windchill, then define options", "right": "Bottom-Up"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Top-down configuration starts in Windchill and propagates to Creo; bottom-up starts in Creo and propagates to Windchill",
+        "Only basic expressions transfer between Windchill and Creo -- advanced expressions remain in Windchill only",
+        "Both approaches ultimately end with verified variant structures in both systems",
+        "The choice of approach depends on whether PLM or CAD drives your product structure"
+      ]
+    },
+    {
+      "id": "m2t5",
+      "title": "Options and Variants Preferences",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Windchill uses a set of preferences to control Options and Variants behavior. The most critical preference is Configurable Module Support, which must be set to Yes before any O&V functionality can be used. Preferences follow an inheritance model from higher-level containers to lower-level contexts."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Key O&V Preferences"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Configurable Module Support",
+              "back": "Controls the ability to create optional product structures. Default is No. Must be set to Yes to use any O&V functionality. This is the gatekeeper preference -- if it is No, configurable modules cannot be created."
+            },
+            {
+              "front": "Advanced Logic",
+              "back": "Enables or disables advanced selection logic using parameters and constraints within configurable modules. Required for configure-to-order and engineer-to-order scenarios."
+            },
+            {
+              "front": "Choice Display Format",
+              "back": "Controls how choices are displayed to users during configuration. Options include showing choice name, number, or both. Affects the user experience during variant specification."
+            },
+            {
+              "front": "Supported Expressions",
+              "back": "Determines which expression types are available for use: basic expressions only, or both basic and advanced expressions. Limits the complexity of selection logic that can be authored."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Preference Inheritance and Roles"
+        },
+        {
+          "type": "paragraph",
+          "text": "O&V preferences are inherited from higher-level containers (site level) down to lower-level contexts (organization, product). Preferences set at the site level serve as defaults. Lower-level contexts can override inherited values or leave them as inherited. Preferences can also be locked at a higher level to prevent lower-level overrides."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Role", "Scope", "Capability"],
+          "rows": [
+            ["Site Administrator", "Entire Windchill site", "Sets site-wide default preferences that apply to all organizations and products unless overridden."],
+            ["Organization Administrator", "Specific organization", "Can override site-level preferences for their organization. Settings apply to all products within the organization."],
+            ["Product Manager", "Specific product", "Can override organization-level preferences for their product context. Most granular level of control."],
+            ["Library Manager", "Specific library", "Can override preferences for library contexts, controlling O&V behavior for shared library content."]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "If O&V features are unavailable in a specific product context, the first thing to check is the Configurable Module Support preference. Verify it is set to Yes at the appropriate level (site, organization, or product). Also check whether a higher-level lock is preventing the preference from being changed."
+        }
+      ],
+      "keyTakeaways": [
+        "Configurable Module Support must be set to Yes to use any Options and Variants functionality -- its default is No",
+        "Preferences inherit from higher levels (site) to lower levels (organization, product) and can be locked or overridden",
+        "Four roles can change O&V preferences: Site Administrator, Organization Administrator, Product Manager, and Library Manager",
+        "Understanding preference inheritance is essential for diagnosing O&V issues in specific product contexts"
+      ]
+    }
+  ]
+},
+    "modules/m3-rules.json": {
+  "id": "m3",
+  "title": "Investigate Options and Variants Rules",
+  "description": "Examine include, exclude, enable, and conditional rules. Explore rule validation and expression aliases.",
+  "exerciseTopicStart": 4,
+  "topics": [
+    {
+      "id": "m3t1",
+      "title": "Rule Types and Business Logic",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Options and variants rules define the valid combinations of choices that can be selected together when configuring a product. Windchill provides four types of rules that control how choices interact, ensuring that only valid product configurations can be created."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Four Types of Rules"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Rule Type", "Description", "Example"],
+          "rows": [
+            ["Include Rule", "Associates the selection of one choice to related choices. When a source choice is selected, the target choices are automatically selected as well.", "Country=United States automatically includes Voltage=110 Volts"],
+            ["Exclude Rule", "Restricts incompatible choices from being selected together. When a source choice is selected, the target choices are disallowed.", "Voltage=110V excludes Frequency=50Hz because they are incompatible"],
+            ["Enable Rule", "Makes only specific choices appear for selection once a source choice is selected. Controls which option choices are available depending on a condition.", "Selecting Choice 1 turns on Choices 7, 8, 13 and turns off Choices 9, 12"],
+            ["Conditional Rule", "IF/THEN statements specifying when choices should be included, turned on, or turned off. Provides complex multi-condition logic.", "IF Choices 1 AND 4 are selected, THEN Choices 7, 8, and 13 are turned off"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Business Logic Methods"
+        },
+        {
+          "type": "paragraph",
+          "text": "Windchill provides several methods for implementing business logic that controls product configuration. Each method serves a specific purpose in the overall rule framework:"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Design Option",
+              "back": "Allows actions on options within the option pool. This is the foundation for defining the variable features of a product and the choices available for each feature."
+            },
+            {
+              "front": "Include Rules",
+              "back": "Capture logical associations between product features. When one choice is selected, related choices are automatically included to maintain product integrity."
+            },
+            {
+              "front": "Exclude Rules",
+              "back": "Capture incompatible choices that should not be selected together. Prevents invalid combinations that would result in non-functional or non-manufacturable products."
+            },
+            {
+              "front": "Enable Rules",
+              "back": "Control which option choices are available depending on a condition. Dynamically adjusts the visible choices based on prior selections to guide users toward valid configurations."
+            },
+            {
+              "front": "Conditional Rules",
+              "back": "IF/THEN constructions for choice selection in the Option filter. Provide the most flexible and complex logic for controlling choice interactions across multiple options."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Windchill verifies that new rules do not conflict with or duplicate existing rules. This built-in rule validation prevents contradictory logic that could make certain product configurations impossible or ambiguous."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each rule type to its behavior:",
+          "pairs": [
+            {"left": "Include Rule", "right": "Automatically selects related choices when a source choice is selected"},
+            {"left": "Exclude Rule", "right": "Prevents incompatible choices from being selected together"},
+            {"left": "Enable Rule", "right": "Controls which choices are visible or available based on a condition"},
+            {"left": "Conditional Rule", "right": "Uses IF/THEN logic to turn choices on or off based on multiple conditions"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Four rule types control valid choice combinations: include, exclude, enable, and conditional",
+        "Include rules force related selections to be automatically chosen together",
+        "Exclude rules prevent incompatible combinations from being selected",
+        "Windchill validates rules to prevent conflicts and duplicates"
+      ]
+    },
+    {
+      "id": "m3t2",
+      "title": "Include, Exclude, and Conditional Rules",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Include, exclude, and conditional rules form the core of product configuration logic in Windchill. Each rule type addresses a different aspect of how choices relate to one another, from automatic selection to incompatibility enforcement to complex multi-condition scenarios."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Rule Details and Examples"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Include Rule",
+              "back": "Identifies target choices that are automatically selected when a source choice is selected. For example, when Choice 1 is selected, Choices 7 and 13 are automatically included. This ensures that dependent features are always selected together."
+            },
+            {
+              "front": "Exclude Rule",
+              "back": "Defines incompatible choices that cannot be selected alongside a source choice. For example, when Choice 1 is selected, Choice 9 is disallowed. This prevents users from creating invalid product configurations with conflicting features."
+            },
+            {
+              "front": "Conditional Rule",
+              "back": "Uses IF/THEN logic to handle complex multi-choice scenarios. For example, IF you select Choices 1 and 4, then Choices 7, 8, and 13 are turned off, leaving only Choices 9 and 12 available. This provides the most flexible control over choice interactions."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Include and exclude rules handle simple one-to-one or one-to-many relationships between choices. When you need logic that depends on multiple source choices being selected simultaneously, use conditional rules with IF/THEN statements."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "How the Rules Work Together"
+        },
+        {
+          "type": "paragraph",
+          "text": "In practice, products use a combination of all three rule types. Include rules ensure dependencies are met, exclude rules prevent conflicts, and conditional rules handle the complex interactions that cannot be expressed with simple include or exclude logic. Together, they form a comprehensive constraint system that guides users to valid configurations."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Rule Type", "Source \u2192 Target Behavior", "Use Case"],
+          "rows": [
+            ["Include", "Source selected \u2192 Targets auto-selected", "Dependent features that must always appear together"],
+            ["Exclude", "Source selected \u2192 Targets disallowed", "Incompatible features that cannot coexist"],
+            ["Conditional", "IF multiple sources \u2192 THEN targets on/off", "Complex scenarios where the outcome depends on a combination of selections"]
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Include rules auto-select related choices when a source choice is selected",
+        "Exclude rules prevent conflicting selections from being chosen together",
+        "Conditional rules provide complex IF/THEN logic for multi-choice scenarios"
+      ]
+    },
+    {
+      "id": "m3t3",
+      "title": "Enable Rules and Expression Aliases",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Enable rules and expression aliases extend the rule framework with additional capabilities. Enable rules control the visibility and availability of choices based on prior selections, while expression aliases simplify complex rule authoring by encapsulating reusable logical statements."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Enable Rules"
+        },
+        {
+          "type": "paragraph",
+          "text": "Enable rules control which option choices are available once a source choice is selected. Unlike include or exclude rules that force or prevent selections, enable rules dynamically adjust which choices are visible. For example, selecting Choice 1 turns on Choices 7, 8, and 13 while turning off Choices 9 and 12. Only the enabled choices appear as selectable options during configuration."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Aspect", "Enable Rules", "Conditional Rules"],
+          "rows": [
+            ["Trigger", "Single source choice selection", "Multiple source choices selected (IF/THEN)"],
+            ["Effect", "Turns specific choices on or off for visibility", "Turns choices on or off based on compound conditions"],
+            ["Complexity", "Simple one-to-many visibility control", "Complex multi-condition logic"],
+            ["Primary Use", "Controlling which choices appear based on a single selection", "Handling interactions that depend on combinations of prior selections"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Enable rules are particularly useful when certain choices only make sense in the context of a prior selection. For instance, specific tire sizes may only be relevant when a particular frame type is selected."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Expression Aliases"
+        },
+        {
+          "type": "paragraph",
+          "text": "Expression aliases represent logical statements that can be reused across multiple rules. Common definitions used frequently in product configuration can be captured as aliases, simplifying rule authoring and improving maintainability."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "What Is an Expression Alias?",
+              "back": "An expression alias is a named logical statement that encapsulates a commonly used condition or set of choices. For example, a 'BigTires' alias might represent the set of tire sizes 48IN, 50IN, 52IN, 54IN, and 56IN from the TIRE option."
+            },
+            {
+              "front": "Where Are Aliases Used?",
+              "back": "Expression aliases can be used when authoring conditional rules, advanced expressions, and other aliases. They serve as building blocks for complex configuration logic, reducing duplication and making rules easier to read and maintain."
+            },
+            {
+              "front": "Reusability Across Rules",
+              "back": "Once defined, an alias can be referenced in multiple conditional rules and expressions throughout the product configuration. This means a change to the alias definition automatically propagates to all rules that reference it."
+            },
+            {
+              "front": "License Requirements",
+              "back": "Expression aliases are an advanced capability subject to separate license entitlement. Organizations must have the appropriate Windchill license to create and use expression aliases in their product configurations."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Expression aliases require a separate license entitlement. Verify your organization's Windchill license includes this capability before planning to use aliases in your rule definitions."
+        }
+      ],
+      "keyTakeaways": [
+        "Enable rules control visibility of choices based on a source selection",
+        "Expression aliases simplify complex rule authoring by encapsulating reusable logical statements",
+        "Aliases are reusable across conditional rules and expressions",
+        "Expression aliases require a separate license entitlement"
+      ]
+    },
+    {
+      "id": "m3t4",
+      "title": "Create Include and Exclude Rules",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create include and exclude rules for the PTC Motorcycle product. Anna Chen will navigate the Option Pool to define an include rule that associates Off Road motorcycle type with the correct wheel choices, and an exclude rule that prevents incompatible wheel selections."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "This exercise modifies the product configuration rules. Follow the steps carefully and use the exact names specified to ensure consistency with later exercises."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex4",
+          "title": "Create Include and Exclude Rules",
+          "objective": "Learn how to create include and exclude rules in Windchill by defining logical associations and incompatible choice restrictions for the PTC Motorcycle product.",
+          "tasks": [
+            {
+              "id": "ex4-t1",
+              "title": "Create an Include Rule",
+              "steps": [
+                {
+                  "action": "Navigate to the PTC Motorcycle product and open the Option Pool tab.",
+                  "detail": "You will create an include rule that associates the Off Road motorcycle type with the appropriate wheel choices. Include rules are created from within the Option Pool.",
+                  "hint": null
+                },
+                {
+                  "action": "Expand the Motorcycle Type option in the Option Pool to see its choices.",
+                  "detail": "You should see the Off Road and On Road/Street Legal choices that were created in a previous exercise. The Off Road choice will be the source of the include rule.",
+                  "hint": "Click the expand arrow next to Motorcycle Type to reveal its choices."
+                },
+                {
+                  "action": "Right-click on the 'Off Road' choice and select 'New Include Rule'.",
+                  "detail": "The New Include Rule action opens a dialog where you specify which target choices should be automatically selected when Off Road is chosen. This ensures the correct wheels are always included with an off-road configuration.",
+                  "hint": "The option may be in a context menu or under an Actions dropdown on the choice row."
+                },
+                {
+                  "action": "In the include rule dialog, select the Wheels option and choose 'Off Road Front' and 'Off Road Rear' as the target choices.",
+                  "detail": "By selecting both Off Road Front and Off Road Rear wheels, you are defining that whenever a customer selects the Off Road motorcycle type, both off-road wheel types are automatically included in the configuration.",
+                  "hint": "If the Wheels option does not allow multi-selection, you will need to edit it first (see the next task)."
+                },
+                {
+                  "action": "If the dialog does not allow selecting multiple wheel choices, note the issue and proceed to the next task to edit the Wheels option first.",
+                  "detail": "The Wheels option may be set to Single Selection by default. For an include rule to target multiple choices from the same option, that option must allow multi-selection. This is a common configuration step when setting up include rules.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex4-t2",
+              "title": "Edit Wheels Option and Complete Include Rule",
+              "steps": [
+                {
+                  "action": "In the Option Pool, right-click on the Wheels option and select 'Edit'.",
+                  "detail": "You need to change the Wheels option from single selection to multi-selection so that the include rule can target multiple wheel choices simultaneously.",
+                  "hint": "Look for an Edit action in the context menu or the actions toolbar when the Wheels option is selected."
+                },
+                {
+                  "action": "Change the 'Single Selection' setting from 'Yes' to 'No' and save the change.",
+                  "detail": "Setting Single Selection to No allows multiple choices to be selected for the Wheels option. This is required because the Off Road motorcycle type needs both Off Road Front and Off Road Rear wheels to be selected together.",
+                  "hint": "The Single Selection field may be a checkbox or a dropdown in the option edit form."
+                },
+                {
+                  "action": "Return to the Motorcycle Type option, right-click on 'Off Road', and select 'New Include Rule' again.",
+                  "detail": "Now that the Wheels option supports multi-selection, you can create the include rule that targets both Off Road Front and Off Road Rear wheel choices.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the Wheels option and choose both 'Off Road Front' and 'Off Road Rear' as the target choices. Save the include rule.",
+                  "detail": "The include rule is now complete. Whenever a user selects Off Road as the Motorcycle Type, both Off Road Front and Off Road Rear wheels will be automatically included in the configuration.",
+                  "hint": "Hold Ctrl while clicking to select multiple choices in the target list."
+                },
+                {
+                  "action": "Verify the include rule appears in the Include Rules tab for the Off Road choice.",
+                  "detail": "After saving, the rule should be visible in the rules listing. Confirm that the source is Off Road and the targets are Off Road Front and Off Road Rear.",
+                  "hint": "Navigate to the Off Road choice details and check the Include Rules tab or section."
+                }
+              ]
+            },
+            {
+              "id": "ex4-t3",
+              "title": "Create an Exclude Rule",
+              "steps": [
+                {
+                  "action": "Navigate to the top-level PTC Motorcycle part in the product structure or option pool view.",
+                  "detail": "Exclude rules can be created from the top-level product context. You will create a rule that prevents incompatible wheel choices from being selected with the Off Road motorcycle type.",
+                  "hint": "Select the PTC Motorcycle product at the top level of the structure."
+                },
+                {
+                  "action": "Go to the Exclude Rules tab.",
+                  "detail": "The Exclude Rules tab displays all existing exclude rules for the product and provides actions to create new ones. This centralized view makes it easy to manage all incompatibility rules.",
+                  "hint": "The tab may be alongside Include Rules, Enable Rules, and other rule-related tabs."
+                },
+                {
+                  "action": "Click 'New Exclude Rule' to create a new exclude rule.",
+                  "detail": "You will define an exclude rule that prevents On Road wheels from being selected when the Off Road motorcycle type is chosen, ensuring only compatible wheel types are available.",
+                  "hint": "Look for a 'New Exclude Rule' button or icon in the toolbar above the rules table."
+                },
+                {
+                  "action": "Set the source to Motorcycle Type = Off Road. Set the targets to Wheels = On Road Front and Wheels = On Road Rear.",
+                  "detail": "This exclude rule states: when Off Road is selected as the Motorcycle Type, the On Road Front and On Road Rear wheel choices cannot be selected. This prevents a user from accidentally choosing road wheels for an off-road motorcycle.",
+                  "hint": "Select the source option and choice first, then select the target option and the choices to exclude."
+                },
+                {
+                  "action": "Save the exclude rule and verify it appears in the Exclude Rules tab.",
+                  "detail": "The exclude rule is now active. Combined with the include rule from the previous task, selecting Off Road as the Motorcycle Type will automatically include the off-road wheels and prevent the on-road wheels from being selected.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Include rules auto-select related choices when a source choice is selected",
+        "Options may need editing to support multi-selection for include rules that target multiple choices",
+        "Exclude rules prevent incompatible choices from being selected together",
+        "Rules are created from the Option Pool tabs and the product-level rule tabs"
+      ]
+    }
+  ]
+},
+    "modules/m4-option-sets.json": {
+  "id": "m4",
+  "title": "Explore Option Sets",
+  "description": "Define option sets, explore change management for option sets, assign option sets, apply expressions, and use option filters to generate variants.",
+  "topics": [
+    {
+      "id": "m4t1",
+      "title": "Option Sets and Change Management",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "An option set is a curated collection of options, choices, and rules that defines the configuration vocabulary for a specific product family. While the option pool contains every option ever defined for a product context, an option set selects only the relevant subset needed for a particular product line. Understanding how option sets are managed, versioned, and governed is essential for maintaining reliable product configurations."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What Is an Option Set?"
+        },
+        {
+          "type": "paragraph",
+          "text": "An option set draws its content from the option pool and packages it for use with a specific configurable product or product family. It contains the options, choices, and rules that define valid configurations for that family. A single option pool can feed multiple option sets, each tailored to a different product line. This separation allows organizations to maintain a centralized repository of options while providing focused configuration vocabularies for individual products."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Option Pool vs. Option Set vs. Option Filter"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Concept", "What It Contains", "Scope", "Purpose"],
+          "rows": [
+            ["Option Pool", "All options, choices, and rules defined for a product context", "Entire product context (all product families)", "Master repository of all configurable features available across the organization's products"],
+            ["Option Set", "A curated subset of options, choices, and rules from the option pool", "Specific product family or configurable product", "Defines the valid configuration vocabulary for a particular product line, including applicable rules"],
+            ["Option Filter", "A specific set of choice selections applied to an option set", "A single configuration instance", "Filters an overloaded product structure down to the parts needed for one specific product variant"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Change Management for Option Sets"
+        },
+        {
+          "type": "paragraph",
+          "text": "Option sets in Windchill are managed objects that follow standard change management workflows. This means they support versioning, lifecycle states, and check-in/check-out operations, ensuring that changes to product configuration definitions are controlled and traceable."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Option sets follow the same change management principles as other Windchill objects. They can be checked out for editing, checked in to save changes, versioned to track evolution over time, and governed by lifecycle states (e.g., In Work, Released). This ensures that configuration definitions are always auditable and that unauthorized changes cannot affect released products."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Option Set Governance"
+        },
+        {
+          "type": "paragraph",
+          "text": "Governance of option sets involves controlling who can create, modify, and release them. The Option Manager role is responsible for maintaining option sets, adding or removing options and choices, defining rules, and managing the lifecycle of the option set. Organizations typically establish review and approval processes before an option set is released for production use."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Test Your Knowledge"
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each option set management concept to its description:",
+          "pairs": [
+            {"left": "Option Set Versioning", "right": "Tracks changes to the option set over time, creating a history of configuration definitions"},
+            {"left": "Check-In/Check-Out", "right": "Controls concurrent editing by locking the option set while it is being modified"},
+            {"left": "Lifecycle States", "right": "Governs the maturity of the option set (e.g., In Work, Under Review, Released)"},
+            {"left": "Option Manager Role", "right": "The Windchill role responsible for creating and maintaining option sets and their content"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "An option set is a curated collection of options, choices, and rules drawn from the option pool for a specific product family",
+        "The option pool is the master repository; the option set is a focused subset; the option filter applies specific choices to generate a variant",
+        "Option sets are managed objects with versioning, lifecycle states, and check-in/check-out support",
+        "The Option Manager role is responsible for creating, maintaining, and governing option sets"
+      ]
+    },
+    {
+      "id": "m4t2",
+      "title": "Assigning and Managing Option Sets",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Once an option set has been created and populated with the appropriate options, choices, and rules, it must be assigned to a configurable product or configurable module. The assignment process links the configuration vocabulary to the product structure, enabling option-based variant generation. Proper management of option set membership ensures that products remain configurable as requirements evolve."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Assigning Option Sets"
+        },
+        {
+          "type": "paragraph",
+          "text": "Option sets are assigned to configurable products and configurable modules through the Windchill user interface. A configurable product must have an assigned option set before option filters can be applied or variants can be generated. Configurable modules within the product structure can also have their own option sets, allowing different sections of the product to use different configuration vocabularies when needed."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Key Steps for Assigning Option Sets"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Step 1: Navigate to the Configurable Product",
+              "back": "Open the configurable product in Windchill and locate the actions menu or Option Set tab. The product must already be designated as a Configurable Product before an option set can be assigned to it."
+            },
+            {
+              "front": "Step 2: Select the Assign Option Set Action",
+              "back": "Use the Actions menu or the Option Set tab to initiate the assignment. Windchill presents a list of available option sets from the product context. Only option sets that belong to the same product context (or a shared context) are available for assignment."
+            },
+            {
+              "front": "Step 3: Choose the Appropriate Option Set",
+              "back": "Select the option set that contains the options, choices, and rules relevant to this product family. Review the option set contents to confirm it includes all necessary configuration parameters before completing the assignment."
+            },
+            {
+              "front": "Step 4: Verify the Assignment",
+              "back": "After assignment, verify that the option set appears on the product's Option Set tab. Confirm that the options and choices from the assigned set are now available for use in expressions and option filters on the product structure."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Managing Option Set Membership"
+        },
+        {
+          "type": "paragraph",
+          "text": "As product requirements evolve, option sets must be updated to reflect new options, additional choices, or modified rules. The Option Manager can add new options from the option pool, add new choices to existing options within the set, remove options or choices that are no longer relevant, and update rules to reflect changing business logic. All changes require the option set to be checked out first, and changes are only visible to others after check-in."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Best practice: organize option sets by product family, not by individual product. A well-designed option set covers all configurations within a product family. Avoid creating one option set per product variant, as this defeats the purpose of configurable products and creates unnecessary maintenance overhead."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Order the Assignment Process"
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the steps for assigning an option set to a configurable product in the correct order:",
+          "correctOrder": [
+            "Navigate to the configurable product in Windchill",
+            "Open the Actions menu and select Assign Option Set",
+            "Select the appropriate option set from the available list",
+            "Confirm the assignment and verify the option set appears on the product"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Option sets must be assigned to configurable products before option filters or variant generation can be used",
+        "The assignment process involves navigating to the product, selecting the Assign Option Set action, choosing the set, and verifying",
+        "Option set membership can be updated by adding or removing options, choices, and rules as requirements evolve",
+        "Best practice is to organize option sets by product family rather than by individual product variant"
+      ]
+    },
+    {
+      "id": "m4t3",
+      "title": "Expressions and Option Filters",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Expressions and option filters are the mechanisms that connect option choices to the product structure. Expressions are assigned to parts and usage links to specify when a component should be included in a variant. Option filters use the assigned expressions to evaluate which parts belong in a specific configuration based on the user's choice selections."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Basic vs. Advanced Expressions"
+        },
+        {
+          "type": "paragraph",
+          "text": "Windchill supports two types of expressions for assigning choices to parts and usage links. Basic expressions use simple choice references, while advanced expressions add operators and functions for complex selection logic. The type of expression you use depends on the complexity of your configuration requirements and whether Creo integration is needed."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Aspect", "Basic Expression", "Advanced Expression"],
+          "rows": [
+            ["Syntax", "Simple choice reference (e.g., Color=Red)", "Includes choices, operators (AND, OR, NOT), and functions"],
+            ["Capability", "Assigns a single choice or a simple list of choices to a part or usage link", "Supports complex logical conditions combining multiple options and choices with Boolean operators"],
+            ["Creo Support", "Passed from Windchill to Creo and supported in both systems", "Remains in Windchill only; NOT passed to Creo"],
+            ["Use Cases", "Straightforward configurations where a part is included when a single choice is selected", "Complex configurations where part inclusion depends on combinations of choices across multiple options"],
+            ["Example", "Motorcycle Type = Off Road", "(Motorcycle Type = Off Road) AND (Engine Size = 1200cc)"],
+            ["Preference Required", "Supported Expressions preference set to Basic or Both", "Supported Expressions preference set to Both"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Advanced expressions are NOT passed from Windchill to Creo. If your workflow involves configuring variants in Creo, you must use basic expressions for any choice assignments that need to be visible in Creo. Plan your expression strategy carefully based on your Creo integration requirements."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Option Filters"
+        },
+        {
+          "type": "paragraph",
+          "text": "An option filter is a set of choice selections that is applied to an overloaded product structure to generate a filtered variant. When you create an option filter, you select specific choices for each option in the assigned option set. Windchill then evaluates the expressions on each part and usage link in the structure, including only the parts whose expressions match the selected choices. The result is a reduced structure representing one specific product variant."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Option Filter Concepts"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Creating an Option Filter",
+              "back": "Navigate to the configurable product structure and select the Create Option Filter action. Windchill presents the options from the assigned option set. Select a choice for each option to define the filter criteria. Rules in the option set automatically enforce valid choice combinations."
+            },
+            {
+              "front": "Applying an Option Filter",
+              "back": "Once created, the option filter is applied to the overloaded structure. Windchill evaluates each part's expression against the filter's choices. Parts whose expressions match are included; parts whose expressions do not match are excluded. The result is a filtered structure showing only the components for that specific variant."
+            },
+            {
+              "front": "Variant Specification",
+              "back": "When an option filter is applied to generate a variant, Windchill creates a variant specification that records the exact choices used. This specification enables variant reuse -- if the same choices are requested later, Windchill can find and reuse the existing variant instead of generating a new one."
+            },
+            {
+              "front": "Rule Enforcement During Filtering",
+              "back": "Include, exclude, enable, and conditional rules are enforced during the option filter process. If a user selects a choice that triggers an include rule, the related choices are automatically selected. If a choice violates an exclude rule, it is prevented. This ensures every generated variant is valid."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "The option filter is where everything comes together: the option set provides the vocabulary, expressions link choices to parts, rules enforce valid combinations, and the filter applies specific choices to reduce the overloaded structure into a concrete variant. Mastering option filters is the key to effective product configuration in Windchill."
+        }
+      ],
+      "keyTakeaways": [
+        "Basic expressions use simple choice references and are passed to Creo; advanced expressions use Boolean logic and remain in Windchill only",
+        "Expressions are assigned to parts and usage links to specify when a component is included in a variant",
+        "Option filters apply specific choice selections to an overloaded structure to generate a filtered variant",
+        "Variant specifications record the choices used to generate a variant, enabling reuse of existing variants"
+      ]
+    },
+    {
+      "id": "m4t4",
+      "title": "Assign Option Set and Apply Filter",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will assign an option set to the PTC Motorcycle configurable product and then create and apply an option filter to generate a filtered variant structure. This exercise brings together the concepts from the previous topics: option sets, expressions, and option filters."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "This exercise builds on the previous exercises. Ensure you have completed the option and rule creation exercises before proceeding. The option set referenced in this exercise should already exist in the PTC Motorcycle product context."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex5",
+          "title": "Assign Option Set and Apply Filter",
+          "objective": "Learn to assign an option set to a configurable product and apply an option filter to generate a filtered variant structure.",
+          "tasks": [
+            {
+              "id": "ex5-t1",
+              "title": "Assign the Option Set to the Configurable Product",
+              "steps": [
+                {
+                  "action": "Navigate to the PTC Motorcycle configurable product. Go to Browse > Products and select PTC Motorcycle.",
+                  "detail": "The PTC Motorcycle is the configurable product used throughout this course. You will assign the existing option set to this product so that option filters can be applied to its overloaded structure.",
+                  "hint": "Sign in as Anna Chen or your assigned training user. The PTC Motorcycle should appear in the Products list."
+                },
+                {
+                  "action": "Open the Actions menu on the PTC Motorcycle product page and select 'Assign Option Set'.",
+                  "detail": "The Assign Option Set action links an option set to the configurable product. This action is available from the product-level Actions menu or from the Option Set tab. A product must have an assigned option set before option filters can be created.",
+                  "hint": "If you do not see the Assign Option Set action, verify that the product is designated as a Configurable Product and that you have the appropriate permissions."
+                },
+                {
+                  "action": "In the assignment dialog, select the PTC Motorcycle option set from the list of available option sets.",
+                  "detail": "The dialog displays option sets available in this product context. Select the option set that contains the Motorcycle Type, Engine Size, Color, Wheels, and Saddle Bag Location options along with the include and exclude rules created in previous exercises.",
+                  "hint": "If multiple option sets appear, choose the one that matches the options and rules you created in earlier exercises."
+                },
+                {
+                  "action": "Confirm the assignment and verify that the option set now appears on the PTC Motorcycle Option Set tab.",
+                  "detail": "After assignment, the Option Set tab should display the assigned option set with all its options, choices, and rules. Browse through the options to confirm the Motorcycle Type, Engine Size, Color, Wheels, and Saddle Bag Location options are present with their respective choices.",
+                  "hint": "Click the Option Set tab on the product page. Expand the options to verify choices and rules are intact."
+                }
+              ]
+            },
+            {
+              "id": "ex5-t2",
+              "title": "Create and Apply an Option Filter",
+              "steps": [
+                {
+                  "action": "Navigate to the PTC Motorcycle product structure by clicking the Structure tab.",
+                  "detail": "The Structure tab displays the overloaded product structure containing all possible design variations. You will create an option filter to reduce this structure to a specific variant based on your choice selections.",
+                  "hint": "The Structure tab shows the full Bill of Materials with all configurable modules and their child parts."
+                },
+                {
+                  "action": "Click the 'Create Option Filter' action in the structure view toolbar or Actions menu.",
+                  "detail": "The Create Option Filter action opens a dialog that presents all options from the assigned option set. You will select specific choices for each option to define the filter criteria for the variant you want to generate.",
+                  "hint": "Look for a filter icon or 'Option Filter' action in the toolbar above the structure tree."
+                },
+                {
+                  "action": "Select 'Off Road' for the Motorcycle Type option.",
+                  "detail": "Selecting Off Road defines this variant as an off-road motorcycle configuration. Notice that the include rule you created automatically selects Off Road Front and Off Road Rear for the Wheels option, and the exclude rule prevents On Road Front and On Road Rear from being selected.",
+                  "hint": "Watch the Wheels option choices update automatically as the include and exclude rules are applied."
+                },
+                {
+                  "action": "Select choices for the remaining options: choose an Engine Size (e.g., 1000cc), a Color (e.g., Black), and verify the Saddle Bag Location (e.g., Not Used).",
+                  "detail": "Complete the option filter by selecting a choice for each remaining option. The combination of all choices defines one specific product variant. Rules continue to enforce valid combinations as you make selections.",
+                  "hint": "If certain choices are grayed out or unavailable, check whether a rule is restricting them based on your prior selections."
+                },
+                {
+                  "action": "Click 'Apply' or 'OK' to apply the option filter to the product structure.",
+                  "detail": "Windchill evaluates the expressions assigned to each part and usage link in the overloaded structure against your selected choices. Parts whose expressions match are included in the filtered result; parts that do not match are excluded. The structure view updates to show only the components for this specific variant.",
+                  "hint": "The filtered structure should be noticeably smaller than the full overloaded structure, containing only the parts relevant to the Off Road variant."
+                }
+              ]
+            },
+            {
+              "id": "ex5-t3",
+              "title": "Review the Filtered Structure",
+              "steps": [
+                {
+                  "action": "Examine the filtered structure displayed in the Structure tab. Note which parts are included and which have been removed.",
+                  "detail": "The filtered structure represents the Off Road variant of the PTC Motorcycle. Compare it to the full overloaded structure you saw earlier. Parts associated with on-road components (e.g., on-road wheels, street-legal lighting) should be absent, while off-road-specific parts should be present.",
+                  "hint": "Expand the structure tree to see the full hierarchy of included parts."
+                },
+                {
+                  "action": "Compare the filtered structure to the full overloaded structure by toggling the option filter on and off (if the interface supports it) or by noting the differences.",
+                  "detail": "The overloaded structure contains all possible parts for all variants. The filtered structure contains only the parts for the Off Road configuration you specified. The difference between the two illustrates how option filters reduce complexity by narrowing the structure to a single valid configuration.",
+                  "hint": "Some Windchill versions allow you to clear the filter to return to the full overloaded view. Look for a 'Clear Filter' or 'Show All' action."
+                },
+                {
+                  "action": "Identify which configurable modules were affected by the filter and understand why specific parts were included or excluded based on the choices you selected.",
+                  "detail": "Each configurable module in the structure may have been filtered differently depending on which expressions were assigned to its child parts. For example, the Wheels module should now show only off-road wheel parts because the Off Road Front and Off Road Rear choices were selected (via the include rule) and the on-road choices were excluded.",
+                  "hint": "Click on individual parts to see their assigned expressions and understand why they were included or excluded by the filter."
+                },
+                {
+                  "action": "Note the variant specification that was created. Review the recorded choices to confirm they match your filter selections.",
+                  "detail": "Windchill records a variant specification documenting the exact choices used to generate this variant. This specification enables variant reuse: if someone requests the same combination of choices in the future, Windchill can find this existing variant instead of generating a new one, saving time and ensuring consistency.",
+                  "hint": "Look for a Variant Specification link or tab associated with the filtered structure view."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "An option set must be assigned to a configurable product before option filters can be created",
+        "Creating an option filter involves selecting specific choices for each option in the assigned option set",
+        "Rules are automatically enforced during the filter process, ensuring only valid choice combinations",
+        "The filtered structure shows only the parts relevant to the selected variant, reducing complexity from the full overloaded structure"
+      ]
+    },
+    {
+      "id": "m4t5",
+      "title": "Course Review and Summary",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "This final exercise reviews the key concepts from all four modules of the Options and Configurable Products course. Use this summary to validate your understanding and identify any areas that may need further review before applying these concepts in your day-to-day work with Windchill."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "This is a review exercise. Work through each task to revisit the major concepts from the course. Use the hints to refresh your memory on topics that feel less familiar."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex6",
+          "title": "Course Review and Summary",
+          "objective": "Review the key concepts from all four modules and validate your understanding of Options and Configurable Products.",
+          "tasks": [
+            {
+              "id": "ex6-t1",
+              "title": "Review Key Concepts",
+              "steps": [
+                {
+                  "action": "Recall the five business strategies for product variability: Assemble-to-Order, Assemble-to-Stock, Configure-to-Order, Engineer-to-Order, and Contract.",
+                  "detail": "Each strategy differs in the level of product development involvement per order. Assemble-to-Order requires no engineering involvement per order, while Contract requires full custom engineering. Windchill OCP primarily supports Assemble-to-Order and Configure-to-Order strategies.",
+                  "hint": "The key differentiator is how much engineering involvement is needed for each customer order."
+                },
+                {
+                  "action": "Review the four steps of generic platform design: analyze requirements, assess current products for reuse, create generic product definition, and release and maintain the platform.",
+                  "detail": "Platform design establishes the reusable foundation from which all product variants are derived. A well-designed platform maximizes part reuse and clearly identifies which sections are fixed versus variable.",
+                  "hint": "Always assess existing products for reuse before creating new designs from scratch."
+                },
+                {
+                  "action": "Recall the concept of an overloaded product structure and how it contains all possible design variations for a configurable product.",
+                  "detail": "An overloaded structure includes ALL design alternatives under configurable modules. During variant generation, option filters reduce this structure to only the parts needed for a specific configuration. The overloaded structure is the master structure from which all variants are derived.",
+                  "hint": "Think of the overloaded structure as a superset and the filtered variant as a subset."
+                },
+                {
+                  "action": "Review the three configurable objects and their hierarchy: Configurable Product, Configurable Module, and Module Variant.",
+                  "detail": "The Configurable Product is the top-level end item containing the full overloaded structure. Configurable Modules are sections that capture variability with multiple design alternatives. Module Variants are the specific parts selected from a configurable module after applying option filters.",
+                  "hint": "The hierarchy flows from broadest (Configurable Product) to most specific (Module Variant)."
+                }
+              ]
+            },
+            {
+              "id": "ex6-t2",
+              "title": "Review Options and Variants Setup",
+              "steps": [
+                {
+                  "action": "Review the key O&V terminology: options, choices, option pool, option set, option filter, expressions, variant specification, configurable module, and Option Manager role.",
+                  "detail": "Options represent variable product features, each with one or more choices. The option pool is the master repository; option sets are curated subsets for product families. Option filters apply choices to generate variants. Expressions link choices to parts. Variant specifications record the choices used.",
+                  "hint": "Terms fall into three categories: structure terms, logic terms, and management terms."
+                },
+                {
+                  "action": "Recall the difference between the option pool and the option set, and explain why both are needed.",
+                  "detail": "The option pool contains ALL options and choices for a product context -- it is the master catalog. The option set selects only the relevant options for a specific product family. This separation enables reuse: the same option (e.g., Color) can appear in multiple option sets for different product families without duplication.",
+                  "hint": "The option pool is the superset; the option set is a focused subset tailored for a product family."
+                },
+                {
+                  "action": "Review the two configuration approaches: top-down (Windchill first) and bottom-up (Creo first), and the limitation that only basic expressions transfer to Creo.",
+                  "detail": "Top-down starts with the part structure in Windchill and propagates to Creo. Bottom-up starts with the overloaded assembly in Creo and checks it in to Windchill. Regardless of approach, only basic expressions are passed from Windchill to Creo -- advanced expressions remain in Windchill only.",
+                  "hint": "The approach depends on whether PLM or CAD drives your product structure."
+                },
+                {
+                  "action": "Recall the Configurable Module Support preference and its importance, as well as how preferences inherit from site to organization to product level.",
+                  "detail": "Configurable Module Support must be set to Yes to use any O&V functionality -- its default is No. Preferences inherit from higher levels (site) to lower levels (organization, product) and can be locked or overridden at each level. Site Administrators, Organization Administrators, Product Managers, and Library Managers can modify O&V preferences.",
+                  "hint": "If O&V features are unavailable, the first thing to check is the Configurable Module Support preference at the appropriate level."
+                }
+              ]
+            },
+            {
+              "id": "ex6-t3",
+              "title": "Review Rules and Option Sets",
+              "steps": [
+                {
+                  "action": "Review the four rule types: include rules (auto-select related choices), exclude rules (prevent incompatible choices), enable rules (control choice visibility), and conditional rules (IF/THEN logic).",
+                  "detail": "Include rules force related choices to be selected together. Exclude rules prevent conflicting choices from coexisting. Enable rules dynamically show or hide choices based on prior selections. Conditional rules provide complex multi-condition IF/THEN logic. Windchill validates rules to prevent conflicts and duplicates.",
+                  "hint": "Include and exclude handle simple relationships; enable and conditional handle more complex scenarios."
+                },
+                {
+                  "action": "Review option sets, their change management (versioning, lifecycle states, check-in/check-out), and the process for assigning an option set to a configurable product.",
+                  "detail": "Option sets are managed objects with full change management support. They must be checked out for editing and checked in to save changes. The assignment process involves navigating to the configurable product, selecting Assign Option Set from the Actions menu, choosing the appropriate set, and verifying the assignment.",
+                  "hint": "Option sets follow the same change management workflows as other Windchill objects."
+                },
+                {
+                  "action": "Review expressions (basic vs. advanced) and how they link option choices to parts and usage links in the product structure.",
+                  "detail": "Basic expressions use simple choice references (e.g., Color=Red) and are supported in both Windchill and Creo. Advanced expressions use Boolean operators (AND, OR, NOT) for complex logic but remain in Windchill only. Expressions are assigned to parts and usage links to specify when a component is included in a variant.",
+                  "hint": "Advanced expressions are more powerful but cannot be passed to Creo."
+                },
+                {
+                  "action": "Review option filters and how they bring everything together: option set provides the vocabulary, expressions link choices to parts, rules enforce valid combinations, and the filter reduces the overloaded structure to a specific variant.",
+                  "detail": "Creating an option filter involves selecting choices from the assigned option set. Windchill evaluates each part's expression against the selected choices and includes only matching parts. The result is a filtered structure representing one specific product variant. A variant specification records the choices for future reuse.",
+                  "hint": "The option filter is the culmination of all O&V concepts working together."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The course covers four modules: configurable products overview, options and variants setup, rules, and option sets",
+        "Key concepts include business strategies, platform design, overloaded structures, options, choices, rules, expressions, option sets, and option filters",
+        "Option filters bring all concepts together by applying choices to an overloaded structure to generate specific product variants",
+        "Understanding the full O&V workflow from option pool to variant generation is essential for effective product configuration in Windchill"
+      ]
+    }
+  ]
+},
     "quizzes/q1-configurable-products.json": {
   "moduleId": "m1",
   "title": "Configurable Products Knowledge Check",
@@ -524,33 +1823,242 @@
     }
   ]
 },
-
-    "glossary.json": {
-  "terms": [
-    {"term": "Advanced Expression", "definition": "An expression that includes choices, operators, and functions. Can be assigned to parts and part usage links to specify conditions when a component should be included in the product structure."},
-    {"term": "Basic Expression", "definition": "Option choices that you can assign to parts and part usage links to specify the conditions when a component should be included in the product structure."},
-    {"term": "Configurable Module", "definition": "A Windchill part that may have one or more child parts representing variations in the design and configuration of a component or functional unit."},
-    {"term": "Configurable Product", "definition": "A top-level end item that represents a collection of product variations. An example is a product family with different models sharing some standard components."},
-    {"term": "Configurable Product Structure", "definition": "Includes configurable modules to support the ability to create multiple product variants from the same product structure."},
-    {"term": "Conditional Rule", "definition": "A rule using IF/THEN statements to specify when certain option choices should be included, turned on, or turned off based on other choice selections in the option filter."},
-    {"term": "Enable Rule", "definition": "A rule that makes only specific choices appear for selection once a certain target choice is selected."},
-    {"term": "Exclude Rule", "definition": "A rule that restricts the selection of incompatible choices. For example, selecting 110 Volts prevents selecting 50 Hz frequency."},
-    {"term": "Expression Alias", "definition": "A named logical statement that can be reused when authoring conditional rules, advanced expressions, and other aliases. Captures common definitions for global product management."},
-    {"term": "Include Rule", "definition": "A rule that associates a selection of one option choice to one or more related option choices. Selecting the source choice automatically selects the target choices."},
-    {"term": "Module Variant", "definition": "The specific parts selected from a configurable module's optional parts and components based on selection criteria and choice assignments during variant generation."},
-    {"term": "Option", "definition": "A particular product feature. An option has one or more choices, can be required or single-selection, and is applicable to specific product variations."},
-    {"term": "Option Filter", "definition": "A set of criteria used to filter the product structure based on choices assigned to parts and the usage of a part in a structure."},
-    {"term": "Option Manager", "definition": "A Windchill context role with authority to create options and choices and maintain option sets and other related information."},
-    {"term": "Option Pool", "definition": "A container that holds all available options and their choices for a product. Options and choices are managed within the option pool."},
-    {"term": "Option Set", "definition": "A subset of options and choices from one or more option pools, used to define variations within a product family. Option sets are change-managed objects."},
-    {"term": "Parameter", "definition": "An attribute defined locally within the context of a configurable module to support advanced selection logic during the part configuration process."},
-    {"term": "Product Family", "definition": "A set of related products that offer a range of capabilities and share a substantial percentage of the same parts."},
-    {"term": "Variant", "definition": "A part or part structure representing a specific configuration of a configurable product structure, created during a configure process."},
-    {"term": "Variant Specification", "definition": "A record of user inputs of option choices and parameter values provided during a configure process, used to generate a variant part structure."},
-    {"term": "Configurable Module Support", "definition": "A Windchill preference that controls the ability to create optional product structures. Must be set to Yes to use Options and Variants functionality."}
+    "quizzes/q2-options-and-variants.json": {
+  "moduleId": "m2",
+  "title": "Options and Variants Knowledge Check",
+  "questions": [
+    {
+      "id": "m2-kc-001",
+      "question": "Which statement correctly describes an option in Windchill Options and Variants?",
+      "options": [
+        "A container that holds all choices defined for every product in the system",
+        "A record of user inputs used to generate a specific variant",
+        "A curated collection of rules assigned to a product family",
+        "A particular product feature that can vary across configurations, with one or more available choices"
+      ],
+      "answerIndex": 3,
+      "rationale": "An option represents a particular product feature that can vary across configurations and has one or more choices defining valid values. Option A describes an option pool, option B describes a variant specification, and option C describes an option set (partially).",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-002",
+      "question": "What is the relationship between an option pool and an option set?",
+      "options": [
+        "They are identical containers used interchangeably",
+        "The option pool is a subset of the option set for a product family",
+        "The option set is a curated subset of the option pool, containing only options relevant to a specific product family",
+        "The option pool contains rules while the option set contains choices"
+      ],
+      "answerIndex": 2,
+      "rationale": "The option pool is the master repository of ALL options and choices for a product context, while an option set is a curated subset containing only the options relevant to a specific product family's configurations.",
+      "topic": "m2t2"
+    },
+    {
+      "id": "m2-kc-003",
+      "question": "Which configurable object represents the specific parts selected from optional parts within a configurable module?",
+      "options": [
+        "Configurable Product",
+        "Module Variant",
+        "Option Filter",
+        "Configurable Module"
+      ],
+      "answerIndex": 1,
+      "rationale": "A Module Variant represents the specific parts selected from the optional parts within a configurable module, based on selection criteria and choices. The Configurable Product is the top-level end item, the Configurable Module captures variability at the component level, and an Option Filter is the criteria used to filter the structure.",
+      "topic": "m2t3"
+    },
+    {
+      "id": "m2-kc-004",
+      "question": "What is a key limitation when using either top-down or bottom-up configuration approaches with Creo?",
+      "options": [
+        "Bottom-up configurations cannot use option sets",
+        "Top-down configurations require manual CAD updates",
+        "Only basic expressions are passed from Windchill to Creo \u2014 advanced expressions remain in Windchill only",
+        "Top-down and bottom-up configurations cannot produce the same variant results"
+      ],
+      "answerIndex": 2,
+      "rationale": "Regardless of which approach is used (top-down or bottom-up), only basic expressions are passed from Windchill to Creo. Advanced expressions remain in Windchill only. This is a critical limitation to consider when planning configuration strategy.",
+      "topic": "m2t4"
+    }
   ]
 },
-
+    "quizzes/q3-rules.json": {
+  "moduleId": "m3",
+  "title": "Options and Variants Rules Knowledge Check",
+  "questions": [
+    {
+      "id": "m3-kc-001",
+      "question": "What is the primary purpose of Options and Variants rules?",
+      "options": [
+        "To define the visual appearance of configurable modules in the structure tree",
+        "To restrict user access to specific options and choices based on their role",
+        "To enforce business logic that governs valid relationships between choices and parts",
+        "To automatically create new options when a product family is released"
+      ],
+      "answerIndex": 2,
+      "rationale": "O&V rules enforce business logic that governs valid relationships between choices and parts. They ensure that only valid combinations of choices can be selected and that the correct parts are included in variant structures.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-002",
+      "question": "What happens when an exclude rule is triggered during configuration?",
+      "options": [
+        "The excluded choice is automatically selected",
+        "The excluded choice is removed from the option pool permanently",
+        "The excluded choice becomes unavailable, preventing the user from selecting an incompatible combination",
+        "The excluded choice triggers a workflow for engineering review"
+      ],
+      "answerIndex": 2,
+      "rationale": "An exclude rule restricts the selection of incompatible choices. When triggered, the excluded choice becomes unavailable in the selection list, preventing the user from creating an invalid configuration.",
+      "topic": "m3t2"
+    },
+    {
+      "id": "m3-kc-003",
+      "question": "Which statement correctly describes an enable rule?",
+      "options": [
+        "A rule that automatically selects all choices for a given option",
+        "A rule that creates new choices dynamically during configuration",
+        "A rule that locks choices so they cannot be changed after initial selection",
+        "A rule that makes only specific choices appear in the selection list once a target choice is selected"
+      ],
+      "answerIndex": 3,
+      "rationale": "An enable rule controls which choices appear in a selection list based on other selections. Once a target choice is selected, only the enabled choices become visible, narrowing the available options to valid selections for that context.",
+      "topic": "m3t3"
+    }
+  ]
+},
+    "quizzes/q4-option-sets.json": {
+  "moduleId": "m4",
+  "title": "Option Sets Knowledge Check",
+  "questions": [
+    {
+      "id": "m4-kc-001",
+      "question": "Which statement correctly describes an option set?",
+      "options": [
+        "A master repository containing all options and choices for every product in the system",
+        "A curated collection of options, choices, and rules used to define configurations within a specific product family",
+        "A filter that removes invalid choices from the option pool during configuration",
+        "A report showing all variant specifications generated for a product"
+      ],
+      "answerIndex": 1,
+      "rationale": "An option set is a curated collection of options, choices, and rules used to define configurations within a specific product family. Option A describes an option pool, option C describes an option filter, and option D describes a variant report.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-002",
+      "question": "What must happen before an option set can be used for product configuration?",
+      "options": [
+        "The option set must be exported to a CAD system first",
+        "The option set must be assigned to a configurable product or configurable module",
+        "The option set must be approved by a site administrator only",
+        "The option set must contain at least ten options to be valid"
+      ],
+      "answerIndex": 1,
+      "rationale": "An option set must be assigned to a configurable product or configurable module before it can be used for configuration. This assignment establishes the link between the set of available options and the product structure that will be configured.",
+      "topic": "m4t2"
+    },
+    {
+      "id": "m4-kc-003",
+      "question": "What is the purpose of an option filter in Windchill?",
+      "options": [
+        "To permanently delete choices from the option pool that are no longer needed",
+        "To create new variants automatically without user input",
+        "To filter a configurable product structure based on choices assigned to parts, producing a variant",
+        "To restrict which users can access the option set management interface"
+      ],
+      "answerIndex": 2,
+      "rationale": "An option filter uses criteria based on selected choices to filter a configurable product structure, including only the parts whose assigned choices match the selections. This is how an overloaded structure is reduced to a specific variant.",
+      "topic": "m4t3"
+    }
+  ]
+},
+    "glossary.json": {
+  "terms": [
+    {
+      "term": "Advanced Expression",
+      "definition": "An expression that includes choices, operators, and functions. Can be assigned to parts and part usage links to specify conditions when a component should be included in the product structure."
+    },
+    {
+      "term": "Basic Expression",
+      "definition": "Option choices that you can assign to parts and part usage links to specify the conditions when a component should be included in the product structure."
+    },
+    {
+      "term": "Configurable Module",
+      "definition": "A Windchill part that may have one or more child parts representing variations in the design and configuration of a component or functional unit."
+    },
+    {
+      "term": "Configurable Product",
+      "definition": "A top-level end item that represents a collection of product variations. An example is a product family with different models sharing some standard components."
+    },
+    {
+      "term": "Configurable Product Structure",
+      "definition": "Includes configurable modules to support the ability to create multiple product variants from the same product structure."
+    },
+    {
+      "term": "Conditional Rule",
+      "definition": "A rule using IF/THEN statements to specify when certain option choices should be included, turned on, or turned off based on other choice selections in the option filter."
+    },
+    {
+      "term": "Enable Rule",
+      "definition": "A rule that makes only specific choices appear for selection once a certain target choice is selected."
+    },
+    {
+      "term": "Exclude Rule",
+      "definition": "A rule that restricts the selection of incompatible choices. For example, selecting 110 Volts prevents selecting 50 Hz frequency."
+    },
+    {
+      "term": "Expression Alias",
+      "definition": "A named logical statement that can be reused when authoring conditional rules, advanced expressions, and other aliases. Captures common definitions for global product management."
+    },
+    {
+      "term": "Include Rule",
+      "definition": "A rule that associates a selection of one option choice to one or more related option choices. Selecting the source choice automatically selects the target choices."
+    },
+    {
+      "term": "Module Variant",
+      "definition": "The specific parts selected from a configurable module's optional parts and components based on selection criteria and choice assignments during variant generation."
+    },
+    {
+      "term": "Option",
+      "definition": "A particular product feature. An option has one or more choices, can be required or single-selection, and is applicable to specific product variations."
+    },
+    {
+      "term": "Option Filter",
+      "definition": "A set of criteria used to filter the product structure based on choices assigned to parts and the usage of a part in a structure."
+    },
+    {
+      "term": "Option Manager",
+      "definition": "A Windchill context role with authority to create options and choices and maintain option sets and other related information."
+    },
+    {
+      "term": "Option Pool",
+      "definition": "A container that holds all available options and their choices for a product. Options and choices are managed within the option pool."
+    },
+    {
+      "term": "Option Set",
+      "definition": "A subset of options and choices from one or more option pools, used to define variations within a product family. Option sets are change-managed objects."
+    },
+    {
+      "term": "Parameter",
+      "definition": "An attribute defined locally within the context of a configurable module to support advanced selection logic during the part configuration process."
+    },
+    {
+      "term": "Product Family",
+      "definition": "A set of related products that offer a range of capabilities and share a substantial percentage of the same parts."
+    },
+    {
+      "term": "Variant",
+      "definition": "A part or part structure representing a specific configuration of a configurable product structure, created during a configure process."
+    },
+    {
+      "term": "Variant Specification",
+      "definition": "A record of user inputs of option choices and parameter values provided during a configure process, used to generate a variant part structure."
+    },
+    {
+      "term": "Configurable Module Support",
+      "definition": "A Windchill preference that controls the ability to create optional product structures. Must be set to Yes to use Options and Variants functionality."
+    }
+  ]
+},
     "i18n/ui-en.json": {
   "app.title": "Windchill OCP",
   "app.subtitle": "Onboarding",
@@ -560,6 +2068,7 @@
   "app.resetConfirm": "Reset all progress and notes?",
   "app.openMenu": "Open menu",
   "app.toggleTheme": "Toggle theme",
+
   "sidebar.dashboard": "Dashboard",
   "sidebar.modules": "Modules",
   "sidebar.resources": "Resources",
@@ -568,6 +2077,7 @@
   "sidebar.comingSoon": "Coming soon",
   "sidebar.topicLabel": "Topic {mod}.{topic}",
   "sidebar.exerciseLabel": "Exercise {num}",
+
   "dashboard.continueLabel": "Continue where you left off",
   "dashboard.statComplete": "Complete",
   "dashboard.statTopics": "Topics",
@@ -581,6 +2091,7 @@
   "dashboard.routeModule": "Module {label}",
   "dashboard.routeQuiz": "Quiz {label}",
   "dashboard.routeGlossary": "Glossary",
+
   "topic.breadcrumbDashboard": "Dashboard",
   "topic.breadcrumbModule": "Module {num}",
   "topic.topicNum": "Topic {mod}.{topic}",
@@ -604,7 +2115,7 @@
   "topic.stepsProgress": "{done}/{total} steps",
   "topic.doThis": "Do This",
   "topic.whyItMatters": "Why It Matters",
-  "topic.doneNextStep": "Done — Next Step",
+  "topic.doneNextStep": "Done \u2014 Next Step",
   "topic.topicsComplete": "{done}/{total} topics complete",
   "topic.moduleBadge": "Module {num}",
   "topic.topics": "Topics",
@@ -613,6 +2124,7 @@
   "topic.knowledgeCheck": "Module {num} Knowledge Check",
   "topic.quizBest": "Best: {score}/{total}",
   "topic.quizNotAttempted": "Not attempted yet",
+
   "quiz.moduleKnowledgeCheck": "Module {num} Knowledge Check",
   "quiz.questionProgress": "Question {current} of {total}",
   "quiz.previous": "Previous",
@@ -631,19 +2143,24 @@
   "quiz.notAvailable": "Quiz not available yet.",
   "quiz.topicNotFound": "Topic not found.",
   "quiz.moduleNotFound": "Module not found.",
+
   "glossary.title": "Glossary",
   "glossary.subtitle": "Options and Configurable Products terminology ({count} terms)",
   "glossary.searchPlaceholder": "Search terms...",
   "glossary.noResults": "No terms match your search.",
   "glossary.notAvailable": "Glossary not available.",
+
   "notepad.title": "Notes",
   "notepad.placeholder": "Take notes as you learn...",
   "notepad.charCount": "{count} chars",
   "notepad.openNotepad": "Open notepad",
+
   "error.loadingContent": "Error Loading Content",
   "error.serverRequired": "Make sure you are serving this from an HTTP server (e.g., python -m http.server). The fetch() API does not work with file:// URLs.",
+
   "locale.en": "English",
-  "locale.fr": "Français"
+  "locale.fr": "Fran\u00e7ais",
+  "locale.de": "Deutsch"
 }
   };
 })();

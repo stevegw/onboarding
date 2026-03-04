@@ -1,0 +1,58 @@
+{
+  "moduleId": "m1",
+  "title": "Wissensüberprüfung Konfigurierbare Produkte",
+  "questions": [
+    {
+      "id": "m1-kc-001",
+      "question": "Welche Aussage beschreibt den Geschäftsansatz Auftragskonfiguration (Configure-to-Order) korrekt?",
+      "options": [
+        "Eine Strategie zur Entwicklung von Produkten mit einer endlichen Liste diskreter Optionsauswahlmöglichkeiten für wichtige Produktmerkmale.",
+        "Eine Strategie zur Entwicklung flexibler Produkte, die konfiguriert oder an die individuellen Bedürfnisse jedes Kundenauftrags angepasst werden können.",
+        "Eine Strategie, bei der ein allgemeines Produkt mit Beteiligung der Konstruktion an die individuellen Kundenanforderungen angepasst wird.",
+        "Eine Strategie zur kundenspezifischen Entwicklung und Fertigung eines Produkts, um die einzigartigen Anforderungen eines bestimmten Kunden zu erfüllen."
+      ],
+      "answerIndex": 1,
+      "rationale": "Auftragskonfiguration bedeutet speziell, flexible Produkte zu entwickeln, die konfiguriert oder an die individuellen Kundenbedürfnisse angepasst werden können, typischerweise unter Verwendung eines Konfigurators mit Regeln. Option A beschreibt Auftragsmontage, Option C beschreibt Auftragskonstruktion und Option D beschreibt Vertragsentwicklung.",
+      "topic": "m1t1"
+    },
+    {
+      "id": "m1-kc-002",
+      "question": "Was ist der erste Schritt im Prozess des generischen Plattformdesigns?",
+      "options": [
+        "Die generische Produktdefinition erstellen",
+        "Vorhandene Produkte auf Wiederverwendung prüfen",
+        "Anforderungen an die Plattformoptionalität analysieren",
+        "Die Plattform freigeben und pflegen"
+      ],
+      "answerIndex": 2,
+      "rationale": "Der Plattformdesignprozess beginnt mit der Analyse der Anforderungen. Sie müssen verstehen, welche Optionen erforderlich sind, bevor Sie Wiederverwendungsmöglichkeiten bewerten oder etwas aufbauen.",
+      "topic": "m1t2"
+    },
+    {
+      "id": "m1-kc-003",
+      "question": "Was ist eine überladene Produktstruktur?",
+      "options": [
+        "Eine Produktstruktur mit zu vielen Teilen, um sie effizient zu verwalten",
+        "Eine Struktur, in der Abschnitte mehrere Designs enthalten, um verschiedene Fähigkeitsstufen zu erfüllen",
+        "Eine Struktur, die mehrfach exportiert und reimportiert wurde",
+        "Eine Produktstruktur, die die maximale Anzahl konfigurierbarer Module überschreitet"
+      ],
+      "answerIndex": 1,
+      "rationale": "Eine überladene Produktstruktur enthält mehrere Designs innerhalb desselben Abschnitts, um eine Reihe von Optionen zu unterstützen. Während der Variantengenerierung wird die Struktur auf die spezifischen Designs gefiltert, die für eine bestimmte Konfiguration benötigt werden.",
+      "topic": "m1t3"
+    },
+    {
+      "id": "m1-kc-004",
+      "question": "Welche Windchill-Fähigkeit wird hauptsächlich für Auftragsmontage- und Lagermontage-Strategien verwendet?",
+      "options": [
+        "Parameter für erweiterte Auswahllogik",
+        "Workflowbasierte Genehmigungsprozesse",
+        "Optionen und Auswahlmöglichkeiten zum Filtern einer überladenen Produktstruktur",
+        "CAD-gesteuerte Produktkonfiguration"
+      ],
+      "answerIndex": 2,
+      "rationale": "Auftragsmontage- und Lagermontage-Strategien verwenden Optionen und Auswahlmöglichkeiten zum Filtern einer überladenen Produktstruktur. Parameter werden zusätzlich für Auftragskonfigurations- und Auftragskonstruktionsstrategien verwendet, die eine erweiterte Auswahllogik benötigen.",
+      "topic": "m1t4"
+    }
+  ]
+}

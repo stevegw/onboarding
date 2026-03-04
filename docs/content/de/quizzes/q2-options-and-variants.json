@@ -1,0 +1,58 @@
+{
+  "moduleId": "m2",
+  "title": "Wissensüberprüfung Optionen und Varianten",
+  "questions": [
+    {
+      "id": "m2-kc-001",
+      "question": "Welche Aussage beschreibt eine Option in Windchill Optionen und Varianten korrekt?",
+      "options": [
+        "Ein Behälter, der alle für jedes Produkt im System definierten Auswahlmöglichkeiten enthält",
+        "Eine Aufzeichnung der Benutzereingaben zur Generierung einer bestimmten Variante",
+        "Eine kuratierte Sammlung von Regeln, die einer Produktfamilie zugewiesen sind",
+        "Ein bestimmtes Produktmerkmal, das über Konfigurationen variieren kann, mit einer oder mehreren verfügbaren Auswahlmöglichkeiten"
+      ],
+      "answerIndex": 3,
+      "rationale": "Eine Option repräsentiert ein bestimmtes Produktmerkmal, das über Konfigurationen variieren kann und eine oder mehrere Auswahlmöglichkeiten hat, die gültige Werte definieren. Option A beschreibt einen Optionspool, Option B beschreibt eine Variantenspezifikation und Option C beschreibt einen Optionssatz (teilweise).",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-002",
+      "question": "Was ist die Beziehung zwischen einem Optionspool und einem Optionssatz?",
+      "options": [
+        "Sie sind identische Behälter, die austauschbar verwendet werden",
+        "Der Optionspool ist eine Teilmenge des Optionssatzes für eine Produktfamilie",
+        "Der Optionssatz ist eine kuratierte Teilmenge des Optionspools, die nur die für eine bestimmte Produktfamilie relevanten Optionen enthält",
+        "Der Optionspool enthält Regeln, während der Optionssatz Auswahlmöglichkeiten enthält"
+      ],
+      "answerIndex": 2,
+      "rationale": "Der Optionspool ist das Hauptverzeichnis ALLER Optionen und Auswahlmöglichkeiten für einen Produktkontext, während ein Optionssatz eine kuratierte Teilmenge ist, die nur die für die Konfigurationen einer bestimmten Produktfamilie relevanten Optionen enthält.",
+      "topic": "m2t2"
+    },
+    {
+      "id": "m2-kc-003",
+      "question": "Welches konfigurierbare Objekt repräsentiert die spezifischen Teile, die aus den optionalen Teilen innerhalb eines konfigurierbaren Moduls ausgewählt werden?",
+      "options": [
+        "Konfigurierbares Produkt",
+        "Modulvariante",
+        "Optionsfilter",
+        "Konfigurierbares Modul"
+      ],
+      "answerIndex": 1,
+      "rationale": "Eine Modulvariante repräsentiert die spezifischen Teile, die aus den optionalen Teilen innerhalb eines konfigurierbaren Moduls ausgewählt werden, basierend auf Auswahlkriterien und Auswahlmöglichkeiten. Das Konfigurierbare Produkt ist das Endprodukt der obersten Ebene, das Konfigurierbare Modul erfasst Variabilität auf Komponentenebene und ein Optionsfilter sind die Kriterien zum Filtern der Struktur.",
+      "topic": "m2t3"
+    },
+    {
+      "id": "m2-kc-004",
+      "question": "Was ist eine wesentliche Einschränkung bei der Verwendung von Top-Down- oder Bottom-Up-Konfigurationsansätzen mit Creo?",
+      "options": [
+        "Bottom-Up-Konfigurationen können keine Optionssätze verwenden",
+        "Top-Down-Konfigurationen erfordern manuelle CAD-Aktualisierungen",
+        "Nur Grundausdrücke werden von Windchill an Creo übergeben — erweiterte Ausdrücke verbleiben nur in Windchill",
+        "Top-Down- und Bottom-Up-Konfigurationen können nicht dieselben Variantenergebnisse liefern"
+      ],
+      "answerIndex": 2,
+      "rationale": "Unabhängig vom verwendeten Ansatz (Top-Down oder Bottom-Up) werden nur Grundausdrücke von Windchill an Creo übergeben. Erweiterte Ausdrücke verbleiben nur in Windchill. Dies ist eine wichtige Einschränkung, die bei der Planung der Konfigurationsstrategie zu berücksichtigen ist.",
+      "topic": "m2t4"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "moduleId": "m3",
+  "title": "Contrôle des connaissances : Règles des options et variantes",
+  "questions": [
+    {
+      "id": "m3-kc-001",
+      "question": "Quel est l'objectif principal des règles des Options et Variantes ?",
+      "options": [
+        "Définir l'apparence visuelle des modules configurables dans l'arborescence de la structure",
+        "Restreindre l'accès des utilisateurs à des options et choix spécifiques en fonction de leur rôle",
+        "Appliquer la logique métier qui régit les relations valides entre les choix et les articles",
+        "Créer automatiquement de nouvelles options lorsqu'une famille de produits est publiée"
+      ],
+      "answerIndex": 2,
+      "rationale": "Les règles O&V appliquent la logique métier qui régit les relations valides entre les choix et les articles. Elles garantissent que seules des combinaisons de choix valides peuvent être sélectionnées et que les articles corrects sont inclus dans les structures de variantes.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-002",
+      "question": "Que se passe-t-il lorsqu'une règle d'exclusion est déclenchée pendant la configuration ?",
+      "options": [
+        "Le choix exclu est automatiquement sélectionné",
+        "Le choix exclu est supprimé définitivement du pool d'options",
+        "Le choix exclu devient indisponible, empêchant l'utilisateur de sélectionner une combinaison incompatible",
+        "Le choix exclu déclenche un workflow de revue d'ingénierie"
+      ],
+      "answerIndex": 2,
+      "rationale": "Une règle d'exclusion restreint la sélection de choix incompatibles. Lorsqu'elle est déclenchée, le choix exclu devient indisponible dans la liste de sélection, empêchant l'utilisateur de créer une configuration invalide.",
+      "topic": "m3t2"
+    },
+    {
+      "id": "m3-kc-003",
+      "question": "Quelle affirmation décrit correctement une règle d'activation ?",
+      "options": [
+        "Une règle qui sélectionne automatiquement tous les choix d'une option donnée",
+        "Une règle qui crée dynamiquement de nouveaux choix pendant la configuration",
+        "Une règle qui verrouille les choix pour qu'ils ne puissent pas être modifiés après la sélection initiale",
+        "Une règle qui fait apparaître uniquement des choix spécifiques dans la liste de sélection une fois qu'un choix cible est sélectionné"
+      ],
+      "answerIndex": 3,
+      "rationale": "Une règle d'activation contrôle quels choix apparaissent dans une liste de sélection en fonction d'autres sélections. Une fois qu'un choix cible est sélectionné, seuls les choix activés deviennent visibles, restreignant les options disponibles aux sélections valides pour ce contexte.",
+      "topic": "m3t3"
+    }
+  ]
+}
