@@ -1,0 +1,47 @@
+{
+  "id": "wc-ocp1",
+  "title": "Windchill：选项和可配置产品 1",
+  "description": "学习可配置产品的业务方法，探索选项和变体术语，研究规则，并掌握选项集。",
+  "prerequisite": "Windchill：BOM 重构",
+  "modules": [
+    {
+      "id": "m1",
+      "title": "可配置产品简介",
+      "description": "研究产品可变性的业务策略、产品平台、产品变体以及 Windchill 配置方法。",
+      "estimatedMinutes": 55,
+      "topicCount": 7,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m1-configurable-products.json",
+      "quizFile": "quizzes/q1-configurable-products.json"
+    },
+    {
+      "id": "m2",
+      "title": "了解 Windchill 选项和变体",
+      "description": "研究选项和变体术语，讨论选项和选择项，探索首选项，并创建可配置模块。",
+      "estimatedMinutes": 25,
+      "topicCount": 5,
+      "contentFile": "modules/m2-options-and-variants.json",
+      "quizFile": "quizzes/q2-options-and-variants.json"
+    },
+    {
+      "id": "m3",
+      "title": "研究选项和变体规则",
+      "description": "研究包含规则、排除规则、启用规则和条件规则。探索规则验证和表达式别名。",
+      "estimatedMinutes": 20,
+      "topicCount": 4,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m3-rules.json",
+      "quizFile": "quizzes/q3-rules.json"
+    },
+    {
+      "id": "m4",
+      "title": "探索选项集",
+      "description": "定义选项集，探索变更管理，分配选项集，应用表达式，并使用选项过滤器。",
+      "estimatedMinutes": 25,
+      "topicCount": 5,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m4-option-sets.json",
+      "quizFile": "quizzes/q4-option-sets.json"
+    }
+  ]
+}

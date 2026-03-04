@@ -1,0 +1,47 @@
+{
+  "id": "wc-ocp1",
+  "title": "Windchill: Opciones y Productos Configurables 1",
+  "description": "Aprenda los enfoques de negocio para productos configurables, explore la terminología de opciones y variantes, investigue las reglas y domine los conjuntos de opciones.",
+  "prerequisite": "Windchill: Reestructuración de BOM",
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Introducción a los productos configurables",
+      "description": "Examine las estrategias de negocio para la variabilidad de productos, las plataformas de producto, las variantes de producto y los enfoques de configuración en Windchill.",
+      "estimatedMinutes": 55,
+      "topicCount": 7,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m1-configurable-products.json",
+      "quizFile": "quizzes/q1-configurable-products.json"
+    },
+    {
+      "id": "m2",
+      "title": "Revisar las opciones y variantes de Windchill",
+      "description": "Examine la terminología de opciones y variantes, analice las opciones y elecciones, explore las preferencias y cree módulos configurables.",
+      "estimatedMinutes": 25,
+      "topicCount": 5,
+      "contentFile": "modules/m2-options-and-variants.json",
+      "quizFile": "quizzes/q2-options-and-variants.json"
+    },
+    {
+      "id": "m3",
+      "title": "Investigar las reglas de opciones y variantes",
+      "description": "Examine las reglas de inclusión, exclusión, habilitación y condicionales. Explore la validación de reglas y los alias de expresiones.",
+      "estimatedMinutes": 20,
+      "topicCount": 4,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m3-rules.json",
+      "quizFile": "quizzes/q3-rules.json"
+    },
+    {
+      "id": "m4",
+      "title": "Explorar los conjuntos de opciones",
+      "description": "Defina los conjuntos de opciones, explore la gestión de cambios, asigne conjuntos de opciones, aplique expresiones y utilice filtros de opciones.",
+      "estimatedMinutes": 25,
+      "topicCount": 5,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m4-option-sets.json",
+      "quizFile": "quizzes/q4-option-sets.json"
+    }
+  ]
+}

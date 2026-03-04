@@ -2,7 +2,7 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-family: 'Segoe UI', system-ui, -apple-system, 'Noto Sans CJK JP', 'Hiragino Sans', 'Microsoft YaHei', 'Malgun Gothic', sans-serif;
   background: var(--c-bg-base);
   color: var(--c-text);
   line-height: 1.6;
@@ -69,4 +69,10 @@ a:hover { text-decoration: underline; }
   .app { flex-direction: column; height: auto; min-height: 100vh; }
   .mobile-menu-btn { display: flex; }
   .main { margin-left: 0 !important; padding: 52px 16px 32px; height: auto; min-height: 100vh; overflow: visible; }
+}
+
+/* CJK word-break overrides */
+html[lang="ja"] *, html[lang="zh"] *, html[lang="ko"] * {
+  word-break: break-word;
+  overflow-wrap: break-word;
 }

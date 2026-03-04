@@ -1,0 +1,567 @@
+{
+  "id": "m1",
+  "title": "Introducción a los productos configurables",
+  "description": "Examine las estrategias de negocio para la variabilidad de productos, analice las consideraciones para plataformas y variantes de producto, y examine los enfoques de configuración de productos con Windchill.",
+  "topics": [
+    {
+      "id": "m1t1",
+      "title": "Estrategias de negocio para la variabilidad de productos",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Las empresas manufactureras utilizan diferentes estrategias de negocio para entregar productos con componentes opcionales y personalizables. Comprender estas estrategias es el primer paso para configurar Windchill según sus necesidades de variabilidad de producto."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Cinco estrategias de negocio"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Estrategia", "Descripción", "Ejemplo"],
+          "rows": [
+            ["Ensamblaje bajo pedido", "Diseñar productos con una lista finita de elecciones de opciones discretas para las características clave. La fabricación se ejecuta sin la participación del desarrollo de producto.", "Vehículos de pasajeros, equipos pesados, computadoras"],
+            ["Ensamblaje para stock", "Diseñar un producto general con varias variaciones discretas compuestas por cambios menores en las características.", "Productos de consumo en múltiples colores y tallas (ropa, electrodomésticos)"],
+            ["Configuración bajo pedido", "Diseñar productos flexibles que pueden configurarse o personalizarse para satisfacer las necesidades únicas del cliente mediante un configurador con reglas.", "Equipos industriales, software empresarial con opciones interdependientes"],
+            ["Ingeniería bajo pedido", "Similar a la configuración bajo pedido, pero requiere la participación del equipo de ingeniería para la validación y el diseño personalizado por pedido.", "Sistemas complejos (turbinas, componentes aeronáuticos) que requieren revisión de ingeniería"],
+            ["Contrato", "Diseño y fabricación completamente personalizados según las especificaciones del cliente. Producto único por contrato.", "Diseños únicos -- sistemas de defensa, infraestructura personalizada"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "El diferenciador clave entre estas estrategias es el nivel de participación del desarrollo de producto por pedido. El ensamblaje bajo pedido no requiere ninguna, mientras que el contrato requiere ingeniería completamente personalizada para cada cliente."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Asocie cada escenario con la estrategia de negocio correcta:",
+          "pairs": [
+            {"left": "Un fabricante de automóviles ofrece paquetes con opciones predefinidas como Deportivo, Lujo y Base", "right": "Ensamblaje bajo pedido"},
+            {"left": "Una empresa de turbinas diseña cada producto con revisión de ingeniería según las especificaciones del cliente", "right": "Ingeniería bajo pedido"},
+            {"left": "Una marca de ropa produce camisas en 5 colores y 4 tallas", "right": "Ensamblaje para stock"},
+            {"left": "Un contratista de defensa construye un sistema de radar único para un contrato militar", "right": "Contrato"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Existen cinco estrategias de negocio principales, desde el ensamblaje para stock (menos personalización) hasta el contrato (completamente personalizado)",
+        "La elección de la estrategia determina cuánta participación del desarrollo de producto se necesita por pedido",
+        "Windchill OCP soporta principalmente las estrategias de ensamblaje bajo pedido y configuración bajo pedido"
+      ]
+    },
+    {
+      "id": "m1t2",
+      "title": "Diseño de plataforma genérica",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Antes de crear variantes de producto, las empresas primero establecen una plataforma de producto genérica. Esta plataforma sirve como la base de la cual se derivan todas las variaciones de producto."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Cuatro pasos del diseño de plataforma"
+        },
+        {
+          "type": "paragraph",
+          "text": "La fase de diseño de plataforma sigue un proceso estructurado para crear una base de producto reutilizable:"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Paso 1: Analizar los requisitos de opcionalidad de la plataforma",
+              "back": "Analizar los requisitos del nuevo producto e identificar las opciones necesarias para satisfacer esos requisitos. Determinar qué debe ser variable frente a lo que es fijo."
+            },
+            {
+              "front": "Paso 2: Evaluar los productos existentes para reutilización",
+              "back": "Investigar los diseños de variantes existentes para su reutilización y revisar nuevos conceptos. Aprovechar lo que ya existe antes de crear nuevos diseños."
+            },
+            {
+              "front": "Paso 3: Crear la definición genérica del producto",
+              "back": "Desarrollar el marco para soportar la opcionalidad del producto. Reutilizar artículos, opciones y reglas existentes. Definir nuevas reglas y lógica para la selección de opciones de producto. Evaluar e iterar según sea necesario."
+            },
+            {
+              "front": "Paso 4: Liberar y mantener la plataforma",
+              "back": "Tras un diseño y validación exitosos, liberar la plataforma genérica a la planificación de fabricación o a fabricación. Gestionar y modificar la plataforma según sea necesario a lo largo del tiempo."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Una plataforma bien diseñada maximiza la reutilización entre variantes. El objetivo es hacer que las piezas comunes sean verdaderamente comunes e identificar claramente las secciones variables."
+        }
+      ],
+      "keyTakeaways": [
+        "El diseño de plataforma es un prerrequisito para la generación de variantes",
+        "Siempre evaluar los productos existentes para reutilización antes de crear nuevos diseños",
+        "El marco de la plataforma define qué artículos son fijos y cuáles son variables"
+      ]
+    },
+    {
+      "id": "m1t3",
+      "title": "Generación de variantes",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Una vez que existe una plataforma genérica, se pueden generar variantes de producto específicas para satisfacer los requisitos del mercado o del cliente. El proceso de generación de variantes se basa en la plataforma para crear productos configurados."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Pasos de la generación de variantes"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Paso 1: Analizar los requisitos específicos de la variante",
+              "back": "Analizar las necesidades específicas del mercado o del cliente. ¿Qué necesita este cliente o segmento de mercado en particular que difiere de la plataforma base?"
+            },
+            {
+              "front": "Paso 2: Evaluar las plataformas actuales para reutilización",
+              "back": "Evaluar las plataformas genéricas existentes para seleccionar la más adecuada para los requisitos. Elegir la plataforma que requiera la menor personalización."
+            },
+            {
+              "front": "Paso 3: Crear la definición de la variante",
+              "back": "Definir la configuración de la variante y generar los entregables como estructuras de artículos y documentación. Modificar el diseño específico de la variante según sea necesario."
+            },
+            {
+              "front": "Paso 4: Liberar y mantener la variante",
+              "back": "Una vez generada y aprobada la variante, liberarla a fabricación. Mantener y modificar la definición de la variante según sea necesario."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Gestión de productos configurables"
+        },
+        {
+          "type": "paragraph",
+          "text": "Las empresas adoptan prácticas comunes de la industria para gestionar la información de producto a lo largo del proceso de diseño y generación de variantes:"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Práctica", "Descripción"],
+          "rows": [
+            ["Estructura modular de producto", "Descomponer el producto en secciones modulares que soportan funciones específicas. Los módulos pueden compartirse entre productos."],
+            ["Estructura de producto sobrecargada", "Las secciones de la estructura contienen múltiples diseños para satisfacer diferentes niveles de capacidad para esa función."],
+            ["Gestión de opciones", "Definir opciones y elecciones para identificar características variables. Asignar elecciones a diseños en secciones sobrecargadas para controlar la selección."],
+            ["Estructura de pedido", "Una estructura de artículos sin opciones adicionales, que refleja un pedido de venta específico. Analizada, probada y validada."]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Una estructura sobrecargada es un concepto clave: contiene TODAS las variaciones de diseño posibles. Durante la generación de variantes, la estructura sobrecargada se filtra para incluir solo los artículos necesarios para una configuración específica."
+        }
+      ],
+      "keyTakeaways": [
+        "La generación de variantes sigue cuatro pasos que reflejan el proceso de diseño de plataforma",
+        "Siempre evaluar las plataformas existentes antes de construir una nueva variante desde cero",
+        "Las estructuras de producto sobrecargadas contienen todas las variaciones posibles; los filtros de opciones las reducen a configuraciones específicas"
+      ]
+    },
+    {
+      "id": "m1t4",
+      "title": "Configuración de producto en Windchill",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Windchill proporciona capacidades específicas para soportar su estrategia de negocio para entregar productos configurables. Comprender cómo las estrategias de negocio se asignan a las funcionalidades de Windchill es esencial para una implementación exitosa."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Estrategias de negocio asignadas a Windchill"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Enfoque de negocio", "Capacidad de Windchill", "Cómo funciona"],
+          "rows": [
+            ["Ensamblaje bajo pedido / Ensamblaje para stock", "Opciones y elecciones para filtrado", "Las opciones y elecciones filtran una estructura de producto sobrecargada. Los pedidos se crean típicamente mediante un configurador de ventas externo (EBP) o en Windchill (EPS)."],
+            ["Configuración bajo pedido / Ingeniería bajo pedido", "Opciones basadas en lista + parámetros", "Las opciones basadas en lista filtran la estructura, mientras que los parámetros proporcionan lógica de selección avanzada para configuración adicional."]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Capacidades de Windchill para la variabilidad de producto"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Estructura de producto configurable",
+              "back": "Los artículos de Windchill pueden definirse como configurables, designando secciones destinadas a tener múltiples diseños. Soporta estructuras modulares y sobrecargadas."
+            },
+            {
+              "front": "Opciones para lógica de selección por filtrado",
+              "back": "Definir una lista de opciones y elecciones fijas que describen configuraciones discretas. Reutilizables entre productos, con reglas que restringen las combinaciones válidas."
+            },
+            {
+              "front": "Lógica de selección avanzada (Parámetros)",
+              "back": "Los parámetros proporcionan lógica de selección avanzada utilizando restricciones para guiar la entrada del usuario durante la configuración. Va más allá de las simples listas de opciones/elecciones."
+            },
+            {
+              "front": "Combinación de filtrado y selección avanzada",
+              "back": "Primero filtrar una estructura sobrecargada usando opciones basadas en lista, luego configurar adicionalmente usando parámetros. Proporciona la máxima flexibilidad."
+            },
+            {
+              "front": "Generación y reutilización de variantes",
+              "back": "Crear y actualizar variantes usando lógica de filtrado y selección. Windchill registra las elecciones de opciones en una especificación de variante y busca variantes existentes para habilitar la reutilización."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "El enfoque combinado es el más poderoso: usar opciones para manejar el filtrado amplio (\"¿Qué motor?\"), luego parámetros para la configuración detallada (\"¿Qué tamaño de cilindro?\"). Este enfoque en dos etapas cubre la mayoría de los casos reales de variabilidad de producto."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Asocie cada capacidad de Windchill con su propósito principal:",
+          "pairs": [
+            {"left": "Opciones y elecciones", "right": "Filtrar estructuras sobrecargadas usando selecciones discretas"},
+            {"left": "Parámetros", "right": "Proporcionar lógica de selección avanzada con restricciones"},
+            {"left": "Especificación de variante", "right": "Registrar las entradas utilizadas para generar una variante específica"},
+            {"left": "Módulo configurable", "right": "Designar secciones de producto con múltiples variaciones de diseño"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "El ensamblaje bajo pedido/para stock usa opciones y elecciones para filtrado; la configuración/ingeniería bajo pedido agrega parámetros",
+        "Las opciones y los parámetros pueden combinarse para una configurabilidad máxima",
+        "Windchill registra las especificaciones de variante para habilitar la reutilización de variantes entre pedidos"
+      ]
+    },
+    {
+      "id": "m1t5",
+      "title": "Examinar opciones y elecciones existentes",
+      "estimatedMinutes": 15,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "En este ejercicio, explorará el producto PTC Motorcycle en Windchill para comprender cómo se organizan los pools de opciones, las opciones, las elecciones y las estructuras de producto. Navegará por el Pool de Opciones, examinará las opciones existentes y sus elecciones, y explorará la estructura del producto para identificar módulos configurables."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Necesita acceso al servidor de formación de Windchill para completar este ejercicio. Inicie sesión con su usuario de formación asignado."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex1",
+          "title": "Examinar opciones y elecciones existentes",
+          "objective": "Comprender cómo se organizan los pools de opciones, las opciones, las elecciones y las estructuras de producto en Windchill explorando el producto PTC Motorcycle.",
+          "tasks": [
+            {
+              "id": "ex1-t1",
+              "title": "Acceder al Pool de Opciones de PTC Motorcycle",
+              "steps": [
+                {
+                  "action": "Inicie sesión en Windchill y navegue a la pestaña Explorar. Vaya a Productos y seleccione PTC Motorcycle.",
+                  "detail": "El área de Productos lista todos los productos a los que tiene acceso. PTC Motorcycle es el producto configurable de ejemplo utilizado a lo largo de este curso.",
+                  "hint": "Use la URL proporcionada por su instructor. Sus credenciales son típicamente su nombre de usuario y contraseña de formación."
+                },
+                {
+                  "action": "Haga clic en la pestaña Pool de Opciones en la página del producto PTC Motorcycle.",
+                  "detail": "La pestaña Pool de Opciones muestra todas las opciones definidas para este producto. Cada opción representa una característica variable de la motocicleta, como el tamaño del motor o el color.",
+                  "hint": "La pestaña Pool de Opciones está junto a otras pestañas como Detalles, Estructura y Cambios."
+                },
+                {
+                  "action": "Examine la lista de opciones mostradas en el pool de opciones. Note los nombres de las opciones y cuántas elecciones tiene cada una.",
+                  "detail": "Cada opción (por ej., Tamaño del Motor, Color, Ubicación de Alforjas) representa una característica configurable. El número de elecciones por opción determina cuántas variaciones soporta esa característica.",
+                  "hint": null
+                },
+                {
+                  "action": "Haga clic en la opción Tamaño del Motor para ver sus elecciones.",
+                  "detail": "Las opciones contienen elecciones que definen los valores válidos para esa característica. Para Tamaño del Motor, verá elecciones como 600cc, 1000cc y 1200cc. Cada elección puede asignarse a artículos en la estructura del producto.",
+                  "hint": "Haga clic en el enlace del nombre de la opción o en el icono de información para abrir la página de detalles de la opción."
+                },
+                {
+                  "action": "Revise los nombres de las elecciones, las descripciones y cualquier imagen o atributo asociado para Tamaño del Motor.",
+                  "detail": "Las elecciones a menudo incluyen descripciones que ayudan a los usuarios a comprender lo que significa cada selección. Las elecciones bien documentadas reducen los errores de configuración durante la generación de variantes.",
+                  "hint": null
+                },
+                {
+                  "action": "Navegue de vuelta al Pool de Opciones y haga clic en la opción Color. Examine sus elecciones.",
+                  "detail": "Observe cómo las elecciones de Color (por ej., Rojo, Azul, Negro) siguen la misma estructura que las elecciones de Tamaño del Motor. Todas las opciones siguen un patrón consistente: nombre de la opción, lista de elecciones y descripciones opcionales.",
+                  "hint": "Use el botón Atrás del navegador o la navegación de migas de pan para volver al Pool de Opciones."
+                },
+                {
+                  "action": "Navegue de vuelta al Pool de Opciones y haga clic en Ubicación de Alforjas. Examine sus elecciones actuales.",
+                  "detail": "Ubicación de Alforjas controla dónde se montan las alforjas en la motocicleta. Observe que esta opción actualmente tiene elecciones de ubicación específicas. Modificará esta opción en el Ejercicio 2.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex1-t2",
+              "title": "Explorar carpetas y ver la estructura del producto",
+              "steps": [
+                {
+                  "action": "Navegue a la pestaña Carpeta en la página del producto PTC Motorcycle. Explore la estructura de carpetas.",
+                  "detail": "Los productos organizan su contenido en carpetas. Explorar las carpetas le ayuda a comprender cómo se organizan los datos de diseño, las opciones y otros artefactos dentro del contexto de un producto.",
+                  "hint": "La pestaña Carpeta puede etiquetarse como 'Contenido de Carpeta' dependiendo de su versión de Windchill."
+                },
+                {
+                  "action": "Use la función de Búsqueda para encontrar un artículo específico (por ej., busque 'motor' o 'chasis').",
+                  "detail": "La búsqueda de Windchill le permite encontrar rápidamente artículos, documentos y otros objetos dentro de un producto. Esto es más rápido que explorar carpetas cuando sabe lo que está buscando.",
+                  "hint": "Use el cuadro de búsqueda en la parte superior de la página, o vaya a la pestaña Buscar. Establezca el alcance de búsqueda al producto actual."
+                },
+                {
+                  "action": "Haga clic en un artículo de los resultados de búsqueda para abrir su página de detalles. Observe el Tipo de Artículo y otros atributos.",
+                  "detail": "Cada artículo tiene un tipo (por ej., Pieza, Ensamblaje) y atributos que definen sus propiedades. Comprender los tipos de artículos es importante porque los módulos configurables deben ser tipos de artículos específicos.",
+                  "hint": null
+                },
+                {
+                  "action": "Haga clic en la pestaña Estructura del artículo de nivel superior PTC Motorcycle para ver la estructura del producto.",
+                  "detail": "La estructura del producto muestra cómo se organizan los artículos en una jerarquía padre-hijo. Esta es la Lista de Materiales (BOM). Algunas secciones de esta estructura están sobrecargadas con múltiples opciones de diseño.",
+                  "hint": "Navegue al artículo de nivel superior PTC Motorcycle y haga clic en la pestaña Estructura."
+                },
+                {
+                  "action": "Expanda el árbol de estructura e identifique los artículos marcados como Módulos Configurables (busque el icono o designación de módulo configurable).",
+                  "detail": "Los módulos configurables son secciones de la estructura que contienen múltiples variaciones de diseño. Son los bloques de construcción clave para la configurabilidad del producto. Puede reconocerlos por su icono o por la designación 'Módulo Configurable' en los detalles del artículo.",
+                  "hint": "Los módulos configurables típicamente aparecen en los puntos de frontera funcional principales de la estructura, como 'Ensamblaje del Motor' o 'Ensamblaje del Chasis'."
+                },
+                {
+                  "action": "Haga clic en un módulo configurable y examine sus artículos secundarios. Observe cómo aparecen múltiples diseños alternativos bajo el mismo módulo.",
+                  "detail": "Este es el concepto de estructura sobrecargada del Tema 3. Múltiples artículos secundarios bajo un módulo configurable representan diseños alternativos. Durante la generación de variantes, los filtros de opciones seleccionan qué artículos secundarios incluir según los valores de opciones elegidos.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Los pools de opciones organizan todas las opciones y elecciones de un producto en una sola ubicación",
+        "Cada opción representa una característica variable con una o más elecciones",
+        "La estructura del producto utiliza módulos configurables para contener múltiples variaciones de diseño (estructura sobrecargada)",
+        "Las elecciones de opciones se asignan a artículos en la estructura para controlar qué diseños se seleccionan durante la generación de variantes"
+      ]
+    },
+    {
+      "id": "m1t6",
+      "title": "Crear una nueva opción y módulo configurable",
+      "estimatedMinutes": 15,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "En este ejercicio, creará una nueva opción llamada Tipo de Motocicleta con dos elecciones, añadirá una nueva elección a la opción Ubicación de Alforjas existente, y designará un artículo como Módulo Configurable y Artículo Final. Estas tareas demuestran cómo ampliar la configurabilidad de un producto existente."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Este ejercicio modifica la configuración del producto. Siga los pasos cuidadosamente y use los nombres exactos especificados para garantizar la consistencia con ejercicios posteriores."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex2",
+          "title": "Crear una nueva opción y módulo configurable",
+          "objective": "Aprender a crear nuevas opciones y elecciones, añadir elecciones a opciones existentes y designar artículos como módulos configurables en Windchill.",
+          "tasks": [
+            {
+              "id": "ex2-t1",
+              "title": "Crear la opción Tipo de Motocicleta con elecciones",
+              "steps": [
+                {
+                  "action": "Navegue al producto PTC Motorcycle y abra la pestaña Pool de Opciones.",
+                  "detail": "Creará una nueva opción en el pool de opciones de este producto. Las nuevas opciones amplían la configurabilidad del producto al añadir nuevas características variables.",
+                  "hint": null
+                },
+                {
+                  "action": "Haga clic en el botón 'Nueva Opción' (o use el menú de acciones) para crear una nueva opción.",
+                  "detail": "La acción Nueva Opción abre un formulario donde define el nombre de la opción, la descripción y las elecciones iniciales. Cada opción representa una dimensión de variabilidad del producto.",
+                  "hint": "Busque un icono de 'Nueva Opción' en la barra de herramientas sobre la tabla del pool de opciones, o haga clic derecho para el menú contextual."
+                },
+                {
+                  "action": "Ingrese 'Motorcycle Type' como nombre de la opción y proporcione una descripción como 'Define la categoría de uso prevista de la motocicleta'.",
+                  "detail": "Los nombres de opciones claros y descriptivos ayudan a todos a comprender qué controla la opción. El nombre debe ser lo suficientemente intuitivo para que alguien que configure una variante sepa exactamente qué está eligiendo.",
+                  "hint": null
+                },
+                {
+                  "action": "Añada la primera elección: 'Off Road'. Proporcione una descripción como 'Motocicleta configurada para conducción todo terreno y en tierra'.",
+                  "detail": "Las elecciones definen los valores válidos para una opción. Cada elección debe tener un nombre y una descripción claros. Las motocicletas Off Road típicamente tienen diferentes especificaciones de chasis, suspensión y neumáticos.",
+                  "hint": "Después de ingresar los detalles de la opción, busque una acción 'Añadir Elección' o 'Nueva Elección' dentro del formulario de creación de opción."
+                },
+                {
+                  "action": "Añada la segunda elección: 'On Road/Street Legal'. Proporcione una descripción como 'Motocicleta configurada para conducción en carretera con homologación vial'.",
+                  "detail": "Las motocicletas On Road/Street Legal requieren componentes diferentes para cumplir con las regulaciones viales, como luces, espejos y tipos de neumáticos específicos. Estas dos elecciones generarán diferencias estructurales importantes en el producto.",
+                  "hint": null
+                },
+                {
+                  "action": "Guarde la nueva opción Motorcycle Type. Verifique que aparece en el Pool de Opciones junto con las opciones existentes.",
+                  "detail": "Después de guardar, la opción y sus elecciones están disponibles para su uso en conjuntos de opciones y pueden asignarse a artículos en la estructura del producto. La opción ahora forma parte del vocabulario de configuración del producto.",
+                  "hint": "Si la opción no aparece inmediatamente, actualice la vista del Pool de Opciones."
+                }
+              ]
+            },
+            {
+              "id": "ex2-t2",
+              "title": "Añadir una elección 'No Usado' a Ubicación de Alforjas",
+              "steps": [
+                {
+                  "action": "En el Pool de Opciones, haga clic en la opción Ubicación de Alforjas existente para abrirla.",
+                  "detail": "Está modificando una opción existente al añadir una nueva elección. Esto es común a medida que evolucionan los requisitos del producto — se necesitan añadir nuevos valores válidos a las opciones existentes.",
+                  "hint": null
+                },
+                {
+                  "action": "Haga clic en la acción 'Nueva Elección' para añadir una elección a Ubicación de Alforjas.",
+                  "detail": "Añadir una elección 'No Usado' permite que una variante especifique que las alforjas no están incluidas en absoluto. Sin esta elección, cada variante se vería obligada a tener alforjas en alguna ubicación.",
+                  "hint": "Busque un botón 'Nueva Elección' o 'Añadir Elección' en la barra de herramientas de la vista de detalles de la opción."
+                },
+                {
+                  "action": "Ingrese 'Not Used' como nombre de la elección. Añada una descripción como 'No se incluyen alforjas en esta configuración de motocicleta'.",
+                  "detail": "Una elección 'Not Used' o 'Ninguno' es un patrón común en la gestión de opciones. Permite que una característica sea excluida explícitamente en lugar de requerir que cada configuración la incluya.",
+                  "hint": null
+                },
+                {
+                  "action": "Guarde la nueva elección y verifique que aparece en la lista de elecciones de Ubicación de Alforjas.",
+                  "detail": "La opción Ubicación de Alforjas ahora tiene una elección adicional. Esta elección puede utilizarse en expresiones y reglas para controlar si los componentes de alforjas se incluyen en la estructura de una variante.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex2-t3",
+              "title": "Designar un artículo como Módulo Configurable y Artículo Final",
+              "steps": [
+                {
+                  "action": "Navegue a la pestaña Estructura y localice el artículo 'small-offroad_standalone' en la estructura del producto.",
+                  "detail": "Este artículo representa un subensamblaje de motocicleta todo terreno independiente. Lo designará como Módulo Configurable (para habilitar la configuración de variantes) y como Artículo Final (para indicar que puede pedirse/fabricarse independientemente).",
+                  "hint": "Use la función de búsqueda o expanda el árbol de estructura para encontrar este artículo. Puede estar anidado varios niveles de profundidad."
+                },
+                {
+                  "action": "Haga clic derecho en el artículo (o use el menú de acciones) y seleccione la opción para establecerlo como 'Módulo Configurable'.",
+                  "detail": "Marcar un artículo como Módulo Configurable le indica a Windchill que esta sección de la estructura soporta múltiples configuraciones de diseño. Los artículos secundarios bajo este módulo pueden filtrarse usando elecciones de opciones.",
+                  "hint": "La acción puede estar en 'Configuración' > 'Soporte de Módulo Configurable' o una ruta de menú similar dependiendo de su versión de Windchill."
+                },
+                {
+                  "action": "De manera similar, designe el mismo artículo como 'Artículo Final'.",
+                  "detail": "Un Artículo Final es un producto o subensamblaje que puede pedirse, fabricarse o entregarse independientemente. Establecer esta marca permite que el artículo aparezca como un artículo final seleccionable en los flujos de trabajo de generación de variantes.",
+                  "hint": null
+                },
+                {
+                  "action": "Verifique que el artículo ahora muestra el icono de Módulo Configurable y la designación de Artículo Final en la vista de estructura.",
+                  "detail": "Los indicadores visuales en la vista de estructura confirman que las designaciones se aplicaron correctamente. Este artículo ahora está listo para participar en la configuración de producto basada en opciones.",
+                  "hint": "Busque iconos o etiquetas actualizados junto al nombre del artículo en el árbol de estructura."
+                },
+                {
+                  "action": "Abra los detalles del artículo y revise los atributos para confirmar que ambas designaciones se reflejan en las propiedades del artículo.",
+                  "detail": "La página de atributos del artículo proporciona una vista definitiva de todas las configuraciones. Confirmar aquí asegura que los cambios se guardaron correctamente y se comportarán como se espera durante la generación de variantes.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Las nuevas opciones se crean en el Pool de Opciones y están disponibles inmediatamente para su uso en el producto",
+        "Las elecciones pueden añadirse a opciones existentes a medida que evolucionan los requisitos del producto",
+        "Una elección 'No Usado' es un patrón común para permitir la exclusión explícita de una característica",
+        "Las designaciones de Módulo Configurable y Artículo Final controlan cómo los artículos participan en la generación de variantes"
+      ]
+    },
+    {
+      "id": "m1t7",
+      "title": "Revisar las preferencias de Opciones y Variantes",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "En este ejercicio, explorará las preferencias de Opciones y Variantes tanto a nivel de sitio como a nivel de producto. Comprender la herencia de preferencias es importante porque las configuraciones a nivel de sitio establecen los valores predeterminados que los productos pueden anular según sus necesidades específicas."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Este ejercicio requiere iniciar sesión como diferentes usuarios (wcadmin para nivel de sitio, Anna Chen para nivel de producto). Su instructor proporcionará las credenciales."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex3",
+          "title": "Revisar las preferencias de Opciones y Variantes",
+          "objective": "Comprender cómo se configuran las preferencias de Opciones y Variantes a nivel de sitio frente a nivel de producto, y cómo funciona la herencia entre ellos.",
+          "tasks": [
+            {
+              "id": "ex3-t1",
+              "title": "Iniciar sesión como administrador",
+              "steps": [
+                {
+                  "action": "Cierre su sesión actual e inicie sesión como 'wcadmin' (la cuenta de administrador del sitio).",
+                  "detail": "Los administradores del sitio tienen acceso a las configuraciones de preferencias a nivel de sitio que se aplican globalmente a todos los productos. Estas configuraciones establecen la base para la funcionalidad de Opciones y Variantes.",
+                  "hint": "La contraseña de wcadmin será proporcionada por su instructor. Use la misma URL de Windchill."
+                }
+              ]
+            },
+            {
+              "id": "ex3-t2",
+              "title": "Ver las preferencias a nivel de sitio",
+              "steps": [
+                {
+                  "action": "Navegue a Sitio > Utilidades > Gestión de Preferencias (o Sitio > Administración > Preferencias dependiendo de su versión).",
+                  "detail": "Las preferencias a nivel de sitio establecen el comportamiento predeterminado para todos los productos y contextos del sistema. Cualquier preferencia establecida aquí se aplica a menos que se anule a un nivel inferior (organización o producto).",
+                  "hint": "Busque 'Gestión de Preferencias' en el área de administración del Sitio. Puede necesitar expandir la sección de Utilidades o Administración."
+                },
+                {
+                  "action": "Busque o navegue a la categoría de preferencias 'Opciones y Variantes'. Revise las preferencias disponibles y sus valores actuales.",
+                  "detail": "Las preferencias clave incluyen 'Soporte de Módulo Configurable' (debe ser Sí para usar O&V), 'Compartir Pool de Opciones', y varios valores predeterminados para el comportamiento de generación de variantes. Note qué preferencias están habilitadas y cuáles deshabilitadas a nivel de sitio.",
+                  "hint": "Puede filtrar o buscar 'Opciones' o 'Configurable' en la lista de preferencias para encontrar las configuraciones relevantes."
+                }
+              ]
+            },
+            {
+              "id": "ex3-t3",
+              "title": "Iniciar sesión como gestor de producto",
+              "steps": [
+                {
+                  "action": "Cierre la sesión de wcadmin e inicie sesión como 'Anna Chen' (o el usuario gestor de producto designado).",
+                  "detail": "Los gestores de producto trabajan dentro de contextos de producto específicos y pueden anular las preferencias a nivel de sitio para sus productos. Esto muestra cómo diferentes roles experimentan diferentes configuraciones de preferencias.",
+                  "hint": "El nombre de usuario y la contraseña de Anna Chen serán proporcionados por su instructor."
+                }
+              ]
+            },
+            {
+              "id": "ex3-t4",
+              "title": "Ver las preferencias a nivel de producto y comparar",
+              "steps": [
+                {
+                  "action": "Navegue al producto PTC Motorcycle, luego acceda a sus configuraciones de preferencias (típicamente en Utilidades del Producto o Administración del Producto).",
+                  "detail": "Las preferencias a nivel de producto anulan los valores predeterminados del sitio para este producto específico. Esto permite que diferentes productos tengan diferentes configuraciones de Opciones y Variantes.",
+                  "hint": "La ruta puede ser Producto > Utilidades > Gestión de Preferencias o similar."
+                },
+                {
+                  "action": "Encuentre las preferencias de 'Opciones y Variantes' a nivel de producto. Compárelas con las configuraciones a nivel de sitio que anotó anteriormente.",
+                  "detail": "Note qué preferencias se heredan del nivel de sitio (mostradas como heredadas o en gris) y cuáles se han establecido explícitamente a nivel de producto. Las anulaciones a nivel de producto tienen prioridad sobre las configuraciones a nivel de sitio solo para este producto.",
+                  "hint": null
+                },
+                {
+                  "action": "Note el valor de la preferencia 'Soporte de Módulo Configurable'. Confirme que está establecido en 'Sí' para el producto PTC Motorcycle.",
+                  "detail": "El Soporte de Módulo Configurable debe estar habilitado (establecido en 'Sí') para que la funcionalidad de Opciones y Variantes funcione dentro de un producto. Esta es la preferencia más crítica — si está establecida en 'No', no se pueden crear módulos configurables ni usar la generación de variantes basada en opciones para ese producto.",
+                  "hint": "Si esta preferencia está establecida a nivel de sitio y se hereda, se mostrará como 'Sí (Heredado)'. Si se establece a nivel de producto, se mostrará como 'Sí' con un indicador de nivel de producto."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Las preferencias a nivel de sitio establecen el comportamiento predeterminado para todos los productos",
+        "Las preferencias a nivel de producto pueden anular los valores predeterminados del sitio para productos específicos",
+        "El Soporte de Módulo Configurable debe establecerse en Sí para usar la funcionalidad de Opciones y Variantes",
+        "Comprender la herencia de preferencias ayuda a diagnosticar problemas cuando las funciones de O&V no están disponibles en contextos específicos"
+      ]
+    }
+  ]
+}

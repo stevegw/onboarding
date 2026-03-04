@@ -2507,7 +2507,11 @@
   "error.serverRequired": "Stellen Sie sicher, dass Sie diese Seite über einen HTTP-Server bereitstellen (z. B. python -m http.server). Die fetch()-API funktioniert nicht mit file://-URLs.",
   "locale.en": "English",
   "locale.fr": "Français",
-  "locale.de": "Deutsch"
+  "locale.de": "Deutsch",
+  "locale.ja": "日本語",
+  "locale.zh": "中文",
+  "locale.ko": "한국어",
+  "locale.es": "Español"
 }
   };
 })();

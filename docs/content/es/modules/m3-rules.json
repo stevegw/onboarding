@@ -1,0 +1,350 @@
+{
+  "id": "m3",
+  "title": "Investigar las reglas de opciones y variantes",
+  "description": "Examine las reglas de inclusión, exclusión, habilitación y condicionales. Explore la validación de reglas y los alias de expresiones.",
+  "exerciseTopicStart": 4,
+  "topics": [
+    {
+      "id": "m3t1",
+      "title": "Tipos de reglas y lógica de negocio",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Las reglas de opciones y variantes definen las combinaciones válidas de elecciones que pueden seleccionarse juntas al configurar un producto. Windchill proporciona cuatro tipos de reglas que controlan cómo interactúan las elecciones, asegurando que solo se puedan crear configuraciones de producto válidas."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Cuatro tipos de reglas"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Tipo de regla", "Descripción", "Ejemplo"],
+          "rows": [
+            ["Regla de inclusión", "Asocia la selección de una elección con elecciones relacionadas. Cuando se selecciona una elección de origen, las elecciones objetivo se seleccionan automáticamente también.", "País=Estados Unidos incluye automáticamente Voltaje=110 Voltios"],
+            ["Regla de exclusión", "Restringe la selección conjunta de elecciones incompatibles. Cuando se selecciona una elección de origen, las elecciones objetivo quedan prohibidas.", "Voltaje=110V excluye Frecuencia=50Hz porque son incompatibles"],
+            ["Regla de habilitación", "Hace que solo aparezcan elecciones específicas para selección una vez que se selecciona una elección de origen. Controla qué elecciones de opciones están disponibles según una condición.", "Seleccionar la Elección 1 activa las Elecciones 7, 8, 13 y desactiva las Elecciones 9, 12"],
+            ["Regla condicional", "Instrucciones SI/ENTONCES que especifican cuándo las elecciones deben incluirse, activarse o desactivarse. Proporciona lógica compleja de múltiples condiciones.", "SI se seleccionan las Elecciones 1 Y 4, ENTONCES las Elecciones 7, 8 y 13 se desactivan"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Métodos de lógica de negocio"
+        },
+        {
+          "type": "paragraph",
+          "text": "Windchill proporciona varios métodos para implementar la lógica de negocio que controla la configuración de producto. Cada método sirve un propósito específico en el marco general de reglas:"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Opción de diseño",
+              "back": "Permite acciones sobre opciones dentro del pool de opciones. Esta es la base para definir las características variables de un producto y las elecciones disponibles para cada característica."
+            },
+            {
+              "front": "Reglas de inclusión",
+              "back": "Capturan asociaciones lógicas entre características del producto. Cuando se selecciona una elección, las elecciones relacionadas se incluyen automáticamente para mantener la integridad del producto."
+            },
+            {
+              "front": "Reglas de exclusión",
+              "back": "Capturan elecciones incompatibles que no deben seleccionarse juntas. Previenen combinaciones inválidas que resultarían en productos no funcionales o no fabricables."
+            },
+            {
+              "front": "Reglas de habilitación",
+              "back": "Controlan qué elecciones de opciones están disponibles según una condición. Ajustan dinámicamente las elecciones visibles basándose en selecciones previas para guiar a los usuarios hacia configuraciones válidas."
+            },
+            {
+              "front": "Reglas condicionales",
+              "back": "Construcciones SI/ENTONCES para la selección de elecciones en el filtro de opciones. Proporcionan la lógica más flexible y compleja para controlar las interacciones de elecciones entre múltiples opciones."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Windchill verifica que las nuevas reglas no entren en conflicto con las reglas existentes ni las dupliquen. Esta validación integrada de reglas previene lógica contradictoria que podría hacer que ciertas configuraciones de producto sean imposibles o ambiguas."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Asocie cada tipo de regla con su comportamiento:",
+          "pairs": [
+            {"left": "Regla de inclusión", "right": "Selecciona automáticamente elecciones relacionadas cuando se selecciona una elección de origen"},
+            {"left": "Regla de exclusión", "right": "Impide que se seleccionen juntas elecciones incompatibles"},
+            {"left": "Regla de habilitación", "right": "Controla qué elecciones son visibles o están disponibles según una condición"},
+            {"left": "Regla condicional", "right": "Usa lógica SI/ENTONCES para activar o desactivar elecciones según múltiples condiciones"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Cuatro tipos de reglas controlan las combinaciones válidas de elecciones: inclusión, exclusión, habilitación y condicional",
+        "Las reglas de inclusión obligan a que las selecciones relacionadas se elijan automáticamente juntas",
+        "Las reglas de exclusión previenen la selección de combinaciones incompatibles",
+        "Windchill valida las reglas para prevenir conflictos y duplicados"
+      ]
+    },
+    {
+      "id": "m3t2",
+      "title": "Reglas de inclusión, exclusión y condicionales",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Las reglas de inclusión, exclusión y condicionales forman el núcleo de la lógica de configuración de producto en Windchill. Cada tipo de regla aborda un aspecto diferente de cómo se relacionan las elecciones entre sí, desde la selección automática hasta la aplicación de incompatibilidades y escenarios complejos de múltiples condiciones."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Detalles y ejemplos de reglas"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Regla de inclusión",
+              "back": "Identifica elecciones objetivo que se seleccionan automáticamente cuando se selecciona una elección de origen. Por ejemplo, cuando se selecciona la Elección 1, las Elecciones 7 y 13 se incluyen automáticamente. Esto asegura que las características dependientes siempre se seleccionen juntas."
+            },
+            {
+              "front": "Regla de exclusión",
+              "back": "Define elecciones incompatibles que no pueden seleccionarse junto con una elección de origen. Por ejemplo, cuando se selecciona la Elección 1, la Elección 9 queda prohibida. Esto impide que los usuarios creen configuraciones de producto inválidas con características en conflicto."
+            },
+            {
+              "front": "Regla condicional",
+              "back": "Usa lógica SI/ENTONCES para manejar escenarios complejos de múltiples elecciones. Por ejemplo, SI selecciona las Elecciones 1 y 4, entonces las Elecciones 7, 8 y 13 se desactivan, dejando solo las Elecciones 9 y 12 disponibles. Esto proporciona el control más flexible sobre las interacciones de elecciones."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Las reglas de inclusión y exclusión manejan relaciones simples de uno a uno o de uno a muchos entre elecciones. Cuando necesite lógica que dependa de la selección simultánea de múltiples elecciones de origen, use reglas condicionales con instrucciones SI/ENTONCES."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Cómo funcionan las reglas juntas"
+        },
+        {
+          "type": "paragraph",
+          "text": "En la práctica, los productos utilizan una combinación de los tres tipos de reglas. Las reglas de inclusión aseguran que se cumplan las dependencias, las reglas de exclusión previenen conflictos, y las reglas condicionales manejan las interacciones complejas que no pueden expresarse con simple lógica de inclusión o exclusión. Juntas, forman un sistema integral de restricciones que guía a los usuarios hacia configuraciones válidas."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Tipo de regla", "Comportamiento Origen → Objetivo", "Caso de uso"],
+          "rows": [
+            ["Inclusión", "Origen seleccionado → Objetivos seleccionados automáticamente", "Características dependientes que siempre deben aparecer juntas"],
+            ["Exclusión", "Origen seleccionado → Objetivos prohibidos", "Características incompatibles que no pueden coexistir"],
+            ["Condicional", "SI múltiples orígenes → ENTONCES objetivos activados/desactivados", "Escenarios complejos donde el resultado depende de una combinación de selecciones"]
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Las reglas de inclusión seleccionan automáticamente elecciones relacionadas cuando se selecciona una elección de origen",
+        "Las reglas de exclusión impiden que se elijan juntas selecciones en conflicto",
+        "Las reglas condicionales proporcionan lógica compleja SI/ENTONCES para escenarios de múltiples elecciones"
+      ]
+    },
+    {
+      "id": "m3t3",
+      "title": "Reglas de habilitación y alias de expresiones",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Las reglas de habilitación y los alias de expresiones extienden el marco de reglas con capacidades adicionales. Las reglas de habilitación controlan la visibilidad y disponibilidad de elecciones basándose en selecciones previas, mientras que los alias de expresiones simplifican la creación de reglas complejas al encapsular instrucciones lógicas reutilizables."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Reglas de habilitación"
+        },
+        {
+          "type": "paragraph",
+          "text": "Las reglas de habilitación controlan qué elecciones de opciones están disponibles una vez que se selecciona una elección de origen. A diferencia de las reglas de inclusión o exclusión que fuerzan o previenen selecciones, las reglas de habilitación ajustan dinámicamente qué elecciones son visibles. Por ejemplo, seleccionar la Elección 1 activa las Elecciones 7, 8 y 13 mientras desactiva las Elecciones 9 y 12. Solo las elecciones habilitadas aparecen como opciones seleccionables durante la configuración."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Aspecto", "Reglas de habilitación", "Reglas condicionales"],
+          "rows": [
+            ["Disparador", "Selección de una única elección de origen", "Selección de múltiples elecciones de origen (SI/ENTONCES)"],
+            ["Efecto", "Activa o desactiva elecciones específicas para visibilidad", "Activa o desactiva elecciones basándose en condiciones compuestas"],
+            ["Complejidad", "Control de visibilidad simple de uno a muchos", "Lógica compleja de múltiples condiciones"],
+            ["Uso principal", "Controlar qué elecciones aparecen basándose en una única selección", "Manejar interacciones que dependen de combinaciones de selecciones previas"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Las reglas de habilitación son particularmente útiles cuando ciertas elecciones solo tienen sentido en el contexto de una selección previa. Por ejemplo, tamaños de neumáticos específicos pueden ser relevantes solo cuando se selecciona un tipo de chasis particular."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Alias de expresiones"
+        },
+        {
+          "type": "paragraph",
+          "text": "Los alias de expresiones representan instrucciones lógicas que pueden reutilizarse en múltiples reglas. Las definiciones comunes utilizadas frecuentemente en la configuración de productos pueden capturarse como alias, simplificando la creación de reglas y mejorando la mantenibilidad."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "¿Qué es un alias de expresión?",
+              "back": "Un alias de expresión es una instrucción lógica con nombre que encapsula una condición o conjunto de elecciones comúnmente utilizado. Por ejemplo, un alias 'NeumáticosGrandes' podría representar el conjunto de tamaños de neumáticos 48IN, 50IN, 52IN, 54IN y 56IN de la opción NEUMÁTICO."
+            },
+            {
+              "front": "¿Dónde se usan los alias?",
+              "back": "Los alias de expresiones pueden usarse al crear reglas condicionales, expresiones avanzadas y otros alias. Sirven como bloques de construcción para lógica de configuración compleja, reduciendo la duplicación y haciendo las reglas más fáciles de leer y mantener."
+            },
+            {
+              "front": "Reutilización entre reglas",
+              "back": "Una vez definido, un alias puede referenciarse en múltiples reglas condicionales y expresiones a lo largo de la configuración del producto. Esto significa que un cambio en la definición del alias se propaga automáticamente a todas las reglas que lo referencian."
+            },
+            {
+              "front": "Requisitos de licencia",
+              "back": "Los alias de expresiones son una capacidad avanzada sujeta a una licencia separada. Las organizaciones deben tener la licencia de Windchill apropiada para crear y usar alias de expresiones en sus configuraciones de producto."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Los alias de expresiones requieren una licencia separada. Verifique que la licencia de Windchill de su organización incluya esta capacidad antes de planificar el uso de alias en sus definiciones de reglas."
+        }
+      ],
+      "keyTakeaways": [
+        "Las reglas de habilitación controlan la visibilidad de elecciones basándose en una selección de origen",
+        "Los alias de expresiones simplifican la creación de reglas complejas al encapsular instrucciones lógicas reutilizables",
+        "Los alias son reutilizables entre reglas condicionales y expresiones",
+        "Los alias de expresiones requieren una licencia separada"
+      ]
+    },
+    {
+      "id": "m3t4",
+      "title": "Crear reglas de inclusión y exclusión",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "En este ejercicio, creará reglas de inclusión y exclusión para el producto PTC Motorcycle. Anna Chen navegará por el Pool de Opciones para definir una regla de inclusión que asocie el tipo de motocicleta Off Road con las elecciones de ruedas correctas, y una regla de exclusión que impida selecciones de ruedas incompatibles."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Este ejercicio modifica las reglas de configuración del producto. Siga los pasos cuidadosamente y use los nombres exactos especificados para garantizar la consistencia con ejercicios posteriores."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex4",
+          "title": "Crear reglas de inclusión y exclusión",
+          "objective": "Aprender a crear reglas de inclusión y exclusión en Windchill definiendo asociaciones lógicas y restricciones de elecciones incompatibles para el producto PTC Motorcycle.",
+          "tasks": [
+            {
+              "id": "ex4-t1",
+              "title": "Crear una regla de inclusión",
+              "steps": [
+                {
+                  "action": "Navegue al producto PTC Motorcycle y abra la pestaña Pool de Opciones.",
+                  "detail": "Creará una regla de inclusión que asocie el tipo de motocicleta Off Road con las elecciones de ruedas apropiadas. Las reglas de inclusión se crean desde el Pool de Opciones.",
+                  "hint": null
+                },
+                {
+                  "action": "Expanda la opción Motorcycle Type en el Pool de Opciones para ver sus elecciones.",
+                  "detail": "Debería ver las elecciones Off Road y On Road/Street Legal que se crearon en un ejercicio anterior. La elección Off Road será el origen de la regla de inclusión.",
+                  "hint": "Haga clic en la flecha de expansión junto a Motorcycle Type para revelar sus elecciones."
+                },
+                {
+                  "action": "Haga clic derecho en la elección 'Off Road' y seleccione 'Nueva Regla de Inclusión'.",
+                  "detail": "La acción Nueva Regla de Inclusión abre un diálogo donde especifica qué elecciones objetivo deben seleccionarse automáticamente cuando se elige Off Road. Esto asegura que las ruedas correctas siempre se incluyan con una configuración todo terreno.",
+                  "hint": "La opción puede estar en un menú contextual o bajo un desplegable de Acciones en la fila de la elección."
+                },
+                {
+                  "action": "En el diálogo de regla de inclusión, seleccione la opción Wheels y elija 'Off Road Front' y 'Off Road Rear' como elecciones objetivo.",
+                  "detail": "Al seleccionar tanto Off Road Front como Off Road Rear, está definiendo que siempre que un cliente seleccione el tipo de motocicleta Off Road, ambos tipos de ruedas todo terreno se incluyen automáticamente en la configuración.",
+                  "hint": "Si la opción Wheels no permite selección múltiple, necesitará editarla primero (vea la siguiente tarea)."
+                },
+                {
+                  "action": "Si el diálogo no permite seleccionar múltiples elecciones de ruedas, anote el problema y proceda a la siguiente tarea para editar la opción Wheels primero.",
+                  "detail": "La opción Wheels puede estar configurada como Selección Única por defecto. Para que una regla de inclusión apunte a múltiples elecciones de la misma opción, esa opción debe permitir selección múltiple. Este es un paso de configuración común al establecer reglas de inclusión.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex4-t2",
+              "title": "Editar la opción Wheels y completar la regla de inclusión",
+              "steps": [
+                {
+                  "action": "En el Pool de Opciones, haga clic derecho en la opción Wheels y seleccione 'Editar'.",
+                  "detail": "Necesita cambiar la opción Wheels de selección única a selección múltiple para que la regla de inclusión pueda apuntar a múltiples elecciones de ruedas simultáneamente.",
+                  "hint": "Busque una acción Editar en el menú contextual o la barra de herramientas de acciones cuando la opción Wheels esté seleccionada."
+                },
+                {
+                  "action": "Cambie la configuración 'Selección Única' de 'Sí' a 'No' y guarde el cambio.",
+                  "detail": "Establecer Selección Única en No permite seleccionar múltiples elecciones para la opción Wheels. Esto es necesario porque el tipo de motocicleta Off Road necesita que se seleccionen juntas las ruedas Off Road Front y Off Road Rear.",
+                  "hint": "El campo Selección Única puede ser una casilla de verificación o un desplegable en el formulario de edición de opciones."
+                },
+                {
+                  "action": "Vuelva a la opción Motorcycle Type, haga clic derecho en 'Off Road' y seleccione 'Nueva Regla de Inclusión' nuevamente.",
+                  "detail": "Ahora que la opción Wheels soporta selección múltiple, puede crear la regla de inclusión que apunte a ambas elecciones de ruedas Off Road Front y Off Road Rear.",
+                  "hint": null
+                },
+                {
+                  "action": "Seleccione la opción Wheels y elija tanto 'Off Road Front' como 'Off Road Rear' como elecciones objetivo. Guarde la regla de inclusión.",
+                  "detail": "La regla de inclusión ahora está completa. Siempre que un usuario seleccione Off Road como Tipo de Motocicleta, ambas ruedas Off Road Front y Off Road Rear se incluirán automáticamente en la configuración.",
+                  "hint": "Mantenga presionado Ctrl mientras hace clic para seleccionar múltiples elecciones en la lista de objetivos."
+                },
+                {
+                  "action": "Verifique que la regla de inclusión aparece en la pestaña Reglas de Inclusión para la elección Off Road.",
+                  "detail": "Después de guardar, la regla debería ser visible en el listado de reglas. Confirme que el origen es Off Road y los objetivos son Off Road Front y Off Road Rear.",
+                  "hint": "Navegue a los detalles de la elección Off Road y verifique la pestaña o sección Reglas de Inclusión."
+                }
+              ]
+            },
+            {
+              "id": "ex4-t3",
+              "title": "Crear una regla de exclusión",
+              "steps": [
+                {
+                  "action": "Navegue al artículo de nivel superior PTC Motorcycle en la estructura del producto o la vista del pool de opciones.",
+                  "detail": "Las reglas de exclusión pueden crearse desde el contexto del producto de nivel superior. Creará una regla que impida seleccionar elecciones de ruedas incompatibles con el tipo de motocicleta Off Road.",
+                  "hint": "Seleccione el producto PTC Motorcycle al nivel superior de la estructura."
+                },
+                {
+                  "action": "Vaya a la pestaña Reglas de Exclusión.",
+                  "detail": "La pestaña Reglas de Exclusión muestra todas las reglas de exclusión existentes para el producto y proporciona acciones para crear nuevas. Esta vista centralizada facilita la gestión de todas las reglas de incompatibilidad.",
+                  "hint": "La pestaña puede estar junto a Reglas de Inclusión, Reglas de Habilitación y otras pestañas relacionadas con reglas."
+                },
+                {
+                  "action": "Haga clic en 'Nueva Regla de Exclusión' para crear una nueva regla de exclusión.",
+                  "detail": "Definirá una regla de exclusión que impida seleccionar ruedas On Road cuando se elige el tipo de motocicleta Off Road, asegurando que solo estén disponibles tipos de ruedas compatibles.",
+                  "hint": "Busque un botón o icono 'Nueva Regla de Exclusión' en la barra de herramientas sobre la tabla de reglas."
+                },
+                {
+                  "action": "Establezca el origen en Motorcycle Type = Off Road. Establezca los objetivos en Wheels = On Road Front y Wheels = On Road Rear.",
+                  "detail": "Esta regla de exclusión establece: cuando se selecciona Off Road como Tipo de Motocicleta, las elecciones de ruedas On Road Front y On Road Rear no pueden seleccionarse. Esto impide que un usuario elija accidentalmente ruedas de carretera para una motocicleta todo terreno.",
+                  "hint": "Seleccione la opción y elección de origen primero, luego seleccione la opción objetivo y las elecciones a excluir."
+                },
+                {
+                  "action": "Guarde la regla de exclusión y verifique que aparece en la pestaña Reglas de Exclusión.",
+                  "detail": "La regla de exclusión ahora está activa. Combinada con la regla de inclusión de la tarea anterior, seleccionar Off Road como Tipo de Motocicleta incluirá automáticamente las ruedas todo terreno e impedirá que se seleccionen las ruedas de carretera.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Las reglas de inclusión seleccionan automáticamente elecciones relacionadas cuando se selecciona una elección de origen",
+        "Las opciones pueden necesitar edición para soportar selección múltiple en reglas de inclusión que apuntan a múltiples elecciones",
+        "Las reglas de exclusión impiden la selección conjunta de elecciones incompatibles",
+        "Las reglas se crean desde las pestañas del Pool de Opciones y las pestañas de reglas a nivel de producto"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "moduleId": "m4",
+  "title": "Evaluación de conocimientos: Conjuntos de Opciones",
+  "questions": [
+    {
+      "id": "m4-kc-001",
+      "question": "¿Qué afirmación describe correctamente un conjunto de opciones?",
+      "options": [
+        "Un repositorio maestro que contiene todas las opciones y elecciones para cada producto del sistema",
+        "Una colección curada de opciones, elecciones y reglas utilizada para definir configuraciones dentro de una familia de productos específica",
+        "Un filtro que elimina elecciones inválidas del pool de opciones durante la configuración",
+        "Un informe que muestra todas las especificaciones de variante generadas para un producto"
+      ],
+      "answerIndex": 1,
+      "rationale": "Un conjunto de opciones es una colección curada de opciones, elecciones y reglas utilizada para definir configuraciones dentro de una familia de productos específica. La opción A describe un pool de opciones, la opción C describe un filtro de opciones y la opción D describe un informe de variantes.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-002",
+      "question": "¿Qué debe suceder antes de que un conjunto de opciones pueda utilizarse para la configuración de producto?",
+      "options": [
+        "El conjunto de opciones debe exportarse primero a un sistema CAD",
+        "El conjunto de opciones debe asignarse a un producto configurable o módulo configurable",
+        "El conjunto de opciones debe ser aprobado únicamente por un administrador del sitio",
+        "El conjunto de opciones debe contener al menos diez opciones para ser válido"
+      ],
+      "answerIndex": 1,
+      "rationale": "Un conjunto de opciones debe asignarse a un producto configurable o módulo configurable antes de que pueda utilizarse para configuración. Esta asignación establece el vínculo entre el conjunto de opciones disponibles y la estructura del producto que se va a configurar.",
+      "topic": "m4t2"
+    },
+    {
+      "id": "m4-kc-003",
+      "question": "¿Cuál es el propósito de un filtro de opciones en Windchill?",
+      "options": [
+        "Eliminar permanentemente del pool de opciones las elecciones que ya no se necesitan",
+        "Crear nuevas variantes automáticamente sin entrada del usuario",
+        "Filtrar una estructura de producto configurable basándose en las elecciones asignadas a los artículos, produciendo una variante",
+        "Restringir qué usuarios pueden acceder a la interfaz de gestión de conjuntos de opciones"
+      ],
+      "answerIndex": 2,
+      "rationale": "Un filtro de opciones utiliza criterios basados en las elecciones seleccionadas para filtrar una estructura de producto configurable, incluyendo solo los artículos cuyas elecciones asignadas coinciden con las selecciones. Así es como una estructura sobrecargada se reduce a una variante específica.",
+      "topic": "m4t3"
+    }
+  ]
+}

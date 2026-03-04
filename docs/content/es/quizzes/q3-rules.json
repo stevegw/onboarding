@@ -1,0 +1,45 @@
+{
+  "moduleId": "m3",
+  "title": "Evaluación de conocimientos: Reglas de Opciones y Variantes",
+  "questions": [
+    {
+      "id": "m3-kc-001",
+      "question": "¿Cuál es el propósito principal de las reglas de Opciones y Variantes?",
+      "options": [
+        "Definir la apariencia visual de los módulos configurables en el árbol de estructura",
+        "Restringir el acceso de usuarios a opciones y elecciones específicas según su rol",
+        "Aplicar la lógica de negocio que gobierna las relaciones válidas entre elecciones y artículos",
+        "Crear automáticamente nuevas opciones cuando se libera una familia de productos"
+      ],
+      "answerIndex": 2,
+      "rationale": "Las reglas de O&V aplican la lógica de negocio que gobierna las relaciones válidas entre elecciones y artículos. Aseguran que solo se puedan seleccionar combinaciones válidas de elecciones y que los artículos correctos se incluyan en las estructuras de variantes.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-002",
+      "question": "¿Qué sucede cuando se activa una regla de exclusión durante la configuración?",
+      "options": [
+        "La elección excluida se selecciona automáticamente",
+        "La elección excluida se elimina del pool de opciones permanentemente",
+        "La elección excluida deja de estar disponible, impidiendo que el usuario seleccione una combinación incompatible",
+        "La elección excluida dispara un flujo de trabajo para revisión de ingeniería"
+      ],
+      "answerIndex": 2,
+      "rationale": "Una regla de exclusión restringe la selección de elecciones incompatibles. Cuando se activa, la elección excluida deja de estar disponible en la lista de selección, impidiendo que el usuario cree una configuración inválida.",
+      "topic": "m3t2"
+    },
+    {
+      "id": "m3-kc-003",
+      "question": "¿Qué afirmación describe correctamente una regla de habilitación?",
+      "options": [
+        "Una regla que selecciona automáticamente todas las elecciones para una opción dada",
+        "Una regla que crea nuevas elecciones dinámicamente durante la configuración",
+        "Una regla que bloquea las elecciones para que no puedan cambiarse después de la selección inicial",
+        "Una regla que hace que solo aparezcan elecciones específicas en la lista de selección una vez que se selecciona una elección objetivo"
+      ],
+      "answerIndex": 3,
+      "rationale": "Una regla de habilitación controla qué elecciones aparecen en una lista de selección basándose en otras selecciones. Una vez que se selecciona una elección objetivo, solo las elecciones habilitadas se vuelven visibles, reduciendo las opciones disponibles a selecciones válidas para ese contexto.",
+      "topic": "m3t3"
+    }
+  ]
+}

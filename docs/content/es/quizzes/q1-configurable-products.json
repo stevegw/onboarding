@@ -1,0 +1,58 @@
+{
+  "moduleId": "m1",
+  "title": "Evaluación de conocimientos: Productos configurables",
+  "questions": [
+    {
+      "id": "m1-kc-001",
+      "question": "¿Qué afirmación refleja correctamente un enfoque de negocio de configuración bajo pedido?",
+      "options": [
+        "Una estrategia para diseñar productos con una lista finita de elecciones de opciones discretas para las características clave del producto.",
+        "Una estrategia para diseñar productos flexibles, que pueden configurarse o personalizarse para satisfacer las necesidades únicas de cada pedido del cliente.",
+        "Una estrategia que implica adaptar un producto general a los requisitos únicos del cliente con la participación de ingeniería.",
+        "Una estrategia para diseñar y fabricar a medida un producto para cumplir con los requisitos únicos de un cliente específico."
+      ],
+      "answerIndex": 1,
+      "rationale": "La configuración bajo pedido consiste específicamente en diseñar productos flexibles que pueden configurarse o personalizarse para satisfacer las necesidades únicas de los clientes, generalmente mediante un configurador con reglas. La opción A describe el ensamblaje bajo pedido, la opción C describe la ingeniería bajo pedido y la opción D describe el desarrollo de producto por contrato.",
+      "topic": "m1t1"
+    },
+    {
+      "id": "m1-kc-002",
+      "question": "¿Cuál es el primer paso en el proceso de Diseño de Plataforma Genérica?",
+      "options": [
+        "Crear la definición genérica del producto",
+        "Evaluar los productos existentes para reutilización",
+        "Analizar los requisitos de opcionalidad de la plataforma",
+        "Liberar y mantener la plataforma"
+      ],
+      "answerIndex": 2,
+      "rationale": "El proceso de diseño de plataforma comienza con el análisis de requisitos. Necesita comprender qué opciones se requieren antes de evaluar oportunidades de reutilización o construir cualquier cosa.",
+      "topic": "m1t2"
+    },
+    {
+      "id": "m1-kc-003",
+      "question": "¿Qué es una estructura de producto sobrecargada?",
+      "options": [
+        "Una estructura de producto con demasiados artículos para gestionar eficientemente",
+        "Una estructura donde las secciones contienen múltiples diseños para satisfacer diferentes niveles de capacidad",
+        "Una estructura que ha sido exportada y reimportada múltiples veces",
+        "Una estructura de producto que excede el número máximo de módulos configurables"
+      ],
+      "answerIndex": 1,
+      "rationale": "Una estructura de producto sobrecargada contiene múltiples diseños dentro de la misma sección para soportar un rango de opciones. Durante la generación de variantes, la estructura se filtra para incluir solo los diseños necesarios para una configuración dada.",
+      "topic": "m1t3"
+    },
+    {
+      "id": "m1-kc-004",
+      "question": "Para las estrategias de ensamblaje bajo pedido y ensamblaje para stock, ¿qué capacidad de Windchill se utiliza principalmente?",
+      "options": [
+        "Parámetros para lógica de selección avanzada",
+        "Procesos de aprobación basados en flujos de trabajo",
+        "Opciones y elecciones para filtrar una estructura de producto sobrecargada",
+        "Configuración de producto dirigida por CAD"
+      ],
+      "answerIndex": 2,
+      "rationale": "Las estrategias de ensamblaje bajo pedido y ensamblaje para stock utilizan opciones y elecciones para filtrar una estructura de producto sobrecargada. Los parámetros se utilizan adicionalmente para las estrategias de configuración bajo pedido e ingeniería bajo pedido que necesitan una lógica de selección más avanzada.",
+      "topic": "m1t4"
+    }
+  ]
+}

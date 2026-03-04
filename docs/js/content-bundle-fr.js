@@ -103,7 +103,11 @@
     "error.serverRequired": "Assurez-vous de servir cette page depuis un serveur HTTP (par ex., python -m http.server). L'API fetch() ne fonctionne pas avec les URL file://.",
     "locale.en": "English",
     "locale.fr": "Français",
-    "locale.de": "Deutsch"
+    "locale.de": "Deutsch",
+    "locale.ja": "日本語",
+    "locale.zh": "中文",
+    "locale.ko": "한국어",
+    "locale.es": "Español"
   },
   "course.json": {
     "id": "wc-ocp1",

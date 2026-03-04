@@ -1,0 +1,47 @@
+{
+  "id": "wc-ocp1",
+  "title": "Windchill: 옵션 및 구성 가능한 제품 1",
+  "description": "구성 가능한 제품에 대한 비즈니스 접근 방식을 학습하고, 옵션과 변형의 용어를 탐색하며, 규칙을 조사하고, 옵션 세트를 마스터합니다.",
+  "prerequisite": "Windchill: BOM 재구성",
+  "modules": [
+    {
+      "id": "m1",
+      "title": "구성 가능한 제품 소개",
+      "description": "제품 가변성을 위한 비즈니스 전략, 제품 플랫폼, 제품 변형 및 Windchill 구성 접근 방식을 살펴봅니다.",
+      "estimatedMinutes": 55,
+      "topicCount": 7,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m1-configurable-products.json",
+      "quizFile": "quizzes/q1-configurable-products.json"
+    },
+    {
+      "id": "m2",
+      "title": "Windchill 옵션 및 변형 검토",
+      "description": "옵션과 변형 용어를 살펴보고, 옵션과 선택 항목을 논의하며, 환경 설정을 탐색하고, 구성 가능 모듈을 생성합니다.",
+      "estimatedMinutes": 25,
+      "topicCount": 5,
+      "contentFile": "modules/m2-options-and-variants.json",
+      "quizFile": "quizzes/q2-options-and-variants.json"
+    },
+    {
+      "id": "m3",
+      "title": "옵션 및 변형 규칙 조사",
+      "description": "포함, 제외, 활성화 및 조건부 규칙을 살펴봅니다. 규칙 유효성 검사 및 표현식 별칭을 탐색합니다.",
+      "estimatedMinutes": 20,
+      "topicCount": 4,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m3-rules.json",
+      "quizFile": "quizzes/q3-rules.json"
+    },
+    {
+      "id": "m4",
+      "title": "옵션 세트 탐색",
+      "description": "옵션 세트를 정의하고, 변경 관리를 탐색하며, 옵션 세트를 할당하고, 표현식을 적용하며, 옵션 필터를 사용합니다.",
+      "estimatedMinutes": 25,
+      "topicCount": 5,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m4-option-sets.json",
+      "quizFile": "quizzes/q4-option-sets.json"
+    }
+  ]
+}

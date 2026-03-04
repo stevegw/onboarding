@@ -1,0 +1,88 @@
+{
+  "terms": [
+    {
+      "term": "Expresión avanzada",
+      "definition": "Una expresión que incluye elecciones, operadores y funciones. Puede asignarse a artículos y enlaces de uso de artículos para especificar las condiciones en las que un componente debe incluirse en la estructura del producto."
+    },
+    {
+      "term": "Expresión básica",
+      "definition": "Elecciones de opciones que se pueden asignar a artículos y enlaces de uso de artículos para especificar las condiciones en las que un componente debe incluirse en la estructura del producto."
+    },
+    {
+      "term": "Módulo configurable",
+      "definition": "Un artículo de Windchill que puede tener uno o más artículos secundarios que representan variaciones en el diseño y la configuración de un componente o unidad funcional."
+    },
+    {
+      "term": "Producto configurable",
+      "definition": "Un artículo de nivel superior que representa un conjunto de variaciones de producto. Un ejemplo es una familia de productos con diferentes modelos que comparten algunos componentes estándar."
+    },
+    {
+      "term": "Estructura de producto configurable",
+      "definition": "Incluye módulos configurables para permitir la creación de múltiples variantes de producto a partir de la misma estructura de producto."
+    },
+    {
+      "term": "Regla condicional",
+      "definition": "Una regla que utiliza instrucciones SI/ENTONCES para especificar cuándo ciertas elecciones de opciones deben incluirse, activarse o desactivarse en función de otras selecciones de elecciones en el filtro de opciones."
+    },
+    {
+      "term": "Regla de habilitación",
+      "definition": "Una regla que hace que solo aparezcan elecciones específicas para la selección una vez que se selecciona una determinada elección objetivo."
+    },
+    {
+      "term": "Regla de exclusión",
+      "definition": "Una regla que restringe la selección de elecciones incompatibles. Por ejemplo, seleccionar 110 Voltios impide seleccionar una frecuencia de 50 Hz."
+    },
+    {
+      "term": "Alias de expresión",
+      "definition": "Una instrucción lógica con nombre que puede reutilizarse al crear reglas condicionales, expresiones avanzadas y otros alias. Captura definiciones comunes para la gestión global de productos."
+    },
+    {
+      "term": "Regla de inclusión",
+      "definition": "Una regla que asocia la selección de una elección de opción con una o más elecciones de opciones relacionadas. Al seleccionar la elección de origen, se seleccionan automáticamente las elecciones objetivo."
+    },
+    {
+      "term": "Variante de módulo",
+      "definition": "Los artículos específicos seleccionados entre los artículos opcionales y componentes de un módulo configurable en función de los criterios de selección y las asignaciones de elecciones durante la generación de variantes."
+    },
+    {
+      "term": "Opción",
+      "definition": "Una característica particular del producto. Una opción tiene una o más elecciones, puede ser obligatoria o de selección única, y es aplicable a variaciones de producto específicas."
+    },
+    {
+      "term": "Filtro de opciones",
+      "definition": "Un conjunto de criterios utilizados para filtrar la estructura del producto en función de las elecciones asignadas a los artículos y el uso de un artículo en una estructura."
+    },
+    {
+      "term": "Gestor de opciones",
+      "definition": "Un rol de contexto de Windchill con autoridad para crear opciones y elecciones y mantener los conjuntos de opciones y otra información relacionada."
+    },
+    {
+      "term": "Pool de opciones",
+      "definition": "Un contenedor que alberga todas las opciones disponibles y sus elecciones para un producto. Las opciones y elecciones se gestionan dentro del pool de opciones."
+    },
+    {
+      "term": "Conjunto de opciones",
+      "definition": "Un subconjunto de opciones y elecciones de uno o más pools de opciones, utilizado para definir las variaciones dentro de una familia de productos. Los conjuntos de opciones son objetos gestionados mediante cambios."
+    },
+    {
+      "term": "Parámetro",
+      "definition": "Un atributo definido localmente dentro del contexto de un módulo configurable para soportar la lógica de selección avanzada durante el proceso de configuración de artículos."
+    },
+    {
+      "term": "Familia de productos",
+      "definition": "Un conjunto de productos relacionados que ofrecen una gama de capacidades y comparten un porcentaje sustancial de los mismos artículos."
+    },
+    {
+      "term": "Variante",
+      "definition": "Un artículo o estructura de artículo que representa una configuración específica de una estructura de producto configurable, creada durante un proceso de configuración."
+    },
+    {
+      "term": "Especificación de variante",
+      "definition": "Un registro de las entradas del usuario con elecciones de opciones y valores de parámetros proporcionados durante un proceso de configuración, utilizado para generar una estructura de artículo variante."
+    },
+    {
+      "term": "Soporte de módulo configurable",
+      "definition": "Una preferencia de Windchill que controla la capacidad de crear estructuras de producto opcionales. Debe establecerse en Sí para utilizar la funcionalidad de Opciones y Variantes."
+    }
+  ]
+}

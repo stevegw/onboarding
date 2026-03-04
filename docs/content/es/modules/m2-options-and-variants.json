@@ -1,0 +1,319 @@
+{
+  "id": "m2",
+  "title": "Revisar las opciones y variantes de Windchill",
+  "description": "Examine la terminología de opciones y variantes, analice las opciones y elecciones, explore las estructuras configurables, compare los enfoques de configuración y revise las preferencias clave.",
+  "topics": [
+    {
+      "id": "m2t1",
+      "title": "Terminología de Opciones y Variantes",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Opciones y Variantes (O&V) en Windchill utiliza un vocabulario rico de términos especializados. Dominar esta terminología es esencial antes de trabajar con productos configurables, ya que estos términos aparecen en toda la interfaz y documentación de Windchill."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Términos clave de O&V"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Término", "Categoría", "Definición"],
+          "rows": [
+            ["Expresión avanzada", "Lógica", "Incluye elecciones, operadores y funciones. Puede asignarse a artículos y enlaces de uso de artículos para definir criterios de selección complejos."],
+            ["Lógica de selección avanzada", "Lógica", "Lógica para un módulo configurable que utiliza parámetros y restricciones para guiar la entrada del usuario durante la configuración."],
+            ["Expresión básica", "Lógica", "Elecciones de opciones asignables a artículos y enlaces de uso para especificar cuándo un componente se incluye en una variante."],
+            ["Regla condicional", "Lógica", "Instrucciones SI/ENTONCES que especifican cuándo las elecciones deben incluirse, activarse o desactivarse según otras selecciones."],
+            ["Módulo configurable", "Estructura", "Un artículo de Windchill con artículos secundarios que representan variaciones de diseño. El bloque de construcción para la variabilidad del producto."],
+            ["Estructura de producto configurable", "Estructura", "Una estructura de producto que contiene módulos configurables que soportan múltiples variantes de producto."],
+            ["Regla de habilitación", "Lógica", "Hace que solo aparezcan elecciones específicas en la lista de selección una vez que se selecciona una elección objetivo."],
+            ["Regla de exclusión", "Lógica", "Restringe la selección de elecciones incompatibles, previniendo configuraciones inválidas."],
+            ["Regla de inclusión", "Lógica", "Asocia la selección de una elección para incluir automáticamente elecciones relacionadas."],
+            ["Filtro de opciones", "Gestión", "Criterios utilizados para filtrar una estructura de producto basándose en las elecciones asignadas a los artículos."],
+            ["Gestor de opciones", "Gestión", "Un rol de contexto de Windchill responsable de crear opciones y elecciones y mantener los conjuntos de opciones."],
+            ["Parámetro", "Lógica", "Un atributo dentro de un módulo configurable utilizado para lógica de selección avanzada con restricciones."],
+            ["Familia de productos", "Estructura", "Un conjunto de productos relacionados que comparten artículos sustanciales, definido por un conjunto de opciones y una estructura de producto configurable."],
+            ["Variante", "Estructura", "Un artículo o estructura que representa una configuración específica, creada durante el proceso de configuración."],
+            ["Especificación de variante", "Gestión", "Un registro de las entradas del usuario (elecciones y valores de parámetros) utilizadas para generar una variante específica."]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Estos 15 términos se dividen en tres categorías: los términos de Estructura (módulo configurable, estructura de producto configurable, familia de productos, variante) definen cómo se organizan los productos; los términos de Lógica (expresiones, reglas, parámetros) definen cómo se determinan las configuraciones; los términos de Gestión (filtro de opciones, gestor de opciones, especificación de variante) definen cómo se administran las configuraciones."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Ponga a prueba sus conocimientos"
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Asocie cada término de O&V con su definición:",
+          "pairs": [
+            {"left": "Módulo configurable", "right": "Un artículo de Windchill con artículos secundarios que representan variaciones de diseño"},
+            {"left": "Especificación de variante", "right": "Un registro de las entradas del usuario utilizadas para generar una variante específica"},
+            {"left": "Regla de exclusión", "right": "Restringe la selección de elecciones incompatibles"},
+            {"left": "Filtro de opciones", "right": "Criterios para filtrar la estructura del producto basándose en elecciones asignadas"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Opciones y Variantes tiene un vocabulario de más de 15 términos especializados que debe comprender",
+        "Los términos se dividen en tres categorías: estructura (módulo configurable, familia de productos), lógica (expresiones, reglas, parámetros) y gestión (filtro de opciones, gestor de opciones)",
+        "Comprender la terminología es esencial antes de trabajar con O&V en Windchill"
+      ]
+    },
+    {
+      "id": "m2t2",
+      "title": "Opciones y elecciones",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Las opciones y elecciones son los bloques de construcción fundamentales para definir la variabilidad de producto en Windchill. Una opción representa una característica particular del producto, y cada opción tiene una o más elecciones que definen los valores válidos para esa característica."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Cómo funcionan las opciones y elecciones"
+        },
+        {
+          "type": "paragraph",
+          "text": "Una opción es una característica particular del producto que puede variar entre configuraciones. Cada opción tiene de una a muchas elecciones disponibles. Las opciones pueden marcarse como obligatorias (el usuario debe seleccionar una elección) o de selección única (solo se puede seleccionar una elección a la vez). Las opciones son aplicables a variaciones de producto específicas, y las elecciones pueden asignarse a artículos, ocurrencias o enlaces de uso en la estructura del producto."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Pool de opciones vs. Conjunto de opciones"
+        },
+        {
+          "type": "paragraph",
+          "text": "Las opciones y elecciones se organizan en dos contenedores clave: el pool de opciones y el conjunto de opciones. Comprender la relación entre estos dos es fundamental para gestionar la configurabilidad del producto."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Pool de opciones",
+              "back": "El pool de opciones contiene TODAS las opciones y elecciones definidas para un contexto de producto. Es el repositorio maestro del que los conjuntos de opciones obtienen su contenido. Piense en él como el catálogo completo de cada posible característica variable."
+            },
+            {
+              "front": "Conjunto de opciones",
+              "back": "Un conjunto de opciones es una colección curada de opciones, elecciones y reglas utilizadas para definir configuraciones dentro de una familia de productos específica. Es un subconjunto del pool de opciones, que contiene solo las opciones relevantes para una línea de producto o escenario de configuración particular."
+            },
+            {
+              "front": "¿Por qué dos contenedores?",
+              "back": "El pool de opciones puede contener opciones para muchas familias de productos. Un conjunto de opciones selecciona solo las opciones relevantes para una familia de productos específica. Esta separación permite la reutilización — la misma opción (por ej., Color) puede aparecer en múltiples conjuntos de opciones para diferentes familias de productos."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Recuerde: el pool de opciones es el superconjunto, y el conjunto de opciones es un subconjunto curado. Un producto puede tener muchas opciones en su pool, pero el conjunto de opciones de una familia de productos específica contiene solo las opciones relevantes para las configuraciones de esa familia."
+        }
+      ],
+      "keyTakeaways": [
+        "Una opción representa una característica variable del producto; cada opción tiene una o más elecciones",
+        "Las opciones pueden ser obligatorias o de selección única, y las elecciones pueden asignarse a artículos, ocurrencias o enlaces de uso",
+        "El pool de opciones es el repositorio maestro de todas las opciones y elecciones para un contexto de producto",
+        "Un conjunto de opciones es un subconjunto curado del pool de opciones utilizado para definir configuraciones para una familia de productos específica"
+      ]
+    },
+    {
+      "id": "m2t3",
+      "title": "Elementos de una estructura configurable",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Una estructura configurable en Windchill contiene tanto artículos estándar (presentes en cada variante) como artículos opcionales (incluidos solo cuando se seleccionan elecciones específicas). Tres objetos configurables clave forman una jerarquía que define cómo se captura y resuelve la variabilidad del producto."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Tres objetos configurables"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Objeto", "Rol", "Descripción"],
+          "rows": [
+            ["Producto configurable", "Artículo de nivel superior", "El producto de nivel superior que representa una colección de variaciones de producto. Es el punto de entrada para la configuración y contiene la estructura sobrecargada completa."],
+            ["Módulo configurable", "Componente configurable", "Un componente configurable que captura la variabilidad a nivel de componente. Representado por una estructura sobrecargada que contiene todas las variaciones de diseño para esa sección del producto."],
+            ["Variante de módulo", "Selección específica", "Los artículos específicos seleccionados de los artículos opcionales dentro de un módulo configurable, basándose en los criterios de selección y las elecciones. Representa una configuración resuelta de un módulo."]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Una estructura sobrecargada es una estructura que contiene TODAS las variaciones de diseño posibles para un módulo configurable. Durante el proceso de configuración, los filtros de opciones reducen esta estructura sobrecargada a solo los artículos necesarios para una configuración específica, produciendo una variante de módulo."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Jerarquía de objetos configurables"
+        },
+        {
+          "type": "paragraph",
+          "text": "Los tres objetos configurables forman una jerarquía clara desde el más amplio al más específico. Comprender esta jerarquía es clave para trabajar con estructuras configurables."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Ordene los objetos configurables desde el nivel más alto (más amplio) al nivel más bajo (más específico):",
+          "correctOrder": [
+            "Producto configurable",
+            "Módulo configurable",
+            "Variante de módulo"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Tres objetos configurables forman una jerarquía: Producto Configurable, Módulo Configurable y Variante de Módulo",
+        "Los módulos configurables capturan la variabilidad usando estructuras sobrecargadas que contienen todas las variaciones de diseño",
+        "Las variantes de módulo son los artículos específicos seleccionados de un módulo configurable después de aplicar los filtros de opciones",
+        "Una estructura configurable contiene tanto artículos estándar (siempre presentes) como artículos opcionales (incluidos condicionalmente)"
+      ]
+    },
+    {
+      "id": "m2t4",
+      "title": "Configuración descendente y ascendente",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Windchill soporta dos enfoques para crear productos configurables: descendente (comenzando en Windchill) y ascendente (comenzando en Creo). El enfoque que elija depende de dónde se origina el diseño de su producto y de cómo su organización gestiona los datos de CAD y PLM."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Comparación de los dos enfoques"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Aspecto", "Descendente (Windchill primero)", "Ascendente (Creo primero)"],
+          "rows": [
+            ["Punto de partida", "Crear la estructura de artículos en Windchill primero", "Crear el producto configurable (ensamblaje sobrecargado) en Creo primero"],
+            ["Definición de opciones", "Crear el pool de opciones y el conjunto de opciones en Windchill, luego asignar elecciones a los artículos", "Abrir el ensamblaje sobrecargado en Creo, registrar en Windchill, luego definir opciones y elecciones en Windchill"],
+            ["Flujo de estructura", "Generar la estructura CAD desde la estructura de Windchill, propagar a Creo", "Registrar el ensamblaje de Creo en Windchill, designar como producto configurable, asignar elecciones"],
+            ["Configuración", "Configurar la estructura de artículos en Windchill usando especificación de variante, luego abrir en Creo", "Configurar la variante en Creo, registrar en Windchill, verificar las estructuras de variantes"],
+            ["Limitación de expresiones", "Solo las expresiones básicas se pasan de Windchill a Creo", "Solo las expresiones básicas se pasan de Windchill a Creo"],
+            ["Ideal para", "Organizaciones donde PLM dirige la estructura del producto", "Organizaciones donde el diseño CAD dirige la estructura del producto"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Flujo de trabajo descendente"
+        },
+        {
+          "type": "paragraph",
+          "text": "En el enfoque descendente, se comienza creando la estructura de artículos en Windchill: crear el pool de opciones, crear el conjunto de opciones, configurar módulos configurables y asignar elecciones a los artículos. Luego se genera la estructura CAD y se configura la estructura de artículos. En Creo, se abre el producto configurable, se registra, se configura usando una especificación de variante y se asocia la variante."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Flujo de trabajo ascendente"
+        },
+        {
+          "type": "paragraph",
+          "text": "En el enfoque ascendente, se comienza en Creo abriendo el ensamblaje sobrecargado y registrándolo en Windchill. Luego en Windchill, se definen las opciones y elecciones, se crea y asigna el conjunto de opciones, se designa el producto configurable, se asignan las elecciones, se configura y se propagan las elecciones a CAD. De vuelta en Creo, se revisan las asignaciones de elecciones, se configura la variante y se registra. Finalmente, se verifican las estructuras de variantes en Windchill."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Independientemente del enfoque que utilice, solo las expresiones básicas se pasan de Windchill a Creo. Las expresiones avanzadas permanecen solo en Windchill. Esta es una limitación crítica a tener en cuenta al planificar su estrategia de configuración."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Asocie los pasos"
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Asocie cada paso con el enfoque de configuración correcto:",
+          "pairs": [
+            {"left": "Crear la estructura de artículos en Windchill primero", "right": "Descendente"},
+            {"left": "Abrir el ensamblaje sobrecargado en Creo primero", "right": "Ascendente"},
+            {"left": "Generar la estructura CAD desde Windchill", "right": "Descendente"},
+            {"left": "Registrar el ensamblaje de Creo en Windchill, luego definir opciones", "right": "Ascendente"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "La configuración descendente comienza en Windchill y se propaga a Creo; la ascendente comienza en Creo y se propaga a Windchill",
+        "Solo las expresiones básicas se transfieren entre Windchill y Creo — las expresiones avanzadas permanecen solo en Windchill",
+        "Ambos enfoques finalizan con estructuras de variantes verificadas en ambos sistemas",
+        "La elección del enfoque depende de si PLM o CAD dirige la estructura de su producto"
+      ]
+    },
+    {
+      "id": "m2t5",
+      "title": "Preferencias de Opciones y Variantes",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Windchill utiliza un conjunto de preferencias para controlar el comportamiento de Opciones y Variantes. La preferencia más crítica es el Soporte de Módulo Configurable, que debe establecerse en Sí antes de que cualquier funcionalidad de O&V pueda utilizarse. Las preferencias siguen un modelo de herencia desde contenedores de nivel superior a contextos de nivel inferior."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Preferencias clave de O&V"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Soporte de Módulo Configurable",
+              "back": "Controla la capacidad de crear estructuras de producto opcionales. El valor predeterminado es No. Debe establecerse en Sí para usar cualquier funcionalidad de O&V. Esta es la preferencia fundamental — si es No, no se pueden crear módulos configurables."
+            },
+            {
+              "front": "Lógica Avanzada",
+              "back": "Habilita o deshabilita la lógica de selección avanzada usando parámetros y restricciones dentro de módulos configurables. Requerida para escenarios de configuración bajo pedido e ingeniería bajo pedido."
+            },
+            {
+              "front": "Formato de Visualización de Elecciones",
+              "back": "Controla cómo se muestran las elecciones a los usuarios durante la configuración. Las opciones incluyen mostrar el nombre de la elección, el número o ambos. Afecta la experiencia del usuario durante la especificación de variante."
+            },
+            {
+              "front": "Expresiones Soportadas",
+              "back": "Determina qué tipos de expresiones están disponibles para su uso: solo expresiones básicas, o tanto básicas como avanzadas. Limita la complejidad de la lógica de selección que puede crearse."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Herencia de preferencias y roles"
+        },
+        {
+          "type": "paragraph",
+          "text": "Las preferencias de O&V se heredan de contenedores de nivel superior (nivel de sitio) a contextos de nivel inferior (organización, producto). Las preferencias establecidas a nivel de sitio sirven como valores predeterminados. Los contextos de nivel inferior pueden anular los valores heredados o dejarlos tal como están. Las preferencias también pueden bloquearse a un nivel superior para evitar anulaciones de nivel inferior."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Rol", "Ámbito", "Capacidad"],
+          "rows": [
+            ["Administrador del sitio", "Todo el sitio de Windchill", "Establece las preferencias predeterminadas a nivel de sitio que se aplican a todas las organizaciones y productos a menos que se anulen."],
+            ["Administrador de la organización", "Organización específica", "Puede anular las preferencias a nivel de sitio para su organización. Las configuraciones se aplican a todos los productos dentro de la organización."],
+            ["Gestor de producto", "Producto específico", "Puede anular las preferencias a nivel de organización para el contexto de su producto. Nivel de control más granular."],
+            ["Gestor de biblioteca", "Biblioteca específica", "Puede anular las preferencias para contextos de biblioteca, controlando el comportamiento de O&V para contenido compartido de biblioteca."]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Si las funciones de O&V no están disponibles en un contexto de producto específico, lo primero que debe verificar es la preferencia Soporte de Módulo Configurable. Verifique que esté establecida en Sí al nivel apropiado (sitio, organización o producto). También compruebe si un bloqueo de nivel superior está impidiendo que la preferencia se cambie."
+        }
+      ],
+      "keyTakeaways": [
+        "El Soporte de Módulo Configurable debe establecerse en Sí para usar cualquier funcionalidad de Opciones y Variantes — su valor predeterminado es No",
+        "Las preferencias se heredan de niveles superiores (sitio) a niveles inferiores (organización, producto) y pueden bloquearse o anularse",
+        "Cuatro roles pueden cambiar las preferencias de O&V: Administrador del Sitio, Administrador de la Organización, Gestor de Producto y Gestor de Biblioteca",
+        "Comprender la herencia de preferencias es esencial para diagnosticar problemas de O&V en contextos de producto específicos"
+      ]
+    }
+  ]
+}

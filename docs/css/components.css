@@ -252,3 +252,12 @@
   display: flex; align-items: center; justify-content: space-between;
 }
 .notepad-footer .notepad-count { font-size: 10px; color: var(--c-text-dim); }
+
+/* CJK: disable letter-spacing and uppercase (meaningless for CJK scripts) */
+html[lang="ja"] .module-num, html[lang="zh"] .module-num, html[lang="ko"] .module-num,
+html[lang="ja"] .data-table th, html[lang="zh"] .data-table th, html[lang="ko"] .data-table th,
+html[lang="ja"] .continue-banner .continue-label, html[lang="zh"] .continue-banner .continue-label, html[lang="ko"] .continue-banner .continue-label,
+html[lang="ja"] .sb-nav-section, html[lang="zh"] .sb-nav-section, html[lang="ko"] .sb-nav-section {
+  letter-spacing: normal;
+  text-transform: none;
+}

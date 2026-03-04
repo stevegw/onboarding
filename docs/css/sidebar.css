@@ -75,7 +75,10 @@
 .sb-nav-item:hover { background: var(--c-bg-surface-hover); color: var(--c-text); }
 .sb-nav-item.active { background: var(--c-accent-006); color: var(--c-accent); border-left-color: var(--c-accent); font-weight: 600; }
 .sb-nav-item .nav-icon { font-size: 14px; flex-shrink: 0; width: 18px; text-align: center; }
-.sb-nav-item .nav-label { overflow: hidden; white-space: nowrap; flex: 1; }
+.sb-nav-item .nav-label { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; flex: 1; }
+html[lang="ja"] .sb-nav-item .nav-label,
+html[lang="zh"] .sb-nav-item .nav-label,
+html[lang="ko"] .sb-nav-item .nav-label { white-space: normal; word-break: break-word; }
 .sb-nav-item .nav-check { font-size: 12px; color: var(--c-accent); flex-shrink: 0; opacity: 0; }
 .sb-nav-item .nav-check.done { opacity: 1; }
 

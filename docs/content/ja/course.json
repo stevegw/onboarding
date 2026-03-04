@@ -1,0 +1,47 @@
+{
+  "id": "wc-ocp1",
+  "title": "Windchill: オプションおよびコンフィギュラブル製品 1",
+  "description": "コンフィギュラブル製品のビジネスアプローチを学び、オプションとバリアントの用語を理解し、ルールを調査し、オプションセットを習得します。",
+  "prerequisite": "Windchill: BOM リストラクチャリング",
+  "modules": [
+    {
+      "id": "m1",
+      "title": "コンフィギュラブル製品の紹介",
+      "description": "製品バリアビリティのビジネス戦略、製品プラットフォーム、製品バリアント、およびWindchillのコンフィグレーションアプローチを検討します。",
+      "estimatedMinutes": 55,
+      "topicCount": 7,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m1-configurable-products.json",
+      "quizFile": "quizzes/q1-configurable-products.json"
+    },
+    {
+      "id": "m2",
+      "title": "Windchill オプションとバリアントの確認",
+      "description": "オプションとバリアントの用語を確認し、オプションと選択肢について議論し、プリファレンスを探索し、コンフィギュラブルモジュールを作成します。",
+      "estimatedMinutes": 25,
+      "topicCount": 5,
+      "contentFile": "modules/m2-options-and-variants.json",
+      "quizFile": "quizzes/q2-options-and-variants.json"
+    },
+    {
+      "id": "m3",
+      "title": "オプションとバリアントのルールを調査",
+      "description": "インクルードルール、エクスクルードルール、イネーブルルール、条件付きルールを調査します。ルールの検証とエクスプレッションエイリアスを探索します。",
+      "estimatedMinutes": 20,
+      "topicCount": 4,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m3-rules.json",
+      "quizFile": "quizzes/q3-rules.json"
+    },
+    {
+      "id": "m4",
+      "title": "オプションセットの探索",
+      "description": "オプションセットを定義し、変更管理を探索し、オプションセットを割り当て、エクスプレッションを適用し、オプションフィルタを使用します。",
+      "estimatedMinutes": 25,
+      "topicCount": 5,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m4-option-sets.json",
+      "quizFile": "quizzes/q4-option-sets.json"
+    }
+  ]
+}

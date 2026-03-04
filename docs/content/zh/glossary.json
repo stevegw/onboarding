@@ -1,0 +1,88 @@
+{
+  "terms": [
+    {
+      "term": "高级表达式（Advanced Expression）",
+      "definition": "一种包含选择项、运算符和函数的表达式。可以分配给零件和零件使用链接，以指定何时将组件包含在产品结构中。"
+    },
+    {
+      "term": "基本表达式（Basic Expression）",
+      "definition": "可以分配给零件和零件使用链接的选项选择项，用于指定何时将组件包含在产品结构中。"
+    },
+    {
+      "term": "可配置模块（Configurable Module）",
+      "definition": "一种 Windchill 零件，可以有一个或多个子零件，代表组件或功能单元在设计和配置方面的变化。"
+    },
+    {
+      "term": "可配置产品（Configurable Product）",
+      "definition": "代表一系列产品变体的顶层最终项目。例如，具有不同型号但共享部分标准组件的产品系列。"
+    },
+    {
+      "term": "可配置产品结构（Configurable Product Structure）",
+      "definition": "包含可配置模块，以支持从同一产品结构创建多个产品变体的能力。"
+    },
+    {
+      "term": "条件规则（Conditional Rule）",
+      "definition": "使用 IF/THEN 语句的规则，用于指定何时基于选项过滤器中的其他选择来包含、启用或禁用某些选项选择项。"
+    },
+    {
+      "term": "启用规则（Enable Rule）",
+      "definition": "一种规则，当选择某个目标选择项后，只允许特定的选择项出现供用户选择。"
+    },
+    {
+      "term": "排除规则（Exclude Rule）",
+      "definition": "一种限制选择不兼容选项的规则。例如，选择 110 伏会阻止选择 50 赫兹频率。"
+    },
+    {
+      "term": "表达式别名（Expression Alias）",
+      "definition": "一个命名的逻辑语句，可在编写条件规则、高级表达式和其他别名时重复使用。用于捕获全局产品管理的通用定义。"
+    },
+    {
+      "term": "包含规则（Include Rule）",
+      "definition": "一种将一个选项选择项的选择与一个或多个相关选项选择项关联的规则。选择源选择项时，会自动选择目标选择项。"
+    },
+    {
+      "term": "模块变体（Module Variant）",
+      "definition": "在变体生成过程中，根据选择标准和选择项分配，从可配置模块的可选零件和组件中选出的特定零件。"
+    },
+    {
+      "term": "选项（Option）",
+      "definition": "一种特定的产品特征。选项具有一个或多个选择项，可以设为必选或单选，适用于特定的产品变体。"
+    },
+    {
+      "term": "选项过滤器（Option Filter）",
+      "definition": "一组标准，用于根据分配给零件的选择项以及零件在结构中的使用情况来过滤产品结构。"
+    },
+    {
+      "term": "选项管理员（Option Manager）",
+      "definition": "一种 Windchill 上下文角色，有权创建选项和选择项，并维护选项集及其他相关信息。"
+    },
+    {
+      "term": "选项池（Option Pool）",
+      "definition": "一个容器，包含产品的所有可用选项及其选择项。选项和选择项在选项池中进行管理。"
+    },
+    {
+      "term": "选项集（Option Set）",
+      "definition": "来自一个或多个选项池的选项和选择项的子集，用于定义产品系列中的变体。选项集是受变更管理的对象。"
+    },
+    {
+      "term": "参数（Parameter）",
+      "definition": "在可配置模块上下文中本地定义的属性，用于在零件配置过程中支持高级选择逻辑。"
+    },
+    {
+      "term": "产品系列（Product Family）",
+      "definition": "一组相关产品，提供一系列功能，并共享大量相同的零件。"
+    },
+    {
+      "term": "变体（Variant）",
+      "definition": "代表可配置产品结构的特定配置的零件或零件结构，在配置过程中创建。"
+    },
+    {
+      "term": "变体规格（Variant Specification）",
+      "definition": "在配置过程中提供的用户输入的选项选择项和参数值的记录，用于生成变体零件结构。"
+    },
+    {
+      "term": "可配置模块支持（Configurable Module Support）",
+      "definition": "一种 Windchill 首选项，用于控制创建可选产品结构的能力。必须设置为“是”才能使用选项和变体功能。"
+    }
+  ]
+}

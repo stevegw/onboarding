@@ -1,0 +1,2517 @@
+/**
+ * OB -- Chinese Content Bundle
+ * ============================
+ * All Simplified Chinese content embedded as JS for file:// compatibility.
+ * Loaded before content.js. When present, content.js uses this
+ * instead of fetch(). Regenerate by copying JSON file contents here.
+ */
+(function () {
+  "use strict";
+  var OB = window.OB = window.OB || {};
+
+  OB._bundleZh = {
+  "i18n/ui-zh.json": {
+    "app.title": "Windchill OCP",
+    "app.subtitle": "入门培训",
+    "app.courseProgress": "课程进度",
+    "app.courseProgressPct": "课程进度：{pct}%",
+    "app.resetProgress": "重置进度",
+    "app.resetConfirm": "重置所有进度和笔记？",
+    "app.openMenu": "打开菜单",
+    "app.toggleTheme": "切换主题",
+    "sidebar.dashboard": "概览",
+    "sidebar.modules": "模块",
+    "sidebar.resources": "资源",
+    "sidebar.glossary": "术语表",
+    "sidebar.knowledgeCheck": "知识检测",
+    "sidebar.comingSoon": "即将推出",
+    "sidebar.topicLabel": "主题 {mod}.{topic}",
+    "sidebar.exerciseLabel": "练习 {num}",
+    "dashboard.continueLabel": "继续上次的学习",
+    "dashboard.statComplete": "已完成",
+    "dashboard.statTopics": "主题",
+    "dashboard.statEstimated": "预计时间",
+    "dashboard.modules": "模块",
+    "dashboard.moduleNum": "模块 {num}",
+    "dashboard.moduleComingSoon": "模块 {num} — 即将推出",
+    "dashboard.topicsProgress": "{done}/{total} 个主题",
+    "dashboard.estimatedMin": "约 {min} 分钟",
+    "dashboard.routeTopic": "主题 {label}",
+    "dashboard.routeModule": "模块 {label}",
+    "dashboard.routeQuiz": "测验 {label}",
+    "dashboard.routeGlossary": "术语表",
+    "topic.breadcrumbDashboard": "概览",
+    "topic.breadcrumbModule": "模块 {num}",
+    "topic.topicNum": "主题 {mod}.{topic}",
+    "topic.exerciseNum": "练习 {num}",
+    "topic.estimated": "预计：约 {min} 分钟",
+    "topic.keyTakeaways": "核心要点",
+    "topic.markComplete": "标记为已完成",
+    "topic.completedUndo": "已完成 - 点击撤销",
+    "topic.previous": "上一个",
+    "topic.next": "下一个",
+    "topic.moduleOverview": "模块概览",
+    "topic.takeQuiz": "开始测验",
+    "topic.clickToReveal": "点击翻转",
+    "topic.allMatchedCorrectly": "全部匹配正确！",
+    "topic.scenarioLabel": "场景",
+    "topic.strategyLabel": "策略",
+    "topic.showHint": "显示提示",
+    "topic.hideHint": "隐藏提示",
+    "topic.objective": "目标",
+    "topic.stepsCompleted": "已完成 {done}/{total} 个步骤",
+    "topic.stepsProgress": "{done}/{total} 个步骤",
+    "topic.doThis": "操作步骤",
+    "topic.whyItMatters": "为什么重要",
+    "topic.doneNextStep": "完成 — 下一步",
+    "topic.topicsComplete": "已完成 {done}/{total} 个主题",
+    "topic.moduleBadge": "模块 {num}",
+    "topic.topics": "主题",
+    "topic.startModule": "开始模块",
+    "topic.backToDashboard": "概览",
+    "topic.knowledgeCheck": "模块 {num} 知识检测",
+    "topic.quizBest": "最佳成绩：{score}/{total}",
+    "topic.quizNotAttempted": "尚未参加",
+    "quiz.moduleKnowledgeCheck": "模块 {num} 知识检测",
+    "quiz.questionProgress": "第 {current} 题，共 {total} 题",
+    "quiz.previous": "上一题",
+    "quiz.back": "返回",
+    "quiz.next": "下一题",
+    "quiz.seeResults": "查看结果",
+    "quiz.retryQuiz": "重新测验",
+    "quiz.backToModule": "返回模块",
+    "quiz.greatJob": "非常棒！",
+    "quiz.goodEffort": "继续努力！",
+    "quiz.keepStudying": "继续学习！",
+    "quiz.scoreMessage": "您在模块 {num} 知识检测中获得了 {pct}% 的成绩。",
+    "quiz.review": "复习回顾",
+    "quiz.yourAnswer": "您的答案：{answer}",
+    "quiz.correct": "正确答案：{answer}",
+    "quiz.notAvailable": "测验尚不可用。",
+    "quiz.topicNotFound": "未找到该主题。",
+    "quiz.moduleNotFound": "未找到该模块。",
+    "glossary.title": "术语表",
+    "glossary.subtitle": "选项和可配置产品术语（{count} 个术语）",
+    "glossary.searchPlaceholder": "搜索术语...",
+    "glossary.noResults": "没有匹配的术语。",
+    "glossary.notAvailable": "术语表不可用。",
+    "notepad.title": "笔记",
+    "notepad.placeholder": "在学习过程中记录笔记...",
+    "notepad.charCount": "{count} 字符",
+    "notepad.openNotepad": "打开记事本",
+    "error.loadingContent": "内容加载错误",
+    "error.serverRequired": "请确保通过 HTTP 服务器提供此页面（例如 python -m http.server）。fetch() API 不支持 file:// URL。",
+    "locale.en": "English",
+    "locale.fr": "Français",
+    "locale.de": "Deutsch",
+    "locale.ja": "日本語",
+    "locale.zh": "中文",
+    "locale.ko": "한국어",
+    "locale.es": "Español"
+  },
+  "course.json": {
+    "id": "wc-ocp1",
+    "title": "Windchill：选项和可配置产品 1",
+    "description": "学习可配置产品的业务方法，探索选项和变体术语，研究规则，并掌握选项集。",
+    "prerequisite": "Windchill：BOM 重构",
+    "modules": [
+      {
+        "id": "m1",
+        "title": "可配置产品简介",
+        "description": "研究产品可变性的业务策略、产品平台、产品变体以及 Windchill 配置方法。",
+        "estimatedMinutes": 55,
+        "topicCount": 7,
+        "exerciseTopicStart": 5,
+        "contentFile": "modules/m1-configurable-products.json",
+        "quizFile": "quizzes/q1-configurable-products.json"
+      },
+      {
+        "id": "m2",
+        "title": "了解 Windchill 选项和变体",
+        "description": "研究选项和变体术语，讨论选项和选择项，探索首选项，并创建可配置模块。",
+        "estimatedMinutes": 25,
+        "topicCount": 5,
+        "contentFile": "modules/m2-options-and-variants.json",
+        "quizFile": "quizzes/q2-options-and-variants.json"
+      },
+      {
+        "id": "m3",
+        "title": "研究选项和变体规则",
+        "description": "研究包含规则、排除规则、启用规则和条件规则。探索规则验证和表达式别名。",
+        "estimatedMinutes": 20,
+        "topicCount": 4,
+        "exerciseTopicStart": 4,
+        "contentFile": "modules/m3-rules.json",
+        "quizFile": "quizzes/q3-rules.json"
+      },
+      {
+        "id": "m4",
+        "title": "探索选项集",
+        "description": "定义选项集，探索变更管理，分配选项集，应用表达式，并使用选项过滤器。",
+        "estimatedMinutes": 25,
+        "topicCount": 5,
+        "exerciseTopicStart": 4,
+        "contentFile": "modules/m4-option-sets.json",
+        "quizFile": "quizzes/q4-option-sets.json"
+      }
+    ]
+  },
+  "glossary.json": {
+    "terms": [
+      {
+        "term": "高级表达式（Advanced Expression）",
+        "definition": "一种包含选择项、运算符和函数的表达式。可以分配给零件和零件使用链接，以指定何时将组件包含在产品结构中。"
+      },
+      {
+        "term": "基本表达式（Basic Expression）",
+        "definition": "可以分配给零件和零件使用链接的选项选择项，用于指定何时将组件包含在产品结构中。"
+      },
+      {
+        "term": "可配置模块（Configurable Module）",
+        "definition": "一种 Windchill 零件，可以有一个或多个子零件，代表组件或功能单元在设计和配置方面的变化。"
+      },
+      {
+        "term": "可配置产品（Configurable Product）",
+        "definition": "代表一系列产品变体的顶层最终项目。例如，具有不同型号但共享部分标准组件的产品系列。"
+      },
+      {
+        "term": "可配置产品结构（Configurable Product Structure）",
+        "definition": "包含可配置模块，以支持从同一产品结构创建多个产品变体的能力。"
+      },
+      {
+        "term": "条件规则（Conditional Rule）",
+        "definition": "使用 IF/THEN 语句的规则，用于指定何时基于选项过滤器中的其他选择来包含、启用或禁用某些选项选择项。"
+      },
+      {
+        "term": "启用规则（Enable Rule）",
+        "definition": "一种规则，当选择某个目标选择项后，只允许特定的选择项出现供用户选择。"
+      },
+      {
+        "term": "排除规则（Exclude Rule）",
+        "definition": "一种限制选择不兼容选项的规则。例如，选择 110 伏会阻止选择 50 赫兹频率。"
+      },
+      {
+        "term": "表达式别名（Expression Alias）",
+        "definition": "一个命名的逻辑语句，可在编写条件规则、高级表达式和其他别名时重复使用。用于捕获全局产品管理的通用定义。"
+      },
+      {
+        "term": "包含规则（Include Rule）",
+        "definition": "一种将一个选项选择项的选择与一个或多个相关选项选择项关联的规则。选择源选择项时，会自动选择目标选择项。"
+      },
+      {
+        "term": "模块变体（Module Variant）",
+        "definition": "在变体生成过程中，根据选择标准和选择项分配，从可配置模块的可选零件和组件中选出的特定零件。"
+      },
+      {
+        "term": "选项（Option）",
+        "definition": "一种特定的产品特征。选项具有一个或多个选择项，可以设为必选或单选，适用于特定的产品变体。"
+      },
+      {
+        "term": "选项过滤器（Option Filter）",
+        "definition": "一组标准，用于根据分配给零件的选择项以及零件在结构中的使用情况来过滤产品结构。"
+      },
+      {
+        "term": "选项管理员（Option Manager）",
+        "definition": "一种 Windchill 上下文角色，有权创建选项和选择项，并维护选项集及其他相关信息。"
+      },
+      {
+        "term": "选项池（Option Pool）",
+        "definition": "一个容器，包含产品的所有可用选项及其选择项。选项和选择项在选项池中进行管理。"
+      },
+      {
+        "term": "选项集（Option Set）",
+        "definition": "来自一个或多个选项池的选项和选择项的子集，用于定义产品系列中的变体。选项集是受变更管理的对象。"
+      },
+      {
+        "term": "参数（Parameter）",
+        "definition": "在可配置模块上下文中本地定义的属性，用于在零件配置过程中支持高级选择逻辑。"
+      },
+      {
+        "term": "产品系列（Product Family）",
+        "definition": "一组相关产品，提供一系列功能，并共享大量相同的零件。"
+      },
+      {
+        "term": "变体（Variant）",
+        "definition": "代表可配置产品结构的特定配置的零件或零件结构，在配置过程中创建。"
+      },
+      {
+        "term": "变体规格（Variant Specification）",
+        "definition": "在配置过程中提供的用户输入的选项选择项和参数值的记录，用于生成变体零件结构。"
+      },
+      {
+        "term": "可配置模块支持（Configurable Module Support）",
+        "definition": "一种 Windchill 首选项，用于控制创建可选产品结构的能力。必须设置为“是”才能使用选项和变体功能。"
+      }
+    ]
+  },
+  "modules/m1-configurable-products.json": {
+    "id": "m1",
+    "title": "可配置产品简介",
+    "description": "研究产品可变性的业务策略，讨论产品平台和产品变体的注意事项，并了解使用 Windchill 的产品配置方法。",
+    "topics": [
+      {
+        "id": "m1t1",
+        "title": "产品可变性的业务策略",
+        "estimatedMinutes": 6,
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "制造企业采用不同的业务策略来交付具有可选和可定制组件的产品。了解这些策略是为产品可变性需求配置 Windchill 的第一步。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "五种业务策略"
+          },
+          {
+            "type": "comparison-table",
+            "headers": [
+              "策略",
+              "描述",
+              "示例"
+            ],
+            "rows": [
+              [
+                "按订单装配（Assemble-to-Order）",
+                "针对关键产品特征设计具有有限离散选项选择项列表的产品。制造执行无需产品开发参与。",
+                "乘用车、重型设备、计算机"
+              ],
+              [
+                "按库存装配（Assemble-to-Stock）",
+                "设计具有多种离散变体的通用产品，变体由产品特征的微小变化组成。",
+                "多种颜色和尺寸的消费品（服装、家用电器）"
+              ],
+              [
+                "按订单配置（Configure-to-Order）",
+                "设计灵活的产品，可以使用带有规则的配置器进行配置或定制，以满足每位客户的独特需求。",
+                "工业设备、具有相互关联选项的企业软件"
+              ],
+              [
+                "按订单设计（Engineer-to-Order）",
+                "与按订单配置类似，但每个订单需要工程团队参与验证和定制设计。",
+                "复杂系统（涡轮机、飞机部件）需要工程审核"
+              ],
+              [
+                "合同定制（Contract）",
+                "按照客户规格进行完全定制设计和制造。每份合同生产唯一的产品。",
+                "一次性设计——国防系统、定制基础设施"
+              ]
+            ]
+          },
+          {
+            "type": "callout",
+            "variant": "insight",
+            "text": "这些策略之间的关键区别在于每个订单所需的产品开发参与程度。按订单装配不需要参与，而合同定制则需要为每位客户进行完全定制的工程设计。"
+          },
+          {
+            "type": "interactive-match",
+            "prompt": "将每个场景与正确的业务策略进行匹配：",
+            "pairs": [
+              {
+                "left": "一家汽车制造商提供预定义选项包，如运动型、豪华型和基础型",
+                "right": "按订单装配（Assemble-to-Order）"
+              },
+              {
+                "left": "一家涡轮机公司根据客户规格对每个产品进行工程审核设计",
+                "right": "按订单设计（Engineer-to-Order）"
+              },
+              {
+                "left": "一个服装品牌生产 5 种颜色和 4 种尺寸的衬衫",
+                "right": "按库存装配（Assemble-to-Stock）"
+              },
+              {
+                "left": "一家国防承包商为军事合同建造独特的雷达系统",
+                "right": "合同定制（Contract）"
+              }
+            ]
+          }
+        ],
+        "keyTakeaways": [
+          "存在五种主要业务策略，从按库存装配（最少定制）到合同定制（完全定制）",
+          "策略选择决定了每个订单需要多少产品开发参与",
+          "Windchill OCP 主要支持按订单装配和按订单配置策略"
+        ]
+      },
+      {
+        "id": "m1t2",
+        "title": "通用平台设计",
+        "estimatedMinutes": 5,
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "在创建产品变体之前，企业首先要建立通用产品平台。该平台作为所有产品变体衍生的基础。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "平台设计的四个步骤"
+          },
+          {
+            "type": "paragraph",
+            "text": "平台设计阶段遵循结构化流程来创建可复用的产品基础："
+          },
+          {
+            "type": "reveal-cards",
+            "cards": [
+              {
+                "front": "步骤 1：分析平台可选性需求",
+                "back": "分析新产品的需求，确定满足这些需求所需的选项。确定哪些部分需要可变，哪些部分是固定的。"
+              },
+              {
+                "front": "步骤 2：评估现有产品以便复用",
+                "back": "调查现有变体设计的复用可能性，并审查新概念。在创建新设计之前，充分利用已有的资源。"
+              },
+              {
+                "front": "步骤 3：创建通用产品定义",
+                "back": "开发支持产品可选性的框架。复用现有零件、选项和规则。定义新的规则和逻辑以选择产品选项。根据需要进行评估和迭代。"
+              },
+              {
+                "front": "步骤 4：发布和维护平台",
+                "back": "设计和验证成功后，将通用平台发布给制造计划或制造部门。随时间推移根据需要管理和修改平台。"
+              }
+            ]
+          },
+          {
+            "type": "callout",
+            "variant": "tip",
+            "text": "一个设计良好的平台可以最大限度地实现跨变体的复用。目标是使通用零件真正通用，并清晰地标识可变部分。"
+          }
+        ],
+        "keyTakeaways": [
+          "平台设计是变体生成的前提条件",
+          "在创建新设计之前，始终评估现有产品的复用可能性",
+          "平台框架定义了哪些零件是固定的，哪些是可变的"
+        ]
+      },
+      {
+        "id": "m1t3",
+        "title": "变体生成",
+        "estimatedMinutes": 5,
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "一旦通用平台建立，就可以生成特定的产品变体来满足市场或客户需求。变体生成过程在平台基础上创建配置产品。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "变体生成步骤"
+          },
+          {
+            "type": "reveal-cards",
+            "cards": [
+              {
+                "front": "步骤 1：分析特定变体需求",
+                "back": "分析特定市场或客户的需求。该特定客户或细分市场需要哪些与基础平台不同的内容？"
+              },
+              {
+                "front": "步骤 2：评估现有平台以便复用",
+                "back": "评估现有通用平台，选择最适合需求的平台。选择需要最少定制的平台。"
+              },
+              {
+                "front": "步骤 3：创建变体定义",
+                "back": "定义变体的配置并生成可交付成果，如零件结构和文档。根据需要修改特定变体设计。"
+              },
+              {
+                "front": "步骤 4：发布和维护变体",
+                "back": "变体生成并获批后，将其发布给制造部门。根据需要维护和修改变体定义。"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "管理可配置产品"
+          },
+          {
+            "type": "paragraph",
+            "text": "企业采用常见的行业实践来管理变体设计和生成过程中的产品信息："
+          },
+          {
+            "type": "comparison-table",
+            "headers": [
+              "实践",
+              "描述"
+            ],
+            "rows": [
+              [
+                "模块化产品结构",
+                "将产品分解为支持特定功能的模块化部分。模块可以在不同产品之间共享。"
+              ],
+              [
+                "超载产品结构",
+                "结构中的某些部分包含多种设计，以满足该功能的不同能力级别。"
+              ],
+              [
+                "选项管理",
+                "定义选项和选择项以标识可变特征。将选择项分配给超载部分中的设计以控制选择。"
+              ],
+              [
+                "订单结构",
+                "没有额外选项的零件结构，反映特定的销售订单。经过分析、测试和验证。"
+              ]
+            ]
+          },
+          {
+            "type": "callout",
+            "variant": "info",
+            "text": "超载结构是一个关键概念：它包含所有可能的设计变体。在变体生成过程中，超载结构被过滤为仅包含特定配置所需的零件。"
+          }
+        ],
+        "keyTakeaways": [
+          "变体生成遵循与平台设计过程相似的四个步骤",
+          "在从零开始构建新变体之前，始终评估现有平台",
+          "超载产品结构包含所有可能的变体；选项过滤器将其缩减为特定配置"
+        ]
+      },
+      {
+        "id": "m1t4",
+        "title": "Windchill 中的产品配置",
+        "estimatedMinutes": 6,
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Windchill 提供特定功能来支持您交付可配置产品的业务策略。了解业务策略如何映射到 Windchill 功能对于成功实施至关重要。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "业务策略与 Windchill 的映射"
+          },
+          {
+            "type": "comparison-table",
+            "headers": [
+              "业务方法",
+              "Windchill 功能",
+              "工作原理"
+            ],
+            "rows": [
+              [
+                "按订单装配 / 按库存装配",
+                "用于过滤的选项和选择项",
+                "选项和选择项过滤超载产品结构。订单通常通过外部销售配置器（ATO）或在 Windchill 中（ATS）创建。"
+              ],
+              [
+                "按订单配置 / 按订单设计",
+                "基于列表的选项 + 参数",
+                "基于列表的选项过滤结构，而参数提供高级选择逻辑以进行额外配置。"
+              ]
+            ]
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "Windchill 的产品可变性功能"
+          },
+          {
+            "type": "reveal-cards",
+            "cards": [
+              {
+                "front": "可配置产品结构",
+                "back": "Windchill 零件可以定义为可配置的，指定旨在具有多种设计的部分。支持模块化和超载结构。"
+              },
+              {
+                "front": "用于过滤选择逻辑的选项",
+                "back": "定义描述离散配置的固定选项和选择项列表。可跨产品复用，通过规则约束有效组合。"
+              },
+              {
+                "front": "高级选择逻辑（参数）",
+                "back": "参数使用约束提供高级选择逻辑，以在配置过程中引导用户输入。超越简单的选项/选择项列表。"
+              },
+              {
+                "front": "组合过滤和高级选择",
+                "back": "首先使用基于列表的选项过滤超载结构，然后使用参数进一步配置。提供最大的灵活性。"
+              },
+              {
+                "front": "变体生成和复用",
+                "back": "使用过滤和选择逻辑创建和更新变体。Windchill 在变体规格中记录选项选择项，并搜索现有变体以实现复用。"
+              }
+            ]
+          },
+          {
+            "type": "callout",
+            "variant": "insight",
+            "text": "组合方法最为强大：使用选项进行粗略过滤（“哪种发动机？”），然后使用参数进行精细配置（“什么缸径？”）。这种两阶段方法可处理大多数实际产品可变性需求。"
+          },
+          {
+            "type": "interactive-match",
+            "prompt": "将每个 Windchill 功能与其主要用途进行匹配：",
+            "pairs": [
+              {
+                "left": "选项和选择项",
+                "right": "使用离散选择过滤超载结构"
+              },
+              {
+                "left": "参数",
+                "right": "提供带约束的高级选择逻辑"
+              },
+              {
+                "left": "变体规格",
+                "right": "记录用于生成特定变体的输入"
+              },
+              {
+                "left": "可配置模块",
+                "right": "指定具有多种设计变体的产品部分"
+              }
+            ]
+          }
+        ],
+        "keyTakeaways": [
+          "按订单装配/按库存装配使用选项和选择项进行过滤；按订单配置/按订单设计还增加了参数",
+          "选项和参数可以组合使用以获得最大的可配置性",
+          "Windchill 跟踪变体规格以实现跨订单的变体复用"
+        ]
+      },
+      {
+        "id": "m1t5",
+        "title": "查看现有选项和选择项",
+        "estimatedMinutes": 15,
+        "isExercise": true,
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "在本练习中，您将在 Windchill 中探索 PTC Motorcycle 产品，以了解选项池、选项、选择项和产品结构是如何组织的。您将浏览选项池，查看现有选项及其选择项，并浏览产品结构以识别可配置模块。"
+          },
+          {
+            "type": "callout",
+            "variant": "info",
+            "text": "您需要访问 Windchill 培训服务器才能完成本练习。使用您分配的培训用户登录。"
+          },
+          {
+            "type": "exercise",
+            "exerciseId": "ex1",
+            "title": "查看现有选项和选择项",
+            "objective": "通过探索 PTC Motorcycle 产品，了解选项池、选项、选择项和产品结构在 Windchill 中的组织方式。",
+            "tasks": [
+              {
+                "id": "ex1-t1",
+                "title": "访问 PTC Motorcycle 选项池",
+                "steps": [
+                  {
+                    "action": "登录 Windchill 并导航到“浏览”选项卡。转到“产品”并选择 PTC Motorcycle。",
+                    "detail": "“产品”区域列出了您有权访问的所有产品。PTC Motorcycle 是本课程中使用的示例可配置产品。",
+                    "hint": "使用讲师提供的 URL。您的凭据通常是您的培训用户名和密码。"
+                  },
+                  {
+                    "action": "在 PTC Motorcycle 产品页面上单击“选项池”选项卡。",
+                    "detail": "“选项池”选项卡显示为该产品定义的所有选项。每个选项代表摩托车的一个可变特征，如发动机排量或颜色。",
+                    "hint": "“选项池”选项卡与“详细信息”、“结构”和“变更”等其他选项卡并列。"
+                  },
+                  {
+                    "action": "查看选项池中显示的选项列表。记录选项名称及每个选项的选择项数量。",
+                    "detail": "每个选项（如发动机排量、颜色、鞍囊位置）代表一个可配置特征。每个选项的选择项数量决定了该特征支持多少种变体。",
+                    "hint": null
+                  },
+                  {
+                    "action": "单击“发动机排量”选项以查看其选择项。",
+                    "detail": "选项包含定义该特征有效值的选择项。对于“发动机排量”，您将看到 600cc、1000cc 和 1200cc 等选择项。每个选择项都可以分配给产品结构中的零件。",
+                    "hint": "单击选项名称链接或信息图标以打开选项详细信息页面。"
+                  },
+                  {
+                    "action": "查看“发动机排量”的选择项名称、描述以及任何关联的图像或属性。",
+                    "detail": "选择项通常包含描述信息，帮助用户理解每个选择的含义。文档完善的选择项可以减少变体生成过程中的配置错误。",
+                    "hint": null
+                  },
+                  {
+                    "action": "导航回选项池，单击“颜色”选项。查看其选择项。",
+                    "detail": "请注意，颜色选择项（如红色、蓝色、黑色）与发动机排量选择项遵循相同的结构。所有选项遵循一致的模式：选项名称、选择项列表和可选描述。",
+                    "hint": "使用浏览器后退按钮或面包屑导航返回选项池。"
+                  },
+                  {
+                    "action": "导航回选项池并单击“鞍囊位置”。查看其当前选择项。",
+                    "detail": "“鞍囊位置”控制鞍囊在摩托车上的安装位置。请注意，此选项当前有特定的位置选择项。您将在练习 2 中修改此选项。",
+                    "hint": null
+                  }
+                ]
+              },
+              {
+                "id": "ex1-t2",
+                "title": "浏览文件夹和查看产品结构",
+                "steps": [
+                  {
+                    "action": "在 PTC Motorcycle 产品页面上导航到“文件夹”选项卡。浏览文件夹结构。",
+                    "detail": "产品在文件夹中组织其内容。浏览文件夹有助于了解设计数据、选项和其他工件在产品上下文中的组织方式。",
+                    "hint": "根据您的 Windchill 版本，“文件夹”选项卡可能标记为“文件夹内容”。"
+                  },
+                  {
+                    "action": "使用搜索功能查找特定零件（例如，搜索“engine”或“frame”）。",
+                    "detail": "Windchill 的搜索允许您在产品内快速查找零件、文档和其他对象。当您知道要找什么时，这比浏览文件夹更快。",
+                    "hint": "使用页面顶部的搜索框，或转到“搜索”选项卡。将搜索范围设置为当前产品。"
+                  },
+                  {
+                    "action": "从搜索结果中单击一个零件以打开其详细信息页面。查看零件类型和其他属性。",
+                    "detail": "每个零件都有一个类型（如零件、装配体）和定义其属性的特性。了解零件类型很重要，因为可配置模块必须是特定的零件类型。",
+                    "hint": null
+                  },
+                  {
+                    "action": "单击 PTC Motorcycle 顶层零件的“结构”选项卡以查看产品结构。",
+                    "detail": "产品结构显示零件如何以父子层次结构组织。这就是物料清单（BOM）。该结构的某些部分包含多种设计选项（超载结构）。",
+                    "hint": "导航到 PTC Motorcycle 顶层零件并单击“结构”选项卡。"
+                  },
+                  {
+                    "action": "展开结构树并识别标记为可配置模块的零件（查找可配置模块图标或标识）。",
+                    "detail": "可配置模块是结构中包含多种设计变体的部分。它们是产品可配置性的关键构建块。您可以通过其图标或零件详细信息中的“可配置模块”标识来识别它们。",
+                    "hint": "可配置模块通常出现在结构中的主要功能边界点，如“发动机装配体”或“车架装配体”。"
+                  },
+                  {
+                    "action": "单击一个可配置模块并查看其子零件。注意同一模块下如何出现多种替代设计。",
+                    "detail": "这就是主题 3 中的超载结构概念。可配置模块下的多个子零件代表替代设计。在变体生成过程中，选项过滤器根据所选选项值选择要包含哪些子零件。",
+                    "hint": null
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "keyTakeaways": [
+          "选项池将产品的所有选项和选择项组织在一个位置",
+          "每个选项代表一个具有一个或多个选择项的可变特征",
+          "产品结构使用可配置模块来包含多种设计变体（超载结构）",
+          "选项选择项被分配给结构中的零件，以控制在变体生成过程中选择哪些设计"
+        ]
+      },
+      {
+        "id": "m1t6",
+        "title": "创建新选项和可配置模块",
+        "estimatedMinutes": 15,
+        "isExercise": true,
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "在本练习中，您将创建一个名为“摩托车类型”的新选项及两个选择项，为现有的“鞍囊位置”选项添加一个新选择项，并将一个零件指定为可配置模块和最终项目。这些任务演示了如何扩展现有产品的可配置性。"
+          },
+          {
+            "type": "callout",
+            "variant": "warning",
+            "text": "本练习会修改产品配置。请仔细按照步骤操作，并使用指定的确切名称，以确保与后续练习的一致性。"
+          },
+          {
+            "type": "exercise",
+            "exerciseId": "ex2",
+            "title": "创建新选项和可配置模块",
+            "objective": "学习如何在 Windchill 中创建新选项和选择项、为现有选项添加选择项，以及将零件指定为可配置模块。",
+            "tasks": [
+              {
+                "id": "ex2-t1",
+                "title": "创建摩托车类型选项及选择项",
+                "steps": [
+                  {
+                    "action": "导航到 PTC Motorcycle 产品并打开“选项池”选项卡。",
+                    "detail": "您将在此产品的选项池中创建一个新选项。新选项通过添加新的可变特征来扩展产品的可配置性。",
+                    "hint": null
+                  },
+                  {
+                    "action": "单击“新建选项”按钮（或使用操作菜单）以创建新选项。",
+                    "detail": "“新建选项”操作打开一个表单，您可以在其中定义选项名称、描述和初始选择项。每个选项代表产品可变性的一个维度。",
+                    "hint": "在选项池表格上方的工具栏中查找“新建选项”图标，或右键单击打开上下文菜单。"
+                  },
+                  {
+                    "action": "输入“Motorcycle Type”作为选项名称，并提供描述，例如“定义摩托车的预期使用类别”。",
+                    "detail": "清晰、描述性的选项名称有助于每个人了解选项控制的内容。名称应该足够直观，以便配置变体的人准确知道他们在选择什么。",
+                    "hint": null
+                  },
+                  {
+                    "action": "添加第一个选择项：“Off Road”。提供描述，例如“为越野和泥地骑行配置的摩托车”。",
+                    "detail": "选择项定义选项的有效值。每个选择项应有清晰的名称和描述。越野摩托车通常具有不同的车架、悬架和轮胎规格。",
+                    "hint": "输入选项详细信息后，在选项创建表单中查找“添加选择项”或“新建选择项”操作。"
+                  },
+                  {
+                    "action": "添加第二个选择项：“On Road/Street Legal”。提供描述，例如“为公路合法驾驶配置的摩托车”。",
+                    "detail": "公路/街道合法摩托车需要不同的组件来满足道路法规，如灯光、后视镜和特定类型的轮胎。这两个选择项将驱动产品的主要结构差异。",
+                    "hint": null
+                  },
+                  {
+                    "action": "保存新的摩托车类型选项。验证它是否与现有选项一起出现在选项池中。",
+                    "detail": "保存后，该选项及其选择项可用于选项集，并可分配给产品结构中的零件。该选项现在是产品配置词汇表的一部分。",
+                    "hint": "如果选项没有立即出现，请刷新选项池视图。"
+                  }
+                ]
+              },
+              {
+                "id": "ex2-t2",
+                "title": "为“鞍囊位置”添加“不使用”选择项",
+                "steps": [
+                  {
+                    "action": "在选项池中，单击现有的“鞍囊位置”选项以打开它。",
+                    "detail": "您正在通过添加新选择项来修改现有选项。随着产品需求的变化，这是很常见的操作——需要为现有选项添加新的有效值。",
+                    "hint": null
+                  },
+                  {
+                    "action": "单击“新建选择项”操作以为“鞍囊位置”添加选择项。",
+                    "detail": "添加“不使用”选择项允许变体指定不包含鞍囊。如果没有此选择项，每个变体都将被强制在某个位置安装鞍囊。",
+                    "hint": "在选项详细信息视图的工具栏中查找“新建选择项”或“添加选择项”按钮。"
+                  },
+                  {
+                    "action": "输入“Not Used”作为选择项名称。添加描述，例如“此摩托车配置不包含鞍囊”。",
+                    "detail": "“不使用”或“无”选择项是选项管理中的常见模式。它允许明确排除某个特征，而不是要求每个配置都包含该特征。",
+                    "hint": null
+                  },
+                  {
+                    "action": "保存新选择项并验证它是否出现在“鞍囊位置”选择项列表中。",
+                    "detail": "“鞍囊位置”选项现在有了一个额外的选择项。此选择项可用于表达式和规则中，以控制变体结构中是否包含鞍囊组件。",
+                    "hint": null
+                  }
+                ]
+              },
+              {
+                "id": "ex2-t3",
+                "title": "将零件指定为可配置模块和最终项目",
+                "steps": [
+                  {
+                    "action": "导航到“结构”选项卡并在产品结构中找到“small-offroad_standalone”零件。",
+                    "detail": "此零件代表一个独立的越野摩托车子装配体。您将把它指定为可配置模块（以启用变体配置）和最终项目（以表明它可以独立订购/制造）。",
+                    "hint": "使用搜索功能或展开结构树来查找此零件。它可能嵌套在多个层级深处。"
+                  },
+                  {
+                    "action": "右键单击该零件（或使用操作菜单）并选择将其设置为“可配置模块”的选项。",
+                    "detail": "将零件标记为可配置模块告诉 Windchill，结构的此部分支持多种设计配置。此模块下的子零件可以使用选项选择项进行过滤。",
+                    "hint": "根据您的 Windchill 版本，该操作可能位于“设置”>“可配置模块支持”或类似菜单路径下。"
+                  },
+                  {
+                    "action": "同样，将同一零件指定为“最终项目”。",
+                    "detail": "最终项目是可以独立订购、制造或交付的产品或子装配体。设置此标志使零件能够在变体生成工作流中作为可选最终项目出现。",
+                    "hint": null
+                  },
+                  {
+                    "action": "验证零件现在在结构视图中是否显示可配置模块图标和最终项目标识。",
+                    "detail": "结构视图中的视觉指示器确认已正确应用了这些标识。此零件现在已准备好参与基于选项的产品配置。",
+                    "hint": "在结构树中零件名称旁查找更新的图标或标签。"
+                  },
+                  {
+                    "action": "打开零件详细信息并查看属性，以确认两项标识都已反映在零件属性中。",
+                    "detail": "零件属性页面提供所有设置的最终视图。在此确认可确保更改已正确保存，并将在变体生成过程中按预期运行。",
+                    "hint": null
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "keyTakeaways": [
+          "新选项在选项池中创建，并立即可在产品中使用",
+          "随着产品需求的变化，可以为现有选项添加选择项",
+          "“不使用”选择项是允许明确排除某个特征的常见模式",
+          "可配置模块和最终项目标识控制零件如何参与变体生成"
+        ]
+      },
+      {
+        "id": "m1t7",
+        "title": "查看选项和变体首选项",
+        "estimatedMinutes": 10,
+        "isExercise": true,
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "在本练习中，您将在站点级别和产品级别探索选项和变体首选项。了解首选项继承非常重要，因为站点级别设置建立了默认值，产品可以根据其特定需求进行覆盖。"
+          },
+          {
+            "type": "callout",
+            "variant": "info",
+            "text": "本练习需要以不同用户身份登录（wcadmin 用于站点级别，Anna Chen 用于产品级别）。您的讲师将提供凭据。"
+          },
+          {
+            "type": "exercise",
+            "exerciseId": "ex3",
+            "title": "查看选项和变体首选项",
+            "objective": "了解选项和变体首选项如何在站点级别与产品级别进行配置，以及它们之间的继承关系。",
+            "tasks": [
+              {
+                "id": "ex3-t1",
+                "title": "以管理员身份登录",
+                "steps": [
+                  {
+                    "action": "退出当前会话并以“wcadmin”（站点管理员账户）身份登录。",
+                    "detail": "站点管理员可以访问适用于所有产品的站点级别首选项设置。这些设置为选项和变体功能建立基准配置。",
+                    "hint": "wcadmin 密码将由您的讲师提供。使用相同的 Windchill URL。"
+                  }
+                ]
+              },
+              {
+                "id": "ex3-t2",
+                "title": "查看站点级别首选项",
+                "steps": [
+                  {
+                    "action": "导航到“站点”>“实用程序”>“首选项管理”（或根据您的版本，“站点”>“管理”>“首选项”）。",
+                    "detail": "站点级别首选项为系统中的所有产品和上下文建立默认行为。此处设置的任何首选项都会生效，除非在较低级别（组织或产品）被覆盖。",
+                    "hint": "在站点管理区域下查找“首选项管理”。您可能需要展开“实用程序”或“管理”部分。"
+                  },
+                  {
+                    "action": "搜索或导航到“选项和变体”首选项类别。查看可用的首选项及其当前值。",
+                    "detail": "关键首选项包括“可配置模块支持”（必须设为“是”才能使用 O&V）、“选项池共享”以及各种变体生成行为的默认设置。注意哪些首选项在站点级别已启用，哪些已禁用。",
+                    "hint": "您可以在首选项列表中过滤或搜索“选项”或“可配置”来查找相关设置。"
+                  }
+                ]
+              },
+              {
+                "id": "ex3-t3",
+                "title": "以产品经理身份登录",
+                "steps": [
+                  {
+                    "action": "退出 wcadmin 并以“Anna Chen”（或指定的产品经理用户）身份登录。",
+                    "detail": "产品经理在特定产品上下文中工作，可以为其产品覆盖站点级别首选项。这展示了不同角色如何体验不同的首选项配置。",
+                    "hint": "Anna Chen 的用户名和密码将由您的讲师提供。"
+                  }
+                ]
+              },
+              {
+                "id": "ex3-t4",
+                "title": "查看产品级别首选项并进行比较",
+                "steps": [
+                  {
+                    "action": "导航到 PTC Motorcycle 产品，然后访问其首选项设置（通常在“产品实用程序”或“产品管理”下）。",
+                    "detail": "产品级别首选项为此特定产品上下文覆盖站点级别默认值。这允许不同产品具有不同的选项和变体配置。",
+                    "hint": "路径可能是“产品”>“实用程序”>“首选项管理”或类似路径。"
+                  },
+                  {
+                    "action": "在产品级别查找“选项和变体”首选项。将它们与您之前记录的站点级别设置进行比较。",
+                    "detail": "注意哪些首选项从站点级别继承（显示为已继承或灰色），哪些已在产品级别显式设置。产品级别覆盖仅对此产品优先于站点级别设置。",
+                    "hint": null
+                  },
+                  {
+                    "action": "注意“可配置模块支持”首选项的值。确认它对 PTC Motorcycle 产品设置为“是”。",
+                    "detail": "“可配置模块支持”必须启用（设置为“是”）才能在产品中使用选项和变体功能。这是最关键的首选项——如果设置为“否”，则无法为该产品创建可配置模块或使用基于选项的变体生成。",
+                    "hint": "如果此首选项在站点级别设置并被继承，它将显示为“是（已继承）”。如果在产品级别设置，它将显示为“是”并带有产品级别指示器。"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "keyTakeaways": [
+          "站点级别首选项为所有产品建立默认行为",
+          "产品级别首选项可以为特定产品覆盖站点级别默认值",
+          "“可配置模块支持”必须设置为“是”才能使用选项和变体功能",
+          "了解首选项继承有助于诊断特定产品上下文中 O&V 功能不可用的问题"
+        ]
+      }
+    ]
+  },
+  "modules/m2-options-and-variants.json": {
+    "id": "m2",
+    "title": "了解 Windchill 选项和变体",
+    "description": "研究选项和变体术语，讨论选项和选择项，探索可配置结构，比较配置方法，并了解关键首选项。",
+    "topics": [
+      {
+        "id": "m2t1",
+        "title": "选项和变体术语",
+        "estimatedMinutes": 5,
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Windchill 中的选项和变体（O&V）使用丰富的专业术语。在使用可配置产品之前，掌握这些术语至关重要，因为这些术语贯穿于整个 Windchill 界面和文档中。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "关键 O&V 术语"
+          },
+          {
+            "type": "comparison-table",
+            "headers": [
+              "术语",
+              "类别",
+              "定义"
+            ],
+            "rows": [
+              [
+                "高级表达式（Advanced Expression）",
+                "逻辑",
+                "包含选择项、运算符和函数。可分配给零件和零件使用链接以定义复杂的选择条件。"
+              ],
+              [
+                "高级选择逻辑（Advanced Selection Logic）",
+                "逻辑",
+                "可配置模块中使用参数和约束引导用户在配置过程中进行输入的逻辑。"
+              ],
+              [
+                "基本表达式（Basic Expression）",
+                "逻辑",
+                "可分配给零件和使用链接的选项选择项，用于指定组件何时包含在变体中。"
+              ],
+              [
+                "条件规则（Conditional Rule）",
+                "逻辑",
+                "IF/THEN 语句，根据其他选择指定何时应包含、启用或禁用选择项。"
+              ],
+              [
+                "可配置模块（Configurable Module）",
+                "结构",
+                "具有代表设计变体的子零件的 Windchill 零件。产品可变性的构建块。"
+              ],
+              [
+                "可配置产品结构（Configurable Product Structure）",
+                "结构",
+                "包含可配置模块的产品结构，支持多种产品变体。"
+              ],
+              [
+                "启用规则（Enable Rule）",
+                "逻辑",
+                "当选择目标选择项后，只让特定选择项出现在选择列表中。"
+              ],
+              [
+                "排除规则（Exclude Rule）",
+                "逻辑",
+                "限制选择不兼容的选择项，防止无效配置。"
+              ],
+              [
+                "包含规则（Include Rule）",
+                "逻辑",
+                "将一个选择项的选择与自动包含相关选择项关联起来。"
+              ],
+              [
+                "选项过滤器（Option Filter）",
+                "管理",
+                "用于根据分配给零件的选择项过滤产品结构的条件。"
+              ],
+              [
+                "选项管理员（Option Manager）",
+                "管理",
+                "负责创建选项和选择项并维护选项集的 Windchill 上下文角色。"
+              ],
+              [
+                "参数（Parameter）",
+                "逻辑",
+                "可配置模块内的属性，用于带约束的高级选择逻辑。"
+              ],
+              [
+                "产品系列（Product Family）",
+                "结构",
+                "一组共享大量零件的相关产品，由选项集和可配置产品结构定义。"
+              ],
+              [
+                "变体（Variant）",
+                "结构",
+                "代表特定配置的零件或结构，在配置过程中创建。"
+              ],
+              [
+                "变体规格（Variant Specification）",
+                "管理",
+                "用于生成特定变体的用户输入（选择项和参数值）的记录。"
+              ]
+            ]
+          },
+          {
+            "type": "callout",
+            "variant": "insight",
+            "text": "这 15 个术语分为三类：结构术语（可配置模块、可配置产品结构、产品系列、变体）定义产品的组织方式；逻辑术语（表达式、规则、参数）定义配置的确定方式；管理术语（选项过滤器、选项管理员、变体规格）定义配置的管理方式。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "测试您的知识"
+          },
+          {
+            "type": "interactive-match",
+            "prompt": "将每个 O&V 术语与其定义进行匹配：",
+            "pairs": [
+              {
+                "left": "可配置模块",
+                "right": "具有代表设计变体的子零件的 Windchill 零件"
+              },
+              {
+                "left": "变体规格",
+                "right": "用于生成特定变体的用户输入记录"
+              },
+              {
+                "left": "排除规则",
+                "right": "限制选择不兼容的选择项"
+              },
+              {
+                "left": "选项过滤器",
+                "right": "根据分配的选择项过滤产品结构的条件"
+              }
+            ]
+          }
+        ],
+        "keyTakeaways": [
+          "选项和变体有 15 个以上的专业术语，您必须了解这些术语",
+          "术语分为三类：结构（可配置模块、产品系列）、逻辑（表达式、规则、参数）和管理（选项过滤器、选项管理员）",
+          "在 Windchill 中使用 O&V 之前，了解术语至关重要"
+        ]
+      },
+      {
+        "id": "m2t2",
+        "title": "选项和选择项",
+        "estimatedMinutes": 5,
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "选项和选择项是在 Windchill 中定义产品可变性的基本构建块。选项代表一种特定的产品特征，每个选项有一个或多个选择项来定义该特征的有效值。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "选项和选择项的工作原理"
+          },
+          {
+            "type": "paragraph",
+            "text": "选项是一种可以在不同配置中变化的特定产品特征。每个选项有一到多个可用选择项。选项可以标记为必选（用户必须选择一个选择项）或单选（一次只能选择一个选择项）。选项适用于特定的产品变体，选择项可以分配给产品结构中的零件、实例或使用链接。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "选项池与选项集"
+          },
+          {
+            "type": "paragraph",
+            "text": "选项和选择项被组织到两个关键容器中：选项池和选项集。了解这两者之间的关系对于管理产品可配置性至关重要。"
+          },
+          {
+            "type": "reveal-cards",
+            "cards": [
+              {
+                "front": "选项池（Option Pool）",
+                "back": "选项池包含为产品上下文定义的所有选项和选择项。它是选项集获取内容的主存储库。可以将其视为所有可能可变特征的完整目录。"
+              },
+              {
+                "front": "选项集（Option Set）",
+                "back": "选项集是从选项池中精选的选项、选择项和规则的集合，用于定义特定产品系列内的配置。它是选项池的子集，仅包含与特定产品线或配置场景相关的选项。"
+              },
+              {
+                "front": "为什么需要两个容器？",
+                "back": "选项池可能包含多个产品系列的选项。选项集仅选择与特定产品系列相关的选项。这种分离实现了复用——相同的选项（如颜色）可以出现在不同产品系列的多个选项集中。"
+              }
+            ]
+          },
+          {
+            "type": "callout",
+            "variant": "tip",
+            "text": "请记住：选项池是全集，选项集是精选的子集。一个产品的选项池中可能有很多选项，但特定产品系列的选项集仅包含与该系列配置相关的选项。"
+          }
+        ],
+        "keyTakeaways": [
+          "选项代表一种可变的产品特征；每个选项有一个或多个选择项",
+          "选项可以设为必选或单选，选择项可以分配给零件、实例或使用链接",
+          "选项池是产品上下文中所有选项和选择项的主存储库",
+          "选项集是选项池的精选子集，用于定义特定产品系列的配置"
+        ]
+      },
+      {
+        "id": "m2t3",
+        "title": "可配置结构的要素",
+        "estimatedMinutes": 5,
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Windchill 中的可配置结构包含标准零件（存在于每个变体中）和可选零件（仅在选择特定选择项时包含）。三个关键的可配置对象形成层次结构，定义了如何捕获和解析产品可变性。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "三个可配置对象"
+          },
+          {
+            "type": "comparison-table",
+            "headers": [
+              "对象",
+              "角色",
+              "描述"
+            ],
+            "rows": [
+              [
+                "可配置产品（Configurable Product）",
+                "顶层最终项目",
+                "代表一系列产品变体的顶层产品。它是配置的入口点，包含完整的超载结构。"
+              ],
+              [
+                "可配置模块（Configurable Module）",
+                "可配置组件",
+                "在组件级别捕获可变性的可配置组件。由包含该产品部分所有设计变体的超载结构表示。"
+              ],
+              [
+                "模块变体（Module Variant）",
+                "特定选择",
+                "根据选择标准和选择项，从可配置模块的可选零件中选出的特定零件。代表模块的一种已解析配置。"
+              ]
+            ]
+          },
+          {
+            "type": "callout",
+            "variant": "info",
+            "text": "超载结构是包含可配置模块所有可能设计变体的结构。在配置过程中，选项过滤器将超载结构缩减为仅包含特定配置所需零件的结构，从而产生模块变体。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "可配置对象层次结构"
+          },
+          {
+            "type": "paragraph",
+            "text": "三个可配置对象形成从最广泛到最具体的清晰层次结构。了解此层次结构是使用可配置结构的关键。"
+          },
+          {
+            "type": "interactive-sort",
+            "prompt": "将可配置对象从最高级别（最广泛）到最低级别（最具体）排列：",
+            "correctOrder": [
+              "可配置产品（Configurable Product）",
+              "可配置模块（Configurable Module）",
+              "模块变体（Module Variant）"
+            ]
+          }
+        ],
+        "keyTakeaways": [
+          "三个可配置对象形成层次结构：可配置产品、可配置模块和模块变体",
+          "可配置模块使用包含所有设计变体的超载结构来捕获可变性",
+          "模块变体是应用选项过滤器后从可配置模块中选出的特定零件",
+          "可配置结构包含标准零件（始终存在）和可选零件（有条件包含）"
+        ]
+      },
+      {
+        "id": "m2t4",
+        "title": "自顶向下和自底向上配置",
+        "estimatedMinutes": 5,
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Windchill 支持两种创建可配置产品的方法：自顶向下（从 Windchill 开始）和自底向上（从 Creo 开始）。您选择的方法取决于产品设计的来源以及您的组织如何管理 CAD 和 PLM 数据。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "两种方法的比较"
+          },
+          {
+            "type": "comparison-table",
+            "headers": [
+              "方面",
+              "自顶向下（Windchill 优先）",
+              "自底向上（Creo 优先）"
+            ],
+            "rows": [
+              [
+                "起点",
+                "首先在 Windchill 中创建零件结构",
+                "首先在 Creo 中创建可配置产品（超载装配体）"
+              ],
+              [
+                "选项定义",
+                "在 Windchill 中创建选项池和选项集，然后将选择项分配给零件",
+                "在 Creo 中打开超载装配体，签入 Windchill，然后在 Windchill 中定义选项和选择项"
+              ],
+              [
+                "结构流程",
+                "从 Windchill 结构生成 CAD 结构，传播到 Creo",
+                "将 Creo 装配体签入 Windchill，指定为可配置产品，分配选择项"
+              ],
+              [
+                "配置",
+                "使用变体规格在 Windchill 中配置零件结构，然后在 Creo 中打开",
+                "在 Creo 中配置变体，签入 Windchill，验证变体结构"
+              ],
+              [
+                "表达式限制",
+                "仅基本表达式从 Windchill 传递到 Creo",
+                "仅基本表达式从 Windchill 传递到 Creo"
+              ],
+              [
+                "最适用于",
+                "以 PLM 驱动产品结构的组织",
+                "以 CAD 设计驱动产品结构的组织"
+              ]
+            ]
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "自顶向下工作流"
+          },
+          {
+            "type": "paragraph",
+            "text": "在自顶向下方法中，您首先在 Windchill 中创建零件结构：创建选项池、创建选项集、设置可配置模块并将选择项分配给零件。然后生成 CAD 结构并配置零件结构。在 Creo 中，打开可配置产品，签入，使用变体规格进行配置，并关联变体。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "自底向上工作流"
+          },
+          {
+            "type": "paragraph",
+            "text": "在自底向上方法中，您首先在 Creo 中打开超载装配体并将其签入 Windchill。然后在 Windchill 中定义选项和选择项、创建并分配选项集、指定可配置产品、分配选择项、配置并将选择项传播到 CAD。回到 Creo，查看选择项分配、配置变体并签入。最后，在 Windchill 中验证变体结构。"
+          },
+          {
+            "type": "callout",
+            "variant": "warning",
+            "text": "无论使用哪种方法，只有基本表达式从 Windchill 传递到 Creo。高级表达式仅保留在 Windchill 中。在规划配置策略时，这是一个需要牢记的关键限制。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "匹配步骤"
+          },
+          {
+            "type": "interactive-match",
+            "prompt": "将每个步骤与正确的配置方法进行匹配：",
+            "pairs": [
+              {
+                "left": "首先在 Windchill 中创建零件结构",
+                "right": "自顶向下"
+              },
+              {
+                "left": "首先在 Creo 中打开超载装配体",
+                "right": "自底向上"
+              },
+              {
+                "left": "从 Windchill 生成 CAD 结构",
+                "right": "自顶向下"
+              },
+              {
+                "left": "将 Creo 装配体签入 Windchill，然后定义选项",
+                "right": "自底向上"
+              }
+            ]
+          }
+        ],
+        "keyTakeaways": [
+          "自顶向下配置从 Windchill 开始并传播到 Creo；自底向上从 Creo 开始并传播到 Windchill",
+          "只有基本表达式在 Windchill 和 Creo 之间传递——高级表达式仅保留在 Windchill 中",
+          "两种方法最终都会在两个系统中得到已验证的变体结构",
+          "方法的选择取决于 PLM 还是 CAD 驱动您的产品结构"
+        ]
+      },
+      {
+        "id": "m2t5",
+        "title": "选项和变体首选项",
+        "estimatedMinutes": 5,
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "Windchill 使用一组首选项来控制选项和变体的行为。最关键的首选项是“可配置模块支持”，在使用任何 O&V 功能之前必须将其设置为“是”。首选项遵循从较高级别容器到较低级别上下文的继承模型。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "关键 O&V 首选项"
+          },
+          {
+            "type": "reveal-cards",
+            "cards": [
+              {
+                "front": "可配置模块支持",
+                "back": "控制创建可选产品结构的能力。默认为“否”。必须设置为“是”才能使用任何 O&V 功能。这是守门首选项——如果为“否”，则无法创建可配置模块。"
+              },
+              {
+                "front": "高级逻辑",
+                "back": "启用或禁用在可配置模块内使用参数和约束的高级选择逻辑。按订单配置和按订单设计场景需要此功能。"
+              },
+              {
+                "front": "选择项显示格式",
+                "back": "控制在配置过程中向用户显示选择项的方式。选项包括显示选择项名称、编号或两者。影响变体规格过程中的用户体验。"
+              },
+              {
+                "front": "支持的表达式",
+                "back": "确定可使用哪些表达式类型：仅基本表达式，或同时支持基本和高级表达式。限制可编写的选择逻辑的复杂性。"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "首选项继承和角色"
+          },
+          {
+            "type": "paragraph",
+            "text": "O&V 首选项从较高级别的容器（站点级别）向下继承到较低级别的上下文（组织、产品）。在站点级别设置的首选项作为默认值。较低级别的上下文可以覆盖继承的值或保持继承。首选项还可以在较高级别锁定，以防止较低级别的覆盖。"
+          },
+          {
+            "type": "comparison-table",
+            "headers": [
+              "角色",
+              "范围",
+              "能力"
+            ],
+            "rows": [
+              [
+                "站点管理员",
+                "整个 Windchill 站点",
+                "设置适用于所有组织和产品的站点范围默认首选项，除非被覆盖。"
+              ],
+              [
+                "组织管理员",
+                "特定组织",
+                "可以为其组织覆盖站点级别首选项。设置适用于组织内的所有产品。"
+              ],
+              [
+                "产品经理",
+                "特定产品",
+                "可以为其产品上下文覆盖组织级别首选项。最精细的控制级别。"
+              ],
+              [
+                "库管理员",
+                "特定库",
+                "可以为库上下文覆盖首选项，控制共享库内容的 O&V 行为。"
+              ]
+            ]
+          },
+          {
+            "type": "callout",
+            "variant": "tip",
+            "text": "如果 O&V 功能在特定产品上下文中不可用，首先要检查的是“可配置模块支持”首选项。验证它在适当的级别（站点、组织或产品）是否设置为“是”。同时检查较高级别的锁定是否阻止了首选项的更改。"
+          }
+        ],
+        "keyTakeaways": [
+          "“可配置模块支持”必须设置为“是”才能使用任何选项和变体功能——其默认值为“否”",
+          "首选项从较高级别（站点）向较低级别（组织、产品）继承，可以被锁定或覆盖",
+          "四种角色可以更改 O&V 首选项：站点管理员、组织管理员、产品经理和库管理员",
+          "了解首选项继承对于诊断特定产品上下文中的 O&V 问题至关重要"
+        ]
+      }
+    ]
+  },
+  "modules/m3-rules.json": {
+    "id": "m3",
+    "title": "研究选项和变体规则",
+    "description": "研究包含规则、排除规则、启用规则和条件规则。探索规则验证和表达式别名。",
+    "exerciseTopicStart": 4,
+    "topics": [
+      {
+        "id": "m3t1",
+        "title": "规则类型和业务逻辑",
+        "estimatedMinutes": 5,
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "选项和变体规则定义了在配置产品时可以一起选择的有效选择项组合。Windchill 提供四种类型的规则来控制选择项之间的交互，确保只能创建有效的产品配置。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "四种规则类型"
+          },
+          {
+            "type": "comparison-table",
+            "headers": [
+              "规则类型",
+              "描述",
+              "示例"
+            ],
+            "rows": [
+              [
+                "包含规则",
+                "将一个选择项的选择与相关选择项关联。当选择源选择项时，目标选择项会自动被选择。",
+                "国家=美国自动包含电压=110 伏"
+              ],
+              [
+                "排除规则",
+                "限制不兼容的选择项同时被选择。当选择源选择项时，目标选择项被禁止。",
+                "电压=110 伏排除频率=50 赫兹，因为它们不兼容"
+              ],
+              [
+                "启用规则",
+                "当选择源选择项后，只让特定选择项出现供选择。控制哪些选项选择项可用。",
+                "选择选择项 1 启用选择项 7、8、13 并禁用选择项 9、12"
+              ],
+              [
+                "条件规则",
+                "IF/THEN 语句，指定何时应包含、启用或禁用选择项。提供复杂的多条件逻辑。",
+                "如果选择了选择项 1 和 4，则禁用选择项 7、8 和 13"
+              ]
+            ]
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "业务逻辑方法"
+          },
+          {
+            "type": "paragraph",
+            "text": "Windchill 提供多种实施业务逻辑的方法来控制产品配置。每种方法在整体规则框架中都有特定的用途："
+          },
+          {
+            "type": "reveal-cards",
+            "cards": [
+              {
+                "front": "设计选项",
+                "back": "允许对选项池中的选项执行操作。这是定义产品可变特征和每个特征可用选择项的基础。"
+              },
+              {
+                "front": "包含规则",
+                "back": "捕获产品特征之间的逻辑关联。当选择一个选择项时，相关选择项会自动包含以维护产品完整性。"
+              },
+              {
+                "front": "排除规则",
+                "back": "捕获不应一起选择的不兼容选择项。防止导致产品无法运行或无法制造的无效组合。"
+              },
+              {
+                "front": "启用规则",
+                "back": "根据条件控制哪些选项选择项可用。根据先前的选择动态调整可见的选择项，引导用户创建有效配置。"
+              },
+              {
+                "front": "条件规则",
+                "back": "选项过滤器中选择项选择的 IF/THEN 构造。提供最灵活和复杂的逻辑来控制跨多个选项的选择项交互。"
+              }
+            ]
+          },
+          {
+            "type": "callout",
+            "variant": "insight",
+            "text": "Windchill 会验证新规则不会与现有规则冲突或重复。这种内置的规则验证可防止矛盾的逻辑，避免使某些产品配置变得不可能或模糊不清。"
+          },
+          {
+            "type": "interactive-match",
+            "prompt": "将每种规则类型与其行为进行匹配：",
+            "pairs": [
+              {
+                "left": "包含规则",
+                "right": "选择源选择项时自动选择相关选择项"
+              },
+              {
+                "left": "排除规则",
+                "right": "防止不兼容的选择项同时被选择"
+              },
+              {
+                "left": "启用规则",
+                "right": "根据条件控制哪些选择项可见或可用"
+              },
+              {
+                "left": "条件规则",
+                "right": "使用 IF/THEN 逻辑根据多个条件启用或禁用选择项"
+              }
+            ]
+          }
+        ],
+        "keyTakeaways": [
+          "四种规则类型控制有效的选择项组合：包含、排除、启用和条件",
+          "包含规则强制相关选择项自动一起被选择",
+          "排除规则防止不兼容的组合被选择",
+          "Windchill 验证规则以防止冲突和重复"
+        ]
+      },
+      {
+        "id": "m3t2",
+        "title": "包含、排除和条件规则",
+        "estimatedMinutes": 5,
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "包含、排除和条件规则构成了 Windchill 中产品配置逻辑的核心。每种规则类型处理选择项之间关系的不同方面，从自动选择到不兼容性限制再到复杂的多条件场景。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "规则详情和示例"
+          },
+          {
+            "type": "reveal-cards",
+            "cards": [
+              {
+                "front": "包含规则",
+                "back": "标识当选择源选择项时自动被选择的目标选择项。例如，当选择选择项 1 时，选择项 7 和 13 自动被包含。这确保了相互依赖的特征始终一起被选择。"
+              },
+              {
+                "front": "排除规则",
+                "back": "定义不能与源选择项同时选择的不兼容选择项。例如，当选择选择项 1 时，选择项 9 被禁止。这防止用户创建具有冲突特征的无效产品配置。"
+              },
+              {
+                "front": "条件规则",
+                "back": "使用 IF/THEN 逻辑处理复杂的多选择项场景。例如，如果您选择了选择项 1 和 4，则选择项 7、8 和 13 被禁用，只剩下选择项 9 和 12 可用。这提供了对选择项交互最灵活的控制。"
+              }
+            ]
+          },
+          {
+            "type": "callout",
+            "variant": "tip",
+            "text": "包含和排除规则处理选择项之间的简单一对一或一对多关系。当您需要依赖于同时选择多个源选择项的逻辑时，请使用带有 IF/THEN 语句的条件规则。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "规则如何协同工作"
+          },
+          {
+            "type": "paragraph",
+            "text": "在实践中，产品使用所有三种规则类型的组合。包含规则确保依赖关系得到满足，排除规则防止冲突，条件规则处理无法用简单包含或排除逻辑表达的复杂交互。它们共同形成了一个全面的约束系统，引导用户创建有效配置。"
+          },
+          {
+            "type": "comparison-table",
+            "headers": [
+              "规则类型",
+              "源 → 目标行为",
+              "使用场景"
+            ],
+            "rows": [
+              [
+                "包含",
+                "源被选择 → 目标自动被选择",
+                "必须始终一起出现的依赖特征"
+              ],
+              [
+                "排除",
+                "源被选择 → 目标被禁止",
+                "不能共存的不兼容特征"
+              ],
+              [
+                "条件",
+                "如果多个源 → 则目标启用/禁用",
+                "结果取决于选择组合的复杂场景"
+              ]
+            ]
+          }
+        ],
+        "keyTakeaways": [
+          "包含规则在选择源选择项时自动选择相关选择项",
+          "排除规则防止冲突的选择项同时被选择",
+          "条件规则为多选择项场景提供复杂的 IF/THEN 逻辑"
+        ]
+      },
+      {
+        "id": "m3t3",
+        "title": "启用规则和表达式别名",
+        "estimatedMinutes": 5,
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "启用规则和表达式别名为规则框架扩展了额外的功能。启用规则根据先前的选择控制选择项的可见性和可用性，而表达式别名通过封装可复用的逻辑语句简化复杂规则的编写。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "启用规则"
+          },
+          {
+            "type": "paragraph",
+            "text": "启用规则控制选择源选择项后哪些选项选择项可用。与强制或阻止选择的包含或排除规则不同，启用规则动态调整哪些选择项可见。例如，选择选择项 1 会启用选择项 7、8 和 13，同时禁用选择项 9 和 12。在配置过程中，只有已启用的选择项才会显示为可选选项。"
+          },
+          {
+            "type": "comparison-table",
+            "headers": [
+              "方面",
+              "启用规则",
+              "条件规则"
+            ],
+            "rows": [
+              [
+                "触发条件",
+                "单个源选择项的选择",
+                "选择多个源选择项（IF/THEN）"
+              ],
+              [
+                "效果",
+                "启用或禁用特定选择项的可见性",
+                "根据复合条件启用或禁用选择项"
+              ],
+              [
+                "复杂度",
+                "简单的一对多可见性控制",
+                "复杂的多条件逻辑"
+              ],
+              [
+                "主要用途",
+                "根据单个选择控制哪些选择项出现",
+                "处理依赖于先前选择组合的交互"
+              ]
+            ]
+          },
+          {
+            "type": "callout",
+            "variant": "info",
+            "text": "当某些选择项仅在先前选择的上下文中才有意义时，启用规则特别有用。例如，特定的轮胎尺寸可能仅在选择特定车架类型时才相关。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "表达式别名"
+          },
+          {
+            "type": "paragraph",
+            "text": "表达式别名代表可以在多个规则中复用的逻辑语句。产品配置中经常使用的通用定义可以作为别名捕获，简化规则编写并提高可维护性。"
+          },
+          {
+            "type": "reveal-cards",
+            "cards": [
+              {
+                "front": "什么是表达式别名？",
+                "back": "表达式别名是一个命名的逻辑语句，封装了常用的条件或选择项集合。例如，“BigTires”别名可能代表来自 TIRE 选项的轮胎尺寸集合：48IN、50IN、52IN、54IN 和 56IN。"
+              },
+              {
+                "front": "别名在哪里使用？",
+                "back": "表达式别名可在编写条件规则、高级表达式和其他别名时使用。它们作为复杂配置逻辑的构建块，减少重复并使规则更易于阅读和维护。"
+              },
+              {
+                "front": "跨规则复用",
+                "back": "一旦定义，别名可以在产品配置中的多个条件规则和表达式中引用。这意味着对别名定义的更改会自动传播到引用它的所有规则。"
+              },
+              {
+                "front": "许可证要求",
+                "back": "表达式别名是需要单独许可证授权的高级功能。组织必须拥有适当的 Windchill 许可证才能在其产品配置中创建和使用表达式别名。"
+              }
+            ]
+          },
+          {
+            "type": "callout",
+            "variant": "warning",
+            "text": "表达式别名需要单独的许可证授权。在计划使用别名之前，请验证您组织的 Windchill 许可证是否包含此功能。"
+          }
+        ],
+        "keyTakeaways": [
+          "启用规则根据源选择来控制选择项的可见性",
+          "表达式别名通过封装可复用的逻辑语句简化复杂规则的编写",
+          "别名可在条件规则和表达式中复用",
+          "表达式别名需要单独的许可证授权"
+        ]
+      },
+      {
+        "id": "m3t4",
+        "title": "创建包含和排除规则",
+        "estimatedMinutes": 5,
+        "isExercise": true,
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "在本练习中，您将为 PTC Motorcycle 产品创建包含和排除规则。Anna Chen 将浏览选项池，定义一个将越野摩托车类型与正确车轮选择项关联的包含规则，以及一个防止选择不兼容车轮的排除规则。"
+          },
+          {
+            "type": "callout",
+            "variant": "warning",
+            "text": "本练习修改产品配置规则。请仔细按照步骤操作，并使用指定的确切名称，以确保与后续练习的一致性。"
+          },
+          {
+            "type": "exercise",
+            "exerciseId": "ex4",
+            "title": "创建包含和排除规则",
+            "objective": "通过为 PTC Motorcycle 产品定义逻辑关联和不兼容选择项限制，学习如何在 Windchill 中创建包含和排除规则。",
+            "tasks": [
+              {
+                "id": "ex4-t1",
+                "title": "创建包含规则",
+                "steps": [
+                  {
+                    "action": "导航到 PTC Motorcycle 产品并打开“选项池”选项卡。",
+                    "detail": "您将创建一个包含规则，将越野摩托车类型与适当的车轮选择项关联。包含规则在选项池中创建。",
+                    "hint": null
+                  },
+                  {
+                    "action": "在选项池中展开“摩托车类型”选项以查看其选择项。",
+                    "detail": "您应该能看到在之前练习中创建的 Off Road 和 On Road/Street Legal 选择项。Off Road 选择项将是包含规则的源。",
+                    "hint": "单击“摩托车类型”旁的展开箭头以显示其选择项。"
+                  },
+                  {
+                    "action": "右键单击“Off Road”选择项并选择“新建包含规则”。",
+                    "detail": "“新建包含规则”操作打开一个对话框，您可以指定当选择 Off Road 时应自动选择哪些目标选择项。这确保越野配置始终包含正确的车轮。",
+                    "hint": "该选项可能在上下文菜单中或选择项行的“操作”下拉菜单中。"
+                  },
+                  {
+                    "action": "在包含规则对话框中，选择“车轮”选项并选择“Off Road Front”和“Off Road Rear”作为目标选择项。",
+                    "detail": "通过选择 Off Road Front 和 Off Road Rear 车轮，您定义了只要客户选择越野摩托车类型，两种越野车轮类型都会自动包含在配置中。",
+                    "hint": "如果“车轮”选项不允许多选，您需要先编辑它（参见下一个任务）。"
+                  },
+                  {
+                    "action": "如果对话框不允许选择多个车轮选择项，请记录该问题并继续下一个任务，先编辑“车轮”选项。",
+                    "detail": "“车轮”选项默认可能设置为单选。要使包含规则可以针对同一选项的多个选择项，该选项必须允许多选。这是设置包含规则时的常见配置步骤。",
+                    "hint": null
+                  }
+                ]
+              },
+              {
+                "id": "ex4-t2",
+                "title": "编辑车轮选项并完成包含规则",
+                "steps": [
+                  {
+                    "action": "在选项池中，右键单击“车轮”选项并选择“编辑”。",
+                    "detail": "您需要将“车轮”选项从单选更改为多选，以便包含规则可以同时针对多个车轮选择项。",
+                    "hint": "在选择“车轮”选项时，在上下文菜单或操作工具栏中查找“编辑”操作。"
+                  },
+                  {
+                    "action": "将“单选”设置从“是”更改为“否”并保存更改。",
+                    "detail": "将“单选”设置为“否”允许为“车轮”选项选择多个选择项。这是必需的，因为越野摩托车类型需要同时选择 Off Road Front 和 Off Road Rear 车轮。",
+                    "hint": "“单选”字段可能是选项编辑表单中的复选框或下拉菜单。"
+                  },
+                  {
+                    "action": "返回“摩托车类型”选项，右键单击“Off Road”，再次选择“新建包含规则”。",
+                    "detail": "现在“车轮”选项支持多选，您可以创建针对 Off Road Front 和 Off Road Rear 车轮选择项的包含规则。",
+                    "hint": null
+                  },
+                  {
+                    "action": "选择“车轮”选项并选择“Off Road Front”和“Off Road Rear”作为目标选择项。保存包含规则。",
+                    "detail": "包含规则现已完成。每当用户选择 Off Road 作为摩托车类型时，Off Road Front 和 Off Road Rear 车轮将自动包含在配置中。",
+                    "hint": "在目标列表中按住 Ctrl 并单击以选择多个选择项。"
+                  },
+                  {
+                    "action": "验证包含规则是否出现在 Off Road 选择项的“包含规则”选项卡中。",
+                    "detail": "保存后，规则应该在规则列表中可见。确认源是 Off Road，目标是 Off Road Front 和 Off Road Rear。",
+                    "hint": "导航到 Off Road 选择项详细信息并检查“包含规则”选项卡或部分。"
+                  }
+                ]
+              },
+              {
+                "id": "ex4-t3",
+                "title": "创建排除规则",
+                "steps": [
+                  {
+                    "action": "导航到产品结构或选项池视图中的 PTC Motorcycle 顶层零件。",
+                    "detail": "排除规则可以从顶层产品上下文创建。您将创建一个规则，防止不兼容的车轮选择项与越野摩托车类型一起被选择。",
+                    "hint": "在结构顶层选择 PTC Motorcycle 产品。"
+                  },
+                  {
+                    "action": "转到“排除规则”选项卡。",
+                    "detail": "“排除规则”选项卡显示产品的所有现有排除规则，并提供创建新规则的操作。此集中视图使管理所有不兼容规则变得容易。",
+                    "hint": "该选项卡可能与“包含规则”、“启用规则”和其他规则相关选项卡并列。"
+                  },
+                  {
+                    "action": "单击“新建排除规则”以创建新的排除规则。",
+                    "detail": "您将定义一个排除规则，防止在选择越野摩托车类型时选择公路车轮，确保只有兼容的车轮类型可用。",
+                    "hint": "在规则表格上方的工具栏中查找“新建排除规则”按钮或图标。"
+                  },
+                  {
+                    "action": "将源设置为摩托车类型 = Off Road。将目标设置为车轮 = On Road Front 和车轮 = On Road Rear。",
+                    "detail": "此排除规则声明：当选择 Off Road 作为摩托车类型时，不能选择 On Road Front 和 On Road Rear 车轮选择项。这防止用户意外地为越野摩托车选择公路车轮。",
+                    "hint": "先选择源选项和选择项，然后选择目标选项和要排除的选择项。"
+                  },
+                  {
+                    "action": "保存排除规则并验证它是否出现在“排除规则”选项卡中。",
+                    "detail": "排除规则现已生效。结合之前任务中的包含规则，选择 Off Road 作为摩托车类型将自动包含越野车轮并阻止选择公路车轮。",
+                    "hint": null
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "keyTakeaways": [
+          "包含规则在选择源选择项时自动选择相关选择项",
+          "对于针对多个选择项的包含规则，可能需要编辑选项以支持多选",
+          "排除规则防止不兼容的选择项同时被选择",
+          "规则从选项池选项卡和产品级别规则选项卡创建"
+        ]
+      }
+    ]
+  },
+  "modules/m4-option-sets.json": {
+    "id": "m4",
+    "title": "探索选项集",
+    "description": "定义选项集，探索选项集的变更管理，分配选项集，应用表达式，并使用选项过滤器生成变体。",
+    "topics": [
+      {
+        "id": "m4t1",
+        "title": "选项集和变更管理",
+        "estimatedMinutes": 5,
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "选项集是选项、选择项和规则的精选集合，定义了特定产品系列的配置词汇。虽然选项池包含为产品上下文定义的所有选项，但选项集仅选择特定产品线所需的相关子集。了解选项集的管理、版本控制和治理方式对于维护可靠的产品配置至关重要。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "什么是选项集？"
+          },
+          {
+            "type": "paragraph",
+            "text": "选项集从选项池获取内容，并将其打包供特定可配置产品或产品系列使用。它包含定义该系列有效配置的选项、选择项和规则。一个选项池可以为多个选项集提供内容，每个选项集针对不同的产品线。这种分离允许组织维护选项的集中存储库，同时为各个产品提供专注的配置词汇。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "选项池 vs. 选项集 vs. 选项过滤器"
+          },
+          {
+            "type": "comparison-table",
+            "headers": [
+              "概念",
+              "包含内容",
+              "范围",
+              "用途"
+            ],
+            "rows": [
+              [
+                "选项池",
+                "为产品上下文定义的所有选项、选择项和规则",
+                "整个产品上下文（所有产品系列）",
+                "跨组织产品可用的所有可配置特征的主存储库"
+              ],
+              [
+                "选项集",
+                "从选项池精选的选项、选择项和规则子集",
+                "特定产品系列或可配置产品",
+                "定义特定产品线的有效配置词汇，包括适用规则"
+              ],
+              [
+                "选项过滤器",
+                "应用于选项集的特定选择项选择集",
+                "单个配置实例",
+                "将超载产品结构过滤为特定产品变体所需的零件"
+              ]
+            ]
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "选项集的变更管理"
+          },
+          {
+            "type": "paragraph",
+            "text": "Windchill 中的选项集是遵循标准变更管理工作流的受管对象。这意味着它们支持版本控制、生命周期状态和签入/签出操作，确保对产品配置定义的更改是受控和可追溯的。"
+          },
+          {
+            "type": "callout",
+            "variant": "info",
+            "text": "选项集遵循与其他 Windchill 对象相同的变更管理原则。它们可以签出进行编辑，签入以保存更改，通过版本控制跟踪随时间的演变，并由生命周期状态（如进行中、已发布）管理。这确保了配置定义始终可审计，未经授权的更改不会影响已发布的产品。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "选项集治理"
+          },
+          {
+            "type": "paragraph",
+            "text": "选项集的治理涉及控制谁可以创建、修改和发布选项集。选项管理员角色负责维护选项集、添加或删除选项和选择项、定义规则以及管理选项集的生命周期。组织通常在选项集发布用于生产之前建立审查和批准流程。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "测试您的知识"
+          },
+          {
+            "type": "interactive-match",
+            "prompt": "将每个选项集管理概念与其描述进行匹配：",
+            "pairs": [
+              {
+                "left": "选项集版本控制",
+                "right": "跟踪选项集随时间的变化，创建配置定义的历史记录"
+              },
+              {
+                "left": "签入/签出",
+                "right": "通过在修改时锁定选项集来控制并发编辑"
+              },
+              {
+                "left": "生命周期状态",
+                "right": "管理选项集的成熟度（如进行中、审核中、已发布）"
+              },
+              {
+                "left": "选项管理员角色",
+                "right": "负责创建和维护选项集及其内容的 Windchill 角色"
+              }
+            ]
+          }
+        ],
+        "keyTakeaways": [
+          "选项集是从选项池精选的选项、选择项和规则集合，用于特定产品系列",
+          "选项池是主存储库；选项集是专注的子集；选项过滤器应用特定选择项以生成变体",
+          "选项集是支持版本控制、生命周期状态和签入/签出的受管对象",
+          "选项管理员角色负责创建、维护和治理选项集"
+        ]
+      },
+      {
+        "id": "m4t2",
+        "title": "分配和管理选项集",
+        "estimatedMinutes": 5,
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "选项集创建并填充适当的选项、选择项和规则后，必须将其分配给可配置产品或可配置模块。分配过程将配置词汇链接到产品结构，从而启用基于选项的变体生成。正确管理选项集成员关系可确保产品在需求变化时仍保持可配置性。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "分配选项集"
+          },
+          {
+            "type": "paragraph",
+            "text": "选项集通过 Windchill 用户界面分配给可配置产品和可配置模块。在应用选项过滤器或生成变体之前，可配置产品必须有一个已分配的选项集。产品结构中的可配置模块也可以有自己的选项集，允许产品的不同部分在需要时使用不同的配置词汇。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "分配选项集的关键步骤"
+          },
+          {
+            "type": "reveal-cards",
+            "cards": [
+              {
+                "front": "步骤 1：导航到可配置产品",
+                "back": "在 Windchill 中打开可配置产品并找到操作菜单或选项集选项卡。在分配选项集之前，产品必须已被指定为可配置产品。"
+              },
+              {
+                "front": "步骤 2：选择分配选项集操作",
+                "back": "使用“操作”菜单或选项集选项卡启动分配。Windchill 显示产品上下文中可用选项集的列表。只有属于同一产品上下文（或共享上下文）的选项集才可用于分配。"
+              },
+              {
+                "front": "步骤 3：选择适当的选项集",
+                "back": "选择包含与此产品系列相关的选项、选择项和规则的选项集。在完成分配之前，查看选项集内容以确认它包含所有必要的配置参数。"
+              },
+              {
+                "front": "步骤 4：验证分配",
+                "back": "分配后，验证选项集是否出现在产品的选项集选项卡上。确认已分配集合中的选项和选择项现在可用于产品结构上的表达式和选项过滤器。"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "管理选项集成员关系"
+          },
+          {
+            "type": "paragraph",
+            "text": "随着产品需求的变化，选项集必须更新以反映新的选项、额外的选择项或修改的规则。选项管理员可以从选项池中添加新选项、为集合中的现有选项添加新选择项、删除不再相关的选项或选择项，以及更新规则以反映变化的业务逻辑。所有更改都需要先签出选项集，更改仅在签入后对其他人可见。"
+          },
+          {
+            "type": "callout",
+            "variant": "tip",
+            "text": "最佳实践：按产品系列组织选项集，而不是按单个产品。设计良好的选项集涵盖产品系列内的所有配置。避免为每个产品变体创建一个选项集，因为这违背了可配置产品的初衷并产生不必要的维护开销。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "排列分配流程"
+          },
+          {
+            "type": "interactive-sort",
+            "prompt": "将分配选项集到可配置产品的步骤按正确顺序排列：",
+            "correctOrder": [
+              "在 Windchill 中导航到可配置产品",
+              "打开“操作”菜单并选择“分配选项集”",
+              "从可用列表中选择适当的选项集",
+              "确认分配并验证选项集出现在产品上"
+            ]
+          }
+        ],
+        "keyTakeaways": [
+          "在使用选项过滤器或变体生成之前，必须将选项集分配给可配置产品",
+          "分配过程包括导航到产品、选择“分配选项集”操作、选择选项集并验证",
+          "随着需求变化，可以通过添加或删除选项、选择项和规则来更新选项集成员关系",
+          "最佳实践是按产品系列而非按单个产品变体组织选项集"
+        ]
+      },
+      {
+        "id": "m4t3",
+        "title": "表达式和选项过滤器",
+        "estimatedMinutes": 5,
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "表达式和选项过滤器是将选项选择项连接到产品结构的机制。表达式分配给零件和使用链接，以指定组件何时应包含在变体中。选项过滤器使用已分配的表达式来评估哪些零件属于特定配置，基于用户的选择项选择。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "基本表达式 vs. 高级表达式"
+          },
+          {
+            "type": "paragraph",
+            "text": "Windchill 支持两种类型的表达式来将选择项分配给零件和使用链接。基本表达式使用简单的选择项引用，而高级表达式添加运算符和函数以实现复杂的选择逻辑。您使用的表达式类型取决于配置需求的复杂性以及是否需要 Creo 集成。"
+          },
+          {
+            "type": "comparison-table",
+            "headers": [
+              "方面",
+              "基本表达式",
+              "高级表达式"
+            ],
+            "rows": [
+              [
+                "语法",
+                "简单的选择项引用（如 Color=Red）",
+                "包含选择项、运算符（AND、OR、NOT）和函数"
+              ],
+              [
+                "能力",
+                "将单个选择项或简单选择项列表分配给零件或使用链接",
+                "支持组合多个选项和选择项的复杂逻辑条件，使用布尔运算符"
+              ],
+              [
+                "Creo 支持",
+                "从 Windchill 传递到 Creo，在两个系统中都受支持",
+                "仅保留在 Windchill 中；不传递到 Creo"
+              ],
+              [
+                "使用场景",
+                "当选择单个选择项时包含零件的简单配置",
+                "零件包含取决于跨多个选项的选择项组合的复杂配置"
+              ],
+              [
+                "示例",
+                "Motorcycle Type = Off Road",
+                "(Motorcycle Type = Off Road) AND (Engine Size = 1200cc)"
+              ],
+              [
+                "所需首选项",
+                "支持的表达式首选项设置为“基本”或“两者”",
+                "支持的表达式首选项设置为“两者”"
+              ]
+            ]
+          },
+          {
+            "type": "callout",
+            "variant": "warning",
+            "text": "高级表达式不会从 Windchill 传递到 Creo。如果您的工作流涉及在 Creo 中配置变体，则必须对需要在 Creo 中可见的任何选择项分配使用基本表达式。请根据 Creo 集成需求仔细规划表达式策略。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "选项过滤器"
+          },
+          {
+            "type": "paragraph",
+            "text": "选项过滤器是应用于超载产品结构以生成过滤变体的一组选择项选择。创建选项过滤器时，您为已分配选项集中的每个选项选择特定的选择项。然后 Windchill 评估结构中每个零件和使用链接上的表达式，仅包含表达式与所选选择项匹配的零件。结果是代表一个特定产品变体的精简结构。"
+          },
+          {
+            "type": "heading",
+            "level": 2,
+            "text": "选项过滤器概念"
+          },
+          {
+            "type": "reveal-cards",
+            "cards": [
+              {
+                "front": "创建选项过滤器",
+                "back": "导航到可配置产品结构并选择“创建选项过滤器”操作。Windchill 显示已分配选项集中的选项。为每个选项选择一个选择项以定义过滤条件。选项集中的规则自动强制执行有效的选择项组合。"
+              },
+              {
+                "front": "应用选项过滤器",
+                "back": "创建后，选项过滤器应用于超载结构。Windchill 根据过滤器的选择项评估每个零件的表达式。表达式匹配的零件被包含；表达式不匹配的零件被排除。结果是仅显示该特定变体组件的过滤结构。"
+              },
+              {
+                "front": "变体规格",
+                "back": "当应用选项过滤器生成变体时，Windchill 创建一个变体规格来记录使用的确切选择项。此规格实现变体复用——如果稍后请求相同的选择项，Windchill 可以找到并复用现有变体，而不是生成新变体。"
+              },
+              {
+                "front": "过滤过程中的规则执行",
+                "back": "在选项过滤过程中，包含、排除、启用和条件规则都会被执行。如果用户选择触发包含规则的选择项，相关选择项会自动被选择。如果选择项违反排除规则，则会被阻止。这确保每个生成的变体都是有效的。"
+              }
+            ]
+          },
+          {
+            "type": "callout",
+            "variant": "insight",
+            "text": "选项过滤器是所有概念汇集的地方：选项集提供词汇，表达式将选择项链接到零件，规则强制执行有效组合，过滤器应用特定选择项将超载结构缩减为具体变体。掌握选项过滤器是在 Windchill 中有效进行产品配置的关键。"
+          }
+        ],
+        "keyTakeaways": [
+          "基本表达式使用简单的选择项引用并传递到 Creo；高级表达式使用布尔逻辑但仅保留在 Windchill 中",
+          "表达式分配给零件和使用链接，以指定组件何时包含在变体中",
+          "选项过滤器将特定的选择项选择应用于超载结构以生成过滤变体",
+          "变体规格记录用于生成变体的选择项，实现现有变体的复用"
+        ]
+      },
+      {
+        "id": "m4t4",
+        "title": "分配选项集和应用过滤器",
+        "estimatedMinutes": 5,
+        "isExercise": true,
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "在本练习中，您将为 PTC Motorcycle 可配置产品分配选项集，然后创建和应用选项过滤器以生成过滤变体结构。本练习汇集了前面主题中的概念：选项集、表达式和选项过滤器。"
+          },
+          {
+            "type": "callout",
+            "variant": "warning",
+            "text": "本练习建立在之前练习的基础上。在继续之前，请确保您已完成选项和规则创建练习。本练习中引用的选项集应已存在于 PTC Motorcycle 产品上下文中。"
+          },
+          {
+            "type": "exercise",
+            "exerciseId": "ex5",
+            "title": "分配选项集和应用过滤器",
+            "objective": "学习将选项集分配给可配置产品并应用选项过滤器以生成过滤变体结构。",
+            "tasks": [
+              {
+                "id": "ex5-t1",
+                "title": "将选项集分配给可配置产品",
+                "steps": [
+                  {
+                    "action": "导航到 PTC Motorcycle 可配置产品。转到“浏览”>“产品”并选择 PTC Motorcycle。",
+                    "detail": "PTC Motorcycle 是本课程中使用的可配置产品。您将为此产品分配现有选项集，以便可以对其超载结构应用选项过滤器。",
+                    "hint": "以 Anna Chen 或您分配的培训用户身份登录。PTC Motorcycle 应出现在产品列表中。"
+                  },
+                  {
+                    "action": "在 PTC Motorcycle 产品页面上打开“操作”菜单并选择“分配选项集”。",
+                    "detail": "“分配选项集”操作将选项集链接到可配置产品。此操作可从产品级别的“操作”菜单或选项集选项卡中使用。产品必须有已分配的选项集，才能创建选项过滤器。",
+                    "hint": "如果您看不到“分配选项集”操作，请验证产品是否被指定为可配置产品，以及您是否具有适当的权限。"
+                  },
+                  {
+                    "action": "在分配对话框中，从可用选项集列表中选择 PTC Motorcycle 选项集。",
+                    "detail": "对话框显示此产品上下文中可用的选项集。选择包含摩托车类型、发动机排量、颜色、车轮和鞍囊位置选项以及在之前练习中创建的包含和排除规则的选项集。",
+                    "hint": "如果出现多个选项集，选择与您在之前练习中创建的选项和规则匹配的那个。"
+                  },
+                  {
+                    "action": "确认分配并验证选项集现在出现在 PTC Motorcycle 的选项集选项卡上。",
+                    "detail": "分配后，选项集选项卡应显示已分配的选项集及其所有选项、选择项和规则。浏览选项以确认摩托车类型、发动机排量、颜色、车轮和鞍囊位置选项及其各自的选择项都存在。",
+                    "hint": "单击产品页面上的选项集选项卡。展开选项以验证选择项和规则完好无损。"
+                  }
+                ]
+              },
+              {
+                "id": "ex5-t2",
+                "title": "创建和应用选项过滤器",
+                "steps": [
+                  {
+                    "action": "通过单击“结构”选项卡导航到 PTC Motorcycle 产品结构。",
+                    "detail": "“结构”选项卡显示包含所有可能设计变体的超载产品结构。您将创建选项过滤器，根据您的选择项选择将此结构缩减为特定变体。",
+                    "hint": "“结构”选项卡显示包含所有可配置模块及其子零件的完整物料清单。"
+                  },
+                  {
+                    "action": "在结构视图工具栏或“操作”菜单中单击“创建选项过滤器”操作。",
+                    "detail": "“创建选项过滤器”操作打开一个对话框，显示已分配选项集中的所有选项。您将为每个选项选择特定的选择项，以定义要生成的变体的过滤条件。",
+                    "hint": "在结构树上方的工具栏中查找过滤器图标或“选项过滤器”操作。"
+                  },
+                  {
+                    "action": "为“摩托车类型”选项选择“Off Road”。",
+                    "detail": "选择 Off Road 将此变体定义为越野摩托车配置。请注意，您创建的包含规则自动为“车轮”选项选择 Off Road Front 和 Off Road Rear，排除规则阻止选择 On Road Front 和 On Road Rear。",
+                    "hint": "观察“车轮”选项选择项在应用包含和排除规则时的自动更新。"
+                  },
+                  {
+                    "action": "为其余选项选择选择项：选择发动机排量（如 1000cc）、颜色（如黑色），并验证鞍囊位置（如 Not Used）。",
+                    "detail": "通过为每个剩余选项选择一个选择项来完成选项过滤器。所有选择项的组合定义了一个特定的产品变体。在您进行选择时，规则继续强制执行有效组合。",
+                    "hint": "如果某些选择项变灰或不可用，请检查是否有规则根据您之前的选择限制了它们。"
+                  },
+                  {
+                    "action": "单击“应用”或“确定”将选项过滤器应用于产品结构。",
+                    "detail": "Windchill 根据您选择的选择项评估超载结构中每个零件和使用链接上分配的表达式。表达式匹配的零件被包含在过滤结果中；不匹配的零件被排除。结构视图更新为仅显示此特定变体的组件。",
+                    "hint": "过滤后的结构应明显小于完整的超载结构，仅包含与越野变体相关的零件。"
+                  }
+                ]
+              },
+              {
+                "id": "ex5-t3",
+                "title": "查看过滤后的结构",
+                "steps": [
+                  {
+                    "action": "检查“结构”选项卡中显示的过滤结构。注意哪些零件被包含，哪些已被移除。",
+                    "detail": "过滤后的结构代表 PTC Motorcycle 的越野变体。将其与您之前看到的完整超载结构进行比较。与公路组件相关的零件（如公路车轮、街道合法照明）应不存在，而越野特定零件应存在。",
+                    "hint": "展开结构树以查看包含零件的完整层次结构。"
+                  },
+                  {
+                    "action": "通过切换选项过滤器的开/关（如果界面支持）或记录差异来比较过滤后的结构与完整的超载结构。",
+                    "detail": "超载结构包含所有变体的所有可能零件。过滤后的结构仅包含您指定的越野配置的零件。两者之间的差异说明了选项过滤器如何通过将结构缩减到单个有效配置来降低复杂性。",
+                    "hint": "某些 Windchill 版本允许您清除过滤器以返回完整的超载视图。查找“清除过滤器”或“显示全部”操作。"
+                  },
+                  {
+                    "action": "确定哪些可配置模块受到过滤器的影响，并理解为什么根据您选择的选择项，特定零件被包含或排除。",
+                    "detail": "结构中的每个可配置模块可能根据其子零件分配的表达式被不同地过滤。例如，车轮模块现在应仅显示越野车轮零件，因为 Off Road Front 和 Off Road Rear 选择项已被选择（通过包含规则），公路选择项已被排除。",
+                    "hint": "单击各个零件以查看其分配的表达式，并了解它们为何被过滤器包含或排除。"
+                  },
+                  {
+                    "action": "注意已创建的变体规格。查看记录的选择项以确认它们与您的过滤器选择匹配。",
+                    "detail": "Windchill 记录了一份变体规格，文档记录了用于生成此变体的确切选择项。此规格实现变体复用：如果将来有人请求相同的选择项组合，Windchill 可以找到此现有变体而不是生成新变体，从而节省时间并确保一致性。",
+                    "hint": "查找与过滤结构视图关联的变体规格链接或选项卡。"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "keyTakeaways": [
+          "在创建选项过滤器之前，必须将选项集分配给可配置产品",
+          "创建选项过滤器涉及为已分配选项集中的每个选项选择特定的选择项",
+          "在过滤过程中，规则自动执行，确保只有有效的选择项组合",
+          "过滤后的结构仅显示与所选变体相关的零件，降低了完整超载结构的复杂性"
+        ]
+      },
+      {
+        "id": "m4t5",
+        "title": "课程回顾和总结",
+        "estimatedMinutes": 5,
+        "isExercise": true,
+        "content": [
+          {
+            "type": "paragraph",
+            "text": "本最终练习回顾了选项和可配置产品课程四个模块的关键概念。使用此总结来验证您的理解，并确定在日常 Windchill 工作中应用这些概念之前可能需要进一步复习的领域。"
+          },
+          {
+            "type": "callout",
+            "variant": "info",
+            "text": "这是一个复习练习。逐步完成每个任务，重新审视课程中的主要概念。使用提示来刷新对不太熟悉的主题的记忆。"
+          },
+          {
+            "type": "exercise",
+            "exerciseId": "ex6",
+            "title": "课程回顾和总结",
+            "objective": "回顾四个模块的关键概念，验证您对选项和可配置产品的理解。",
+            "tasks": [
+              {
+                "id": "ex6-t1",
+                "title": "回顾关键概念",
+                "steps": [
+                  {
+                    "action": "回忆产品可变性的五种业务策略：按订单装配、按库存装配、按订单配置、按订单设计和合同定制。",
+                    "detail": "每种策略在每个订单的产品开发参与程度上有所不同。按订单装配不需要工程参与，而合同定制需要完全定制工程。Windchill OCP 主要支持按订单装配和按订单配置策略。",
+                    "hint": "关键区别在于每个客户订单需要多少工程参与。"
+                  },
+                  {
+                    "action": "回顾通用平台设计的四个步骤：分析需求、评估现有产品以便复用、创建通用产品定义、发布和维护平台。",
+                    "detail": "平台设计建立了所有产品变体衍生的可复用基础。设计良好的平台最大化零件复用，并清晰标识哪些部分是固定的，哪些是可变的。",
+                    "hint": "在从零开始创建新设计之前，始终评估现有产品的复用可能性。"
+                  },
+                  {
+                    "action": "回忆超载产品结构的概念以及它如何包含可配置产品的所有可能设计变体。",
+                    "detail": "超载结构在可配置模块下包含所有设计替代方案。在变体生成过程中，选项过滤器将此结构缩减为仅包含特定配置所需的零件。超载结构是衍生所有变体的主结构。",
+                    "hint": "将超载结构视为全集，将过滤后的变体视为子集。"
+                  },
+                  {
+                    "action": "回顾三个可配置对象及其层次结构：可配置产品、可配置模块和模块变体。",
+                    "detail": "可配置产品是包含完整超载结构的顶层最终项目。可配置模块是捕获多种设计替代方案的可变性部分。模块变体是应用选项过滤器后从可配置模块中选出的特定零件。",
+                    "hint": "层次结构从最广泛（可配置产品）到最具体（模块变体）。"
+                  }
+                ]
+              },
+              {
+                "id": "ex6-t2",
+                "title": "回顾选项和变体设置",
+                "steps": [
+                  {
+                    "action": "回顾关键 O&V 术语：选项、选择项、选项池、选项集、选项过滤器、表达式、变体规格、可配置模块和选项管理员角色。",
+                    "detail": "选项代表可变的产品特征，每个选项有一个或多个选择项。选项池是主存储库；选项集是产品系列的精选子集。选项过滤器应用选择项以生成变体。表达式将选择项链接到零件。变体规格记录使用的选择项。",
+                    "hint": "术语分为三类：结构术语、逻辑术语和管理术语。"
+                  },
+                  {
+                    "action": "回忆选项池和选项集的区别，并解释为什么两者都是必需的。",
+                    "detail": "选项池包含产品上下文的所有选项和选择项——它是主目录。选项集仅选择特定产品系列的相关选项。这种分离实现了复用：相同的选项（如颜色）可以出现在不同产品系列的多个选项集中，而不会重复。",
+                    "hint": "选项池是全集；选项集是为产品系列定制的专注子集。"
+                  },
+                  {
+                    "action": "回顾两种配置方法：自顶向下（Windchill 优先）和自底向上（Creo 优先），以及仅基本表达式传递到 Creo 的限制。",
+                    "detail": "自顶向下从 Windchill 中的零件结构开始并传播到 Creo。自底向上从 Creo 中的超载装配体开始并签入 Windchill。无论使用哪种方法，只有基本表达式从 Windchill 传递到 Creo——高级表达式仅保留在 Windchill 中。",
+                    "hint": "方法取决于 PLM 还是 CAD 驱动您的产品结构。"
+                  },
+                  {
+                    "action": "回忆“可配置模块支持”首选项及其重要性，以及首选项如何从站点级别继承到组织级别再到产品级别。",
+                    "detail": "“可配置模块支持”必须设置为“是”才能使用任何 O&V 功能——其默认值为“否”。首选项从较高级别（站点）向较低级别（组织、产品）继承，可以在每个级别被锁定或覆盖。站点管理员、组织管理员、产品经理和库管理员可以修改 O&V 首选项。",
+                    "hint": "如果 O&V 功能不可用，首先检查适当级别的“可配置模块支持”首选项。"
+                  }
+                ]
+              },
+              {
+                "id": "ex6-t3",
+                "title": "回顾规则和选项集",
+                "steps": [
+                  {
+                    "action": "回顾四种规则类型：包含规则（自动选择相关选择项）、排除规则（防止不兼容选择项）、启用规则（控制选择项可见性）和条件规则（IF/THEN 逻辑）。",
+                    "detail": "包含规则强制相关选择项一起被选择。排除规则防止冲突的选择项共存。启用规则根据先前的选择动态显示或隐藏选择项。条件规则提供复杂的多条件 IF/THEN 逻辑。Windchill 验证规则以防止冲突和重复。",
+                    "hint": "包含和排除处理简单关系；启用和条件处理更复杂的场景。"
+                  },
+                  {
+                    "action": "回顾选项集、其变更管理（版本控制、生命周期状态、签入/签出）以及将选项集分配给可配置产品的流程。",
+                    "detail": "选项集是具有完整变更管理支持的受管对象。它们必须签出进行编辑，签入以保存更改。分配流程包括导航到可配置产品、从“操作”菜单选择“分配选项集”、选择适当的集合并验证分配。",
+                    "hint": "选项集遵循与其他 Windchill 对象相同的变更管理工作流。"
+                  },
+                  {
+                    "action": "回顾表达式（基本与高级）以及它们如何将选项选择项链接到产品结构中的零件和使用链接。",
+                    "detail": "基本表达式使用简单的选择项引用（如 Color=Red），在 Windchill 和 Creo 中都受支持。高级表达式使用布尔运算符（AND、OR、NOT）实现复杂逻辑，但仅保留在 Windchill 中。表达式分配给零件和使用链接，以指定组件何时包含在变体中。",
+                    "hint": "高级表达式更强大，但无法传递到 Creo。"
+                  },
+                  {
+                    "action": "回顾选项过滤器以及它如何将所有概念汇集在一起：选项集提供词汇，表达式将选择项链接到零件，规则强制执行有效组合，过滤器将超载结构缩减为特定变体。",
+                    "detail": "创建选项过滤器涉及从已分配的选项集中选择选择项。Windchill 根据所选选择项评估每个零件的表达式，仅包含匹配的零件。结果是代表一个特定产品变体的过滤结构。变体规格记录选择项以便将来复用。",
+                    "hint": "选项过滤器是所有 O&V 概念协同工作的集大成者。"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "keyTakeaways": [
+          "本课程涵盖四个模块：可配置产品概述、选项和变体设置、规则以及选项集",
+          "关键概念包括业务策略、平台设计、超载结构、选项、选择项、规则、表达式、选项集和选项过滤器",
+          "选项过滤器通过将选择项应用于超载结构以生成特定产品变体，将所有概念汇集在一起",
+          "了解从选项池到变体生成的完整 O&V 工作流对于在 Windchill 中有效配置产品至关重要"
+        ]
+      }
+    ]
+  },
+  "quizzes/q1-configurable-products.json": {
+    "moduleId": "m1",
+    "title": "可配置产品知识检测",
+    "questions": [
+      {
+        "id": "m1-kc-001",
+        "question": "以下哪项正确描述了按订单配置（Configure-to-Order）的业务方法？",
+        "options": [
+          "一种针对关键产品特征设计具有有限离散选项选择项列表的产品的策略。",
+          "一种设计灵活产品的策略，可以配置或定制以满足每位客户订单的独特需求。",
+          "一种涉及将通用产品适配到独特客户需求并需要工程参与的策略。",
+          "一种按照客户独特需求进行定制设计和定制制造的策略。"
+        ],
+        "answerIndex": 1,
+        "rationale": "按订单配置是专门关于设计灵活的产品，可以使用带有规则的配置器进行配置或定制以满足独特的客户需求。选项 A 描述的是按订单装配，选项 C 描述的是按订单设计，选项 D 描述的是合同定制产品开发。",
+        "topic": "m1t1"
+      },
+      {
+        "id": "m1-kc-002",
+        "question": "通用平台设计过程的第一步是什么？",
+        "options": [
+          "创建通用产品定义",
+          "评估现有产品以便复用",
+          "分析平台可选性需求",
+          "发布和维护平台"
+        ],
+        "answerIndex": 2,
+        "rationale": "平台设计过程从分析需求开始。您需要先了解需要哪些选项，然后才能评估复用机会或构建任何东西。",
+        "topic": "m1t2"
+      },
+      {
+        "id": "m1-kc-003",
+        "question": "什么是超载产品结构？",
+        "options": [
+          "包含太多零件而无法有效管理的产品结构",
+          "其中某些部分包含多种设计以满足不同能力级别的结构",
+          "已被多次导出和重新导入的结构",
+          "超过可配置模块最大数量的产品结构"
+        ],
+        "answerIndex": 1,
+        "rationale": "超载产品结构在同一部分内包含多种设计以支持一系列选项。在变体生成过程中，结构被过滤为给定配置所需的特定设计。",
+        "topic": "m1t3"
+      },
+      {
+        "id": "m1-kc-004",
+        "question": "对于按订单装配和按库存装配策略，主要使用哪种 Windchill 功能？",
+        "options": [
+          "用于高级选择逻辑的参数",
+          "基于工作流的审批流程",
+          "用于过滤超载产品结构的选项和选择项",
+          "CAD 驱动的产品配置"
+        ],
+        "answerIndex": 2,
+        "rationale": "按订单装配和按库存装配策略使用选项和选择项来过滤超载产品结构。参数额外用于需要更高级选择逻辑的按订单配置和按订单设计策略。",
+        "topic": "m1t4"
+      }
+    ]
+  },
+  "quizzes/q2-options-and-variants.json": {
+    "moduleId": "m2",
+    "title": "选项和变体知识检测",
+    "questions": [
+      {
+        "id": "m2-kc-001",
+        "question": "以下哪项正确描述了 Windchill 选项和变体中的“选项”？",
+        "options": [
+          "一个包含系统中每个产品所有选择项的容器",
+          "用于生成特定变体的用户输入记录",
+          "分配给产品系列的精选规则集合",
+          "一种可以在不同配置中变化的特定产品特征，具有一个或多个可用选择项"
+        ],
+        "answerIndex": 3,
+        "rationale": "选项代表一种可以在不同配置中变化的特定产品特征，并具有一个或多个定义有效值的选择项。选项 A 描述的是选项池，选项 B 描述的是变体规格，选项 C 部分描述的是选项集。",
+        "topic": "m2t1"
+      },
+      {
+        "id": "m2-kc-002",
+        "question": "选项池和选项集之间是什么关系？",
+        "options": [
+          "它们是可以互换使用的相同容器",
+          "选项池是产品系列选项集的子集",
+          "选项集是选项池的精选子集，仅包含与特定产品系列相关的选项",
+          "选项池包含规则，而选项集包含选择项"
+        ],
+        "answerIndex": 2,
+        "rationale": "选项池是产品上下文中所有选项和选择项的主存储库，而选项集是仅包含与特定产品系列配置相关的选项的精选子集。",
+        "topic": "m2t2"
+      },
+      {
+        "id": "m2-kc-003",
+        "question": "哪个可配置对象代表从可配置模块的可选零件中选出的特定零件？",
+        "options": [
+          "可配置产品",
+          "模块变体",
+          "选项过滤器",
+          "可配置模块"
+        ],
+        "answerIndex": 1,
+        "rationale": "模块变体代表根据选择标准和选择项从可配置模块的可选零件中选出的特定零件。可配置产品是顶层最终项目，可配置模块在组件级别捕获可变性，选项过滤器是用于过滤结构的条件。",
+        "topic": "m2t3"
+      },
+      {
+        "id": "m2-kc-004",
+        "question": "使用自顶向下或自底向上配置方法与 Creo 配合使用时，有什么关键限制？",
+        "options": [
+          "自底向上配置不能使用选项集",
+          "自顶向下配置需要手动更新 CAD",
+          "只有基本表达式从 Windchill 传递到 Creo——高级表达式仅保留在 Windchill 中",
+          "自顶向下和自底向上配置不能产生相同的变体结果"
+        ],
+        "answerIndex": 2,
+        "rationale": "无论使用哪种方法（自顶向下或自底向上），只有基本表达式从 Windchill 传递到 Creo。高级表达式仅保留在 Windchill 中。在规划配置策略时，这是一个需要考虑的关键限制。",
+        "topic": "m2t4"
+      }
+    ]
+  },
+  "quizzes/q3-rules.json": {
+    "moduleId": "m3",
+    "title": "选项和变体规则知识检测",
+    "questions": [
+      {
+        "id": "m3-kc-001",
+        "question": "选项和变体规则的主要目的是什么？",
+        "options": [
+          "定义可配置模块在结构树中的视觉外观",
+          "根据用户角色限制对特定选项和选择项的访问",
+          "执行管理选择项和零件之间有效关系的业务逻辑",
+          "在产品系列发布时自动创建新选项"
+        ],
+        "answerIndex": 2,
+        "rationale": "O&V 规则执行管理选择项和零件之间有效关系的业务逻辑。它们确保只能选择有效的选择项组合，并且变体结构中包含正确的零件。",
+        "topic": "m3t1"
+      },
+      {
+        "id": "m3-kc-002",
+        "question": "在配置过程中触发排除规则时会发生什么？",
+        "options": [
+          "被排除的选择项会自动被选择",
+          "被排除的选择项会永久从选项池中移除",
+          "被排除的选择项变为不可用，防止用户选择不兼容的组合",
+          "被排除的选择项会触发工程审核工作流"
+        ],
+        "answerIndex": 2,
+        "rationale": "排除规则限制选择不兼容的选择项。触发时，被排除的选择项在选择列表中变为不可用，防止用户创建无效配置。",
+        "topic": "m3t2"
+      },
+      {
+        "id": "m3-kc-003",
+        "question": "以下哪项正确描述了启用规则？",
+        "options": [
+          "自动选择给定选项的所有选择项的规则",
+          "在配置过程中动态创建新选择项的规则",
+          "锁定选择项使其在初始选择后不能更改的规则",
+          "当选择目标选择项后，只让特定选择项出现在选择列表中的规则"
+        ],
+        "answerIndex": 3,
+        "rationale": "启用规则根据其他选择控制选择列表中出现哪些选择项。选择目标选择项后，只有已启用的选择项变为可见，将可用选项缩减为该上下文中的有效选择。",
+        "topic": "m3t3"
+      }
+    ]
+  },
+  "quizzes/q4-option-sets.json": {
+    "moduleId": "m4",
+    "title": "选项集知识检测",
+    "questions": [
+      {
+        "id": "m4-kc-001",
+        "question": "以下哪项正确描述了选项集？",
+        "options": [
+          "包含系统中每个产品所有选项和选择项的主存储库",
+          "用于定义特定产品系列内配置的选项、选择项和规则的精选集合",
+          "在配置过程中从选项池中删除无效选择项的过滤器",
+          "显示为产品生成的所有变体规格的报告"
+        ],
+        "answerIndex": 1,
+        "rationale": "选项集是用于定义特定产品系列内配置的选项、选择项和规则的精选集合。选项 A 描述的是选项池，选项 C 描述的是选项过滤器，选项 D 描述的是变体报告。",
+        "topic": "m4t1"
+      },
+      {
+        "id": "m4-kc-002",
+        "question": "在选项集可用于产品配置之前，必须发生什么？",
+        "options": [
+          "选项集必须先导出到 CAD 系统",
+          "选项集必须分配给可配置产品或可配置模块",
+          "选项集必须仅由站点管理员批准",
+          "选项集必须包含至少十个选项才有效"
+        ],
+        "answerIndex": 1,
+        "rationale": "选项集必须分配给可配置产品或可配置模块后才能用于配置。此分配建立了可用选项集与将要配置的产品结构之间的链接。",
+        "topic": "m4t2"
+      },
+      {
+        "id": "m4-kc-003",
+        "question": "Windchill 中选项过滤器的用途是什么？",
+        "options": [
+          "永久删除选项池中不再需要的选择项",
+          "无需用户输入即可自动创建新变体",
+          "根据分配给零件的选择项过滤可配置产品结构，生成变体",
+          "限制哪些用户可以访问选项集管理界面"
+        ],
+        "answerIndex": 2,
+        "rationale": "选项过滤器使用基于所选选择项的条件来过滤可配置产品结构，仅包含其分配的选择项与选择匹配的零件。这就是将超载结构缩减为特定变体的方式。",
+        "topic": "m4t3"
+      }
+    ]
+  }
+};
+})();

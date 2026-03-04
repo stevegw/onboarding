@@ -2160,7 +2160,11 @@
 
   "locale.en": "English",
   "locale.fr": "Fran\u00e7ais",
-  "locale.de": "Deutsch"
+  "locale.de": "Deutsch",
+  "locale.ja": "\u65e5\u672c\u8a9e",
+  "locale.zh": "\u4e2d\u6587",
+  "locale.ko": "\ud55c\uad6d\uc5b4",
+  "locale.es": "Espa\u00f1ol"
 }
   };
 })();
