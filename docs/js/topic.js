@@ -27,7 +27,12 @@
     html += '<div class="topic-breadcrumb">';
     html += '<a href="#/">Dashboard</a> <span>&#8250;</span> ';
     html += '<a href="#/module/' + meta.id + '">Module ' + modIdx + '</a> <span>&#8250;</span> ';
-    html += '<span>Topic ' + modIdx + '.' + topicIdx + '</span>';
+    if (topic.isExercise) {
+      var exNum = topicIdx - (meta.exerciseTopicStart || topicIdx) + 1;
+      html += '<span>Exercise ' + exNum + '</span>';
+    } else {
+      html += '<span>Topic ' + modIdx + '.' + topicIdx + '</span>';
+    }
     html += '</div>';
     html += '<h1>' + esc(topic.title) + '</h1>';
     html += '<p class="topic-est text-dim text-sm">Estimated: ~' + (topic.estimatedMinutes || 5) + ' min</p>';
@@ -116,6 +121,9 @@
       case "interactive-sort":
         return renderSortBlock(block, idx);
 
+      case "exercise":
+        return renderExerciseBlock(block, idx);
+
       default:
         return '';
     }
@@ -167,6 +175,100 @@
       html += '</div>';
     });
     html += '</div>';
+    return html;
+  }
+
+  function renderExerciseBlock(block, idx) {
+    var esc = OB.ui.esc;
+    var exId = block.exerciseId;
+    var tasks = block.tasks;
+    var prog = OB.state.getExerciseProgress(exId, tasks);
+    var pct = prog.total > 0 ? Math.round((prog.done / prog.total) * 100) : 0;
+
+    // Find first incomplete step to mark as active
+    var activeTaskId = null;
+    var activeStepIdx = -1;
+    for (var ti = 0; ti < tasks.length && activeStepIdx === -1; ti++) {
+      for (var si = 0; si < tasks[ti].steps.length; si++) {
+        if (!OB.state.isStepDone(exId, tasks[ti].id, si)) {
+          activeTaskId = tasks[ti].id;
+          activeStepIdx = si;
+          break;
+        }
+      }
+    }
+
+    var html = '<div class="exercise-block" data-exercise="' + exId + '">';
+
+    // Objective
+    html += '<div class="exercise-objective">';
+    html += '<div class="exercise-objective-label">Objective</div>';
+    html += '<p>' + esc(block.objective) + '</p>';
+    html += '</div>';
+
+    // Progress bar
+    html += '<div class="exercise-progress">';
+    html += '<div class="exercise-progress-label">' + prog.done + '/' + prog.total + ' steps completed</div>';
+    html += '<div class="exercise-progress-bar"><div class="exercise-progress-fill" style="width:' + pct + '%"></div></div>';
+    html += '</div>';
+
+    // Tasks
+    tasks.forEach(function (task) {
+      var taskDone = 0;
+      task.steps.forEach(function (_s, si) {
+        if (OB.state.isStepDone(exId, task.id, si)) taskDone++;
+      });
+
+      html += '<div class="exercise-task">';
+      html += '<div class="exercise-task-header">';
+      html += '<h3>' + esc(task.title) + '</h3>';
+      html += '<span class="exercise-task-progress">' + taskDone + '/' + task.steps.length + ' steps</span>';
+      html += '</div>';
+      html += '<div class="exercise-steps">';
+
+      task.steps.forEach(function (step, si) {
+        var isDone = OB.state.isStepDone(exId, task.id, si);
+        var isActive = (task.id === activeTaskId && si === activeStepIdx);
+        var cls = isDone ? "done" : (isActive ? "active" : "upcoming");
+
+        html += '<div class="exercise-step ' + cls + '" data-ex="' + exId + '" data-task="' + task.id + '" data-step="' + si + '">';
+        html += '<div class="exercise-step-indicator">' + (isDone ? "&#10003;" : (si + 1)) + '</div>';
+        html += '<div class="exercise-step-action-text">' + esc(step.action) + '</div>';
+
+        // Detail area (shown when active or expanded)
+        html += '<div class="exercise-step-detail">';
+        html += '<div class="exercise-step-box action-box">';
+        html += '<div class="exercise-step-box-label">Do This</div>';
+        html += '<p>' + esc(step.action) + '</p>';
+        html += '</div>';
+
+        if (step.detail) {
+          html += '<div class="exercise-step-box detail-box">';
+          html += '<div class="exercise-step-box-label">Why It Matters</div>';
+          html += '<p>' + esc(step.detail) + '</p>';
+          html += '</div>';
+        }
+
+        if (step.hint) {
+          html += '<div class="exercise-hint-toggle" data-hint="' + exId + '-' + task.id + '-' + si + '">&#9654; Show hint</div>';
+          html += '<div class="exercise-hint-text" id="hint-' + exId + '-' + task.id + '-' + si + '">' + esc(step.hint) + '</div>';
+        }
+
+        if (!isDone) {
+          html += '<div class="exercise-step-actions">';
+          html += '<button class="btn btn-primary btn-sm exercise-step-done" data-ex="' + exId + '" data-task="' + task.id + '" data-step="' + si + '">Done &mdash; Next Step &#8594;</button>';
+          html += '</div>';
+        }
+
+        html += '</div>'; // .exercise-step-detail
+        html += '</div>'; // .exercise-step
+      });
+
+      html += '</div>'; // .exercise-steps
+      html += '</div>'; // .exercise-task
+    });
+
+    html += '</div>'; // .exercise-block
     return html;
   }
 
@@ -228,6 +330,40 @@
             setTimeout(function () { el.classList.remove("wrong"); }, 500);
           }
         });
+      });
+    });
+
+    // Exercise step done buttons
+    document.querySelectorAll(".exercise-step-done").forEach(function (btn) {
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var exId = btn.getAttribute("data-ex");
+        var taskId = btn.getAttribute("data-task");
+        var stepIdx = parseInt(btn.getAttribute("data-step"), 10);
+        OB.state.completeStep(exId, taskId, stepIdx);
+        // Re-render topic to update UI
+        OB.router.navigate();
+      });
+    });
+
+    // Exercise hint toggles
+    document.querySelectorAll(".exercise-hint-toggle").forEach(function (toggle) {
+      toggle.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var hintKey = toggle.getAttribute("data-hint");
+        var hintEl = document.getElementById("hint-" + hintKey);
+        if (hintEl) {
+          var isOpen = hintEl.classList.toggle("expanded");
+          toggle.innerHTML = (isOpen ? "&#9660; Hide hint" : "&#9654; Show hint");
+        }
+      });
+    });
+
+    // Exercise step expand/collapse on click
+    document.querySelectorAll(".exercise-step").forEach(function (step) {
+      step.addEventListener("click", function () {
+        if (step.classList.contains("active")) return; // already expanded
+        step.classList.toggle("expanded");
       });
     });
 
@@ -374,12 +510,20 @@
     // Topic list
     html += '<h2 class="mb-md">Topics</h2>';
     html += '<div class="stagger">';
+    var exerciseStart = meta.exerciseTopicStart || (content.topics.length + 1);
     content.topics.forEach(function (topic, tIdx) {
       var isDone = OB.state.isTopicCompleted(topic.id);
-      html += '<div class="topic-list-item' + (isDone ? " completed" : "") + '" data-route="#/topic/' + topic.id + '">';
-      html += '<div class="topic-check">' + (isDone ? "&#10003;" : "") + '</div>';
+      var isExercise = topic.isExercise || (tIdx + 1) >= exerciseStart;
+      var itemCls = 'topic-list-item' + (isDone ? " completed" : "") + (isExercise ? " exercise-item" : "");
+      html += '<div class="' + itemCls + '" data-route="#/topic/' + topic.id + '">';
+      html += '<div class="topic-check' + (isDone ? " done" : "") + '">' + (isDone ? "&#10003;" : "") + '</div>';
       html += '<div class="topic-info">';
-      html += '<div class="topic-title">' + modIdx + '.' + (tIdx + 1) + ' ' + esc(topic.title) + '</div>';
+      if (isExercise) {
+        var exNum = (tIdx + 1) - exerciseStart + 1;
+        html += '<div class="topic-title"><span class="exercise-icon">&#128295;</span>Exercise ' + exNum + ': ' + esc(topic.title) + '</div>';
+      } else {
+        html += '<div class="topic-title">' + modIdx + '.' + (tIdx + 1) + ' ' + esc(topic.title) + '</div>';
+      }
       html += '<div class="topic-meta">~' + (topic.estimatedMinutes || 5) + ' min</div>';
       html += '</div>';
       html += '<span class="topic-arrow">&#8250;</span>';

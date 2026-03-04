@@ -240,6 +240,328 @@
         "Options and parameters can be combined for maximum configurability",
         "Windchill tracks variant specifications to enable variant reuse across orders"
       ]
+    },
+    {
+      "id": "m1t5",
+      "title": "Examine Existing Options and Choices",
+      "estimatedMinutes": 15,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will explore the PTC Motorcycle product in Windchill to understand how option pools, options, choices, and product structures are organized. You will navigate the Option Pool, examine existing options and their choices, and browse the product structure to identify configurable modules."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "You need access to the Windchill training server to complete this exercise. Sign in as your assigned training user."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex1",
+          "title": "Examine Existing Options and Choices",
+          "objective": "Understand how option pools, options, choices, and product structures are organized in Windchill by exploring the PTC Motorcycle product.",
+          "tasks": [
+            {
+              "id": "ex1-t1",
+              "title": "Access the PTC Motorcycle Option Pool",
+              "steps": [
+                {
+                  "action": "Sign in to Windchill and navigate to the Browse tab. Go to Products and select PTC Motorcycle.",
+                  "detail": "The Products area lists all products you have access to. PTC Motorcycle is the sample configurable product used throughout this course.",
+                  "hint": "Use the URL provided by your instructor. Your credentials are typically your training username and password."
+                },
+                {
+                  "action": "Click the Option Pool tab on the PTC Motorcycle product page.",
+                  "detail": "The Option Pool tab shows all options defined for this product. Each option represents a variable feature of the motorcycle, such as engine size or color.",
+                  "hint": "The Option Pool tab is alongside other tabs like Details, Structure, and Change."
+                },
+                {
+                  "action": "Examine the list of options displayed in the option pool. Note the option names and how many choices each has.",
+                  "detail": "Each option (e.g., Engine Size, Color, Saddle Bag Location) represents a configurable feature. The number of choices per option determines how many variations that feature supports.",
+                  "hint": null
+                },
+                {
+                  "action": "Click on the Engine Size option to view its choices.",
+                  "detail": "Options contain choices that define the valid values for that feature. For Engine Size, you will see choices like 600cc, 1000cc, and 1200cc. Each choice can be assigned to parts in the product structure.",
+                  "hint": "Click the option name link or the information icon to open the option details page."
+                },
+                {
+                  "action": "Review the choice names, descriptions, and any associated images or attributes for Engine Size.",
+                  "detail": "Choices often include descriptions that help users understand what each selection means. Well-documented choices reduce configuration errors during variant generation.",
+                  "hint": null
+                },
+                {
+                  "action": "Navigate back to the Option Pool and click on the Color option. Examine its choices.",
+                  "detail": "Notice how Color choices (e.g., Red, Blue, Black) follow the same structure as Engine Size choices. All options follow a consistent pattern: option name, choice list, and optional descriptions.",
+                  "hint": "Use the browser back button or the breadcrumb navigation to return to the Option Pool."
+                },
+                {
+                  "action": "Navigate back to the Option Pool and click on Saddle Bag Location. Examine its current choices.",
+                  "detail": "Saddle Bag Location controls where saddle bags are mounted on the motorcycle. Notice this option currently has specific location choices. You will modify this option in Exercise 2.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex1-t2",
+              "title": "Browse Folders and View Product Structure",
+              "steps": [
+                {
+                  "action": "Navigate to the Folder tab on the PTC Motorcycle product page. Browse the folder structure.",
+                  "detail": "Products organize their content in folders. Browsing folders helps you understand how design data, options, and other artifacts are organized within a product context.",
+                  "hint": "The Folder tab may be labeled 'Folder Contents' depending on your Windchill version."
+                },
+                {
+                  "action": "Use the Search feature to find a specific part (e.g., search for 'engine' or 'frame').",
+                  "detail": "Windchill's search allows you to quickly find parts, documents, and other objects within a product. This is faster than browsing folders when you know what you're looking for.",
+                  "hint": "Use the search box at the top of the page, or go to the Search tab. Set the search scope to the current product."
+                },
+                {
+                  "action": "Click on a part from the search results to open its details page. Look at the Part Type and other attributes.",
+                  "detail": "Each part has a type (e.g., Part, Assembly) and attributes that define its properties. Understanding part types is important because configurable modules must be specific part types.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the Structure tab for the PTC Motorcycle top-level part to view the product structure.",
+                  "detail": "The product structure shows how parts are organized in a parent-child hierarchy. This is the Bill of Materials (BOM). Some sections of this structure are overloaded with multiple design options.",
+                  "hint": "Navigate to the top-level PTC Motorcycle part and click the Structure tab."
+                },
+                {
+                  "action": "Expand the structure tree and identify parts that are marked as Configurable Modules (look for the configurable module icon or designation).",
+                  "detail": "Configurable modules are sections of the structure that contain multiple design variations. They are the key building blocks for product configurability. You can recognize them by their icon or by the 'Configurable Module' designation in the part details.",
+                  "hint": "Configurable modules typically appear at major functional boundary points in the structure, such as 'Engine Assembly' or 'Frame Assembly'."
+                },
+                {
+                  "action": "Click on a configurable module and examine its child parts. Note how multiple alternative designs appear under the same module.",
+                  "detail": "This is the overloaded structure concept from Topic 3. Multiple child parts under a configurable module represent alternative designs. During variant generation, option filters select which child parts to include based on the chosen option values.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Option pools organize all options and choices for a product in one location",
+        "Each option represents a variable feature with one or more choices",
+        "The product structure uses configurable modules to contain multiple design variations (overloaded structure)",
+        "Option choices are assigned to parts in the structure to control which designs are selected during variant generation"
+      ]
+    },
+    {
+      "id": "m1t6",
+      "title": "Create a New Option and Configurable Module",
+      "estimatedMinutes": 15,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create a new option called Motorcycle Type with two choices, add a new choice to the existing Saddle Bag Location option, and designate a part as a Configurable Module and End Item. These tasks demonstrate how to extend an existing product's configurability."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "This exercise modifies the product configuration. Follow the steps carefully and use the exact names specified to ensure consistency with later exercises."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex2",
+          "title": "Create a New Option and Configurable Module",
+          "objective": "Learn how to create new options and choices, add choices to existing options, and designate parts as configurable modules in Windchill.",
+          "tasks": [
+            {
+              "id": "ex2-t1",
+              "title": "Create the Motorcycle Type Option with Choices",
+              "steps": [
+                {
+                  "action": "Navigate to the PTC Motorcycle product and open the Option Pool tab.",
+                  "detail": "You will create a new option in this product's option pool. New options extend the configurability of the product by adding new variable features.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the 'New Option' button (or use the action menu) to create a new option.",
+                  "detail": "The New Option action opens a form where you define the option name, description, and initial choices. Each option represents one dimension of product variability.",
+                  "hint": "Look for a 'New Option' icon in the toolbar above the option pool table, or right-click for the context menu."
+                },
+                {
+                  "action": "Enter 'Motorcycle Type' as the option name and provide a description such as 'Defines the intended use category of the motorcycle'.",
+                  "detail": "Clear, descriptive option names help everyone understand what the option controls. The name should be intuitive enough that someone configuring a variant knows exactly what they're choosing.",
+                  "hint": null
+                },
+                {
+                  "action": "Add the first choice: 'Off Road'. Provide a description such as 'Motorcycle configured for off-road and dirt riding'.",
+                  "detail": "Choices define the valid values for an option. Each choice should have a clear name and description. Off Road motorcycles typically have different frame, suspension, and tire specifications.",
+                  "hint": "After entering the option details, look for an 'Add Choice' or 'New Choice' action within the option creation form."
+                },
+                {
+                  "action": "Add the second choice: 'On Road/Street Legal'. Provide a description such as 'Motorcycle configured for on-road street-legal riding'.",
+                  "detail": "On Road/Street Legal motorcycles require different components to meet road regulations, such as lights, mirrors, and specific tire types. These two choices will drive major structural differences in the product.",
+                  "hint": null
+                },
+                {
+                  "action": "Save the new Motorcycle Type option. Verify it appears in the Option Pool alongside the existing options.",
+                  "detail": "After saving, the option and its choices are available for use in option sets and can be assigned to parts in the product structure. The option is now part of the product's configuration vocabulary.",
+                  "hint": "If the option doesn't appear immediately, refresh the Option Pool view."
+                }
+              ]
+            },
+            {
+              "id": "ex2-t2",
+              "title": "Add a 'Not Used' Choice to Saddle Bag Location",
+              "steps": [
+                {
+                  "action": "In the Option Pool, click on the existing Saddle Bag Location option to open it.",
+                  "detail": "You are modifying an existing option by adding a new choice. This is common as product requirements evolve — new valid values need to be added to existing options.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the 'New Choice' action to add a choice to Saddle Bag Location.",
+                  "detail": "Adding a 'Not Used' choice allows a variant to specify that saddle bags are not included at all. Without this choice, every variant would be forced to have saddle bags in some location.",
+                  "hint": "Look for a 'New Choice' or 'Add Choice' button in the option detail view's toolbar."
+                },
+                {
+                  "action": "Enter 'Not Used' as the choice name. Add a description such as 'No saddle bags are included on this motorcycle configuration'.",
+                  "detail": "A 'Not Used' or 'None' choice is a common pattern in option management. It allows a feature to be explicitly excluded rather than requiring every configuration to include it.",
+                  "hint": null
+                },
+                {
+                  "action": "Save the new choice and verify it appears in the Saddle Bag Location choice list.",
+                  "detail": "The Saddle Bag Location option now has an additional choice. This choice can be used in expressions and rules to control whether saddle bag components are included in a variant's structure.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex2-t3",
+              "title": "Designate a Part as Configurable Module and End Item",
+              "steps": [
+                {
+                  "action": "Navigate to the Structure tab and locate the 'small-offroad_standalone' part in the product structure.",
+                  "detail": "This part represents a standalone off-road motorcycle subassembly. You will designate it as both a Configurable Module (to enable variant configuration) and an End Item (to indicate it can be independently ordered/manufactured).",
+                  "hint": "Use the search function or expand the structure tree to find this part. It may be nested several levels deep."
+                },
+                {
+                  "action": "Right-click on the part (or use the actions menu) and select the option to set it as a 'Configurable Module'.",
+                  "detail": "Marking a part as a Configurable Module tells Windchill that this section of the structure supports multiple design configurations. Child parts under this module can be filtered using option choices.",
+                  "hint": "The action may be under 'Setup' > 'Configurable Module Support' or similar menu path depending on your Windchill version."
+                },
+                {
+                  "action": "Similarly, designate the same part as an 'End Item'.",
+                  "detail": "An End Item is a product or subassembly that can be independently ordered, manufactured, or delivered. Setting this flag enables the part to appear as a selectable end item in variant generation workflows.",
+                  "hint": null
+                },
+                {
+                  "action": "Verify the part now shows the Configurable Module icon and End Item designation in the structure view.",
+                  "detail": "Visual indicators in the structure view confirm the designations were applied correctly. This part is now ready to participate in option-driven product configuration.",
+                  "hint": "Look for updated icons or labels next to the part name in the structure tree."
+                },
+                {
+                  "action": "Open the part details and review the attributes to confirm both designations are reflected in the part properties.",
+                  "detail": "The part attributes page provides a definitive view of all settings. Confirming here ensures the changes were saved correctly and will behave as expected during variant generation.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "New options are created in the Option Pool and immediately available for use in the product",
+        "Choices can be added to existing options as product requirements evolve",
+        "A 'Not Used' choice is a common pattern to allow explicit exclusion of a feature",
+        "Configurable Module and End Item designations control how parts participate in variant generation"
+      ]
+    },
+    {
+      "id": "m1t7",
+      "title": "Review Options and Variants Preferences",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will explore the Options and Variants preferences at both the site level and the product level. Understanding preference inheritance is important because site-level settings establish defaults that products can override for their specific needs."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "This exercise requires signing in as different users (wcadmin for site-level, Anna Chen for product-level). Your instructor will provide the credentials."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex3",
+          "title": "Review Options and Variants Preferences",
+          "objective": "Understand how Options and Variants preferences are configured at the site level vs. product level, and how inheritance works between them.",
+          "tasks": [
+            {
+              "id": "ex3-t1",
+              "title": "Sign In as Administrator",
+              "steps": [
+                {
+                  "action": "Sign out of your current session and sign in as 'wcadmin' (the site administrator account).",
+                  "detail": "Site administrators have access to site-level preference settings that apply globally across all products. These settings establish the baseline configuration for Options and Variants functionality.",
+                  "hint": "The wcadmin password will be provided by your instructor. Use the same Windchill URL."
+                }
+              ]
+            },
+            {
+              "id": "ex3-t2",
+              "title": "View Site-Level Preferences",
+              "steps": [
+                {
+                  "action": "Navigate to Site > Utilities > Preference Management (or Site > Administration > Preferences depending on your version).",
+                  "detail": "Site-level preferences establish the default behavior for all products and contexts in the system. Any preferences set here apply unless overridden at a lower level (organization or product).",
+                  "hint": "Look for 'Preference Management' under the Site administration area. You may need to expand the Utilities or Administration section."
+                },
+                {
+                  "action": "Search for or navigate to the 'Options and Variants' preference category. Review the available preferences and their current values.",
+                  "detail": "Key preferences include 'Configurable Module Support' (must be Yes to use O&V), 'Option Pool Sharing', and various defaults for variant generation behavior. Note which preferences are enabled and which are disabled at the site level.",
+                  "hint": "You can filter or search for 'Options' or 'Configurable' in the preference list to find relevant settings."
+                }
+              ]
+            },
+            {
+              "id": "ex3-t3",
+              "title": "Sign In as Product Manager",
+              "steps": [
+                {
+                  "action": "Sign out of wcadmin and sign in as 'Anna Chen' (or the designated product manager user).",
+                  "detail": "Product managers work within specific product contexts and may override site-level preferences for their products. This shows how different roles experience different preference configurations.",
+                  "hint": "Anna Chen's username and password will be provided by your instructor."
+                }
+              ]
+            },
+            {
+              "id": "ex3-t4",
+              "title": "View Product-Level Preferences and Compare",
+              "steps": [
+                {
+                  "action": "Navigate to the PTC Motorcycle product, then access its preference settings (typically under Product Utilities or Product Administration).",
+                  "detail": "Product-level preferences override site-level defaults for this specific product context. This allows different products to have different Options and Variants configurations.",
+                  "hint": "The path may be Product > Utilities > Preference Management or similar."
+                },
+                {
+                  "action": "Find the 'Options and Variants' preferences at the product level. Compare them to the site-level settings you noted earlier.",
+                  "detail": "Notice which preferences are inherited from the site level (shown as inherited or grayed out) and which have been explicitly set at the product level. Product-level overrides take precedence over site-level settings for this product only.",
+                  "hint": null
+                },
+                {
+                  "action": "Note the 'Configurable Module Support' preference value. Confirm it is set to 'Yes' for the PTC Motorcycle product.",
+                  "detail": "Configurable Module Support must be enabled (set to 'Yes') for Options and Variants functionality to work within a product. This is the most critical preference — if it is set to 'No', you cannot create configurable modules or use option-based variant generation for that product.",
+                  "hint": "If this preference is set at the site level and inherited, it will show as 'Yes (Inherited)'. If set at the product level, it will show as 'Yes' with a product-level indicator."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Site-level preferences establish default behavior for all products",
+        "Product-level preferences can override site-level defaults for specific products",
+        "Configurable Module Support must be set to Yes to use Options and Variants functionality",
+        "Understanding preference inheritance helps diagnose issues when O&V features are unavailable in specific contexts"
+      ]
     }
   ]
 }

@@ -12,6 +12,7 @@
   var KEYS = {
     topics: "ob_topics",
     quizzes: "ob_quizzes",
+    exercises: "ob_exercises",
     currentRoute: "ob_currentRoute",
     notepad: "ob_notepad",
     notepadOpen: "ob_notepad_open",
@@ -103,6 +104,46 @@
     return { done: done, total: allTopicIds.length };
   }
 
+  /* Exercise step progress */
+  function getExercises() {
+    return load(KEYS.exercises) || {};
+  }
+
+  function isStepDone(exerciseId, taskId, stepIdx) {
+    var data = getExercises();
+    var ex = data[exerciseId];
+    if (!ex || !ex.steps) return false;
+    return !!ex.steps[taskId + "-" + stepIdx];
+  }
+
+  function completeStep(exerciseId, taskId, stepIdx) {
+    var data = getExercises();
+    if (!data[exerciseId]) data[exerciseId] = { steps: {} };
+    data[exerciseId].steps[taskId + "-" + stepIdx] = true;
+    save(KEYS.exercises, data);
+  }
+
+  function uncompleteStep(exerciseId, taskId, stepIdx) {
+    var data = getExercises();
+    if (!data[exerciseId] || !data[exerciseId].steps) return;
+    delete data[exerciseId].steps[taskId + "-" + stepIdx];
+    save(KEYS.exercises, data);
+  }
+
+  function getExerciseProgress(exerciseId, tasks) {
+    var data = getExercises();
+    var ex = data[exerciseId];
+    var done = 0;
+    var total = 0;
+    tasks.forEach(function (task) {
+      task.steps.forEach(function (_step, idx) {
+        total++;
+        if (ex && ex.steps && ex.steps[task.id + "-" + idx]) done++;
+      });
+    });
+    return { done: done, total: total };
+  }
+
   /* Route memory */
   function saveRoute(hash) {
     saveRaw(KEYS.currentRoute, hash);
@@ -132,6 +173,10 @@
     getQuizzes: getQuizzes,
     getQuizResult: getQuizResult,
     saveQuizResult: saveQuizResult,
+    isStepDone: isStepDone,
+    completeStep: completeStep,
+    uncompleteStep: uncompleteStep,
+    getExerciseProgress: getExerciseProgress,
     getModuleProgress: getModuleProgress,
     getCourseProgress: getCourseProgress,
     saveRoute: saveRoute,

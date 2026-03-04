@@ -51,15 +51,21 @@
       html += '</div>';
 
       if (!mod.comingSoon) {
+        var exStart = mod.exerciseTopicStart || (mod.topicCount + 1);
         html += '<div class="sb-module-topics' + (isExpanded ? " open" : "") + '" data-topics="' + mod.id + '">';
         for (var t = 1; t <= mod.topicCount; t++) {
           var topicId = mod.id + "t" + t;
           var topicRoute = "#/topic/" + topicId;
           var isTopicActive = activeRoute === topicRoute;
           var isDone = OB.state.isTopicCompleted(topicId);
+          var isExercise = t >= exStart;
           html += '<div class="sb-nav-item' + (isTopicActive ? " active" : "") + '" data-route="' + topicRoute + '">';
           html += '<span class="nav-check' + (isDone ? " done" : "") + '">&#10003;</span>';
-          html += '<span class="nav-label">Topic ' + modNum + '.' + t + '</span>';
+          if (isExercise) {
+            html += '<span class="nav-label">&#128295; Exercise ' + (t - exStart + 1) + '</span>';
+          } else {
+            html += '<span class="nav-label">Topic ' + modNum + '.' + t + '</span>';
+          }
           html += '</div>';
         }
         // Quiz link

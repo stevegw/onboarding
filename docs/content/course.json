@@ -8,8 +8,9 @@
       "id": "m1",
       "title": "Introduce Configurable Products",
       "description": "Examine business strategies for product variability, product platforms, product variants, and Windchill configuration approaches.",
-      "estimatedMinutes": 20,
-      "topicCount": 4,
+      "estimatedMinutes": 55,
+      "topicCount": 7,
+      "exerciseTopicStart": 5,
       "contentFile": "modules/m1-configurable-products.json",
       "quizFile": "quizzes/q1-configurable-products.json"
     },
