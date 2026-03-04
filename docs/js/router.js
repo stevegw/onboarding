@@ -20,7 +20,7 @@
     var resetBtn = document.getElementById("reset-btn");
     if (resetBtn) {
       resetBtn.addEventListener("click", function () {
-        if (confirm("Reset all progress and notes?")) {
+        if (confirm(OB.i18n.t("app.resetConfirm"))) {
           OB.state.resetAll();
           OB.notepad.clearNotes();
           window.location.hash = "#/";
@@ -73,10 +73,9 @@
         }
       });
     }).catch(function (err) {
-      OB.ui.setMain('<div class="card"><h2>Error Loading Content</h2><p class="text-muted">' +
+      OB.ui.setMain('<div class="card"><h2>' + OB.i18n.t("error.loadingContent") + '</h2><p class="text-muted">' +
         OB.ui.esc(err.message) +
-        '</p><p class="text-muted text-sm">Make sure you are serving this from an HTTP server (e.g., <code>python -m http.server</code>). ' +
-        'The <code>fetch()</code> API does not work with <code>file://</code> URLs.</p></div>');
+        '</p><p class="text-muted text-sm">' + OB.i18n.t("error.serverRequired") + '</p></div>');
     });
   }
 
@@ -85,7 +84,7 @@
     OB.content.getModule(moduleId).then(function (data) {
       OB.topic.renderModuleOverview(data);
     }).catch(function () {
-      OB.ui.setMain('<p>Module not found.</p>');
+      OB.ui.setMain('<p>' + OB.i18n.t("quiz.moduleNotFound") + '</p>');
     });
   }
 
@@ -96,7 +95,7 @@
     OB.content.getModule(moduleId).then(function (data) {
       OB.topic.render(data, topicId);
     }).catch(function () {
-      OB.ui.setMain('<p>Topic not found.</p>');
+      OB.ui.setMain('<p>' + OB.i18n.t("quiz.topicNotFound") + '</p>');
     });
   }
 

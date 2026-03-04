@@ -13,7 +13,7 @@
     OB.content.getGlossary().then(function (data) {
       renderTerms(data.terms, "");
     }).catch(function () {
-      OB.ui.setMain('<p>Glossary not available.</p>');
+      OB.ui.setMain('<p>' + OB.i18n.t("glossary.notAvailable") + '</p>');
     });
   }
 
@@ -32,13 +32,14 @@
     // Sort alphabetically
     filtered.sort(function (a, b) { return a.term.localeCompare(b.term); });
 
+    var t = OB.i18n.t;
     var html = '';
-    html += '<h1>Glossary</h1>';
-    html += '<p class="text-muted text-sm mb-md">Options and Configurable Products terminology (' + terms.length + ' terms)</p>';
-    html += '<input class="glossary-search" id="glossary-search" type="text" placeholder="Search terms..." value="' + esc(filter) + '">';
+    html += '<h1>' + t("glossary.title") + '</h1>';
+    html += '<p class="text-muted text-sm mb-md">' + t("glossary.subtitle", { count: terms.length }) + '</p>';
+    html += '<input class="glossary-search" id="glossary-search" type="text" placeholder="' + esc(t("glossary.searchPlaceholder")) + '" value="' + esc(filter) + '">';
 
     if (filtered.length === 0) {
-      html += '<p class="text-muted text-sm">No terms match your search.</p>';
+      html += '<p class="text-muted text-sm">' + t("glossary.noResults") + '</p>';
     } else {
       html += '<div class="card">';
       filtered.forEach(function (t) {
@@ -52,7 +53,7 @@
 
     // Back button
     html += '<div class="nav-btns">';
-    html += '<button class="btn btn-outline" data-route="#/">&#8592; Dashboard</button>';
+    html += '<button class="btn btn-outline" data-route="#/">&#8592; ' + t("topic.backToDashboard") + '</button>';
     html += '<span></span>';
     html += '</div>';
 

@@ -11,6 +11,7 @@
 
   function render(course) {
     var esc = OB.ui.esc;
+    var t = OB.i18n.t;
     var html = "";
 
     // Header
@@ -27,7 +28,7 @@
         html += '<div class="continue-banner" id="continue-banner">';
         html += '<span class="continue-icon">&#9654;</span>';
         html += '<div class="continue-text">';
-        html += '<div class="continue-label">Continue where you left off</div>';
+        html += '<div class="continue-label">' + t("dashboard.continueLabel") + '</div>';
         html += '<div class="continue-title">' + esc(label) + '</div>';
         html += '</div>';
         html += '</div>';
@@ -49,13 +50,13 @@
     course.modules.forEach(function (m) { totalMin += m.estimatedMinutes || 0; });
 
     html += '<div class="dashboard-stats">';
-    html += '<div class="stat-card"><div class="stat-value">' + pct + '%</div><div class="stat-label">Complete</div></div>';
-    html += '<div class="stat-card"><div class="stat-value">' + prog.done + '/' + prog.total + '</div><div class="stat-label">Topics</div></div>';
-    html += '<div class="stat-card"><div class="stat-value">~' + totalMin + 'm</div><div class="stat-label">Estimated</div></div>';
+    html += '<div class="stat-card"><div class="stat-value">' + pct + '%</div><div class="stat-label">' + t("dashboard.statComplete") + '</div></div>';
+    html += '<div class="stat-card"><div class="stat-value">' + prog.done + '/' + prog.total + '</div><div class="stat-label">' + t("dashboard.statTopics") + '</div></div>';
+    html += '<div class="stat-card"><div class="stat-value">~' + totalMin + 'm</div><div class="stat-label">' + t("dashboard.statEstimated") + '</div></div>';
     html += '</div>';
 
     // Module cards
-    html += '<h2 class="mb-md">Modules</h2>';
+    html += '<h2 class="mb-md">' + t("dashboard.modules") + '</h2>';
     html += '<div class="module-grid stagger">';
     course.modules.forEach(function (mod, idx) {
       var modNum = idx + 1;
@@ -69,15 +70,15 @@
       var mpPct = mp.total > 0 ? Math.round((mp.done / mp.total) * 100) : 0;
 
       html += '<div class="module-card' + (mod.comingSoon ? "" : " card-clickable") + '" data-module="' + modNum + '"' + (mod.comingSoon ? "" : ' data-route="#/module/' + mod.id + '"') + '>';
-      html += '<div class="module-num">Module ' + modNum + (mod.comingSoon ? " - Coming Soon" : "") + '</div>';
+      html += '<div class="module-num">' + (mod.comingSoon ? t("dashboard.moduleComingSoon", { num: modNum }) : t("dashboard.moduleNum", { num: modNum })) + '</div>';
       html += '<div class="module-title">' + esc(mod.title) + '</div>';
       html += '<div class="module-desc">' + esc(mod.description) + '</div>';
       html += '<div class="module-meta">';
       if (!mod.comingSoon) {
-        html += '<span>' + mp.done + '/' + mp.total + ' topics</span>';
+        html += '<span>' + t("dashboard.topicsProgress", { done: mp.done, total: mp.total }) + '</span>';
         html += '<div class="module-progress-bar"><div class="module-progress-fill" style="width:' + mpPct + '%"></div></div>';
       }
-      html += '<span>~' + (mod.estimatedMinutes || 0) + ' min</span>';
+      html += '<span>' + t("dashboard.estimatedMin", { min: mod.estimatedMinutes || 0 }) + '</span>';
       html += '</div>';
       html += '</div>';
     });
@@ -102,11 +103,21 @@
 
   function routeToLabel(hash) {
     if (!hash) return null;
+    var t = OB.i18n.t;
     var parts = hash.replace("#/", "").split("/");
-    if (parts[0] === "topic") return "Topic " + (parts[1] || "").replace("m", "M").replace("t", ".");
-    if (parts[0] === "module") return "Module " + (parts[1] || "").replace("m", "M");
-    if (parts[0] === "quiz") return "Quiz " + (parts[1] || "").replace("m", "M");
-    if (parts[0] === "glossary") return "Glossary";
+    if (parts[0] === "topic") {
+      var tLabel = (parts[1] || "").replace("m", "M").replace("t", ".");
+      return t("dashboard.routeTopic", { label: tLabel });
+    }
+    if (parts[0] === "module") {
+      var mLabel = (parts[1] || "").replace("m", "M");
+      return t("dashboard.routeModule", { label: mLabel });
+    }
+    if (parts[0] === "quiz") {
+      var qLabel = (parts[1] || "").replace("m", "M");
+      return t("dashboard.routeQuiz", { label: qLabel });
+    }
+    if (parts[0] === "glossary") return t("dashboard.routeGlossary");
     return null;
   }
 

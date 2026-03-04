@@ -1,0 +1,58 @@
+{
+  "moduleId": "m1",
+  "title": "Contrôle des connaissances : Produits configurables",
+  "questions": [
+    {
+      "id": "m1-kc-001",
+      "question": "Quelle affirmation reflète correctement une approche métier de configuration à la commande ?",
+      "options": [
+        "Une stratégie pour concevoir des produits avec une liste finie de choix d'options discrets pour les caractéristiques clés du produit.",
+        "Une stratégie pour concevoir des produits flexibles, qui peuvent être configurés ou personnalisés pour répondre aux besoins uniques de chaque commande client.",
+        "Une stratégie qui consiste à adapter un produit général aux exigences uniques du client avec l'implication de l'ingénierie.",
+        "Une stratégie pour concevoir et fabriquer sur mesure un produit afin de répondre aux exigences uniques d'un client spécifique."
+      ],
+      "answerIndex": 1,
+      "rationale": "La configuration à la commande consiste spécifiquement à concevoir des produits flexibles pouvant être configurés ou personnalisés pour répondre aux besoins uniques des clients, généralement à l'aide d'un configurateur avec des règles. L'option A décrit l'assemblage à la commande, l'option C décrit l'ingénierie à la commande, et l'option D décrit le développement de produit sur contrat.",
+      "topic": "m1t1"
+    },
+    {
+      "id": "m1-kc-002",
+      "question": "Quelle est la première étape du processus de conception de plateforme générique ?",
+      "options": [
+        "Créer la définition générique du produit",
+        "Évaluer les produits existants pour la réutilisation",
+        "Analyser les exigences d'optionnalité de la plateforme",
+        "Publier et maintenir la plateforme"
+      ],
+      "answerIndex": 2,
+      "rationale": "Le processus de conception de plateforme commence par l'analyse des exigences. Vous devez comprendre quelles options sont nécessaires avant d'évaluer les opportunités de réutilisation ou de construire quoi que ce soit.",
+      "topic": "m1t2"
+    },
+    {
+      "id": "m1-kc-003",
+      "question": "Qu'est-ce qu'une structure produit surchargée ?",
+      "options": [
+        "Une structure produit avec trop d'articles à gérer efficacement",
+        "Une structure où les sections contiennent plusieurs conceptions pour satisfaire différents niveaux de capacité",
+        "Une structure qui a été exportée et réimportée plusieurs fois",
+        "Une structure produit qui dépasse le nombre maximum de modules configurables"
+      ],
+      "answerIndex": 1,
+      "rationale": "Une structure produit surchargée contient plusieurs conceptions dans la même section pour prendre en charge une gamme d'options. Lors de la génération de variantes, la structure est filtrée pour ne conserver que les conceptions nécessaires pour une configuration donnée.",
+      "topic": "m1t3"
+    },
+    {
+      "id": "m1-kc-004",
+      "question": "Pour les stratégies d'assemblage à la commande et d'assemblage sur stock, quelle capacité Windchill est principalement utilisée ?",
+      "options": [
+        "Des paramètres pour la logique de sélection avancée",
+        "Des processus d'approbation basés sur les workflows",
+        "Des options et des choix pour filtrer une structure produit surchargée",
+        "Une configuration de produit pilotée par la CAO"
+      ],
+      "answerIndex": 2,
+      "rationale": "Les stratégies d'assemblage à la commande et d'assemblage sur stock utilisent des options et des choix pour filtrer une structure produit surchargée. Les paramètres sont utilisés en complément pour les stratégies de configuration à la commande et d'ingénierie à la commande qui nécessitent une logique de sélection plus avancée.",
+      "topic": "m1t4"
+    }
+  ]
+}

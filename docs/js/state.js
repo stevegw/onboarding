@@ -17,6 +17,7 @@
     notepad: "ob_notepad",
     notepadOpen: "ob_notepad_open",
     theme: "ob_theme",
+    locale: "ob_locale",
   };
 
   function load(key) {

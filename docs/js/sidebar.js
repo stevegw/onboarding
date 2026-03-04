@@ -15,17 +15,18 @@
     var nav = document.getElementById("nav");
     if (!nav) return;
 
+    var t = OB.i18n.t;
     var html = "";
 
     // Dashboard link
     var dashActive = (!activeRoute || activeRoute === "#/" || activeRoute === "") ? " active" : "";
     html += '<div class="sb-nav-item' + dashActive + '" data-route="#/">';
     html += '<span class="nav-icon">&#9776;</span>';
-    html += '<span class="nav-label">Dashboard</span>';
+    html += '<span class="nav-label">' + t("sidebar.dashboard") + '</span>';
     html += '</div>';
 
     // Modules
-    html += '<div class="sb-nav-section">Modules</div>';
+    html += '<div class="sb-nav-section">' + t("sidebar.modules") + '</div>';
 
     course.modules.forEach(function (mod, idx) {
       var modNum = idx + 1;
@@ -41,7 +42,7 @@
         }
       }
       var progress = OB.state.getModuleProgress(mod.id, topicIds);
-      var progressText = mod.comingSoon ? "Coming soon" : progress.done + "/" + progress.total;
+      var progressText = mod.comingSoon ? t("sidebar.comingSoon") : progress.done + "/" + progress.total;
 
       html += '<div class="sb-module-group">';
       html += '<div class="sb-module-header' + (isExpanded ? " expanded" : "") + '" data-module="' + mod.id + '">';
@@ -53,18 +54,18 @@
       if (!mod.comingSoon) {
         var exStart = mod.exerciseTopicStart || (mod.topicCount + 1);
         html += '<div class="sb-module-topics' + (isExpanded ? " open" : "") + '" data-topics="' + mod.id + '">';
-        for (var t = 1; t <= mod.topicCount; t++) {
-          var topicId = mod.id + "t" + t;
+        for (var ti = 1; ti <= mod.topicCount; ti++) {
+          var topicId = mod.id + "t" + ti;
           var topicRoute = "#/topic/" + topicId;
           var isTopicActive = activeRoute === topicRoute;
           var isDone = OB.state.isTopicCompleted(topicId);
-          var isExercise = t >= exStart;
+          var isExercise = ti >= exStart;
           html += '<div class="sb-nav-item' + (isTopicActive ? " active" : "") + '" data-route="' + topicRoute + '">';
           html += '<span class="nav-check' + (isDone ? " done" : "") + '">&#10003;</span>';
           if (isExercise) {
-            html += '<span class="nav-label">&#128295; Exercise ' + (t - exStart + 1) + '</span>';
+            html += '<span class="nav-label">&#128295; ' + t("sidebar.exerciseLabel", { num: ti - exStart + 1 }) + '</span>';
           } else {
-            html += '<span class="nav-label">Topic ' + modNum + '.' + t + '</span>';
+            html += '<span class="nav-label">' + t("sidebar.topicLabel", { mod: modNum, topic: ti }) + '</span>';
           }
           html += '</div>';
         }
@@ -73,7 +74,7 @@
         var isQuizActive = activeRoute === quizRoute;
         html += '<div class="sb-nav-item' + (isQuizActive ? " active" : "") + '" data-route="' + quizRoute + '">';
         html += '<span class="nav-icon" style="font-size:12px">&#9997;</span>';
-        html += '<span class="nav-label">Knowledge Check</span>';
+        html += '<span class="nav-label">' + t("sidebar.knowledgeCheck") + '</span>';
         html += '</div>';
         html += '</div>';
       }
@@ -83,10 +84,10 @@
 
     // Glossary
     var glossActive = activeRoute === "#/glossary" ? " active" : "";
-    html += '<div class="sb-nav-section">Resources</div>';
+    html += '<div class="sb-nav-section">' + t("sidebar.resources") + '</div>';
     html += '<div class="sb-nav-item' + glossActive + '" data-route="#/glossary">';
     html += '<span class="nav-icon">&#128218;</span>';
-    html += '<span class="nav-label">Glossary</span>';
+    html += '<span class="nav-label">' + t("sidebar.glossary") + '</span>';
     html += '</div>';
 
     nav.innerHTML = html;
@@ -126,7 +127,7 @@
     var fill = document.getElementById("progress-fill");
     if (fill) fill.style.width = pct + "%";
     var label = document.querySelector(".sb-progress p");
-    if (label) label.textContent = "Course Progress: " + pct + "%";
+    if (label) label.textContent = OB.i18n.t("app.courseProgressPct", { pct: pct });
   }
 
   /* Mobile sidebar */

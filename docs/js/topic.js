@@ -13,9 +13,10 @@
     var meta = moduleData.meta;
     var content = moduleData.content;
     var topic = content.topics.find(function (t) { return t.id === topicId; });
-    if (!topic) { OB.ui.setMain('<p>Topic not found.</p>'); return; }
+    if (!topic) { OB.ui.setMain('<p>' + OB.i18n.t("quiz.topicNotFound") + '</p>'); return; }
 
     var esc = OB.ui.esc;
+    var t = OB.i18n.t;
     var modIdx = parseInt(meta.id.replace("m", ""), 10);
     var topicIdx = parseInt(topicId.replace(meta.id + "t", ""), 10);
     var isCompleted = OB.state.isTopicCompleted(topicId);
@@ -25,17 +26,17 @@
     // Breadcrumb
     html += '<div class="topic-header">';
     html += '<div class="topic-breadcrumb">';
-    html += '<a href="#/">Dashboard</a> <span>&#8250;</span> ';
-    html += '<a href="#/module/' + meta.id + '">Module ' + modIdx + '</a> <span>&#8250;</span> ';
+    html += '<a href="#/">' + t("topic.breadcrumbDashboard") + '</a> <span>&#8250;</span> ';
+    html += '<a href="#/module/' + meta.id + '">' + t("topic.breadcrumbModule", { num: modIdx }) + '</a> <span>&#8250;</span> ';
     if (topic.isExercise) {
       var exNum = topicIdx - (meta.exerciseTopicStart || topicIdx) + 1;
-      html += '<span>Exercise ' + exNum + '</span>';
+      html += '<span>' + t("topic.exerciseNum", { num: exNum }) + '</span>';
     } else {
-      html += '<span>Topic ' + modIdx + '.' + topicIdx + '</span>';
+      html += '<span>' + t("topic.topicNum", { mod: modIdx, topic: topicIdx }) + '</span>';
     }
     html += '</div>';
     html += '<h1>' + esc(topic.title) + '</h1>';
-    html += '<p class="topic-est text-dim text-sm">Estimated: ~' + (topic.estimatedMinutes || 5) + ' min</p>';
+    html += '<p class="topic-est text-dim text-sm">' + t("topic.estimated", { min: topic.estimatedMinutes || 5 }) + '</p>';
     html += '</div>';
 
     // Content blocks
@@ -48,10 +49,10 @@
     // Key takeaways
     if (topic.keyTakeaways && topic.keyTakeaways.length > 0) {
       html += '<div class="takeaways-box">';
-      html += '<h3>Key Takeaways</h3>';
+      html += '<h3>' + t("topic.keyTakeaways") + '</h3>';
       html += '<ul>';
-      topic.keyTakeaways.forEach(function (t) {
-        html += '<li>' + esc(t) + '</li>';
+      topic.keyTakeaways.forEach(function (tk) {
+        html += '<li>' + esc(tk) + '</li>';
       });
       html += '</ul>';
       html += '</div>';
@@ -60,9 +61,9 @@
     // Mark complete
     html += '<div class="mark-complete-bar' + (isCompleted ? " completed" : "") + '" id="mark-complete">';
     if (isCompleted) {
-      html += '<button class="btn btn-outline btn-sm" id="uncomplete-btn">&#10003; Completed - Click to undo</button>';
+      html += '<button class="btn btn-outline btn-sm" id="uncomplete-btn">&#10003; ' + t("topic.completedUndo") + '</button>';
     } else {
-      html += '<button class="btn btn-primary" id="complete-btn">Mark as Complete</button>';
+      html += '<button class="btn btn-primary" id="complete-btn">' + t("topic.markComplete") + '</button>';
     }
     html += '</div>';
 
@@ -76,6 +77,7 @@
 
   function renderBlock(block, idx) {
     var esc = OB.ui.esc;
+    var t = OB.i18n.t;
     switch (block.type) {
       case "heading":
         var tag = block.level === 3 ? "h3" : "h2";
@@ -92,23 +94,23 @@
           '</div>';
 
       case "comparison-table":
-        var t = '<div style="overflow-x:auto"><table class="data-table"><thead><tr>';
-        block.headers.forEach(function (h) { t += '<th>' + esc(h) + '</th>'; });
-        t += '</tr></thead><tbody>';
+        var tbl = '<div style="overflow-x:auto"><table class="data-table"><thead><tr>';
+        block.headers.forEach(function (h) { tbl += '<th>' + esc(h) + '</th>'; });
+        tbl += '</tr></thead><tbody>';
         block.rows.forEach(function (row) {
-          t += '<tr>';
-          row.forEach(function (cell) { t += '<td>' + esc(cell) + '</td>'; });
-          t += '</tr>';
+          tbl += '<tr>';
+          row.forEach(function (cell) { tbl += '<td>' + esc(cell) + '</td>'; });
+          tbl += '</tr>';
         });
-        t += '</tbody></table></div>';
-        return t;
+        tbl += '</tbody></table></div>';
+        return tbl;
 
       case "reveal-cards":
         var rc = '<div class="reveal-grid">';
         block.cards.forEach(function (card, ci) {
           rc += '<div class="reveal-card" data-reveal="' + ci + '">';
           rc += '<div class="reveal-front">' + esc(card.front) + '</div>';
-          rc += '<div class="reveal-hint">Click to reveal</div>';
+          rc += '<div class="reveal-hint">' + t("topic.clickToReveal") + '</div>';
           rc += '<div class="reveal-back">' + esc(card.back) + '</div>';
           rc += '</div>';
         });
@@ -131,13 +133,14 @@
 
   function renderMatchBlock(block, idx) {
     var esc = OB.ui.esc;
+    var t = OB.i18n.t;
     var html = '<div class="match-container" data-match="' + idx + '">';
     html += '<p style="font-size:13px;color:var(--c-text-muted);margin-bottom:12px">' + esc(block.prompt) + '</p>';
     html += '<div class="match-columns">';
 
     // Left column (scenarios)
     html += '<div>';
-    html += '<div class="match-column-label">Scenario</div>';
+    html += '<div class="match-column-label">' + t("topic.scenarioLabel") + '</div>';
     block.pairs.forEach(function (p, i) {
       html += '<div class="match-item" data-match-left="' + idx + '-' + i + '">' + esc(p.left) + '</div>';
     });
@@ -148,7 +151,7 @@
     shuffleArray(shuffled);
 
     html += '<div>';
-    html += '<div class="match-column-label">Strategy</div>';
+    html += '<div class="match-column-label">' + t("topic.strategyLabel") + '</div>';
     shuffled.forEach(function (s) {
       html += '<div class="match-item" data-match-right="' + idx + '-' + s.origIdx + '">' + esc(s.text) + '</div>';
     });
@@ -180,6 +183,7 @@
 
   function renderExerciseBlock(block, idx) {
     var esc = OB.ui.esc;
+    var t = OB.i18n.t;
     var exId = block.exerciseId;
     var tasks = block.tasks;
     var prog = OB.state.getExerciseProgress(exId, tasks);
@@ -202,13 +206,13 @@
 
     // Objective
     html += '<div class="exercise-objective">';
-    html += '<div class="exercise-objective-label">Objective</div>';
+    html += '<div class="exercise-objective-label">' + t("topic.objective") + '</div>';
     html += '<p>' + esc(block.objective) + '</p>';
     html += '</div>';
 
     // Progress bar
     html += '<div class="exercise-progress">';
-    html += '<div class="exercise-progress-label">' + prog.done + '/' + prog.total + ' steps completed</div>';
+    html += '<div class="exercise-progress-label">' + t("topic.stepsCompleted", { done: prog.done, total: prog.total }) + '</div>';
     html += '<div class="exercise-progress-bar"><div class="exercise-progress-fill" style="width:' + pct + '%"></div></div>';
     html += '</div>';
 
@@ -222,7 +226,7 @@
       html += '<div class="exercise-task">';
       html += '<div class="exercise-task-header">';
       html += '<h3>' + esc(task.title) + '</h3>';
-      html += '<span class="exercise-task-progress">' + taskDone + '/' + task.steps.length + ' steps</span>';
+      html += '<span class="exercise-task-progress">' + t("topic.stepsProgress", { done: taskDone, total: task.steps.length }) + '</span>';
       html += '</div>';
       html += '<div class="exercise-steps">';
 
@@ -238,25 +242,25 @@
         // Detail area (shown when active or expanded)
         html += '<div class="exercise-step-detail">';
         html += '<div class="exercise-step-box action-box">';
-        html += '<div class="exercise-step-box-label">Do This</div>';
+        html += '<div class="exercise-step-box-label">' + t("topic.doThis") + '</div>';
         html += '<p>' + esc(step.action) + '</p>';
         html += '</div>';
 
         if (step.detail) {
           html += '<div class="exercise-step-box detail-box">';
-          html += '<div class="exercise-step-box-label">Why It Matters</div>';
+          html += '<div class="exercise-step-box-label">' + t("topic.whyItMatters") + '</div>';
           html += '<p>' + esc(step.detail) + '</p>';
           html += '</div>';
         }
 
         if (step.hint) {
-          html += '<div class="exercise-hint-toggle" data-hint="' + exId + '-' + task.id + '-' + si + '">&#9654; Show hint</div>';
+          html += '<div class="exercise-hint-toggle" data-hint="' + exId + '-' + task.id + '-' + si + '">&#9654; ' + t("topic.showHint") + '</div>';
           html += '<div class="exercise-hint-text" id="hint-' + exId + '-' + task.id + '-' + si + '">' + esc(step.hint) + '</div>';
         }
 
         if (!isDone) {
           html += '<div class="exercise-step-actions">';
-          html += '<button class="btn btn-primary btn-sm exercise-step-done" data-ex="' + exId + '" data-task="' + task.id + '" data-step="' + si + '">Done &mdash; Next Step &#8594;</button>';
+          html += '<button class="btn btn-primary btn-sm exercise-step-done" data-ex="' + exId + '" data-task="' + task.id + '" data-step="' + si + '">' + t("topic.doneNextStep") + ' &#8594;</button>';
           html += '</div>';
         }
 
@@ -320,7 +324,7 @@
               var fb = document.getElementById("match-feedback-" + matchIdx);
               if (fb) {
                 fb.className = "match-feedback success";
-                fb.textContent = "All matched correctly!";
+                fb.textContent = OB.i18n.t("topic.allMatchedCorrectly");
                 fb.style.display = "";
               }
             }
@@ -354,7 +358,7 @@
         var hintEl = document.getElementById("hint-" + hintKey);
         if (hintEl) {
           var isOpen = hintEl.classList.toggle("expanded");
-          toggle.innerHTML = (isOpen ? "&#9660; Hide hint" : "&#9654; Show hint");
+          toggle.innerHTML = (isOpen ? "&#9660; " + OB.i18n.t("topic.hideHint") : "&#9654; " + OB.i18n.t("topic.showHint"));
         }
       });
     });
@@ -426,6 +430,7 @@
   }
 
   function bindCompletion(topicId, moduleId) {
+    var t = OB.i18n.t;
     var completeBtn = document.getElementById("complete-btn");
     var uncompleteBtn = document.getElementById("uncomplete-btn");
 
@@ -434,7 +439,7 @@
         OB.state.completeTopic(topicId);
         var bar = document.getElementById("mark-complete");
         bar.classList.add("completed");
-        bar.innerHTML = '<button class="btn btn-outline btn-sm" id="uncomplete-btn">&#10003; Completed - Click to undo</button>';
+        bar.innerHTML = '<button class="btn btn-outline btn-sm" id="uncomplete-btn">&#10003; ' + t("topic.completedUndo") + '</button>';
         bindCompletion(topicId, moduleId);
         // Update sidebar
         OB.content.getCourse().then(function (course) {
@@ -448,7 +453,7 @@
         OB.state.uncompleteTopic(topicId);
         var bar = document.getElementById("mark-complete");
         bar.classList.remove("completed");
-        bar.innerHTML = '<button class="btn btn-primary" id="complete-btn">Mark as Complete</button>';
+        bar.innerHTML = '<button class="btn btn-primary" id="complete-btn">' + t("topic.markComplete") + '</button>';
         bindCompletion(topicId, moduleId);
         OB.content.getCourse().then(function (course) {
           OB.sidebar.render(course, window.location.hash);
@@ -458,21 +463,22 @@
   }
 
   function renderNavButtons(content, meta, topicIdx) {
+    var t = OB.i18n.t;
     var html = '<div class="nav-btns">';
     var total = content.topics.length;
 
     if (topicIdx > 1) {
       var prevId = meta.id + "t" + (topicIdx - 1);
-      html += '<button class="btn btn-outline" data-route="#/topic/' + prevId + '">&#8592; Previous</button>';
+      html += '<button class="btn btn-outline" data-route="#/topic/' + prevId + '">&#8592; ' + t("topic.previous") + '</button>';
     } else {
-      html += '<button class="btn btn-outline" data-route="#/module/' + meta.id + '">&#8592; Module Overview</button>';
+      html += '<button class="btn btn-outline" data-route="#/module/' + meta.id + '">&#8592; ' + t("topic.moduleOverview") + '</button>';
     }
 
     if (topicIdx < total) {
       var nextId = meta.id + "t" + (topicIdx + 1);
-      html += '<button class="btn btn-primary" data-route="#/topic/' + nextId + '">Next &#8594;</button>';
+      html += '<button class="btn btn-primary" data-route="#/topic/' + nextId + '">' + t("topic.next") + ' &#8594;</button>';
     } else {
-      html += '<button class="btn btn-primary" data-route="#/quiz/' + meta.id + '">Take Quiz &#8594;</button>';
+      html += '<button class="btn btn-primary" data-route="#/quiz/' + meta.id + '">' + t("topic.takeQuiz") + ' &#8594;</button>';
     }
 
     html += '</div>';
@@ -484,19 +490,20 @@
     var meta = moduleData.meta;
     var content = moduleData.content;
     var esc = OB.ui.esc;
+    var t = OB.i18n.t;
     var modIdx = parseInt(meta.id.replace("m", ""), 10);
 
-    var topicIds = content.topics.map(function (t) { return t.id; });
+    var topicIds = content.topics.map(function (tp) { return tp.id; });
     var prog = OB.state.getModuleProgress(meta.id, topicIds);
 
     var html = '';
     html += '<div class="module-header" data-module="' + modIdx + '">';
-    html += '<span class="module-badge">Module ' + modIdx + '</span>';
+    html += '<span class="module-badge">' + t("topic.moduleBadge", { num: modIdx }) + '</span>';
     html += '<h1>' + esc(content.title) + '</h1>';
     html += '<p class="text-muted">' + esc(content.description) + '</p>';
     html += '<div class="module-meta">';
-    html += '<span>~' + (meta.estimatedMinutes || 20) + ' min</span>';
-    html += '<span>' + prog.done + '/' + prog.total + ' topics complete</span>';
+    html += '<span>' + t("dashboard.estimatedMin", { min: meta.estimatedMinutes || 20 }) + '</span>';
+    html += '<span>' + t("topic.topicsComplete", { done: prog.done, total: prog.total }) + '</span>';
     html += '</div>';
     html += '</div>';
 
@@ -508,7 +515,7 @@
     html += '</div>';
 
     // Topic list
-    html += '<h2 class="mb-md">Topics</h2>';
+    html += '<h2 class="mb-md">' + t("topic.topics") + '</h2>';
     html += '<div class="stagger">';
     var exerciseStart = meta.exerciseTopicStart || (content.topics.length + 1);
     content.topics.forEach(function (topic, tIdx) {
@@ -520,11 +527,11 @@
       html += '<div class="topic-info">';
       if (isExercise) {
         var exNum = (tIdx + 1) - exerciseStart + 1;
-        html += '<div class="topic-title"><span class="exercise-icon">&#128295;</span>Exercise ' + exNum + ': ' + esc(topic.title) + '</div>';
+        html += '<div class="topic-title"><span class="exercise-icon">&#128295;</span>' + t("topic.exerciseNum", { num: exNum }) + ': ' + esc(topic.title) + '</div>';
       } else {
         html += '<div class="topic-title">' + modIdx + '.' + (tIdx + 1) + ' ' + esc(topic.title) + '</div>';
       }
-      html += '<div class="topic-meta">~' + (topic.estimatedMinutes || 5) + ' min</div>';
+      html += '<div class="topic-meta">' + t("dashboard.estimatedMin", { min: topic.estimatedMinutes || 5 }) + '</div>';
       html += '</div>';
       html += '<span class="topic-arrow">&#8250;</span>';
       html += '</div>';
@@ -536,11 +543,11 @@
     html += '<div class="quiz-card" data-route="#/quiz/' + meta.id + '">';
     html += '<span class="quiz-icon">&#9997;</span>';
     html += '<div class="quiz-info">';
-    html += '<div class="quiz-title">Module ' + modIdx + ' Knowledge Check</div>';
+    html += '<div class="quiz-title">' + t("topic.knowledgeCheck", { num: modIdx }) + '</div>';
     if (quizResult) {
-      html += '<div class="quiz-meta">Best: ' + quizResult.bestScore + '/' + quizResult.total + '</div>';
+      html += '<div class="quiz-meta">' + t("topic.quizBest", { score: quizResult.bestScore, total: quizResult.total }) + '</div>';
     } else {
-      html += '<div class="quiz-meta">Not attempted yet</div>';
+      html += '<div class="quiz-meta">' + t("topic.quizNotAttempted") + '</div>';
     }
     html += '</div>';
     html += '<span class="topic-arrow">&#8250;</span>';
@@ -548,8 +555,8 @@
 
     // Back button
     html += '<div class="nav-btns">';
-    html += '<button class="btn btn-outline" data-route="#/">&#8592; Dashboard</button>';
-    html += '<button class="btn btn-primary" data-route="#/topic/' + content.topics[0].id + '">Start Module &#8594;</button>';
+    html += '<button class="btn btn-outline" data-route="#/">&#8592; ' + t("topic.backToDashboard") + '</button>';
+    html += '<button class="btn btn-primary" data-route="#/topic/' + content.topics[0].id + '">' + t("topic.startModule") + ' &#8594;</button>';
     html += '</div>';
 
     OB.ui.setMain(html);

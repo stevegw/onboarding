@@ -1,0 +1,48 @@
+{
+  "id": "wc-ocp1",
+  "title": "Windchill : Options et Produits Configurables 1",
+  "description": "Apprenez les approches métier des produits configurables, explorez la terminologie des options et variantes, étudiez les règles et maîtrisez les ensembles d'options.",
+  "prerequisite": "Windchill : Restructuration de nomenclature",
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Introduction aux produits configurables",
+      "description": "Examinez les stratégies métier pour la variabilité des produits, les plateformes produit, les variantes produit et les approches de configuration Windchill.",
+      "estimatedMinutes": 55,
+      "topicCount": 7,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m1-configurable-products.json",
+      "quizFile": "quizzes/q1-configurable-products.json"
+    },
+    {
+      "id": "m2",
+      "title": "Réviser les options et variantes Windchill",
+      "description": "Examinez la terminologie des options et variantes, discutez des options et choix, explorez les préférences et créez des modules configurables.",
+      "estimatedMinutes": 25,
+      "topicCount": 5,
+      "contentFile": "modules/m2-options-and-variants.json",
+      "quizFile": "quizzes/q2-options-and-variants.json",
+      "comingSoon": true
+    },
+    {
+      "id": "m3",
+      "title": "Étudier les règles des options et variantes",
+      "description": "Examinez les règles d'inclusion, d'exclusion, d'activation et conditionnelles. Explorez la validation des règles et les alias d'expressions.",
+      "estimatedMinutes": 20,
+      "topicCount": 4,
+      "contentFile": "modules/m3-rules.json",
+      "quizFile": "quizzes/q3-rules.json",
+      "comingSoon": true
+    },
+    {
+      "id": "m4",
+      "title": "Explorer les ensembles d'options",
+      "description": "Définissez les ensembles d'options, explorez la gestion des modifications, affectez les ensembles d'options, appliquez les expressions et utilisez les filtres d'options.",
+      "estimatedMinutes": 25,
+      "topicCount": 5,
+      "contentFile": "modules/m4-option-sets.json",
+      "quizFile": "quizzes/q4-option-sets.json",
+      "comingSoon": true
+    }
+  ]
+}

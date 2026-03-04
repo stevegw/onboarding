@@ -25,7 +25,8 @@
       currentQuiz = quiz;
       renderQuestion();
     }).catch(function () {
-      OB.ui.setMain('<p>Quiz not available yet.</p><div class="nav-btns"><button class="btn btn-outline" data-route="#/module/' + moduleId + '">&#8592; Back to Module</button></div>');
+      var t = OB.i18n.t;
+      OB.ui.setMain('<p>' + t("quiz.notAvailable") + '</p><div class="nav-btns"><button class="btn btn-outline" data-route="#/module/' + moduleId + '">&#8592; ' + t("quiz.back") + '</button></div>');
       bindNavClicks();
     });
   }
@@ -34,6 +35,7 @@
     if (!currentQuiz) return;
 
     var esc = OB.ui.esc;
+    var t = OB.i18n.t;
     var q = currentQuiz.questions[currentQuestion];
     var total = currentQuiz.questions.length;
     var modIdx = parseInt(currentModuleId.replace("m", ""), 10);
@@ -41,8 +43,8 @@
 
     var html = '';
     html += '<div class="quiz-header">';
-    html += '<h2>Module ' + modIdx + ' Knowledge Check</h2>';
-    html += '<p class="text-muted text-sm">Question ' + (currentQuestion + 1) + ' of ' + total + '</p>';
+    html += '<h2>' + t("quiz.moduleKnowledgeCheck", { num: modIdx }) + '</h2>';
+    html += '<p class="text-muted text-sm">' + t("quiz.questionProgress", { current: currentQuestion + 1, total: total }) + '</p>';
 
     // Progress dots
     html += '<div class="quiz-progress-dots">';
@@ -85,16 +87,16 @@
     // Navigation
     html += '<div class="nav-btns">';
     if (currentQuestion > 0) {
-      html += '<button class="btn btn-outline" id="quiz-prev">&#8592; Previous</button>';
+      html += '<button class="btn btn-outline" id="quiz-prev">&#8592; ' + t("quiz.previous") + '</button>';
     } else {
-      html += '<button class="btn btn-outline" data-route="#/module/' + currentModuleId + '">&#8592; Back</button>';
+      html += '<button class="btn btn-outline" data-route="#/module/' + currentModuleId + '">&#8592; ' + t("quiz.back") + '</button>';
     }
 
     if (answered) {
       if (currentQuestion < total - 1) {
-        html += '<button class="btn btn-primary" id="quiz-next">Next &#8594;</button>';
+        html += '<button class="btn btn-primary" id="quiz-next">' + t("quiz.next") + ' &#8594;</button>';
       } else {
-        html += '<button class="btn btn-primary" id="quiz-finish">See Results &#8594;</button>';
+        html += '<button class="btn btn-primary" id="quiz-finish">' + t("quiz.seeResults") + ' &#8594;</button>';
       }
     } else {
       html += '<span></span>';
@@ -132,6 +134,7 @@
     showingResults = true;
 
     var esc = OB.ui.esc;
+    var t = OB.i18n.t;
     var total = currentQuiz.questions.length;
     var correct = 0;
     answers.forEach(function (a, i) {
@@ -158,13 +161,14 @@
     html += '<div class="quiz-score-text">' + correct + '/' + total + '</div>';
     html += '</div>';
 
-    html += '<h2>' + (pct >= 75 ? "Great job!" : pct >= 50 ? "Good effort!" : "Keep studying!") + '</h2>';
-    html += '<p class="text-muted">You scored ' + pct + '% on the Module ' + modIdx + ' Knowledge Check.</p>';
+    var heading = pct >= 75 ? t("quiz.greatJob") : pct >= 50 ? t("quiz.goodEffort") : t("quiz.keepStudying");
+    html += '<h2>' + heading + '</h2>';
+    html += '<p class="text-muted">' + t("quiz.scoreMessage", { pct: pct, num: modIdx }) + '</p>';
 
     html += '</div>';
 
     // Question review
-    html += '<h3 class="mb-md mt-lg">Review</h3>';
+    html += '<h3 class="mb-md mt-lg">' + t("quiz.review") + '</h3>';
     currentQuiz.questions.forEach(function (q, qi) {
       var isCorrect = answers[qi] === q.answerIndex;
       html += '<div class="card mb-sm">';
@@ -172,8 +176,8 @@
       html += (isCorrect ? '&#10003; ' : '&#10007; ') + esc(q.question);
       html += '</p>';
       if (!isCorrect) {
-        html += '<p style="font-size:12px;color:var(--c-danger);margin-bottom:4px">Your answer: ' + esc(q.options[answers[qi]]) + '</p>';
-        html += '<p style="font-size:12px;color:var(--c-accent);margin-bottom:4px">Correct: ' + esc(q.options[q.answerIndex]) + '</p>';
+        html += '<p style="font-size:12px;color:var(--c-danger);margin-bottom:4px">' + t("quiz.yourAnswer", { answer: esc(q.options[answers[qi]]) }) + '</p>';
+        html += '<p style="font-size:12px;color:var(--c-accent);margin-bottom:4px">' + t("quiz.correct", { answer: esc(q.options[q.answerIndex]) }) + '</p>';
       }
       html += '<p style="font-size:12px;color:var(--c-text-muted)">' + esc(q.rationale) + '</p>';
       html += '</div>';
@@ -181,8 +185,8 @@
 
     // Navigation
     html += '<div class="nav-btns">';
-    html += '<button class="btn btn-outline" id="quiz-retry">Retry Quiz</button>';
-    html += '<button class="btn btn-primary" data-route="#/module/' + currentModuleId + '">Back to Module &#8594;</button>';
+    html += '<button class="btn btn-outline" id="quiz-retry">' + t("quiz.retryQuiz") + '</button>';
+    html += '<button class="btn btn-primary" data-route="#/module/' + currentModuleId + '">' + t("quiz.backToModule") + ' &#8594;</button>';
     html += '</div>';
 
     OB.ui.setMain(html);

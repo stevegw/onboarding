@@ -15,17 +15,18 @@
   <div class="app" id="app">
 
     <!-- Mobile menu button -->
-    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu">&#9776;</button>
+    <button class="mobile-menu-btn" id="mobile-menu-btn" data-i18n-aria="app.openMenu" aria-label="Open menu">&#9776;</button>
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
       <div class="sb-logo">
         <div class="sb-logo-text">
-          <h2>WC OCP</h2>
-          <p>Onboarding</p>
+          <h2 data-i18n="app.title">WC OCP</h2>
+          <p data-i18n="app.subtitle">Onboarding</p>
         </div>
-        <button class="theme-toggle" id="theme-toggle-btn" title="Toggle theme">&#9790;</button>
+        <span id="locale-selector"></span>
+        <button class="theme-toggle" id="theme-toggle-btn" data-i18n-title="app.toggleTheme" title="Toggle theme">&#9790;</button>
       </div>
 
       <nav class="sb-nav" id="nav">
@@ -33,12 +34,12 @@
       </nav>
 
       <div class="sb-progress">
-        <p>Course Progress</p>
+        <p data-i18n="app.courseProgress">Course Progress</p>
         <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
       </div>
 
       <div class="sb-actions">
-        <button class="sb-reset" id="reset-btn">Reset Progress</button>
+        <button class="sb-reset" id="reset-btn" data-i18n="app.resetProgress">Reset Progress</button>
       </div>
     </aside>
 
@@ -48,15 +49,15 @@
     </main>
 
     <!-- Notepad FAB -->
-    <button class="notepad-fab" id="notepad-fab" title="Open notepad">&#9998;</button>
+    <button class="notepad-fab" id="notepad-fab" data-i18n-title="notepad.openNotepad" title="Open notepad">&#9998;</button>
 
     <!-- Notepad panel -->
     <div class="notepad-panel" id="notepad-panel">
       <div class="notepad-header">
-        <span>Notes</span>
+        <span data-i18n="notepad.title">Notes</span>
         <button class="notepad-close" id="notepad-close">&#10005;</button>
       </div>
-      <textarea class="notepad-textarea" id="notepad-textarea" placeholder="Take notes as you learn..."></textarea>
+      <textarea class="notepad-textarea" id="notepad-textarea" data-i18n-placeholder="notepad.placeholder" placeholder="Take notes as you learn..."></textarea>
       <div class="notepad-footer">
         <span class="notepad-count" id="notepad-count">0 chars</span>
       </div>
@@ -69,6 +70,7 @@
   <script src="js/state.js"></script>
   <script src="js/content-bundle.js"></script>
   <script src="js/content.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/theme.js"></script>
   <script src="js/sidebar.js"></script>
   <script src="js/dashboard.js"></script>
@@ -78,6 +80,6 @@
   <script src="js/notepad.js"></script>
   <script src="js/router.js"></script>
 
-  <script>OB.router.init();</script>
+  <script>OB.i18n.init().then(function() { OB.router.init(); });</script>
 </body>
 </html>

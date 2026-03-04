@@ -3,6 +3,8 @@
  * ====================================
  * Loads content from the embedded bundle (OB._bundle) for file:// compatibility.
  * Falls back to fetch() if bundle is missing (HTTP server mode).
+ * Supports i18n: non-English locales load from {locale}/ prefixed paths
+ * with automatic fallback to English on missing content.
  * Attached to window.OB.content.
  */
 (function () {
@@ -13,16 +15,74 @@
   var cache = {};
   var courseData = null;
 
-  function loadJSON(path) {
-    if (cache[path]) return Promise.resolve(cache[path]);
+  /**
+   * Get the locale-specific bundle object (e.g., OB._bundleFr for "fr").
+   */
+  function getLocaleBundle(locale) {
+    if (locale === "en") return OB._bundle;
+    var key = "_bundle" + locale.charAt(0).toUpperCase() + locale.slice(1);
+    return OB[key] || null;
+  }
 
-    // Try embedded bundle first (works on file://)
+  /**
+   * Load JSON by path. For non-English locales, tries {locale}/{path} first
+   * (from locale bundle or fetch), then falls back to English.
+   */
+  function loadJSON(path) {
+    var locale = OB.i18n ? OB.i18n.getLocale() : "en";
+    var localePath = locale !== "en" ? (locale + "/" + path) : path;
+
+    // Check cache first (locale-specific path)
+    if (cache[localePath]) return Promise.resolve(cache[localePath]);
+    if (locale !== "en" && cache[path]) {
+      // If locale-specific not cached but English is, try loading locale first
+    }
+
+    // Try locale-specific bundle
+    var localeBundle = getLocaleBundle(locale);
+    if (localeBundle && localeBundle[path]) {
+      cache[localePath] = localeBundle[path];
+      return Promise.resolve(cache[localePath]);
+    }
+
+    // Try main bundle (English)
     if (OB._bundle && OB._bundle[path]) {
-      cache[path] = OB._bundle[path];
-      return Promise.resolve(cache[path]);
+      // For English locale or as fallback
+      if (locale === "en") {
+        cache[path] = OB._bundle[path];
+        return Promise.resolve(cache[path]);
+      }
+      // Non-English: use English bundle as fallback
+      cache[localePath] = OB._bundle[path];
+      return Promise.resolve(cache[localePath]);
     }
 
     // Fall back to fetch (works on HTTP)
+    if (locale !== "en") {
+      // Try locale-specific fetch, then fall back to English
+      return fetch("content/" + localePath)
+        .then(function (res) {
+          if (!res.ok) throw new Error("Not found");
+          return res.json();
+        })
+        .then(function (data) {
+          cache[localePath] = data;
+          return data;
+        })
+        .catch(function () {
+          // Fallback to English
+          return fetch("content/" + path)
+            .then(function (res) {
+              if (!res.ok) throw new Error("Failed to load " + path + ": " + res.status);
+              return res.json();
+            })
+            .then(function (data) {
+              cache[localePath] = data;
+              return data;
+            });
+        });
+    }
+
     return fetch("content/" + path)
       .then(function (res) {
         if (!res.ok) throw new Error("Failed to load " + path + ": " + res.status);
@@ -68,8 +128,9 @@
   function getAllTopicIds() {
     var ids = [];
     Object.keys(cache).forEach(function (key) {
-      if (key.indexOf("modules/") === 0 && cache[key].topics) {
-        cache[key].topics.forEach(function (t) { ids.push(t.id); });
+      var data = cache[key];
+      if (data && data.topics) {
+        data.topics.forEach(function (t) { ids.push(t.id); });
       }
     });
     return ids;

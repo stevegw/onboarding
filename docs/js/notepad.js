@@ -75,7 +75,7 @@
 
   function updateCount() {
     if (countEl && textarea) {
-      countEl.textContent = textarea.value.length + " chars";
+      countEl.textContent = OB.i18n.t("notepad.charCount", { count: textarea.value.length });
     }
   }
 
