@@ -549,6 +549,13 @@
           "text": "The Creo Parametric interface is organized into distinct areas that work together to provide efficient access to modeling tools and information. Familiarizing yourself with these areas is essential for productive modeling."
         },
         {
+          "type": "image",
+          "src": "images/modeling_ui.png",
+          "alt": "Creo UI basics",
+          "caption": "Creo UI bascis",
+          "size": "medium"
+        },
+        {
           "type": "heading",
           "level": 2,
           "text": "Interface Areas"
