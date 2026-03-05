@@ -27,18 +27,59 @@
     html += '<span class="nav-label">' + t("catalog.title") + '</span>';
     html += '</div>';
 
-    // Show family sections
+    // Show family sections with expandable course children
     html += '<div class="sb-nav-section">' + t("catalog.productFamilies") + '</div>';
     catalog.families.forEach(function (family) {
       var activeCount = family.courses.filter(function (c) { return !c.comingSoon; }).length;
-      html += '<div class="sb-nav-item">';
-      html += '<span class="nav-icon" style="color:' + family.color + '">' + family.icon + '</span>';
+      html += '<div class="sb-module-group">';
+      html += '<div class="sb-module-header" data-family="' + family.id + '">';
+      html += '<span class="module-arrow">&#9654;</span>';
       html += '<span class="nav-label">' + OB.ui.esc(family.name) + '</span>';
       html += '<span class="module-progress">' + activeCount + '/' + family.courses.length + '</span>';
+      html += '</div>';
+      html += '<div class="sb-module-topics" data-family-courses="' + family.id + '">';
+      family.courses.forEach(function (course) {
+        if (course.comingSoon) {
+          html += '<div class="sb-nav-item disabled">';
+          html += '<span class="nav-icon" style="font-size:11px;color:var(--c-text-dim)">&#128274;</span>';
+          html += '<span class="nav-label">' + OB.ui.esc(course.title) + '</span>';
+          html += '</div>';
+        } else {
+          html += '<div class="sb-nav-item" data-course="' + course.id + '">';
+          html += '<span class="nav-icon" style="font-size:11px;color:' + family.color + '">&#9654;</span>';
+          html += '<span class="nav-label">' + OB.ui.esc(course.title) + '</span>';
+          html += '</div>';
+        }
+      });
+      html += '</div>';
       html += '</div>';
     });
 
     nav.innerHTML = html;
+
+    // Bind family header clicks to expand/collapse and scroll
+    nav.querySelectorAll("[data-family]").forEach(function (el) {
+      el.addEventListener("click", function () {
+        var famId = el.getAttribute("data-family");
+        var courses = nav.querySelector('[data-family-courses="' + famId + '"]');
+        if (courses) courses.classList.toggle("open");
+        el.classList.toggle("expanded");
+        // Scroll main content to family section
+        var target = document.querySelector('.catalog-family[data-family="' + famId + '"]');
+        if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    // Bind course clicks to navigate
+    nav.querySelectorAll("[data-course]").forEach(function (el) {
+      el.addEventListener("click", function () {
+        OB.router.goToCourse(el.getAttribute("data-course"));
+      });
+    });
+
+    // Hide back link in catalog mode
+    var navBack = document.getElementById("nav-back");
+    if (navBack) navBack.style.display = "none";
 
     // Hide course-specific progress bar
     var progressSection = document.querySelector(".sb-progress");
@@ -74,11 +115,15 @@
     var t = OB.i18n.t;
     var html = "";
 
-    // "All Courses" back link
-    html += '<div class="sb-nav-item sb-back-link" id="back-to-catalog">';
-    html += '<span class="nav-icon">&#8592;</span>';
-    html += '<span class="nav-label">' + t("catalog.backToCatalog") + '</span>';
-    html += '</div>';
+    // "All Courses" back link — rendered outside scroll area
+    var navBack = document.getElementById("nav-back");
+    if (navBack) {
+      navBack.style.display = "";
+      navBack.innerHTML = '<div class="sb-nav-item sb-back-link" id="back-to-catalog">' +
+        '<span class="nav-icon">&#8592;</span>' +
+        '<span class="nav-label">' + t("catalog.backToCatalog") + '</span>' +
+        '</div>';
+    }
 
     // Dashboard link
     var dashActive = (!activeRoute || activeRoute === "#/" || activeRoute === "") ? " active" : "";

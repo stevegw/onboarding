@@ -50,6 +50,12 @@
 .locale-select:focus { outline: none; border-color: var(--c-accent); }
 .locale-select option.locale-unavailable { color: var(--c-text-dim); }
 
+/* Back link (fixed above scroll) */
+.sb-back {
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--c-border);
+}
+
 /* Navigation */
 .sb-nav { list-style: none; flex: 1; overflow-y: auto; min-height: 0; padding: 0 0 8px; }
 
@@ -80,6 +86,8 @@
 html[lang="ja"] .sb-nav-item .nav-label,
 html[lang="zh"] .sb-nav-item .nav-label,
 html[lang="ko"] .sb-nav-item .nav-label { white-space: normal; word-break: break-word; }
+.sb-nav-item.disabled { opacity: 0.45; cursor: default; }
+.sb-nav-item.disabled:hover { background: transparent; color: var(--c-text-muted); }
 .sb-nav-item .nav-check { font-size: 12px; color: var(--c-accent); flex-shrink: 0; opacity: 0; }
 .sb-nav-item .nav-check.done { opacity: 1; }
 
