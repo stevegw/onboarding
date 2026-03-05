@@ -1,0 +1,583 @@
+{
+  "id": "m4",
+  "title": "Sketching, Datums & Extrude Features",
+  "description": "Master datum features, sketch creation, sketch geometry, feature-based modeling, parent-child relationships, dimensions, constraints, and extrude feature options.",
+  "topics": [
+    {
+      "id": "m4t1",
+      "title": "Datum Features & Sketch Creation",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Every feature in Creo starts with reference geometry \u2014 datums \u2014 and most features require a sketch. Understanding how to select and create datum features and how to initiate a sketch is the foundation of feature creation."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Datum Feature Types"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Datum Type", "Creation Method", "Common Uses"],
+          "rows": [
+            ["Datum Plane", "Through points/edges, offset from surface, through axis at angle", "Sketch planes, mirror planes, measurement references, assembly constraints"],
+            ["Datum Axis", "Through edges, intersection of planes, through cylinder center", "Revolution axis, pattern axis, measurement reference"],
+            ["Datum Point", "On surface, on vertex, at coordinates, on curve", "Measurement reference, coordinate system origin, assembly constraint point"],
+            ["Datum Coordinate System", "Three planes, three points, or by reference", "Part origin, assembly reference, measurement datum for analysis"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Starting a Sketch"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Select the Sketch Plane",
+              "back": "The sketch plane determines the 2D surface on which you draw your sketch. Choose a datum plane (RIGHT, TOP, FRONT) or any flat model surface. The sketch plane defines the orientation of the feature cross-section."
+            },
+            {
+              "front": "Set Sketch Orientation",
+              "back": "After selecting the sketch plane, specify which direction is 'up' by choosing a reference surface and its orientation (Top, Bottom, Left, Right). This ensures the sketch appears in the expected orientation on screen."
+            },
+            {
+              "front": "Define Sketch References",
+              "back": "Sketch references are existing edges or datums that your sketch dimensions are measured from. Creo selects default references, but you can add or change them. References determine how the sketch is positioned relative to the existing model."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Choose sketch planes that align with the most natural view of the feature cross-section. For a tabletop, the TOP datum plane is natural because you're looking down at the flat surface."
+        }
+      ],
+      "keyTakeaways": [
+        "Datum planes, axes, points, and coordinate systems provide reference geometry for feature creation",
+        "Every sketch requires selecting a sketch plane, setting orientation, and defining references",
+        "Default datum planes (RIGHT, TOP, FRONT) are often used as initial sketch planes",
+        "Sketch references determine how sketch dimensions are measured from existing geometry"
+      ]
+    },
+    {
+      "id": "m4t2",
+      "title": "Sketch Geometry & Rectangles",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "The Sketcher environment provides tools for creating 2D geometry that defines the cross-section of features. Rectangles are one of the most common sketch shapes, used for extrusions like the belt sander tabletop."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Sketch Geometry Tools"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Tool", "Description", "Typical Use"],
+          "rows": [
+            ["Line", "Creates straight line segments between two points", "Irregular polygons, open profiles, construction geometry"],
+            ["Rectangle (Corner)", "Creates a rectangle from two diagonal corners", "Rectangular extrusions when one corner is at a known reference point"],
+            ["Rectangle (Center)", "Creates a rectangle from center point and one corner", "Rectangular extrusions centered on a reference point"],
+            ["Circle", "Creates a circle from center point and radius", "Cylindrical features, holes, circular pads"],
+            ["Arc", "Creates circular arcs (3-point, center+ends, tangent)", "Rounded corners in sketches, curved profiles"],
+            ["Centerline", "Creates a construction line used for symmetry and revolution", "Mirror axis, revolution axis, symmetry constraint reference"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Construction geometry (like centerlines) is not part of the final sketch profile. It exists only as a reference for dimensions, constraints, and symmetry operations. Toggle construction mode with the Construction icon in the Sketcher ribbon."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each sketch tool to its best use case:",
+          "pairs": [
+            {
+              "left": "Rectangle (Center)",
+              "right": "Creating a tabletop sketch centered on the origin"
+            },
+            {
+              "left": "Centerline",
+              "right": "Establishing a symmetry axis for mirror constraints"
+            },
+            {
+              "left": "Circle",
+              "right": "Creating a cross-section for a cylindrical roller"
+            },
+            {
+              "left": "Arc (Tangent)",
+              "right": "Adding a smooth transition between two lines"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Sketcher provides tools for lines, rectangles, circles, arcs, and construction geometry",
+        "Rectangles are created from corners or center \u2014 choose based on your reference point",
+        "Centerlines and construction geometry serve as references but aren't part of the final profile",
+        "Choose the sketch tool that best matches the shape of the feature cross-section you need"
+      ]
+    },
+    {
+      "id": "m4t3",
+      "title": "Feature-Based Modeling & Parent-Child",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In Creo Parametric, every model is built by adding features one at a time. Each feature references existing geometry, creating parent-child dependencies that are critical to understand for successful modeling."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Feature-Based Modeling Principles"
+        },
+        {
+          "type": "paragraph",
+          "text": "Features are the building blocks of a Creo model. Each feature adds or removes material, and together they define the complete 3D shape. The order of feature creation matters because later features depend on earlier ones."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Base Feature",
+              "back": "The first solid feature in a model, typically the largest or most fundamental shape. All subsequent features reference the base feature directly or indirectly. For the belt sander tabletop, the base feature is a rectangular extrude."
+            },
+            {
+              "front": "Parent Feature",
+              "back": "A feature that provides references (surfaces, edges, datums) used by other features. If a parent is modified, all its children update. If a parent is deleted, its children may fail. Example: the base extrude is the parent of a cutout sketched on its surface."
+            },
+            {
+              "front": "Child Feature",
+              "back": "A feature that depends on references from a parent feature. Children automatically update when parents change. A round applied to an edge of an extrude is a child of that extrude \u2014 it depends on the edge existing."
+            },
+            {
+              "front": "Reference Chain",
+              "back": "Features form chains of dependencies: Feature A \u2192 Feature B \u2192 Feature C. Changing Feature A affects B and C. Deleting Feature A may fail both B and C. Understanding the chain helps you plan your model for maximum flexibility."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Deleting a parent feature removes the references that child features depend on, which can cause them to fail. Before deleting any feature, use the Reference Viewer (Edit > Investigate > Reference Viewer) to check for dependents."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Managing Parent-Child Relationships"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can reroute parent-child references to different geometry if you need to restructure the model. This allows you to change which features depend on which, without losing the child features."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange these features in a logical creation order for a belt sander tabletop:",
+          "items": ["Create base rectangular extrude", "Add cutout extrude for belt slot", "Add rounds to edges", "Add mounting holes"]
+        }
+      ],
+      "keyTakeaways": [
+        "Models are built feature-by-feature, with each feature adding or removing material",
+        "Parent features provide references that child features depend on",
+        "Deleting a parent can cause all its children to fail \u2014 always check references first",
+        "Plan your feature creation order carefully to create a logical parent-child hierarchy"
+      ]
+    },
+    {
+      "id": "m4t4",
+      "title": "Dimensions, Constraints & Centerlines",
+      "estimatedMinutes": 8,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Sketches in Creo are controlled by dimensions and constraints. Together, they fully define the size, shape, and position of sketch geometry. A fully constrained sketch is essential for predictable feature behavior."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Dimension Types"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Linear Dimension",
+              "back": "Measures the distance between two points, a point and a line, or two parallel lines. Created by selecting two references and placing the dimension text. Used for lengths, widths, and offsets."
+            },
+            {
+              "front": "Radial/Diameter Dimension",
+              "back": "Measures the radius or diameter of circles and arcs. Select the circle or arc to create the dimension. Toggle between radius and diameter display as needed."
+            },
+            {
+              "front": "Angular Dimension",
+              "back": "Measures the angle between two lines or between a line and a reference direction. Select two lines to create the dimension. Used for tapered or angled features."
+            },
+            {
+              "front": "Reference Dimension",
+              "back": "A driven (read-only) dimension calculated from other dimensions and constraints. Cannot be directly modified \u2014 it shows the resulting value. Useful for verification without over-constraining the sketch."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Sketch Constraints"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Constraint", "Symbol", "Effect"],
+          "rows": [
+            ["Horizontal", "H", "Forces a line to be horizontal (parallel to the sketch X-axis)"],
+            ["Vertical", "V", "Forces a line to be vertical (parallel to the sketch Y-axis)"],
+            ["Perpendicular", "\u22a5", "Forces two lines to meet at a 90\u00b0 angle"],
+            ["Tangent", "T", "Forces a line and arc (or two arcs) to meet smoothly without a sharp corner"],
+            ["Equal", "L=", "Forces two lines or arcs to have the same length or radius"],
+            ["Symmetric", "\u2194", "Forces two points or entities to be symmetric about a centerline"],
+            ["Coincident", "\u25cf", "Forces a point to lie exactly on a line, arc, or another point"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Centerlines for Symmetry"
+        },
+        {
+          "type": "paragraph",
+          "text": "Centerlines are construction geometry used to define axes of symmetry. When you add a symmetric constraint referencing a centerline, geometry on both sides remains mirrored. Centerlines are also used as revolution axes for revolve features."
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "A fully constrained sketch has no degrees of freedom remaining \u2014 every entity's position and size is determined by dimensions and constraints. Creo shows the constraint status in the Sketcher status bar. An under-constrained sketch can move unexpectedly during regeneration."
+        }
+      ],
+      "keyTakeaways": [
+        "Dimensions control size (linear, radial, angular); constraints control shape and position",
+        "A fully constrained sketch has zero degrees of freedom and behaves predictably",
+        "Centerlines establish symmetry axes and revolution axes",
+        "Constraints like horizontal, vertical, symmetric, and equal reduce the number of dimensions needed"
+      ]
+    },
+    {
+      "id": "m4t5",
+      "title": "Extrude Feature Options",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "The Extrude feature is the most commonly used feature in Creo Parametric. It creates 3D geometry by projecting a 2D sketch profile along a direction perpendicular to the sketch plane. Multiple depth and direction options control the final shape."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Depth Types"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Depth Type", "Description", "When to Use"],
+          "rows": [
+            ["Blind", "Extrude to a specified numeric depth value", "When you know the exact depth dimension required"],
+            ["Symmetric", "Extrude equally on both sides of the sketch plane", "When the feature should be centered on the sketch plane"],
+            ["Through All", "Extrude through the entire existing model geometry", "When the feature (often a cut) must pass completely through the part"],
+            ["Through Next", "Extrude until reaching the next surface", "When the depth should stop at the first surface encountered"],
+            ["To Selected", "Extrude to a specific surface, plane, or point", "When the depth must end at a specific reference geometry"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Direction & Material Options"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Extrude Direction",
+              "back": "By default, extrudes go in one direction from the sketch plane. You can flip the direction or choose 'Both Sides' to extrude in both directions (with potentially different depths on each side). The direction arrow on the preview shows which way the extrude will go."
+            },
+            {
+              "front": "Add Material",
+              "back": "The default mode for extrudes \u2014 adds solid material to create new geometry. Used for creating the base feature and adding material to an existing part. The extrude creates a solid protrusion."
+            },
+            {
+              "front": "Remove Material",
+              "back": "Creates a cut or pocket by removing material from the existing solid. Used for slots, holes, grooves, and cutouts. The sketch defines the cross-section of material to be removed."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "For your first feature (base feature), only Add Material is available since there is no existing geometry to cut. For all subsequent features, you can choose between Add and Remove Material based on your design intent."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each depth type to the correct scenario:",
+          "pairs": [
+            {
+              "left": "Blind",
+              "right": "Creating a tabletop with a specific 10mm thickness"
+            },
+            {
+              "left": "Symmetric",
+              "right": "Creating a rib centered on a datum plane"
+            },
+            {
+              "left": "Through All",
+              "right": "Cutting a slot that must go completely through the part"
+            },
+            {
+              "left": "To Selected",
+              "right": "Extending an extrude to meet a specific angled surface"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Extrude is the most common feature \u2014 it projects a 2D sketch into 3D geometry",
+        "Five depth types (Blind, Symmetric, Through All, Through Next, To Selected) control how far the extrude extends",
+        "Direction can be one side, other side, or both sides of the sketch plane",
+        "Add Material creates protrusions; Remove Material creates cuts and pockets"
+      ]
+    },
+    {
+      "id": "m4t6",
+      "title": "Exercise: Create Belt Sander Tabletop",
+      "estimatedMinutes": 12,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create the belt sander tabletop from scratch using datum planes, sketches, and extrude features. This is the first part you will model in the belt sander assembly."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Start a new part file for this exercise. Set your working directory to the exercise folder and create a new file named TABLETOP.PRT."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex4",
+          "title": "Create the Belt Sander Tabletop",
+          "objective": "Create a new part file and build the belt sander tabletop using extrude features with proper sketch planes, dimensions, and constraints.",
+          "tasks": [
+            {
+              "id": "ex4-t1",
+              "title": "Create the Base Extrude",
+              "steps": [
+                {
+                  "action": "Create a new part file: File > New > Part > Solid. Name it TABLETOP.",
+                  "detail": "Creating a new part opens a blank model with the three default datum planes (RIGHT, TOP, FRONT) and coordinate system. These datums will serve as your initial sketch references.",
+                  "hint": "Make sure 'Use default template' is checked, or select the appropriate part template."
+                },
+                {
+                  "action": "Select the FRONT datum plane as the sketch plane, then click the Extrude tool on the Model tab.",
+                  "detail": "The FRONT datum plane provides a view looking at the front face of the tabletop. Selecting the sketch plane first and then the feature tool is the most common workflow.",
+                  "hint": "You can also start the Extrude tool first and then select the sketch plane when prompted."
+                },
+                {
+                  "action": "In the Sketcher, draw a center rectangle centered on the origin. Dimension it to 180mm wide and 100mm tall.",
+                  "detail": "The center rectangle is centered on the origin point where the three default datum planes intersect. This ensures the tabletop is centered on the part coordinate system.",
+                  "hint": "Use Sketch > Rectangle > Center Rectangle. Click the origin first, then click to set the corner."
+                },
+                {
+                  "action": "Add dimensions: 180mm for width, 100mm for height. Ensure the sketch is fully constrained (no degrees of freedom).",
+                  "detail": "Double-click existing dimension values to modify them. The status bar should show 'Fully Constrained' or 'Section is valid' when all degrees of freedom are resolved.",
+                  "hint": "If extra dimensions appear, delete the unwanted ones before adding your desired dimensions."
+                },
+                {
+                  "action": "Close the Sketcher (click the checkmark), then set the extrude depth to Blind, 12mm. Accept the feature.",
+                  "detail": "Blind depth of 12mm creates the tabletop thickness. The extrude direction should point away from the sketch plane. Flip the direction if needed using the direction arrow.",
+                  "hint": "The depth value field is in the feature dashboard that appears when the Sketcher closes."
+                }
+              ]
+            },
+            {
+              "id": "ex4-t2",
+              "title": "Verify the Tabletop",
+              "steps": [
+                {
+                  "action": "Spin the model using the middle mouse button to inspect all sides of the tabletop.",
+                  "detail": "Visual inspection confirms the extrude created the expected rectangular solid. Check that the dimensions look proportional (wider than it is deep, with a thin profile).",
+                  "hint": null
+                },
+                {
+                  "action": "Check the Model Tree to verify the feature was created correctly. You should see the default datums and one Extrude feature.",
+                  "detail": "The Model Tree should show: RIGHT, TOP, FRONT (datum planes), PRT_CSYS_DEF (coordinate system), and Extrude 1 (your base feature).",
+                  "hint": null
+                },
+                {
+                  "action": "Use Edit Dimensions on the extrude to verify the values are 180mm \u00d7 100mm \u00d7 12mm.",
+                  "detail": "Edit Dimensions displays the actual dimension values on the model. This is the quickest way to verify feature dimensions match your design intent.",
+                  "hint": null
+                },
+                {
+                  "action": "Save the part (Ctrl+S).",
+                  "detail": "Saving creates the first version of the file (TABLETOP.PRT.1) in your working directory.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Start new parts with File > New > Part > Solid",
+        "Select the sketch plane before starting the feature tool",
+        "Center rectangles on the origin to keep the part centered on the coordinate system",
+        "Always verify dimensions after feature creation using Edit Dimensions"
+      ]
+    },
+    {
+      "id": "m4t7",
+      "title": "Exercise: Create Cutout & Slider",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will add a cutout to the tabletop and create the slider part. These exercises demonstrate using extrudes with Remove Material and creating a second part."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Continue with the TABLETOP.PRT file from the previous exercise. You will also create a new SLIDER.PRT file."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex5",
+          "title": "Create Cutout and Slider Parts",
+          "objective": "Add a material-removal extrude to the tabletop and create the slider as a new part.",
+          "tasks": [
+            {
+              "id": "ex5-t1",
+              "title": "Add Cutout to Tabletop",
+              "steps": [
+                {
+                  "action": "Open TABLETOP.PRT (if not already open). Select the top surface of the tabletop as the sketch plane.",
+                  "detail": "Using the top surface (instead of a datum plane) as the sketch plane places the sketch directly on the face where the cut will start. This creates a parent-child relationship between the cutout and the base extrude.",
+                  "hint": "Click the top flat surface to select it before starting the Extrude tool."
+                },
+                {
+                  "action": "Start the Extrude tool. In the Sketcher, draw a center rectangle for the cutout slot. Dimension it to 120mm long and 25mm wide, centered on the origin.",
+                  "detail": "The cutout creates a slot through the tabletop for the sanding belt. Centering it on the origin aligns it with the tabletop center.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the Sketcher. In the feature dashboard, select Remove Material and set depth to Through All.",
+                  "detail": "Remove Material cuts into the existing solid instead of adding material. Through All ensures the slot goes completely through the tabletop regardless of its thickness.",
+                  "hint": "Look for the material removal icon (a block with a minus sign) in the feature dashboard."
+                },
+                {
+                  "action": "Accept the feature and verify the cutout appears as a slot through the tabletop.",
+                  "detail": "The tabletop should now have a rectangular slot through its center. Spin the model to verify the cut goes completely through.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex5-t2",
+              "title": "Create the Slider Part",
+              "steps": [
+                {
+                  "action": "Create a new part file named SLIDER.PRT. Select the FRONT datum plane as the sketch plane.",
+                  "detail": "The slider is a separate part that will fit into the tabletop cutout. Creating it as a separate file allows it to be used in the assembly later.",
+                  "hint": null
+                },
+                {
+                  "action": "Draw a center rectangle and dimension it to 115mm long and 20mm wide.",
+                  "detail": "The slider is slightly smaller than the cutout (115mm vs 120mm, 20mm vs 25mm) to allow clearance for the sanding belt path.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the extrude depth to Blind, 8mm. Accept and save.",
+                  "detail": "The slider is thinner than the tabletop to allow it to move freely within the cutout channel.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Remove Material extrudes create cuts, slots, and pockets in existing geometry",
+        "Through All depth ensures cuts go completely through the part",
+        "Using a model surface as a sketch plane creates a parent-child relationship",
+        "Related parts should be dimensioned relative to each other for proper fit"
+      ]
+    },
+    {
+      "id": "m4t8",
+      "title": "Exercise: Create Slot",
+      "estimatedMinutes": 8,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will add a slot feature to the slider part using a combination of sketching techniques including centerlines for symmetry."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Continue with the SLIDER.PRT file from the previous exercise."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex6",
+          "title": "Create a Slot in the Slider",
+          "objective": "Add a symmetric slot feature to the slider using centerlines and remove-material extrude.",
+          "tasks": [
+            {
+              "id": "ex6-t1",
+              "title": "Add Slot to Slider",
+              "steps": [
+                {
+                  "action": "Open SLIDER.PRT. Select the top surface as the sketch plane and start the Extrude tool.",
+                  "detail": "The slot will be cut into the top face of the slider to create a channel for the sanding belt adjustment mechanism.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Sketcher, draw a horizontal centerline through the origin.",
+                  "detail": "The centerline establishes a symmetry axis. The slot will be symmetric about this line, ensuring it is centered on the slider.",
+                  "hint": "Use Sketch > Line > Centerline, or toggle the line tool to construction mode."
+                },
+                {
+                  "action": "Draw a slot profile using lines and arcs: two parallel lines with semicircular arcs at each end. Dimension the slot to 80mm long and 10mm wide.",
+                  "detail": "The slot profile consists of two horizontal lines connected by two 180\u00b0 arcs. This creates a smooth-ended slot shape that is stronger than a rectangular cutout.",
+                  "hint": "Draw the two horizontal lines first, then add tangent arcs at the ends to connect them."
+                },
+                {
+                  "action": "Add a Symmetric constraint to make the slot symmetric about the centerline.",
+                  "detail": "The symmetric constraint ensures the slot remains centered on the slider regardless of dimension changes. This captures the design intent of a centered slot.",
+                  "hint": "Select the symmetric constraint tool, then click two corresponding points and the centerline."
+                },
+                {
+                  "action": "Close the Sketcher. Set Remove Material and Symmetric depth with a total depth of 5mm. Accept the feature.",
+                  "detail": "Symmetric depth with Remove Material creates a centered channel in the slider. The slot will extend 2.5mm from each side of the sketch plane.",
+                  "hint": null
+                },
+                {
+                  "action": "Save the part and verify the slot feature in the Model Tree and graphics area.",
+                  "detail": "The Model Tree should now show two extrude features: the base extrude and the slot. Spin the model to inspect the slot from all angles.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Centerlines establish symmetry axes for sketch constraints",
+        "Slot profiles combine lines and arcs for smooth-ended openings",
+        "Symmetric constraints capture design intent for centered features",
+        "Symmetric depth with Remove Material creates centered channels"
+      ]
+    }
+  ]
+}

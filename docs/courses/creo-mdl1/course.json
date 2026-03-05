@@ -1,0 +1,47 @@
+{
+  "id": "creo-mdl1",
+  "title": "Creo: Fundamentals of Solid Modeling 1",
+  "description": "Core 3D modeling fundamentals including the Creo design process, parametric modeling concepts, the Creo Parametric user interface, feature editing, sketching, datums, and extrude features.",
+  "prerequisite": null,
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Modeling Parts Framework & Parametric Concepts",
+      "description": "Examine the Creo design process, the model creation process, parametric modeling concepts, and Creo file types with design associativity.",
+      "estimatedMinutes": 30,
+      "topicCount": 5,
+      "contentFile": "modules/m1-framework-parametric.json",
+      "quizFile": "quizzes/q1-framework-parametric.json"
+    },
+    {
+      "id": "m2",
+      "title": "Creo Parametric User Interface",
+      "description": "Explore the Creo Parametric interface, file management, the Model Tree, and feature visibility controls including hide and suppress.",
+      "estimatedMinutes": 35,
+      "topicCount": 5,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m2-user-interface.json",
+      "quizFile": "quizzes/q2-user-interface.json"
+    },
+    {
+      "id": "m3",
+      "title": "Feature Editing Basics",
+      "description": "Learn selection and mouse controls, drag handles, feature editing techniques, datum display, and view controls.",
+      "estimatedMinutes": 35,
+      "topicCount": 5,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m3-feature-editing.json",
+      "quizFile": "quizzes/q3-feature-editing.json"
+    },
+    {
+      "id": "m4",
+      "title": "Sketching, Datums & Extrude Features",
+      "description": "Master datum features, sketch creation, sketch geometry, feature-based modeling, parent-child relationships, dimensions, constraints, and extrude feature options.",
+      "estimatedMinutes": 55,
+      "topicCount": 8,
+      "exerciseTopicStart": 6,
+      "contentFile": "modules/m4-sketching-extrude.json",
+      "quizFile": "quizzes/q4-sketching-extrude.json"
+    }
+  ]
+}

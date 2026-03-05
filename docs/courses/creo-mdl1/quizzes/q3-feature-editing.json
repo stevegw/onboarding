@@ -1,0 +1,58 @@
+{
+  "moduleId": "m3",
+  "title": "Feature Editing Basics Knowledge Check",
+  "questions": [
+    {
+      "id": "m3-kc-001",
+      "question": "What does the middle mouse button do by default (without modifier keys) in the Creo graphics area?",
+      "options": [
+        "Selects geometry",
+        "Opens a context menu",
+        "Rotates (spins) the model in 3D",
+        "Zooms in and out"
+      ],
+      "answerIndex": 2,
+      "rationale": "The middle mouse button by default rotates (spins) the model when clicked and dragged. Adding Shift pans the view, adding Ctrl zooms, and the scroll wheel zooms incrementally. The left button selects and the right button opens context menus.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-002",
+      "question": "When should you use Edit Definition instead of Edit Dimensions?",
+      "options": [
+        "When you want to change a dimension value from 25mm to 30mm",
+        "When you need to change the sketch geometry, depth type, or feature references",
+        "When you want to view the current dimension values on the model",
+        "When you want to add a new feature to the model"
+      ],
+      "answerIndex": 1,
+      "rationale": "Edit Definition reopens the full feature creation dashboard, allowing changes to sketch geometry, depth type, direction, material side, and references — not just dimension values. Edit Dimensions is for quick numerical value changes. Adding a new feature uses a different workflow entirely.",
+      "topic": "m3t2"
+    },
+    {
+      "id": "m3-kc-003",
+      "question": "What direction does a window selection from left-to-right select?",
+      "options": [
+        "Only items fully enclosed within the selection window",
+        "Any items the selection window touches (crossing selection)",
+        "All visible items in the current view",
+        "Only items on the front-facing surfaces"
+      ],
+      "answerIndex": 0,
+      "rationale": "Left-to-right window selection selects only items that are fully enclosed within the selection rectangle. Right-to-left creates a crossing selection that picks anything the rectangle touches, even partially. This convention is common across many CAD applications.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-004",
+      "question": "What is the default coordinate system in a new Creo part called?",
+      "options": [
+        "ORIGIN",
+        "CSYS_DEFAULT",
+        "PRT_CSYS_DEF",
+        "COORD_SYS_0"
+      ],
+      "answerIndex": 2,
+      "rationale": "The default coordinate system in a new Creo part is named PRT_CSYS_DEF. It establishes the origin point and X, Y, Z axis directions for the part. It is created automatically along with the three default datum planes (RIGHT, TOP, FRONT).",
+      "topic": "m3t3"
+    }
+  ]
+}

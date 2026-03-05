@@ -1,0 +1,58 @@
+{
+  "moduleId": "m2",
+  "title": "Creo Parametric User Interface Knowledge Check",
+  "questions": [
+    {
+      "id": "m2-kc-001",
+      "question": "Which area of the Creo Parametric interface displays a hierarchical list of all features in the current model?",
+      "options": [
+        "The Ribbon",
+        "The Graphics Area",
+        "The Model Tree",
+        "The Status Bar"
+      ],
+      "answerIndex": 2,
+      "rationale": "The Model Tree is the left-panel hierarchical list showing all features, datums, and components in the current model. It displays features in creation order and shows parent-child relationships. The Ribbon contains tools, the Graphics Area displays the 3D model, and the Status Bar shows prompts and messages.",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-002",
+      "question": "What is the difference between Erase and Delete in Creo Parametric?",
+      "options": [
+        "They are identical — both remove the file from disk",
+        "Erase removes the file from session memory only; Delete permanently removes it from disk",
+        "Erase permanently removes from disk; Delete removes from session memory only",
+        "Erase removes from the Model Tree; Delete removes from the assembly"
+      ],
+      "answerIndex": 1,
+      "rationale": "Erase removes a file from the current Creo session memory but the file remains on disk. Delete permanently removes the file from disk. This is a critical distinction — using Delete when you meant Erase can result in permanent data loss.",
+      "topic": "m2t2"
+    },
+    {
+      "id": "m2-kc-003",
+      "question": "What are the three default datum planes created automatically in every new Creo part?",
+      "options": [
+        "X, Y, and Z",
+        "RIGHT, TOP, and FRONT",
+        "PRIMARY, SECONDARY, and TERTIARY",
+        "HORIZONTAL, VERTICAL, and DEPTH"
+      ],
+      "answerIndex": 1,
+      "rationale": "Every new Creo part automatically includes three default datum planes named RIGHT, TOP, and FRONT. These establish the model's orientation and serve as initial references for sketching and feature placement. They appear at the top of the Model Tree.",
+      "topic": "m2t3"
+    },
+    {
+      "id": "m2-kc-004",
+      "question": "What happens to child features when you suppress a parent feature?",
+      "options": [
+        "Nothing — child features are unaffected by suppression",
+        "Child features are hidden but remain in the geometry",
+        "Child features may also be suppressed or may fail",
+        "Child features are permanently deleted"
+      ],
+      "answerIndex": 2,
+      "rationale": "Suppressing a parent feature removes it from the model geometry. Since child features depend on references from the parent, they may also be suppressed or may fail when the parent is suppressed. This is different from Hide, which has no effect on child features because the geometry remains intact.",
+      "topic": "m2t4"
+    }
+  ]
+}

@@ -1,0 +1,396 @@
+{
+  "id": "m2",
+  "title": "Creo Parametric User Interface",
+  "description": "Explore the Creo Parametric interface, file management, the Model Tree, and feature visibility controls.",
+  "topics": [
+    {
+      "id": "m2t1",
+      "title": "The Creo Parametric Interface",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "The Creo Parametric interface is organized into distinct areas that work together to provide efficient access to modeling tools and information. Familiarizing yourself with these areas is essential for productive modeling."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Interface Areas"
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Area",
+            "Location",
+            "Purpose"
+          ],
+          "rows": [
+            [
+              "Ribbon",
+              "Top of window",
+              "Context-sensitive toolbar organized into tabs (Model, Analysis, Annotate, Render, etc.). Each tab contains groups of related commands. The ribbon changes based on the active task."
+            ],
+            [
+              "Model Tree",
+              "Left panel",
+              "Hierarchical list of all features, datums, and components in the current model. Shows creation order and parent-child relationships. Allows selection, editing, and reordering of features."
+            ],
+            [
+              "Graphics Area",
+              "Center",
+              "3D viewport where the model is displayed and manipulated. Supports real-time rotation, zoom, and pan. Visual feedback shows feature previews during creation."
+            ],
+            [
+              "Navigation Panel",
+              "Left side (collapsible)",
+              "Contains the Model Tree, Layer Tree, and other navigation tools. Can be expanded or collapsed to maximize the graphics area."
+            ],
+            [
+              "Status Bar",
+              "Bottom",
+              "Displays prompts, messages, and selection information. Shows the current action being performed and provides guidance for the next step."
+            ],
+            [
+              "Dashboard",
+              "Below ribbon (context-specific)",
+              "Appears when creating or editing features. Contains feature-specific options like depth, direction, and material addition/removal settings."
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "The ribbon is context-sensitive — it shows different tabs and commands depending on what you are doing. When sketching, a Sketch tab appears with sketching tools. When placing a feature, a feature-specific dashboard appears."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Model Tab",
+              "back": "The default ribbon tab containing feature creation tools: Extrude, Revolve, Sweep, Blend, Hole, Round, Chamfer, and more. This is where most solid modeling work begins."
+            },
+            {
+              "front": "Analysis Tab",
+              "back": "Contains tools for measuring distances, angles, and areas. Also includes mass properties, cross-section analysis, and model comparison tools for verifying designs."
+            },
+            {
+              "front": "View Tab",
+              "back": "Controls display settings including orientation, visibility of datums and axes, display style (wireframe, shaded, etc.), and saved views for quick navigation."
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Creo interface is organized into Ribbon, Model Tree, Graphics Area, Navigation Panel, Status Bar, and Dashboard",
+        "The ribbon is context-sensitive and changes based on the current task",
+        "The Model Tree shows the feature creation history and parent-child relationships"
+      ]
+    },
+    {
+      "id": "m2t2",
+      "title": "File Management in Creo",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Creo Parametric has its own file management system that differs from standard operating system file operations. Understanding how Creo manages files — particularly the working directory and session concepts — is critical to avoiding data loss and broken references."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "File Management Essentials"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Working Directory",
+              "back": "The default folder where Creo looks for and saves files. Always set your working directory at the start of each session. Files opened from other locations are copied into memory but saved back to their original location."
+            },
+            {
+              "front": "Open",
+              "back": "Opens a file into the current Creo session (in-memory). Multiple files can be open simultaneously. Use File > Open or the Open icon. The file remains in session until explicitly erased or the session ends."
+            },
+            {
+              "front": "Save",
+              "back": "Saves the current model to disk. Creo uses a versioning system — each save creates a new version (part.prt.1, part.prt.2, etc.). The latest version is the active one. Use File > Save."
+            },
+            {
+              "front": "Erase vs Delete",
+              "back": "Erase removes a file from the current session memory but keeps it on disk. Delete permanently removes the file from disk. Use Erase to free memory; use Delete only when you truly want to remove the file."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Erase and Delete are very different operations. Erase only removes the file from your current Creo session — the file still exists on disk. Delete permanently removes the file. Always double-check before using Delete."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange these file management steps in the correct order for starting a new Creo session:",
+          "items": [
+            "Set the working directory",
+            "Open or create a new file",
+            "Build or edit the model",
+            "Save the file"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Always set the working directory at the start of each Creo session",
+        "Creo saves files with incrementing version numbers (file.prt.1, file.prt.2)",
+        "Erase removes a file from session memory; Delete permanently removes it from disk",
+        "Multiple files can be open in a single Creo session simultaneously"
+      ]
+    },
+    {
+      "id": "m2t3",
+      "title": "The Model Tree",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "The Model Tree is one of the most important tools in Creo Parametric. It provides a chronological record of every feature in the model and enables direct interaction with features for editing, reordering, and managing visibility."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Model Tree Elements"
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Element",
+            "Icon/Indicator",
+            "Description"
+          ],
+          "rows": [
+            [
+              "Part Header",
+              "Top of tree",
+              "The root node showing the part name and file type. All features are children of this node."
+            ],
+            [
+              "Datum Planes",
+              "Plane icon",
+              "The three default datum planes (RIGHT, TOP, FRONT) created automatically. Used as references for sketching and feature placement."
+            ],
+            [
+              "Datum Coordinate System",
+              "CS icon",
+              "The default coordinate system (PRT_CSYS_DEF) establishing the origin and axis directions for the part."
+            ],
+            [
+              "Features",
+              "Feature-specific icon",
+              "Each modeling feature (extrude, revolve, round, etc.) listed in creation order. Icons indicate the feature type."
+            ],
+            [
+              "Annotations",
+              "Tag icon",
+              "Dimension annotations, notes, and other non-geometric information attached to the model."
+            ],
+            [
+              "Insert Here Marker",
+              "Arrow indicator",
+              "A movable marker controlling where new features are inserted. Drag it to insert features at a specific point in the feature history."
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Right-clicking any item in the Model Tree opens a context menu with actions specific to that item type — Edit Definition, Edit Dimensions, Delete, Suppress, Hide, Rename, and more."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "The order of features in the Model Tree matters. Features are regenerated from top to bottom. Reordering features can change the model if parent-child relationships are affected."
+        }
+      ],
+      "keyTakeaways": [
+        "The Model Tree shows every feature in chronological creation order",
+        "Default datum planes (RIGHT, TOP, FRONT) and a coordinate system are created automatically",
+        "Right-click any Model Tree item for a context menu of available actions",
+        "Feature order in the Model Tree affects regeneration and parent-child relationships"
+      ]
+    },
+    {
+      "id": "m2t4",
+      "title": "Hide and Suppress Features",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Creo provides two distinct methods for controlling feature visibility — Hide and Suppress. While they may appear similar, they have fundamentally different effects on the model and its children."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Hide vs Suppress"
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Property",
+            "Hide",
+            "Suppress"
+          ],
+          "rows": [
+            [
+              "Effect on geometry",
+              "None — feature remains fully calculated",
+              "Feature is removed from the model geometry"
+            ],
+            [
+              "Effect on display",
+              "Feature is invisible in the graphics area",
+              "Feature disappears from both display and geometry"
+            ],
+            [
+              "Effect on children",
+              "No impact — child features are unaffected",
+              "Child features may also be suppressed or may fail"
+            ],
+            [
+              "Effect on mass/volume",
+              "No change — contributes to mass properties",
+              "Excluded from mass properties calculations"
+            ],
+            [
+              "Model Tree indicator",
+              "Shown with a hidden icon",
+              "Shown grayed out with a suppress icon"
+            ],
+            [
+              "Performance",
+              "No performance benefit",
+              "Improves regeneration performance on complex models"
+            ],
+            [
+              "Use case",
+              "Reduce visual clutter while keeping geometry intact",
+              "Temporarily remove features to simplify the model or test alternatives"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Suppressing a parent feature can cause child features to fail or also be suppressed. Always check parent-child relationships before suppressing a feature. Use Edit > Investigate > Reference Viewer to see dependencies."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each scenario to the correct action (Hide or Suppress):",
+          "pairs": [
+            {
+              "left": "You want to see the base extrude without rounds obscuring it",
+              "right": "Hide the rounds"
+            },
+            {
+              "left": "You want to test what the part looks like without a cutout feature",
+              "right": "Suppress the cutout"
+            },
+            {
+              "left": "You need to reduce regeneration time on a complex model",
+              "right": "Suppress unused features"
+            },
+            {
+              "left": "You want to clean up the display for a screenshot",
+              "right": "Hide non-essential features"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Hide makes a feature invisible but keeps its geometry fully calculated",
+        "Suppress removes a feature from the model geometry entirely",
+        "Suppressing a parent feature can cause child features to fail",
+        "Use Suppress for performance benefits and testing alternatives; use Hide for visual clarity"
+      ]
+    },
+    {
+      "id": "m2t5",
+      "title": "Exercise: Explore Creo UI",
+      "estimatedMinutes": 15,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will explore the Creo Parametric user interface by opening a sample part file, navigating the interface areas, and practicing basic file management and Model Tree operations."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "This exercise uses the belt sander tabletop part file. Ensure your working directory is set to the exercise files folder provided by your instructor."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex1",
+          "title": "Explore the Creo Parametric User Interface",
+          "objective": "Become familiar with the Creo Parametric interface areas, practice file management, and explore the Model Tree.",
+          "tasks": [
+            {
+              "id": "ex1-t1",
+              "title": "Navigate the Interface",
+              "steps": [
+                {
+                  "action": "Launch Creo Parametric and set the working directory to the exercise files folder.",
+                  "detail": "The working directory determines the default location for opening and saving files. Setting it first ensures all exercise files are easily accessible.",
+                  "hint": "Use File > Options > Working Directory, or click the Select Working Directory icon."
+                },
+                {
+                  "action": "Open the file TABLETOP.PRT from the working directory.",
+                  "detail": "The tabletop is the main work surface component of the belt sander. Opening it loads the model into your Creo session.",
+                  "hint": "Use File > Open, or press Ctrl+O."
+                },
+                {
+                  "action": "Identify the Ribbon, Model Tree, Graphics Area, and Status Bar.",
+                  "detail": "Each interface area serves a specific purpose. The Ribbon provides tools, the Model Tree shows features, the Graphics Area displays the 3D model, and the Status Bar shows prompts.",
+                  "hint": null
+                },
+                {
+                  "action": "Click through the Ribbon tabs (Model, Analysis, Annotate, Render, View) and observe how the available commands change.",
+                  "detail": "Each ribbon tab groups related commands. The Model tab has feature creation tools, Analysis has measurement tools, and View controls display settings.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex1-t2",
+              "title": "Explore the Model Tree and File Management",
+              "steps": [
+                {
+                  "action": "Expand the Model Tree and examine the list of features in the tabletop part.",
+                  "detail": "The Model Tree shows the complete feature history of the part. You should see default datums at the top, followed by modeling features like extrudes and rounds.",
+                  "hint": "Click the expand arrows next to items in the Model Tree to see sub-features."
+                },
+                {
+                  "action": "Right-click on an extrude feature in the Model Tree and select Edit Dimensions.",
+                  "detail": "Edit Dimensions displays the dimension values directly on the model in the graphics area. You can double-click any dimension to change its value.",
+                  "hint": "Press Escape or click the green checkmark when done viewing dimensions."
+                },
+                {
+                  "action": "Use File > Save to save the part, then check the working directory for the versioned file.",
+                  "detail": "Creo saves files with version numbers. After saving, you should see TABLETOP.PRT.1 (or a higher version number) in the working directory.",
+                  "hint": null
+                },
+                {
+                  "action": "Use File > Erase > Current to erase the tabletop from the session, then reopen it from the working directory.",
+                  "detail": "Erasing removes the file from session memory but not from disk. Reopening confirms the file was not deleted.",
+                  "hint": "After erasing, the graphics area will be empty. Use File > Open to reopen the file."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Creo interface areas work together to provide efficient access to modeling tools",
+        "The Model Tree provides direct access to feature editing and management",
+        "Creo saves files with incrementing version numbers",
+        "Erasing a file removes it from session memory without deleting it from disk"
+      ]
+    }
+  ]
+}

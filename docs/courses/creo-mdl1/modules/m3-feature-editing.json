@@ -1,0 +1,360 @@
+{
+  "id": "m3",
+  "title": "Feature Editing Basics",
+  "description": "Learn selection and mouse controls, drag handles, feature editing techniques, datum display, and view controls.",
+  "topics": [
+    {
+      "id": "m3t1",
+      "title": "Selection & Mouse Controls",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Efficient selection and mouse control are essential for productive modeling in Creo Parametric. The three-button mouse provides distinct functions for selection, navigation, and context menus."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Mouse Button Functions"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Button", "Action", "Function"],
+          "rows": [
+            ["Left Button", "Click", "Select geometry, features, or menu items"],
+            ["Left Button", "Click + Drag", "Window selection (left-to-right selects fully enclosed; right-to-left selects anything touched)"],
+            ["Middle Button", "Click + Drag", "Rotate the model in 3D (spin)"],
+            ["Middle Button", "Shift + Click + Drag", "Pan the model (translate view)"],
+            ["Middle Button", "Ctrl + Click + Drag", "Zoom in/out"],
+            ["Middle Button", "Scroll Wheel", "Zoom in/out incrementally"],
+            ["Right Button", "Click", "Open context menu for selected item"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Selection Methods"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Single Select",
+              "back": "Click directly on geometry or a Model Tree item to select it. The selected item highlights in the graphics area and the Model Tree. Hold Ctrl and click to add items to the selection."
+            },
+            {
+              "front": "Window Select",
+              "back": "Click and drag in the graphics area to create a selection window. Left-to-right selects only items fully enclosed. Right-to-left selects any items the window touches (crossing selection)."
+            },
+            {
+              "front": "Query Select",
+              "back": "When multiple items overlap at the click location, Creo presents a pick list. Use Next/Previous arrows or the query selection dialog to cycle through overlapping items and choose the correct one."
+            },
+            {
+              "front": "Smart Select",
+              "back": "Creo's intelligent selection filter automatically determines what you're trying to select based on context. When creating a sketch, it prioritizes sketch entities. When placing features, it prioritizes surfaces."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Master the middle mouse button first — spin, pan, and zoom are the actions you'll use most frequently. Combining Shift and Ctrl with middle-button drag gives you complete view control without leaving the keyboard."
+        }
+      ],
+      "keyTakeaways": [
+        "Left button selects, middle button navigates (spin/pan/zoom), right button opens context menus",
+        "Window selection direction matters: left-to-right selects enclosed items, right-to-left selects touched items",
+        "Ctrl+click adds to selection; query select helps pick from overlapping items",
+        "Middle mouse button + Shift = pan, + Ctrl = zoom, alone = spin"
+      ]
+    },
+    {
+      "id": "m3t2",
+      "title": "Drag Handles & Feature Editing",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Creo Parametric provides intuitive drag handles for modifying feature dimensions directly in the graphics area. Combined with the Edit Definition and Edit Dimensions commands, you have multiple ways to modify features."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Drag Handle Operations"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Dimension Drag",
+              "back": "When you select a feature and enter edit mode, dimension handles appear on the feature. Drag these handles to change dimension values interactively. The model previews the change before you confirm."
+            },
+            {
+              "front": "Feature Drag",
+              "back": "Some features can be repositioned by dragging their placement references. For example, dragging a hole feature moves it to a new location on the surface while maintaining its size parameters."
+            },
+            {
+              "front": "Section Drag",
+              "back": "In sketch mode, you can drag sketch entities to reposition them. Constraints and dimensions update dynamically as you drag, giving immediate visual feedback on the geometry changes."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Edit Definition vs Edit Dimensions"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Command", "Access", "What It Changes"],
+          "rows": [
+            ["Edit Dimensions", "Right-click > Edit Dimensions", "Opens dimension values for modification directly on the model. You see and change numerical values without entering the full feature dashboard."],
+            ["Edit Definition", "Right-click > Edit Definition", "Reopens the full feature creation dashboard, allowing changes to all parameters: sketch geometry, depth type, direction, material side, and references — not just dimensions."]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Use Edit Dimensions for quick numerical changes (making a hole larger, changing a depth). Use Edit Definition when you need to change the fundamental nature of a feature (switching from blind to through-all depth, changing the sketch plane, or modifying sketch geometry)."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each editing scenario to the correct command:",
+          "pairs": [
+            {
+              "left": "Change an extrude depth from 25mm to 30mm",
+              "right": "Edit Dimensions"
+            },
+            {
+              "left": "Change an extrude from blind depth to through-all",
+              "right": "Edit Definition"
+            },
+            {
+              "left": "Modify the sketch profile of a feature",
+              "right": "Edit Definition"
+            },
+            {
+              "left": "Adjust a round radius value",
+              "right": "Edit Dimensions"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Drag handles allow interactive modification of dimensions directly in the graphics area",
+        "Edit Dimensions changes numerical values; Edit Definition reopens the full feature dashboard",
+        "Use Edit Dimensions for quick value changes, Edit Definition for fundamental feature modifications",
+        "The model previews changes before you confirm, reducing errors"
+      ]
+    },
+    {
+      "id": "m3t3",
+      "title": "Datum Display & View Controls",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Datum features provide the reference geometry needed for creating and positioning model features. Controlling their display — along with view orientation — helps you work efficiently in the 3D environment."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Datum Types and Default Planes"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Datum Type", "Default Names", "Purpose"],
+          "rows": [
+            ["Datum Planes", "RIGHT, TOP, FRONT", "Infinite flat reference surfaces used as sketch planes, feature placement references, and measurement references. Three default planes establish the model's orientation."],
+            ["Datum Axes", "A_1, A_2, etc.", "Reference lines used for patterns, revolves, and measurements. Created automatically at the intersection of two datum planes or through cylindrical features."],
+            ["Datum Points", "PNT0, PNT1, etc.", "Reference points used for measurements, coordinate systems, and assembly constraints. Can be placed on surfaces, edges, or at specific coordinates."],
+            ["Coordinate System", "PRT_CSYS_DEF", "Defines the origin point and X, Y, Z axis directions for the part. Used as a reference for measurements and assembly placement."]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "You can toggle datum display on and off using the View tab or keyboard shortcuts. Hiding datums reduces visual clutter when working on detailed geometry, but they should be visible when selecting references for new features."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Use the View tab quick toggles to show/hide datum planes, axes, points, and coordinate systems individually. During feature creation, Creo temporarily shows relevant datums even if display is turned off."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange these datum types from most frequently used as sketch planes to least frequently used:",
+          "items": ["Datum Planes", "Planar Surfaces", "Datum Axes", "Datum Points"]
+        }
+      ],
+      "keyTakeaways": [
+        "Three default datum planes (RIGHT, TOP, FRONT) establish the model's orientation",
+        "Datum axes, points, and coordinate systems provide additional reference geometry",
+        "Toggle datum display to reduce clutter while modeling",
+        "Datums are essential references for feature creation and should be visible when selecting references"
+      ]
+    },
+    {
+      "id": "m3t4",
+      "title": "Exercise: Edit Dimensions",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will practice editing feature dimensions on existing belt sander parts using the Edit Dimensions command and drag handles."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "This exercise uses belt sander component files. Ensure your working directory is set to the exercise files folder."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex2",
+          "title": "Edit Feature Dimensions",
+          "objective": "Practice modifying feature dimensions using Edit Dimensions and drag handles on belt sander components.",
+          "tasks": [
+            {
+              "id": "ex2-t1",
+              "title": "Edit Tabletop Dimensions",
+              "steps": [
+                {
+                  "action": "Open TABLETOP.PRT and select the base extrude feature in the Model Tree.",
+                  "detail": "The base extrude is the first modeling feature in the Model Tree, after the default datums. Selecting it highlights the feature in the graphics area.",
+                  "hint": "The base extrude is typically named 'Extrude 1' in the Model Tree."
+                },
+                {
+                  "action": "Right-click the feature and select Edit Dimensions. Observe the dimension values displayed on the model.",
+                  "detail": "Edit Dimensions shows all dimension values as editable text directly on the 3D model. You should see length, width, and depth dimensions for the tabletop extrude.",
+                  "hint": null
+                },
+                {
+                  "action": "Double-click the depth dimension and change it from its current value to 15mm. Press Enter to confirm.",
+                  "detail": "Changing the depth modifies how thick the tabletop is. After pressing Enter, the model regenerates to show the new geometry.",
+                  "hint": "If the model doesn't update visually, press Ctrl+G to regenerate."
+                },
+                {
+                  "action": "Click the green checkmark or press Enter to accept the changes. Verify the model updated correctly.",
+                  "detail": "The tabletop should now be thinner (or thicker) based on your change. Check that the rest of the model regenerated without errors.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex2-t2",
+              "title": "Edit Slider Dimensions",
+              "steps": [
+                {
+                  "action": "Open SLIDER.PRT and use Edit Dimensions on the main extrude feature to view its dimensions.",
+                  "detail": "The slider guides the sanding belt along the tabletop. Its extrude dimensions control the length, width, and height of the slider body.",
+                  "hint": null
+                },
+                {
+                  "action": "Modify the length dimension by dragging the dimension handle instead of typing a value. Observe the model preview.",
+                  "detail": "Drag handles provide an interactive way to modify dimensions. The model shows a real-time preview as you drag, giving visual feedback on the change.",
+                  "hint": "Click and hold the dimension value, then drag left or right to change it."
+                },
+                {
+                  "action": "Undo the change using Ctrl+Z to restore the original dimension value.",
+                  "detail": "Undo reverts the last action. This is useful when experimenting with dimension changes and wanting to return to the original state.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex2-t3",
+              "title": "Edit Multiple Features",
+              "steps": [
+                {
+                  "action": "On TABLETOP.PRT, use Edit Dimensions on the cutout extrude feature and modify its width.",
+                  "detail": "The cutout extrude creates a slot in the tabletop for the sanding belt. Changing its width affects how wide the slot is.",
+                  "hint": "The cutout feature may be named 'Extrude 2' or 'Cutout' in the Model Tree."
+                },
+                {
+                  "action": "After modifying, save the part and verify the changes are reflected.",
+                  "detail": "Saving creates a new version of the file. The modified dimensions are now the current state of the model.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Edit Dimensions displays values directly on the model for quick editing",
+        "Drag handles provide interactive, visual dimension modification",
+        "Ctrl+Z undoes the last change; use it freely when experimenting",
+        "Always save after making dimension changes to preserve your work"
+      ]
+    },
+    {
+      "id": "m3t5",
+      "title": "Exercise: Edit Definition",
+      "estimatedMinutes": 8,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will use Edit Definition to make more fundamental changes to features, including modifying sketch geometry and changing depth options."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Continue working with the belt sander component files from the previous exercise."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex3",
+          "title": "Edit Feature Definitions",
+          "objective": "Practice using Edit Definition to modify feature sketches, depth types, and other fundamental properties.",
+          "tasks": [
+            {
+              "id": "ex3-t1",
+              "title": "Edit Extrude Depth Type",
+              "steps": [
+                {
+                  "action": "Open TABLETOP.PRT and right-click the cutout extrude feature. Select Edit Definition.",
+                  "detail": "Edit Definition reopens the full feature dashboard with all options available. You'll see the sketch, depth settings, direction, and material removal options.",
+                  "hint": "The dashboard appears below the ribbon with tabs for Placement, Options, and Properties."
+                },
+                {
+                  "action": "In the feature dashboard, locate the depth option. Change it from Blind to Symmetric.",
+                  "detail": "Changing from Blind to Symmetric makes the extrude extend equally in both directions from the sketch plane. This ensures the cutout is centered regardless of the sketch plane position.",
+                  "hint": "The depth option is typically a dropdown in the dashboard. 'Symmetric' may also be labeled with a mirror icon."
+                },
+                {
+                  "action": "Click the green checkmark to accept the changes. Observe how the cutout feature geometry changed.",
+                  "detail": "With symmetric depth, the cutout now extends equally above and below the sketch plane. The total depth is split evenly on both sides.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex3-t2",
+              "title": "Edit Feature Sketch",
+              "steps": [
+                {
+                  "action": "On the same feature, right-click and select Edit Definition again. This time, click the Placement tab and then Edit to modify the sketch.",
+                  "detail": "The Placement tab shows the sketch plane and references. Clicking Edit opens the Sketcher environment where you can modify the cross-section geometry.",
+                  "hint": "Inside the dashboard, look for 'Placement' then click the 'Edit' link next to the sketch name."
+                },
+                {
+                  "action": "In the Sketcher, modify the sketch geometry by changing a line position or adding a new constraint. Click the checkmark to close the Sketcher, then accept the feature edit.",
+                  "detail": "Modifying the sketch geometry changes the cross-section profile of the extrude. This is a more fundamental change than just editing dimension values.",
+                  "hint": "Use Ctrl+Z to undo sketch changes if needed before closing the Sketcher."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Edit Definition reopens the complete feature creation dashboard",
+        "You can change fundamental properties like depth type, direction, and sketch geometry",
+        "The Placement tab provides access to the feature's sketch for geometry modification",
+        "Edit Definition is more powerful than Edit Dimensions but takes more steps"
+      ]
+    }
+  ]
+}

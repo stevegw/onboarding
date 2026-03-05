@@ -1,0 +1,128 @@
+{
+  "terms": [
+    {
+      "term": "Assembly",
+      "definition": "A collection of parts and sub-assemblies positioned using placement constraints in a .asm file. Assemblies define how components fit together in the final product."
+    },
+    {
+      "term": "Blind Depth",
+      "definition": "An extrude depth option that extends the feature to a specified numeric distance from the sketch plane. Used when the exact depth dimension is known."
+    },
+    {
+      "term": "Centerline",
+      "definition": "Construction geometry in the Sketcher used to define axes of symmetry and revolution. Centerlines are not part of the final sketch profile and do not appear on the 3D model."
+    },
+    {
+      "term": "Constraint",
+      "definition": "A geometric rule applied to sketch entities that controls their shape and position. Examples include horizontal, vertical, perpendicular, tangent, equal, symmetric, and coincident."
+    },
+    {
+      "term": "Coordinate System",
+      "definition": "A reference feature that defines the origin point and X, Y, Z axis directions. The default coordinate system (PRT_CSYS_DEF) is created automatically in every new part."
+    },
+    {
+      "term": "Datum Axis",
+      "definition": "A reference line used for patterns, revolves, and measurements. Created at the intersection of two datum planes, through edges, or through the center of cylindrical features."
+    },
+    {
+      "term": "Datum Plane",
+      "definition": "An infinite flat reference surface used as a sketch plane, feature placement reference, mirror plane, or measurement reference. Three default datum planes (RIGHT, TOP, FRONT) are created in every new part."
+    },
+    {
+      "term": "Datum Point",
+      "definition": "A reference point placed on surfaces, edges, vertices, or at specific coordinates. Used for measurements, coordinate system creation, and assembly constraints."
+    },
+    {
+      "term": "Design Associativity",
+      "definition": "The automatic link between related Creo files. When a part dimension changes, every assembly and drawing referencing that part updates automatically, eliminating manual synchronization."
+    },
+    {
+      "term": "Design Intent",
+      "definition": "The functional purpose and behavior captured in a model through dimensions, constraints, and feature relationships. A well-captured design intent ensures the model behaves correctly when parameters change."
+    },
+    {
+      "term": "Dimension",
+      "definition": "A numerical value that controls the size or position of sketch geometry or feature parameters. Types include linear, radial/diameter, angular, and reference dimensions."
+    },
+    {
+      "term": "Drawing",
+      "definition": "A 2D engineering document (.drw file) generated from 3D parts or assemblies. Contains views, dimensions, annotations, and manufacturing information."
+    },
+    {
+      "term": "Extrude",
+      "definition": "A feature that creates 3D geometry by projecting a 2D sketch profile along a direction perpendicular to the sketch plane. Can add or remove material with various depth options."
+    },
+    {
+      "term": "Feature",
+      "definition": "A discrete modeling operation that adds or removes material from the solid model. Features are the building blocks of Creo models and are listed in the Model Tree in creation order."
+    },
+    {
+      "term": "Feature-Based Modeling",
+      "definition": "A modeling approach where 3D shapes are built by combining individual features (extrudes, revolves, rounds, etc.), each capturing a specific aspect of the design."
+    },
+    {
+      "term": "Graphics Area",
+      "definition": "The central 3D viewport in Creo Parametric where the model is displayed and manipulated. Supports real-time rotation, zoom, and pan using the middle mouse button."
+    },
+    {
+      "term": "Hide",
+      "definition": "A display control that makes a feature invisible in the graphics area without affecting its geometry, mass properties, or child features. Used to reduce visual clutter."
+    },
+    {
+      "term": "Model Tree",
+      "definition": "A hierarchical panel listing all features, datums, and components in the current model in chronological creation order. Provides direct access to feature editing, reordering, and management."
+    },
+    {
+      "term": "Navigation Panel",
+      "definition": "The collapsible left-side panel in Creo Parametric containing the Model Tree, Layer Tree, and other navigation tools."
+    },
+    {
+      "term": "Parametric Modeling",
+      "definition": "A modeling method where geometry is driven by parameters (dimensions and constraints) that capture design intent. Changing parameter values automatically regenerates the model."
+    },
+    {
+      "term": "Parent Feature",
+      "definition": "A feature that provides references (surfaces, edges, datums) used by other features. Modifying a parent automatically updates its children. Deleting a parent may cause its children to fail."
+    },
+    {
+      "term": "Child Feature",
+      "definition": "A feature that depends on references from a parent feature. Child features automatically update when their parent changes. If the parent is deleted, child features may fail."
+    },
+    {
+      "term": "Part",
+      "definition": "A 3D solid model (.prt file) containing features that define its shape. Parts are the basic building blocks and can be used independently or placed in assemblies."
+    },
+    {
+      "term": "Regeneration",
+      "definition": "The process of recalculating the model geometry after a change. Creo regenerates features from top to bottom in the Model Tree order, updating parent-child dependencies."
+    },
+    {
+      "term": "Remove Material",
+      "definition": "An extrude option that creates a cut or pocket by removing material from the existing solid. Used for slots, holes, grooves, and cutouts."
+    },
+    {
+      "term": "Ribbon",
+      "definition": "The context-sensitive toolbar at the top of the Creo Parametric window, organized into tabs (Model, Analysis, Annotate, Render, View) containing groups of related commands."
+    },
+    {
+      "term": "Sketch",
+      "definition": "A 2D cross-section profile created in the Sketcher environment. Sketches define the shape of features like extrudes and revolves. Requires a sketch plane, orientation, and references."
+    },
+    {
+      "term": "Suppress",
+      "definition": "A feature control that temporarily removes a feature from the model geometry, display, and mass calculations. Unlike Hide, suppress affects child features and improves regeneration performance."
+    },
+    {
+      "term": "Symmetric Depth",
+      "definition": "An extrude depth option that extends the feature equally on both sides of the sketch plane. Ensures the feature is centered regardless of sketch plane position."
+    },
+    {
+      "term": "Through All",
+      "definition": "An extrude depth option that extends the feature through the entire existing model geometry. Commonly used for cuts that must pass completely through a part."
+    },
+    {
+      "term": "Working Directory",
+      "definition": "The default folder where Creo looks for and saves files. Should be set at the start of each session to ensure files are organized and accessible."
+    }
+  ]
+}

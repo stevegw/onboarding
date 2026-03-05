@@ -188,12 +188,12 @@
         {
           "id": "creo-mdl1",
           "title": "Fundamentals Modeling 1",
-          "description": "Core 3D modeling fundamentals including sketching, extrusions, and revolutions.",
+          "description": "Core 3D modeling fundamentals including the Creo design process, parametric concepts, the user interface, feature editing, sketching, datums, and extrude features.",
           "pdfFile": "CRFD-MDL1-Training-Guidebook.pdf",
-          "modules": 0,
-          "estimatedHours": 4,
+          "modules": 4,
+          "estimatedHours": 3,
           "locales": ["en"],
-          "comingSoon": true
+          "comingSoon": false
         },
         {
           "id": "creo-mdl2",

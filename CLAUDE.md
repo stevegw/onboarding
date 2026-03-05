@@ -73,7 +73,25 @@ docs/
   pdfs/                           ← Reference PDFs (not served)
 ```
 
-Content blocks types: `heading`, `paragraph`, `callout`, `comparison-table`, `reveal-cards`, `interactive-match`, `interactive-sort`.
+Content block types: `heading`, `paragraph`, `callout`, `comparison-table`, `reveal-cards`, `interactive-match`, `interactive-sort`, `exercise`, `image`.
+
+### Content Block JSON Schemas (Critical)
+
+The renderer in `topic.js` expects **exact property names**. Using wrong keys causes silent failures ("Topic not found"). Always match these schemas — do NOT invent alternative key names:
+
+```
+heading:           { type, level, text }
+paragraph:         { type, text }
+callout:           { type, variant, text }              — variant: "tip"|"info"|"warning"|"insight"
+comparison-table:  { type, headers, rows }              — headers: string[], rows: string[][]
+reveal-cards:      { type, cards }                      — cards: [{ front, back }]
+interactive-match: { type, prompt, pairs }              — pairs: [{ left, right }]
+interactive-sort:  { type, prompt, items }              — items: string[] (correct order; shuffled at render)
+                   ⚠️ The key is "items", NOT "correctOrder" or "options"
+exercise:          { type, exerciseId, title, objective, tasks }
+                   — tasks: [{ id, title, steps: [{ action, detail, hint }] }]
+image:             { type, src, alt, caption, size }
+```
 
 ### State Namespacing
 
@@ -92,10 +110,11 @@ localStorage keys are prefixed per-course:
 
 ## Adding a New Course
 
-1. Create `docs/courses/{course-id}/` with `course.json`, `glossary.json`, `modules/`, `quizzes/`
-2. Add entry to `docs/catalog.json` under the appropriate product family
-3. Set `comingSoon: false` when content is ready
-4. Generate locale content and bundles as needed
+1. Create `docs/courses/{course-id}/` with `course.json`, `glossary.json`, `modules/`, `quizzes/`, `bundles/`
+2. Update **both** `docs/catalog.json` **and** `docs/js/catalog-bundle.js` — the bundle has an embedded copy of the catalog that takes precedence; forgetting it leaves the course grayed out as "Coming Soon"
+3. Set `comingSoon: false`, update `modules` count in both files
+4. Run `cd docs && python build-bundles.py` to generate the JS content bundle
+5. Validate all JSON: `python -m json.tool < file.json`
 
 ## Related Projects
 
@@ -107,4 +126,6 @@ localStorage keys are prefixed per-course:
 
 - **Catalog:** 20 courses across 3 product families (Windchill 12, Codebeamer 4, Creo 4)
 - **wc-ocp1** (Options & Configurable Products 1) — complete with 4 modules, 7 locales
+- **cb-overview** (Codebeamer Fundamentals Overview) — complete with 4 modules, English only
+- **creo-mdl1** (Creo Fundamentals Modeling 1) — complete with 4 modules, English only
 - **All other courses** — `comingSoon: true` in catalog.json; content not yet authored

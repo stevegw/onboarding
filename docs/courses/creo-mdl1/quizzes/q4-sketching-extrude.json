@@ -1,0 +1,71 @@
+{
+  "moduleId": "m4",
+  "title": "Sketching, Datums & Extrude Features Knowledge Check",
+  "questions": [
+    {
+      "id": "m4-kc-001",
+      "question": "What three things must you define when starting a new sketch in Creo?",
+      "options": [
+        "Feature type, material side, and depth",
+        "Sketch plane, sketch orientation, and sketch references",
+        "Line tool, dimension tool, and constraint tool",
+        "Part name, file location, and template"
+      ],
+      "answerIndex": 1,
+      "rationale": "Every sketch in Creo requires three things: a sketch plane (the surface to draw on), sketch orientation (which direction is 'up'), and sketch references (existing edges or datums that dimensions are measured from). These determine how the sketch is positioned relative to the model.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-002",
+      "question": "What happens when you delete a parent feature that has child features depending on it?",
+      "options": [
+        "The child features automatically reroute to different references",
+        "The child features are hidden but remain intact",
+        "The child features may fail because their references no longer exist",
+        "Nothing — child features are independent of parent features"
+      ],
+      "answerIndex": 2,
+      "rationale": "Child features depend on references from their parent features. If a parent is deleted, the references that children depend on are removed, which can cause child features to fail. Always check parent-child relationships using the Reference Viewer before deleting features.",
+      "topic": "m4t3"
+    },
+    {
+      "id": "m4-kc-003",
+      "question": "What does a 'fully constrained' sketch mean in Creo?",
+      "options": [
+        "The sketch has the maximum number of constraints possible",
+        "The sketch has no degrees of freedom — every entity's position and size is determined",
+        "The sketch cannot be modified or edited",
+        "The sketch uses only horizontal and vertical constraints"
+      ],
+      "answerIndex": 1,
+      "rationale": "A fully constrained sketch has zero degrees of freedom remaining — every entity's position and size is completely determined by dimensions and constraints. This is important because an under-constrained sketch can move unexpectedly during regeneration, leading to unpredictable model behavior.",
+      "topic": "m4t4"
+    },
+    {
+      "id": "m4-kc-004",
+      "question": "Which extrude depth type should you use when a cut must pass completely through the entire part?",
+      "options": [
+        "Blind",
+        "Symmetric",
+        "Through All",
+        "To Selected"
+      ],
+      "answerIndex": 2,
+      "rationale": "Through All extends the extrude through the entire existing model geometry. This is ideal for cuts that must pass completely through the part regardless of part thickness. Blind requires a specific depth value, Symmetric extends equally on both sides, and To Selected stops at a specified reference.",
+      "topic": "m4t5"
+    },
+    {
+      "id": "m4-kc-005",
+      "question": "What is the purpose of a centerline in a Creo sketch?",
+      "options": [
+        "It creates a visible edge on the final 3D model",
+        "It is construction geometry used for symmetry axes and revolution axes",
+        "It defines the extrude direction for the feature",
+        "It establishes the depth of the extrude feature"
+      ],
+      "answerIndex": 1,
+      "rationale": "Centerlines are construction geometry — they are not part of the final sketch profile and do not create edges on the 3D model. Their primary uses are as symmetry axes (for symmetric constraints) and as revolution axes (for revolve features). They help capture design intent without adding to the geometry.",
+      "topic": "m4t4"
+    }
+  ]
+}

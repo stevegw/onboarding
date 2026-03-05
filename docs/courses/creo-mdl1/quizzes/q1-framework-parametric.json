@@ -1,0 +1,58 @@
+{
+  "moduleId": "m1",
+  "title": "Modeling Parts Framework & Parametric Concepts Knowledge Check",
+  "questions": [
+    {
+      "id": "m1-kc-001",
+      "question": "What is the correct order of the four phases in the Creo design process?",
+      "options": [
+        "Analyze, Model, Document, Assemble",
+        "Model, Assemble, Document, Analyze",
+        "Document, Model, Assemble, Analyze",
+        "Model, Document, Assemble, Analyze"
+      ],
+      "answerIndex": 1,
+      "rationale": "The Creo design process follows four phases in order: Model (create 3D parts), Assemble (combine parts), Document (generate 2D drawings), and Analyze (validate designs). This sequence reflects the natural progression from individual part creation to final design validation.",
+      "topic": "m1t1"
+    },
+    {
+      "id": "m1-kc-002",
+      "question": "In the model creation process, what should you do BEFORE creating features in Creo?",
+      "options": [
+        "Verify the model against design intent",
+        "Select the extrude tool and start sketching immediately",
+        "Plan the feature sequence, base feature, and sketch references",
+        "Save the file to the working directory"
+      ],
+      "answerIndex": 2,
+      "rationale": "The model creation process follows a Plan-Create-Verify cycle. Planning involves determining the base feature, feature creation order, sketch planes, and parent-child relationships before you start modeling. Experienced designers spend 30-40% of their time in the planning phase.",
+      "topic": "m1t2"
+    },
+    {
+      "id": "m1-kc-003",
+      "question": "Which parametric modeling concept ensures that a change to a part model automatically updates all assemblies and drawings referencing it?",
+      "options": [
+        "Feature-based modeling",
+        "Parent-child relationships",
+        "Design associativity",
+        "Parametric dimensions"
+      ],
+      "answerIndex": 2,
+      "rationale": "Design associativity is the automatic link between related Creo files (parts, assemblies, drawings). When a part dimension changes, every assembly containing that part and every drawing referencing it updates automatically, eliminating manual synchronization.",
+      "topic": "m1t4"
+    },
+    {
+      "id": "m1-kc-004",
+      "question": "What is the correct file extension for a Creo assembly file?",
+      "options": [
+        ".prt",
+        ".drw",
+        ".asm",
+        ".cad"
+      ],
+      "answerIndex": 2,
+      "rationale": "Creo uses .asm for assembly files, .prt for part files, and .drw for drawing files. Assembly files contain a collection of parts and sub-assemblies positioned using placement constraints. The .cad extension is not used by Creo.",
+      "topic": "m1t5"
+    }
+  ]
+}
