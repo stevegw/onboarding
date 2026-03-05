@@ -51,6 +51,7 @@
     topic.content.forEach(function (block, blockIdx) {
       var blockHtml = renderBlock(block, blockIdx);
       if (editMode) {
+        html += '<button class="author-inline-insert" data-topic="' + topic.id + '" data-index="' + blockIdx + '" title="Insert image block here"><span class="author-inline-insert-icon">+</span> Insert here</button>';
         html += '<div class="author-block-wrapper" data-block-index="' + blockIdx + '">';
         html += '<div class="author-block-toolbar">';
         html += '<button class="author-block-action" data-action="up" data-block-index="' + blockIdx + '" title="Move up"' + (blockIdx === 0 ? ' disabled' : '') + '>&#8593;</button>';
@@ -63,6 +64,9 @@
         html += blockHtml;
       }
     });
+    if (editMode) {
+      html += '<button class="author-inline-insert" data-topic="' + topic.id + '" data-index="' + totalBlocks + '" title="Insert image block here"><span class="author-inline-insert-icon">+</span> Insert here</button>';
+    }
     html += '</div>';
 
     // Key takeaways
@@ -415,6 +419,15 @@
           } else if (action === "up" || action === "down") {
             OB.author.moveBlock(topicId, idx, action);
           }
+        });
+      });
+
+      // Inline insert buttons
+      document.querySelectorAll(".author-inline-insert").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var topicId = btn.getAttribute("data-topic");
+          var insertIndex = parseInt(btn.getAttribute("data-index"), 10);
+          OB.author.openModalAt(topicId, insertIndex);
         });
       });
     }

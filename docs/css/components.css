@@ -566,6 +566,32 @@
   background: var(--c-warning-008); color: var(--c-warning);
 }
 
+/* Author inline insert buttons (between content blocks in edit mode) */
+.author-inline-insert {
+  display: flex; align-items: center; gap: 6px;
+  width: 100%; padding: 4px 12px; margin: 2px 0;
+  border: 2px dashed transparent; border-radius: 6px;
+  background: none; cursor: pointer;
+  font-size: 12px; font-family: inherit;
+  color: transparent; transition: all 0.15s;
+}
+.author-inline-insert:hover {
+  border-color: var(--c-info); color: var(--c-info-lighter);
+  background: var(--c-info-004);
+}
+.author-inline-insert .author-inline-insert-icon {
+  font-size: 15px; font-weight: 700;
+}
+
+/* Pre-selected insertion point display in modal */
+.author-preselected-slot {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px; border-radius: 6px;
+  background: var(--c-accent-006); border: 1px solid var(--c-accent-020);
+  font-size: 13px; color: var(--c-accent); font-weight: 600;
+}
+.author-preselected-icon { font-size: 14px; }
+
 /* CJK: disable letter-spacing and uppercase (meaningless for CJK scripts) */
 html[lang="ja"] .module-num, html[lang="zh"] .module-num, html[lang="ko"] .module-num,
 html[lang="ja"] .data-table th, html[lang="zh"] .data-table th, html[lang="ko"] .data-table th,

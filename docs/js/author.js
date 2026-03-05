@@ -86,10 +86,20 @@
 
   /* ---- Modal ---- */
 
-  function openModal() {
+  /**
+   * Open modal with a pre-selected insertion point (called from inline buttons).
+   */
+  function openModalAt(topicId, insertIndex) {
+    selectedSlot = { topicId: topicId, insertIndex: insertIndex };
+    openModal(true);
+  }
+
+  function openModal(hasPreselectedSlot) {
     if (modalEl) return;
 
-    selectedSlot = null;
+    if (!hasPreselectedSlot) {
+      selectedSlot = null;
+    }
     moduleStructure = null;
 
     var html =
@@ -135,10 +145,19 @@
               '</div>' +
             '</div>' +
 
-            /* Insertion point picker */
-            '<div class="author-field">' +
+            /* Insertion point picker (hidden when pre-selected from inline button) */
+            '<div class="author-field" id="author-picker-field">' +
               '<label class="author-label">Insertion Point <span style="color:var(--c-warning)">*</span></label>' +
               '<div class="author-picker-scroll" id="author-picker"></div>' +
+            '</div>' +
+
+            /* Pre-selected insertion info (shown when opened from inline button) */
+            '<div class="author-field" id="author-preselected-info" style="display:none">' +
+              '<label class="author-label">Insertion Point</label>' +
+              '<div class="author-preselected-slot">' +
+                '<span class="author-preselected-icon">&#10003;</span>' +
+                '<span id="author-preselected-label"></span>' +
+              '</div>' +
             '</div>' +
 
             /* Save button */
@@ -181,8 +200,18 @@
 
     saveBtn.addEventListener("click", doSaveAndInsert);
 
-    // Load insertion picker
-    loadInsertionPicker();
+    // Handle pre-selected slot or show picker
+    if (selectedSlot) {
+      document.getElementById("author-picker-field").style.display = "none";
+      var infoEl = document.getElementById("author-preselected-info");
+      infoEl.style.display = "";
+      document.getElementById("author-preselected-label").textContent =
+        "Topic " + selectedSlot.topicId + ", position " + selectedSlot.insertIndex;
+      // Still need moduleFile for save — load it in background
+      loadModuleFileForSlot();
+    } else {
+      loadInsertionPicker();
+    }
   }
 
   function closeModal() {
@@ -246,6 +275,15 @@
   }
 
   /* ---- Insertion Point Picker ---- */
+
+  /** Load moduleFile when slot is pre-selected (no picker needed). */
+  function loadModuleFileForSlot() {
+    var moduleId = selectedSlot.topicId.replace(/t\d+$/, "");
+    getModuleFile(moduleId).then(function (moduleFile) {
+      if (!moduleFile) return;
+      moduleStructure = { _moduleFile: moduleFile };
+    });
+  }
 
   function loadInsertionPicker() {
     var picker = document.getElementById("author-picker");
@@ -509,6 +547,7 @@
   OB.author = {
     init: init,
     isEditMode: isEditMode,
+    openModalAt: openModalAt,
     deleteBlock: deleteBlock,
     moveBlock: moveBlock,
   };

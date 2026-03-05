@@ -46,7 +46,12 @@
         {
           "type": "interactive-sort",
           "prompt": "Arrange the four phases of the Creo design process in their typical order:",
-          "items": ["Model", "Assemble", "Document", "Analyze"]
+          "items": [
+            "Model",
+            "Assemble",
+            "Document",
+            "Analyze"
+          ]
         }
       ],
       "keyTakeaways": [
@@ -71,11 +76,27 @@
         },
         {
           "type": "comparison-table",
-          "headers": ["Step", "Description", "Key Activities"],
+          "headers": [
+            "Step",
+            "Description",
+            "Key Activities"
+          ],
           "rows": [
-            ["Plan", "Determine the design approach before modeling. Analyze the part geometry and decide which features to use and in what order.", "Identify base feature, plan feature sequence, consider parent-child relationships, choose datum references"],
-            ["Create", "Build the model by adding features one at a time. Each feature modifies the solid geometry by adding or removing material.", "Select feature type, define sketch plane, create sketch geometry, set dimensions, specify depth/direction"],
-            ["Verify", "Check the model against design intent. Examine dimensions, geometry, and feature relationships to ensure correctness.", "Review dimensions, check mass properties, inspect feature tree, verify parent-child dependencies"]
+            [
+              "Plan",
+              "Determine the design approach before modeling. Analyze the part geometry and decide which features to use and in what order.",
+              "Identify base feature, plan feature sequence, consider parent-child relationships, choose datum references"
+            ],
+            [
+              "Create",
+              "Build the model by adding features one at a time. Each feature modifies the solid geometry by adding or removing material.",
+              "Select feature type, define sketch plane, create sketch geometry, set dimensions, specify depth/direction"
+            ],
+            [
+              "Verify",
+              "Check the model against design intent. Examine dimensions, geometry, and feature relationships to ensure correctness.",
+              "Review dimensions, check mass properties, inspect feature tree, verify parent-child dependencies"
+            ]
           ]
         },
         {
@@ -127,14 +148,42 @@
         },
         {
           "type": "comparison-table",
-          "headers": ["Component", "Primary Feature Type", "Purpose in Assembly"],
+          "headers": [
+            "Component",
+            "Primary Feature Type",
+            "Purpose in Assembly"
+          ],
           "rows": [
-            ["Tabletop", "Extrude (with cutout)", "Provides the flat work surface and mounting platform for other components"],
-            ["Slider", "Extrude", "Guides the sanding belt along the tabletop surface"],
-            ["Roller Bracket", "Extrude + Rounds", "Supports the rollers that drive the sanding belt"],
-            ["Drive Roller", "Revolve", "Drives the sanding belt using a cylindrical rotation feature"],
-            ["Idler Roller", "Revolve", "Provides tension and guides the sanding belt path"],
-            ["Adjustment Bolt", "Revolve + Helical Sweep", "Allows tension adjustment of the sanding belt"]
+            [
+              "Tabletop",
+              "Extrude (with cutout)",
+              "Provides the flat work surface and mounting platform for other components"
+            ],
+            [
+              "Slider",
+              "Extrude",
+              "Guides the sanding belt along the tabletop surface"
+            ],
+            [
+              "Roller Bracket",
+              "Extrude + Rounds",
+              "Supports the rollers that drive the sanding belt"
+            ],
+            [
+              "Drive Roller",
+              "Revolve",
+              "Drives the sanding belt using a cylindrical rotation feature"
+            ],
+            [
+              "Idler Roller",
+              "Revolve",
+              "Provides tension and guides the sanding belt path"
+            ],
+            [
+              "Adjustment Bolt",
+              "Revolve + Helical Sweep",
+              "Allows tension adjustment of the sanding belt"
+            ]
           ]
         },
         {
@@ -183,6 +232,13 @@
               "back": "Features depend on references from earlier features, creating parent-child relationships. If a parent feature changes, all child features update automatically. If a parent is deleted, child features may fail."
             }
           ]
+        },
+        {
+          "type": "image",
+          "src": "images/dimensions_drive.png",
+          "alt": "Dimensions drive features",
+          "caption": "Dimensions drive features",
+          "size": "medium"
         },
         {
           "type": "callout",
@@ -235,11 +291,27 @@
         },
         {
           "type": "comparison-table",
-          "headers": ["Extension", "Object Type", "Description"],
+          "headers": [
+            "Extension",
+            "Object Type",
+            "Description"
+          ],
           "rows": [
-            [".prt", "Part", "A 3D solid model containing features. Parts are the basic building blocks and can be used independently or in assemblies."],
-            [".asm", "Assembly", "A collection of parts and sub-assemblies positioned using placement constraints. Assemblies define how components fit together."],
-            [".drw", "Drawing", "A 2D engineering drawing generated from 3D parts or assemblies. Contains views, dimensions, and annotations for manufacturing."]
+            [
+              ".prt",
+              "Part",
+              "A 3D solid model containing features. Parts are the basic building blocks and can be used independently or in assemblies."
+            ],
+            [
+              ".asm",
+              "Assembly",
+              "A collection of parts and sub-assemblies positioned using placement constraints. Assemblies define how components fit together."
+            ],
+            [
+              ".drw",
+              "Drawing",
+              "A 2D engineering drawing generated from 3D parts or assemblies. Contains views, dimensions, and annotations for manufacturing."
+            ]
           ]
         },
         {

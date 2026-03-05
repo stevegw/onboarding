@@ -420,6 +420,13 @@
           ]
         },
         {
+          "type": "image",
+          "src": "images/dimensions_drive.png",
+          "alt": "Dimensions drive features",
+          "caption": "Dimensions drive features",
+          "size": "medium"
+        },
+        {
           "type": "callout",
           "variant": "insight",
           "text": "Parametric modeling captures design intent, not just geometry. A hole that is dimensioned as 'centered on the face' will remain centered even when the face size changes. This intelligence distinguishes parametric models from simple geometric shapes."
