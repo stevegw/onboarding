@@ -28,11 +28,31 @@
         },
         {
           "type": "comparison-table",
-          "headers": ["Concept", "What It Contains", "Scope", "Purpose"],
+          "headers": [
+            "Concept",
+            "What It Contains",
+            "Scope",
+            "Purpose"
+          ],
           "rows": [
-            ["Option Pool", "All options, choices, and rules defined for a product context", "Entire product context (all product families)", "Master repository of all configurable features available across the organization's products"],
-            ["Option Set", "A curated subset of options, choices, and rules from the option pool", "Specific product family or configurable product", "Defines the valid configuration vocabulary for a particular product line, including applicable rules"],
-            ["Option Filter", "A specific set of choice selections applied to an option set", "A single configuration instance", "Filters an overloaded product structure down to the parts needed for one specific product variant"]
+            [
+              "Option Pool",
+              "All options, choices, and rules defined for a product context",
+              "Entire product context (all product families)",
+              "Master repository of all configurable features available across the organization's products"
+            ],
+            [
+              "Option Set",
+              "A curated subset of options, choices, and rules from the option pool",
+              "Specific product family or configurable product",
+              "Defines the valid configuration vocabulary for a particular product line, including applicable rules"
+            ],
+            [
+              "Option Filter",
+              "A specific set of choice selections applied to an option set",
+              "A single configuration instance",
+              "Filters an overloaded product structure down to the parts needed for one specific product variant"
+            ]
           ]
         },
         {
@@ -67,10 +87,22 @@
           "type": "interactive-match",
           "prompt": "Match each option set management concept to its description:",
           "pairs": [
-            {"left": "Option Set Versioning", "right": "Tracks changes to the option set over time, creating a history of configuration definitions"},
-            {"left": "Check-In/Check-Out", "right": "Controls concurrent editing by locking the option set while it is being modified"},
-            {"left": "Lifecycle States", "right": "Governs the maturity of the option set (e.g., In Work, Under Review, Released)"},
-            {"left": "Option Manager Role", "right": "The Windchill role responsible for creating and maintaining option sets and their content"}
+            {
+              "left": "Option Set Versioning",
+              "right": "Tracks changes to the option set over time, creating a history of configuration definitions"
+            },
+            {
+              "left": "Check-In/Check-Out",
+              "right": "Controls concurrent editing by locking the option set while it is being modified"
+            },
+            {
+              "left": "Lifecycle States",
+              "right": "Governs the maturity of the option set (e.g., In Work, Under Review, Released)"
+            },
+            {
+              "left": "Option Manager Role",
+              "right": "The Windchill role responsible for creating and maintaining option sets and their content"
+            }
           ]
         }
       ],
@@ -147,7 +179,7 @@
         {
           "type": "interactive-sort",
           "prompt": "Arrange the steps for assigning an option set to a configurable product in the correct order:",
-          "correctOrder": [
+          "items": [
             "Navigate to the configurable product in Windchill",
             "Open the Actions menu and select Assign Option Set",
             "Select the appropriate option set from the available list",
@@ -182,14 +214,42 @@
         },
         {
           "type": "comparison-table",
-          "headers": ["Aspect", "Basic Expression", "Advanced Expression"],
+          "headers": [
+            "Aspect",
+            "Basic Expression",
+            "Advanced Expression"
+          ],
           "rows": [
-            ["Syntax", "Simple choice reference (e.g., Color=Red)", "Includes choices, operators (AND, OR, NOT), and functions"],
-            ["Capability", "Assigns a single choice or a simple list of choices to a part or usage link", "Supports complex logical conditions combining multiple options and choices with Boolean operators"],
-            ["Creo Support", "Passed from Windchill to Creo and supported in both systems", "Remains in Windchill only; NOT passed to Creo"],
-            ["Use Cases", "Straightforward configurations where a part is included when a single choice is selected", "Complex configurations where part inclusion depends on combinations of choices across multiple options"],
-            ["Example", "Motorcycle Type = Off Road", "(Motorcycle Type = Off Road) AND (Engine Size = 1200cc)"],
-            ["Preference Required", "Supported Expressions preference set to Basic or Both", "Supported Expressions preference set to Both"]
+            [
+              "Syntax",
+              "Simple choice reference (e.g., Color=Red)",
+              "Includes choices, operators (AND, OR, NOT), and functions"
+            ],
+            [
+              "Capability",
+              "Assigns a single choice or a simple list of choices to a part or usage link",
+              "Supports complex logical conditions combining multiple options and choices with Boolean operators"
+            ],
+            [
+              "Creo Support",
+              "Passed from Windchill to Creo and supported in both systems",
+              "Remains in Windchill only; NOT passed to Creo"
+            ],
+            [
+              "Use Cases",
+              "Straightforward configurations where a part is included when a single choice is selected",
+              "Complex configurations where part inclusion depends on combinations of choices across multiple options"
+            ],
+            [
+              "Example",
+              "Motorcycle Type = Off Road",
+              "(Motorcycle Type = Off Road) AND (Engine Size = 1200cc)"
+            ],
+            [
+              "Preference Required",
+              "Supported Expressions preference set to Basic or Both",
+              "Supported Expressions preference set to Both"
+            ]
           ]
         },
         {

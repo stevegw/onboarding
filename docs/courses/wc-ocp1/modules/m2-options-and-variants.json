@@ -19,23 +19,87 @@
         },
         {
           "type": "comparison-table",
-          "headers": ["Term", "Category", "Definition"],
+          "headers": [
+            "Term",
+            "Category",
+            "Definition"
+          ],
           "rows": [
-            ["Advanced Expression", "Logic", "Includes choices, operators, and functions. Can be assigned to parts and part usage links to define complex selection criteria."],
-            ["Advanced Selection Logic", "Logic", "Logic for a configurable module using parameters and constraints to guide user input during configuration."],
-            ["Basic Expression", "Logic", "Option choices assignable to parts and usage links to specify when a component is included in a variant."],
-            ["Conditional Rule", "Logic", "IF/THEN statements specifying when choices should be included, turned on, or turned off based on other selections."],
-            ["Configurable Module", "Structure", "A Windchill part with child parts representing design variations. The building block for product variability."],
-            ["Configurable Product Structure", "Structure", "A product structure containing configurable modules that support multiple product variants."],
-            ["Enable Rule", "Logic", "Makes only specific choices appear in the selection list once a target choice is selected."],
-            ["Exclude Rule", "Logic", "Restricts selection of incompatible choices, preventing invalid configurations."],
-            ["Include Rule", "Logic", "Associates selection of one choice to automatically include related choices."],
-            ["Option Filter", "Management", "Criteria used to filter a product structure based on choices assigned to parts."],
-            ["Option Manager", "Management", "A Windchill context role responsible for creating options and choices and maintaining option sets."],
-            ["Parameter", "Logic", "An attribute within a configurable module used for advanced selection logic with constraints."],
-            ["Product Family", "Structure", "A set of related products sharing substantial parts, defined by an option set and a configurable product structure."],
-            ["Variant", "Structure", "A part or structure representing a specific configuration, created during the configure process."],
-            ["Variant Specification", "Management", "A record of user inputs (choices and parameter values) used to generate a specific variant."]
+            [
+              "Advanced Expression",
+              "Logic",
+              "Includes choices, operators, and functions. Can be assigned to parts and part usage links to define complex selection criteria."
+            ],
+            [
+              "Advanced Selection Logic",
+              "Logic",
+              "Logic for a configurable module using parameters and constraints to guide user input during configuration."
+            ],
+            [
+              "Basic Expression",
+              "Logic",
+              "Option choices assignable to parts and usage links to specify when a component is included in a variant."
+            ],
+            [
+              "Conditional Rule",
+              "Logic",
+              "IF/THEN statements specifying when choices should be included, turned on, or turned off based on other selections."
+            ],
+            [
+              "Configurable Module",
+              "Structure",
+              "A Windchill part with child parts representing design variations. The building block for product variability."
+            ],
+            [
+              "Configurable Product Structure",
+              "Structure",
+              "A product structure containing configurable modules that support multiple product variants."
+            ],
+            [
+              "Enable Rule",
+              "Logic",
+              "Makes only specific choices appear in the selection list once a target choice is selected."
+            ],
+            [
+              "Exclude Rule",
+              "Logic",
+              "Restricts selection of incompatible choices, preventing invalid configurations."
+            ],
+            [
+              "Include Rule",
+              "Logic",
+              "Associates selection of one choice to automatically include related choices."
+            ],
+            [
+              "Option Filter",
+              "Management",
+              "Criteria used to filter a product structure based on choices assigned to parts."
+            ],
+            [
+              "Option Manager",
+              "Management",
+              "A Windchill context role responsible for creating options and choices and maintaining option sets."
+            ],
+            [
+              "Parameter",
+              "Logic",
+              "An attribute within a configurable module used for advanced selection logic with constraints."
+            ],
+            [
+              "Product Family",
+              "Structure",
+              "A set of related products sharing substantial parts, defined by an option set and a configurable product structure."
+            ],
+            [
+              "Variant",
+              "Structure",
+              "A part or structure representing a specific configuration, created during the configure process."
+            ],
+            [
+              "Variant Specification",
+              "Management",
+              "A record of user inputs (choices and parameter values) used to generate a specific variant."
+            ]
           ]
         },
         {
@@ -52,10 +116,22 @@
           "type": "interactive-match",
           "prompt": "Match each O&V term to its definition:",
           "pairs": [
-            {"left": "Configurable Module", "right": "A Windchill part with child parts representing design variations"},
-            {"left": "Variant Specification", "right": "A record of user inputs used to generate a specific variant"},
-            {"left": "Exclude Rule", "right": "Restricts selection of incompatible choices"},
-            {"left": "Option Filter", "right": "Criteria to filter product structure based on assigned choices"}
+            {
+              "left": "Configurable Module",
+              "right": "A Windchill part with child parts representing design variations"
+            },
+            {
+              "left": "Variant Specification",
+              "right": "A record of user inputs used to generate a specific variant"
+            },
+            {
+              "left": "Exclude Rule",
+              "right": "Restricts selection of incompatible choices"
+            },
+            {
+              "left": "Option Filter",
+              "right": "Criteria to filter product structure based on assigned choices"
+            }
           ]
         }
       ],
@@ -138,11 +214,27 @@
         },
         {
           "type": "comparison-table",
-          "headers": ["Object", "Role", "Description"],
+          "headers": [
+            "Object",
+            "Role",
+            "Description"
+          ],
           "rows": [
-            ["Configurable Product", "Top-Level End Item", "The top-level product that represents a collection of product variations. It is the entry point for configuration and contains the full overloaded structure."],
-            ["Configurable Module", "Configurable Component", "A configurable component that captures variability at the component level. Represented by an overloaded structure containing all design variations for that section of the product."],
-            ["Module Variant", "Specific Selection", "The specific parts selected from the optional parts within a configurable module, based on selection criteria and choices. Represents one resolved configuration of a module."]
+            [
+              "Configurable Product",
+              "Top-Level End Item",
+              "The top-level product that represents a collection of product variations. It is the entry point for configuration and contains the full overloaded structure."
+            ],
+            [
+              "Configurable Module",
+              "Configurable Component",
+              "A configurable component that captures variability at the component level. Represented by an overloaded structure containing all design variations for that section of the product."
+            ],
+            [
+              "Module Variant",
+              "Specific Selection",
+              "The specific parts selected from the optional parts within a configurable module, based on selection criteria and choices. Represents one resolved configuration of a module."
+            ]
           ]
         },
         {
@@ -162,7 +254,7 @@
         {
           "type": "interactive-sort",
           "prompt": "Arrange the configurable objects from the highest level (broadest) to the lowest level (most specific):",
-          "correctOrder": [
+          "items": [
             "Configurable Product",
             "Configurable Module",
             "Module Variant"
@@ -192,14 +284,42 @@
         },
         {
           "type": "comparison-table",
-          "headers": ["Aspect", "Top-Down (Windchill First)", "Bottom-Up (Creo First)"],
+          "headers": [
+            "Aspect",
+            "Top-Down (Windchill First)",
+            "Bottom-Up (Creo First)"
+          ],
           "rows": [
-            ["Starting Point", "Create the part structure in Windchill first", "Create the configurable product (overloaded assembly) in Creo first"],
-            ["Option Definition", "Create option pool and option set in Windchill, then assign choices to parts", "Open overloaded assembly in Creo, check in to Windchill, then define options and choices in Windchill"],
-            ["Structure Flow", "Generate CAD structure from Windchill structure, propagate to Creo", "Check in Creo assembly to Windchill, designate as configurable product, assign choices"],
-            ["Configuration", "Configure part structure in Windchill using variant spec, then open in Creo", "Configure variant in Creo, check in to Windchill, verify variant structures"],
-            ["Expression Limitation", "Only basic expressions are passed from Windchill to Creo", "Only basic expressions are passed from Windchill to Creo"],
-            ["Best For", "Organizations where PLM drives the product structure", "Organizations where CAD design drives the product structure"]
+            [
+              "Starting Point",
+              "Create the part structure in Windchill first",
+              "Create the configurable product (overloaded assembly) in Creo first"
+            ],
+            [
+              "Option Definition",
+              "Create option pool and option set in Windchill, then assign choices to parts",
+              "Open overloaded assembly in Creo, check in to Windchill, then define options and choices in Windchill"
+            ],
+            [
+              "Structure Flow",
+              "Generate CAD structure from Windchill structure, propagate to Creo",
+              "Check in Creo assembly to Windchill, designate as configurable product, assign choices"
+            ],
+            [
+              "Configuration",
+              "Configure part structure in Windchill using variant spec, then open in Creo",
+              "Configure variant in Creo, check in to Windchill, verify variant structures"
+            ],
+            [
+              "Expression Limitation",
+              "Only basic expressions are passed from Windchill to Creo",
+              "Only basic expressions are passed from Windchill to Creo"
+            ],
+            [
+              "Best For",
+              "Organizations where PLM drives the product structure",
+              "Organizations where CAD design drives the product structure"
+            ]
           ]
         },
         {
@@ -234,10 +354,22 @@
           "type": "interactive-match",
           "prompt": "Match each step to the correct configuration approach:",
           "pairs": [
-            {"left": "Create part structure in Windchill first", "right": "Top-Down"},
-            {"left": "Open overloaded assembly in Creo first", "right": "Bottom-Up"},
-            {"left": "Generate CAD structure from Windchill", "right": "Top-Down"},
-            {"left": "Check in Creo assembly to Windchill, then define options", "right": "Bottom-Up"}
+            {
+              "left": "Create part structure in Windchill first",
+              "right": "Top-Down"
+            },
+            {
+              "left": "Open overloaded assembly in Creo first",
+              "right": "Bottom-Up"
+            },
+            {
+              "left": "Generate CAD structure from Windchill",
+              "right": "Top-Down"
+            },
+            {
+              "left": "Check in Creo assembly to Windchill, then define options",
+              "right": "Bottom-Up"
+            }
           ]
         }
       ],
@@ -294,12 +426,32 @@
         },
         {
           "type": "comparison-table",
-          "headers": ["Role", "Scope", "Capability"],
+          "headers": [
+            "Role",
+            "Scope",
+            "Capability"
+          ],
           "rows": [
-            ["Site Administrator", "Entire Windchill site", "Sets site-wide default preferences that apply to all organizations and products unless overridden."],
-            ["Organization Administrator", "Specific organization", "Can override site-level preferences for their organization. Settings apply to all products within the organization."],
-            ["Product Manager", "Specific product", "Can override organization-level preferences for their product context. Most granular level of control."],
-            ["Library Manager", "Specific library", "Can override preferences for library contexts, controlling O&V behavior for shared library content."]
+            [
+              "Site Administrator",
+              "Entire Windchill site",
+              "Sets site-wide default preferences that apply to all organizations and products unless overridden."
+            ],
+            [
+              "Organization Administrator",
+              "Specific organization",
+              "Can override site-level preferences for their organization. Settings apply to all products within the organization."
+            ],
+            [
+              "Product Manager",
+              "Specific product",
+              "Can override organization-level preferences for their product context. Most granular level of control."
+            ],
+            [
+              "Library Manager",
+              "Specific library",
+              "Can override preferences for library contexts, controlling O&V behavior for shared library content."
+            ]
           ]
         },
         {

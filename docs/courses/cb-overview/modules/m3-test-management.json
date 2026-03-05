@@ -19,16 +19,28 @@
         },
         {
           "type": "comparison-table",
-          "headers": ["Approach", "How It Works", "Limitation"],
+          "headers": [
+            "Approach",
+            "How It Works",
+            "Limitation"
+          ],
           "rows": [
-            ["Standalone test tools", "Tests managed in a separate tool (e.g., spreadsheets, dedicated test tools)", "No direct link to requirements — manual effort to maintain traceability"],
-            ["Integrated ALM testing", "Tests live in the same platform as requirements and development items", "Requires ALM platform adoption — but gains automatic traceability and coverage analysis"]
+            [
+              "Standalone test tools",
+              "Tests managed in a separate tool (e.g., spreadsheets, dedicated test tools)",
+              "No direct link to requirements â€” manual effort to maintain traceability"
+            ],
+            [
+              "Integrated ALM testing",
+              "Tests live in the same platform as requirements and development items",
+              "Requires ALM platform adoption â€” but gains automatic traceability and coverage analysis"
+            ]
           ]
         },
         {
           "type": "callout",
           "variant": "insight",
-          "text": "In regulated industries, demonstrating that every requirement has been tested is not optional — it is a compliance requirement. Integrated test management makes this evidence automatic rather than manually assembled."
+          "text": "In regulated industries, demonstrating that every requirement has been tested is not optional â€” it is a compliance requirement. Integrated test management makes this evidence automatic rather than manually assembled."
         },
         {
           "type": "heading",
@@ -63,13 +75,18 @@
         {
           "type": "interactive-sort",
           "prompt": "Arrange the test management workflow steps in the correct order:",
-          "correctOrder": ["Plan", "Execute", "Report", "Track Defects"]
+          "items": [
+            "Plan",
+            "Execute",
+            "Report",
+            "Track Defects"
+          ]
         }
       ],
       "keyTakeaways": [
         "Codebeamer integrates test management with requirements and development for automatic traceability",
         "Integrated testing provides compliance evidence without manual assembly",
-        "The test workflow is: Plan → Execute → Report → Track Defects",
+        "The test workflow is: Plan â†’ Execute â†’ Report â†’ Track Defects",
         "Bugs discovered during testing are linked back to both the test and the requirement"
       ]
     },
@@ -89,12 +106,32 @@
         },
         {
           "type": "comparison-table",
-          "headers": ["Entity", "Purpose", "Example"],
+          "headers": [
+            "Entity",
+            "Purpose",
+            "Example"
+          ],
           "rows": [
-            ["Test Configuration", "Defines the environment or conditions under which tests are executed", "OS: Windows 11, Browser: Chrome 120, Database: PostgreSQL 15"],
-            ["Test Case", "Describes what to test, including steps and expected results", "Verify login with valid credentials: enter username, enter password, click Login, verify dashboard loads"],
-            ["Test Run", "A specific execution of test cases against a configuration", "Sprint 3 Regression — run all login test cases on the Windows 11 + Chrome configuration"],
-            ["Test Set", "A collection of test cases grouped for a specific purpose", "Smoke Tests, Regression Suite, Performance Tests"]
+            [
+              "Test Configuration",
+              "Defines the environment or conditions under which tests are executed",
+              "OS: Windows 11, Browser: Chrome 120, Database: PostgreSQL 15"
+            ],
+            [
+              "Test Case",
+              "Describes what to test, including steps and expected results",
+              "Verify login with valid credentials: enter username, enter password, click Login, verify dashboard loads"
+            ],
+            [
+              "Test Run",
+              "A specific execution of test cases against a configuration",
+              "Sprint 3 Regression â€” run all login test cases on the Windows 11 + Chrome configuration"
+            ],
+            [
+              "Test Set",
+              "A collection of test cases grouped for a specific purpose",
+              "Smoke Tests, Regression Suite, Performance Tests"
+            ]
           ]
         },
         {
@@ -136,10 +173,22 @@
           "type": "interactive-match",
           "prompt": "Match each test entity to its role:",
           "pairs": [
-            {"left": "Test Configuration", "right": "Defines the environment for test execution"},
-            {"left": "Test Case", "right": "Describes steps and expected results for a specific test"},
-            {"left": "Test Run", "right": "Records actual pass/fail results from executing tests"},
-            {"left": "Test Set", "right": "Groups related test cases for organizational purposes"}
+            {
+              "left": "Test Configuration",
+              "right": "Defines the environment for test execution"
+            },
+            {
+              "left": "Test Case",
+              "right": "Describes steps and expected results for a specific test"
+            },
+            {
+              "left": "Test Run",
+              "right": "Records actual pass/fail results from executing tests"
+            },
+            {
+              "left": "Test Set",
+              "right": "Groups related test cases for organizational purposes"
+            }
           ]
         }
       ],
@@ -181,7 +230,7 @@
                   "hint": "Find the Test Configurations tracker in the Trackers section."
                 },
                 {
-                  "action": "Create a new test configuration named 'Standard Test Bench — Firmware v2.1'.",
+                  "action": "Create a new test configuration named 'Standard Test Bench â€” Firmware v2.1'.",
                   "detail": "The configuration name should clearly identify the test environment. Include key parameters like firmware version, hardware model, or operating conditions.",
                   "hint": "Click the 'New Item' button in the Test Configurations tracker."
                 },
@@ -202,7 +251,7 @@
                   "hint": "Click the 'New Item' button in the Test Cases tracker."
                 },
                 {
-                  "action": "Add test steps with actions and expected results. For example: Step 1 — Fully charge battery, expected: Charge indicator shows 100%. Step 2 — Run discharge test, expected: Usable capacity ≥ 75 kWh.",
+                  "action": "Add test steps with actions and expected results. For example: Step 1 â€” Fully charge battery, expected: Charge indicator shows 100%. Step 2 â€” Run discharge test, expected: Usable capacity â‰¥ 75 kWh.",
                   "detail": "Each test step should have a clear action (what the tester does) and an expected result (what should happen). This makes tests repeatable and results unambiguous.",
                   "hint": "Look for an 'Add Step' or 'Test Steps' section in the test case form."
                 },
@@ -249,7 +298,7 @@
               "title": "Create and Execute a Test Run",
               "steps": [
                 {
-                  "action": "Navigate to the Test Runs tracker and create a new test run. Assign it the test configuration you created ('Standard Test Bench — Firmware v2.1').",
+                  "action": "Navigate to the Test Runs tracker and create a new test run. Assign it the test configuration you created ('Standard Test Bench â€” Firmware v2.1').",
                   "detail": "A test run is an instance of executing a set of test cases in a specific configuration. It captures the actual results for each test step.",
                   "hint": "Click 'New Item' in the Test Runs tracker. Select the test configuration from the available options."
                 },
@@ -275,7 +324,7 @@
                 },
                 {
                   "action": "Verify the bug appears in the Bugs tracker and has associations back to the test case and the original requirement.",
-                  "detail": "The traceability chain is now complete: Customer Requirement → System Requirement → Test Case → Test Run (Failed) → Bug. This chain makes it clear which customer need is impacted by this defect.",
+                  "detail": "The traceability chain is now complete: Customer Requirement â†’ System Requirement â†’ Test Case â†’ Test Run (Failed) â†’ Bug. This chain makes it clear which customer need is impacted by this defect.",
                   "hint": "Open the bug and check its Associations section."
                 }
               ]

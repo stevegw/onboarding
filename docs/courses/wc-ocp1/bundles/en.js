@@ -1056,7 +1056,7 @@
         {
           "type": "interactive-sort",
           "prompt": "Arrange the configurable objects from the highest level (broadest) to the lowest level (most specific):",
-          "correctOrder": [
+          "items": [
             "Configurable Product",
             "Configurable Module",
             "Module Variant"
@@ -1870,7 +1870,7 @@
         {
           "type": "interactive-sort",
           "prompt": "Arrange the steps for assigning an option set to a configurable product in the correct order:",
-          "correctOrder": [
+          "items": [
             "Navigate to the configurable product in Windchill",
             "Open the Actions menu and select Assign Option Set",
             "Select the appropriate option set from the available list",
