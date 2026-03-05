@@ -129,9 +129,9 @@
     // Load course data first, then render
     OB.content.getCourse().then(function (course) {
       // Also preload module content for progress tracking
-      OB.content.loadAllModules().then(function () {
+      OB.content.loadAllModules().then(function (allModules) {
         // Update sidebar
-        OB.sidebar.render(course, hash);
+        OB.sidebar.render(course, hash, allModules);
 
         // Route to view
         switch (view) {

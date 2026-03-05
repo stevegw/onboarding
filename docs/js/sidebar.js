@@ -58,7 +58,16 @@
   /**
    * Render sidebar for course mode (course selected).
    */
-  function render(course, activeRoute) {
+  function render(course, activeRoute, allModules) {
+    // Build topic title lookup from loaded module content
+    var topicTitles = {};
+    if (allModules) {
+      allModules.forEach(function (mod) {
+        if (mod && mod.topics) {
+          mod.topics.forEach(function (t) { topicTitles[t.id] = t.title; });
+        }
+      });
+    }
     var nav = document.getElementById("nav");
     if (!nav) return;
 
@@ -115,7 +124,11 @@
           var isExercise = ti >= exStart;
           html += '<div class="sb-nav-item' + (isTopicActive ? " active" : "") + '" data-route="' + topicRoute + '">';
           html += '<span class="nav-check' + (isDone ? " done" : "") + '">&#10003;</span>';
-          if (isExercise) {
+          var topicTitle = topicTitles[topicId];
+          if (topicTitle) {
+            var prefix = isExercise ? '&#128295; ' : '';
+            html += '<span class="nav-label">' + prefix + OB.ui.esc(topicTitle) + '</span>';
+          } else if (isExercise) {
             html += '<span class="nav-label">&#128295; ' + t("sidebar.exerciseLabel", { num: ti - exStart + 1 }) + '</span>';
           } else {
             html += '<span class="nav-label">' + t("sidebar.topicLabel", { mod: modNum, topic: ti }) + '</span>';
