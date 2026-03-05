@@ -6,6 +6,9 @@ Thumbs.db
 docs/*.pdf
 docs/pdfs/
 
+# Python
+__pycache__/
+
 # Local tool config
 .agents/
 .claude/

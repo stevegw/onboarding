@@ -97,6 +97,11 @@
    */
   function loadCourseBundle(courseId) {
     if (!courseId) return Promise.resolve();
+
+    // In author/edit mode, skip bundles so content always comes from fetch()
+    var params = new URLSearchParams(window.location.search);
+    if (params.get("edit") === "true") return Promise.resolve();
+
     var locale = currentLocale;
 
     // Load English bundle for the course

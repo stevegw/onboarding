@@ -9,6 +9,11 @@
 
   var OB = window.OB = window.OB || {};
 
+  function getCurrentTopicId() {
+    var m = (window.location.hash || "#/").match(/^#\/topic\/(.+)$/);
+    return m ? m[1] : null;
+  }
+
   function render(moduleData, topicId) {
     var meta = moduleData.meta;
     var content = moduleData.content;
@@ -40,9 +45,23 @@
     html += '</div>';
 
     // Content blocks
+    var editMode = OB.author && OB.author.isEditMode && OB.author.isEditMode();
+    var totalBlocks = topic.content.length;
     html += '<div class="topic-content">';
     topic.content.forEach(function (block, blockIdx) {
-      html += renderBlock(block, blockIdx);
+      var blockHtml = renderBlock(block, blockIdx);
+      if (editMode) {
+        html += '<div class="author-block-wrapper" data-block-index="' + blockIdx + '">';
+        html += '<div class="author-block-toolbar">';
+        html += '<button class="author-block-action" data-action="up" data-block-index="' + blockIdx + '" title="Move up"' + (blockIdx === 0 ? ' disabled' : '') + '>&#8593;</button>';
+        html += '<button class="author-block-action" data-action="down" data-block-index="' + blockIdx + '" title="Move down"' + (blockIdx === totalBlocks - 1 ? ' disabled' : '') + '>&#8595;</button>';
+        html += '<button class="author-block-action" data-action="delete" data-block-index="' + blockIdx + '" title="Delete block">&#10005;</button>';
+        html += '</div>';
+        html += blockHtml;
+        html += '</div>';
+      } else {
+        html += blockHtml;
+      }
     });
     html += '</div>';
 
@@ -125,6 +144,17 @@
 
       case "exercise":
         return renderExerciseBlock(block, idx);
+
+      case "image":
+        var imgSrc = "courses/" + OB.content.getCourseId() + "/" + block.src;
+        var sizeClass = block.size ? " image-block-" + block.size : "";
+        var figHtml = '<figure class="image-block' + sizeClass + '">';
+        figHtml += '<img src="' + esc(imgSrc) + '" alt="' + esc(block.alt || '') + '" loading="lazy">';
+        if (block.caption) {
+          figHtml += '<figcaption>' + esc(block.caption) + '</figcaption>';
+        }
+        figHtml += '</figure>';
+        return figHtml;
 
       default:
         return '';
@@ -370,6 +400,24 @@
         step.classList.toggle("expanded");
       });
     });
+
+    // Author mode block toolbar actions
+    if (OB.author && OB.author.isEditMode && OB.author.isEditMode()) {
+      document.querySelectorAll(".author-block-action").forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          var action = btn.getAttribute("data-action");
+          var idx = parseInt(btn.getAttribute("data-block-index"), 10);
+          var topicId = getCurrentTopicId();
+          if (!topicId) return;
+          if (action === "delete") {
+            OB.author.deleteBlock(topicId, idx);
+          } else if (action === "up" || action === "down") {
+            OB.author.moveBlock(topicId, idx, action);
+          }
+        });
+      });
+    }
 
     // Sort drag-and-drop
     document.querySelectorAll(".sort-container").forEach(function (container) {

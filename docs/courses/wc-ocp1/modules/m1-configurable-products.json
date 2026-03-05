@@ -19,13 +19,37 @@
         },
         {
           "type": "comparison-table",
-          "headers": ["Strategy", "Description", "Example"],
+          "headers": [
+            "Strategy",
+            "Description",
+            "Example"
+          ],
           "rows": [
-            ["Assemble-to-Order", "Design products with a finite list of discrete option choices for key features. Manufacturing executes without product development involvement.", "Passenger vehicles, heavy equipment, computers"],
-            ["Assemble-to-Stock", "Design a general product with several discrete variations composed of minor changes in features.", "Consumer products in multiple colors and sizes (clothing, appliances)"],
-            ["Configure-to-Order", "Design flexible products that can be configured or customized to fit unique customer needs using a configurator with rules.", "Industrial equipment, enterprise software with interdependent options"],
-            ["Engineer-to-Order", "Like configure-to-order, but requires engineering team involvement for validation and custom design per order.", "Complex systems (turbines, aircraft components) requiring engineering review"],
-            ["Contract", "Fully custom design and manufacture per customer specifications. Unique product per contract.", "One-off designs -- defense systems, custom infrastructure"]
+            [
+              "Assemble-to-Order",
+              "Design products with a finite list of discrete option choices for key features. Manufacturing executes without product development involvement.",
+              "Passenger vehicles, heavy equipment, computers"
+            ],
+            [
+              "Assemble-to-Stock",
+              "Design a general product with several discrete variations composed of minor changes in features.",
+              "Consumer products in multiple colors and sizes (clothing, appliances)"
+            ],
+            [
+              "Configure-to-Order",
+              "Design flexible products that can be configured or customized to fit unique customer needs using a configurator with rules.",
+              "Industrial equipment, enterprise software with interdependent options"
+            ],
+            [
+              "Engineer-to-Order",
+              "Like configure-to-order, but requires engineering team involvement for validation and custom design per order.",
+              "Complex systems (turbines, aircraft components) requiring engineering review"
+            ],
+            [
+              "Contract",
+              "Fully custom design and manufacture per customer specifications. Unique product per contract.",
+              "One-off designs -- defense systems, custom infrastructure"
+            ]
           ]
         },
         {
@@ -37,10 +61,22 @@
           "type": "interactive-match",
           "prompt": "Match each scenario to the correct business strategy:",
           "pairs": [
-            {"left": "A car manufacturer offers packages with predefined options like Sport, Luxury, and Base", "right": "Assemble-to-Order"},
-            {"left": "A turbine company designs each product with engineering review for customer specs", "right": "Engineer-to-Order"},
-            {"left": "A clothing brand produces shirts in 5 colors and 4 sizes", "right": "Assemble-to-Stock"},
-            {"left": "A defense contractor builds a unique radar system for a military contract", "right": "Contract"}
+            {
+              "left": "A car manufacturer offers packages with predefined options like Sport, Luxury, and Base",
+              "right": "Assemble-to-Order"
+            },
+            {
+              "left": "A turbine company designs each product with engineering review for customer specs",
+              "right": "Engineer-to-Order"
+            },
+            {
+              "left": "A clothing brand produces shirts in 5 colors and 4 sizes",
+              "right": "Assemble-to-Stock"
+            },
+            {
+              "left": "A defense contractor builds a unique radar system for a military contract",
+              "right": "Contract"
+            }
           ]
         }
       ],
@@ -147,12 +183,27 @@
         },
         {
           "type": "comparison-table",
-          "headers": ["Practice", "Description"],
+          "headers": [
+            "Practice",
+            "Description"
+          ],
           "rows": [
-            ["Modular Product Structure", "Decompose the product into modular sections supporting specific functions. Modules may be shared across products."],
-            ["Overloaded Product Structure", "Sections of the structure contain multiple designs to satisfy different capability levels for that function."],
-            ["Option Management", "Define options and choices to identify variable features. Assign choices to designs in overloaded sections to control selection."],
-            ["Order Structure", "A part structure with no additional options, reflecting a specific sales order. Analyzed, tested, and validated."]
+            [
+              "Modular Product Structure",
+              "Decompose the product into modular sections supporting specific functions. Modules may be shared across products."
+            ],
+            [
+              "Overloaded Product Structure",
+              "Sections of the structure contain multiple designs to satisfy different capability levels for that function."
+            ],
+            [
+              "Option Management",
+              "Define options and choices to identify variable features. Assign choices to designs in overloaded sections to control selection."
+            ],
+            [
+              "Order Structure",
+              "A part structure with no additional options, reflecting a specific sales order. Analyzed, tested, and validated."
+            ]
           ]
         },
         {
@@ -183,10 +234,22 @@
         },
         {
           "type": "comparison-table",
-          "headers": ["Business Approach", "Windchill Capability", "How It Works"],
+          "headers": [
+            "Business Approach",
+            "Windchill Capability",
+            "How It Works"
+          ],
           "rows": [
-            ["Assemble-to-Order / Assemble-to-Stock", "Options and Choices for filtering", "Options and choices filter an overloaded product structure. Orders typically created via external sales configurator (ATO) or in Windchill (ATS)."],
-            ["Configure-to-Order / Engineer-to-Order", "List-based options + parameters", "List-based options filter the structure, while parameters provide advanced selection logic for additional configuration."]
+            [
+              "Assemble-to-Order / Assemble-to-Stock",
+              "Options and Choices for filtering",
+              "Options and choices filter an overloaded product structure. Orders typically created via external sales configurator (ATO) or in Windchill (ATS)."
+            ],
+            [
+              "Configure-to-Order / Engineer-to-Order",
+              "List-based options + parameters",
+              "List-based options filter the structure, while parameters provide advanced selection logic for additional configuration."
+            ]
           ]
         },
         {
@@ -228,10 +291,22 @@
           "type": "interactive-match",
           "prompt": "Match each Windchill capability to its primary purpose:",
           "pairs": [
-            {"left": "Options and Choices", "right": "Filter overloaded structures using discrete selections"},
-            {"left": "Parameters", "right": "Provide advanced selection logic with constraints"},
-            {"left": "Variant Specification", "right": "Record the inputs used to generate a specific variant"},
-            {"left": "Configurable Module", "right": "Designate product sections with multiple design variations"}
+            {
+              "left": "Options and Choices",
+              "right": "Filter overloaded structures using discrete selections"
+            },
+            {
+              "left": "Parameters",
+              "right": "Provide advanced selection logic with constraints"
+            },
+            {
+              "left": "Variant Specification",
+              "right": "Record the inputs used to generate a specific variant"
+            },
+            {
+              "left": "Configurable Module",
+              "right": "Designate product sections with multiple design variations"
+            }
           ]
         }
       ],
@@ -250,6 +325,13 @@
         {
           "type": "paragraph",
           "text": "In this exercise, you will explore the PTC Motorcycle product in Windchill to understand how option pools, options, choices, and product structures are organized. You will navigate the Option Pool, examine existing options and their choices, and browse the product structure to identify configurable modules."
+        },
+        {
+          "type": "image",
+          "src": "images/exercise1-1.png",
+          "alt": "Bike Structure tab",
+          "caption": "Bike Structure tab",
+          "size": "medium"
         },
         {
           "type": "callout",

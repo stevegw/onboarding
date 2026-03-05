@@ -18,6 +18,8 @@
   var courseData = null;
   var catalogData = null;
   var currentCourseId = null;
+  var isEditMode = new URLSearchParams(window.location.search).get("edit") === "true";
+  var cacheBuster = isEditMode ? "?_t=" + Date.now() : "";
 
   /**
    * Set the active course. Resets cache and courseData.
@@ -61,29 +63,31 @@
     // Check cache first (locale-specific path)
     if (cache[localePath]) return Promise.resolve(cache[localePath]);
 
-    // Try locale-specific bundle
-    var localeBundle = getLocaleBundle(locale);
-    if (localeBundle && localeBundle[path]) {
-      cache[localePath] = localeBundle[path];
-      return Promise.resolve(cache[localePath]);
-    }
-
-    // Try main bundle (English)
-    var enBundle = OB._courseBundle;
-    if (enBundle && enBundle[path]) {
-      if (locale === "en") {
-        cache[path] = enBundle[path];
-        return Promise.resolve(cache[path]);
+    if (!isEditMode) {
+      // Try locale-specific bundle
+      var localeBundle = getLocaleBundle(locale);
+      if (localeBundle && localeBundle[path]) {
+        cache[localePath] = localeBundle[path];
+        return Promise.resolve(cache[localePath]);
       }
-      // Non-English: use English bundle as fallback
-      cache[localePath] = enBundle[path];
-      return Promise.resolve(cache[localePath]);
+
+      // Try main bundle (English)
+      var enBundle = OB._courseBundle;
+      if (enBundle && enBundle[path]) {
+        if (locale === "en") {
+          cache[path] = enBundle[path];
+          return Promise.resolve(cache[path]);
+        }
+        // Non-English: use English bundle as fallback
+        cache[localePath] = enBundle[path];
+        return Promise.resolve(cache[localePath]);
+      }
     }
 
-    // Fall back to fetch (works on HTTP) — resolve against course dir
+    // Fetch from server — resolve against course dir
     var base = courseBase();
     if (locale !== "en") {
-      return fetch(base + localePath)
+      return fetch(base + localePath + cacheBuster)
         .then(function (res) {
           if (!res.ok) throw new Error("Not found");
           return res.json();
@@ -94,7 +98,7 @@
         })
         .catch(function () {
           // Fallback to English
-          return fetch(base + path)
+          return fetch(base + path + cacheBuster)
             .then(function (res) {
               if (!res.ok) throw new Error("Failed to load " + path + ": " + res.status);
               return res.json();
@@ -106,7 +110,7 @@
         });
     }
 
-    return fetch(base + path)
+    return fetch(base + path + cacheBuster)
       .then(function (res) {
         if (!res.ok) throw new Error("Failed to load " + path + ": " + res.status);
         return res.json();
@@ -200,5 +204,12 @@
     getAllTopicIds: getAllTopicIds,
     loadAllModules: loadAllModules,
     loadCatalog: loadCatalog,
+    clearCache: function () {
+      cache = {};
+      courseData = null;
+      cacheBuster = "?_t=" + Date.now();
+      // Clear embedded bundles so loadJSON falls through to fetch
+      OB._courseBundle = null;
+    },
   };
 })();

@@ -46,6 +46,7 @@
     // Init subsystems
     OB.theme.init();
     OB.notepad.init();
+    if (OB.author) OB.author.init();
 
     var courseId = getCourseParam();
 
