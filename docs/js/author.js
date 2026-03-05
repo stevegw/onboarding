@@ -51,10 +51,9 @@
     return null;
   }
 
-  /** Check if FAB should be visible (topic or module routes only) */
+  /** Check if FAB should be visible (any course route in edit mode) */
   function shouldShowFab() {
-    var hash = getCurrentHash();
-    return /^#\/topic\//.test(hash) || /^#\/module\//.test(hash);
+    return !!getCourseId();
   }
 
   /** Get the moduleFile for the current module from course.json */

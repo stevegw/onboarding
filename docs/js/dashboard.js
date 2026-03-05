@@ -69,6 +69,12 @@
           html += '</div>';
         }
 
+        // Author mode link
+        if (!isComingSoon) {
+          var editUrl = window.location.origin + window.location.pathname + '?course=' + course.id + '&edit=true';
+          html += '<a class="catalog-author-link" href="' + editUrl + '" target="_blank" title="Open in author mode">&#9998; Author</a>';
+        }
+
         html += '</div>';
       });
       html += '</div>';
@@ -76,6 +82,13 @@
     });
 
     OB.ui.setMain(html);
+
+    // Stop author link clicks from triggering card navigation
+    document.querySelectorAll(".catalog-author-link").forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        e.stopPropagation();
+      });
+    });
 
     // Bind card clicks
     document.querySelectorAll("[data-course]").forEach(function (el) {
