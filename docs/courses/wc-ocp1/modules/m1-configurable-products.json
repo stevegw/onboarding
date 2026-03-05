@@ -442,6 +442,13 @@
           "text": "In this exercise, you will create a new option called Motorcycle Type with two choices, add a new choice to the existing Saddle Bag Location option, and designate a part as a Configurable Module and End Item. These tasks demonstrate how to extend an existing product's configurability."
         },
         {
+          "type": "image",
+          "src": "images/exercise2.png",
+          "alt": "Option preferences",
+          "caption": "Option preferences",
+          "size": "medium"
+        },
+        {
           "type": "callout",
           "variant": "warning",
           "text": "This exercise modifies the product configuration. Follow the steps carefully and use the exact names specified to ensure consistency with later exercises."

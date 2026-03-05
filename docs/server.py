@@ -545,7 +545,10 @@ def main():
     server = http.server.HTTPServer(("", PORT), DevHandler)
     print(f"[OB] Dev server running at http://localhost:{PORT}")
     print(f"[OB] Serving from: {os.getcwd()}")
-    print(f"[OB] API endpoints: /api/module-structure, /api/image, /api/content-block (POST/DELETE/PATCH)")
+    print(f"[OB]")
+    print(f"[OB]   View:  http://localhost:{PORT}?course=wc-ocp1")
+    print(f"[OB]   Edit:  http://localhost:{PORT}?course=wc-ocp1&edit=true")
+    print(f"[OB]")
     print(f"[OB] Press Ctrl+C to stop")
     try:
         server.serve_forever()
