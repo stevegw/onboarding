@@ -18,6 +18,41 @@
       .replace(/"/g, "&quot;");
   }
 
+  function safeHtml(str) {
+    if (str == null) return "";
+    str = String(str);
+    if (str.indexOf("<") === -1) return esc(str);
+    var doc = new DOMParser().parseFromString(str, "text/html");
+    return walkNodes(doc.body);
+  }
+
+  function walkNodes(parent) {
+    var out = "";
+    var child = parent.firstChild;
+    while (child) {
+      if (child.nodeType === 3) {
+        out += esc(child.textContent);
+      } else if (child.nodeType === 1) {
+        var tag = child.nodeName.toLowerCase();
+        if (tag === "b") tag = "strong";
+        if (tag === "i") tag = "em";
+        if (tag === "strong" || tag === "em" || tag === "code") {
+          out += "<" + tag + ">" + walkNodes(child) + "</" + tag + ">";
+        } else if (tag === "br") {
+          out += "<br>";
+        } else if (tag === "div" || tag === "p") {
+          var inner = walkNodes(child);
+          if (inner && out) out += "<br>";
+          out += inner;
+        } else {
+          out += walkNodes(child);
+        }
+      }
+      child = child.nextSibling;
+    }
+    return out;
+  }
+
   function $(selector) {
     return document.querySelector(selector);
   }
@@ -63,6 +98,7 @@
 
   OB.ui = {
     esc: esc,
+    safeHtml: safeHtml,
     $: $,
     $$: $$,
     el: el,

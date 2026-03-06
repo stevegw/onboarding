@@ -268,6 +268,13 @@
 .image-block-medium img { max-width: 560px; }
 .image-block-small img { max-width: 360px; }
 
+/* Inline code in rendered content */
+.topic-content code {
+  font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+  font-size: 0.9em; background: var(--c-bg-surface-active);
+  padding: 1px 5px; border-radius: 3px;
+}
+
 /* ============================================================
    Author Mode — FAB + Modal
    ============================================================ */
@@ -634,6 +641,20 @@
   transition: border-color 0.15s;
 }
 .author-textarea:focus { border-color: var(--c-info); }
+
+/* Rich text editor */
+.author-rich-editor { border: 1px solid var(--c-border); border-radius: 6px; overflow: hidden; }
+.author-rich-editor:focus-within { border-color: var(--c-info); }
+.author-rich-toolbar { display: flex; gap: 2px; padding: 4px 6px; background: var(--c-bg-surface); border-bottom: 1px solid var(--c-border); }
+.author-rich-btn { width: 30px; height: 28px; border: 1px solid transparent; border-radius: 4px; background: transparent; color: var(--c-text-muted); cursor: pointer; font-size: 13px; font-family: inherit; display: flex; align-items: center; justify-content: center; }
+.author-rich-btn:hover { background: var(--c-bg-surface-hover); color: var(--c-text); }
+.author-rich-btn.active { background: var(--c-info-008); border-color: var(--c-info-020); color: var(--c-info-lighter); }
+.author-rich-bold { font-weight: 700; }
+.author-rich-italic { font-style: italic; font-family: Georgia, "Times New Roman", serif; }
+.author-rich-code { font-family: "SF Mono", "Fira Code", "Consolas", monospace; font-size: 11px; letter-spacing: -0.5px; }
+.author-rich-area { padding: 8px 12px; background: var(--c-bg-main); color: var(--c-text); font-size: 13px; font-family: inherit; line-height: 1.6; outline: none; }
+.author-rich-area:empty::before { content: attr(data-placeholder); color: var(--c-text-dim); }
+.author-rich-area code { font-family: "SF Mono", "Fira Code", "Consolas", monospace; font-size: 0.9em; background: var(--c-bg-surface-active); padding: 1px 5px; border-radius: 3px; }
 
 .author-edit-btn { color: var(--c-info) !important; }
 .author-edit-btn:hover { background: var(--c-info-008) !important; color: var(--c-info-lighter) !important; }

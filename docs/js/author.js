@@ -868,13 +868,169 @@
     });
   }
 
+  /* ---- Rich Text Editor ---- */
+
+  function buildRichEditor(id, content, rows, attrs, placeholder) {
+    var minH = Math.max(24, (rows || 3) * 24);
+    var attrStr = attrs ? " " + attrs : "";
+    var ph = OB.ui.esc(placeholder || "Enter text...");
+    return '<div class="author-rich-editor" id="' + id + '-wrapper">' +
+      '<div class="author-rich-toolbar">' +
+        '<button class="author-rich-btn author-rich-bold" data-cmd="bold" title="Bold (Ctrl+B)">B</button>' +
+        '<button class="author-rich-btn author-rich-italic" data-cmd="italic" title="Italic (Ctrl+I)">I</button>' +
+        '<button class="author-rich-btn author-rich-code" data-cmd="code" title="Code (Ctrl+E)">{&thinsp;}</button>' +
+      '</div>' +
+      '<div class="author-rich-area" id="' + id + '" contenteditable="true" data-placeholder="' + ph + '"' + attrStr + ' style="min-height:' + minH + 'px">' +
+        (content || '') +
+      '</div>' +
+    '</div>';
+  }
+
+  function initRichEditor(id) {
+    var wrapper = document.getElementById(id + "-wrapper");
+    var area = document.getElementById(id);
+    if (!wrapper || !area) return;
+
+    // Toolbar button clicks
+    wrapper.querySelectorAll(".author-rich-btn").forEach(function (btn) {
+      btn.addEventListener("mousedown", function (e) {
+        e.preventDefault(); // keep selection in contenteditable
+        var cmd = btn.getAttribute("data-cmd");
+        if (cmd === "bold") document.execCommand("bold", false, null);
+        else if (cmd === "italic") document.execCommand("italic", false, null);
+        else if (cmd === "code") toggleInlineCode(area);
+        updateToolbarState(wrapper, area);
+      });
+    });
+
+    // Keyboard shortcuts
+    area.addEventListener("keydown", function (e) {
+      if ((e.ctrlKey || e.metaKey) && e.key === "e") {
+        e.preventDefault();
+        toggleInlineCode(area);
+        updateToolbarState(wrapper, area);
+      }
+    });
+
+    // Paste sanitization
+    area.addEventListener("paste", function (e) {
+      e.preventDefault();
+      var html = e.clipboardData.getData("text/html");
+      var text = e.clipboardData.getData("text/plain");
+      var clean = html ? OB.ui.safeHtml(html) : OB.ui.esc(text).replace(/\n/g, "<br>");
+      document.execCommand("insertHTML", false, clean);
+    });
+
+    // Track selection for active button states
+    document.addEventListener("selectionchange", function () {
+      if (document.activeElement === area) {
+        updateToolbarState(wrapper, area);
+      }
+    });
+  }
+
+  function toggleInlineCode(area) {
+    var sel = window.getSelection();
+    if (!sel.rangeCount) return;
+    var range = sel.getRangeAt(0);
+
+    // Check if cursor/selection is inside a <code> element
+    var node = sel.anchorNode;
+    var codeEl = null;
+    while (node && node !== area) {
+      if (node.nodeType === 1 && node.nodeName.toLowerCase() === "code") {
+        codeEl = node;
+        break;
+      }
+      node = node.parentNode;
+    }
+
+    if (codeEl) {
+      // Unwrap: replace <code> with its text content
+      var text = document.createTextNode(codeEl.textContent);
+      codeEl.parentNode.replaceChild(text, codeEl);
+      var r = document.createRange();
+      r.selectNodeContents(text);
+      sel.removeAllRanges();
+      sel.addRange(r);
+    } else if (!range.collapsed) {
+      // Wrap selection in <code>
+      var code = document.createElement("code");
+      try {
+        range.surroundContents(code);
+      } catch (ex) {
+        // If selection spans multiple elements, use execCommand fallback
+        var fragment = range.extractContents();
+        code.appendChild(fragment);
+        range.insertNode(code);
+      }
+      sel.removeAllRanges();
+      var newRange = document.createRange();
+      newRange.selectNodeContents(code);
+      sel.addRange(newRange);
+    }
+  }
+
+  function updateToolbarState(wrapper, area) {
+    wrapper.querySelectorAll(".author-rich-btn").forEach(function (btn) {
+      var cmd = btn.getAttribute("data-cmd");
+      var active = false;
+      if (cmd === "bold") active = document.queryCommandState("bold");
+      else if (cmd === "italic") active = document.queryCommandState("italic");
+      else if (cmd === "code") {
+        // Check if cursor is inside a <code> element
+        var sel = window.getSelection();
+        if (sel.rangeCount) {
+          var node = sel.anchorNode;
+          while (node && node !== area) {
+            if (node.nodeType === 1 && node.nodeName.toLowerCase() === "code") { active = true; break; }
+            node = node.parentNode;
+          }
+        }
+      }
+      btn.classList.toggle("active", active);
+    });
+  }
+
+  function extractRichText(id) {
+    var el = document.getElementById(id);
+    if (!el) return "";
+    var raw = el.innerHTML;
+    var clean = OB.ui.safeHtml(raw);
+    var stripped = clean.replace(/<br\s*\/?>/gi, "").replace(/&nbsp;/gi, "").trim();
+    return stripped === "" ? "" : clean;
+  }
+
+  /** Extract text from a DOM element — works for both contenteditable and input/textarea */
+  function extractRichEl(el) {
+    if (!el) return "";
+    if (el.getAttribute("contenteditable") === "true") {
+      var raw = el.innerHTML;
+      var clean = OB.ui.safeHtml(raw);
+      var stripped = clean.replace(/<br\s*\/?>/gi, "").replace(/&nbsp;/gi, "").trim();
+      return stripped === "" ? "" : clean;
+    }
+    return el.value ? el.value.trim() : "";
+  }
+
+  /** Batch-init all rich editors inside a container that haven't been initialized yet */
+  function initAllRichEditors(container) {
+    container = container || document;
+    container.querySelectorAll(".author-rich-editor:not([data-rich-init])").forEach(function (wrapper) {
+      var area = wrapper.querySelector(".author-rich-area");
+      if (!area || !area.id) return;
+      initRichEditor(area.id);
+      wrapper.setAttribute("data-rich-init", "1");
+    });
+  }
+
   /* ---- Form Builders ---- */
 
   var formBuilders = {
     paragraph: function (b) {
       return '<div class="author-field">' +
         '<label class="author-label">Text</label>' +
-        '<textarea class="author-textarea" id="edit-text" rows="4">' + OB.ui.esc(b.text || '') + '</textarea>' +
+        buildRichEditor("edit-text", b.text || "", 4) +
       '</div>';
     },
 
@@ -905,7 +1061,7 @@
       '</div>' +
       '<div class="author-field">' +
         '<label class="author-label">Text</label>' +
-        '<textarea class="author-textarea" id="edit-text" rows="3">' + OB.ui.esc(b.text || '') + '</textarea>' +
+        buildRichEditor("edit-text", b.text || "", 3) +
       '</div>';
     },
 
@@ -950,7 +1106,7 @@
       var pairs = b.pairs || [];
       var html = '<div class="author-field">' +
         '<label class="author-label">Prompt</label>' +
-        '<input class="author-input" id="edit-prompt" type="text" value="' + OB.ui.esc(b.prompt || '') + '">' +
+        buildRichEditor("edit-prompt", b.prompt || "", 1) +
       '</div>';
       html += '<div class="author-field"><label class="author-label">Pairs</label><div id="edit-pairs">';
       pairs.forEach(function (p, i) {
@@ -964,7 +1120,7 @@
       var items = b.items || [];
       var html = '<div class="author-field">' +
         '<label class="author-label">Prompt</label>' +
-        '<input class="author-input" id="edit-prompt" type="text" value="' + OB.ui.esc(b.prompt || '') + '">' +
+        buildRichEditor("edit-prompt", b.prompt || "", 1) +
       '</div>';
       html += '<div class="author-field"><label class="author-label">Items (in correct order)</label><div id="edit-items">';
       items.forEach(function (item, i) {
@@ -991,7 +1147,7 @@
       '</div>' +
       '<div class="author-field">' +
         '<label class="author-label">Caption</label>' +
-        '<input class="author-input" id="edit-caption" type="text" value="' + OB.ui.esc(b.caption || '') + '">' +
+        buildRichEditor("edit-caption", b.caption || "", 1) +
       '</div>' +
       '<div class="author-field">' +
         '<label class="author-label">Size</label>' +
@@ -1006,7 +1162,7 @@
       '</div>' +
       '<div class="author-field">' +
         '<label class="author-label">Objective</label>' +
-        '<textarea class="author-textarea" id="edit-ex-objective" rows="2">' + OB.ui.esc(b.objective || '') + '</textarea>' +
+        buildRichEditor("edit-ex-objective", b.objective || "", 2) +
       '</div>';
       html += '<div class="author-field"><label class="author-label">Tasks</label><div id="edit-tasks">';
       (b.tasks || []).forEach(function (task, ti) {
@@ -1022,8 +1178,8 @@
   function buildCardItem(card, i) {
     return '<div class="author-list-item" data-card="' + i + '">' +
       '<div style="flex:1;display:flex;flex-direction:column;gap:4px">' +
-        '<input class="author-input" data-card-front="' + i + '" placeholder="Front" value="' + OB.ui.esc(card.front || '') + '">' +
-        '<textarea class="author-textarea" data-card-back="' + i + '" placeholder="Back" rows="2">' + OB.ui.esc(card.back || '') + '</textarea>' +
+        buildRichEditor("rich-cf-" + i, card.front || "", 1, 'data-card-front="' + i + '"', "Front") +
+        buildRichEditor("rich-cb-" + i, card.back || "", 2, 'data-card-back="' + i + '"', "Back") +
       '</div>' +
       '<button class="author-list-remove" data-remove-card="' + i + '">&#10005;</button>' +
     '</div>';
@@ -1031,16 +1187,18 @@
 
   function buildPairItem(pair, i) {
     return '<div class="author-list-item" data-pair="' + i + '">' +
-      '<input class="author-input" data-pair-left="' + i + '" placeholder="Left" value="' + OB.ui.esc(pair.left || '') + '" style="flex:1">' +
-      '<input class="author-input" data-pair-right="' + i + '" placeholder="Right" value="' + OB.ui.esc(pair.right || '') + '" style="flex:1">' +
+      '<div style="flex:1;display:flex;flex-direction:column;gap:4px">' +
+        buildRichEditor("rich-pl-" + i, pair.left || "", 1, 'data-pair-left="' + i + '"', "Left") +
+        buildRichEditor("rich-pr-" + i, pair.right || "", 1, 'data-pair-right="' + i + '"', "Right") +
+      '</div>' +
       '<button class="author-list-remove" data-remove-pair="' + i + '">&#10005;</button>' +
     '</div>';
   }
 
   function buildSortItem(item, i) {
     return '<div class="author-list-item" data-sort-item="' + i + '">' +
-      '<span style="color:var(--c-text-dim);font-size:11px;font-weight:700;min-width:20px">' + (i + 1) + '.</span>' +
-      '<input class="author-input" data-sort-val="' + i + '" value="' + OB.ui.esc(item) + '" style="flex:1">' +
+      '<span style="color:var(--c-text-dim);font-size:11px;font-weight:700;min-width:20px;margin-top:6px">' + (i + 1) + '.</span>' +
+      '<div style="flex:1">' + buildRichEditor("rich-sv-" + i, item || "", 1, 'data-sort-val="' + i + '"') + '</div>' +
       '<button class="author-list-remove" data-remove-sort="' + i + '">&#10005;</button>' +
     '</div>';
   }
@@ -1062,14 +1220,15 @@
   }
 
   function buildStepItem(ti, step, si) {
-    return '<div class="author-step-item" data-step="' + ti + '-' + si + '">' +
+    var key = ti + '-' + si;
+    return '<div class="author-step-item" data-step="' + key + '">' +
       '<div class="author-field"><label class="author-label">Action</label>' +
-        '<textarea class="author-textarea" data-step-action="' + ti + '-' + si + '" rows="1">' + OB.ui.esc(step.action || '') + '</textarea></div>' +
+        buildRichEditor("rich-sa-" + key, step.action || "", 1, 'data-step-action="' + key + '"') + '</div>' +
       '<div class="author-field"><label class="author-label">Detail</label>' +
-        '<textarea class="author-textarea" data-step-detail="' + ti + '-' + si + '" rows="1">' + OB.ui.esc(step.detail || '') + '</textarea></div>' +
+        buildRichEditor("rich-sd-" + key, step.detail || "", 1, 'data-step-detail="' + key + '"') + '</div>' +
       '<div class="author-field"><label class="author-label">Hint</label>' +
-        '<textarea class="author-textarea" data-step-hint="' + ti + '-' + si + '" rows="1">' + OB.ui.esc(step.hint || '') + '</textarea></div>' +
-      '<button class="author-list-remove" data-remove-step="' + ti + '-' + si + '">&#10005;</button>' +
+        buildRichEditor("rich-sh-" + key, step.hint || "", 1, 'data-step-hint="' + key + '"') + '</div>' +
+      '<button class="author-list-remove" data-remove-step="' + key + '">&#10005;</button>' +
     '</div>';
   }
 
@@ -1085,6 +1244,9 @@
 
   function initEditFormInteractions(blockData) {
     if (!editModalEl) return;
+
+    // Init all rich text editors in the modal
+    initAllRichEditors(editModalEl);
 
     // Toggle groups (level, variant, size)
     editModalEl.querySelectorAll(".author-toggle-group").forEach(function (group) {
@@ -1170,8 +1332,10 @@
       var count = container.querySelectorAll("[data-" + itemType + "]").length;
       var tmp = document.createElement("div");
       tmp.innerHTML = buildFn(defaultFn(), count);
-      container.appendChild(tmp.firstChild);
+      var newEl = tmp.firstChild;
+      container.appendChild(newEl);
       bindRemoveButtons(container, itemType);
+      initAllRichEditors(newEl);
     });
     bindRemoveButtons(container, itemType);
   }
@@ -1191,8 +1355,10 @@
       var count = container.querySelectorAll("[data-sort-item]").length;
       var tmp = document.createElement("div");
       tmp.innerHTML = buildSortItem("", count);
-      container.appendChild(tmp.firstChild);
+      var newEl = tmp.firstChild;
+      container.appendChild(newEl);
       bindSortRemoveButtons(container);
+      initAllRichEditors(newEl);
     });
     bindSortRemoveButtons(container);
   }
@@ -1212,8 +1378,10 @@
       var count = tasksContainer.querySelectorAll("[data-task]").length;
       var tmp = document.createElement("div");
       tmp.innerHTML = buildTaskItem({ id: "task" + (count + 1), title: "", steps: [] }, count);
-      tasksContainer.appendChild(tmp.firstChild);
+      var newEl = tmp.firstChild;
+      tasksContainer.appendChild(newEl);
       bindExerciseButtons(tasksContainer);
+      initAllRichEditors(newEl);
     });
     bindExerciseButtons(tasksContainer);
   }
@@ -1230,8 +1398,10 @@
         var count = stepsContainer.querySelectorAll("[data-step]").length;
         var tmp = document.createElement("div");
         tmp.innerHTML = buildStepItem(ti, { action: "", detail: "", hint: "" }, count);
-        stepsContainer.appendChild(tmp.firstChild);
+        var newEl = tmp.firstChild;
+        stepsContainer.appendChild(newEl);
         bindStepRemoveButtons(stepsContainer);
+        initAllRichEditors(newEl);
       };
     });
     container.querySelectorAll("[data-task-steps]").forEach(function (sc) {
@@ -1249,14 +1419,14 @@
 
   var extractors = {
     paragraph: function () {
-      return { type: "paragraph", text: gVal("edit-text") };
+      return { type: "paragraph", text: extractRichText("edit-text") };
     },
     heading: function () {
       var level = parseInt(getToggleVal("edit-level") || "2", 10);
       return { type: "heading", level: level, text: gVal("edit-text") };
     },
     callout: function () {
-      return { type: "callout", variant: getToggleVal("edit-variant") || "info", text: gVal("edit-text") };
+      return { type: "callout", variant: getToggleVal("edit-variant") || "info", text: extractRichText("edit-text") };
     },
     "comparison-table": function () {
       var grid = document.getElementById("edit-table");
@@ -1288,8 +1458,8 @@
       if (!container) return null;
       container.querySelectorAll("[data-card]").forEach(function (el) {
         var i = el.getAttribute("data-card");
-        var front = (container.querySelector("[data-card-front='" + i + "']") || {}).value || "";
-        var back = (container.querySelector("[data-card-back='" + i + "']") || {}).value || "";
+        var front = extractRichEl(container.querySelector("[data-card-front='" + i + "']"));
+        var back = extractRichEl(container.querySelector("[data-card-back='" + i + "']"));
         cards.push({ front: front, back: back });
       });
       return { type: "reveal-cards", cards: cards };
@@ -1300,11 +1470,11 @@
       if (!container) return null;
       container.querySelectorAll("[data-pair]").forEach(function (el) {
         var i = el.getAttribute("data-pair");
-        var left = (container.querySelector("[data-pair-left='" + i + "']") || {}).value || "";
-        var right = (container.querySelector("[data-pair-right='" + i + "']") || {}).value || "";
+        var left = extractRichEl(container.querySelector("[data-pair-left='" + i + "']"));
+        var right = extractRichEl(container.querySelector("[data-pair-right='" + i + "']"));
         pairs.push({ left: left, right: right });
       });
-      return { type: "interactive-match", prompt: gVal("edit-prompt"), pairs: pairs };
+      return { type: "interactive-match", prompt: extractRichText("edit-prompt"), pairs: pairs };
     },
     "interactive-sort": function () {
       var items = [];
@@ -1312,14 +1482,14 @@
       if (!container) return null;
       container.querySelectorAll("[data-sort-item]").forEach(function (el) {
         var i = el.getAttribute("data-sort-item");
-        var val = (container.querySelector("[data-sort-val='" + i + "']") || {}).value || "";
+        var val = extractRichEl(container.querySelector("[data-sort-val='" + i + "']"));
         if (val) items.push(val);
       });
-      return { type: "interactive-sort", prompt: gVal("edit-prompt"), items: items };
+      return { type: "interactive-sort", prompt: extractRichText("edit-prompt"), items: items };
     },
     image: function () {
       var block = { type: "image", src: gVal("edit-src"), alt: gVal("edit-alt") };
-      var caption = gVal("edit-caption");
+      var caption = extractRichText("edit-caption");
       if (caption) block.caption = caption;
       var size = getToggleVal("edit-size");
       if (size && size !== "full") block.size = size;
@@ -1335,9 +1505,9 @@
         var steps = [];
         el.querySelectorAll("[data-step]").forEach(function (stepEl) {
           var key = stepEl.getAttribute("data-step");
-          var action = (stepEl.querySelector("[data-step-action='" + key + "']") || {}).value || "";
-          var detail = (stepEl.querySelector("[data-step-detail='" + key + "']") || {}).value || "";
-          var hint = (stepEl.querySelector("[data-step-hint='" + key + "']") || {}).value || "";
+          var action = extractRichEl(stepEl.querySelector("[data-step-action='" + key + "']"));
+          var detail = extractRichEl(stepEl.querySelector("[data-step-detail='" + key + "']"));
+          var hint = extractRichEl(stepEl.querySelector("[data-step-hint='" + key + "']"));
           var step = { action: action };
           if (detail) step.detail = detail;
           if (hint) step.hint = hint;
@@ -1349,7 +1519,7 @@
         type: "exercise",
         exerciseId: gVal("edit-ex-title").toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "") || "exercise",
         title: gVal("edit-ex-title"),
-        objective: gVal("edit-ex-objective"),
+        objective: extractRichText("edit-ex-objective"),
         tasks: tasks,
       };
     },

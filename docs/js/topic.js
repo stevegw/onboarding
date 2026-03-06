@@ -84,7 +84,7 @@
       html += '</h3>';
       html += '<ul>';
       topic.keyTakeaways.forEach(function (tk) {
-        html += '<li>' + esc(tk) + '</li>';
+        html += '<li>' + OB.ui.safeHtml(tk) + '</li>';
       });
       html += '</ul>';
       html += '</div>';
@@ -109,29 +109,30 @@
 
   function renderBlock(block, idx) {
     var esc = OB.ui.esc;
+    var safeHtml = OB.ui.safeHtml;
     var t = OB.i18n.t;
     switch (block.type) {
       case "heading":
         var tag = block.level === 3 ? "h3" : "h2";
-        return '<' + tag + '>' + esc(block.text) + '</' + tag + '>';
+        return '<' + tag + '>' + safeHtml(block.text) + '</' + tag + '>';
 
       case "paragraph":
-        return '<p>' + esc(block.text) + '</p>';
+        return '<p>' + safeHtml(block.text) + '</p>';
 
       case "callout":
         var icon = { info: "&#8505;", tip: "&#9733;", warning: "&#9888;", insight: "&#128161;" }[block.variant] || "&#8505;";
         return '<div class="callout ' + (block.variant || "info") + '">' +
           '<span class="callout-icon">' + icon + '</span>' +
-          '<div class="callout-content"><p>' + esc(block.text) + '</p></div>' +
+          '<div class="callout-content"><p>' + safeHtml(block.text) + '</p></div>' +
           '</div>';
 
       case "comparison-table":
         var tbl = '<div style="overflow-x:auto"><table class="data-table"><thead><tr>';
-        block.headers.forEach(function (h) { tbl += '<th>' + esc(h) + '</th>'; });
+        block.headers.forEach(function (h) { tbl += '<th>' + safeHtml(h) + '</th>'; });
         tbl += '</tr></thead><tbody>';
         block.rows.forEach(function (row) {
           tbl += '<tr>';
-          row.forEach(function (cell) { tbl += '<td>' + esc(cell) + '</td>'; });
+          row.forEach(function (cell) { tbl += '<td>' + safeHtml(cell) + '</td>'; });
           tbl += '</tr>';
         });
         tbl += '</tbody></table></div>';
@@ -141,9 +142,9 @@
         var rc = '<div class="reveal-grid">';
         block.cards.forEach(function (card, ci) {
           rc += '<div class="reveal-card" data-reveal="' + ci + '">';
-          rc += '<div class="reveal-front">' + esc(card.front) + '</div>';
+          rc += '<div class="reveal-front">' + safeHtml(card.front) + '</div>';
           rc += '<div class="reveal-hint">' + t("topic.clickToReveal") + '</div>';
-          rc += '<div class="reveal-back">' + esc(card.back) + '</div>';
+          rc += '<div class="reveal-back">' + safeHtml(card.back) + '</div>';
           rc += '</div>';
         });
         rc += '</div>';
@@ -164,7 +165,7 @@
         var figHtml = '<figure class="image-block' + sizeClass + '">';
         figHtml += '<img src="' + esc(imgSrc) + '" alt="' + esc(block.alt || '') + '" loading="lazy">';
         if (block.caption) {
-          figHtml += '<figcaption>' + esc(block.caption) + '</figcaption>';
+          figHtml += '<figcaption>' + safeHtml(block.caption) + '</figcaption>';
         }
         figHtml += '</figure>';
         return figHtml;
@@ -175,17 +176,17 @@
   }
 
   function renderMatchBlock(block, idx) {
-    var esc = OB.ui.esc;
+    var safeHtml = OB.ui.safeHtml;
     var t = OB.i18n.t;
     var html = '<div class="match-container" data-match="' + idx + '">';
-    html += '<p style="font-size:13px;color:var(--c-text-muted);margin-bottom:12px">' + esc(block.prompt) + '</p>';
+    html += '<p style="font-size:13px;color:var(--c-text-muted);margin-bottom:12px">' + safeHtml(block.prompt) + '</p>';
     html += '<div class="match-columns">';
 
     // Left column (scenarios)
     html += '<div>';
     html += '<div class="match-column-label">' + t("topic.scenarioLabel") + '</div>';
     block.pairs.forEach(function (p, i) {
-      html += '<div class="match-item" data-match-left="' + idx + '-' + i + '">' + esc(p.left) + '</div>';
+      html += '<div class="match-item" data-match-left="' + idx + '-' + i + '">' + safeHtml(p.left) + '</div>';
     });
     html += '</div>';
 
@@ -196,7 +197,7 @@
     html += '<div>';
     html += '<div class="match-column-label">' + t("topic.strategyLabel") + '</div>';
     shuffled.forEach(function (s) {
-      html += '<div class="match-item" data-match-right="' + idx + '-' + s.origIdx + '">' + esc(s.text) + '</div>';
+      html += '<div class="match-item" data-match-right="' + idx + '-' + s.origIdx + '">' + safeHtml(s.text) + '</div>';
     });
     html += '</div>';
 
@@ -207,17 +208,17 @@
   }
 
   function renderSortBlock(block, idx) {
-    var esc = OB.ui.esc;
+    var safeHtml = OB.ui.safeHtml;
     var items = block.items.map(function (item, i) { return { text: item, origIdx: i }; });
     shuffleArray(items);
 
     var html = '<div class="sort-container" data-sort="' + idx + '">';
-    html += '<p style="font-size:13px;color:var(--c-text-muted);margin-bottom:12px">' + esc(block.prompt) + '</p>';
+    html += '<p style="font-size:13px;color:var(--c-text-muted);margin-bottom:12px">' + safeHtml(block.prompt) + '</p>';
     items.forEach(function (item, i) {
       html += '<div class="sort-item" draggable="true" data-sort-idx="' + item.origIdx + '">';
       html += '<span class="sort-handle">&#9776;</span>';
       html += '<span class="sort-num">' + (i + 1) + '</span>';
-      html += '<span>' + esc(item.text) + '</span>';
+      html += '<span>' + safeHtml(item.text) + '</span>';
       html += '</div>';
     });
     html += '</div>';
@@ -226,6 +227,7 @@
 
   function renderExerciseBlock(block, idx) {
     var esc = OB.ui.esc;
+    var safeHtml = OB.ui.safeHtml;
     var t = OB.i18n.t;
     var exId = block.exerciseId;
     var tasks = block.tasks;
@@ -250,7 +252,7 @@
     // Objective
     html += '<div class="exercise-objective">';
     html += '<div class="exercise-objective-label">' + t("topic.objective") + '</div>';
-    html += '<p>' + esc(block.objective) + '</p>';
+    html += '<p>' + safeHtml(block.objective) + '</p>';
     html += '</div>';
 
     // Progress bar
@@ -268,7 +270,7 @@
 
       html += '<div class="exercise-task">';
       html += '<div class="exercise-task-header">';
-      html += '<h3>' + esc(task.title) + '</h3>';
+      html += '<h3>' + safeHtml(task.title) + '</h3>';
       html += '<span class="exercise-task-progress">' + t("topic.stepsProgress", { done: taskDone, total: task.steps.length }) + '</span>';
       html += '</div>';
       html += '<div class="exercise-steps">';
@@ -280,25 +282,25 @@
 
         html += '<div class="exercise-step ' + cls + '" data-ex="' + exId + '" data-task="' + task.id + '" data-step="' + si + '">';
         html += '<div class="exercise-step-indicator">' + (isDone ? "&#10003;" : (si + 1)) + '</div>';
-        html += '<div class="exercise-step-action-text">' + esc(step.action) + '</div>';
+        html += '<div class="exercise-step-action-text">' + safeHtml(step.action) + '</div>';
 
         // Detail area (shown when active or expanded)
         html += '<div class="exercise-step-detail">';
         html += '<div class="exercise-step-box action-box">';
         html += '<div class="exercise-step-box-label">' + t("topic.doThis") + '</div>';
-        html += '<p>' + esc(step.action) + '</p>';
+        html += '<p>' + safeHtml(step.action) + '</p>';
         html += '</div>';
 
         if (step.detail) {
           html += '<div class="exercise-step-box detail-box">';
           html += '<div class="exercise-step-box-label">' + t("topic.whyItMatters") + '</div>';
-          html += '<p>' + esc(step.detail) + '</p>';
+          html += '<p>' + safeHtml(step.detail) + '</p>';
           html += '</div>';
         }
 
         if (step.hint) {
           html += '<div class="exercise-hint-toggle" data-hint="' + exId + '-' + task.id + '-' + si + '">&#9654; ' + t("topic.showHint") + '</div>';
-          html += '<div class="exercise-hint-text" id="hint-' + exId + '-' + task.id + '-' + si + '">' + esc(step.hint) + '</div>';
+          html += '<div class="exercise-hint-text" id="hint-' + exId + '-' + task.id + '-' + si + '">' + safeHtml(step.hint) + '</div>';
         }
 
         if (!isDone) {
