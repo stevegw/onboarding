@@ -18,14 +18,17 @@ Endpoints:
   DELETE /api/glossary-term (delete term at index)
   PUT  /api/topic-metadata  (update topic title, minutes, etc.)
   PUT  /api/module-metadata (update module title, description)
+  POST /api/undo           (restore .bak snapshot)
 
 stdlib-only — no pip dependencies required.
 """
 
+import hashlib
 import http.server
 import json
 import os
 import re
+import shutil
 import sys
 from email import policy
 from email.parser import BytesParser
@@ -125,6 +128,8 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
             self.handle_add_quiz_question()
         elif parsed.path == "/api/glossary-term":
             self.handle_add_glossary_term()
+        elif parsed.path == "/api/undo":
+            self.handle_undo()
         else:
             self.send_error(404)
 
@@ -361,19 +366,17 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
         content.insert(insert_index, block)
         topic["content"] = content
 
-        try:
-            with open(filepath, "w", encoding="utf-8") as f:
-                json.dump(module, f, indent=2, ensure_ascii=False)
-                f.write("\n")
-        except OSError as e:
-            self.send_json_error(500, f"Failed to write module: {e}")
-            return
+        undo_id = self._write_json(filepath, module)
+        if undo_id is False:
+            return  # _write_json already sent error
 
         self.send_json(200, {
             "ok": True,
             "topicId": topic_id,
             "insertIndex": insert_index,
             "blockCount": len(content),
+            "undoId": undo_id,
+            "filePath": self._rel_path(filepath, course_id),
         })
 
     # ── DELETE /api/content-block ──
@@ -440,21 +443,17 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
         removed = content.pop(block_index)
         topic["content"] = content
 
-        # If the removed block is an image, delete the file from disk
+        # If the removed block is an image, move the file to .bak (undoable)
         if removed.get("type") == "image" and removed.get("src"):
             img_path = safe_path(COURSES_DIR, course_id, removed["src"])
             if img_path and os.path.isfile(img_path):
                 try:
-                    os.remove(img_path)
+                    shutil.move(img_path, img_path + ".bak")
                 except OSError:
                     pass  # non-fatal
 
-        try:
-            with open(filepath, "w", encoding="utf-8") as f:
-                json.dump(module, f, indent=2, ensure_ascii=False)
-                f.write("\n")
-        except OSError as e:
-            self.send_json_error(500, f"Failed to write module: {e}")
+        undo_id = self._write_json(filepath, module)
+        if undo_id is False:
             return
 
         self.send_json(200, {
@@ -462,6 +461,8 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
             "topicId": topic_id,
             "removedIndex": block_index,
             "blockCount": len(content),
+            "undoId": undo_id,
+            "filePath": self._rel_path(filepath, course_id),
         })
 
     # ── PATCH /api/content-block ──
@@ -546,12 +547,8 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
         content[block_index], content[swap_index] = content[swap_index], content[block_index]
         topic["content"] = content
 
-        try:
-            with open(filepath, "w", encoding="utf-8") as f:
-                json.dump(module, f, indent=2, ensure_ascii=False)
-                f.write("\n")
-        except OSError as e:
-            self.send_json_error(500, f"Failed to write module: {e}")
+        undo_id = self._write_json(filepath, module)
+        if undo_id is False:
             return
 
         self.send_json(200, {
@@ -560,6 +557,8 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
             "blockIndex": block_index,
             "newIndex": swap_index,
             "blockCount": len(content),
+            "undoId": undo_id,
+            "filePath": self._rel_path(filepath, course_id),
         })
 
     # ── PUT /api/content-block ──
@@ -627,12 +626,8 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
         content[block_index] = block
         topic["content"] = content
 
-        try:
-            with open(filepath, "w", encoding="utf-8") as f:
-                json.dump(module, f, indent=2, ensure_ascii=False)
-                f.write("\n")
-        except OSError as e:
-            self.send_json_error(500, f"Failed to write module: {e}")
+        undo_id = self._write_json(filepath, module)
+        if undo_id is False:
             return
 
         self.send_json(200, {
@@ -640,6 +635,8 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
             "topicId": topic_id,
             "blockIndex": block_index,
             "blockCount": len(content),
+            "undoId": undo_id,
+            "filePath": self._rel_path(filepath, course_id),
         })
 
     # ── PUT /api/quiz-question ──
@@ -681,8 +678,11 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
 
         questions[question_index] = question
 
-        self._write_json(filepath, quiz)
-        self.send_json(200, {"ok": True, "questionIndex": question_index})
+        undo_id = self._write_json(filepath, quiz)
+        if undo_id is False:
+            return
+        self.send_json(200, {"ok": True, "questionIndex": question_index,
+                             "undoId": undo_id, "filePath": self._rel_path(filepath, course_id)})
 
     # ── POST /api/quiz-question ──
 
@@ -721,8 +721,11 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
             insert_index = len(questions)
         questions.insert(insert_index, question)
 
-        self._write_json(filepath, quiz)
-        self.send_json(200, {"ok": True, "insertIndex": insert_index, "questionCount": len(questions)})
+        undo_id = self._write_json(filepath, quiz)
+        if undo_id is False:
+            return
+        self.send_json(200, {"ok": True, "insertIndex": insert_index, "questionCount": len(questions),
+                             "undoId": undo_id, "filePath": self._rel_path(filepath, course_id)})
 
     # ── DELETE /api/quiz-question ──
 
@@ -762,8 +765,11 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
 
         questions.pop(question_index)
 
-        self._write_json(filepath, quiz)
-        self.send_json(200, {"ok": True, "questionCount": len(questions)})
+        undo_id = self._write_json(filepath, quiz)
+        if undo_id is False:
+            return
+        self.send_json(200, {"ok": True, "questionCount": len(questions),
+                             "undoId": undo_id, "filePath": self._rel_path(filepath, course_id)})
 
     # ── PUT /api/glossary-term ──
 
@@ -799,8 +805,11 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
 
         terms[term_index] = term
 
-        self._write_json(filepath, glossary)
-        self.send_json(200, {"ok": True, "termIndex": term_index})
+        undo_id = self._write_json(filepath, glossary)
+        if undo_id is False:
+            return
+        self.send_json(200, {"ok": True, "termIndex": term_index,
+                             "undoId": undo_id, "filePath": self._rel_path(filepath, course_id)})
 
     # ── POST /api/glossary-term ──
 
@@ -831,8 +840,11 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
         terms = glossary.get("terms", [])
         terms.append(term)
 
-        self._write_json(filepath, glossary)
-        self.send_json(200, {"ok": True, "termCount": len(terms)})
+        undo_id = self._write_json(filepath, glossary)
+        if undo_id is False:
+            return
+        self.send_json(200, {"ok": True, "termCount": len(terms),
+                             "undoId": undo_id, "filePath": self._rel_path(filepath, course_id)})
 
     # ── DELETE /api/glossary-term ──
 
@@ -867,8 +879,11 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
 
         terms.pop(term_index)
 
-        self._write_json(filepath, glossary)
-        self.send_json(200, {"ok": True, "termCount": len(terms)})
+        undo_id = self._write_json(filepath, glossary)
+        if undo_id is False:
+            return
+        self.send_json(200, {"ok": True, "termCount": len(terms),
+                             "undoId": undo_id, "filePath": self._rel_path(filepath, course_id)})
 
     # ── PUT /api/topic-metadata ──
 
@@ -913,8 +928,11 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
             if key in metadata:
                 topic[key] = metadata[key]
 
-        self._write_json(filepath, module)
-        self.send_json(200, {"ok": True, "topicId": topic_id})
+        undo_id = self._write_json(filepath, module)
+        if undo_id is False:
+            return
+        self.send_json(200, {"ok": True, "topicId": topic_id,
+                             "undoId": undo_id, "filePath": self._rel_path(filepath, course_id)})
 
     # ── PUT /api/module-metadata ──
 
@@ -947,7 +965,63 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
             if key in metadata:
                 module[key] = metadata[key]
 
-        self._write_json(filepath, module)
+        undo_id = self._write_json(filepath, module)
+        if undo_id is False:
+            return
+        self.send_json(200, {"ok": True,
+                             "undoId": undo_id, "filePath": self._rel_path(filepath, course_id)})
+
+    # ── POST /api/undo ──
+
+    def handle_undo(self):
+        data = self._read_json_body()
+        if data is None:
+            return
+
+        course_id = data.get("courseId")
+        file_path = data.get("filePath")
+        undo_id = data.get("undoId")
+
+        if not all([course_id, file_path, undo_id]):
+            self.send_json_error(400, "courseId, filePath, and undoId are required")
+            return
+
+        filepath = safe_path(COURSES_DIR, course_id, file_path)
+        if not filepath:
+            self.send_json_error(403, "Invalid path")
+            return
+
+        bak = filepath + ".bak"
+        if not os.path.isfile(bak):
+            self.send_json_error(404, "No backup found — change may have been superseded")
+            return
+
+        # Validate undoId matches current .bak mtime
+        mtime = str(os.path.getmtime(bak))
+        expected_id = hashlib.sha256((filepath + "|" + mtime).encode()).hexdigest()[:16]
+        if undo_id != expected_id:
+            self.send_json_error(409, "Undo expired — a newer edit has superseded this change")
+            return
+
+        try:
+            shutil.copy2(bak, filepath)
+            os.remove(bak)
+        except OSError as e:
+            self.send_json_error(500, f"Undo failed: {e}")
+            return
+
+        # Restore any .bak image files in the course's images/ dir
+        images_dir = safe_path(COURSES_DIR, course_id, "images")
+        if images_dir and os.path.isdir(images_dir):
+            for fname in os.listdir(images_dir):
+                if fname.endswith(".bak"):
+                    orig = os.path.join(images_dir, fname[:-4])
+                    bakimg = os.path.join(images_dir, fname)
+                    try:
+                        shutil.move(bakimg, orig)
+                    except OSError:
+                        pass
+
         self.send_json(200, {"ok": True})
 
     # ── Shared helpers ──
@@ -968,14 +1042,37 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
             self.send_json_error(400, "Invalid JSON")
             return None
 
+    def _make_backup(self, filepath):
+        """Copy file to .bak before writing. Returns undoId hash or None."""
+        if not os.path.isfile(filepath):
+            return None
+        bak = filepath + ".bak"
+        try:
+            shutil.copy2(filepath, bak)
+            mtime = str(os.path.getmtime(bak))
+            return hashlib.sha256((filepath + "|" + mtime).encode()).hexdigest()[:16]
+        except OSError:
+            return None
+
+    def _rel_path(self, filepath, course_id):
+        """Return path relative to course dir."""
+        course_dir = os.path.join(COURSES_DIR, course_id)
+        try:
+            return os.path.relpath(filepath, course_dir).replace("\\", "/")
+        except ValueError:
+            return os.path.basename(filepath)
+
     def _write_json(self, filepath, data):
-        """Write JSON data to file with consistent formatting."""
+        """Backup then write JSON data to file. Returns undoId, None (no backup), or False (write error)."""
+        undo_id = self._make_backup(filepath)
         try:
             with open(filepath, "w", encoding="utf-8") as f:
                 json.dump(data, f, indent=2, ensure_ascii=False)
                 f.write("\n")
+            return undo_id
         except OSError as e:
             self.send_json_error(500, f"Failed to write file: {e}")
+            return False
 
     def end_headers(self):
         """Add no-cache header to all responses so edits are seen on refresh."""

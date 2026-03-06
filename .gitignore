@@ -9,6 +9,9 @@ docs/pdfs/
 # Python
 __pycache__/
 
+# Backup files (author mode undo snapshots)
+*.bak
+
 # Local tool config
 .agents/
 .claude/

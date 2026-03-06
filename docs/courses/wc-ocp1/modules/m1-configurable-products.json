@@ -43,7 +43,7 @@
             [
               "Engineer-to-Order",
               "Like configure-to-order, but requires engineering team involvement for validation and custom design per order.",
-              "Complex systems (turbines, aircraft components) requiring engineering review"
+              "Complex systems (turbines, aircraft components) requiring engineering review."
             ],
             [
               "Contract",

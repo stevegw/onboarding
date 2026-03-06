@@ -21,6 +21,143 @@
   var selectedSlot = null; // { topicId, insertIndex }
   var moduleStructure = null;
 
+  /* Persistent undo FAB state */
+  var lastUndo = null;   // { undoId, filePath, message }
+  var undoFab = null;
+
+  /* ==================================================================
+     Toast Notification System
+     ================================================================== */
+
+  var toastContainer = null;
+
+  function ensureToastContainer() {
+    if (toastContainer && document.body.contains(toastContainer)) return;
+    toastContainer = document.createElement("div");
+    toastContainer.className = "author-toast-container";
+    document.body.appendChild(toastContainer);
+  }
+
+  /**
+   * Show a toast notification at the bottom of the screen.
+   * @param {string} message - Display text
+   * @param {Object} opts
+   * @param {"success"|"error"|"info"} opts.type - Color theme (default "success")
+   * @param {number} opts.duration - Auto-dismiss ms (default 5000, 0 = manual)
+   * @param {Function|null} opts.undoCallback - If provided, shows Undo button
+   */
+  function showToast(message, opts) {
+    opts = opts || {};
+    var type = opts.type || "success";
+    var duration = opts.duration !== undefined ? opts.duration : 5000;
+    var undoCallback = opts.undoCallback || null;
+
+    ensureToastContainer();
+
+    var toast = document.createElement("div");
+    toast.className = "author-toast author-toast-" + type;
+
+    var msgSpan = document.createElement("span");
+    msgSpan.className = "author-toast-msg";
+    msgSpan.textContent = message;
+    toast.appendChild(msgSpan);
+
+    if (undoCallback) {
+      var undoBtn = document.createElement("button");
+      undoBtn.className = "author-toast-undo";
+      undoBtn.textContent = "Undo";
+      undoBtn.addEventListener("click", function () {
+        dismissToast(toast);
+        undoCallback();
+      });
+      toast.appendChild(undoBtn);
+    }
+
+    var closeBtn = document.createElement("button");
+    closeBtn.className = "author-toast-close";
+    closeBtn.innerHTML = "&#10005;";
+    closeBtn.addEventListener("click", function () { dismissToast(toast); });
+    toast.appendChild(closeBtn);
+
+    toastContainer.appendChild(toast);
+
+    // Trigger reflow then animate in
+    toast.offsetHeight; // force layout
+    toast.classList.add("author-toast-visible");
+
+    if (duration > 0) {
+      setTimeout(function () { dismissToast(toast); }, duration);
+    }
+
+    return toast;
+  }
+
+  function dismissToast(toast) {
+    if (!toast || !toast.parentNode) return;
+    toast.classList.remove("author-toast-visible");
+    toast.classList.add("author-toast-hiding");
+    setTimeout(function () {
+      if (toast.parentNode) toast.parentNode.removeChild(toast);
+    }, 300);
+  }
+
+  function triggerUndo(undoId, filePath) {
+    fetch("/api/undo", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      cache: "no-store",
+      body: JSON.stringify({
+        courseId: getCourseId(),
+        filePath: filePath,
+        undoId: undoId,
+      }),
+    })
+    .then(function (res) {
+      if (!res.ok) return res.json().then(function (d) { throw new Error(d.error || "Undo failed"); });
+      return res.json();
+    })
+    .then(function () {
+      OB.content.clearCache();
+      OB.router.navigate();
+      clearUndoFab();
+      showToast("Change undone", { type: "info", duration: 3000 });
+    })
+    .catch(function (err) {
+      showToast(err.message, { type: "error", duration: 5000 });
+    });
+  }
+
+  /* ==================================================================
+     Persistent Undo FAB
+     ================================================================== */
+
+  function createUndoFab() {
+    undoFab = document.createElement("button");
+    undoFab.className = "author-undo-fab";
+    undoFab.innerHTML = "&#8617;"; // ↩
+    undoFab.title = "Undo";
+    undoFab.addEventListener("click", function () {
+      if (!lastUndo) return;
+      triggerUndo(lastUndo.undoId, lastUndo.filePath);
+    });
+    document.getElementById("app").appendChild(undoFab);
+  }
+
+  function updateUndoFab(undoId, filePath, message) {
+    lastUndo = { undoId: undoId, filePath: filePath, message: message };
+    if (undoFab) {
+      undoFab.title = "Undo: " + message;
+      undoFab.classList.add("visible");
+    }
+  }
+
+  function clearUndoFab() {
+    lastUndo = null;
+    if (undoFab) {
+      undoFab.classList.remove("visible");
+    }
+  }
+
   /**
    * Guard: only close modal on backdrop click if mousedown also started
    * on the backdrop. Prevents close when releasing a CSS resize drag.
@@ -513,16 +650,16 @@
         if (!res.ok) return res.json().then(function (d) { throw new Error(d.error || "Insert failed"); });
         return res.json();
       })
-      .then(function () {
-        statusEl.className = "author-save-status success";
-        statusEl.textContent = "Saved! Refreshing\u2026";
-
-        // Invalidate cache and refresh the page
+      .then(function (result) {
         OB.content.clearCache();
-        setTimeout(function () {
-          closeModal();
-          OB.router.navigate();
-        }, 500);
+        closeModal();
+        OB.router.navigate();
+        showToast("Image inserted", {
+          undoCallback: result.undoId
+            ? function () { triggerUndo(result.undoId, result.filePath); }
+            : null
+        });
+        if (result.undoId) updateUndoFab(result.undoId, result.filePath, "Image inserted");
       })
       .catch(function (err) {
         statusEl.className = "author-save-status error";
@@ -537,6 +674,7 @@
   function init() {
     if (!isAuthorMode()) return;
     createFab();
+    createUndoFab();
     updateFabVisibility();
     window.addEventListener("hashchange", updateFabVisibility);
   }
@@ -567,12 +705,18 @@
           if (!res.ok) return res.json().then(function (d) { throw new Error(d.error || "Delete failed"); });
           return res.json();
         })
-        .then(function () {
+        .then(function (result) {
           OB.content.clearCache();
           OB.router.navigate();
+          showToast("Block deleted", {
+            undoCallback: result.undoId
+              ? function () { triggerUndo(result.undoId, result.filePath); }
+              : null
+          });
+          if (result.undoId) updateUndoFab(result.undoId, result.filePath, "Block deleted");
         })
         .catch(function (err) {
-          alert("Delete failed: " + err.message);
+          showToast("Delete failed: " + err.message, { type: "error" });
         });
     });
   }
@@ -598,12 +742,18 @@
           if (!res.ok) return res.json().then(function (d) { throw new Error(d.error || "Move failed"); });
           return res.json();
         })
-        .then(function () {
+        .then(function (result) {
           OB.content.clearCache();
           OB.router.navigate();
+          showToast("Block moved", {
+            undoCallback: result.undoId
+              ? function () { triggerUndo(result.undoId, result.filePath); }
+              : null
+          });
+          if (result.undoId) updateUndoFab(result.undoId, result.filePath, "Block moved");
         })
         .catch(function (err) {
-          alert("Move failed: " + err.message);
+          showToast("Move failed: " + err.message, { type: "error" });
         });
     });
   }
@@ -701,13 +851,16 @@
       if (!res.ok) return res.json().then(function (d) { throw new Error(d.error || "Update failed"); });
       return res.json();
     })
-    .then(function () {
-      if (statusEl) { statusEl.className = "author-save-status success"; statusEl.textContent = "Saved!"; }
+    .then(function (result) {
       OB.content.clearCache();
-      setTimeout(function () {
-        closeEditModal();
-        OB.router.navigate();
-      }, 400);
+      closeEditModal();
+      OB.router.navigate();
+      showToast("Block updated", {
+        undoCallback: result.undoId
+          ? function () { triggerUndo(result.undoId, result.filePath); }
+          : null
+      });
+      if (result.undoId) updateUndoFab(result.undoId, result.filePath, "Block updated");
     })
     .catch(function (err) {
       if (statusEl) { statusEl.className = "author-save-status error"; statusEl.textContent = err.message; }
@@ -1357,10 +1510,17 @@
       if (!res.ok) return res.json().then(function (d) { throw new Error(d.error || "Save failed"); });
       return res.json();
     })
-    .then(function () {
-      if (statusEl) { statusEl.className = "author-save-status success"; statusEl.textContent = "Saved!"; }
+    .then(function (result) {
       OB.content.clearCache();
-      setTimeout(function () { closeEditModal(); OB.router.navigate(); }, 400);
+      closeEditModal();
+      OB.router.navigate();
+      var msg = method === "POST" ? "Question added" : "Question saved";
+      showToast(msg, {
+        undoCallback: result.undoId
+          ? function () { triggerUndo(result.undoId, result.filePath); }
+          : null
+      });
+      if (result.undoId) updateUndoFab(result.undoId, result.filePath, msg);
     })
     .catch(function (err) {
       if (statusEl) { statusEl.className = "author-save-status error"; statusEl.textContent = err.message; }
@@ -1388,12 +1548,18 @@
       if (!res.ok) return res.json().then(function (d) { throw new Error(d.error || "Delete failed"); });
       return res.json();
     })
-    .then(function () {
+    .then(function (result) {
       OB.content.clearCache();
       OB.router.navigate();
+      showToast("Question deleted", {
+        undoCallback: result.undoId
+          ? function () { triggerUndo(result.undoId, result.filePath); }
+          : null
+      });
+      if (result.undoId) updateUndoFab(result.undoId, result.filePath, "Question deleted");
     })
     .catch(function (err) {
-      alert("Delete failed: " + err.message);
+      showToast("Delete failed: " + err.message, { type: "error" });
     });
   }
 
@@ -1465,10 +1631,17 @@
       if (!res.ok) return res.json().then(function (d) { throw new Error(d.error || "Save failed"); });
       return res.json();
     })
-    .then(function () {
-      if (statusEl) { statusEl.className = "author-save-status success"; statusEl.textContent = "Saved!"; }
+    .then(function (result) {
       OB.content.clearCache();
-      setTimeout(function () { closeEditModal(); OB.router.navigate(); }, 400);
+      closeEditModal();
+      OB.router.navigate();
+      var msg = termIndex >= 0 ? "Term updated" : "Term added";
+      showToast(msg, {
+        undoCallback: result.undoId
+          ? function () { triggerUndo(result.undoId, result.filePath); }
+          : null
+      });
+      if (result.undoId) updateUndoFab(result.undoId, result.filePath, msg);
     })
     .catch(function (err) {
       if (statusEl) { statusEl.className = "author-save-status error"; statusEl.textContent = err.message; }
@@ -1489,12 +1662,18 @@
       if (!res.ok) return res.json().then(function (d) { throw new Error(d.error || "Delete failed"); });
       return res.json();
     })
-    .then(function () {
+    .then(function (result) {
       OB.content.clearCache();
       OB.router.navigate();
+      showToast("Term deleted", {
+        undoCallback: result.undoId
+          ? function () { triggerUndo(result.undoId, result.filePath); }
+          : null
+      });
+      if (result.undoId) updateUndoFab(result.undoId, result.filePath, "Term deleted");
     })
     .catch(function (err) {
-      alert("Delete failed: " + err.message);
+      showToast("Delete failed: " + err.message, { type: "error" });
     });
   }
 
@@ -1667,10 +1846,16 @@
       if (!res.ok) return res.json().then(function (d) { throw new Error(d.error || "Save failed"); });
       return res.json();
     })
-    .then(function () {
-      if (statusEl) { statusEl.className = "author-save-status success"; statusEl.textContent = "Saved!"; }
+    .then(function (result) {
       OB.content.clearCache();
-      setTimeout(function () { closeEditModal(); OB.router.navigate(); }, 400);
+      closeEditModal();
+      OB.router.navigate();
+      showToast("Topic settings saved", {
+        undoCallback: result.undoId
+          ? function () { triggerUndo(result.undoId, result.filePath); }
+          : null
+      });
+      if (result.undoId) updateUndoFab(result.undoId, result.filePath, "Topic settings saved");
     })
     .catch(function (err) {
       if (statusEl) { statusEl.className = "author-save-status error"; statusEl.textContent = err.message; }
@@ -1746,10 +1931,16 @@
       if (!res.ok) return res.json().then(function (d) { throw new Error(d.error || "Save failed"); });
       return res.json();
     })
-    .then(function () {
-      if (statusEl) { statusEl.className = "author-save-status success"; statusEl.textContent = "Saved!"; }
+    .then(function (result) {
       OB.content.clearCache();
-      setTimeout(function () { closeEditModal(); OB.router.navigate(); }, 400);
+      closeEditModal();
+      OB.router.navigate();
+      showToast("Module settings saved", {
+        undoCallback: result.undoId
+          ? function () { triggerUndo(result.undoId, result.filePath); }
+          : null
+      });
+      if (result.undoId) updateUndoFab(result.undoId, result.filePath, "Module settings saved");
     })
     .catch(function (err) {
       if (statusEl) { statusEl.className = "author-save-status error"; statusEl.textContent = err.message; }
