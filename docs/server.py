@@ -8,7 +8,16 @@ Usage:  cd docs && python server.py
 Endpoints:
   GET  /api/module-structure?courseId=X&moduleFile=Y
   POST /api/image           (multipart file upload)
-  POST /api/content-block   (JSON body)
+  POST /api/content-block   (JSON body — insert block)
+  PUT  /api/content-block   (JSON body — update block at index)
+  PUT  /api/quiz-question   (update question at index)
+  POST /api/quiz-question   (insert question at index)
+  DELETE /api/quiz-question (delete question at index)
+  PUT  /api/glossary-term   (update term at index)
+  POST /api/glossary-term   (append term)
+  DELETE /api/glossary-term (delete term at index)
+  PUT  /api/topic-metadata  (update topic title, minutes, etc.)
+  PUT  /api/module-metadata (update module title, description)
 
 stdlib-only — no pip dependencies required.
 """
@@ -91,12 +100,31 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
         else:
             super().do_GET()
 
+    def do_PUT(self):
+        parsed = urlparse(self.path)
+        if parsed.path == "/api/content-block":
+            self.handle_update_block()
+        elif parsed.path == "/api/quiz-question":
+            self.handle_update_quiz_question()
+        elif parsed.path == "/api/glossary-term":
+            self.handle_update_glossary_term()
+        elif parsed.path == "/api/topic-metadata":
+            self.handle_update_topic_metadata()
+        elif parsed.path == "/api/module-metadata":
+            self.handle_update_module_metadata()
+        else:
+            self.send_error(404)
+
     def do_POST(self):
         parsed = urlparse(self.path)
         if parsed.path == "/api/image":
             self.handle_image_upload()
         elif parsed.path == "/api/content-block":
             self.handle_content_block()
+        elif parsed.path == "/api/quiz-question":
+            self.handle_add_quiz_question()
+        elif parsed.path == "/api/glossary-term":
+            self.handle_add_glossary_term()
         else:
             self.send_error(404)
 
@@ -104,6 +132,10 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
         parsed = urlparse(self.path)
         if parsed.path == "/api/content-block":
             self.handle_delete_block()
+        elif parsed.path == "/api/quiz-question":
+            self.handle_delete_quiz_question()
+        elif parsed.path == "/api/glossary-term":
+            self.handle_delete_glossary_term()
         else:
             self.send_error(404)
 
@@ -121,7 +153,7 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
 
     def send_cors_headers(self):
         self.send_header("Access-Control-Allow-Origin", "*")
-        self.send_header("Access-Control-Allow-Methods", "GET, POST, DELETE, PATCH, OPTIONS")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
 
     def send_json(self, status, obj):
@@ -529,6 +561,421 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
             "newIndex": swap_index,
             "blockCount": len(content),
         })
+
+    # ── PUT /api/content-block ──
+
+    def handle_update_block(self):
+        content_type = self.headers.get("Content-Type", "")
+        if "application/json" not in content_type:
+            self.send_json_error(400, "Expected application/json")
+            return
+
+        content_length = int(self.headers.get("Content-Length", 0))
+        body = self.rfile.read(content_length)
+
+        try:
+            data = json.loads(body)
+        except json.JSONDecodeError:
+            self.send_json_error(400, "Invalid JSON")
+            return
+
+        course_id = data.get("courseId")
+        module_file = data.get("moduleFile")
+        topic_id = data.get("topicId")
+        block_index = data.get("blockIndex")
+        block = data.get("block")
+
+        if not all([course_id, module_file, topic_id, block]) or block_index is None:
+            self.send_json_error(400, "courseId, moduleFile, topicId, blockIndex, and block are required")
+            return
+
+        if not isinstance(block_index, int) or block_index < 0:
+            self.send_json_error(400, "blockIndex must be a non-negative integer")
+            return
+
+        filepath = safe_path(COURSES_DIR, course_id, module_file)
+        if not filepath:
+            self.send_json_error(403, "Invalid path")
+            return
+
+        if not os.path.isfile(filepath):
+            self.send_json_error(404, f"Module file not found: {module_file}")
+            return
+
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                module = json.load(f)
+        except (json.JSONDecodeError, OSError) as e:
+            self.send_json_error(500, f"Failed to read module: {e}")
+            return
+
+        topic = None
+        for t in module.get("topics", []):
+            if t.get("id") == topic_id:
+                topic = t
+                break
+
+        if topic is None:
+            self.send_json_error(404, f"Topic not found: {topic_id}")
+            return
+
+        content = topic.get("content", [])
+        if block_index >= len(content):
+            self.send_json_error(400, f"blockIndex {block_index} out of range (topic has {len(content)} blocks)")
+            return
+
+        content[block_index] = block
+        topic["content"] = content
+
+        try:
+            with open(filepath, "w", encoding="utf-8") as f:
+                json.dump(module, f, indent=2, ensure_ascii=False)
+                f.write("\n")
+        except OSError as e:
+            self.send_json_error(500, f"Failed to write module: {e}")
+            return
+
+        self.send_json(200, {
+            "ok": True,
+            "topicId": topic_id,
+            "blockIndex": block_index,
+            "blockCount": len(content),
+        })
+
+    # ── PUT /api/quiz-question ──
+
+    def handle_update_quiz_question(self):
+        data = self._read_json_body()
+        if data is None:
+            return
+
+        course_id = data.get("courseId")
+        quiz_file = data.get("quizFile")
+        question_index = data.get("questionIndex")
+        question = data.get("question")
+
+        if not all([course_id, quiz_file, question]) or question_index is None:
+            self.send_json_error(400, "courseId, quizFile, questionIndex, and question are required")
+            return
+
+        filepath = safe_path(COURSES_DIR, course_id, quiz_file)
+        if not filepath:
+            self.send_json_error(403, "Invalid path")
+            return
+
+        if not os.path.isfile(filepath):
+            self.send_json_error(404, f"Quiz file not found: {quiz_file}")
+            return
+
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                quiz = json.load(f)
+        except (json.JSONDecodeError, OSError) as e:
+            self.send_json_error(500, f"Failed to read quiz: {e}")
+            return
+
+        questions = quiz.get("questions", [])
+        if not isinstance(question_index, int) or question_index < 0 or question_index >= len(questions):
+            self.send_json_error(400, f"questionIndex {question_index} out of range")
+            return
+
+        questions[question_index] = question
+
+        self._write_json(filepath, quiz)
+        self.send_json(200, {"ok": True, "questionIndex": question_index})
+
+    # ── POST /api/quiz-question ──
+
+    def handle_add_quiz_question(self):
+        data = self._read_json_body()
+        if data is None:
+            return
+
+        course_id = data.get("courseId")
+        quiz_file = data.get("quizFile")
+        insert_index = data.get("insertIndex")
+        question = data.get("question")
+
+        if not all([course_id, quiz_file, question]) or insert_index is None:
+            self.send_json_error(400, "courseId, quizFile, insertIndex, and question are required")
+            return
+
+        filepath = safe_path(COURSES_DIR, course_id, quiz_file)
+        if not filepath:
+            self.send_json_error(403, "Invalid path")
+            return
+
+        if not os.path.isfile(filepath):
+            self.send_json_error(404, f"Quiz file not found: {quiz_file}")
+            return
+
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                quiz = json.load(f)
+        except (json.JSONDecodeError, OSError) as e:
+            self.send_json_error(500, f"Failed to read quiz: {e}")
+            return
+
+        questions = quiz.get("questions", [])
+        if insert_index > len(questions):
+            insert_index = len(questions)
+        questions.insert(insert_index, question)
+
+        self._write_json(filepath, quiz)
+        self.send_json(200, {"ok": True, "insertIndex": insert_index, "questionCount": len(questions)})
+
+    # ── DELETE /api/quiz-question ──
+
+    def handle_delete_quiz_question(self):
+        data = self._read_json_body()
+        if data is None:
+            return
+
+        course_id = data.get("courseId")
+        quiz_file = data.get("quizFile")
+        question_index = data.get("questionIndex")
+
+        if not all([course_id, quiz_file]) or question_index is None:
+            self.send_json_error(400, "courseId, quizFile, and questionIndex are required")
+            return
+
+        filepath = safe_path(COURSES_DIR, course_id, quiz_file)
+        if not filepath:
+            self.send_json_error(403, "Invalid path")
+            return
+
+        if not os.path.isfile(filepath):
+            self.send_json_error(404, f"Quiz file not found: {quiz_file}")
+            return
+
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                quiz = json.load(f)
+        except (json.JSONDecodeError, OSError) as e:
+            self.send_json_error(500, f"Failed to read quiz: {e}")
+            return
+
+        questions = quiz.get("questions", [])
+        if not isinstance(question_index, int) or question_index < 0 or question_index >= len(questions):
+            self.send_json_error(400, f"questionIndex {question_index} out of range")
+            return
+
+        questions.pop(question_index)
+
+        self._write_json(filepath, quiz)
+        self.send_json(200, {"ok": True, "questionCount": len(questions)})
+
+    # ── PUT /api/glossary-term ──
+
+    def handle_update_glossary_term(self):
+        data = self._read_json_body()
+        if data is None:
+            return
+
+        course_id = data.get("courseId")
+        term_index = data.get("termIndex")
+        term = data.get("term")
+
+        if not all([course_id, term]) or term_index is None:
+            self.send_json_error(400, "courseId, termIndex, and term are required")
+            return
+
+        filepath = safe_path(COURSES_DIR, course_id, "glossary.json")
+        if not filepath or not os.path.isfile(filepath):
+            self.send_json_error(404, "Glossary not found")
+            return
+
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                glossary = json.load(f)
+        except (json.JSONDecodeError, OSError) as e:
+            self.send_json_error(500, f"Failed to read glossary: {e}")
+            return
+
+        terms = glossary.get("terms", [])
+        if not isinstance(term_index, int) or term_index < 0 or term_index >= len(terms):
+            self.send_json_error(400, f"termIndex {term_index} out of range")
+            return
+
+        terms[term_index] = term
+
+        self._write_json(filepath, glossary)
+        self.send_json(200, {"ok": True, "termIndex": term_index})
+
+    # ── POST /api/glossary-term ──
+
+    def handle_add_glossary_term(self):
+        data = self._read_json_body()
+        if data is None:
+            return
+
+        course_id = data.get("courseId")
+        term = data.get("term")
+
+        if not all([course_id, term]):
+            self.send_json_error(400, "courseId and term are required")
+            return
+
+        filepath = safe_path(COURSES_DIR, course_id, "glossary.json")
+        if not filepath or not os.path.isfile(filepath):
+            self.send_json_error(404, "Glossary not found")
+            return
+
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                glossary = json.load(f)
+        except (json.JSONDecodeError, OSError) as e:
+            self.send_json_error(500, f"Failed to read glossary: {e}")
+            return
+
+        terms = glossary.get("terms", [])
+        terms.append(term)
+
+        self._write_json(filepath, glossary)
+        self.send_json(200, {"ok": True, "termCount": len(terms)})
+
+    # ── DELETE /api/glossary-term ──
+
+    def handle_delete_glossary_term(self):
+        data = self._read_json_body()
+        if data is None:
+            return
+
+        course_id = data.get("courseId")
+        term_index = data.get("termIndex")
+
+        if not all([course_id]) or term_index is None:
+            self.send_json_error(400, "courseId and termIndex are required")
+            return
+
+        filepath = safe_path(COURSES_DIR, course_id, "glossary.json")
+        if not filepath or not os.path.isfile(filepath):
+            self.send_json_error(404, "Glossary not found")
+            return
+
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                glossary = json.load(f)
+        except (json.JSONDecodeError, OSError) as e:
+            self.send_json_error(500, f"Failed to read glossary: {e}")
+            return
+
+        terms = glossary.get("terms", [])
+        if not isinstance(term_index, int) or term_index < 0 or term_index >= len(terms):
+            self.send_json_error(400, f"termIndex {term_index} out of range")
+            return
+
+        terms.pop(term_index)
+
+        self._write_json(filepath, glossary)
+        self.send_json(200, {"ok": True, "termCount": len(terms)})
+
+    # ── PUT /api/topic-metadata ──
+
+    def handle_update_topic_metadata(self):
+        data = self._read_json_body()
+        if data is None:
+            return
+
+        course_id = data.get("courseId")
+        module_file = data.get("moduleFile")
+        topic_id = data.get("topicId")
+        metadata = data.get("metadata")
+
+        if not all([course_id, module_file, topic_id, metadata]):
+            self.send_json_error(400, "courseId, moduleFile, topicId, and metadata are required")
+            return
+
+        filepath = safe_path(COURSES_DIR, course_id, module_file)
+        if not filepath or not os.path.isfile(filepath):
+            self.send_json_error(404, f"Module file not found: {module_file}")
+            return
+
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                module = json.load(f)
+        except (json.JSONDecodeError, OSError) as e:
+            self.send_json_error(500, f"Failed to read module: {e}")
+            return
+
+        topic = None
+        for t in module.get("topics", []):
+            if t.get("id") == topic_id:
+                topic = t
+                break
+
+        if topic is None:
+            self.send_json_error(404, f"Topic not found: {topic_id}")
+            return
+
+        # Update allowed fields
+        for key in ("title", "estimatedMinutes", "isExercise", "keyTakeaways"):
+            if key in metadata:
+                topic[key] = metadata[key]
+
+        self._write_json(filepath, module)
+        self.send_json(200, {"ok": True, "topicId": topic_id})
+
+    # ── PUT /api/module-metadata ──
+
+    def handle_update_module_metadata(self):
+        data = self._read_json_body()
+        if data is None:
+            return
+
+        course_id = data.get("courseId")
+        module_file = data.get("moduleFile")
+        metadata = data.get("metadata")
+
+        if not all([course_id, module_file, metadata]):
+            self.send_json_error(400, "courseId, moduleFile, and metadata are required")
+            return
+
+        filepath = safe_path(COURSES_DIR, course_id, module_file)
+        if not filepath or not os.path.isfile(filepath):
+            self.send_json_error(404, f"Module file not found: {module_file}")
+            return
+
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                module = json.load(f)
+        except (json.JSONDecodeError, OSError) as e:
+            self.send_json_error(500, f"Failed to read module: {e}")
+            return
+
+        for key in ("title", "description"):
+            if key in metadata:
+                module[key] = metadata[key]
+
+        self._write_json(filepath, module)
+        self.send_json(200, {"ok": True})
+
+    # ── Shared helpers ──
+
+    def _read_json_body(self):
+        """Read and parse JSON from request body. Returns None on error (sends error response)."""
+        content_type = self.headers.get("Content-Type", "")
+        if "application/json" not in content_type:
+            self.send_json_error(400, "Expected application/json")
+            return None
+
+        content_length = int(self.headers.get("Content-Length", 0))
+        body = self.rfile.read(content_length)
+
+        try:
+            return json.loads(body)
+        except json.JSONDecodeError:
+            self.send_json_error(400, "Invalid JSON")
+            return None
+
+    def _write_json(self, filepath, data):
+        """Write JSON data to file with consistent formatting."""
+        try:
+            with open(filepath, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=2, ensure_ascii=False)
+                f.write("\n")
+        except OSError as e:
+            self.send_json_error(500, f"Failed to write file: {e}")
 
     def end_headers(self):
         """Add no-cache header to all responses so edits are seen on refresh."""

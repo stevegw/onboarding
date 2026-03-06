@@ -60,8 +60,14 @@
     html += '</div>';
 
     // Question card
+    var editMode = OB.author && OB.author.isEditMode && OB.author.isEditMode();
     html += '<div class="quiz-question-card">';
-    html += '<div class="quiz-question-text">' + esc(q.question) + '</div>';
+    html += '<div class="quiz-question-text">' + esc(q.question);
+    if (editMode) {
+      html += ' <button class="author-block-action author-edit-btn author-inline-edit" id="quiz-edit-q" title="Edit question">&#9998;</button>';
+      html += ' <button class="author-block-action author-inline-edit" id="quiz-delete-q" title="Delete question" style="color:var(--c-warning)">&#10005;</button>';
+    }
+    html += '</div>';
 
     var letters = ["A", "B", "C", "D"];
     q.options.forEach(function (opt, oi) {
@@ -101,9 +107,30 @@
     } else {
       html += '<span></span>';
     }
+    if (editMode) {
+      html += '<button class="author-list-add" id="quiz-add-q" style="margin-top:8px">+ Add Question Here</button>';
+    }
     html += '</div>';
 
     OB.ui.setMain(html);
+
+    // Bind quiz edit buttons
+    if (editMode) {
+      var editQBtn = document.getElementById("quiz-edit-q");
+      if (editQBtn) editQBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        OB.author.openQuizEditModal(currentModuleId, currentQuestion, q);
+      });
+      var deleteQBtn = document.getElementById("quiz-delete-q");
+      if (deleteQBtn) deleteQBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        OB.author.deleteQuizQuestion(currentModuleId, currentQuestion);
+      });
+      var addQBtn = document.getElementById("quiz-add-q");
+      if (addQBtn) addQBtn.addEventListener("click", function () {
+        OB.author.openQuizAddModal(currentModuleId, currentQuestion + 1);
+      });
+    }
 
     // Bind option clicks
     if (!answered) {

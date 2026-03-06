@@ -40,7 +40,11 @@
       html += '<span>' + t("topic.topicNum", { mod: modIdx, topic: topicIdx }) + '</span>';
     }
     html += '</div>';
-    html += '<h1>' + esc(topic.title) + '</h1>';
+    html += '<h1>' + esc(topic.title);
+    if (editMode) {
+      html += ' <button class="author-block-action author-edit-btn author-inline-edit" data-action="edit-topic-meta" title="Edit topic title &amp; settings">&#9998;</button>';
+    }
+    html += '</h1>';
     html += '<p class="topic-est text-dim text-sm">' + t("topic.estimated", { min: topic.estimatedMinutes || 5 }) + '</p>';
     html += '</div>';
 
@@ -54,6 +58,7 @@
         html += '<button class="author-inline-insert" data-topic="' + topic.id + '" data-index="' + blockIdx + '" title="Insert image block here"><span class="author-inline-insert-icon">+</span> Insert here</button>';
         html += '<div class="author-block-wrapper" data-block-index="' + blockIdx + '">';
         html += '<div class="author-block-toolbar">';
+        html += '<button class="author-block-action author-edit-btn" data-action="edit" data-block-index="' + blockIdx + '" title="Edit block">&#9998;</button>';
         html += '<button class="author-block-action" data-action="up" data-block-index="' + blockIdx + '" title="Move up"' + (blockIdx === 0 ? ' disabled' : '') + '>&#8593;</button>';
         html += '<button class="author-block-action" data-action="down" data-block-index="' + blockIdx + '" title="Move down"' + (blockIdx === totalBlocks - 1 ? ' disabled' : '') + '>&#8595;</button>';
         html += '<button class="author-block-action" data-action="delete" data-block-index="' + blockIdx + '" title="Delete block">&#10005;</button>';
@@ -72,7 +77,11 @@
     // Key takeaways
     if (topic.keyTakeaways && topic.keyTakeaways.length > 0) {
       html += '<div class="takeaways-box">';
-      html += '<h3>' + t("topic.keyTakeaways") + '</h3>';
+      html += '<h3>' + t("topic.keyTakeaways");
+      if (editMode) {
+        html += ' <button class="author-block-action author-edit-btn author-inline-edit" data-action="edit-takeaways" title="Edit key takeaways">&#9998;</button>';
+      }
+      html += '</h3>';
       html += '<ul>';
       topic.keyTakeaways.forEach(function (tk) {
         html += '<li>' + esc(tk) + '</li>';
@@ -414,11 +423,40 @@
           var idx = parseInt(btn.getAttribute("data-block-index"), 10);
           var topicId = getCurrentTopicId();
           if (!topicId) return;
-          if (action === "delete") {
+          if (action === "edit") {
+            OB.author.openEditModalForBlock(topicId, idx);
+          } else if (action === "delete") {
             OB.author.deleteBlock(topicId, idx);
           } else if (action === "up" || action === "down") {
             OB.author.moveBlock(topicId, idx, action);
           }
+        });
+      });
+
+      // Metadata edit buttons
+      document.querySelectorAll("[data-action='edit-topic-meta']").forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          var topicId = getCurrentTopicId();
+          if (topicId) OB.author.openTopicMetaModal(topicId);
+        });
+      });
+      document.querySelectorAll("[data-action='edit-takeaways']").forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          var topicId = getCurrentTopicId();
+          if (topicId) OB.author.openTakeawaysModal(topicId);
+        });
+      });
+      document.querySelectorAll("[data-action='edit-module-meta']").forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          var moduleId = getCurrentTopicId() ? getCurrentTopicId().replace(/t\d+$/, "") : null;
+          if (!moduleId) {
+            var mHash = (window.location.hash || "").match(/^#\/module\/(.+)$/);
+            if (mHash) moduleId = mHash[1];
+          }
+          if (moduleId) OB.author.openModuleMetaModal(moduleId);
         });
       });
 
@@ -557,10 +595,15 @@
     var topicIds = content.topics.map(function (tp) { return tp.id; });
     var prog = OB.state.getModuleProgress(meta.id, topicIds);
 
+    var editMode = OB.author && OB.author.isEditMode && OB.author.isEditMode();
     var html = '';
     html += '<div class="module-header" data-module="' + modIdx + '">';
     html += '<span class="module-badge">' + t("topic.moduleBadge", { num: modIdx }) + '</span>';
-    html += '<h1>' + esc(content.title) + '</h1>';
+    html += '<h1>' + esc(content.title);
+    if (editMode) {
+      html += ' <button class="author-block-action author-edit-btn author-inline-edit" data-action="edit-module-meta" title="Edit module title &amp; description">&#9998;</button>';
+    }
+    html += '</h1>';
     html += '<p class="text-muted">' + esc(content.description) + '</p>';
     html += '<div class="module-meta">';
     html += '<span>' + t("dashboard.estimatedMin", { min: meta.estimatedMinutes || 20 }) + '</span>';
@@ -628,6 +671,16 @@
         window.location.hash = el.getAttribute("data-route");
       });
     });
+
+    // Module metadata edit button
+    if (editMode) {
+      document.querySelectorAll("[data-action='edit-module-meta']").forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          OB.author.openModuleMetaModal(meta.id);
+        });
+      });
+    }
   }
 
   function shuffleArray(arr) {

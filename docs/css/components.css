@@ -298,6 +298,17 @@
   box-shadow: 0 8px 32px rgba(0,0,0,0.25);
   display: flex; flex-direction: column;
   overflow: hidden;
+  resize: both;
+  min-width: 340px; min-height: 280px;
+  transition: width 0.2s, height 0.2s, max-height 0.2s, max-width 0.2s, border-radius 0.2s;
+}
+.author-modal.maximized {
+  width: calc(100vw - 32px) !important;
+  height: calc(100vh - 32px) !important;
+  max-height: calc(100vh - 32px) !important;
+  max-width: calc(100vw - 32px) !important;
+  border-radius: 6px;
+  resize: none;
 }
 
 .author-modal-header {
@@ -308,13 +319,19 @@
 .author-modal-header h3 {
   font-size: 15px; font-weight: 700; color: var(--c-text-primary); margin: 0;
 }
-.author-modal-close {
+.author-modal-controls {
+  display: flex; align-items: center; gap: 2px;
+}
+.author-modal-close,
+.author-modal-maximize {
   width: 28px; height: 28px; border-radius: 6px;
   border: none; background: transparent; color: var(--c-text-dim);
   cursor: pointer; font-size: 18px; display: flex;
   align-items: center; justify-content: center;
 }
-.author-modal-close:hover { background: var(--c-bg-surface-hover); color: var(--c-text); }
+.author-modal-close:hover,
+.author-modal-maximize:hover { background: var(--c-bg-surface-hover); color: var(--c-text); }
+.author-modal-maximize { font-size: 14px; }
 
 .author-modal-body {
   padding: 20px;
@@ -522,7 +539,7 @@
 }
 
 @media (max-width: 640px) {
-  .author-modal { width: calc(100vw - 32px); }
+  .author-modal { width: calc(100vw - 32px); resize: none; }
   .author-size-group { flex-direction: column; }
 }
 
@@ -591,6 +608,121 @@
   font-size: 13px; color: var(--c-accent); font-weight: 600;
 }
 .author-preselected-icon { font-size: 14px; }
+
+/* ============================================================
+   Author Mode — Edit Forms
+   ============================================================ */
+.author-textarea {
+  padding: 8px 12px; border-radius: 6px;
+  border: 1px solid var(--c-border);
+  background: var(--c-bg-main); color: var(--c-text);
+  font-size: 13px; font-family: inherit; outline: none;
+  line-height: 1.6; resize: vertical; min-height: 80px;
+  width: 100%; box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+.author-textarea:focus { border-color: var(--c-info); }
+
+.author-edit-btn { color: var(--c-info) !important; }
+.author-edit-btn:hover { background: var(--c-info-008) !important; color: var(--c-info-lighter) !important; }
+
+.author-inline-edit {
+  display: inline-flex; vertical-align: middle;
+  width: 24px; height: 24px; font-size: 12px;
+  margin-left: 6px; opacity: 0.6;
+}
+.author-inline-edit:hover { opacity: 1; }
+
+.author-toggle-group {
+  display: flex; gap: 6px; flex-wrap: wrap;
+}
+.author-toggle-option {
+  flex: 1; min-width: 70px; padding: 8px 6px;
+  border: 1px solid var(--c-border); border-radius: 6px;
+  background: var(--c-bg-surface); color: var(--c-text-muted);
+  text-align: center; cursor: pointer; font-size: 12px;
+  font-weight: 600; font-family: inherit;
+  transition: all 0.15s;
+}
+.author-toggle-option:hover { border-color: var(--c-border-hover); }
+.author-toggle-option.selected {
+  border-color: var(--c-info); background: var(--c-info-008);
+  color: var(--c-info-lighter);
+}
+
+.author-list-item {
+  display: flex; gap: 8px; align-items: flex-start;
+  margin-bottom: 8px; padding: 8px;
+  border: 1px solid var(--c-border); border-radius: 6px;
+  background: var(--c-bg-surface);
+}
+.author-list-item .author-input,
+.author-list-item .author-textarea { flex: 1; }
+.author-list-remove {
+  width: 28px; height: 28px; border-radius: 4px;
+  border: none; background: transparent;
+  color: var(--c-text-dim); cursor: pointer;
+  font-size: 16px; font-family: inherit;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: all 0.12s;
+}
+.author-list-remove:hover {
+  background: var(--c-warning-008); color: var(--c-warning);
+}
+.author-list-add {
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 12px; border-radius: 6px;
+  border: 1px dashed var(--c-border);
+  background: none; cursor: pointer;
+  font-size: 12px; font-family: inherit;
+  color: var(--c-text-dim); transition: all 0.15s;
+  width: 100%;
+}
+.author-list-add:hover {
+  border-color: var(--c-info); color: var(--c-info-lighter);
+  background: var(--c-info-004);
+}
+
+/* Dynamic grid for comparison table editing */
+.author-table-grid {
+  display: grid; gap: 4px;
+  margin-bottom: 8px;
+}
+.author-table-grid .author-input {
+  width: 100%; box-sizing: border-box;
+  font-size: 12px; padding: 6px 8px;
+}
+.author-table-grid .author-input.header-cell {
+  font-weight: 700; background: var(--c-bg-surface-active);
+}
+.author-table-actions {
+  display: flex; gap: 8px; margin-top: 4px;
+}
+
+/* Nested exercise editing */
+.author-task-item {
+  border: 1px solid var(--c-border); border-radius: 8px;
+  padding: 12px; margin-bottom: 10px;
+  background: var(--c-bg-surface);
+}
+.author-task-item .author-field { margin-bottom: 8px; }
+.author-step-item {
+  border: 1px solid var(--c-border); border-radius: 6px;
+  padding: 8px; margin-bottom: 6px;
+  background: var(--c-bg-main);
+}
+.author-step-item .author-field { margin-bottom: 6px; }
+
+/* Quiz question edit */
+.author-option-row {
+  display: flex; gap: 8px; align-items: center;
+  margin-bottom: 6px;
+}
+.author-option-row .author-input { flex: 1; }
+.author-answer-radio {
+  width: 20px; height: 20px; cursor: pointer;
+  accent-color: var(--c-accent);
+}
 
 /* CJK: disable letter-spacing and uppercase (meaningless for CJK scripts) */
 html[lang="ja"] .module-num, html[lang="zh"] .module-num, html[lang="ko"] .module-num,
