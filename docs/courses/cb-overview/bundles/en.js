@@ -464,16 +464,16 @@
         },
         {
           "type": "exercise",
-          "exerciseId": "ex1",
+          "exerciseId": "set-up-your-environment",
           "title": "Set Up Your Environment",
           "objective": "Log in to Codebeamer, familiarize yourself with the main navigation, and open the PTC Electric Car project.",
           "tasks": [
             {
-              "id": "ex1-t1",
+              "id": "task1",
               "title": "Log In and Explore the Interface",
               "steps": [
                 {
-                  "action": "Open the Codebeamer training URL in your browser and log in with the credentials provided by your instructor.",
+                  "action": "log in with the credentials provided by your instructor. \nOr try these Type the following user credentials and then click Login. <br>• Account name: <strong>admin </strong><br>• Password: <strong>ptc </strong> <br>Helpful Links Open the Codebeamer training URL in your browser \nhttps://learningconnector.ptc.com/tutorial/1722405367765/set-up-environment",
                   "detail": "Codebeamer is a web-based application. After logging in, you will see the main dashboard which provides quick access to your projects, recent items, and notifications.",
                   "hint": "Use a modern browser (Chrome, Firefox, Edge) for the best experience."
                 },
@@ -489,8 +489,7 @@
                 },
                 {
                   "action": "Open the PTC Electric Car project and review its project dashboard.",
-                  "detail": "The project dashboard gives an overview of the project including recent activity, tracker summaries, and key metrics. This is your home base when working within a project.",
-                  "hint": null
+                  "detail": "The project dashboard gives an overview of the project including recent activity, tracker summaries, and key metrics. This is your home base when working within a project."
                 }
               ]
             }

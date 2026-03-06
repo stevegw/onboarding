@@ -189,7 +189,7 @@
             [
               "Engineer-to-Order",
               "Like configure-to-order, but requires engineering team involvement for validation and custom design per order.",
-              "Complex systems (turbines, aircraft components) requiring engineering review"
+              "Complex systems (turbines, aircraft components) requiring engineering review."
             ],
             [
               "Contract",
@@ -2226,7 +2226,6 @@
   "title": "Configurable Products Knowledge Check",
   "questions": [
     {
-      "id": "m1-kc-001",
       "question": "Which statement correctly reflects a configure-to-order business approach?",
       "options": [
         "A strategy to design products with a finite list of discrete option choices for key product features.",
@@ -2235,7 +2234,7 @@
         "A strategy to custom design and custom manufacture a product to fulfill the unique requirements of a specific customer."
       ],
       "answerIndex": 1,
-      "rationale": "Configure-to-order is specifically about designing flexible products that can be configured or customized to fit unique customer needs, typically using a configurator with rules. Option A describes assemble-to-order, option C describes engineer-to-order, and option D describes contract product development.",
+      "rationale": "Configure-to-order is specifically about designing flexible products that can be configured or customized to fit unique customer needs, typically using a configurator with rules. Option A describes assemble-to-order, option C describes engineer-to-order, and option D describes contract product development....",
       "topic": "m1t1"
     },
     {
