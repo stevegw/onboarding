@@ -8,7 +8,7 @@ A multi-course interactive training platform for PTC products (Windchill, Codebe
 
 **Tech stack:** Vanilla JavaScript + HTML + CSS. No frameworks, no build step, no server required. Deploys to GitHub Pages from `docs/`.
 
-**Scale:** 20 courses (1 complete, 19 coming soon), ~1,500 pages total across 3 product families.
+**Scale:** 20 courses (3 complete, 17 coming soon), ~1,500 pages total across 3 product families.
 
 **Content source:** PDFs in `docs/pdfs/` (not served; used as reference for content authoring).
 
@@ -115,6 +115,227 @@ localStorage keys are prefixed per-course:
 3. Set `comingSoon: false`, update `modules` count in both files
 4. Run `cd docs && python build-bundles.py` to generate the JS content bundle
 5. Validate all JSON: `python -m json.tool < file.json`
+
+## Content Authoring Patterns
+
+This section captures the patterns established across all 3 complete courses (wc-ocp1, cb-overview, creo-mdl1). Follow these patterns when authoring new courses to maintain consistency.
+
+### Course Structure
+
+Each course has **4 modules**. Each module has **4–8 topics** split into two zones:
+
+1. **Concept topics** (first N topics) — teach knowledge with interactive elements
+2. **Exercise topics** (last 1–3 topics) — hands-on practice with step-by-step tasks
+
+The split point is declared in `course.json` via `exerciseTopicStart`. If a module has no exercises, omit this field.
+
+### course.json Template
+
+```json
+{
+  "id": "{course-id}",
+  "title": "Product: Course Title",
+  "description": "One-sentence course summary.",
+  "prerequisite": null,
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Module Title",
+      "description": "What the learner will do in this module.",
+      "estimatedMinutes": 30,
+      "topicCount": 5,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m1-slug.json",
+      "quizFile": "quizzes/q1-slug.json"
+    }
+  ]
+}
+```
+
+### Module JSON Structure
+
+Each module file (`modules/m1-slug.json`) contains:
+
+```json
+{
+  "id": "m1",
+  "title": "Module Title",
+  "description": "Module description.",
+  "topics": [
+    {
+      "id": "m1t1",
+      "title": "Topic Title",
+      "estimatedMinutes": 5,
+      "content": [ /* content blocks */ ],
+      "keyTakeaways": ["Takeaway 1", "Takeaway 2", "Takeaway 3"]
+    }
+  ]
+}
+```
+
+Exercise topics add `"isExercise": true`.
+
+### Topic ID Convention
+
+- Topic IDs: `m{module}t{topic}` — e.g., `m1t1`, `m2t3`, `m4t8`
+- Exercise IDs: `ex{n}` — sequential across the course (ex1, ex2, ... exN)
+- Task IDs within exercises: `ex{n}-t{m}` or `task{m}`
+- Quiz question IDs: `m{n}-kc-00{n}` (kc = knowledge check)
+
+### Concept Topic Pattern
+
+Every concept topic follows this flow:
+
+```
+1. Opening paragraph     — sets context for the topic
+2. Heading (h2)          — first section header
+3. Explanatory content   — paragraphs, comparison-tables, reveal-cards
+4. Callout               — tip/info/warning/insight to highlight a key point
+5. Interactive element   — interactive-match OR interactive-sort (at least one per topic)
+```
+
+Typical block count: **4–8 blocks** per concept topic.
+
+**Content block sequencing rules:**
+- Always open with a `paragraph` (never a heading first)
+- Use `heading` (level 2) to break content into sections; use level 3 for subsections
+- Place `callout` blocks after explanatory content, before or after interactive elements
+- End with an interactive element when possible (match or sort) to reinforce learning
+- Alternate between dense content (tables, paragraphs) and visual/interactive elements (cards, match, sort) — don't stack multiple tables or multiple card blocks back-to-back
+
+### Exercise Topic Pattern
+
+Exercise topics follow a simpler structure:
+
+```
+1. Opening paragraph     — what the learner will practice
+2. Callout (info/warning) — prerequisites or cautions (optional)
+3. Exercise block         — tasks with steps
+```
+
+Typical block count: **2–4 blocks**. Some exercise topics include an `image` block before the exercise.
+
+**Exercise block structure:**
+- 1–4 tasks per exercise
+- 3–7 steps per task
+- Every step has `action` (imperative instruction) and `detail` (why/context)
+- `hint` is optional (null when the step is self-explanatory)
+
+### Key Takeaways
+
+Every topic (concept and exercise) has `keyTakeaways`:
+- **Concept topics:** 3–4 takeaways
+- **Exercise topics:** 3–4 takeaways
+- Written as complete, concise statements
+- Reinforce the most important points from the topic
+
+### Callout Usage
+
+| Variant | When to use |
+|---------|-------------|
+| `info` | Clarifications, definitions, exercise prerequisites |
+| `tip` | Best practices, productivity hints, shortcuts |
+| `warning` | Critical caveats, data-loss risks, common mistakes |
+| `insight` | Deeper understanding, industry context, design rationale |
+
+Use 1–2 callouts per topic. Don't cluster multiple callouts together.
+
+### Interactive Elements
+
+**`interactive-match`** — Match left items to right items. Use for:
+- Matching terms to definitions
+- Matching scenarios to strategies
+- Matching concepts to benefits
+- Typically 3–4 pairs
+
+**`interactive-sort`** — Arrange items in correct order. Use for:
+- Process sequences, workflow steps, hierarchy ordering
+- Typically 3–4 items
+- Items stored in correct order; renderer shuffles them
+
+**`reveal-cards`** — Flip cards with front/back content. Use for:
+- Key concepts with detailed explanations
+- Feature/benefit pairs
+- Typically 3–4 cards
+
+**`comparison-table`** — Structured data in rows/columns. Use for:
+- Feature comparisons, before/after, pros/cons
+- Term/definition matrices with categories
+- Typically 2–3 columns, 3–7 rows
+
+### Estimated Minutes
+
+| Topic type | Typical range |
+|-----------|---------------|
+| Concept topic | 5–8 min |
+| Exercise topic | 8–15 min |
+| Simple exercise (1 task, 3–4 steps) | 3–5 min |
+
+Module totals typically range from 20–55 min.
+
+### Quiz Structure
+
+Each module has one quiz file (`quizzes/q{n}-slug.json`):
+
+```json
+{
+  "moduleId": "m1",
+  "title": "Module Title Knowledge Check",
+  "questions": [
+    {
+      "id": "m1-kc-001",
+      "question": "Question text?",
+      "options": ["Option A", "Option B", "Option C", "Option D"],
+      "answerIndex": 2,
+      "rationale": "Explanation of correct answer and why others are wrong.",
+      "topic": "m1t1"
+    }
+  ]
+}
+```
+
+- **4–5 questions** per quiz
+- Always **4 options**, single correct answer
+- `rationale` explains correct answer AND addresses why distractors are wrong
+- `topic` links the question to a specific concept topic (never exercise topics)
+- Questions only test concept topics, not exercise topics
+
+### Glossary Structure
+
+Each course has `glossary.json`:
+
+```json
+{
+  "terms": [
+    { "term": "Term Name", "definition": "2–3 sentence definition with context." }
+  ]
+}
+```
+
+- **15–32 terms** per course covering core domain vocabulary
+- Definitions are precise and self-contained
+- Include all key terms introduced across all modules
+
+### Inline Formatting
+
+Text fields in content blocks support inline HTML via `safeHtml()`:
+- `<strong>bold</strong>`, `<em>italic</em>`, `<code>inline code</code>`, `<br>` line breaks
+- All other HTML tags are stripped during rendering
+- Existing plain text renders identically (backward compatible)
+
+### File Naming Conventions
+
+```
+courses/{course-id}/
+  course.json
+  glossary.json
+  modules/m1-{slug}.json          ← slug = kebab-case topic summary
+  modules/m2-{slug}.json
+  quizzes/q1-{slug}.json          ← slug matches corresponding module
+  quizzes/q2-{slug}.json
+  bundles/en.js                   ← generated by build-bundles.py
+  images/{filename}.png           ← referenced by image blocks as "images/..."
+```
 
 ## Related Projects
 
