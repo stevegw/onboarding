@@ -38,6 +38,20 @@
 }
 .theme-toggle:hover { border-color: var(--c-border-hover); color: var(--c-text-muted); background: var(--c-bg-surface-hover); }
 
+/* Scheme toggle */
+.scheme-toggle {
+  height: 30px; border-radius: 6px; padding: 0 8px;
+  border: 1px solid var(--c-border); background: transparent;
+  color: var(--c-text-dim); cursor: pointer; font-size: 10px;
+  font-weight: 600; font-family: inherit; letter-spacing: 0.03em;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: all 0.15s;
+}
+.scheme-toggle:hover {
+  border-color: var(--c-border-hover); color: var(--c-text-muted);
+  background: var(--c-bg-surface-hover);
+}
+
 /* Locale selector */
 .locale-select {
   height: 30px; border-radius: 6px;

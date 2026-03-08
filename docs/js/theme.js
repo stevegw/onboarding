@@ -25,11 +25,32 @@
     setTheme(current === "dark" ? "light" : "dark");
   }
 
+  /* Scheme (PTC / Classic) */
+  function getScheme() {
+    return OB.state.loadRaw(OB.state.GLOBAL_KEYS.scheme) || "ptc";
+  }
+
+  function setScheme(scheme) {
+    document.documentElement.setAttribute("data-scheme", scheme);
+    OB.state.saveRaw(OB.state.GLOBAL_KEYS.scheme, scheme);
+    var btn = document.getElementById("scheme-toggle-btn");
+    if (btn) btn.textContent = scheme === "ptc" ? "PTC" : "Classic";
+  }
+
+  function toggleScheme() {
+    var current = document.documentElement.getAttribute("data-scheme") || "ptc";
+    setScheme(current === "ptc" ? "classic" : "ptc");
+  }
+
   function init() {
     setTheme(getTheme());
     var btn = document.getElementById("theme-toggle-btn");
     if (btn) btn.addEventListener("click", toggle);
+
+    setScheme(getScheme());
+    var schemeBtn = document.getElementById("scheme-toggle-btn");
+    if (schemeBtn) schemeBtn.addEventListener("click", toggleScheme);
   }
 
-  OB.theme = { init: init, toggle: toggle, setTheme: setTheme };
+  OB.theme = { init: init, toggle: toggle, setTheme: setTheme, toggleScheme: toggleScheme, setScheme: setScheme };
 })();

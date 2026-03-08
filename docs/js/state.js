@@ -17,6 +17,7 @@
   var GLOBAL_KEYS = {
     theme: "ob_theme",
     locale: "ob_locale",
+    scheme: "ob_scheme",
   };
 
   /**

@@ -9,6 +9,9 @@ body {
   overflow: hidden;
   height: 100vh;
 }
+[data-scheme="ptc"] body {
+  font-family: 'Raleway', 'Open Sans', 'Century Gothic', 'Noto Sans CJK JP', 'Hiragino Sans', 'Microsoft YaHei', 'Malgun Gothic', sans-serif;
+}
 
 /* Custom scrollbar */
 * { scrollbar-width: thin; scrollbar-color: var(--c-border) transparent; }

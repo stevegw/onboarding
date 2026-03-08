@@ -126,3 +126,76 @@
   --c-module-3: var(--c-ref-green);
   --c-module-4: var(--c-ref-purple);
 }
+
+/* ============================================================
+   PTC Scheme — Dark
+   ============================================================ */
+[data-scheme="ptc"][data-theme="dark"] {
+  /* Backgrounds — neutral dark grays (PTC gray family) */
+  --c-bg-base: #1a1c1e;
+  --c-bg-surface: #27292b;
+  --c-bg-surface-hover: #2b332a;
+  --c-bg-surface-active: #353d33;
+  --c-border: #43474a;
+  --c-border-hover: #53565a;
+  /* Text — warm neutrals */
+  --c-text-primary: #f0f0ee;
+  --c-text: #ddddd9;
+  --c-text-secondary: #b8b8b4;
+  --c-text-muted: #8a8d90;
+  --c-text-dim: #636669;
+  /* Accent — PTC Green */
+  --c-accent: #69be28;
+  --c-accent-hover: #5aa622;
+  --c-accent-deep: #3d7317;
+  --c-on-accent: #1a1c1e;
+  /* Module ref green → PTC Green */
+  --c-ref-green: #69be28;
+  /* Accent tints — PTC Green rgb(105,190,40) */
+  --c-accent-004: rgba(105,190,40,0.06);
+  --c-accent-006: rgba(105,190,40,0.08);
+  --c-accent-008: rgba(105,190,40,0.1);
+  --c-accent-010: rgba(105,190,40,0.12);
+  --c-accent-015: rgba(105,190,40,0.18);
+  --c-accent-020: rgba(105,190,40,0.24);
+  --c-accent-030: rgba(105,190,40,0.35);
+  /* Neutral tints */
+  --c-neutral-004: rgba(138,141,144,0.04);
+  --c-neutral-006: rgba(138,141,144,0.06);
+}
+
+/* ============================================================
+   PTC Scheme — Light
+   ============================================================ */
+[data-scheme="ptc"][data-theme="light"] {
+  /* Backgrounds — white base, warm surface (matching reference) */
+  --c-bg-base: #ffffff;
+  --c-bg-surface: #f7f8f6;
+  --c-bg-surface-hover: #edf7e0;
+  --c-bg-surface-active: #ddecc8;
+  --c-border: #e2e2e2;
+  --c-border-hover: #d0d0d0;
+  /* Text — PTC Gray family */
+  --c-text-primary: #2b2d2f;
+  --c-text: #2b2d2f;
+  --c-text-secondary: #53565a;
+  --c-text-muted: #6b6e72;
+  --c-text-dim: #8a8d90;
+  /* Accent — PTC Green (darker variant for light bg contrast) */
+  --c-accent: #4d8f1e;
+  --c-accent-hover: #3d7317;
+  --c-accent-deep: #2d5711;
+  /* Module ref green → PTC Green */
+  --c-ref-green: #4d8f1e;
+  /* Accent tints — stronger opacities to match #edf7e0 feel */
+  --c-accent-004: rgba(105,190,40,0.06);
+  --c-accent-006: rgba(105,190,40,0.08);
+  --c-accent-008: rgba(105,190,40,0.1);
+  --c-accent-010: rgba(105,190,40,0.12);
+  --c-accent-015: rgba(105,190,40,0.18);
+  --c-accent-020: rgba(105,190,40,0.24);
+  --c-accent-030: rgba(105,190,40,0.35);
+  /* Neutral tints */
+  --c-neutral-004: rgba(107,110,114,0.06);
+  --c-neutral-006: rgba(107,110,114,0.08);
+}

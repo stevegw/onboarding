@@ -81,6 +81,16 @@
       html += '</div>';
     });
 
+    // Reference link
+    html += '<a class="catalog-reference" href="windchill-ai-journey.html" target="_blank">';
+    html += '<span class="catalog-ref-icon">&#128218;</span>';
+    html += '<div class="catalog-ref-body">';
+    html += '<span class="catalog-ref-title">Exploring AI for Windchill Enablement</span>';
+    html += '<span class="catalog-ref-desc">The journey, approach, and lessons learned from building AI-powered training content</span>';
+    html += '</div>';
+    html += '<span class="catalog-ref-arrow">&#8594;</span>';
+    html += '</a>';
+
     OB.ui.setMain(html);
 
     // Stop author link clicks from triggering card navigation
