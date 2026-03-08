@@ -1,0 +1,71 @@
+{
+  "moduleId": "m1",
+  "title": "Introduction to Windchill eBOM Knowledge Check",
+  "questions": [
+    {
+      "id": "m1-kc-001",
+      "question": "An end item in a part structure may contain which of the following?",
+      "options": [
+        "Other parts only",
+        "Other end items only",
+        "Both other parts and other end items",
+        "Neither parts nor end items"
+      ],
+      "answerIndex": 2,
+      "rationale": "An end item in a part structure may contain both other parts and other end items. End items typically represent the top node of a product structure, but they can also appear throughout the structure containing both regular parts and nested end items.",
+      "topic": "m1t3"
+    },
+    {
+      "id": "m1-kc-002",
+      "question": "Which design approach creates Windchill parts automatically from CAD documents?",
+      "options": [
+        "Top-Down Design (Part-Driven)",
+        "Bottom-Up Design (CAD-Driven)",
+        "Both approaches create parts automatically",
+        "Neither approach creates parts automatically"
+      ],
+      "answerIndex": 1,
+      "rationale": "Bottom-Up Design (CAD-Driven) automatically creates Windchill parts from CAD documents when the assembly is checked into Windchill. Top-Down Design creates parts first in Windchill, independent of CAD, and then distributes design tasks to engineering teams.",
+      "topic": "m1t4"
+    },
+    {
+      "id": "m1-kc-003",
+      "question": "What type of BOM defines the design of the finished product and includes all part specifications?",
+      "options": [
+        "mBOM (Manufacturing BOM)",
+        "sBOM (Service BOM)",
+        "eBOM (Engineering BOM)",
+        "pBOM (Production BOM)"
+      ],
+      "answerIndex": 2,
+      "rationale": "The eBOM (Engineering Bill of Materials) defines the design of the finished product and includes all alternative and substitute part numbers, product codes, part names, revisions, descriptions, quantities, and specifications. The mBOM focuses on manufacturing processes and the sBOM represents the product at the sales stage.",
+      "topic": "m1t1"
+    },
+    {
+      "id": "m1-kc-004",
+      "question": "What is the primary benefit of synchronizing eBOM, mBOM, and sBOM structures through the digital thread?",
+      "options": [
+        "It eliminates the need for CAD documents",
+        "It creates a single source of truth that defines the product",
+        "It automatically generates manufacturing instructions",
+        "It replaces the need for product structure filters"
+      ],
+      "answerIndex": 1,
+      "rationale": "When eBOM, mBOM, and sBOM structures are synchronized in real time via the digital thread, they critically inform a single source of truth that defines the product. This keeps dispersed teams aligned and facilitates real-time access to every product detail. It does not eliminate CAD documents, automatically generate manufacturing instructions, or replace filters.",
+      "topic": "m1t2"
+    },
+    {
+      "id": "m1-kc-005",
+      "question": "Which Windchill object is a logical database representation of a physical item used to build a product?",
+      "options": [
+        "CAD Document",
+        "Windchill Part",
+        "End Item",
+        "Usage Link"
+      ],
+      "answerIndex": 1,
+      "rationale": "A Windchill part is a logical database representation of a physical item used to build a product. It organizes product information through relationships and enables associated data. A CAD document represents a CAD model. An end item is a special type of part at the top node. A usage link is a relationship between parts.",
+      "topic": "m1t3"
+    }
+  ]
+}

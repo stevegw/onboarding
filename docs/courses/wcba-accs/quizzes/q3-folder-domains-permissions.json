@@ -1,0 +1,58 @@
+{
+  "moduleId": "m3",
+  "title": "Folder Domains and Advanced Permissions Knowledge Check",
+  "questions": [
+    {
+      "id": "m3-kc-001",
+      "question": "Which case requires Change Context permission: moving an object within the same product, or moving it to a different product?",
+      "options": [
+        "Moving within the same product",
+        "Moving to a different product",
+        "Both cases require Change Context",
+        "Neither case requires Change Context"
+      ],
+      "answerIndex": 1,
+      "rationale": "Change Context permission is required when moving an object to a different product, library, or project (different container). Moving within the same product and domain only requires Modify permission. Moving within the same product but to a different domain requires Change Domain and Create by Move.",
+      "topic": "m3t2"
+    },
+    {
+      "id": "m3-kc-002",
+      "question": "What must be enabled before you can assign a domain to a folder?",
+      "options": [
+        "The Private Access setting on the product",
+        "The Display Folder Domains preference",
+        "The Administrative permission for the folder",
+        "Security labels on the folder"
+      ],
+      "answerIndex": 1,
+      "rationale": "The Display Folder Domains preference must be set to Yes before you can assign a domain to a folder. After the assignment, the preference can be reverted. This is a Windchill administrative preference, not a product setting.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-003",
+      "question": "What happens to PDM domain rules when a product uses a shared team?",
+      "options": [
+        "PDM rules are applied first, then shared team rules",
+        "PDM rules are combined with shared team rules",
+        "PDM rules are ignored — the shared team domain replaces PDM",
+        "PDM rules take precedence over shared team rules"
+      ],
+      "answerIndex": 2,
+      "rationale": "When a product uses a shared team, its Default domain connects to the shared team domain, which sits at the same hierarchical level as the PDM domain. This means PDM domain rules are ignored when resolving the ACL for that product.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-004",
+      "question": "Which permission allows a user to change the part number of an object?",
+      "options": [
+        "Modify",
+        "Modify Identity",
+        "Modify Content",
+        "Administrative"
+      ],
+      "answerIndex": 1,
+      "rationale": "Modify Identity changes identity attributes like part number and organization identifier. Regular Modify changes non-identity attributes. Modify Content changes file content and attachments. Administrative enables admin tasks like breaking locks.",
+      "topic": "m3t2"
+    }
+  ]
+}

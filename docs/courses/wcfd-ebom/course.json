@@ -1,0 +1,48 @@
+{
+  "id": "wcfd-ebom",
+  "title": "Windchill: Fundamentals of Engineering Bill of Materials (eBOM)",
+  "description": "Learn to create, filter, and work with an engineering bill of materials (eBOM). Use the Product Structure Browser to create, edit, and manipulate product structures.",
+  "prerequisite": "Windchill: Fundamentals Overview",
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Introduction to Windchill eBOM",
+      "description": "Examine bill of materials concepts, BOM types and management risks, the digital thread, Windchill parts, product structure, and design methodologies.",
+      "estimatedMinutes": 30,
+      "topicCount": 5,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m1-intro-windchill-ebom.json",
+      "quizFile": "quizzes/q1-intro-windchill-ebom.json"
+    },
+    {
+      "id": "m2",
+      "title": "Creating an eBOM",
+      "description": "Explore four methods for creating an eBOM in Windchill: Product Structure Browser, Auto Associate, Import from Spreadsheet, and Save As.",
+      "estimatedMinutes": 25,
+      "topicCount": 4,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m2-creating-ebom.json",
+      "quizFile": "quizzes/q2-creating-ebom.json"
+    },
+    {
+      "id": "m3",
+      "title": "Baselines and Editing an eBOM",
+      "description": "Create and manage baselines to capture product structure snapshots. Edit an eBOM using the CAD tool, PSB, and spreadsheet methods.",
+      "estimatedMinutes": 30,
+      "topicCount": 5,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m3-baselines-editing-ebom.json",
+      "quizFile": "quizzes/q3-baselines-editing-ebom.json"
+    },
+    {
+      "id": "m4",
+      "title": "Managing an eBOM and BOM Reports",
+      "description": "Manage object associations, usage attributes, and occurrences. Apply product structure filters and generate BOM reports.",
+      "estimatedMinutes": 35,
+      "topicCount": 6,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m4-managing-ebom-reports.json",
+      "quizFile": "quizzes/q4-managing-ebom-reports.json"
+    }
+  ]
+}

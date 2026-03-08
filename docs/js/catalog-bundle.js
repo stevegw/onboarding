@@ -139,6 +139,17 @@
           "comingSoon": true
         },
         {
+          "id": "wcfd-ebom",
+          "title": "Fundamentals of Engineering BOM (eBOM)",
+          "description": "Learn to create, filter, and work with an engineering bill of materials (eBOM) using the Product Structure Browser.",
+          "pdfFile": "WCFD-EBOM-Training-Guide.pdf",
+          "prerequisite": "wc-overview",
+          "modules": 4,
+          "estimatedHours": 2,
+          "locales": ["en"],
+          "comingSoon": false
+        },
+        {
           "id": "wc-context",
           "title": "Introduction and Context Administration",
           "description": "Learn context administration including organizations, products, libraries, and projects.",
@@ -169,14 +180,15 @@
           "comingSoon": true
         },
         {
-          "id": "wc-access",
+          "id": "wcba-accs",
           "title": "Access Control",
-          "description": "Implement access control policies, permissions, and security configurations.",
+          "description": "Compare access control priorities and define rules using domain policies, ad hoc access, and security labels.",
           "pdfFile": "WCBA-ACCS-Training-Guide.pdf",
-          "modules": 0,
-          "estimatedHours": 3,
+          "prerequisite": "wc-objtypes",
+          "modules": 4,
+          "estimatedHours": 2,
           "locales": ["en"],
-          "comingSoon": true
+          "comingSoon": false
         },
         {
           "id": "wc-reporting",

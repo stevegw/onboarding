@@ -1,0 +1,298 @@
+{
+  "id": "m4",
+  "title": "Ad Hoc Access and Secure Collaboration",
+  "description": "Grant ad hoc access to individual objects, troubleshoot access control issues, and implement security labels and agreements for secure collaboration.",
+  "topics": [
+    {
+      "id": "m4t1",
+      "title": "Ad Hoc Access Control",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Policy rules created in the Policy Administrator provide default access for all objects of a specific type. Ad hoc access control lets you grant additional permissions for individual object instances above the policy-based rules."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Ad Hoc Capabilities and Limitations"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Capabilities", "Limitations"],
+          "rows": [
+            ["Only grant access (never deny)", "Cannot override security labels"],
+            ["Provide temporary access via lifecycle templates", "Cannot override absolute deny permissions"],
+            ["Available through Edit Access Control interface", "Changes affect only the individual object, not the type"],
+            ["Context managers and users with Change Permissions can use", "Granting user can only assign permissions they have or a subset"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Domain policy rules apply to all objects of a specific type. Ad hoc rules apply to individual object instances. Changes to domain rules immediately affect all objects; changes to ad hoc rules affect only the specific object."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "When to Use Ad Hoc Access"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Lifecycle Ad Hoc Rules",
+              "back": "Access granted as part of a business process. For example, granting temporary Read access to all reviewers when a document is in the Under Review state."
+            },
+            {
+              "front": "Manual Ad Hoc (Edit Access Control)",
+              "back": "Access granted by business administrators, context managers, or object creators through the Edit Access Control interface on individual objects."
+            },
+            {
+              "front": "Project/Program Sharing",
+              "back": "In project and program contexts, ad hoc access enables sharing specific objects with users outside the project team for collaboration purposes."
+            }
+          ]
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange these access control methods from broadest scope to narrowest:",
+          "items": [
+            "Domain policy rules (all objects of a type in a context)",
+            "Lifecycle ad hoc rules (objects in a specific lifecycle state)",
+            "Manual ad hoc rules (one specific object instance)"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Ad hoc access can only grant permissions — it cannot deny access.",
+        "Lifecycle ad hoc rules provide temporary access tied to a specific business process state.",
+        "Ad hoc access supersedes domain policy deny rules but cannot override security labels or absolute deny.",
+        "Only users with Change Permissions access can grant ad hoc permissions to others."
+      ]
+    },
+    {
+      "id": "m4t2",
+      "title": "Troubleshooting Access Control Issues",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "When users report access problems, the Edit Access Control dialog and the View Access Information report provide the tools needed to diagnose and resolve issues."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Edit Access Control Dialog"
+        },
+        {
+          "type": "paragraph",
+          "text": "Access the Edit Access Control dialog from the <strong>Actions</strong> menu of any object. This dialog shows participants with access and the current permissions granted. Grayed-out permissions cannot be changed through this interface."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["View", "Shows"],
+          "rows": [
+            ["Team Access", "Permissions for all context team roles"],
+            ["Defined Access", "Permissions explicitly defined for the object"],
+            ["My Access", "Your own permissions on the object"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "View Access Information Report"
+        },
+        {
+          "type": "paragraph",
+          "text": "The View Access Information icon on the Edit Access Control page launches a consolidated view of all individual rules that produce the final permission set. This report shows whether each permission comes from a policy rule, lifecycle ad hoc rule, manual ad hoc rule, or security label denial."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "The Access Information page cannot modify rules directly, but it shows the exact rule or combination of rules causing the access issue. Use this information to locate and modify the correct rule in the Policy Administrator."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Remember: if a participant is both granted and denied the same permission by different rules, the permission is <strong>NOT granted</strong>. If the participant has an absolute deny, no other rule can override it."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each troubleshooting scenario to the likely cause:",
+          "pairs": [
+            {"left": "User can see the object but cannot download files", "right": "Has Read but lacks Download permission"},
+            {"left": "User cannot see any objects in the product", "right": "Product is set to Private and user is not on the team"},
+            {"left": "User has a grant rule but still cannot access", "right": "Absolute deny or security label is overriding the grant"},
+            {"left": "User can modify some documents but not Outlines in review", "right": "State-specific deny rule on the object type"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Edit Access Control dialog shows current permissions and allows granting ad hoc access.",
+        "The View Access Information report shows the exact source of each permission for troubleshooting.",
+        "Grayed-out permissions in Edit Access Control cannot be changed through that interface.",
+        "Always check for absolute deny rules and security labels when a grant rule doesn't seem to work."
+      ]
+    },
+    {
+      "id": "m4t3",
+      "title": "Security Labels and Agreements",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Security labels classify sensitive information and restrict access to only authorized users. They are the strongest rules in Windchill's access control scheme, overriding all domain and ad hoc rules."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "How Security Labels Work"
+        },
+        {
+          "type": "paragraph",
+          "text": "A security label placed on an object acts as a gate: if the user is not cleared for <strong>all</strong> security labels on the object, they cannot access it — regardless of any other access control rules."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Component", "Description", "Example"],
+          "rows": [
+            ["Label", "One or more labels classifying the object", "Corporate Proprietary"],
+            ["Label Values", "Specific classification levels within a label", "Public, Internal Personnel Only, Highly Trusted"],
+            ["Participants", "Groups, users, or organizations authorized for each value", "Internal Personnel Only → Employees group"],
+            ["Agreement", "Workflow-driven exception to a security label", "Non-disclosure agreement for one month"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Predefined Security Label Examples"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Export Control",
+              "back": "Restricts objects based on standard export regulations. Objects using this label prompt users to acknowledge terms before downloading content. Authorized for a group named U.S. Persons."
+            },
+            {
+              "front": "Corporate Proprietary",
+              "back": "Indicates corporate sensitivity for highly trusted internal personnel. The Private value is cleared for members of the Employees group."
+            },
+            {
+              "front": "Legal Information",
+              "back": "A standard label that does not restrict access but indicates the object contains legal data. Used for informational classification only."
+            },
+            {
+              "front": "Third-Party Proprietary",
+              "back": "Indicates the object is subject to a third-party NDA. Applied and tracked through a custom Java class for automated enforcement."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Being an authorized participant for a security label does <strong>not</strong> grant access by itself. The user must still be granted access through domain or ad hoc rules. The security label only removes the denial — other rules determine the actual permissions."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Agreements"
+        },
+        {
+          "type": "paragraph",
+          "text": "Agreements provide workflow-driven exceptions to security labels, enabling temporary access for users who would otherwise be denied. Agreements are lifecycle-controlled objects — if expired, inactive, or removed, the user's access is immediately revoked."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the steps for accessing a security-labeled object:",
+          "items": [
+            "User must be cleared for ALL security labels on the object",
+            "If not cleared, user may gain access through a valid agreement",
+            "Domain or ad hoc rules determine the actual permissions granted",
+            "User can access the object with the permissions defined by rules"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Security labels are the strongest access control rule, overriding all domain and ad hoc rules.",
+        "Users must be cleared for ALL labels on an object — a single uncleared label blocks all access.",
+        "Being an authorized participant only removes the security label denial — other rules define actual permissions.",
+        "Agreements provide temporary exceptions to security labels and are lifecycle-controlled objects."
+      ]
+    },
+    {
+      "id": "m4t4",
+      "title": "Grant Ad Hoc Access",
+      "estimatedMinutes": 8,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you grant ad hoc access to a user who needs to work on a document in a restricted folder. Olive Watkins has Guest access but needs Modify permissions for a specific document."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "You should be signed in as <code>bpatterson/ptc</code> (business administrator). You will also verify access as <code>owatkins/ptc</code>."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex5",
+          "title": "Grant Ad Hoc Access",
+          "objective": "Grant Olive Watkins (owatkins) ad hoc Read and Modify access to a specific document in the Team Information folder.",
+          "tasks": [
+            {
+              "id": "ex5-t1",
+              "title": "Grant Ad Hoc Access to the Document",
+              "steps": [
+                {
+                  "action": "Browse to <strong>PTC New Publication Template > Folders > Team Information</strong>.",
+                  "detail": "This folder has restricted access due to the folder domain you created in a previous exercise.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Specification 1</strong> document checkbox, then click <strong>Actions > Edit Access Control</strong>.",
+                  "detail": "The Edit Access Control dialog shows current participants and their permissions.",
+                  "hint": null
+                },
+                {
+                  "action": "Add <strong>Olive Watkins (owatkins)</strong> to the Access table.",
+                  "detail": "You can search for the user by name or username.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Read</strong> and <strong>Modify</strong> permissions for Olive Watkins, then click OK.",
+                  "detail": "Guest roles have Read access by default, but the folder domain rule restricts access to non-team members. Ad hoc access overrides the domain deny rule.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex5-t2",
+              "title": "Validate the Access Change",
+              "steps": [
+                {
+                  "action": "In a new browser session, sign in as <code>owatkins/ptc</code>.",
+                  "detail": "Olive Watkins is a Guest user who was previously denied access to the Team Information folder.",
+                  "hint": null
+                },
+                {
+                  "action": "Search for <code>Specificat*</code> and right-click the Specification 1 document.",
+                  "detail": "Olive can now see the document in search results and should have edit capabilities.",
+                  "hint": "Notice that Check Out and edit actions are now available."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Ad hoc access is granted through the Edit Access Control dialog on individual objects.",
+        "Ad hoc grants override domain-level deny rules (but not absolute deny or security labels).",
+        "Guest roles may need explicit ad hoc grants to access objects in restricted folders.",
+        "Always verify access changes by signing in as the affected user."
+      ]
+    }
+  ]
+}

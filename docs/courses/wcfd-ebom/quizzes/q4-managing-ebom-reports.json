@@ -1,0 +1,71 @@
+{
+  "moduleId": "m4",
+  "title": "Managing an eBOM and BOM Reports Knowledge Check",
+  "questions": [
+    {
+      "id": "m4-kc-001",
+      "question": "Which document association types does Windchill use to link documents to parts?",
+      "options": [
+        "Reference link and Describe link",
+        "Owner link and Content link",
+        "Primary link and Secondary link",
+        "Direct link and Indirect link"
+      ],
+      "answerIndex": 0,
+      "rationale": "Windchill uses Reference links and Describe (Described By) links to associate documents with parts. Reference links always point to the latest released version, while Described By links create version-to-version connections. Owner, Content, Primary, Secondary, Direct, and Indirect are not standard association types.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-002",
+      "question": "What is the purpose of a Reference Designator in Windchill?",
+      "options": [
+        "To identify the document version linked to a part",
+        "To name each specific occurrence of a component within an assembly",
+        "To set the default unit of measure for a part",
+        "To define the lifecycle state of a baseline"
+      ],
+      "answerIndex": 1,
+      "rationale": "Reference Designators name each specific occurrence of a component within an assembly. When multiple pieces of the same component are used, each occurrence gets its own Reference Designator (e.g., T1, T2, T3, T4) to uniquely identify and store occurrence-specific information.",
+      "topic": "m4t2"
+    },
+    {
+      "id": "m4-kc-003",
+      "question": "Which filter type would you use to view the product structure as it existed at a previously captured milestone?",
+      "options": [
+        "Latest",
+        "Baseline",
+        "Spatial Filter",
+        "Attribute Filter"
+      ],
+      "answerIndex": 1,
+      "rationale": "The Baseline filter displays the parts structure using versions captured in a previously created baseline, which represents a milestone snapshot. Latest shows the most recent versions. Spatial Filter uses volumetric information. Attribute Filter uses part attributes for filtering.",
+      "topic": "m4t3"
+    },
+    {
+      "id": "m4-kc-004",
+      "question": "What is the difference between a Single-Level BOM and a Multi-Level BOM report?",
+      "options": [
+        "Single-Level shows all levels; Multi-Level shows only direct children",
+        "Single-Level shows direct children only; Multi-Level shows an indented list of all levels",
+        "Single-Level consolidates quantities; Multi-Level shows each occurrence separately",
+        "Single-Level is for CAD structures; Multi-Level is for part structures"
+      ],
+      "answerIndex": 1,
+      "rationale": "A Single-Level BOM displays parts directly used by a parent part (direct children only). A Multi-Level BOM displays an indented list of single-level BOMs for all levels of the product structure. Neither consolidates quantities (that's the Consolidated BOM), and both work with part structures.",
+      "topic": "m4t4"
+    },
+    {
+      "id": "m4-kc-005",
+      "question": "Which Windchill tool allows you to identify differences between successive versions of a product structure?",
+      "options": [
+        "Product Structure Browser (PSB)",
+        "Baseline Comparison",
+        "Compare Tool",
+        "Structure Filter"
+      ],
+      "answerIndex": 2,
+      "rationale": "The Compare tool identifies differences between similar product configurations or changes between successive versions. It provides a side-by-side view with left and right panes, a central difference column, and navigation tools. The PSB is for editing, baselines capture snapshots, and filters display subsets.",
+      "topic": "m4t4"
+    }
+  ]
+}

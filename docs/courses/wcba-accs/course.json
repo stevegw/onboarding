@@ -1,0 +1,48 @@
+{
+  "id": "wcba-accs",
+  "title": "Windchill: Access Control",
+  "description": "Compare access control priorities and define rules for user interactions with information in Windchill. Define access control schema using domain policies, ad hoc access, and security labels.",
+  "prerequisite": "Windchill: Objects and Types",
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Access Control Strategies",
+      "description": "Examine three primary strategies for user access in Windchill, compare access control priorities, and review the Windchill domain architecture.",
+      "estimatedMinutes": 25,
+      "topicCount": 4,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m1-access-control-strategies.json",
+      "quizFile": "quizzes/q1-access-control-strategies.json"
+    },
+    {
+      "id": "m2",
+      "title": "Domain Policies and Rules",
+      "description": "Define domain access control rules using five components, manage participants and permissions, and understand ACL resolution principles.",
+      "estimatedMinutes": 35,
+      "topicCount": 5,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m2-domain-policies-rules.json",
+      "quizFile": "quizzes/q2-domain-policies-rules.json"
+    },
+    {
+      "id": "m3",
+      "title": "Folder Domains and Advanced Permissions",
+      "description": "Create folder domains, understand permissions for move and lifecycle operations, and define notification and indexing policies.",
+      "estimatedMinutes": 25,
+      "topicCount": 4,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m3-folder-domains-permissions.json",
+      "quizFile": "quizzes/q3-folder-domains-permissions.json"
+    },
+    {
+      "id": "m4",
+      "title": "Ad Hoc Access and Secure Collaboration",
+      "description": "Grant ad hoc access to individual objects, troubleshoot access control issues, and implement security labels and agreements for secure collaboration.",
+      "estimatedMinutes": 25,
+      "topicCount": 4,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m4-adhoc-secure-collaboration.json",
+      "quizFile": "quizzes/q4-adhoc-secure-collaboration.json"
+    }
+  ]
+}

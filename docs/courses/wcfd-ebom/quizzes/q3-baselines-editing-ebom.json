@@ -1,0 +1,71 @@
+{
+  "moduleId": "m3",
+  "title": "Baselines and Editing an eBOM Knowledge Check",
+  "questions": [
+    {
+      "id": "m3-kc-001",
+      "question": "How many versions and iterations of a part or document can be captured in a baseline?",
+      "options": [
+        "One",
+        "Two",
+        "As many as needed",
+        "It depends on the baseline type"
+      ],
+      "answerIndex": 0,
+      "rationale": "A baseline can hold only one version and iteration of a part or document. While a baseline can contain any number of different parts and documents, each individual object can only appear once with a specific version. You can use Replace Member to swap a version if needed.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-002",
+      "question": "Which two methods does Windchill provide for creating a baseline?",
+      "options": [
+        "New Baseline and Import Baseline",
+        "New Baseline and Add to Baseline",
+        "Create Baseline and Copy Baseline",
+        "Manual Baseline and Automatic Baseline"
+      ],
+      "answerIndex": 1,
+      "rationale": "Windchill provides two methods: New Baseline (creates an empty baseline from the Details page or Folder Contents) and Add to Baseline (preselects objects from the Information page or right-click menu). Import, Copy, Manual, and Automatic are not standard baseline creation methods.",
+      "topic": "m3t2"
+    },
+    {
+      "id": "m3-kc-003",
+      "question": "In the part-driven design process, which method would you primarily use to update an existing product structure?",
+      "options": [
+        "CAD Tool only",
+        "Product Structure Browser (PSB) or Import from Spreadsheet",
+        "Auto Associate",
+        "Save As"
+      ],
+      "answerIndex": 1,
+      "rationale": "In a part-driven (top-down) design process, a product architect would primarily use the Product Structure Browser (PSB) or the spreadsheet method to update the existing structure. The CAD tool is typically used in bottom-up design. Auto Associate links CAD to parts. Save As creates new structures by duplication.",
+      "topic": "m3t3"
+    },
+    {
+      "id": "m3-kc-004",
+      "question": "What happens when you lock a baseline in Windchill?",
+      "options": [
+        "The baseline is permanently deleted",
+        "The baseline objects are checked out",
+        "Unauthorized changes to the baseline are prevented",
+        "The baseline is automatically archived"
+      ],
+      "answerIndex": 2,
+      "rationale": "Locking a baseline prevents unauthorized changes to its contents. A lock icon appears next to the baseline name. The baseline is not deleted, objects are not checked out, and it is not automatically archived. The Protected option separately prevents deletion of objects that are in the baseline.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-005",
+      "question": "What are the three steps involved in editing an eBOM using the spreadsheet method?",
+      "options": [
+        "Create, Edit, Delete",
+        "Export, Edit, Import",
+        "Download, Modify, Upload",
+        "Check Out, Edit, Check In"
+      ],
+      "answerIndex": 1,
+      "rationale": "The spreadsheet editing method involves three steps: Export the existing product structure using Export Importable Spreadsheet, Edit the spreadsheet in Microsoft Excel, and Import the modified spreadsheet to Windchill using update mode. The other options describe different workflows.",
+      "topic": "m3t3"
+    }
+  ]
+}

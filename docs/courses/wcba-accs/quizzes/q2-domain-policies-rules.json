@@ -1,0 +1,71 @@
+{
+  "moduleId": "m2",
+  "title": "Domain Policies and Rules Knowledge Check",
+  "questions": [
+    {
+      "id": "m2-kc-001",
+      "question": "Which rules can be set within the Policy Administrator user interface?",
+      "options": [
+        "Access control, ad hoc access, and agreements",
+        "Access control, indexing, and notification",
+        "Access control, security labels, and agreements",
+        "Ad hoc access, indexing, and notification"
+      ],
+      "answerIndex": 1,
+      "rationale": "The Policy Administrator manages access control, indexing, and notification rules. Ad hoc access is set through the Edit Access Control dialog on individual objects. Agreements and security labels are configured separately.",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-002",
+      "question": "What are the elements used to define an access control rule?",
+      "options": [
+        "Domain, object version, participants, and permissions",
+        "Domain, object type, lifecycle state, participants, and permissions",
+        "Object type, participants, permissions, and agreement",
+        "Domain, object type, security label, and permissions"
+      ],
+      "answerIndex": 1,
+      "rationale": "Five components define a domain access control rule: Domain (where), Object type (what), Lifecycle state (when), Participants (who), and Permissions (how). Object version and security labels are not components of domain rules.",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-003",
+      "question": "If a participant is GRANTED a permission by one ACL but DENIED the same permission by another ACL, what is the result?",
+      "options": [
+        "The permission is granted because grants take precedence",
+        "The permission is NOT granted",
+        "The system uses the most recent rule",
+        "The participant must request access through an agreement"
+      ],
+      "answerIndex": 1,
+      "rationale": "When a participant is both granted and denied the same permission by different ACLs, the permission is NOT granted. The deny takes precedence over the grant in Windchill's ACL resolution principles.",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-004",
+      "question": "Which access control approach is considered the most secure?",
+      "options": [
+        "Deny-based: grant broad access, then deny specific groups",
+        "Inverse deny: use 'all except participant' rules",
+        "Grant-only: remove broad grants, explicitly grant each group",
+        "User-specific: create individual rules for each user"
+      ],
+      "answerIndex": 2,
+      "rationale": "The grant-only approach is most secure because access is forbidden by default. Each grant is explicit, there are fewer rules, and the approach simplifies reading and maintaining access control. User-specific rules are too granular for practical administration.",
+      "topic": "m2t3"
+    },
+    {
+      "id": "m2-kc-005",
+      "question": "What happens when a product's Private Access is set to Yes?",
+      "options": [
+        "All team members lose access to the product",
+        "The product's domain moves under the Private domain, bypassing PDM rules",
+        "Security labels are automatically applied to all objects",
+        "The product is deleted from the organization"
+      ],
+      "answerIndex": 1,
+      "rationale": "Setting Private Access to Yes moves the product's Default domain to be a child of the Private domain instead of the PDM domain. This bypasses any global rules in the PDM domain, hiding released objects from non-team members.",
+      "topic": "m2t4"
+    }
+  ]
+}

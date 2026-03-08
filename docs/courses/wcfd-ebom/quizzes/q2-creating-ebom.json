@@ -1,0 +1,58 @@
+{
+  "moduleId": "m2",
+  "title": "Creating an eBOM Knowledge Check",
+  "questions": [
+    {
+      "id": "m2-kc-001",
+      "question": "How many methods does Windchill provide to create an eBOM?",
+      "options": [
+        "Two: PSB and Auto Associate",
+        "Three: PSB, Auto Associate, and Save As",
+        "Four: PSB, Auto Associate, Import from Spreadsheet, and Save As",
+        "Five: PSB, Auto Associate, Import from Spreadsheet, Save As, and CAD Check-in"
+      ],
+      "answerIndex": 2,
+      "rationale": "Windchill provides four methods to create an eBOM: Product Structure Browser (PSB), Auto Associate, Import from Spreadsheet, and Save As. These methods can be used individually or in combination. CAD Check-in is not a separate creation method but part of the Auto Associate workflow.",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-002",
+      "question": "Which eBOM creation method is typically used for bulk loading large sets of parts from external data?",
+      "options": [
+        "Product Structure Browser (PSB)",
+        "Auto Associate",
+        "Import from Spreadsheet",
+        "Save As"
+      ],
+      "answerIndex": 2,
+      "rationale": "Import from Spreadsheet is the primary method for bulk loading large sets of Windchill parts and product structures from external data maintained in Microsoft Excel spreadsheets. The PSB is for manual manipulation, Auto Associate links CAD to parts, and Save As duplicates existing structures.",
+      "topic": "m2t3"
+    },
+    {
+      "id": "m2-kc-003",
+      "question": "What does Windchill use as the default criteria to find a matching part during Auto Associate?",
+      "options": [
+        "The CAD document's file name",
+        "The CAD document's base number",
+        "The CAD document's creation date",
+        "The CAD document's file type"
+      ],
+      "answerIndex": 1,
+      "rationale": "Windchill uses the CAD document's base number as the default criteria to find a matching Windchill part during Auto Associate. This behavior can be changed through Windchill preferences. The file name, creation date, and file type are not used as matching criteria by default.",
+      "topic": "m2t2"
+    },
+    {
+      "id": "m2-kc-004",
+      "question": "Which eBOM creation method works best for creating product structures of similar type products?",
+      "options": [
+        "Product Structure Browser (PSB)",
+        "Auto Associate",
+        "Import from Spreadsheet",
+        "Save As"
+      ],
+      "answerIndex": 3,
+      "rationale": "Save As works best for creating product structures of similar type products by duplicating an existing structure. You can duplicate the complete structure or a smaller portion and optionally gather associated CAD documents. The other methods are better suited for building structures from scratch or linking existing objects.",
+      "topic": "m2t3"
+    }
+  ]
+}

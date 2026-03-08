@@ -1,0 +1,71 @@
+{
+  "moduleId": "m4",
+  "title": "Ad Hoc Access and Secure Collaboration Knowledge Check",
+  "questions": [
+    {
+      "id": "m4-kc-001",
+      "question": "Anna Chen is a member of a group that has an absolute deny Read permission on an object, but Anna Chen's username has a grant Read rule. Can Anna Chen access the object?",
+      "options": [
+        "Yes — user rules always override group rules",
+        "Yes — grant rules always override deny rules",
+        "No — absolute deny cannot be overridden by any grant rule",
+        "No — group rules always override user rules"
+      ],
+      "answerIndex": 2,
+      "rationale": "Anna Chen cannot access the object. An absolute deny on a user or group takes precedence over any grant rule, including user-specific grants. Only removal of the absolute deny policy itself can restore access.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-002",
+      "question": "What is required for a security label to actually grant a user access to an object?",
+      "options": [
+        "The user only needs to be an authorized participant for the label",
+        "The user must be cleared for the label AND have domain or ad hoc access",
+        "The user must have an active agreement for the label",
+        "The administrator must grant access through the Policy Administrator"
+      ],
+      "answerIndex": 1,
+      "rationale": "Being an authorized participant for a security label only removes the label's denial — it does not grant access. The user must still be granted access through domain or ad hoc access control rules to actually access the object.",
+      "topic": "m4t3"
+    },
+    {
+      "id": "m4-kc-003",
+      "question": "Which tool shows the exact source (policy, lifecycle, ad hoc) of each permission for troubleshooting?",
+      "options": [
+        "Policy Administrator",
+        "Edit Access Control dialog",
+        "View Access Information report",
+        "Preference Management"
+      ],
+      "answerIndex": 2,
+      "rationale": "The View Access Information report, accessed from the Edit Access Control dialog, shows all individual rules that produce the final permission set. It identifies whether each permission comes from a policy rule, lifecycle ad hoc rule, manual ad hoc rule, or security label.",
+      "topic": "m4t2"
+    },
+    {
+      "id": "m4-kc-004",
+      "question": "What happens when a security label agreement expires or becomes inactive?",
+      "options": [
+        "The user retains access until the administrator removes it",
+        "The user's access is immediately revoked",
+        "The user gets read-only access",
+        "The agreement automatically renews"
+      ],
+      "answerIndex": 1,
+      "rationale": "Agreements are lifecycle-controlled objects. If an agreement is expired, inactive, or removed, the user's access to the security-labeled objects is immediately revoked. There is no grace period or automatic renewal.",
+      "topic": "m4t3"
+    },
+    {
+      "id": "m4-kc-005",
+      "question": "Who can grant ad hoc permissions through the Edit Access Control interface?",
+      "options": [
+        "Any user who can see the object",
+        "Only the Windchill site administrator",
+        "Business administrators, context managers, and users with Change Permissions",
+        "Only the object creator"
+      ],
+      "answerIndex": 2,
+      "rationale": "Business administrators, application context managers, and any user who has been granted Change Permissions access to an object can grant ad hoc permissions through the Edit Access Control interface. They can only assign permissions they already have or a subset.",
+      "topic": "m4t1"
+    }
+  ]
+}

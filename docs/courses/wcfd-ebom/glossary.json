@@ -1,0 +1,96 @@
+{
+  "terms": [
+    {
+      "term": "Association",
+      "definition": "The relationship created between a CAD structure and a Windchill part structure. It enables the exchange and update of structure, attribute, and visualization information between them."
+    },
+    {
+      "term": "Auto Associate",
+      "definition": "An action that automatically locates and associates an existing Windchill part to a CAD document, or creates a new Windchill part and associates it to a CAD document if no matching part currently exists."
+    },
+    {
+      "term": "Baseline",
+      "definition": "A snapshot of an evolving collection of Windchill data objects and their status at a specific point in time. Each baseline contains a static list of objects that can be locked and protected."
+    },
+    {
+      "term": "Bill of Materials (BOM)",
+      "definition": "A comprehensive inventory of the raw materials, assemblies, subassemblies, parts, components, and the quantities of each needed to manufacture a product. Can be single-level or multi-level."
+    },
+    {
+      "term": "Bottom-Up Design",
+      "definition": "A CAD-driven approach where the design process begins in the CAD authoring environment. CAD assembly structures are checked into Windchill to generate an analogous enterprise part structure."
+    },
+    {
+      "term": "CAD Document",
+      "definition": "A Windchill object that represents a CAD model assembly checked into Windchill. It can be a part, drawing, or assembly and preserves the membership-in-assembly relationships."
+    },
+    {
+      "term": "Described By Association",
+      "definition": "A version-to-version link between a Windchill part and a document. Used when a specific version of a part is described by only one version of the document, such as a drawing."
+    },
+    {
+      "term": "Digital Thread",
+      "definition": "The real-time synchronization of eBOM, mBOM, and sBOM structures that critically informs a single source of truth defining the product across engineering, manufacturing, and service departments."
+    },
+    {
+      "term": "eBOM (Engineering BOM)",
+      "definition": "Defines the design of the finished product. Includes all alternative and substitute part numbers, product codes, part names, numbers, revisions, descriptions, quantities, and specifications."
+    },
+    {
+      "term": "End Item",
+      "definition": "A special type of Windchill part that typically represents the top node of a product structure. End items are developed for delivery and may also appear throughout the product structure."
+    },
+    {
+      "term": "mBOM (Manufacturing BOM)",
+      "definition": "Comprises all assemblies and parts required to construct a finished item, including packaging materials and manufacturing process information."
+    },
+    {
+      "term": "Occurrence Link",
+      "definition": "Stores information about one specific named use of a component within an assembly Windchill part structure. The number of occurrences relates to the quantity of parts used in the parent assembly."
+    },
+    {
+      "term": "Part Information Page",
+      "definition": "A central location in Windchill for accessing information related to a part and performing actions. Includes tabs for Details, Structure, Related Objects, Changes, History, Where Used, and Traceability."
+    },
+    {
+      "term": "Product Structure",
+      "definition": "A hierarchical representation of Windchill parts that makes up a specific product, capturing all product configurations from first release through current production to future releases."
+    },
+    {
+      "term": "Product Structure Browser (PSB)",
+      "definition": "The Structure tab on the Information page of a Windchill part. Used to create, edit, navigate, and filter product structures in both CAD-centric and part-centric environments."
+    },
+    {
+      "term": "Reference Association",
+      "definition": "A link set when the associated document type is Reference Document. The part may be revised many times, but the referenced document is always the latest released version."
+    },
+    {
+      "term": "Reference Designator",
+      "definition": "An attribute attached to BOM components when more than one piece of the same component is used. Each occurrence stores unique information identified by its reference designator name."
+    },
+    {
+      "term": "sBOM (Service BOM)",
+      "definition": "Represents a finished product assembled at the sales stage. Includes the finished product and other components that appear as separate items in the sales order document."
+    },
+    {
+      "term": "Structure Filter",
+      "definition": "A tool that reduces the complexity of a part structure by showing valid product configurations for a point in time, serial number, or specific development task."
+    },
+    {
+      "term": "Top-Down Design",
+      "definition": "A part-driven approach where Windchill parts and structures are created first, independent of CAD. Tasks of designing and linking CAD models are then distributed to engineering teams."
+    },
+    {
+      "term": "Usage Attributes",
+      "definition": "Attributes defined on a usage link between a selected child part and the next higher assembly, including Quantity, Unit, Trace Code, Line Number, Find Number, and Reference Designator."
+    },
+    {
+      "term": "Usage Link",
+      "definition": "A link between a Windchill part and a WTPartMaster used to build assemblies. The usage link selects the correct version of the WTPartMaster for the product structure."
+    },
+    {
+      "term": "Windchill Part",
+      "definition": "A logical database representation of a physical item used to build a product. Parts organize product information through relationships and enable associated data such as design files, attributes, documents, and changes."
+    }
+  ]
+}

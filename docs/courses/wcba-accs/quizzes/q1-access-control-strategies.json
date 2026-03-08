@@ -1,0 +1,58 @@
+{
+  "moduleId": "m1",
+  "title": "Access Control Strategies Knowledge Check",
+  "questions": [
+    {
+      "id": "m1-kc-001",
+      "question": "Which access control strategy is the strongest in Windchill, overriding all other rules?",
+      "options": [
+        "Domain policies",
+        "Ad hoc permissions",
+        "Security labels",
+        "Lifecycle rules"
+      ],
+      "answerIndex": 2,
+      "rationale": "Security labels are the strongest rules in Windchill's access control scheme. They deny all access to non-authorized participants and override any other access control mechanism, including domain policies and ad hoc permissions.",
+      "topic": "m1t2"
+    },
+    {
+      "id": "m1-kc-002",
+      "question": "What happens when no access control rule is set for a participant on an object?",
+      "options": [
+        "The participant is granted Read access by default",
+        "The participant is denied access by default",
+        "The participant is granted Full Control",
+        "The system prompts the administrator to create a rule"
+      ],
+      "answerIndex": 1,
+      "rationale": "If no rule is set for a participant, access is denied by default. This is the weakest level in the priority hierarchy — the 'default deny' that applies when no other rule matches.",
+      "topic": "m1t2"
+    },
+    {
+      "id": "m1-kc-003",
+      "question": "Where should a business administrator focus most domain administration efforts?",
+      "options": [
+        "User and Organization domains",
+        "System domains",
+        "Data domains (Default, PDM, Project)",
+        "Special Site domains"
+      ],
+      "answerIndex": 2,
+      "rationale": "Business administrators should concentrate on data domains (Default, PDM, Project) which govern access, notification, and indexing rules for data objects. User, System, and Site domains have essential defaults that should not be modified.",
+      "topic": "m1t3"
+    },
+    {
+      "id": "m1-kc-004",
+      "question": "Which of the following can ad hoc permissions do?",
+      "options": [
+        "Grant and deny access to individual objects",
+        "Only grant access to individual objects",
+        "Only deny access to all objects of a type",
+        "Override security labels on individual objects"
+      ],
+      "answerIndex": 1,
+      "rationale": "Ad hoc permissions can only grant access — they cannot deny it. They apply to individual object instances and supersede domain policy deny rules, but cannot override security labels or absolute deny permissions.",
+      "topic": "m1t1"
+    }
+  ]
+}
