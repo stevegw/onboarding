@@ -812,6 +812,46 @@
   background: var(--c-bg-surface-hover); color: var(--c-text);
 }
 
+/* ============================================================
+   Narration Control Bar
+   ============================================================ */
+.narr-bar {
+  position: fixed; bottom: 0; left: 260px; right: 0; height: 40px;
+  background: var(--c-bg-surface); border-top: 1px solid var(--c-border);
+  display: none; align-items: center; gap: 8px; padding: 0 16px;
+  z-index: 90;
+}
+.narr-bar.open { display: flex; }
+.narr-btn {
+  width: 30px; height: 30px; border-radius: 6px;
+  border: 1px solid var(--c-border); background: transparent;
+  color: var(--c-text-muted); cursor: pointer; font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: inherit; transition: all 0.15s;
+}
+.narr-btn:hover { border-color: var(--c-border-hover); color: var(--c-text); background: var(--c-bg-surface-hover); }
+.narr-select {
+  height: 30px; border-radius: 6px; padding: 0 6px;
+  border: 1px solid var(--c-border); background: var(--c-bg-surface);
+  color: var(--c-text-muted); cursor: pointer; font-size: 11px;
+  font-family: inherit; transition: all 0.15s; max-width: 220px;
+}
+.narr-select:hover { border-color: var(--c-border-hover); color: var(--c-text-muted); }
+.narr-select:focus { outline: none; border-color: var(--c-accent); }
+.narr-divider { width: 1px; height: 20px; background: var(--c-border); flex-shrink: 0; }
+
+/* Word highlight overlay */
+.narr-word-overlay {
+  position: absolute; pointer-events: none;
+  background: rgba(250, 204, 21, 0.40); border-radius: 2px;
+  transition: top 0.08s ease, left 0.08s ease, width 0.08s ease;
+  z-index: 50; display: none;
+}
+
+@media (max-width: 768px) {
+  .narr-bar { left: 0; }
+}
+
 /* CJK: disable letter-spacing and uppercase (meaningless for CJK scripts) */
 html[lang="ja"] .module-num, html[lang="zh"] .module-num, html[lang="ko"] .module-num,
 html[lang="ja"] .data-table th, html[lang="zh"] .data-table th, html[lang="ko"] .data-table th,

@@ -46,6 +46,7 @@
     // Init subsystems
     OB.theme.init();
     OB.notepad.init();
+    if (OB.speech) OB.speech.init();
     if (OB.author) OB.author.init();
 
     var courseId = getCourseParam();
@@ -116,6 +117,8 @@
   }
 
   function navigate() {
+    if (OB.speech) OB.speech.stop();
+
     var hash = window.location.hash || "#/";
     var parts = hash.replace("#/", "").split("/");
     var view = parts[0] || "";

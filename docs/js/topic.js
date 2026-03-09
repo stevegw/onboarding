@@ -105,6 +105,7 @@
     OB.ui.setMain(html);
     bindInteractions();
     bindCompletion(topicId, meta.id);
+    if (OB.speech) OB.speech.setupClickHandler();
   }
 
   function renderBlock(block, idx) {

@@ -30,14 +30,17 @@
 .sb-logo-text { width: 100%; }
 
 /* Theme toggle */
-.theme-toggle {
+.theme-toggle,
+.narr-toggle-btn {
   width: 30px; height: 30px; border-radius: 6px;
   border: 1px solid var(--c-border); background: transparent;
   color: var(--c-text-dim); cursor: pointer; font-size: 14px;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0; transition: all 0.15s;
 }
-.theme-toggle:hover { border-color: var(--c-border-hover); color: var(--c-text-muted); background: var(--c-bg-surface-hover); }
+.theme-toggle:hover,
+.narr-toggle-btn:hover { border-color: var(--c-border-hover); color: var(--c-text-muted); background: var(--c-bg-surface-hover); }
+.narr-toggle-btn.active { border-color: var(--c-accent-030); color: var(--c-accent); background: var(--c-accent-008); }
 
 /* Scheme toggle */
 .scheme-toggle {

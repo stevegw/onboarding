@@ -28,6 +28,13 @@
         </div>
         <span id="locale-selector"></span>
         <button class="scheme-toggle" id="scheme-toggle-btn" title="Color scheme">PTC</button>
+        <button class="narr-toggle-btn" id="narr-toggle-btn" title="Toggle narration">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/>
+            <path d="M19 10v2a7 7 0 01-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>
+          </svg>
+        </button>
         <button class="theme-toggle" id="theme-toggle-btn" data-i18n-title="app.toggleTheme" title="Toggle theme">&#9790;</button>
       </div>
 
@@ -69,6 +76,15 @@
       </div>
     </div>
 
+    <!-- Narration control bar -->
+    <div class="narr-bar" id="narr-bar">
+      <button class="narr-btn" id="narr-play-btn" title="Play">&#9654;</button>
+      <button class="narr-btn" id="narr-stop-btn" title="Stop">&#9632;</button>
+      <div class="narr-divider"></div>
+      <select class="narr-select" id="narr-voice-select" title="Voice"></select>
+      <select class="narr-select" id="narr-rate-select" title="Speed"></select>
+    </div>
+
   </div>
 
   <!-- JS modules (order matters) -->
@@ -84,6 +100,7 @@
   <script src="js/quiz.js"></script>
   <script src="js/glossary.js"></script>
   <script src="js/notepad.js"></script>
+  <script src="js/speech.js"></script>
   <script src="js/author.js"></script>
   <script src="js/router.js"></script>
 
