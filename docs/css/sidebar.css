@@ -20,13 +20,14 @@
   border-bottom: 1px solid var(--c-border);
   margin-bottom: 12px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
+  gap: 6px 10px;
   flex-shrink: 0;
 }
 .sb-logo h2 { font-size: 15px; font-weight: 700; color: var(--c-text-primary); margin-bottom: 0; }
 .sb-logo p { font-size: 11px; color: var(--c-text-dim); margin-top: 2px; margin-bottom: 0; }
-.sb-logo-text { flex: 1; }
+.sb-logo-text { width: 100%; }
 
 /* Theme toggle */
 .theme-toggle {
