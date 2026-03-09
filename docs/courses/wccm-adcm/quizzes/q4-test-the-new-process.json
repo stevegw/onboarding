@@ -1,58 +1,58 @@
 {
-  "moduleId": "m4",
-  "title": "Test the New Process Knowledge Check",
-  "questions": [
-    {
-      "id": "m4-kc-001",
-      "question": "Which type of rule links a life cycle to an object?",
-      "options": [
-        "Association Rule",
-        "Mapping Rule",
-        "Object Initialization Rule",
-        "Business Rule"
-      ],
-      "answerIndex": 2,
-      "rationale": "An Object Initialization Rule (OIR) links a life cycle template to an object type, and also connects the life cycle state to a workflow template. Association Rules control which object types can be linked as affected or resulting items. Mapping Rules control how data is carried forward between change objects. Business Rule is a general term that encompasses multiple rule types but does not specifically link life cycles to objects.",
-      "topic": "m4t1"
-    },
-    {
-      "id": "m4-kc-002",
-      "question": "What is the primary reason to use a single test user who belongs to all required groups when testing a custom change process?",
-      "options": [
-        "It reduces the number of user licenses required for testing",
-        "It allows one person to walk through the entire workflow and verify every step",
-        "It prevents other users from accidentally interfering with test data",
-        "It is required by Windchill before a workflow can be activated"
-      ],
-      "answerIndex": 1,
-      "rationale": "Placing a single test user in all groups allows one person to complete every workflow task — from creation to resolution — without needing to switch between multiple user accounts. This simplifies the testing process and makes it easier to verify that each step routes correctly. It has nothing to do with licensing, data protection, or workflow activation requirements.",
-      "topic": "m4t1"
-    },
-    {
-      "id": "m4-kc-003",
-      "question": "What are the three pillars of change process configuration in Windchill?",
-      "options": [
-        "Type and Attribute Management, Preferences, and Business Rules",
-        "Workflow, Life Cycle, and Object Initialization Rule",
-        "Problem Report, Change Request, and Change Notice",
-        "Change Admin I, Change Admin II, and Change Admin III"
-      ],
-      "answerIndex": 1,
-      "rationale": "The three pillars of change process configuration are Workflow (defines what happens), Life Cycle (defines what states the object passes through), and Object Initialization Rule (connects them by specifying which workflow launches at which state). TAM, Preferences, and Business Rules are important configuration tools but are not the three pillars. Problem Report, Change Request, and Change Notice are change objects, not configuration elements. The Change Admin roles are user roles, not configuration pillars.",
-      "topic": "m4t2"
-    },
-    {
-      "id": "m4-kc-004",
-      "question": "Why should you never modify original OOTB templates directly when tailoring change management?",
-      "options": [
-        "OOTB templates are read-only and cannot be edited in Windchill",
-        "Modifying originals preserves the original as a reference and prevents upgrade conflicts",
-        "Copying and modifying a copy preserves the original as a reference and prevents upgrade conflicts",
-        "OOTB templates are shared across all Windchill sites and changes would affect other organizations"
-      ],
-      "answerIndex": 2,
-      "rationale": "Copying the OOTB template and modifying the copy preserves the original as a reference and fallback, and ensures that future Windchill upgrades do not conflict with your customizations. OOTB templates are not read-only — they can be edited, which is exactly why the best practice exists to prevent accidental modification. They are not shared across sites either; the concern is about maintaining a clean baseline for upgrades and troubleshooting.",
-      "topic": "m4t2"
-    }
-  ]
+ "moduleId": "m4",
+ "title": "Test the New Process Knowledge Check",
+ "questions": [
+ {
+ "id": "m4-kc-001",
+ "question": "Which type of rule links a life cycle to an object?",
+ "options": [
+ "Association Rule",
+ "Mapping Rule",
+ "Object Initialization Rule",
+ "Business Rule"
+ ],
+ "answerIndex": 2,
+ "rationale": "An Object Initialization Rule (OIR) links a life cycle template to an object type, and also connects the life cycle state to a workflow template. Association Rules control which object types can be linked as affected or resulting items. Mapping Rules control how data is carried forward between change objects. Business Rule is a general term that encompasses multiple rule types but does not specifically link life cycles to objects.",
+ "topic": "m4t1"
+ },
+ {
+ "id": "m4-kc-002",
+ "question": "What is the primary reason to use a single test user who belongs to all required groups when testing a custom change process?",
+ "options": [
+ "It reduces the number of user licenses required for testing",
+ "It allows one person to walk through the entire workflow and verify every step",
+ "It prevents other users from accidentally interfering with test data",
+ "It is required by Windchill before a workflow can be activated"
+ ],
+ "answerIndex": 1,
+ "rationale": "Placing a single test user in all groups allows one person to complete every workflow task - from creation to resolution - without needing to switch between multiple user accounts. This simplifies the testing process and makes it easier to verify that each step routes correctly. It has nothing to do with licensing, data protection, or workflow activation requirements.",
+ "topic": "m4t1"
+ },
+ {
+ "id": "m4-kc-003",
+ "question": "What are the three pillars of change process configuration in Windchill?",
+ "options": [
+ "Type and Attribute Management, Preferences, and Business Rules",
+ "Workflow, Life Cycle, and Object Initialization Rule",
+ "Problem Report, Change Request, and Change Notice",
+ "Change Admin I, Change Admin II, and Change Admin III"
+ ],
+ "answerIndex": 1,
+ "rationale": "The three pillars of change process configuration are Workflow (defines what happens), Life Cycle (defines what states the object passes through), and Object Initialization Rule (connects them by specifying which workflow launches at which state). TAM, Preferences, and Business Rules are important configuration tools but are not the three pillars. Problem Report, Change Request, and Change Notice are change objects, not configuration elements. The Change Admin roles are user roles, not configuration pillars.",
+ "topic": "m4t2"
+ },
+ {
+ "id": "m4-kc-004",
+ "question": "Why should you never modify original OOTB templates directly when tailoring change management?",
+ "options": [
+ "OOTB templates are read-only and cannot be edited in Windchill",
+ "Modifying originals preserves the original as a reference and prevents upgrade conflicts",
+ "Copying and modifying a copy preserves the original as a reference and prevents upgrade conflicts",
+ "OOTB templates are shared across all Windchill sites and changes would affect other organizations"
+ ],
+ "answerIndex": 2,
+ "rationale": "Copying the OOTB template and modifying the copy preserves the original as a reference and fallback, and ensures that future Windchill upgrades do not conflict with your customizations. OOTB templates are not read-only - they can be edited, which is exactly why the best practice exists to prevent accidental modification. They are not shared across sites either; the concern is about maintaining a clean baseline for upgrades and troubleshooting.",
+ "topic": "m4t2"
+ }
+ ]
 }

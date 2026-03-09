@@ -1,71 +1,71 @@
 {
-  "moduleId": "m3",
-  "title": "Workflow Templates Knowledge Check",
-  "questions": [
-    {
-      "id": "m3-kc-001",
-      "question": "Which role on a workflow template serves as the backup for role resolution issues and receives deadline and error notifications?",
-      "options": [
-        "The Process Initiator role",
-        "The Responsible Role",
-        "The Workflow Administrator role",
-        "The Activity Participant role"
-      ],
-      "answerIndex": 1,
-      "rationale": "The Responsible Role on a workflow template serves as the backup for role resolution issues and receives deadline and error notifications. If no Responsible Role is set, these notifications default to the process initiator — but the process initiator is the fallback, not the designated role. The Workflow Administrator manages templates but does not automatically receive process notifications. Activity Participants receive specific task assignments, not template-level notifications.",
-      "topic": "m3t1"
-    },
-    {
-      "id": "m3-kc-002",
-      "question": "Which workflow design approach is required when gates are used in the life cycle?",
-      "options": [
-        "Single Approach",
-        "Combined Approach",
-        "Modular Approach",
-        "Change/Promotion Request Approach"
-      ],
-      "answerIndex": 2,
-      "rationale": "The Modular Approach is required when gates are used because it enables the same workflow template to be reused across multiple phases and gates, reducing complexity. The Single Approach places one large workflow in the first state and is not compatible with gate-based life cycles. The Combined Approach mixes workflows with manual Set State actions. The Change/Promotion Request Approach drives state changes from an external business object's workflow.",
-      "topic": "m3t2"
-    },
-    {
-      "id": "m3-kc-003",
-      "question": "What happens when an Or connector in a workflow receives an event from any one of its incoming links?",
-      "options": [
-        "It waits for all remaining incoming links to fire before continuing",
-        "It evaluates a Java expression to decide whether to continue",
-        "It continues immediately and terminates incomplete predecessor activities on other branches",
-        "It continues immediately but allows all predecessor activities to finish"
-      ],
-      "answerIndex": 2,
-      "rationale": "The Or connector continues when any incoming link fires and terminates incomplete predecessor activities on other branches. This distinguishes it from the And connector (which waits for all incoming links), the Conditional connector (which evaluates Java criteria), and the Threshold connector (which waits for a set number of incoming links). The Or connector's behavior of terminating incomplete predecessors is important in exclusive routing scenarios.",
-      "topic": "m3t3"
-    },
-    {
-      "id": "m3-kc-004",
-      "question": "Which robot type would you use to automatically change an object's life cycle state within a workflow?",
-      "options": [
-        "Notification Robot",
-        "Timer Robot",
-        "Expression Robot",
-        "Checkpoint/Method Robot"
-      ],
-      "answerIndex": 3,
-      "rationale": "The Checkpoint/Method Robot executes standard Windchill functions on business objects, such as setting life cycle state, checking in objects, or updating attributes. The Notification Robot sends emails to users. The Timer Robot introduces time delays. The Expression Robot executes Java expressions for custom logic — while it could theoretically change state, the Checkpoint/Method Robot is the standard and recommended approach for state changes.",
-      "topic": "m3t4"
-    },
-    {
-      "id": "m3-kc-005",
-      "question": "Why must the Loop Link checkbox be enabled when creating a link that routes back to a previously completed activity?",
-      "options": [
-        "Loop Links run faster than standard links in the workflow engine",
-        "Completed nodes disable themselves, and ordinary links cannot restart disabled nodes",
-        "Loop Links automatically notify users that a rework is required",
-        "The workflow editor does not allow standard links to connect backward"
-      ],
-      "answerIndex": 1,
-      "rationale": "When an activity completes, it disables itself. Ordinary links cannot restart a disabled node, so a Loop Link is required to re-enable the previously completed node. Loop Links do not run faster — they serve a specific functional purpose. They do not automatically send notifications (that requires a Notification Robot). The workflow editor does allow standard links to connect backward, but those links will fail to restart a disabled node without the Loop Link setting.",
-      "topic": "m3t5"
-    }
-  ]
+ "moduleId": "m3",
+ "title": "Workflow Templates Knowledge Check",
+ "questions": [
+ {
+ "id": "m3-kc-001",
+ "question": "Which role on a workflow template serves as the backup for role resolution issues and receives deadline and error notifications?",
+ "options": [
+ "The Process Initiator role",
+ "The Responsible Role",
+ "The Workflow Administrator role",
+ "The Activity Participant role"
+ ],
+ "answerIndex": 1,
+ "rationale": "The Responsible Role on a workflow template serves as the backup for role resolution issues and receives deadline and error notifications. If no Responsible Role is set, these notifications default to the process initiator - but the process initiator is the fallback, not the designated role. The Workflow Administrator manages templates but does not automatically receive process notifications. Activity Participants receive specific task assignments, not template-level notifications.",
+ "topic": "m3t1"
+ },
+ {
+ "id": "m3-kc-002",
+ "question": "Which workflow design approach is required when gates are used in the life cycle?",
+ "options": [
+ "Single Approach",
+ "Combined Approach",
+ "Modular Approach",
+ "Change/Promotion Request Approach"
+ ],
+ "answerIndex": 2,
+ "rationale": "The Modular Approach is required when gates are used because it enables the same workflow template to be reused across multiple phases and gates, reducing complexity. The Single Approach places one large workflow in the first state and is not compatible with gate-based life cycles. The Combined Approach mixes workflows with manual Set State actions. The Change/Promotion Request Approach drives state changes from an external business object's workflow.",
+ "topic": "m3t2"
+ },
+ {
+ "id": "m3-kc-003",
+ "question": "What happens when an Or connector in a workflow receives an event from any one of its incoming links?",
+ "options": [
+ "It waits for all remaining incoming links to fire before continuing",
+ "It evaluates a Java expression to decide whether to continue",
+ "It continues immediately and terminates incomplete predecessor activities on other branches",
+ "It continues immediately but allows all predecessor activities to finish"
+ ],
+ "answerIndex": 2,
+ "rationale": "The Or connector continues when any incoming link fires and terminates incomplete predecessor activities on other branches. This distinguishes it from the And connector (which waits for all incoming links), the Conditional connector (which evaluates Java criteria), and the Threshold connector (which waits for a set number of incoming links). The Or connector's behavior of terminating incomplete predecessors is important in exclusive routing scenarios.",
+ "topic": "m3t3"
+ },
+ {
+ "id": "m3-kc-004",
+ "question": "Which robot type would you use to automatically change an object's life cycle state within a workflow?",
+ "options": [
+ "Notification Robot",
+ "Timer Robot",
+ "Expression Robot",
+ "Checkpoint/Method Robot"
+ ],
+ "answerIndex": 3,
+ "rationale": "The Checkpoint/Method Robot executes standard Windchill functions on business objects, such as setting life cycle state, checking in objects, or updating attributes. The Notification Robot sends emails to users. The Timer Robot introduces time delays. The Expression Robot executes Java expressions for custom logic - while it could theoretically change state, the Checkpoint/Method Robot is the standard and recommended approach for state changes.",
+ "topic": "m3t4"
+ },
+ {
+ "id": "m3-kc-005",
+ "question": "Why must the Loop Link checkbox be enabled when creating a link that routes back to a previously completed activity?",
+ "options": [
+ "Loop Links run faster than standard links in the workflow engine",
+ "Completed nodes disable themselves, and ordinary links cannot restart disabled nodes",
+ "Loop Links automatically notify users that a rework is required",
+ "The workflow editor does not allow standard links to connect backward"
+ ],
+ "answerIndex": 1,
+ "rationale": "When an activity completes, it disables itself. Ordinary links cannot restart a disabled node, so a Loop Link is required to re-enable the previously completed node. Loop Links do not run faster - they serve a specific functional purpose. They do not automatically send notifications (that requires a Notification Robot). The workflow editor does allow standard links to connect backward, but those links will fail to restart a disabled node without the Loop Link setting.",
+ "topic": "m3t5"
+ }
+ ]
 }

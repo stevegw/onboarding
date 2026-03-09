@@ -10,7 +10,7 @@
       "content": [
         {
           "type": "paragraph",
-          "text": "Trackers are the fundamental data containers in Codebeamer. Every piece of managed information — requirements, bugs, tasks, test cases, risks — lives inside a tracker. Understanding trackers is the key to working effectively in Codebeamer."
+          "text": "Trackers are the fundamental data containers in Codebeamer. Every piece of managed information - requirements, bugs, tasks, test cases, risks - lives inside a tracker. Understanding trackers is the key to working effectively in Codebeamer."
         },
         {
           "type": "heading",
@@ -43,7 +43,7 @@
         },
         {
           "type": "paragraph",
-          "text": "Projects organize trackers in a tracker tree — a hierarchical structure that groups related trackers together. Each project has its own set of trackers, and each tracker contains items. Items within a tracker can also be organized hierarchically (parent-child relationships)."
+          "text": "Projects organize trackers in a tracker tree - a hierarchical structure that groups related trackers together. Each project has its own set of trackers, and each tracker contains items. Items within a tracker can also be organized hierarchically (parent-child relationships)."
         },
         {
           "type": "callout",
@@ -141,7 +141,7 @@
       "content": [
         {
           "type": "paragraph",
-          "text": "Every tracker item in Codebeamer follows a workflow — a defined set of states and transitions that control the item's lifecycle. Workflows enforce process discipline by ensuring items move through approved stages (e.g., Draft → In Review → Approved → Implemented)."
+          "text": "Every tracker item in Codebeamer follows a workflow - a defined set of states and transitions that control the item's lifecycle. Workflows enforce process discipline by ensuring items move through approved stages (e.g., Draft → In Review → Approved → Implemented)."
         },
         {
           "type": "heading",
@@ -202,7 +202,7 @@
       "keyTakeaways": [
         "Workflows define the states and transitions that control a tracker item's lifecycle",
         "Transitions can have guards (conditions) and actions (automated operations)",
-        "Three primary views — Document, Table, and Kanban — serve different working styles",
+        "Three primary views - Document, Table, and Kanban - serve different working styles",
         "Workflows are configured per tracker and can differ between tracker types"
       ]
     },
@@ -394,7 +394,7 @@
       "content": [
         {
           "type": "paragraph",
-          "text": "Codebeamer provides multiple ways to visualize tracker data. Each view serves a different purpose — from detailed document editing to high-level progress tracking. Choosing the right view for the task at hand makes you more productive."
+          "text": "Codebeamer provides multiple ways to visualize tracker data. Each view serves a different purpose - from detailed document editing to high-level progress tracking. Choosing the right view for the task at hand makes you more productive."
         },
         {
           "type": "heading",
@@ -457,7 +457,7 @@
       ],
       "keyTakeaways": [
         "Codebeamer offers six primary views: Document, Table, Kanban, Document Edit, Traceability Report, and Test Coverage",
-        "Each view is optimized for specific tasks — choose the right view for your current activity",
+        "Each view is optimized for specific tasks - choose the right view for your current activity",
         "Custom views can be saved and shared with the team",
         "Traceability Report and Test Coverage views provide cross-tracker analysis"
       ]

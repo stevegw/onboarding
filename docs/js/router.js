@@ -51,12 +51,12 @@
     var courseId = getCourseParam();
 
     if (!courseId) {
-      // Catalog mode — no course selected
+      // Catalog mode - no course selected
       initCatalogMode();
       return;
     }
 
-    // Course mode — set context and proceed
+    // Course mode - set context and proceed
     OB.content.setCourse(courseId);
     OB.state.setCourse(courseId);
 

@@ -1,462 +1,462 @@
 {
-  "id": "m3",
-  "title": "Teams and Roles",
-  "description": "Configure context teams, shared teams, and team templates. Understand role types, team instances, and how role resolution drives access control and workflow assignment.",
-  "topics": [
-    {
-      "id": "m3t1",
-      "title": "Team Management Fundamentals",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Context managers such as product and project managers use simplified team management to indirectly manage access control and workflow assignment. Rather than configuring security policies directly, they assign participants to roles on a team page, and Windchill resolves those assignments into access control rules and workflow task routing."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "The Context Manager's Role"
-        },
-        {
-          "type": "paragraph",
-          "text": "Context managers work with teams by adding participants to predefined roles. Each role carries meaning in terms of what data a participant can access and which workflow tasks they receive. The manager does not need to understand the underlying access control policies or workflow routing logic — assigning the right people to the right roles is sufficient."
-        },
-        {
-          "type": "callout",
-          "variant": "insight",
-          "text": "Context managers do not need full administrative knowledge of Windchill security. The team page abstracts the complexity of access control and workflow configuration into a simple participant-to-role assignment model."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "How Teams Drive Access and Workflows"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Team Function", "Description"],
-          "rows": [
-            ["Access Control", "Participants in roles determine what data they can access"],
-            ["Workflow Assignment", "Generic roles map to specific users who receive workflow tasks"],
-            ["Role Resolution", "Teams map generic business roles to specific participants"]
-          ]
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each team management concept to its description.",
-          "pairs": [
-            { "left": "Assigns participants to team roles", "right": "Context Manager" },
-            { "left": "Defines personnel for workflow tasks", "right": "Generic Roles" },
-            { "left": "Storage of participant data", "right": "Directory Server" },
-            { "left": "Windchill-specific team configuration", "right": "Windchill Database" }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Context managers assign participants to roles, indirectly controlling access and workflow routing.",
-        "Generic roles define which users receive workflow tasks and what data they can access.",
-        "Teams bridge the gap between business role definitions and Windchill security enforcement."
-      ]
-    },
-    {
-      "id": "m3t2",
-      "title": "Context Team Architecture and Roles",
-      "estimatedMinutes": 7,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Every product, project, library, and program in Windchill has exactly one context team. This team manages context roles visible on the Members table and context groups generated in the database. Understanding how roles, groups, and the special Team Members group interact is essential for configuring access control correctly."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Context Roles and Context Groups"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Element", "Visible On", "Purpose"],
-          "rows": [
-            ["Context Role", "Team page Members table", "Map participants to business roles"],
-            ["Context Group", "Policy Administration only", "Apply access control rules"],
-            ["Team Members Group", "Policy Administration only", "Superset of all non-Guest participants"]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "The Team Members group is a superset of all non-Guest participants. Editing out-of-the-box access control rules on this group affects <strong>every</strong> team member. Always review rules carefully before modifying this group."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Resource Bundle Roles vs Context Roles"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Feature", "Resource Bundle Roles", "Context Team Roles"],
-          "rows": [
-            ["Access control resolution", "Yes", "Yes"],
-            ["Available in workflows and lifecycles", "Yes", "No"],
-            ["Localized", "Yes", "No"],
-            ["Out of the box", "Yes (>180)", "No"],
-            ["Created by", "System administrator", "Context creator"]
-          ]
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange the steps in the correct order for what happens when a user is added to a context role.",
-          "items": [
-            "User is added to the context role",
-            "System generates a corresponding context group entry",
-            "User is added to the Team Members group",
-            "Access control rules for the context group take effect"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Every context has one context team with roles visible on the Members table and corresponding groups in Policy Administration.",
-        "The Team Members group collects all non-Guest participants and has no corresponding role on the team page.",
-        "Resource bundle roles can be used in workflows and lifecycles; context team roles are limited to access control resolution.",
-        "Adding a user to a context role automatically generates a context group entry and adds the user to the Team Members group."
-      ]
-    },
-    {
-      "id": "m3t3",
-      "title": "Shared Teams",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Shared teams are defined at the organization level and can be used across multiple products, libraries, projects, and programs. They provide a centralized way to manage team membership when the same participants and roles apply to many contexts."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "How Shared Teams Work"
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Shared Team Scope",
-              "back": "Defined at the organization level and shared across multiple products, libraries, projects, or programs."
-            },
-            {
-              "front": "Local Extensions",
-              "back": "When enabled, context managers can add roles and members locally but cannot remove shared team entries."
-            },
-            {
-              "front": "Impact of Changes",
-              "back": "Updates to a shared team are reflected in all associated contexts. Use Show Team Uses to see affected contexts."
-            }
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "Always use the <strong>Show Team Uses</strong> query before making changes to a shared team. This report lists every context that uses the shared team, helping you understand the full impact of your updates."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each team type to its defining characteristic.",
-          "pairs": [
-            { "left": "Defined at organization level", "right": "Shared Team" },
-            { "left": "Defined at product or project level", "right": "Context Team" },
-            { "left": "Can be used across multiple contexts", "right": "Shared Team" }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Shared teams are defined at the organization level and reused across multiple contexts.",
-        "Context managers can extend shared teams locally when the option is enabled but cannot remove shared entries.",
-        "Changes to a shared team automatically propagate to all associated contexts."
-      ]
-    },
-    {
-      "id": "m3t4",
-      "title": "Team Templates and Team Instances",
-      "estimatedMinutes": 7,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Team templates define the roles needed for advanced business processes such as promotion requests and change workflows. When an object initiates a process, Windchill generates a team instance by resolving roles and participants from multiple sources in a specific order."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Team Template Definition"
-        },
-        {
-          "type": "paragraph",
-          "text": "Team templates can be created at the site, organization, or context level. When defining a template, you specify its name, description, and enabled status, then assign roles drawn from the resource bundle. These roles define the positions that must be filled when a process starts."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Team Instance Resolution"
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange the team instance resolution steps in the correct order.",
-          "items": [
-            "Team Template adds roles to the team instance",
-            "Life Cycle Template adds any missing roles",
-            "Context Team populates participants into existing roles",
-            "Workflow adds any missing process roles"
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "Once a team instance is created, it is <strong>unaffected</strong> by subsequent changes to the team template or context team. Only team instances created after a change will reflect the updated configuration."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Best Practices"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Practice", "Rationale"],
-          "rows": [
-            ["Use context team as master for role resolution", "Simplifies administration — one place to manage participants"],
-            ["Don't add all roles to templates as a safety net", "Creates confusion with long lists of unused and unresolved roles"],
-            ["Only resolve org-level roles in team templates", "Product and project managers should not manage organization-level positions"],
-            ["Ensure consistent roles across workflows", "Same role name must resolve to the same person across all workflows"]
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Team templates define roles for business processes and can be created at site, organization, or context level.",
-        "Team instance resolution follows a specific order: team template, lifecycle template, context team, then workflow.",
-        "Once created, team instances are unaffected by changes to their source templates or context teams.",
-        "Use the context team as the master source for participant resolution to simplify administration."
-      ]
-    },
-    {
-      "id": "m3t5",
-      "title": "Exercise - Administer Roles and Context Teams",
-      "estimatedMinutes": 10,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In this exercise you will add a custom role to an organization and then configure a product context team by adding roles, removing unnecessary roles, and assigning participants."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "Sign in as <strong>bpatterson/ptc</strong> to complete this exercise."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex3",
-          "title": "Administer Roles and Context Teams",
-          "objective": "Add a custom Editor role to the PTC Publications organization and configure the product context team with appropriate roles and members.",
-          "tasks": [
-            {
-              "id": "ex3-t1",
-              "title": "Add an Organization Role",
-              "steps": [
-                {
-                  "action": "Navigate to PTC Publications Roles",
-                  "detail": "Browse to the PTC Publications organization and select the Roles link.",
-                  "hint": null
-                },
-                {
-                  "action": "Add the Editor role",
-                  "detail": "Click the New roles to organization icon, type Editor, and click OK.",
-                  "hint": "Verify the new role appears in the Roles table with Visible status."
-                }
-              ]
-            },
-            {
-              "id": "ex3-t2",
-              "title": "Configure the Product Context Team",
-              "steps": [
-                {
-                  "action": "Open the product team page",
-                  "detail": "Navigate to Recent Products, expand the PTC New Publication Template product, and click the Team link.",
-                  "hint": null
-                },
-                {
-                  "action": "Add the Editor role to the context team",
-                  "detail": "Select Actions > Add Roles, select Editor from the role list, and click OK.",
-                  "hint": null
-                },
-                {
-                  "action": "Remove unnecessary roles",
-                  "detail": "Select Change Admin I, II, III, Change Review Board, Option Manager, Package Creator, and Variance Approver, then click the Remove roles or participants icon.",
-                  "hint": "Removing unnecessary roles is best practice for product templates."
-                },
-                {
-                  "action": "Add a participant to the Editor role",
-                  "detail": "Click the Add participants icon in the Editor row, search for David Griffin (dgriffin), and add him.",
-                  "hint": null
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Custom roles are added at the organization level and then become available to context teams.",
-        "Context teams should only include roles relevant to the product or project to reduce clutter.",
-        "Removing unnecessary roles from product templates is a best practice for streamlined team management."
-      ]
-    },
-    {
-      "id": "m3t6",
-      "title": "Exercise - Use Shared Teams",
-      "estimatedMinutes": 10,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In this exercise you will create a shared team at the organization level, enable local extensions, and then create a new product that uses the shared team."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "Complete the previous exercise before starting this one. You must be signed in as <strong>bpatterson/ptc</strong>."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex4",
-          "title": "Use Shared Teams",
-          "objective": "Create a shared team for PTC Publications and test it by creating a new product that uses the shared team.",
-          "tasks": [
-            {
-              "id": "ex4-t1",
-              "title": "Create a Shared Team",
-              "steps": [
-                {
-                  "action": "Navigate to Shared Teams",
-                  "detail": "Browse to Organizations > PTC Publications > Teams.",
-                  "hint": null
-                },
-                {
-                  "action": "Create the PTC Publication Manuals shared team",
-                  "detail": "Click New shared team, type PTC Publication Manuals, and select the checkbox for Allow team to be extended locally.",
-                  "hint": null
-                },
-                {
-                  "action": "Add a member to the shared team",
-                  "detail": "Open the shared team details and add David Griffin to the Members role.",
-                  "hint": null
-                }
-              ]
-            },
-            {
-              "id": "ex4-t2",
-              "title": "Create a Product Using the Shared Team",
-              "steps": [
-                {
-                  "action": "Create a new product",
-                  "detail": "Navigate to Recent Products > View All and click New Product.",
-                  "hint": null
-                },
-                {
-                  "action": "Associate the shared team",
-                  "detail": "Click Find to search for shared teams, select PTC Publication Manuals, and enable local extensions.",
-                  "hint": "Select the Allow roles and/or members to be added locally checkbox."
-                },
-                {
-                  "action": "Complete the product creation",
-                  "detail": "Name the product Maintenance Manuals, select the General Product template, and click OK.",
-                  "hint": null
-                },
-                {
-                  "action": "Verify shared team usage",
-                  "detail": "Browse to PTC Publications > Teams, right-click PTC Publication Manuals, and select Show Team Uses.",
-                  "hint": "The Maintenance Manuals product should appear in the report."
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Shared teams are created at the organization level and can be associated with multiple products.",
-        "The Allow team to be extended locally option lets context managers add roles and members without modifying the shared team.",
-        "Show Team Uses provides a report of all contexts associated with a shared team."
-      ]
-    },
-    {
-      "id": "m3t7",
-      "title": "Exercise - Create Team Templates",
-      "estimatedMinutes": 12,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In this exercise you will create a team template for the Agenda document type, assign roles from the resource bundle, and configure an object initialization rule to apply the template automatically."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "Complete the previous exercises before starting this one. You must be signed in as <strong>bpatterson/ptc</strong>."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex5",
-          "title": "Create Team Templates",
-          "objective": "Create a team template for the Agenda document type and assign it using object initialization rules.",
-          "tasks": [
-            {
-              "id": "ex5-t1",
-              "title": "Create an Agenda Team Template",
-              "steps": [
-                {
-                  "action": "Open Team Administration",
-                  "detail": "Navigate to PTC New Publication Template > Utilities and select Team Administration.",
-                  "hint": null
-                },
-                {
-                  "action": "Create the team template",
-                  "detail": "Click the New Team template icon, type Agenda Team in the Name field.",
-                  "hint": null
-                },
-                {
-                  "action": "Add roles to the template",
-                  "detail": "Click Add Role, search for Manag* to add Managing Editor, then search for proj* to add Project Engineer.",
-                  "hint": "Confirm both roles appear in the table before clicking OK."
-                }
-              ]
-            },
-            {
-              "id": "ex5-t2",
-              "title": "Assign the Template to a Document Type",
-              "steps": [
-                {
-                  "action": "Open Object Initialization Rules",
-                  "detail": "Browse to PTC New Publication Template > Utilities and select Object Initialization Rules Administration.",
-                  "hint": null
-                },
-                {
-                  "action": "Create the initialization rule",
-                  "detail": "Click New Object Initialization Rule, name it Agenda Rule, and set the Type to Agenda (under Document).",
-                  "hint": null
-                },
-                {
-                  "action": "Load the rule definition file",
-                  "detail": "Click Choose File and browse to the Agenda_Default_TeamOIR.xml file.",
-                  "hint": "This file defines the lifecycle and team template for new Agenda documents."
-                },
-                {
-                  "action": "Test the configuration",
-                  "detail": "Create a new Agenda document named Agenda Team Test and verify the Team Template is set to Agenda Team.",
-                  "hint": "Check the Information page to confirm the team template assignment."
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Team templates define the roles needed for specific business processes or document types.",
-        "Object initialization rules automatically assign team templates when new objects are created.",
-        "Roles added to team templates come from the resource bundle and are used for workflow and lifecycle resolution."
-      ]
-    }
-  ]
+ "id": "m3",
+ "title": "Teams and Roles",
+ "description": "Configure context teams, shared teams, and team templates. Understand role types, team instances, and how role resolution drives access control and workflow assignment.",
+ "topics": [
+ {
+ "id": "m3t1",
+ "title": "Team Management Fundamentals",
+ "estimatedMinutes": 6,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Context managers such as product and project managers use simplified team management to indirectly manage access control and workflow assignment. Rather than configuring security policies directly, they assign participants to roles on a team page, and Windchill resolves those assignments into access control rules and workflow task routing."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "The Context Manager's Role"
+ },
+ {
+ "type": "paragraph",
+ "text": "Context managers work with teams by adding participants to predefined roles. Each role carries meaning in terms of what data a participant can access and which workflow tasks they receive. The manager does not need to understand the underlying access control policies or workflow routing logic - assigning the right people to the right roles is sufficient."
+ },
+ {
+ "type": "callout",
+ "variant": "insight",
+ "text": "Context managers do not need full administrative knowledge of Windchill security. The team page abstracts the complexity of access control and workflow configuration into a simple participant-to-role assignment model."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "How Teams Drive Access and Workflows"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Team Function", "Description"],
+ "rows": [
+ ["Access Control", "Participants in roles determine what data they can access"],
+ ["Workflow Assignment", "Generic roles map to specific users who receive workflow tasks"],
+ ["Role Resolution", "Teams map generic business roles to specific participants"]
+ ]
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each team management concept to its description.",
+ "pairs": [
+ { "left": "Assigns participants to team roles", "right": "Context Manager" },
+ { "left": "Defines personnel for workflow tasks", "right": "Generic Roles" },
+ { "left": "Storage of participant data", "right": "Directory Server" },
+ { "left": "Windchill-specific team configuration", "right": "Windchill Database" }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Context managers assign participants to roles, indirectly controlling access and workflow routing.",
+ "Generic roles define which users receive workflow tasks and what data they can access.",
+ "Teams bridge the gap between business role definitions and Windchill security enforcement."
+ ]
+ },
+ {
+ "id": "m3t2",
+ "title": "Context Team Architecture and Roles",
+ "estimatedMinutes": 7,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Every product, project, library, and program in Windchill has exactly one context team. This team manages context roles visible on the Members table and context groups generated in the database. Understanding how roles, groups, and the special Team Members group interact is essential for configuring access control correctly."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Context Roles and Context Groups"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Element", "Visible On", "Purpose"],
+ "rows": [
+ ["Context Role", "Team page Members table", "Map participants to business roles"],
+ ["Context Group", "Policy Administration only", "Apply access control rules"],
+ ["Team Members Group", "Policy Administration only", "Superset of all non-Guest participants"]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "The Team Members group is a superset of all non-Guest participants. Editing out-of-the-box access control rules on this group affects <strong>every</strong> team member. Always review rules carefully before modifying this group."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Resource Bundle Roles vs Context Roles"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Feature", "Resource Bundle Roles", "Context Team Roles"],
+ "rows": [
+ ["Access control resolution", "Yes", "Yes"],
+ ["Available in workflows and lifecycles", "Yes", "No"],
+ ["Localized", "Yes", "No"],
+ ["Out of the box", "Yes (>180)", "No"],
+ ["Created by", "System administrator", "Context creator"]
+ ]
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Arrange the steps in the correct order for what happens when a user is added to a context role.",
+ "items": [
+ "User is added to the context role",
+ "System generates a corresponding context group entry",
+ "User is added to the Team Members group",
+ "Access control rules for the context group take effect"
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Every context has one context team with roles visible on the Members table and corresponding groups in Policy Administration.",
+ "The Team Members group collects all non-Guest participants and has no corresponding role on the team page.",
+ "Resource bundle roles can be used in workflows and lifecycles; context team roles are limited to access control resolution.",
+ "Adding a user to a context role automatically generates a context group entry and adds the user to the Team Members group."
+ ]
+ },
+ {
+ "id": "m3t3",
+ "title": "Shared Teams",
+ "estimatedMinutes": 6,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Shared teams are defined at the organization level and can be used across multiple products, libraries, projects, and programs. They provide a centralized way to manage team membership when the same participants and roles apply to many contexts."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "How Shared Teams Work"
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Shared Team Scope",
+ "back": "Defined at the organization level and shared across multiple products, libraries, projects, or programs."
+ },
+ {
+ "front": "Local Extensions",
+ "back": "When enabled, context managers can add roles and members locally but cannot remove shared team entries."
+ },
+ {
+ "front": "Impact of Changes",
+ "back": "Updates to a shared team are reflected in all associated contexts. Use Show Team Uses to see affected contexts."
+ }
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "tip",
+ "text": "Always use the <strong>Show Team Uses</strong> query before making changes to a shared team. This report lists every context that uses the shared team, helping you understand the full impact of your updates."
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each team type to its defining characteristic.",
+ "pairs": [
+ { "left": "Defined at organization level", "right": "Shared Team" },
+ { "left": "Defined at product or project level", "right": "Context Team" },
+ { "left": "Can be used across multiple contexts", "right": "Shared Team" }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Shared teams are defined at the organization level and reused across multiple contexts.",
+ "Context managers can extend shared teams locally when the option is enabled but cannot remove shared entries.",
+ "Changes to a shared team automatically propagate to all associated contexts."
+ ]
+ },
+ {
+ "id": "m3t4",
+ "title": "Team Templates and Team Instances",
+ "estimatedMinutes": 7,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Team templates define the roles needed for advanced business processes such as promotion requests and change workflows. When an object initiates a process, Windchill generates a team instance by resolving roles and participants from multiple sources in a specific order."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Team Template Definition"
+ },
+ {
+ "type": "paragraph",
+ "text": "Team templates can be created at the site, organization, or context level. When defining a template, you specify its name, description, and enabled status, then assign roles drawn from the resource bundle. These roles define the positions that must be filled when a process starts."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Team Instance Resolution"
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Arrange the team instance resolution steps in the correct order.",
+ "items": [
+ "Team Template adds roles to the team instance",
+ "Life Cycle Template adds any missing roles",
+ "Context Team populates participants into existing roles",
+ "Workflow adds any missing process roles"
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "Once a team instance is created, it is <strong>unaffected</strong> by subsequent changes to the team template or context team. Only team instances created after a change will reflect the updated configuration."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Best Practices"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Practice", "Rationale"],
+ "rows": [
+ ["Use context team as master for role resolution", "Simplifies administration - one place to manage participants"],
+ ["Don't add all roles to templates as a safety net", "Creates confusion with long lists of unused and unresolved roles"],
+ ["Only resolve org-level roles in team templates", "Product and project managers should not manage organization-level positions"],
+ ["Ensure consistent roles across workflows", "Same role name must resolve to the same person across all workflows"]
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Team templates define roles for business processes and can be created at site, organization, or context level.",
+ "Team instance resolution follows a specific order: team template, lifecycle template, context team, then workflow.",
+ "Once created, team instances are unaffected by changes to their source templates or context teams.",
+ "Use the context team as the master source for participant resolution to simplify administration."
+ ]
+ },
+ {
+ "id": "m3t5",
+ "title": "Exercise - Administer Roles and Context Teams",
+ "estimatedMinutes": 10,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "In this exercise you will add a custom role to an organization and then configure a product context team by adding roles, removing unnecessary roles, and assigning participants."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "Sign in as <strong>bpatterson/ptc</strong> to complete this exercise."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex3",
+ "title": "Administer Roles and Context Teams",
+ "objective": "Add a custom Editor role to the PTC Publications organization and configure the product context team with appropriate roles and members.",
+ "tasks": [
+ {
+ "id": "ex3-t1",
+ "title": "Add an Organization Role",
+ "steps": [
+ {
+ "action": "Navigate to PTC Publications Roles",
+ "detail": "Browse to the PTC Publications organization and select the Roles link.",
+ "hint": null
+ },
+ {
+ "action": "Add the Editor role",
+ "detail": "Click the New roles to organization icon, type Editor, and click OK.",
+ "hint": "Verify the new role appears in the Roles table with Visible status."
+ }
+ ]
+ },
+ {
+ "id": "ex3-t2",
+ "title": "Configure the Product Context Team",
+ "steps": [
+ {
+ "action": "Open the product team page",
+ "detail": "Navigate to Recent Products, expand the PTC New Publication Template product, and click the Team link.",
+ "hint": null
+ },
+ {
+ "action": "Add the Editor role to the context team",
+ "detail": "Select Actions > Add Roles, select Editor from the role list, and click OK.",
+ "hint": null
+ },
+ {
+ "action": "Remove unnecessary roles",
+ "detail": "Select Change Admin I, II, III, Change Review Board, Option Manager, Package Creator, and Variance Approver, then click the Remove roles or participants icon.",
+ "hint": "Removing unnecessary roles is best practice for product templates."
+ },
+ {
+ "action": "Add a participant to the Editor role",
+ "detail": "Click the Add participants icon in the Editor row, search for David Griffin (dgriffin), and add him.",
+ "hint": null
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Custom roles are added at the organization level and then become available to context teams.",
+ "Context teams should only include roles relevant to the product or project to reduce clutter.",
+ "Removing unnecessary roles from product templates is a best practice for streamlined team management."
+ ]
+ },
+ {
+ "id": "m3t6",
+ "title": "Exercise - Use Shared Teams",
+ "estimatedMinutes": 10,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "In this exercise you will create a shared team at the organization level, enable local extensions, and then create a new product that uses the shared team."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "Complete the previous exercise before starting this one. You must be signed in as <strong>bpatterson/ptc</strong>."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex4",
+ "title": "Use Shared Teams",
+ "objective": "Create a shared team for PTC Publications and test it by creating a new product that uses the shared team.",
+ "tasks": [
+ {
+ "id": "ex4-t1",
+ "title": "Create a Shared Team",
+ "steps": [
+ {
+ "action": "Navigate to Shared Teams",
+ "detail": "Browse to Organizations > PTC Publications > Teams.",
+ "hint": null
+ },
+ {
+ "action": "Create the PTC Publication Manuals shared team",
+ "detail": "Click New shared team, type PTC Publication Manuals, and select the checkbox for Allow team to be extended locally.",
+ "hint": null
+ },
+ {
+ "action": "Add a member to the shared team",
+ "detail": "Open the shared team details and add David Griffin to the Members role.",
+ "hint": null
+ }
+ ]
+ },
+ {
+ "id": "ex4-t2",
+ "title": "Create a Product Using the Shared Team",
+ "steps": [
+ {
+ "action": "Create a new product",
+ "detail": "Navigate to Recent Products > View All and click New Product.",
+ "hint": null
+ },
+ {
+ "action": "Associate the shared team",
+ "detail": "Click Find to search for shared teams, select PTC Publication Manuals, and enable local extensions.",
+ "hint": "Select the Allow roles and/or members to be added locally checkbox."
+ },
+ {
+ "action": "Complete the product creation",
+ "detail": "Name the product Maintenance Manuals, select the General Product template, and click OK.",
+ "hint": null
+ },
+ {
+ "action": "Verify shared team usage",
+ "detail": "Browse to PTC Publications > Teams, right-click PTC Publication Manuals, and select Show Team Uses.",
+ "hint": "The Maintenance Manuals product should appear in the report."
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Shared teams are created at the organization level and can be associated with multiple products.",
+ "The Allow team to be extended locally option lets context managers add roles and members without modifying the shared team.",
+ "Show Team Uses provides a report of all contexts associated with a shared team."
+ ]
+ },
+ {
+ "id": "m3t7",
+ "title": "Exercise - Create Team Templates",
+ "estimatedMinutes": 12,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "In this exercise you will create a team template for the Agenda document type, assign roles from the resource bundle, and configure an object initialization rule to apply the template automatically."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "Complete the previous exercises before starting this one. You must be signed in as <strong>bpatterson/ptc</strong>."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex5",
+ "title": "Create Team Templates",
+ "objective": "Create a team template for the Agenda document type and assign it using object initialization rules.",
+ "tasks": [
+ {
+ "id": "ex5-t1",
+ "title": "Create an Agenda Team Template",
+ "steps": [
+ {
+ "action": "Open Team Administration",
+ "detail": "Navigate to PTC New Publication Template > Utilities and select Team Administration.",
+ "hint": null
+ },
+ {
+ "action": "Create the team template",
+ "detail": "Click the New Team template icon, type Agenda Team in the Name field.",
+ "hint": null
+ },
+ {
+ "action": "Add roles to the template",
+ "detail": "Click Add Role, search for Manag* to add Managing Editor, then search for proj* to add Project Engineer.",
+ "hint": "Confirm both roles appear in the table before clicking OK."
+ }
+ ]
+ },
+ {
+ "id": "ex5-t2",
+ "title": "Assign the Template to a Document Type",
+ "steps": [
+ {
+ "action": "Open Object Initialization Rules",
+ "detail": "Browse to PTC New Publication Template > Utilities and select Object Initialization Rules Administration.",
+ "hint": null
+ },
+ {
+ "action": "Create the initialization rule",
+ "detail": "Click New Object Initialization Rule, name it Agenda Rule, and set the Type to Agenda (under Document).",
+ "hint": null
+ },
+ {
+ "action": "Load the rule definition file",
+ "detail": "Click Choose File and browse to the Agenda_Default_TeamOIR.xml file.",
+ "hint": "This file defines the lifecycle and team template for new Agenda documents."
+ },
+ {
+ "action": "Test the configuration",
+ "detail": "Create a new Agenda document named Agenda Team Test and verify the Team Template is set to Agenda Team.",
+ "hint": "Check the Information page to confirm the team template assignment."
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Team templates define the roles needed for specific business processes or document types.",
+ "Object initialization rules automatically assign team templates when new objects are created.",
+ "Roles added to team templates come from the resource bundle and are used for workflow and lifecycle resolution."
+ ]
+ }
+ ]
 }

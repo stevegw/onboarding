@@ -1,58 +1,58 @@
 {
-  "moduleId": "m1",
-  "title": "Business Administration Introduction Knowledge Check",
-  "questions": [
-    {
-      "id": "m1-kc-001",
-      "question": "Which responsibility area includes managing access control policies, notification rules, and processes such as workflows and life cycles?",
-      "options": [
-        "Product Data Configuration",
-        "Access Control and Monitoring",
-        "System Behavior",
-        "User Management and Assistance"
-      ],
-      "answerIndex": 1,
-      "rationale": "Access Control and Monitoring encompasses creating and managing access control policies, notification rules, and processes including workflows, life cycles, and CAD viewable publishing. Product Data Configuration focuses on object types, attributes, and numbering schemes. System Behavior deals with UI profiles, preferences, and saved searches. User Management and Assistance covers users, groups, roles, and shared teams.",
-      "topic": "m1t1"
-    },
-    {
-      "id": "m1-kc-002",
-      "question": "What is the correct sequence of the four business configuration driver areas when analyzing your product development process?",
-      "options": [
-        "Identify development stages, identify product data, map data in stages, identify life cycles",
-        "Identify product data, identify development stages, map data in stages, identify life cycles",
-        "Identify life cycles, identify product data, identify development stages, map data in stages",
-        "Map data in stages, identify product data, identify development stages, identify life cycles"
-      ],
-      "answerIndex": 1,
-      "rationale": "The correct sequence begins with identifying your product data, then identifying your product development stages, then mapping your product data in those stages, and finally identifying the life cycle and maturity process for each type of product data. Each step builds on the previous one — you must know what data you have before you can map it to stages, and you must understand the stages before defining life cycles.",
-      "topic": "m1t2"
-    },
-    {
-      "id": "m1-kc-003",
-      "question": "In Windchill, what is the relationship between roles and teams?",
-      "options": [
-        "Roles are containers for teams, and each team can belong to multiple roles",
-        "Teams define organization-wide permissions, while roles define context-specific permissions",
-        "Roles identify the function a participant performs, and teams map specific participants to roles within a context",
-        "Roles and teams are interchangeable terms for groups of users with shared access"
-      ],
-      "answerIndex": 2,
-      "rationale": "Roles identify the function a participant performs (e.g., Reviewer, Approver), while teams map specific participants to those roles within a particular context. For example, a Reviewer role exists as a generic function, but the team defines that John Smith is the Reviewer for a specific product. Roles and teams are not interchangeable — they serve distinct purposes in the participant model.",
-      "topic": "m1t3"
-    },
-    {
-      "id": "m1-kc-004",
-      "question": "In Windchill's three-tier architecture, which tier contains the content vaults that store files such as CAD models and documents?",
-      "options": [
-        "Client Tier",
-        "Database Tier",
-        "Application Tier",
-        "Enterprise Tier"
-      ],
-      "answerIndex": 2,
-      "rationale": "Content vaults are part of the Application Tier, where files (CAD models, documents, images) are stored on the file system. The Database Tier stores metadata and object relationships, not the actual content files. The Client Tier provides the user interface through web browsers and CAD tools. There is no separate Enterprise Tier in Windchill's architecture.",
-      "topic": "m1t4"
-    }
-  ]
+ "moduleId": "m1",
+ "title": "Business Administration Introduction Knowledge Check",
+ "questions": [
+ {
+ "id": "m1-kc-001",
+ "question": "Which responsibility area includes managing access control policies, notification rules, and processes such as workflows and life cycles?",
+ "options": [
+ "Product Data Configuration",
+ "Access Control and Monitoring",
+ "System Behavior",
+ "User Management and Assistance"
+ ],
+ "answerIndex": 1,
+ "rationale": "Access Control and Monitoring encompasses creating and managing access control policies, notification rules, and processes including workflows, life cycles, and CAD viewable publishing. Product Data Configuration focuses on object types, attributes, and numbering schemes. System Behavior deals with UI profiles, preferences, and saved searches. User Management and Assistance covers users, groups, roles, and shared teams.",
+ "topic": "m1t1"
+ },
+ {
+ "id": "m1-kc-002",
+ "question": "What is the correct sequence of the four business configuration driver areas when analyzing your product development process?",
+ "options": [
+ "Identify development stages, identify product data, map data in stages, identify life cycles",
+ "Identify product data, identify development stages, map data in stages, identify life cycles",
+ "Identify life cycles, identify product data, identify development stages, map data in stages",
+ "Map data in stages, identify product data, identify development stages, identify life cycles"
+ ],
+ "answerIndex": 1,
+ "rationale": "The correct sequence begins with identifying your product data, then identifying your product development stages, then mapping your product data in those stages, and finally identifying the life cycle and maturity process for each type of product data. Each step builds on the previous one - you must know what data you have before you can map it to stages, and you must understand the stages before defining life cycles.",
+ "topic": "m1t2"
+ },
+ {
+ "id": "m1-kc-003",
+ "question": "In Windchill, what is the relationship between roles and teams?",
+ "options": [
+ "Roles are containers for teams, and each team can belong to multiple roles",
+ "Teams define organization-wide permissions, while roles define context-specific permissions",
+ "Roles identify the function a participant performs, and teams map specific participants to roles within a context",
+ "Roles and teams are interchangeable terms for groups of users with shared access"
+ ],
+ "answerIndex": 2,
+ "rationale": "Roles identify the function a participant performs (e.g., Reviewer, Approver), while teams map specific participants to those roles within a particular context. For example, a Reviewer role exists as a generic function, but the team defines that John Smith is the Reviewer for a specific product. Roles and teams are not interchangeable - they serve distinct purposes in the participant model.",
+ "topic": "m1t3"
+ },
+ {
+ "id": "m1-kc-004",
+ "question": "In Windchill's three-tier architecture, which tier contains the content vaults that store files such as CAD models and documents?",
+ "options": [
+ "Client Tier",
+ "Database Tier",
+ "Application Tier",
+ "Enterprise Tier"
+ ],
+ "answerIndex": 2,
+ "rationale": "Content vaults are part of the Application Tier, where files (CAD models, documents, images) are stored on the file system. The Database Tier stores metadata and object relationships, not the actual content files. The Client Tier provides the user interface through web browsers and CAD tools. There is no separate Enterprise Tier in Windchill's architecture.",
+ "topic": "m1t4"
+ }
+ ]
 }

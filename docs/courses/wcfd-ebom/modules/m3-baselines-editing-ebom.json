@@ -1,376 +1,376 @@
 {
-  "id": "m3",
-  "title": "Baselines and Editing an eBOM",
-  "description": "Create and manage baselines to capture product structure snapshots. Edit an eBOM using the CAD tool, PSB, and spreadsheet methods.",
-  "topics": [
-    {
-      "id": "m3t1",
-      "title": "Understanding Baselines",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "A baseline is a snapshot of an evolving collection of Windchill data objects and their status at a specific point in time. Baselines are essential for tracking product structure changes and maintaining reference configurations throughout the development lifecycle."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Baseline Capabilities and Restrictions"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Capabilities", "Restrictions"],
-          "rows": [
-            ["Editable — replace one or multiple parts", "Only one version and iteration of a part or document allowed"],
-            ["Comparable — compare two baselines to view differences", "Baselines do not undergo version control"],
-            ["Lockable — prevent unauthorized changes", ""],
-            ["Protectable — prevent deletion of baseline objects", ""],
-            ["Lifecycle managed", ""]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "A baseline can contain any number of parts and documents, and a part or document can be in any number of baselines. However, each baseline can hold only one version and iteration of a given part or document."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Baseline Use Cases"
-        },
-        {
-          "type": "paragraph",
-          "text": "Baselines capture the product structure at various review milestones, allowing you to track progress over time. They can store an exact product configuration applicable to a specific client or a set of documents planned for translation."
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Initial Review Baseline",
-              "back": "Captures the first version of all parts at the beginning of a project. Serves as the reference point for all subsequent changes."
-            },
-            {
-              "front": "Progress Review Baseline",
-              "back": "Captures the product structure at an intermediate milestone. Shows which parts have been revised and what new components have been added."
-            },
-            {
-              "front": "Final Design Review Baseline",
-              "back": "Captures the completed product structure. Can be locked and protected to preserve the final configuration for manufacturing handoff."
-            }
-          ]
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange these baseline lifecycle steps in order:",
-          "items": [
-            "Create an empty baseline or use Add to Baseline",
-            "Add parts and related documents to the baseline",
-            "Verify the baseline contains all required objects",
-            "Lock the baseline to prevent unauthorized changes"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "A baseline is a snapshot of Windchill data objects and their status at a specific point in time.",
-        "Baselines can be edited, compared, locked, and protected, but only hold one version of each object.",
-        "Use baselines to track product structure progress at review milestones.",
-        "Baselines can be locked to prevent unauthorized changes and protected to prevent object deletion."
-      ]
-    },
-    {
-      "id": "m3t2",
-      "title": "Creating and Managing Baselines",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Windchill provides two primary methods for creating baselines: New Baseline and Add to Baseline. Once created, you can manage baseline contents from the Baseline Information page."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Creating a Baseline"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Method", "Access Location", "Description"],
-          "rows": [
-            ["New Baseline", "Details page or Folder Contents table", "Creates an empty baseline. Select Actions > New > New Baseline."],
-            ["Add to Baseline", "Object Information page or right-click menu", "Preselects objects to include. Select Actions > Add to > Add to Baseline."]
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Managing Baseline Objects"
-        },
-        {
-          "type": "paragraph",
-          "text": "From the Baseline Information page, you can access the Baseline Objects table to update the baseline contents using the table toolbar, column icons, and right-click actions."
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Add and Collect Objects",
-              "back": "Add Objects opens a search dialog to locate objects. Collect Objects gathers related objects (parent/child parts, CAD documents) from selected baseline objects."
-            },
-            {
-              "front": "Remove and Replace",
-              "back": "Remove Objects removes selected objects from the baseline. Replace Member swaps an object with another version of the same object."
-            },
-            {
-              "front": "Copy, Paste, and Set Primary",
-              "back": "Copy and paste valid objects into the baseline. Set Primary marks an object as the baseline's focus (informational indicator only)."
-            }
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "When using Add to Baseline, you can collect related objects such as child parts and CAD documents from the dialog before finalizing the baseline. This is more efficient than adding objects individually."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each baseline action to its purpose:",
-          "pairs": [
-            {"left": "Open a search dialog to find objects to include", "right": "Add Objects"},
-            {"left": "Gather related parent, child, and CAD objects", "right": "Collect Objects"},
-            {"left": "Swap an object with a different version", "right": "Replace Member"},
-            {"left": "Mark an object as the baseline's focus", "right": "Set Primary"}
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Two methods for creating baselines: New Baseline (empty) and Add to Baseline (preselected objects).",
-        "The Baseline Information page provides actions to add, remove, collect, copy, paste, and replace objects.",
-        "Collect Objects gathers related parts and CAD documents from selected baseline objects.",
-        "Replace Member allows swapping an object with another version of the same object."
-      ]
-    },
-    {
-      "id": "m3t3",
-      "title": "Methods for Editing an eBOM",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "After creating an initial eBOM, you will need to update it as the product design evolves. Windchill provides three methods for editing a product structure, each suited to different workflows and roles."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Three Methods for Editing"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Method", "Typical Role", "Workflow"],
-          "rows": [
-            ["CAD Tool", "Designer", "Check out assembly, modify in CAD tool, check in changes. Structure changes automatically reflected in Windchill."],
-            ["Product Structure Browser (PSB)", "Product Manager / Designer", "Add, remove, or restructure parts directly in the PSB. Works in both CAD-centric and part-centric environments."],
-            ["Import from Spreadsheet", "Product Manager", "Export structure to spreadsheet, edit in Excel, import changes using update mode. Accessed only by Product Manager."]
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Using the CAD Tool"
-        },
-        {
-          "type": "paragraph",
-          "text": "Designers typically check out the CAD assembly, open it in the CAD tool to add, replace, or remove models, then check in the changed models. If new models were added, auto associate Windchill parts if required."
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "If a configuration manager has made product structure changes independently, those changes may need to be synchronized with future CAD builds. The PSB provides tools to control whether changes are reflected in associated CAD assemblies."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Using Import from Spreadsheet"
-        },
-        {
-          "type": "paragraph",
-          "text": "The spreadsheet method involves three steps: export the existing structure using Export Importable Spreadsheet, edit the spreadsheet to make changes, and import using the update mode."
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange the steps for editing an eBOM using the spreadsheet method in order:",
-          "items": [
-            "Export the existing product structure using Export Importable Spreadsheet",
-            "Edit the spreadsheet in Microsoft Excel to make necessary changes",
-            "Import the modified spreadsheet to Windchill using update mode",
-            "Verify the updated product structure in the PSB"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Three methods for editing an eBOM: CAD tool, PSB, and Import from Spreadsheet.",
-        "The CAD tool is used by designers to modify assemblies; changes are reflected in the product structure on check-in.",
-        "The PSB allows direct manipulation of the product structure in both CAD-centric and part-centric environments.",
-        "Import from Spreadsheet uses a three-step export-edit-import workflow and is restricted to Product Managers by default."
-      ]
-    },
-    {
-      "id": "m3t4",
-      "title": "Create a Baseline",
-      "estimatedMinutes": 8,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In this exercise, you create a baseline of the eBOM to capture the current product structure as a reference before making changes. After creating the baseline, you add all child parts and related items, then lock it for future reference."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "You should be signed in to Windchill as Mike Jones (mjones/ptc)."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex3",
-          "title": "Create a Baseline",
-          "objective": "Create a baseline for the DRILL_720_NEW end item, add all child parts and CAD documents, verify completeness, and lock the baseline.",
-          "tasks": [
-            {
-              "id": "ex3-t1",
-              "title": "Create and Add Parts to the Baseline",
-              "steps": [
-                {
-                  "action": "Search for the DRILL_720_NEW End Item part and open its Information page.",
-                  "detail": "Navigate to the Part Information page to access the Add to Baseline action.",
-                  "hint": null
-                },
-                {
-                  "action": "Click <strong>Actions > Add To > Add to Baseline</strong>.",
-                  "detail": "The Add To option is at the bottom of the Actions menu.",
-                  "hint": null
-                },
-                {
-                  "action": "Click <strong>New Baseline</strong> and provide name <code>Manual_Drill_720</code> with description <code>Manual Drill prototype</code>.",
-                  "detail": "Leave the remaining fields with default values. Click OK to create the baseline.",
-                  "hint": null
-                },
-                {
-                  "action": "Select the DRILL_720_NEW checkbox and click <strong>Collect Related Objects</strong>.",
-                  "detail": "This gathers all child parts related to the end item.",
-                  "hint": null
-                },
-                {
-                  "action": "Select all rows and click <strong>Collect related CAD/Dynamic documents</strong>.",
-                  "detail": "All Windchill parts and corresponding CAD documents are now added to the baseline.",
-                  "hint": null
-                },
-                {
-                  "action": "Click <strong>OK</strong> in the Add to Baseline dialog to finalize.",
-                  "detail": "All drill parts and CAD documents are added to the Manual_Drill_720 baseline.",
-                  "hint": null
-                }
-              ]
-            },
-            {
-              "id": "ex3-t2",
-              "title": "Verify and Lock the Baseline",
-              "steps": [
-                {
-                  "action": "Navigate to the Auto Drill 720 Series product and locate the baseline in the Folder Contents table.",
-                  "detail": "Clear the Search in table field to view all contents. The new baseline should appear in the table.",
-                  "hint": null
-                },
-                {
-                  "action": "Click the View information icon to open the baseline Information page.",
-                  "detail": "The Baseline Information page shows all baseline properties and related objects.",
-                  "hint": null
-                },
-                {
-                  "action": "Select the <strong>Related Objects</strong> tab to verify baseline contents.",
-                  "detail": "All drill parts and CAD documents should be listed as components of the baseline.",
-                  "hint": null
-                },
-                {
-                  "action": "Click <strong>Actions > Lock</strong> to prevent modifications.",
-                  "detail": "A lock icon will appear next to the baseline name confirming it is locked.",
-                  "hint": "Locking prevents other users from modifying the baseline contents."
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Use Add to Baseline from the Actions menu to create a baseline with preselected objects.",
-        "Collect Related Objects and Collect related CAD/Dynamic documents ensure all associated items are captured.",
-        "Always verify baseline contents on the Related Objects tab before locking.",
-        "Locking a baseline prevents unauthorized modifications to preserve the reference configuration."
-      ]
-    },
-    {
-      "id": "m3t5",
-      "title": "Update a Product Structure in PSB",
-      "estimatedMinutes": 8,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In this exercise, you add new components to the Auto Drill 720 part structure using the Product Structure Browser. You will insert a new end item and its child parts, then check in the updated structure."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "You should be signed in to Windchill as Anna Chen (achen/ptc). Anna is a designer on the Auto Drill 720 team."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex4",
-          "title": "Update a Product Structure in PSB",
-          "objective": "Add new Auto Unit components to the DRILL_720_NEW part structure using the PSB Insert New and Insert Multiple New actions.",
-          "tasks": [
-            {
-              "id": "ex4-t1",
-              "title": "Add New Components to the Part Structure",
-              "steps": [
-                {
-                  "action": "Sign in as Anna Chen and search for the DRILL_720_NEW End Item part.",
-                  "detail": "Open a new browser window, click the Windchill bookmark, and select Anna Chen (achen/ptc).",
-                  "hint": null
-                },
-                {
-                  "action": "Open the Information page and select the <strong>Structure</strong> tab.",
-                  "detail": "Select the Uses tab in the right pane to view and edit child parts.",
-                  "hint": null
-                },
-                {
-                  "action": "Click <strong>Insert New</strong> and create a part: Type = Part, Create as End Item = Yes, Number = <code>Auto Unit</code>, Name = <code>Auto Unit</code>.",
-                  "detail": "This creates a new end item part as a child of the DRILL_720_NEW structure.",
-                  "hint": "Leave all other fields with default values and click Finish."
-                },
-                {
-                  "action": "Select the AUTO UNIT End Item in the left structure pane.",
-                  "detail": "You will now add child parts to the Auto Unit subassembly.",
-                  "hint": null
-                },
-                {
-                  "action": "Click <strong>Insert Multiple New</strong> and add four parts: Screen, Keypad, CPU, and USB Connector.",
-                  "detail": "Set Type = Part, Create as End Item = No, then enter the name and number for each part.",
-                  "hint": "Click Next after setting the type, then enter all four parts before clicking Finish."
-                },
-                {
-                  "action": "Select AUTO UNIT and DRILL_720_NEW, then click <strong>Check In</strong> and Apply to All.",
-                  "detail": "Checking in saves the structure changes and makes them visible to other users.",
-                  "hint": null
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "The PSB Insert New action creates a single new part within the product structure.",
-        "Insert Multiple New allows creating several parts at once, which is efficient for building subassemblies.",
-        "Always check in the structure after making changes to save them and make them visible to other users.",
-        "The PSB can be used to build hierarchical structures by adding end items and then populating their child parts."
-      ]
-    }
-  ]
+ "id": "m3",
+ "title": "Baselines and Editing an eBOM",
+ "description": "Create and manage baselines to capture product structure snapshots. Edit an eBOM using the CAD tool, PSB, and spreadsheet methods.",
+ "topics": [
+ {
+ "id": "m3t1",
+ "title": "Understanding Baselines",
+ "estimatedMinutes": 6,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "A baseline is a snapshot of an evolving collection of Windchill data objects and their status at a specific point in time. Baselines are essential for tracking product structure changes and maintaining reference configurations throughout the development lifecycle."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Baseline Capabilities and Restrictions"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Capabilities", "Restrictions"],
+ "rows": [
+ ["Editable - replace one or multiple parts", "Only one version and iteration of a part or document allowed"],
+ ["Comparable - compare two baselines to view differences", "Baselines do not undergo version control"],
+ ["Lockable - prevent unauthorized changes", ""],
+ ["Protectable - prevent deletion of baseline objects", ""],
+ ["Lifecycle managed", ""]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "A baseline can contain any number of parts and documents, and a part or document can be in any number of baselines. However, each baseline can hold only one version and iteration of a given part or document."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Baseline Use Cases"
+ },
+ {
+ "type": "paragraph",
+ "text": "Baselines capture the product structure at various review milestones, allowing you to track progress over time. They can store an exact product configuration applicable to a specific client or a set of documents planned for translation."
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Initial Review Baseline",
+ "back": "Captures the first version of all parts at the beginning of a project. Serves as the reference point for all subsequent changes."
+ },
+ {
+ "front": "Progress Review Baseline",
+ "back": "Captures the product structure at an intermediate milestone. Shows which parts have been revised and what new components have been added."
+ },
+ {
+ "front": "Final Design Review Baseline",
+ "back": "Captures the completed product structure. Can be locked and protected to preserve the final configuration for manufacturing handoff."
+ }
+ ]
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Arrange these baseline lifecycle steps in order:",
+ "items": [
+ "Create an empty baseline or use Add to Baseline",
+ "Add parts and related documents to the baseline",
+ "Verify the baseline contains all required objects",
+ "Lock the baseline to prevent unauthorized changes"
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "A baseline is a snapshot of Windchill data objects and their status at a specific point in time.",
+ "Baselines can be edited, compared, locked, and protected, but only hold one version of each object.",
+ "Use baselines to track product structure progress at review milestones.",
+ "Baselines can be locked to prevent unauthorized changes and protected to prevent object deletion."
+ ]
+ },
+ {
+ "id": "m3t2",
+ "title": "Creating and Managing Baselines",
+ "estimatedMinutes": 6,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Windchill provides two primary methods for creating baselines: New Baseline and Add to Baseline. Once created, you can manage baseline contents from the Baseline Information page."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Creating a Baseline"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Method", "Access Location", "Description"],
+ "rows": [
+ ["New Baseline", "Details page or Folder Contents table", "Creates an empty baseline. Select Actions > New > New Baseline."],
+ ["Add to Baseline", "Object Information page or right-click menu", "Preselects objects to include. Select Actions > Add to > Add to Baseline."]
+ ]
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Managing Baseline Objects"
+ },
+ {
+ "type": "paragraph",
+ "text": "From the Baseline Information page, you can access the Baseline Objects table to update the baseline contents using the table toolbar, column icons, and right-click actions."
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Add and Collect Objects",
+ "back": "Add Objects opens a search dialog to locate objects. Collect Objects gathers related objects (parent/child parts, CAD documents) from selected baseline objects."
+ },
+ {
+ "front": "Remove and Replace",
+ "back": "Remove Objects removes selected objects from the baseline. Replace Member swaps an object with another version of the same object."
+ },
+ {
+ "front": "Copy, Paste, and Set Primary",
+ "back": "Copy and paste valid objects into the baseline. Set Primary marks an object as the baseline's focus (informational indicator only)."
+ }
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "tip",
+ "text": "When using Add to Baseline, you can collect related objects such as child parts and CAD documents from the dialog before finalizing the baseline. This is more efficient than adding objects individually."
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each baseline action to its purpose:",
+ "pairs": [
+ {"left": "Open a search dialog to find objects to include", "right": "Add Objects"},
+ {"left": "Gather related parent, child, and CAD objects", "right": "Collect Objects"},
+ {"left": "Swap an object with a different version", "right": "Replace Member"},
+ {"left": "Mark an object as the baseline's focus", "right": "Set Primary"}
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Two methods for creating baselines: New Baseline (empty) and Add to Baseline (preselected objects).",
+ "The Baseline Information page provides actions to add, remove, collect, copy, paste, and replace objects.",
+ "Collect Objects gathers related parts and CAD documents from selected baseline objects.",
+ "Replace Member allows swapping an object with another version of the same object."
+ ]
+ },
+ {
+ "id": "m3t3",
+ "title": "Methods for Editing an eBOM",
+ "estimatedMinutes": 5,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "After creating an initial eBOM, you will need to update it as the product design evolves. Windchill provides three methods for editing a product structure, each suited to different workflows and roles."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Three Methods for Editing"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Method", "Typical Role", "Workflow"],
+ "rows": [
+ ["CAD Tool", "Designer", "Check out assembly, modify in CAD tool, check in changes. Structure changes automatically reflected in Windchill."],
+ ["Product Structure Browser (PSB)", "Product Manager / Designer", "Add, remove, or restructure parts directly in the PSB. Works in both CAD-centric and part-centric environments."],
+ ["Import from Spreadsheet", "Product Manager", "Export structure to spreadsheet, edit in Excel, import changes using update mode. Accessed only by Product Manager."]
+ ]
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Using the CAD Tool"
+ },
+ {
+ "type": "paragraph",
+ "text": "Designers typically check out the CAD assembly, open it in the CAD tool to add, replace, or remove models, then check in the changed models. If new models were added, auto associate Windchill parts if required."
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "If a configuration manager has made product structure changes independently, those changes may need to be synchronized with future CAD builds. The PSB provides tools to control whether changes are reflected in associated CAD assemblies."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Using Import from Spreadsheet"
+ },
+ {
+ "type": "paragraph",
+ "text": "The spreadsheet method involves three steps: export the existing structure using Export Importable Spreadsheet, edit the spreadsheet to make changes, and import using the update mode."
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Arrange the steps for editing an eBOM using the spreadsheet method in order:",
+ "items": [
+ "Export the existing product structure using Export Importable Spreadsheet",
+ "Edit the spreadsheet in Microsoft Excel to make necessary changes",
+ "Import the modified spreadsheet to Windchill using update mode",
+ "Verify the updated product structure in the PSB"
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Three methods for editing an eBOM: CAD tool, PSB, and Import from Spreadsheet.",
+ "The CAD tool is used by designers to modify assemblies; changes are reflected in the product structure on check-in.",
+ "The PSB allows direct manipulation of the product structure in both CAD-centric and part-centric environments.",
+ "Import from Spreadsheet uses a three-step export-edit-import workflow and is restricted to Product Managers by default."
+ ]
+ },
+ {
+ "id": "m3t4",
+ "title": "Create a Baseline",
+ "estimatedMinutes": 8,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "In this exercise, you create a baseline of the eBOM to capture the current product structure as a reference before making changes. After creating the baseline, you add all child parts and related items, then lock it for future reference."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "You should be signed in to Windchill as Mike Jones (mjones/ptc)."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex3",
+ "title": "Create a Baseline",
+ "objective": "Create a baseline for the DRILL_720_NEW end item, add all child parts and CAD documents, verify completeness, and lock the baseline.",
+ "tasks": [
+ {
+ "id": "ex3-t1",
+ "title": "Create and Add Parts to the Baseline",
+ "steps": [
+ {
+ "action": "Search for the DRILL_720_NEW End Item part and open its Information page.",
+ "detail": "Navigate to the Part Information page to access the Add to Baseline action.",
+ "hint": null
+ },
+ {
+ "action": "Click <strong>Actions > Add To > Add to Baseline</strong>.",
+ "detail": "The Add To option is at the bottom of the Actions menu.",
+ "hint": null
+ },
+ {
+ "action": "Click <strong>New Baseline</strong> and provide name <code>Manual_Drill_720</code> with description <code>Manual Drill prototype</code>.",
+ "detail": "Leave the remaining fields with default values. Click OK to create the baseline.",
+ "hint": null
+ },
+ {
+ "action": "Select the DRILL_720_NEW checkbox and click <strong>Collect Related Objects</strong>.",
+ "detail": "This gathers all child parts related to the end item.",
+ "hint": null
+ },
+ {
+ "action": "Select all rows and click <strong>Collect related CAD/Dynamic documents</strong>.",
+ "detail": "All Windchill parts and corresponding CAD documents are now added to the baseline.",
+ "hint": null
+ },
+ {
+ "action": "Click <strong>OK</strong> in the Add to Baseline dialog to finalize.",
+ "detail": "All drill parts and CAD documents are added to the Manual_Drill_720 baseline.",
+ "hint": null
+ }
+ ]
+ },
+ {
+ "id": "ex3-t2",
+ "title": "Verify and Lock the Baseline",
+ "steps": [
+ {
+ "action": "Navigate to the Auto Drill 720 Series product and locate the baseline in the Folder Contents table.",
+ "detail": "Clear the Search in table field to view all contents. The new baseline should appear in the table.",
+ "hint": null
+ },
+ {
+ "action": "Click the View information icon to open the baseline Information page.",
+ "detail": "The Baseline Information page shows all baseline properties and related objects.",
+ "hint": null
+ },
+ {
+ "action": "Select the <strong>Related Objects</strong> tab to verify baseline contents.",
+ "detail": "All drill parts and CAD documents should be listed as components of the baseline.",
+ "hint": null
+ },
+ {
+ "action": "Click <strong>Actions > Lock</strong> to prevent modifications.",
+ "detail": "A lock icon will appear next to the baseline name confirming it is locked.",
+ "hint": "Locking prevents other users from modifying the baseline contents."
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Use Add to Baseline from the Actions menu to create a baseline with preselected objects.",
+ "Collect Related Objects and Collect related CAD/Dynamic documents ensure all associated items are captured.",
+ "Always verify baseline contents on the Related Objects tab before locking.",
+ "Locking a baseline prevents unauthorized modifications to preserve the reference configuration."
+ ]
+ },
+ {
+ "id": "m3t5",
+ "title": "Update a Product Structure in PSB",
+ "estimatedMinutes": 8,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "In this exercise, you add new components to the Auto Drill 720 part structure using the Product Structure Browser. You will insert a new end item and its child parts, then check in the updated structure."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "You should be signed in to Windchill as Anna Chen (achen/ptc). Anna is a designer on the Auto Drill 720 team."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex4",
+ "title": "Update a Product Structure in PSB",
+ "objective": "Add new Auto Unit components to the DRILL_720_NEW part structure using the PSB Insert New and Insert Multiple New actions.",
+ "tasks": [
+ {
+ "id": "ex4-t1",
+ "title": "Add New Components to the Part Structure",
+ "steps": [
+ {
+ "action": "Sign in as Anna Chen and search for the DRILL_720_NEW End Item part.",
+ "detail": "Open a new browser window, click the Windchill bookmark, and select Anna Chen (achen/ptc).",
+ "hint": null
+ },
+ {
+ "action": "Open the Information page and select the <strong>Structure</strong> tab.",
+ "detail": "Select the Uses tab in the right pane to view and edit child parts.",
+ "hint": null
+ },
+ {
+ "action": "Click <strong>Insert New</strong> and create a part: Type = Part, Create as End Item = Yes, Number = <code>Auto Unit</code>, Name = <code>Auto Unit</code>.",
+ "detail": "This creates a new end item part as a child of the DRILL_720_NEW structure.",
+ "hint": "Leave all other fields with default values and click Finish."
+ },
+ {
+ "action": "Select the AUTO UNIT End Item in the left structure pane.",
+ "detail": "You will now add child parts to the Auto Unit subassembly.",
+ "hint": null
+ },
+ {
+ "action": "Click <strong>Insert Multiple New</strong> and add four parts: Screen, Keypad, CPU, and USB Connector.",
+ "detail": "Set Type = Part, Create as End Item = No, then enter the name and number for each part.",
+ "hint": "Click Next after setting the type, then enter all four parts before clicking Finish."
+ },
+ {
+ "action": "Select AUTO UNIT and DRILL_720_NEW, then click <strong>Check In</strong> and Apply to All.",
+ "detail": "Checking in saves the structure changes and makes them visible to other users.",
+ "hint": null
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "The PSB Insert New action creates a single new part within the product structure.",
+ "Insert Multiple New allows creating several parts at once, which is efficient for building subassemblies.",
+ "Always check in the structure after making changes to save them and make them visible to other users.",
+ "The PSB can be used to build hierarchical structures by adding end items and then populating their child parts."
+ ]
+ }
+ ]
 }

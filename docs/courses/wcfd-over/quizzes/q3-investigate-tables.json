@@ -1,58 +1,58 @@
 {
-  "moduleId": "m3",
-  "title": "Investigate Tables Knowledge Check",
-  "questions": [
-    {
-      "id": "m3-kc-001",
-      "question": "Which table tool allows you to narrow down the displayed objects by typing a text string?",
-      "options": [
-        "Pick a View",
-        "Toolbar",
-        "Search in table",
-        "Table Display Options"
-      ],
-      "answerIndex": 2,
-      "rationale": "Search in table filters the table to show only objects whose visible column values contain the specified text string. Pick a View switches between predetermined views or opens the Customize dialog. The Toolbar provides action icons for performing operations on selected objects. Table Display Options offers additional display settings like viewing a selected object.",
-      "topic": "m3t1"
-    },
-    {
-      "id": "m3-kc-002",
-      "question": "What does locking a column do to the table?",
-      "options": [
-        "Prevents anyone from editing data in that column",
-        "Keeps that column visible when scrolling to the right",
-        "Sorts the table based on that column's values",
-        "Hides all other columns except the locked one"
-      ],
-      "answerIndex": 1,
-      "rationale": "Locking a column keeps it visible when you scroll horizontally through a wide table, ensuring that key identifying information (like Name or Number) stays in view. Locking does not prevent editing, does not sort the table, and does not hide other columns. Note that you cannot use Group By while a column is locked.",
-      "topic": "m3t2"
-    },
-    {
-      "id": "m3-kc-003",
-      "question": "What must you do before you can use Group By on a table column?",
-      "options": [
-        "Create a custom view first",
-        "Sort the table by that column",
-        "Unlock all locked columns",
-        "Clear the Search in table filter"
-      ],
-      "answerIndex": 2,
-      "rationale": "You cannot use Group By while any column is locked. You must unlock all locked columns before applying grouping. Creating a custom view, sorting the table, or clearing the search filter are not prerequisites for using Group By — only the absence of locked columns is required.",
-      "topic": "m3t2"
-    },
-    {
-      "id": "m3-kc-004",
-      "question": "How do you switch from the classic Windchill Home page to the Next Gen UI?",
-      "options": [
-        "Navigate to Quick Links > Preferences > Enable Next Gen",
-        "Click the \"New Home\" toggle in the upper-right corner",
-        "Ask your administrator to enable it for your account",
-        "Reinstall Windchill with the Next Gen option selected"
-      ],
-      "answerIndex": 1,
-      "rationale": "The Next Gen Home page is activated by clicking the \"New Home\" toggle in the upper-right corner of the classic Home page. Similarly, the \"New Folders\" toggle activates enhanced folder browsing. It does not require administrator intervention, reinstallation, or changes in Preferences — users can switch between classic and Next Gen at any time.",
-      "topic": "m3t3"
-    }
-  ]
+ "moduleId": "m3",
+ "title": "Investigate Tables Knowledge Check",
+ "questions": [
+ {
+ "id": "m3-kc-001",
+ "question": "Which table tool allows you to narrow down the displayed objects by typing a text string?",
+ "options": [
+ "Pick a View",
+ "Toolbar",
+ "Search in table",
+ "Table Display Options"
+ ],
+ "answerIndex": 2,
+ "rationale": "Search in table filters the table to show only objects whose visible column values contain the specified text string. Pick a View switches between predetermined views or opens the Customize dialog. The Toolbar provides action icons for performing operations on selected objects. Table Display Options offers additional display settings like viewing a selected object.",
+ "topic": "m3t1"
+ },
+ {
+ "id": "m3-kc-002",
+ "question": "What does locking a column do to the table?",
+ "options": [
+ "Prevents anyone from editing data in that column",
+ "Keeps that column visible when scrolling to the right",
+ "Sorts the table based on that column's values",
+ "Hides all other columns except the locked one"
+ ],
+ "answerIndex": 1,
+ "rationale": "Locking a column keeps it visible when you scroll horizontally through a wide table, ensuring that key identifying information (like Name or Number) stays in view. Locking does not prevent editing, does not sort the table, and does not hide other columns. Note that you cannot use Group By while a column is locked.",
+ "topic": "m3t2"
+ },
+ {
+ "id": "m3-kc-003",
+ "question": "What must you do before you can use Group By on a table column?",
+ "options": [
+ "Create a custom view first",
+ "Sort the table by that column",
+ "Unlock all locked columns",
+ "Clear the Search in table filter"
+ ],
+ "answerIndex": 2,
+ "rationale": "You cannot use Group By while any column is locked. You must unlock all locked columns before applying grouping. Creating a custom view, sorting the table, or clearing the search filter are not prerequisites for using Group By - only the absence of locked columns is required.",
+ "topic": "m3t2"
+ },
+ {
+ "id": "m3-kc-004",
+ "question": "How do you switch from the classic Windchill Home page to the Next Gen UI?",
+ "options": [
+ "Navigate to Quick Links > Preferences > Enable Next Gen",
+ "Click the \"New Home\" toggle in the upper-right corner",
+ "Ask your administrator to enable it for your account",
+ "Reinstall Windchill with the Next Gen option selected"
+ ],
+ "answerIndex": 1,
+ "rationale": "The Next Gen Home page is activated by clicking the \"New Home\" toggle in the upper-right corner of the classic Home page. Similarly, the \"New Folders\" toggle activates enhanced folder browsing. It does not require administrator intervention, reinstallation, or changes in Preferences - users can switch between classic and Next Gen at any time.",
+ "topic": "m3t3"
+ }
+ ]
 }

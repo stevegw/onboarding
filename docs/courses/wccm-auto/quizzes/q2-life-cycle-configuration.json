@@ -1,71 +1,71 @@
 {
-  "moduleId": "m2",
-  "title": "Life Cycle Configuration Knowledge Check",
-  "questions": [
-    {
-      "id": "m2-kc-001",
-      "question": "When Windchill resolves which life cycle template to assign to a new object, what happens if no matching Object Initialization Rule (OIR) is found at any level of the resolution hierarchy?",
-      "options": [
-        "The object is created with the default Basic life cycle",
-        "The object is created without a life cycle and must be assigned one manually",
-        "The system prevents the object from being created in that context",
-        "The object inherits the life cycle of its parent folder"
-      ],
-      "answerIndex": 2,
-      "rationale": "If no matching OIR is found at the product/library/project/program level, the Organization level, or the Site level, Windchill prevents the object from being created entirely. It does not fall back to a default life cycle, allow manual assignment, or inherit from a parent folder.",
-      "topic": "m2t1"
-    },
-    {
-      "id": "m2-kc-002",
-      "question": "A part uses state-based versioning with Numeric in the Design state and Mil Std in the Released state. The part is at version A in the Released state and is then moved back to the Design state and revised. What version does it receive?",
-      "options": [
-        "Version 4, because Design uses Numeric versioning",
-        "Version B, because once Mil Std starts it continues regardless of state",
-        "Version 1, because returning to Design resets the Numeric sequence",
-        "No version change occurs because the part was moved rather than revised"
-      ],
-      "answerIndex": 1,
-      "rationale": "Once a new version sequence starts (Mil Std in this case), the previous sequence (Numeric) is permanently abandoned. Even though the part returned to the Design state that originally used Numeric versioning, the revision continues with Mil Std, producing version B. The version sequence is never reset or reversed.",
-      "topic": "m2t2"
-    },
-    {
-      "id": "m2-kc-003",
-      "question": "Which statement about access control in advanced life cycles is correct?",
-      "options": [
-        "Life cycle access control can both grant and deny permissions at each state",
-        "Life cycle access control overrides security labels and absolute deny rules",
-        "Life cycle access control is grant-only and can be overridden by absolute deny rules and security labels",
-        "All roles must be explicitly granted Read permission at each state"
-      ],
-      "answerIndex": 2,
-      "rationale": "Life cycle access control is grant-only — it can grant permissions but cannot deny them. Security labels and absolute deny rules always take precedence over life cycle access control grants. Additionally, all roles automatically receive Read permission, so explicit Read grants are not needed.",
-      "topic": "m2t3"
-    },
-    {
-      "id": "m2-kc-004",
-      "question": "Which of the following is a recommended best practice when designing life cycles in Windchill?",
-      "options": [
-        "Modify the out-of-the-box life cycles directly to match your business process",
-        "Use Advanced life cycles for all object types to ensure maximum flexibility",
-        "Use gates whenever users need to modify objects during a review step",
-        "Use Basic life cycles when no workflow is needed for better performance"
-      ],
-      "answerIndex": 3,
-      "rationale": "Basic life cycles provide better performance than Advanced life cycles when no workflow templates are required. Modifying out-of-the-box life cycles is discouraged — use Save As to create new ones instead. Advanced life cycles should only be used when workflow functionality is needed. Gates should be avoided when modification access is required, because gate states restrict modification; use phase workflows instead.",
-      "topic": "m2t4"
-    },
-    {
-      "id": "m2-kc-005",
-      "question": "When an Advanced life cycle state is associated with the 'latest iteration' of a workflow template, what happens to objects already in that state when the workflow template is updated?",
-      "options": [
-        "All objects in that state are automatically migrated to the updated workflow",
-        "Existing objects continue using their original workflow iteration; only new objects entering the state use the updated version",
-        "The workflow update is blocked until all objects exit the state",
-        "Existing objects are paused until an administrator manually reassigns the workflow"
-      ],
-      "answerIndex": 1,
-      "rationale": "With latest iteration association, existing objects already managed by an earlier iteration of the workflow are unaffected. Only new objects entering the state after the workflow template is checked back in will use the updated version. This prevents disruption to in-progress workflows while allowing improvements for future objects.",
-      "topic": "m2t4"
-    }
-  ]
+ "moduleId": "m2",
+ "title": "Life Cycle Configuration Knowledge Check",
+ "questions": [
+ {
+ "id": "m2-kc-001",
+ "question": "When Windchill resolves which life cycle template to assign to a new object, what happens if no matching Object Initialization Rule (OIR) is found at any level of the resolution hierarchy?",
+ "options": [
+ "The object is created with the default Basic life cycle",
+ "The object is created without a life cycle and must be assigned one manually",
+ "The system prevents the object from being created in that context",
+ "The object inherits the life cycle of its parent folder"
+ ],
+ "answerIndex": 2,
+ "rationale": "If no matching OIR is found at the product/library/project/program level, the Organization level, or the Site level, Windchill prevents the object from being created entirely. It does not fall back to a default life cycle, allow manual assignment, or inherit from a parent folder.",
+ "topic": "m2t1"
+ },
+ {
+ "id": "m2-kc-002",
+ "question": "A part uses state-based versioning with Numeric in the Design state and Mil Std in the Released state. The part is at version A in the Released state and is then moved back to the Design state and revised. What version does it receive?",
+ "options": [
+ "Version 4, because Design uses Numeric versioning",
+ "Version B, because once Mil Std starts it continues regardless of state",
+ "Version 1, because returning to Design resets the Numeric sequence",
+ "No version change occurs because the part was moved rather than revised"
+ ],
+ "answerIndex": 1,
+ "rationale": "Once a new version sequence starts (Mil Std in this case), the previous sequence (Numeric) is permanently abandoned. Even though the part returned to the Design state that originally used Numeric versioning, the revision continues with Mil Std, producing version B. The version sequence is never reset or reversed.",
+ "topic": "m2t2"
+ },
+ {
+ "id": "m2-kc-003",
+ "question": "Which statement about access control in advanced life cycles is correct?",
+ "options": [
+ "Life cycle access control can both grant and deny permissions at each state",
+ "Life cycle access control overrides security labels and absolute deny rules",
+ "Life cycle access control is grant-only and can be overridden by absolute deny rules and security labels",
+ "All roles must be explicitly granted Read permission at each state"
+ ],
+ "answerIndex": 2,
+ "rationale": "Life cycle access control is grant-only - it can grant permissions but cannot deny them. Security labels and absolute deny rules always take precedence over life cycle access control grants. Additionally, all roles automatically receive Read permission, so explicit Read grants are not needed.",
+ "topic": "m2t3"
+ },
+ {
+ "id": "m2-kc-004",
+ "question": "Which of the following is a recommended best practice when designing life cycles in Windchill?",
+ "options": [
+ "Modify the out-of-the-box life cycles directly to match your business process",
+ "Use Advanced life cycles for all object types to ensure maximum flexibility",
+ "Use gates whenever users need to modify objects during a review step",
+ "Use Basic life cycles when no workflow is needed for better performance"
+ ],
+ "answerIndex": 3,
+ "rationale": "Basic life cycles provide better performance than Advanced life cycles when no workflow templates are required. Modifying out-of-the-box life cycles is discouraged - use Save As to create new ones instead. Advanced life cycles should only be used when workflow functionality is needed. Gates should be avoided when modification access is required, because gate states restrict modification; use phase workflows instead.",
+ "topic": "m2t4"
+ },
+ {
+ "id": "m2-kc-005",
+ "question": "When an Advanced life cycle state is associated with the 'latest iteration' of a workflow template, what happens to objects already in that state when the workflow template is updated?",
+ "options": [
+ "All objects in that state are automatically migrated to the updated workflow",
+ "Existing objects continue using their original workflow iteration; only new objects entering the state use the updated version",
+ "The workflow update is blocked until all objects exit the state",
+ "Existing objects are paused until an administrator manually reassigns the workflow"
+ ],
+ "answerIndex": 1,
+ "rationale": "With latest iteration association, existing objects already managed by an earlier iteration of the workflow are unaffected. Only new objects entering the state after the workflow template is checked back in will use the updated version. This prevents disruption to in-progress workflows while allowing improvements for future objects.",
+ "topic": "m2t4"
+ }
+ ]
 }

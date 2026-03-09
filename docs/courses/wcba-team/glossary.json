@@ -1,100 +1,100 @@
 {
-  "terms": [
-    {
-      "term": "Active Daily User License",
-      "definition": "A license model that tracks concurrent usage per day. Unlimited users can be added to the license group, but only a purchased number can be active in a single day. The license resets at 23:59:59 GMT."
-    },
-    {
-      "term": "Context Group",
-      "definition": "A system-generated database group that corresponds to a context team role. Used by the Policy Administrator to apply access control rules to participants assigned to that role."
-    },
-    {
-      "term": "Context Manager",
-      "definition": "A user (typically a product or project manager) who indirectly manages access control and workflow tasks by assigning participants to team roles within a context."
-    },
-    {
-      "term": "Context Role",
-      "definition": "A role visible in the Members table of a context team page. Custom context roles can be created for access control but are not available for workflow or lifecycle role resolution."
-    },
-    {
-      "term": "Context Team",
-      "definition": "A team defined at the sub-organization level (product, project, library, or program) that manages context roles and context groups for access control and business process role resolution."
-    },
-    {
-      "term": "Directory Server",
-      "definition": "An enterprise LDAP server that stores participant information shared across applications, such as names, email addresses, phone numbers, group membership, and organization affiliation."
-    },
-    {
-      "term": "Disconnected Participant",
-      "definition": "A user or group object in Windchill that no longer points to a valid entry in the directory server, typically caused by deletion from the directory server without corresponding Windchill cleanup."
-    },
-    {
-      "term": "Enumerated Type",
-      "definition": "A configurable list of values used throughout Windchill, such as roles and lifecycle states. Custom entries can be added using the Customize Modeled Enumerations utility."
-    },
-    {
-      "term": "License Exclusion Group",
-      "definition": "A site-level group that enables a user to be licensed without being counted against the purchased license total. Used for testing and administrative purposes."
-    },
-    {
-      "term": "License Group",
-      "definition": "A group that assigns a specific Windchill license to its members. Each license package has a corresponding license group that users must be added to for access."
-    },
-    {
-      "term": "License Profile",
-      "definition": "A PTC-maintained profile that controls the visibility of UI actions and features based on license functionality. Each license group has a corresponding license profile."
-    },
-    {
-      "term": "Named User License",
-      "definition": "A license model that limits the number of specific users who can be added to a license group. When the license count is at capacity, no additional users can be added."
-    },
-    {
-      "term": "Object Initialization Rule",
-      "definition": "A rule that defines which lifecycle template and team template are applied when a new object of a specific type is created in a given context."
-    },
-    {
-      "term": "Organization",
-      "definition": "A participant type that acts as an administrative domain containing users and groups. Most Windchill implementations use a single organization context for all users."
-    },
-    {
-      "term": "Participant",
-      "definition": "A generic term for organizations, groups, and users in Windchill. Participant data is split between a directory server (shared attributes) and the Windchill database (Windchill-specific data)."
-    },
-    {
-      "term": "Participant Administration",
-      "definition": "A Windchill utility that enables business administrators to manage user accounts, groups, and organizations including creation, editing, and deletion."
-    },
-    {
-      "term": "Personal Cabinet",
-      "definition": "A private storage area for each Windchill user that contains server-side workspaces used by CAD and Arbortext applications. Must be deleted separately when removing a user account."
-    },
-    {
-      "term": "Resource Bundle Role",
-      "definition": "A role defined in the system's resource bundle files that is available to workflow, lifecycle, and team template administration tools. Over 180 are provided out of the box."
-    },
-    {
-      "term": "Role",
-      "definition": "A standard title or function used to map participants to business responsibilities. Roles are not job titles — they define access control and workflow task assignments."
-    },
-    {
-      "term": "Shared Team",
-      "definition": "A team defined at the organization level that can be used across multiple products, libraries, projects, or programs. Changes to a shared team are reflected in all associated contexts."
-    },
-    {
-      "term": "Standard Profile",
-      "definition": "A customizable profile that can hide licensed features from users. Standard profiles restrict visibility but cannot grant features beyond a user's license entitlement."
-    },
-    {
-      "term": "Team Instance",
-      "definition": "A system-generated team for a specific business object that resolves roles from the team template, lifecycle template, and context team. Once created, it is unaffected by template updates."
-    },
-    {
-      "term": "Team Members Group",
-      "definition": "A hidden context group that contains all participants added to any context role except Guest. Visible only in the Policy Administration utility, not on the team page."
-    },
-    {
-      "term": "Team Template",
-      "definition": "A template that defines roles for business processes and advanced workflow resolution. Created at the site, organization, or application context level and assigned via object initialization rules."
-    }
-  ]
+ "terms": [
+ {
+ "term": "Active Daily User License",
+ "definition": "A license model that tracks concurrent usage per day. Unlimited users can be added to the license group, but only a purchased number can be active in a single day. The license resets at 23:59:59 GMT."
+ },
+ {
+ "term": "Context Group",
+ "definition": "A system-generated database group that corresponds to a context team role. Used by the Policy Administrator to apply access control rules to participants assigned to that role."
+ },
+ {
+ "term": "Context Manager",
+ "definition": "A user (typically a product or project manager) who indirectly manages access control and workflow tasks by assigning participants to team roles within a context."
+ },
+ {
+ "term": "Context Role",
+ "definition": "A role visible in the Members table of a context team page. Custom context roles can be created for access control but are not available for workflow or lifecycle role resolution."
+ },
+ {
+ "term": "Context Team",
+ "definition": "A team defined at the sub-organization level (product, project, library, or program) that manages context roles and context groups for access control and business process role resolution."
+ },
+ {
+ "term": "Directory Server",
+ "definition": "An enterprise LDAP server that stores participant information shared across applications, such as names, email addresses, phone numbers, group membership, and organization affiliation."
+ },
+ {
+ "term": "Disconnected Participant",
+ "definition": "A user or group object in Windchill that no longer points to a valid entry in the directory server, typically caused by deletion from the directory server without corresponding Windchill cleanup."
+ },
+ {
+ "term": "Enumerated Type",
+ "definition": "A configurable list of values used throughout Windchill, such as roles and lifecycle states. Custom entries can be added using the Customize Modeled Enumerations utility."
+ },
+ {
+ "term": "License Exclusion Group",
+ "definition": "A site-level group that enables a user to be licensed without being counted against the purchased license total. Used for testing and administrative purposes."
+ },
+ {
+ "term": "License Group",
+ "definition": "A group that assigns a specific Windchill license to its members. Each license package has a corresponding license group that users must be added to for access."
+ },
+ {
+ "term": "License Profile",
+ "definition": "A PTC-maintained profile that controls the visibility of UI actions and features based on license functionality. Each license group has a corresponding license profile."
+ },
+ {
+ "term": "Named User License",
+ "definition": "A license model that limits the number of specific users who can be added to a license group. When the license count is at capacity, no additional users can be added."
+ },
+ {
+ "term": "Object Initialization Rule",
+ "definition": "A rule that defines which lifecycle template and team template are applied when a new object of a specific type is created in a given context."
+ },
+ {
+ "term": "Organization",
+ "definition": "A participant type that acts as an administrative domain containing users and groups. Most Windchill implementations use a single organization context for all users."
+ },
+ {
+ "term": "Participant",
+ "definition": "A generic term for organizations, groups, and users in Windchill. Participant data is split between a directory server (shared attributes) and the Windchill database (Windchill-specific data)."
+ },
+ {
+ "term": "Participant Administration",
+ "definition": "A Windchill utility that enables business administrators to manage user accounts, groups, and organizations including creation, editing, and deletion."
+ },
+ {
+ "term": "Personal Cabinet",
+ "definition": "A private storage area for each Windchill user that contains server-side workspaces used by CAD and Arbortext applications. Must be deleted separately when removing a user account."
+ },
+ {
+ "term": "Resource Bundle Role",
+ "definition": "A role defined in the system's resource bundle files that is available to workflow, lifecycle, and team template administration tools. Over 180 are provided out of the box."
+ },
+ {
+ "term": "Role",
+ "definition": "A standard title or function used to map participants to business responsibilities. Roles are not job titles - they define access control and workflow task assignments."
+ },
+ {
+ "term": "Shared Team",
+ "definition": "A team defined at the organization level that can be used across multiple products, libraries, projects, or programs. Changes to a shared team are reflected in all associated contexts."
+ },
+ {
+ "term": "Standard Profile",
+ "definition": "A customizable profile that can hide licensed features from users. Standard profiles restrict visibility but cannot grant features beyond a user's license entitlement."
+ },
+ {
+ "term": "Team Instance",
+ "definition": "A system-generated team for a specific business object that resolves roles from the team template, lifecycle template, and context team. Once created, it is unaffected by template updates."
+ },
+ {
+ "term": "Team Members Group",
+ "definition": "A hidden context group that contains all participants added to any context role except Guest. Visible only in the Policy Administration utility, not on the team page."
+ },
+ {
+ "term": "Team Template",
+ "definition": "A template that defines roles for business processes and advanced workflow resolution. Created at the site, organization, or application context level and assigned via object initialization rules."
+ }
+ ]
 }

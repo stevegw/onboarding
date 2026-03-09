@@ -115,7 +115,7 @@
     var t = OB.i18n.t;
     var html = "";
 
-    // "All Courses" back link — rendered outside scroll area
+    // "All Courses" back link - rendered outside scroll area
     var navBack = document.getElementById("nav-back");
     if (navBack) {
       navBack.style.display = "";

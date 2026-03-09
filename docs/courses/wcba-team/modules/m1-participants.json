@@ -1,224 +1,224 @@
 {
-  "id": "m1",
-  "title": "Participants",
-  "description": "Understand how Windchill manages participants — organizations, groups, and users — and learn to create and configure user accounts.",
-  "topics": [
-    {
-      "id": "m1t1",
-      "title": "Participant Architecture",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Participants in Windchill fall into three categories: <strong>organizations</strong>, <strong>groups</strong>, and <strong>users</strong>. What makes them architecturally unusual is that their data is split across two storage systems — a directory server and the Windchill database — each serving a distinct purpose in the enterprise."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Where Participant Data Lives"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Storage Location", "What It Stores", "Examples"],
-          "rows": [
-            ["Directory Server", "Shared identity information used across enterprise applications", "Name, email address, phone number, organization affiliation"],
-            ["Windchill Database", "Windchill-specific configuration and security data, plus a pointer back to the directory server entry", "Access control rules, team membership, context assignments"]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "insight",
-          "text": "The dual-storage architecture exists because identity information like names and email addresses is shared across many enterprise applications, while access control and team data is specific to Windchill. Groups can be stored in either location depending on whether they need to be shared across systems."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each item to the storage location where it is maintained.",
-          "pairs": [
-            { "left": "User's email address", "right": "Directory Server" },
-            { "left": "Access control rules", "right": "Windchill Database" },
-            { "left": "Team membership", "right": "Windchill Database" },
-            { "left": "Organization affiliation", "right": "Directory Server" }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Participants in Windchill are organizations, groups, and users.",
-        "Participant data is split between a directory server (shared identity info) and the Windchill database (access control and teams).",
-        "The Windchill database maintains a pointer to each participant's directory server entry.",
-        "Groups can be stored in either the directory server or the Windchill database."
-      ]
-    },
-    {
-      "id": "m1t2",
-      "title": "The Windchill User Community",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Before configuring Windchill, business administrators must plan the user community — identifying who needs access, how users are organized, and what licenses they require. Groups play a central role in this planning because they simplify the application of access control policies, notifications, and role assignments across many users at once."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Planning Your User Community"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Participant Type", "What It Enables"],
-          "rows": [
-            ["Users", "Individual access to Windchill, historical records of actions, email notifications, and personalized settings"],
-            ["Groups", "Efficient bulk application of access control rules, license assignment, notification policies, and role assignments"]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "Use groups to apply policies rather than managing individual users. When a new user joins, simply add them to the appropriate groups — they automatically inherit all the access control, notifications, and role assignments configured for those groups."
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange the steps for planning user access in the correct order.",
-          "items": [
-            "Identify users needing system access",
-            "Determine organization requirements",
-            "Map users to license types",
-            "Organize users into groups"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Business administrators must identify who needs access, determine organization requirements, and map license needs before configuring users.",
-        "Groups simplify applying access control, notifications, and role assignments to multiple users at once.",
-        "The Participant Administration utility is the primary tool for managing users and groups."
-      ]
-    },
-    {
-      "id": "m1t3",
-      "title": "User Accounts and Groups",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Every person who needs to work in Windchill must have a user account. Accounts enable access control, maintain historical records of user actions, and allow email notifications. Understanding the required fields, organization association, and the distinction between groups and teams is essential for proper account configuration."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "User Account Definition"
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Required Fields",
-              "back": "Username, full name, last name. Password must be created and confirmed."
-            },
-            {
-              "front": "Organization",
-              "back": "Associate users with an org; otherwise they go to the Unaffiliated domain."
-            },
-            {
-              "front": "Groups",
-              "back": "Users can be assigned to groups for license assignment and policy management."
-            },
-            {
-              "front": "Additional Options",
-              "back": "Preferred language, directory server, profiles, picture, and additional usernames."
-            }
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "If a user account is not associated with an organization, it is placed in the <strong>Unaffiliated domain</strong>. This may make the account unavailable to certain search tools within the organization, so always verify the organization field when creating accounts."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Groups vs Teams"
-        },
-        {
-          "type": "paragraph",
-          "text": "Groups and teams both organize users, but they serve different purposes. <strong>Groups</strong> operate at the organizational level and are stored in the directory server or database — they simplify access control and notification policies. <strong>Teams</strong> are Windchill-specific constructs tied to a particular context (such as a product or project) and define context-specific role assignments managed by the product or project manager."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each characteristic to whether it describes a group or a team.",
-          "pairs": [
-            { "left": "Stored in directory server or database", "right": "Group" },
-            { "left": "Context-specific role assignments", "right": "Team" },
-            { "left": "Simplify access control and notifications", "right": "Group" },
-            { "left": "Managed by product or project manager", "right": "Team" }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Every Windchill user requires an account with at minimum a username, full name, and last name.",
-        "Users not associated with an organization are placed in the Unaffiliated domain, limiting their visibility in search tools.",
-        "Groups operate at the organizational level for policy management, while teams are context-specific with role assignments.",
-        "Groups can be stored in either the directory server or the Windchill database."
-      ]
-    },
-    {
-      "id": "m1t4",
-      "title": "Exercise - Create User Accounts",
-      "estimatedMinutes": 8,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In this exercise you will create two new user accounts in the PTC Publications organization using the Participant Administration utility. You will also assign one of the users to the Organization Administrator group to grant elevated privileges."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "You must be signed in as a system administrator (wcadmin) to create user accounts and assign administrative groups. Ensure you have access to the PTC Publications organization before starting."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex1",
-          "title": "Create User Accounts",
-          "objective": "Create two new user accounts in the PTC Publications organization and assign one as an organization administrator.",
-          "tasks": [
-            {
-              "id": "ex1-t1",
-              "title": "Create User Accounts",
-              "steps": [
-                {
-                  "action": "Sign in to Windchill as administrator",
-                  "detail": "Use wcadmin credentials to access the system with full administrative privileges.",
-                  "hint": null
-                },
-                {
-                  "action": "Navigate to Participant Administration",
-                  "detail": "Browse to Organizations > PTC Publications > Utilities and select Participant Administration.",
-                  "hint": "Use the Navigator panel to browse the organization hierarchy."
-                },
-                {
-                  "action": "Create the first user account",
-                  "detail": "Click the Create new user icon and enter Ali Mansor's account information including name, email, and password.",
-                  "hint": "Set the Organization field to PTC Publications."
-                },
-                {
-                  "action": "Assign Ali Mansor to the Organization Administrator group",
-                  "detail": "On the groups page, search for *org* and add the Organization Administrator group to the participant list.",
-                  "hint": "Click Add group to table to search for available groups."
-                },
-                {
-                  "action": "Create the second user account",
-                  "detail": "Click Apply to save the first user, then enter Ash Santhosh's account information and click Finish.",
-                  "hint": null
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "User accounts are created through the Participant Administration utility within an organization's Utilities section.",
-        "The Organization Administrator group grants elevated privileges for managing participants within an organization.",
-        "Always associate new user accounts with the correct organization to avoid placing them in the Unaffiliated domain."
-      ]
-    }
-  ]
+ "id": "m1",
+ "title": "Participants",
+ "description": "Understand how Windchill manages participants - organizations, groups, and users - and learn to create and configure user accounts.",
+ "topics": [
+ {
+ "id": "m1t1",
+ "title": "Participant Architecture",
+ "estimatedMinutes": 5,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Participants in Windchill fall into three categories: <strong>organizations</strong>, <strong>groups</strong>, and <strong>users</strong>. What makes them architecturally unusual is that their data is split across two storage systems - a directory server and the Windchill database - each serving a distinct purpose in the enterprise."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Where Participant Data Lives"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Storage Location", "What It Stores", "Examples"],
+ "rows": [
+ ["Directory Server", "Shared identity information used across enterprise applications", "Name, email address, phone number, organization affiliation"],
+ ["Windchill Database", "Windchill-specific configuration and security data, plus a pointer back to the directory server entry", "Access control rules, team membership, context assignments"]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "insight",
+ "text": "The dual-storage architecture exists because identity information like names and email addresses is shared across many enterprise applications, while access control and team data is specific to Windchill. Groups can be stored in either location depending on whether they need to be shared across systems."
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each item to the storage location where it is maintained.",
+ "pairs": [
+ { "left": "User's email address", "right": "Directory Server" },
+ { "left": "Access control rules", "right": "Windchill Database" },
+ { "left": "Team membership", "right": "Windchill Database" },
+ { "left": "Organization affiliation", "right": "Directory Server" }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Participants in Windchill are organizations, groups, and users.",
+ "Participant data is split between a directory server (shared identity info) and the Windchill database (access control and teams).",
+ "The Windchill database maintains a pointer to each participant's directory server entry.",
+ "Groups can be stored in either the directory server or the Windchill database."
+ ]
+ },
+ {
+ "id": "m1t2",
+ "title": "The Windchill User Community",
+ "estimatedMinutes": 5,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Before configuring Windchill, business administrators must plan the user community - identifying who needs access, how users are organized, and what licenses they require. Groups play a central role in this planning because they simplify the application of access control policies, notifications, and role assignments across many users at once."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Planning Your User Community"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Participant Type", "What It Enables"],
+ "rows": [
+ ["Users", "Individual access to Windchill, historical records of actions, email notifications, and personalized settings"],
+ ["Groups", "Efficient bulk application of access control rules, license assignment, notification policies, and role assignments"]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "tip",
+ "text": "Use groups to apply policies rather than managing individual users. When a new user joins, simply add them to the appropriate groups - they automatically inherit all the access control, notifications, and role assignments configured for those groups."
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Arrange the steps for planning user access in the correct order.",
+ "items": [
+ "Identify users needing system access",
+ "Determine organization requirements",
+ "Map users to license types",
+ "Organize users into groups"
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Business administrators must identify who needs access, determine organization requirements, and map license needs before configuring users.",
+ "Groups simplify applying access control, notifications, and role assignments to multiple users at once.",
+ "The Participant Administration utility is the primary tool for managing users and groups."
+ ]
+ },
+ {
+ "id": "m1t3",
+ "title": "User Accounts and Groups",
+ "estimatedMinutes": 6,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Every person who needs to work in Windchill must have a user account. Accounts enable access control, maintain historical records of user actions, and allow email notifications. Understanding the required fields, organization association, and the distinction between groups and teams is essential for proper account configuration."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "User Account Definition"
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Required Fields",
+ "back": "Username, full name, last name. Password must be created and confirmed."
+ },
+ {
+ "front": "Organization",
+ "back": "Associate users with an org; otherwise they go to the Unaffiliated domain."
+ },
+ {
+ "front": "Groups",
+ "back": "Users can be assigned to groups for license assignment and policy management."
+ },
+ {
+ "front": "Additional Options",
+ "back": "Preferred language, directory server, profiles, picture, and additional usernames."
+ }
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "If a user account is not associated with an organization, it is placed in the <strong>Unaffiliated domain</strong>. This may make the account unavailable to certain search tools within the organization, so always verify the organization field when creating accounts."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Groups vs Teams"
+ },
+ {
+ "type": "paragraph",
+ "text": "Groups and teams both organize users, but they serve different purposes. <strong>Groups</strong> operate at the organizational level and are stored in the directory server or database - they simplify access control and notification policies. <strong>Teams</strong> are Windchill-specific constructs tied to a particular context (such as a product or project) and define context-specific role assignments managed by the product or project manager."
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each characteristic to whether it describes a group or a team.",
+ "pairs": [
+ { "left": "Stored in directory server or database", "right": "Group" },
+ { "left": "Context-specific role assignments", "right": "Team" },
+ { "left": "Simplify access control and notifications", "right": "Group" },
+ { "left": "Managed by product or project manager", "right": "Team" }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Every Windchill user requires an account with at minimum a username, full name, and last name.",
+ "Users not associated with an organization are placed in the Unaffiliated domain, limiting their visibility in search tools.",
+ "Groups operate at the organizational level for policy management, while teams are context-specific with role assignments.",
+ "Groups can be stored in either the directory server or the Windchill database."
+ ]
+ },
+ {
+ "id": "m1t4",
+ "title": "Exercise - Create User Accounts",
+ "estimatedMinutes": 8,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "In this exercise you will create two new user accounts in the PTC Publications organization using the Participant Administration utility. You will also assign one of the users to the Organization Administrator group to grant elevated privileges."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "You must be signed in as a system administrator (wcadmin) to create user accounts and assign administrative groups. Ensure you have access to the PTC Publications organization before starting."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex1",
+ "title": "Create User Accounts",
+ "objective": "Create two new user accounts in the PTC Publications organization and assign one as an organization administrator.",
+ "tasks": [
+ {
+ "id": "ex1-t1",
+ "title": "Create User Accounts",
+ "steps": [
+ {
+ "action": "Sign in to Windchill as administrator",
+ "detail": "Use wcadmin credentials to access the system with full administrative privileges.",
+ "hint": null
+ },
+ {
+ "action": "Navigate to Participant Administration",
+ "detail": "Browse to Organizations > PTC Publications > Utilities and select Participant Administration.",
+ "hint": "Use the Navigator panel to browse the organization hierarchy."
+ },
+ {
+ "action": "Create the first user account",
+ "detail": "Click the Create new user icon and enter Ali Mansor's account information including name, email, and password.",
+ "hint": "Set the Organization field to PTC Publications."
+ },
+ {
+ "action": "Assign Ali Mansor to the Organization Administrator group",
+ "detail": "On the groups page, search for *org* and add the Organization Administrator group to the participant list.",
+ "hint": "Click Add group to table to search for available groups."
+ },
+ {
+ "action": "Create the second user account",
+ "detail": "Click Apply to save the first user, then enter Ash Santhosh's account information and click Finish.",
+ "hint": null
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "User accounts are created through the Participant Administration utility within an organization's Utilities section.",
+ "The Organization Administrator group grants elevated privileges for managing participants within an organization.",
+ "Always associate new user accounts with the correct organization to avoid placing them in the Unaffiliated domain."
+ ]
+ }
+ ]
 }

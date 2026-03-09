@@ -1,58 +1,58 @@
 {
-  "moduleId": "m1",
-  "title": "Pieces of the Puzzle Knowledge Check",
-  "questions": [
-    {
-      "id": "m1-kc-001",
-      "question": "Which change object is used to investigate and analyze the scope and impact of a reported problem before planning a solution?",
-      "options": [
-        "Problem Report",
-        "Change Request",
-        "Change Notice",
-        "Variance"
-      ],
-      "answerIndex": 1,
-      "rationale": "A Change Request investigates the reported problem, analyzes its scope and impact, and determines feasibility before planning a solution. A Problem Report only identifies and records the need for change (it does not investigate). A Change Notice is used to authorize and implement an approved change (it comes after the investigation). A Variance documents a deviation from a released specification, not an investigation.",
-      "topic": "m1t1"
-    },
-    {
-      "id": "m1-kc-002",
-      "question": "What is the key difference between Full Track and Fast Track in the OOTB change process?",
-      "options": [
-        "Fast Track skips the Identify and Investigate steps entirely",
-        "Full Track requires Change Admin III approval while Fast Track does not",
-        "Fast Track bypasses formal review board meetings (CRB and CIB)",
-        "Full Track uses Change Notices while Fast Track uses only Problem Reports"
-      ],
-      "answerIndex": 2,
-      "rationale": "Fast Track bypasses the formal Change Review Board (CRB) and Change Implementation Board (CIB) meetings, making it suitable for low-risk or routine changes. It does not skip the Identify or Investigate steps — it simply removes the review board gates. Both tracks use the same change object types (Problem Reports, Change Requests, Change Notices). The difference is not about role approvals but about whether formal board meetings occur.",
-      "topic": "m1t2"
-    },
-    {
-      "id": "m1-kc-003",
-      "question": "What is the recommended best practice before modifying an OOTB workflow or life cycle template?",
-      "options": [
-        "Delete the original template and create a new one from scratch",
-        "Disable the original template so it cannot conflict with your changes",
-        "Make a copy of the original template and modify the copy",
-        "Export the template to XML, edit it externally, and reimport"
-      ],
-      "answerIndex": 2,
-      "rationale": "The recommended practice is to always copy the OOTB template and then modify the copy. This preserves the original as a reference and fallback, and ensures future Windchill upgrades do not conflict with your customizations. Deleting or disabling originals removes your reference baseline. Editing externally via XML export is error-prone and not a supported best practice.",
-      "topic": "m1t3"
-    },
-    {
-      "id": "m1-kc-004",
-      "question": "In the nine-step process for setting up a tailored change management process, what should you do immediately after identifying which change objects are needed?",
-      "options": [
-        "Begin modifying workflow templates",
-        "Identify requirements for each change object",
-        "Deploy the new process to production",
-        "Test the process with sample data"
-      ],
-      "answerIndex": 1,
-      "rationale": "Step 3 in the nine-step process is to identify the specific requirements for each change object — such as what metadata fields, states, and associations each object needs. Modifying workflow templates (Step 7) and testing (Step 8) come much later in the process. Deploying to production (Step 9) is the final step. Skipping ahead to implementation without defining requirements leads to rework and misconfiguration.",
-      "topic": "m1t4"
-    }
-  ]
+ "moduleId": "m1",
+ "title": "Pieces of the Puzzle Knowledge Check",
+ "questions": [
+ {
+ "id": "m1-kc-001",
+ "question": "Which change object is used to investigate and analyze the scope and impact of a reported problem before planning a solution?",
+ "options": [
+ "Problem Report",
+ "Change Request",
+ "Change Notice",
+ "Variance"
+ ],
+ "answerIndex": 1,
+ "rationale": "A Change Request investigates the reported problem, analyzes its scope and impact, and determines feasibility before planning a solution. A Problem Report only identifies and records the need for change (it does not investigate). A Change Notice is used to authorize and implement an approved change (it comes after the investigation). A Variance documents a deviation from a released specification, not an investigation.",
+ "topic": "m1t1"
+ },
+ {
+ "id": "m1-kc-002",
+ "question": "What is the key difference between Full Track and Fast Track in the OOTB change process?",
+ "options": [
+ "Fast Track skips the Identify and Investigate steps entirely",
+ "Full Track requires Change Admin III approval while Fast Track does not",
+ "Fast Track bypasses formal review board meetings (CRB and CIB)",
+ "Full Track uses Change Notices while Fast Track uses only Problem Reports"
+ ],
+ "answerIndex": 2,
+ "rationale": "Fast Track bypasses the formal Change Review Board (CRB) and Change Implementation Board (CIB) meetings, making it suitable for low-risk or routine changes. It does not skip the Identify or Investigate steps - it simply removes the review board gates. Both tracks use the same change object types (Problem Reports, Change Requests, Change Notices). The difference is not about role approvals but about whether formal board meetings occur.",
+ "topic": "m1t2"
+ },
+ {
+ "id": "m1-kc-003",
+ "question": "What is the recommended best practice before modifying an OOTB workflow or life cycle template?",
+ "options": [
+ "Delete the original template and create a new one from scratch",
+ "Disable the original template so it cannot conflict with your changes",
+ "Make a copy of the original template and modify the copy",
+ "Export the template to XML, edit it externally, and reimport"
+ ],
+ "answerIndex": 2,
+ "rationale": "The recommended practice is to always copy the OOTB template and then modify the copy. This preserves the original as a reference and fallback, and ensures future Windchill upgrades do not conflict with your customizations. Deleting or disabling originals removes your reference baseline. Editing externally via XML export is error-prone and not a supported best practice.",
+ "topic": "m1t3"
+ },
+ {
+ "id": "m1-kc-004",
+ "question": "In the nine-step process for setting up a tailored change management process, what should you do immediately after identifying which change objects are needed?",
+ "options": [
+ "Begin modifying workflow templates",
+ "Identify requirements for each change object",
+ "Deploy the new process to production",
+ "Test the process with sample data"
+ ],
+ "answerIndex": 1,
+ "rationale": "Step 3 in the nine-step process is to identify the specific requirements for each change object - such as what metadata fields, states, and associations each object needs. Modifying workflow templates (Step 7) and testing (Step 8) come much later in the process. Deploying to production (Step 9) is the final step. Skipping ahead to implementation without defining requirements leads to rework and misconfiguration.",
+ "topic": "m1t4"
+ }
+ ]
 }

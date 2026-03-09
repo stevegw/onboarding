@@ -1,447 +1,447 @@
 {
-  "id": "m4",
-  "title": "Managing an eBOM and BOM Reports",
-  "description": "Manage object associations, usage attributes, and occurrences. Apply product structure filters and generate BOM reports.",
-  "topics": [
-    {
-      "id": "m4t1",
-      "title": "Object Associations and Document Types",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Windchill enables you to create relationships, known as associations, between CAD documents and Windchill parts. Associations enable the exchange and update of structure, attribute, and visualization information. You can also associate product documentation to parts for easy access."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Document Association Types"
-        },
-        {
-          "type": "paragraph",
-          "text": "Windchill provides two types of document-to-part associations, each serving a different purpose based on how the document relates to the part's lifecycle."
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Association Type", "Link Behavior", "Use Case"],
-          "rows": [
-            ["Described By", "Version-to-version link. A specific part version is linked to a specific document version.", "Drawings, specifications, and documents that must track specific part revisions"],
-            ["Reference", "Always points to the latest released version of the reference document.", "Manufacturer brochures, standards, and general reference materials that apply across revisions"]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "insight",
-          "text": "With a Described By association, when the part design is revised, the drawing typically must also be revised. With a Reference association, the part may be revised many times while the reference document remains the latest released version."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Association Between CAD Documents and Parts"
-        },
-        {
-          "type": "paragraph",
-          "text": "To create a Windchill product structure, you must create Windchill parts and associate them with CAD documents that contain the CAD model files. The association type determines how structure, attribute, and visualization information is exchanged between them."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "If the association context is set to <strong>Owner</strong>, this indicates the primary representation that drives the structure and most attributes for the part."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each scenario to the correct document association type:",
-          "pairs": [
-            {"left": "A drawing that describes a specific version of a part design", "right": "Described By"},
-            {"left": "A manufacturer's brochure that applies to all part revisions", "right": "Reference"},
-            {"left": "A test specification linked to a particular part iteration", "right": "Described By"},
-            {"left": "An industry standard document referenced across multiple parts", "right": "Reference"}
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Associations enable the exchange of structure, attribute, and visualization information between CAD documents and Windchill parts.",
-        "Described By associations create version-to-version links between a part and a document.",
-        "Reference associations always point to the latest released version of a reference document.",
-        "Owner association indicates the primary representation that drives the part's structure and attributes."
-      ]
-    },
-    {
-      "id": "m4t2",
-      "title": "Usage Attributes and Occurrences",
-      "estimatedMinutes": 7,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In Windchill, a usage refers to the components assembled within a specific part structure. Usage attributes describe how a part is used in an assembly, while occurrences store information about each specific named instance of a component."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Usage Attributes"
-        },
-        {
-          "type": "paragraph",
-          "text": "Usage attributes are managed from the Edit Usage Attribute action in the PSB Editing group. These attributes are specific to a part's use within a particular assembly context."
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Attribute", "Description"],
-          "rows": [
-            ["Quantity", "Number of occurrences of the component in the assembly"],
-            ["Unit", "Unit of measurement applied to the quantity"],
-            ["Trace Code", "Defines the traceability type, such as serial number or lot, used by Effectivity"],
-            ["Line Number", "Position of this part within an mBOM in an ERP system"],
-            ["Find Number", "Identifies the part within an assembly drawing (alphanumeric)"],
-            ["Reference Designator", "Names attached to BOM components when multiple pieces of the same component are used"]
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Occurrences"
-        },
-        {
-          "type": "paragraph",
-          "text": "An occurrence stores information about one specific named use of a component within an assembly. The number of occurrences relates to the quantity of parts used. Each occurrence is identified by its Reference Designator name."
-        },
-        {
-          "type": "callout",
-          "variant": "insight",
-          "text": "Consider an automobile with four wheels. The usage link specifies Quantity = 4 and attributes like tightening torque. Each wheel occurrence has its own Reference Designator (e.g., T1, T2, T3, T4) and occurrence-specific attributes like tire pressure."
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "Occurrence attributes like spatial coordinates can be driven from MCAD. Storing location information with each occurrence makes it possible to select a specific part in the structure and have it highlight in the assembly visualization."
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange these concepts from broadest to most specific scope:",
-          "items": [
-            "Product structure (entire assembly hierarchy)",
-            "Usage link (relationship between parent and child part)",
-            "Usage attributes (quantity, unit, trace code for the usage)",
-            "Occurrence (one specific named instance with reference designator)"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Usage attributes describe how a part is used in an assembly, including quantity, unit, trace code, and find number.",
-        "Occurrences store information about each specific named use of a component, identified by Reference Designators.",
-        "The number of occurrences relates to the quantity of parts used in the parent assembly.",
-        "Occurrence attributes can include spatial coordinates driven from MCAD for visualization highlighting."
-      ]
-    },
-    {
-      "id": "m4t3",
-      "title": "Product Structure Filters",
-      "estimatedMinutes": 7,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Part structures can be large and complex, with thousands of parts in assembly hierarchies six to ten levels deep. Windchill provides filtering tools that reduce complexity by showing valid product configurations for a point in time, serial number, or specific development task."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Configuration Specification Filters"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Filter Type", "Description"],
-          "rows": [
-            ["Latest", "Displays the structure using the most recently created versions of a selected View and Life Cycle State"],
-            ["As Matured", "Displays revisions in the most mature Life Cycle State as of a selected date"],
-            ["Baseline", "Displays the parts structure using versions captured in a previously created baseline"],
-            ["Unit Effectivity", "Displays the product configuration based on serial number or lot"],
-            ["Date Effectivity", "Displays the product configuration based on date"],
-            ["Promotion Request", "Displays data related to a promotion request"]
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Specialized Filters"
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Spatial Filter",
-              "back": "Uses volumetric information to display or hide components. Three types: Sphere (within a sphere), Box (within a box), and Proximity (within proximity of a specific part). Sizes can be set manually or dragged in the Visualization tab."
-            },
-            {
-              "front": "Attribute Filter",
-              "back": "Uses part and usage link attribute information to determine which parts to include or exclude in the display. Useful for filtering by specific attribute values."
-            },
-            {
-              "front": "Path Filter",
-              "back": "Filters the display of large assemblies so only the subassemblies you are currently working on are displayed. Eliminates searching through large numbers of parts."
-            }
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Saving Structure Filters"
-        },
-        {
-          "type": "paragraph",
-          "text": "Windchill provides the ability to save commonly used filters with a descriptive name, recall and reuse a saved filter, and share filters between users for the duration of a project."
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "You can use the Current Filter toolbar to quickly view and update filter details without launching the Edit Filter dialogs. Icons indicate whether an Option Filter, Spatial Filter, Attribute Filter, or Path Filter is in use."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each filter type to its use case:",
-          "pairs": [
-            {"left": "View the product structure as it existed at a specific milestone", "right": "Baseline"},
-            {"left": "Display parts within a specific volume in the 3D model", "right": "Spatial Filter"},
-            {"left": "Show only the subassembly you are currently editing", "right": "Path Filter"},
-            {"left": "Display the configuration for a specific serial number", "right": "Unit Effectivity"}
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Configuration specification filters display complete BOMs based on criteria like Latest, Baseline, or Effectivity.",
-        "Specialized filters (Spatial, Attribute, Path) show subsets of the product structure for specific tasks.",
-        "Saved filters can be reused and shared between users for the duration of a project.",
-        "The Current Filter toolbar provides quick access to view and update active filter criteria."
-      ]
-    },
-    {
-      "id": "m4t4",
-      "title": "BOM Reports and Structure Comparison",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Windchill provides standard BOM reports designed to capture different product configurations. You can also compare product structures to identify differences between configurations or successive versions."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "BOM Report Types"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Category", "Report", "Description"],
-          "rows": [
-            ["Structured", "Single-Level BOM", "Displays parts directly used by a parent part with usage and part information"],
-            ["Structured", "Multi-Level BOM", "Displays an indented list of single-level BOMs for all levels of the structure"],
-            ["Summarized", "Single-Level Consolidated BOM", "Displays all parts with total quantities directly used by a parent (no duplicates)"],
-            ["Summarized", "Multi-Level Components List", "Displays a consolidated list of components and total quantities across entire structure"],
-            ["Special Purpose", "Single-Level BOM with Notes", "Includes additional notes and annotations with the single-level BOM"],
-            ["Special Purpose", "Multi-Level BOM with Replacements", "Includes replacement and substitute part information"]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "BOM reports are generated from a filtered single or multiple-level part structure. The report content depends on the currently applied configuration specification and filters."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Comparing Product Structures"
-        },
-        {
-          "type": "paragraph",
-          "text": "Understanding design differences between successive versions is critical for estimating the impact on manufacturing, sales, and service. The Compare tool identifies differences between similar product configurations or changes between successive versions."
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Compare Tool Layout",
-              "back": "Left pane shows the base structure, right pane shows the comparison structure. A central column displays differences and statuses. A lower pane shows additional attribute details."
-            },
-            {
-              "front": "Supported Comparisons",
-              "back": "CAD to Windchill part structures, Windchill part to CAD structures, and Windchill part to Windchill part structures."
-            },
-            {
-              "front": "Initiating a Comparison",
-              "back": "Start the Compare tool from a CAD document, the Windchill part Information page Actions menu, or the Structure tab ribbon."
-            }
-          ]
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange these BOM report types from simplest to most comprehensive:",
-          "items": [
-            "Single-Level BOM (direct children only)",
-            "Single-Level Consolidated BOM (direct children, no duplicates, total quantities)",
-            "Multi-Level BOM (all levels, indented list)",
-            "Multi-Level BOM with Replacements (all levels plus substitute parts)"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "BOM reports come in three categories: Structured, Summarized, and Special Purpose.",
-        "Report content depends on the currently applied configuration specification and filters.",
-        "The Compare tool identifies differences between product configurations or successive versions.",
-        "Comparisons can be made between CAD structures, Windchill part structures, or both."
-      ]
-    },
-    {
-      "id": "m4t5",
-      "title": "Associate Parts with Documents and Filter Structures",
-      "estimatedMinutes": 10,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In this exercise, you associate documents to the DRILL_720_NEW end item using Described By and Reference links. You then update the structure filter to view the baselined product structure."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "You should be signed in to Windchill as Anna Chen (achen/ptc)."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex5",
-          "title": "Associate Parts with Documents and Filter Structures",
-          "objective": "Associate documents to a Windchill part using Described By and Reference links, then apply a baseline filter to view the baselined structure.",
-          "tasks": [
-            {
-              "id": "ex5-t1",
-              "title": "Associate Documents to the End Item",
-              "steps": [
-                {
-                  "action": "Navigate to the DRILL_720_NEW End Item Information page and select the <strong>Related Objects</strong> tab.",
-                  "detail": "The Related Objects tab shows product definition data related to the part, including document associations.",
-                  "hint": null
-                },
-                {
-                  "action": "Under Described By Documents, click the <strong>Add Existing Document</strong> icon.",
-                  "detail": "The system prompts you to check out the object. Click OK to check out the end item.",
-                  "hint": null
-                },
-                {
-                  "action": "Search for <code>New Product Launch</code>, select it, and click OK to associate.",
-                  "detail": "This creates a Described By association linking the specific document version to this part version.",
-                  "hint": null
-                },
-                {
-                  "action": "In the Reference Documents table, click <strong>Add Existing Document</strong>.",
-                  "detail": "Reference documents are linked differently — they always point to the latest released version.",
-                  "hint": null
-                },
-                {
-                  "action": "Search for <code>drill 720*</code>, select <strong>Drill 720 Owner's Manual</strong>, and click OK.",
-                  "detail": "This creates a Reference association to the owner's manual.",
-                  "hint": null
-                },
-                {
-                  "action": "Click <strong>Actions > Check In</strong> with comment <code>Associated documents</code>.",
-                  "detail": "Check in the part to save the document associations.",
-                  "hint": null
-                }
-              ]
-            },
-            {
-              "id": "ex5-t2",
-              "title": "Apply a Baseline Filter to View the Structure",
-              "steps": [
-                {
-                  "action": "Go to the DRILL_720_NEW End Item and click the <strong>Structure</strong> tab.",
-                  "detail": "Verify the most recent structure is displayed with the default Latest Design filter.",
-                  "hint": null
-                },
-                {
-                  "action": "Click the <strong>Edit Filter</strong> icon in the command ribbon.",
-                  "detail": "The Edit Filter dialog shows the current configuration specification filter criteria.",
-                  "hint": "You can also click the Latest link from the Current Filter toolbar."
-                },
-                {
-                  "action": "Select <strong>Baseline</strong> from the Choose a Type menu and select <code>Manual_Drill_720</code>.",
-                  "detail": "Click Add to add it to the To Be Applied table.",
-                  "hint": null
-                },
-                {
-                  "action": "Remove the latest configuration specification and select <strong>Hide unresolved dependents</strong>.",
-                  "detail": "This hides parts that do not have resolved versions in the baseline.",
-                  "hint": null
-                },
-                {
-                  "action": "Click <strong>OK</strong> to apply the filter and observe the baselined structure.",
-                  "detail": "The product structure is updated to show only the parts captured in the Manual_Drill_720 baseline.",
-                  "hint": null
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Described By associations link a specific document version to a specific part version.",
-        "Reference associations always point to the latest released version of the document.",
-        "The Edit Filter dialog allows switching between Latest, Baseline, and other configuration specifications.",
-        "Hiding unresolved dependents removes parts from the display that don't have versions in the baseline."
-      ]
-    },
-    {
-      "id": "m4t6",
-      "title": "Generate a Product Structure Report",
-      "estimatedMinutes": 5,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In this exercise, you generate a multi-level BOM report for the DRILL_720_NEW end item to view the complete product structure across all levels."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "You should be signed in to Windchill as Anna Chen (achen/ptc)."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex6",
-          "title": "Generate a Product Structure Report",
-          "objective": "Generate and review a multi-level BOM report for the DRILL_720_NEW product structure.",
-          "tasks": [
-            {
-              "id": "ex6-t1",
-              "title": "Generate a Multi-Level BOM Report",
-              "steps": [
-                {
-                  "action": "Go to the DRILL_720_NEW Windchill part Information page and select the <strong>Structure</strong> tab.",
-                  "detail": "The Structure tab provides access to the Reports group in the command ribbon.",
-                  "hint": null
-                },
-                {
-                  "action": "Ensure the <strong>Reports</strong> group is visible in the command ribbon.",
-                  "detail": "If necessary, click the arrow to the right of the Tools command group to reveal the Reports group.",
-                  "hint": "The Reports group may be hidden if the ribbon is collapsed."
-                },
-                {
-                  "action": "Select the <strong>Reports</strong> menu, then select <strong>Multi-Level BOM</strong>.",
-                  "detail": "This generates a multi-level BOM report showing all levels of the product structure.",
-                  "hint": "You may need to disable pop-up blockers to view the report."
-                },
-                {
-                  "action": "Observe the Multi-Level BOM report and review the indented structure.",
-                  "detail": "The report displays an indented list of single-level BOMs for all levels, showing part numbers, names, quantities, and other attributes.",
-                  "hint": null
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "BOM reports are accessed from the Reports group in the Structure tab command ribbon.",
-        "A Multi-Level BOM report displays all levels of the product structure in an indented format.",
-        "Report content reflects the currently applied configuration specification and filters.",
-        "Reports can be used to verify the completeness and accuracy of a product structure."
-      ]
-    }
-  ]
+ "id": "m4",
+ "title": "Managing an eBOM and BOM Reports",
+ "description": "Manage object associations, usage attributes, and occurrences. Apply product structure filters and generate BOM reports.",
+ "topics": [
+ {
+ "id": "m4t1",
+ "title": "Object Associations and Document Types",
+ "estimatedMinutes": 6,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Windchill enables you to create relationships, known as associations, between CAD documents and Windchill parts. Associations enable the exchange and update of structure, attribute, and visualization information. You can also associate product documentation to parts for easy access."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Document Association Types"
+ },
+ {
+ "type": "paragraph",
+ "text": "Windchill provides two types of document-to-part associations, each serving a different purpose based on how the document relates to the part's lifecycle."
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Association Type", "Link Behavior", "Use Case"],
+ "rows": [
+ ["Described By", "Version-to-version link. A specific part version is linked to a specific document version.", "Drawings, specifications, and documents that must track specific part revisions"],
+ ["Reference", "Always points to the latest released version of the reference document.", "Manufacturer brochures, standards, and general reference materials that apply across revisions"]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "insight",
+ "text": "With a Described By association, when the part design is revised, the drawing typically must also be revised. With a Reference association, the part may be revised many times while the reference document remains the latest released version."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Association Between CAD Documents and Parts"
+ },
+ {
+ "type": "paragraph",
+ "text": "To create a Windchill product structure, you must create Windchill parts and associate them with CAD documents that contain the CAD model files. The association type determines how structure, attribute, and visualization information is exchanged between them."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "If the association context is set to <strong>Owner</strong>, this indicates the primary representation that drives the structure and most attributes for the part."
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each scenario to the correct document association type:",
+ "pairs": [
+ {"left": "A drawing that describes a specific version of a part design", "right": "Described By"},
+ {"left": "A manufacturer's brochure that applies to all part revisions", "right": "Reference"},
+ {"left": "A test specification linked to a particular part iteration", "right": "Described By"},
+ {"left": "An industry standard document referenced across multiple parts", "right": "Reference"}
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Associations enable the exchange of structure, attribute, and visualization information between CAD documents and Windchill parts.",
+ "Described By associations create version-to-version links between a part and a document.",
+ "Reference associations always point to the latest released version of a reference document.",
+ "Owner association indicates the primary representation that drives the part's structure and attributes."
+ ]
+ },
+ {
+ "id": "m4t2",
+ "title": "Usage Attributes and Occurrences",
+ "estimatedMinutes": 7,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "In Windchill, a usage refers to the components assembled within a specific part structure. Usage attributes describe how a part is used in an assembly, while occurrences store information about each specific named instance of a component."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Usage Attributes"
+ },
+ {
+ "type": "paragraph",
+ "text": "Usage attributes are managed from the Edit Usage Attribute action in the PSB Editing group. These attributes are specific to a part's use within a particular assembly context."
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Attribute", "Description"],
+ "rows": [
+ ["Quantity", "Number of occurrences of the component in the assembly"],
+ ["Unit", "Unit of measurement applied to the quantity"],
+ ["Trace Code", "Defines the traceability type, such as serial number or lot, used by Effectivity"],
+ ["Line Number", "Position of this part within an mBOM in an ERP system"],
+ ["Find Number", "Identifies the part within an assembly drawing (alphanumeric)"],
+ ["Reference Designator", "Names attached to BOM components when multiple pieces of the same component are used"]
+ ]
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Occurrences"
+ },
+ {
+ "type": "paragraph",
+ "text": "An occurrence stores information about one specific named use of a component within an assembly. The number of occurrences relates to the quantity of parts used. Each occurrence is identified by its Reference Designator name."
+ },
+ {
+ "type": "callout",
+ "variant": "insight",
+ "text": "Consider an automobile with four wheels. The usage link specifies Quantity = 4 and attributes like tightening torque. Each wheel occurrence has its own Reference Designator (e.g., T1, T2, T3, T4) and occurrence-specific attributes like tire pressure."
+ },
+ {
+ "type": "callout",
+ "variant": "tip",
+ "text": "Occurrence attributes like spatial coordinates can be driven from MCAD. Storing location information with each occurrence makes it possible to select a specific part in the structure and have it highlight in the assembly visualization."
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Arrange these concepts from broadest to most specific scope:",
+ "items": [
+ "Product structure (entire assembly hierarchy)",
+ "Usage link (relationship between parent and child part)",
+ "Usage attributes (quantity, unit, trace code for the usage)",
+ "Occurrence (one specific named instance with reference designator)"
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Usage attributes describe how a part is used in an assembly, including quantity, unit, trace code, and find number.",
+ "Occurrences store information about each specific named use of a component, identified by Reference Designators.",
+ "The number of occurrences relates to the quantity of parts used in the parent assembly.",
+ "Occurrence attributes can include spatial coordinates driven from MCAD for visualization highlighting."
+ ]
+ },
+ {
+ "id": "m4t3",
+ "title": "Product Structure Filters",
+ "estimatedMinutes": 7,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Part structures can be large and complex, with thousands of parts in assembly hierarchies six to ten levels deep. Windchill provides filtering tools that reduce complexity by showing valid product configurations for a point in time, serial number, or specific development task."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Configuration Specification Filters"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Filter Type", "Description"],
+ "rows": [
+ ["Latest", "Displays the structure using the most recently created versions of a selected View and Life Cycle State"],
+ ["As Matured", "Displays revisions in the most mature Life Cycle State as of a selected date"],
+ ["Baseline", "Displays the parts structure using versions captured in a previously created baseline"],
+ ["Unit Effectivity", "Displays the product configuration based on serial number or lot"],
+ ["Date Effectivity", "Displays the product configuration based on date"],
+ ["Promotion Request", "Displays data related to a promotion request"]
+ ]
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Specialized Filters"
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Spatial Filter",
+ "back": "Uses volumetric information to display or hide components. Three types: Sphere (within a sphere), Box (within a box), and Proximity (within proximity of a specific part). Sizes can be set manually or dragged in the Visualization tab."
+ },
+ {
+ "front": "Attribute Filter",
+ "back": "Uses part and usage link attribute information to determine which parts to include or exclude in the display. Useful for filtering by specific attribute values."
+ },
+ {
+ "front": "Path Filter",
+ "back": "Filters the display of large assemblies so only the subassemblies you are currently working on are displayed. Eliminates searching through large numbers of parts."
+ }
+ ]
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Saving Structure Filters"
+ },
+ {
+ "type": "paragraph",
+ "text": "Windchill provides the ability to save commonly used filters with a descriptive name, recall and reuse a saved filter, and share filters between users for the duration of a project."
+ },
+ {
+ "type": "callout",
+ "variant": "tip",
+ "text": "You can use the Current Filter toolbar to quickly view and update filter details without launching the Edit Filter dialogs. Icons indicate whether an Option Filter, Spatial Filter, Attribute Filter, or Path Filter is in use."
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each filter type to its use case:",
+ "pairs": [
+ {"left": "View the product structure as it existed at a specific milestone", "right": "Baseline"},
+ {"left": "Display parts within a specific volume in the 3D model", "right": "Spatial Filter"},
+ {"left": "Show only the subassembly you are currently editing", "right": "Path Filter"},
+ {"left": "Display the configuration for a specific serial number", "right": "Unit Effectivity"}
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Configuration specification filters display complete BOMs based on criteria like Latest, Baseline, or Effectivity.",
+ "Specialized filters (Spatial, Attribute, Path) show subsets of the product structure for specific tasks.",
+ "Saved filters can be reused and shared between users for the duration of a project.",
+ "The Current Filter toolbar provides quick access to view and update active filter criteria."
+ ]
+ },
+ {
+ "id": "m4t4",
+ "title": "BOM Reports and Structure Comparison",
+ "estimatedMinutes": 6,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Windchill provides standard BOM reports designed to capture different product configurations. You can also compare product structures to identify differences between configurations or successive versions."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "BOM Report Types"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Category", "Report", "Description"],
+ "rows": [
+ ["Structured", "Single-Level BOM", "Displays parts directly used by a parent part with usage and part information"],
+ ["Structured", "Multi-Level BOM", "Displays an indented list of single-level BOMs for all levels of the structure"],
+ ["Summarized", "Single-Level Consolidated BOM", "Displays all parts with total quantities directly used by a parent (no duplicates)"],
+ ["Summarized", "Multi-Level Components List", "Displays a consolidated list of components and total quantities across entire structure"],
+ ["Special Purpose", "Single-Level BOM with Notes", "Includes additional notes and annotations with the single-level BOM"],
+ ["Special Purpose", "Multi-Level BOM with Replacements", "Includes replacement and substitute part information"]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "BOM reports are generated from a filtered single or multiple-level part structure. The report content depends on the currently applied configuration specification and filters."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Comparing Product Structures"
+ },
+ {
+ "type": "paragraph",
+ "text": "Understanding design differences between successive versions is critical for estimating the impact on manufacturing, sales, and service. The Compare tool identifies differences between similar product configurations or changes between successive versions."
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Compare Tool Layout",
+ "back": "Left pane shows the base structure, right pane shows the comparison structure. A central column displays differences and statuses. A lower pane shows additional attribute details."
+ },
+ {
+ "front": "Supported Comparisons",
+ "back": "CAD to Windchill part structures, Windchill part to CAD structures, and Windchill part to Windchill part structures."
+ },
+ {
+ "front": "Initiating a Comparison",
+ "back": "Start the Compare tool from a CAD document, the Windchill part Information page Actions menu, or the Structure tab ribbon."
+ }
+ ]
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Arrange these BOM report types from simplest to most comprehensive:",
+ "items": [
+ "Single-Level BOM (direct children only)",
+ "Single-Level Consolidated BOM (direct children, no duplicates, total quantities)",
+ "Multi-Level BOM (all levels, indented list)",
+ "Multi-Level BOM with Replacements (all levels plus substitute parts)"
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "BOM reports come in three categories: Structured, Summarized, and Special Purpose.",
+ "Report content depends on the currently applied configuration specification and filters.",
+ "The Compare tool identifies differences between product configurations or successive versions.",
+ "Comparisons can be made between CAD structures, Windchill part structures, or both."
+ ]
+ },
+ {
+ "id": "m4t5",
+ "title": "Associate Parts with Documents and Filter Structures",
+ "estimatedMinutes": 10,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "In this exercise, you associate documents to the DRILL_720_NEW end item using Described By and Reference links. You then update the structure filter to view the baselined product structure."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "You should be signed in to Windchill as Anna Chen (achen/ptc)."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex5",
+ "title": "Associate Parts with Documents and Filter Structures",
+ "objective": "Associate documents to a Windchill part using Described By and Reference links, then apply a baseline filter to view the baselined structure.",
+ "tasks": [
+ {
+ "id": "ex5-t1",
+ "title": "Associate Documents to the End Item",
+ "steps": [
+ {
+ "action": "Navigate to the DRILL_720_NEW End Item Information page and select the <strong>Related Objects</strong> tab.",
+ "detail": "The Related Objects tab shows product definition data related to the part, including document associations.",
+ "hint": null
+ },
+ {
+ "action": "Under Described By Documents, click the <strong>Add Existing Document</strong> icon.",
+ "detail": "The system prompts you to check out the object. Click OK to check out the end item.",
+ "hint": null
+ },
+ {
+ "action": "Search for <code>New Product Launch</code>, select it, and click OK to associate.",
+ "detail": "This creates a Described By association linking the specific document version to this part version.",
+ "hint": null
+ },
+ {
+ "action": "In the Reference Documents table, click <strong>Add Existing Document</strong>.",
+ "detail": "Reference documents are linked differently - they always point to the latest released version.",
+ "hint": null
+ },
+ {
+ "action": "Search for <code>drill 720*</code>, select <strong>Drill 720 Owner's Manual</strong>, and click OK.",
+ "detail": "This creates a Reference association to the owner's manual.",
+ "hint": null
+ },
+ {
+ "action": "Click <strong>Actions > Check In</strong> with comment <code>Associated documents</code>.",
+ "detail": "Check in the part to save the document associations.",
+ "hint": null
+ }
+ ]
+ },
+ {
+ "id": "ex5-t2",
+ "title": "Apply a Baseline Filter to View the Structure",
+ "steps": [
+ {
+ "action": "Go to the DRILL_720_NEW End Item and click the <strong>Structure</strong> tab.",
+ "detail": "Verify the most recent structure is displayed with the default Latest Design filter.",
+ "hint": null
+ },
+ {
+ "action": "Click the <strong>Edit Filter</strong> icon in the command ribbon.",
+ "detail": "The Edit Filter dialog shows the current configuration specification filter criteria.",
+ "hint": "You can also click the Latest link from the Current Filter toolbar."
+ },
+ {
+ "action": "Select <strong>Baseline</strong> from the Choose a Type menu and select <code>Manual_Drill_720</code>.",
+ "detail": "Click Add to add it to the To Be Applied table.",
+ "hint": null
+ },
+ {
+ "action": "Remove the latest configuration specification and select <strong>Hide unresolved dependents</strong>.",
+ "detail": "This hides parts that do not have resolved versions in the baseline.",
+ "hint": null
+ },
+ {
+ "action": "Click <strong>OK</strong> to apply the filter and observe the baselined structure.",
+ "detail": "The product structure is updated to show only the parts captured in the Manual_Drill_720 baseline.",
+ "hint": null
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Described By associations link a specific document version to a specific part version.",
+ "Reference associations always point to the latest released version of the document.",
+ "The Edit Filter dialog allows switching between Latest, Baseline, and other configuration specifications.",
+ "Hiding unresolved dependents removes parts from the display that don't have versions in the baseline."
+ ]
+ },
+ {
+ "id": "m4t6",
+ "title": "Generate a Product Structure Report",
+ "estimatedMinutes": 5,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "In this exercise, you generate a multi-level BOM report for the DRILL_720_NEW end item to view the complete product structure across all levels."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "You should be signed in to Windchill as Anna Chen (achen/ptc)."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex6",
+ "title": "Generate a Product Structure Report",
+ "objective": "Generate and review a multi-level BOM report for the DRILL_720_NEW product structure.",
+ "tasks": [
+ {
+ "id": "ex6-t1",
+ "title": "Generate a Multi-Level BOM Report",
+ "steps": [
+ {
+ "action": "Go to the DRILL_720_NEW Windchill part Information page and select the <strong>Structure</strong> tab.",
+ "detail": "The Structure tab provides access to the Reports group in the command ribbon.",
+ "hint": null
+ },
+ {
+ "action": "Ensure the <strong>Reports</strong> group is visible in the command ribbon.",
+ "detail": "If necessary, click the arrow to the right of the Tools command group to reveal the Reports group.",
+ "hint": "The Reports group may be hidden if the ribbon is collapsed."
+ },
+ {
+ "action": "Select the <strong>Reports</strong> menu, then select <strong>Multi-Level BOM</strong>.",
+ "detail": "This generates a multi-level BOM report showing all levels of the product structure.",
+ "hint": "You may need to disable pop-up blockers to view the report."
+ },
+ {
+ "action": "Observe the Multi-Level BOM report and review the indented structure.",
+ "detail": "The report displays an indented list of single-level BOMs for all levels, showing part numbers, names, quantities, and other attributes.",
+ "hint": null
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "BOM reports are accessed from the Reports group in the Structure tab command ribbon.",
+ "A Multi-Level BOM report displays all levels of the product structure in an indented format.",
+ "Report content reflects the currently applied configuration specification and filters.",
+ "Reports can be used to verify the completeness and accuracy of a product structure."
+ ]
+ }
+ ]
 }

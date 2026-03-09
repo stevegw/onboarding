@@ -408,7 +408,7 @@
       infoEl.style.display = "";
       document.getElementById("author-preselected-label").textContent =
         "Topic " + selectedSlot.topicId + ", position " + selectedSlot.insertIndex;
-      // Still need moduleFile for save — load it in background
+      // Still need moduleFile for save - load it in background
       loadModuleFileForSlot();
     } else {
       loadInsertionPicker();
@@ -759,7 +759,7 @@
   }
 
   /* ==================================================================
-     Edit Modal Infrastructure — type-adaptive content editing
+     Edit Modal Infrastructure - type-adaptive content editing
      ================================================================== */
 
   var editModalEl = null;
@@ -1001,7 +1001,7 @@
     return stripped === "" ? "" : clean;
   }
 
-  /** Extract text from a DOM element — works for both contenteditable and input/textarea */
+  /** Extract text from a DOM element - works for both contenteditable and input/textarea */
   function extractRichEl(el) {
     if (!el) return "";
     if (el.getAttribute("contenteditable") === "true") {

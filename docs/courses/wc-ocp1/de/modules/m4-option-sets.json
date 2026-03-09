@@ -1,472 +1,472 @@
 {
-  "id": "m4",
-  "title": "Optionssätze erkunden",
-  "description": "Definieren Sie Optionssätze, erkunden Sie das Änderungsmanagement für Optionssätze, weisen Sie Optionssätze zu, wenden Sie Ausdrücke an und verwenden Sie Optionsfilter zur Variantengenerierung.",
-  "topics": [
-    {
-      "id": "m4t1",
-      "title": "Optionssätze und Änderungsmanagement",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Ein Optionssatz ist eine kuratierte Sammlung von Optionen, Auswahlmöglichkeiten und Regeln, die das Konfigurationsvokabular für eine bestimmte Produktfamilie definiert. Während der Optionspool jede jemals für einen Produktkontext definierte Option enthält, wählt ein Optionssatz nur die relevante Teilmenge aus, die für eine bestimmte Produktlinie benötigt wird. Das Verständnis, wie Optionssätze verwaltet, versioniert und gesteuert werden, ist für die Aufrechterhaltung zuverlässiger Produktkonfigurationen unerlässlich."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Was ist ein Optionssatz?"
-        },
-        {
-          "type": "paragraph",
-          "text": "Ein Optionssatz bezieht seinen Inhalt aus dem Optionspool und verpackt ihn für die Verwendung mit einem bestimmten konfigurierbaren Produkt oder einer Produktfamilie. Er enthält die Optionen, Auswahlmöglichkeiten und Regeln, die gültige Konfigurationen für diese Familie definieren. Ein einzelner Optionspool kann mehrere Optionssätze speisen, die jeweils auf eine andere Produktlinie zugeschnitten sind. Diese Trennung ermöglicht es Organisationen, ein zentrales Verzeichnis von Optionen zu pflegen und gleichzeitig fokussierte Konfigurationsvokabulare für einzelne Produkte bereitzustellen."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Optionspool vs. Optionssatz vs. Optionsfilter"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Konzept", "Inhalt", "Geltungsbereich", "Zweck"],
-          "rows": [
-            ["Optionspool", "Alle für einen Produktkontext definierten Optionen, Auswahlmöglichkeiten und Regeln", "Gesamter Produktkontext (alle Produktfamilien)", "Hauptverzeichnis aller konfigurierbaren Merkmale, die über die Produkte der Organisation verfügbar sind"],
-            ["Optionssatz", "Eine kuratierte Teilmenge von Optionen, Auswahlmöglichkeiten und Regeln aus dem Optionspool", "Bestimmte Produktfamilie oder konfigurierbares Produkt", "Definiert das gültige Konfigurationsvokabular für eine bestimmte Produktlinie, einschließlich anwendbarer Regeln"],
-            ["Optionsfilter", "Eine bestimmte Reihe von Auswahlselektionen, die auf einen Optionssatz angewendet werden", "Eine einzelne Konfigurationsinstanz", "Filtert eine überladene Produktstruktur auf die Teile, die für eine bestimmte Produktvariante benötigt werden"]
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Änderungsmanagement für Optionssätze"
-        },
-        {
-          "type": "paragraph",
-          "text": "Optionssätze in Windchill sind verwaltete Objekte, die den standardmäßigen Änderungsmanagement-Workflows folgen. Dies bedeutet, dass sie Versionierung, Lebenszyklusstatus und Ein-/Auscheckoperationen unterstützen und sicherstellen, dass Änderungen an Produktkonfigurationsdefinitionen kontrolliert und nachverfolgbar sind."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "Optionssätze folgen denselben Änderungsmanagement-Prinzipien wie andere Windchill-Objekte. Sie können zum Bearbeiten ausgecheckt, zum Speichern eingecheckt, zur Nachverfolgung der Entwicklung versioniert und durch Lebenszyklusstatus (z. B. In Bearbeitung, Freigegeben) gesteuert werden. Dies stellt sicher, dass Konfigurationsdefinitionen immer prüfbar sind und dass nicht autorisierte Änderungen freigegebene Produkte nicht beeinflussen können."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Steuerung von Optionssätzen"
-        },
-        {
-          "type": "paragraph",
-          "text": "Die Steuerung von Optionssätzen umfasst die Kontrolle darüber, wer sie erstellen, ändern und freigeben darf. Die Rolle des Options-Managers ist für die Pflege von Optionssätzen, das Hinzufügen oder Entfernen von Optionen und Auswahlmöglichkeiten, die Definition von Regeln und das Management des Lebenszyklus des Optionssatzes verantwortlich. Organisationen etablieren typischerweise Überprüfungs- und Genehmigungsprozesse, bevor ein Optionssatz für den Produktionseinsatz freigegeben wird."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Testen Sie Ihr Wissen"
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Ordnen Sie jedes Konzept der Optionssatzverwaltung seiner Beschreibung zu:",
-          "pairs": [
-            {"left": "Optionssatz-Versionierung", "right": "Verfolgt Änderungen am Optionssatz im Laufe der Zeit und erstellt eine Historie der Konfigurationsdefinitionen"},
-            {"left": "Ein-/Auschecken", "right": "Steuert gleichzeitiges Bearbeiten durch Sperren des Optionssatzes während der Bearbeitung"},
-            {"left": "Lebenszyklusstatus", "right": "Steuert den Reifegrad des Optionssatzes (z. B. In Bearbeitung, In Prüfung, Freigegeben)"},
-            {"left": "Options-Manager-Rolle", "right": "Die Windchill-Rolle, die für das Erstellen und Pflegen von Optionssätzen und deren Inhalt verantwortlich ist"}
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Ein Optionssatz ist eine kuratierte Sammlung von Optionen, Auswahlmöglichkeiten und Regeln aus dem Optionspool für eine bestimmte Produktfamilie",
-        "Der Optionspool ist das Hauptverzeichnis; der Optionssatz ist eine fokussierte Teilmenge; der Optionsfilter wendet bestimmte Auswahlmöglichkeiten an, um eine Variante zu generieren",
-        "Optionssätze sind verwaltete Objekte mit Versionierung, Lebenszyklusstatus und Ein-/Auschecken-Unterstützung",
-        "Die Options-Manager-Rolle ist für das Erstellen, Pflegen und Steuern von Optionssätzen verantwortlich"
-      ]
-    },
-    {
-      "id": "m4t2",
-      "title": "Optionssätze zuweisen und verwalten",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Nachdem ein Optionssatz erstellt und mit den entsprechenden Optionen, Auswahlmöglichkeiten und Regeln befüllt wurde, muss er einem konfigurierbaren Produkt oder konfigurierbaren Modul zugewiesen werden. Der Zuweisungsprozess verknüpft das Konfigurationsvokabular mit der Produktstruktur und ermöglicht die optionsbasierte Variantengenerierung. Eine ordnungsgemäße Verwaltung der Optionssatz-Mitgliedschaft stellt sicher, dass Produkte konfigurierbar bleiben, wenn sich die Anforderungen weiterentwickeln."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Optionssätze zuweisen"
-        },
-        {
-          "type": "paragraph",
-          "text": "Optionssätze werden konfigurierbaren Produkten und konfigurierbaren Modulen über die Windchill-Benutzeroberfläche zugewiesen. Ein konfigurierbares Produkt muss einen zugewiesenen Optionssatz haben, bevor Optionsfilter angewendet oder Varianten generiert werden können. Konfigurierbare Module innerhalb der Produktstruktur können auch eigene Optionssätze haben, sodass verschiedene Abschnitte des Produkts bei Bedarf unterschiedliche Konfigurationsvokabulare verwenden können."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Wichtige Schritte zur Zuweisung von Optionssätzen"
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Schritt 1: Zum konfigurierbaren Produkt navigieren",
-              "back": "Öffnen Sie das konfigurierbare Produkt in Windchill und suchen Sie das Aktionsmenü oder die Registerkarte Optionssatz. Das Produkt muss bereits als Konfigurierbares Produkt gekennzeichnet sein, bevor ein Optionssatz zugewiesen werden kann."
-            },
-            {
-              "front": "Schritt 2: Aktion Optionssatz zuweisen auswählen",
-              "back": "Verwenden Sie das Aktionsmenü oder die Registerkarte Optionssatz, um die Zuweisung zu initiieren. Windchill zeigt eine Liste der verfügbaren Optionssätze aus dem Produktkontext an. Nur Optionssätze, die zum selben Produktkontext (oder einem gemeinsamen Kontext) gehören, sind für die Zuweisung verfügbar."
-            },
-            {
-              "front": "Schritt 3: Den entsprechenden Optionssatz auswählen",
-              "back": "Wählen Sie den Optionssatz aus, der die für diese Produktfamilie relevanten Optionen, Auswahlmöglichkeiten und Regeln enthält. Überprüfen Sie den Inhalt des Optionssatzes, um sicherzustellen, dass er alle erforderlichen Konfigurationsparameter enthält, bevor Sie die Zuweisung abschließen."
-            },
-            {
-              "front": "Schritt 4: Zuweisung überprüfen",
-              "back": "Überprüfen Sie nach der Zuweisung, ob der Optionssatz auf der Registerkarte Optionssatz des Produkts erscheint. Bestätigen Sie, dass die Optionen und Auswahlmöglichkeiten aus dem zugewiesenen Satz jetzt für die Verwendung in Ausdrücken und Optionsfiltern der Produktstruktur verfügbar sind."
-            }
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Verwaltung der Optionssatz-Mitgliedschaft"
-        },
-        {
-          "type": "paragraph",
-          "text": "Wenn sich die Produktanforderungen weiterentwickeln, müssen Optionssätze aktualisiert werden, um neue Optionen, zusätzliche Auswahlmöglichkeiten oder geänderte Regeln widerzuspiegeln. Der Options-Manager kann neue Optionen aus dem Optionspool hinzufügen, neue Auswahlmöglichkeiten zu vorhandenen Optionen innerhalb des Satzes hinzufügen, nicht mehr relevante Optionen oder Auswahlmöglichkeiten entfernen und Regeln aktualisieren, um die sich ändernde Geschäftslogik widerzuspiegeln. Alle Änderungen erfordern, dass der Optionssatz zuerst ausgecheckt wird, und Änderungen sind für andere erst nach dem Einchecken sichtbar."
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "Best Practice: Organisieren Sie Optionssätze nach Produktfamilie, nicht nach einzelnem Produkt. Ein gut gestalteter Optionssatz deckt alle Konfigurationen innerhalb einer Produktfamilie ab. Vermeiden Sie es, einen Optionssatz pro Produktvariante zu erstellen, da dies den Zweck konfigurierbarer Produkte untergräbt und unnötigen Wartungsaufwand verursacht."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Den Zuweisungsprozess ordnen"
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Ordnen Sie die Schritte zur Zuweisung eines Optionssatzes zu einem konfigurierbaren Produkt in der richtigen Reihenfolge an:",
-          "correctOrder": [
-            "Zum konfigurierbaren Produkt in Windchill navigieren",
-            "Das Aktionsmenü öffnen und Optionssatz zuweisen auswählen",
-            "Den entsprechenden Optionssatz aus der verfügbaren Liste auswählen",
-            "Die Zuweisung bestätigen und überprüfen, ob der Optionssatz beim Produkt erscheint"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Optionssätze müssen konfigurierbaren Produkten zugewiesen werden, bevor Optionsfilter oder Variantengenerierung verwendet werden können",
-        "Der Zuweisungsprozess umfasst das Navigieren zum Produkt, das Auswählen der Aktion Optionssatz zuweisen, das Auswählen des Satzes und die Überprüfung",
-        "Die Optionssatz-Mitgliedschaft kann durch Hinzufügen oder Entfernen von Optionen, Auswahlmöglichkeiten und Regeln aktualisiert werden, wenn sich die Anforderungen weiterentwickeln",
-        "Best Practice ist die Organisation von Optionssätzen nach Produktfamilie statt nach einzelner Produktvariante"
-      ]
-    },
-    {
-      "id": "m4t3",
-      "title": "Ausdrücke und Optionsfilter",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Ausdrücke und Optionsfilter sind die Mechanismen, die Optionsauswahlmöglichkeiten mit der Produktstruktur verbinden. Ausdrücke werden Teilen und Verknüpfungen zugewiesen, um festzulegen, wann eine Komponente in eine Variante aufgenommen werden soll. Optionsfilter verwenden die zugewiesenen Ausdrücke, um zu evaluieren, welche Teile basierend auf den Auswahlselektionen des Benutzers zu einer bestimmten Konfiguration gehören."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Grundausdrücke vs. Erweiterte Ausdrücke"
-        },
-        {
-          "type": "paragraph",
-          "text": "Windchill unterstützt zwei Arten von Ausdrücken zur Zuweisung von Auswahlmöglichkeiten an Teile und Verknüpfungen. Grundausdrücke verwenden einfache Auswahlreferenzen, während erweiterte Ausdrücke Operatoren und Funktionen für komplexe Auswahllogik hinzufügen. Die Art des Ausdrucks, die Sie verwenden, hängt von der Komplexität Ihrer Konfigurationsanforderungen und davon ab, ob eine Creo-Integration erforderlich ist."
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Aspekt", "Grundausdruck", "Erweiterter Ausdruck"],
-          "rows": [
-            ["Syntax", "Einfache Auswahlreferenz (z. B. Farbe=Rot)", "Umfasst Auswahlmöglichkeiten, Operatoren (UND, ODER, NICHT) und Funktionen"],
-            ["Fähigkeit", "Weist eine einzelne Auswahl oder eine einfache Liste von Auswahlmöglichkeiten einem Teil oder einer Verknüpfung zu", "Unterstützt komplexe logische Bedingungen, die mehrere Optionen und Auswahlmöglichkeiten mit booleschen Operatoren kombinieren"],
-            ["Creo-Unterstützung", "Wird von Windchill an Creo übergeben und in beiden Systemen unterstützt", "Verbleibt nur in Windchill; wird NICHT an Creo übergeben"],
-            ["Anwendungsfälle", "Unkomplizierte Konfigurationen, bei denen ein Teil einbezogen wird, wenn eine einzelne Auswahl getroffen wird", "Komplexe Konfigurationen, bei denen die Einbeziehung eines Teils von Kombinationen von Auswahlmöglichkeiten über mehrere Optionen abhängt"],
-            ["Beispiel", "Motorradtyp = Gelände", "(Motorradtyp = Gelände) UND (Hubraum = 1200cc)"],
-            ["Erforderliche Präferenz", "Unterstützte Ausdrücke-Präferenz auf Grund oder Beide gesetzt", "Unterstützte Ausdrücke-Präferenz auf Beide gesetzt"]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "Erweiterte Ausdrücke werden NICHT von Windchill an Creo übergeben. Wenn Ihr Workflow die Konfiguration von Varianten in Creo beinhaltet, müssen Sie Grundausdrücke für alle Auswahlzuweisungen verwenden, die in Creo sichtbar sein müssen. Planen Sie Ihre Ausdrucksstrategie sorgfältig basierend auf Ihren Creo-Integrationsanforderungen."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Optionsfilter"
-        },
-        {
-          "type": "paragraph",
-          "text": "Ein Optionsfilter ist eine Reihe von Auswahlselektionen, die auf eine überladene Produktstruktur angewendet werden, um eine gefilterte Variante zu generieren. Wenn Sie einen Optionsfilter erstellen, wählen Sie bestimmte Auswahlmöglichkeiten für jede Option im zugewiesenen Optionssatz aus. Windchill evaluiert dann die Ausdrücke an jedem Teil und jeder Verknüpfung in der Struktur und bezieht nur die Teile ein, deren Ausdrücke mit den ausgewählten Auswahlmöglichkeiten übereinstimmen. Das Ergebnis ist eine reduzierte Struktur, die eine bestimmte Produktvariante darstellt."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Optionsfilter-Konzepte"
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Einen Optionsfilter erstellen",
-              "back": "Navigieren Sie zur konfigurierbaren Produktstruktur und wählen Sie die Aktion Optionsfilter erstellen. Windchill zeigt die Optionen aus dem zugewiesenen Optionssatz an. Wählen Sie für jede Option eine Auswahl aus, um die Filterkriterien zu definieren. Regeln im Optionssatz erzwingen automatisch gültige Auswahlkombinationen."
-            },
-            {
-              "front": "Einen Optionsfilter anwenden",
-              "back": "Nach der Erstellung wird der Optionsfilter auf die überladene Struktur angewendet. Windchill evaluiert den Ausdruck jedes Teils anhand der Auswahlmöglichkeiten des Filters. Teile, deren Ausdrücke übereinstimmen, werden einbezogen; Teile, deren Ausdrücke nicht übereinstimmen, werden ausgeschlossen. Das Ergebnis ist eine gefilterte Struktur, die nur die Komponenten für diese spezifische Variante zeigt."
-            },
-            {
-              "front": "Variantenspezifikation",
-              "back": "Wenn ein Optionsfilter angewendet wird, um eine Variante zu generieren, erstellt Windchill eine Variantenspezifikation, die die genauen verwendeten Auswahlmöglichkeiten aufzeichnet. Diese Spezifikation ermöglicht die Wiederverwendung von Varianten — wenn dieselben Auswahlmöglichkeiten später angefordert werden, kann Windchill die vorhandene Variante finden und wiederverwenden, anstatt eine neue zu generieren."
-            },
-            {
-              "front": "Regeldurchsetzung während der Filterung",
-              "back": "Einschluss-, Ausschluss-, Aktivierungs- und bedingte Regeln werden während des Optionsfilterprozesses durchgesetzt. Wenn ein Benutzer eine Auswahl trifft, die eine Einschlussregel auslöst, werden die zugehörigen Auswahlmöglichkeiten automatisch ausgewählt. Wenn eine Auswahl eine Ausschlussregel verletzt, wird sie verhindert. Dies stellt sicher, dass jede generierte Variante gültig ist."
-            }
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "insight",
-          "text": "Der Optionsfilter ist der Punkt, an dem alles zusammenkommt: Der Optionssatz liefert das Vokabular, Ausdrücke verknüpfen Auswahlmöglichkeiten mit Teilen, Regeln erzwingen gültige Kombinationen, und der Filter wendet bestimmte Auswahlmöglichkeiten an, um die überladene Struktur zu einer konkreten Variante zu reduzieren. Die Beherrschung von Optionsfiltern ist der Schlüssel zur effektiven Produktkonfiguration in Windchill."
-        }
-      ],
-      "keyTakeaways": [
-        "Grundausdrücke verwenden einfache Auswahlreferenzen und werden an Creo übergeben; erweiterte Ausdrücke verwenden boolesche Logik und verbleiben nur in Windchill",
-        "Ausdrücke werden Teilen und Verknüpfungen zugewiesen, um festzulegen, wann eine Komponente in eine Variante aufgenommen wird",
-        "Optionsfilter wenden bestimmte Auswahlselektionen auf eine überladene Struktur an, um eine gefilterte Variante zu generieren",
-        "Variantenspezifikationen zeichnen die zur Generierung einer Variante verwendeten Auswahlmöglichkeiten auf und ermöglichen die Wiederverwendung vorhandener Varianten"
-      ]
-    },
-    {
-      "id": "m4t4",
-      "title": "Optionssatz zuweisen und Filter anwenden",
-      "estimatedMinutes": 5,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In dieser Übung weisen Sie dem konfigurierbaren Produkt PTC Motorcycle einen Optionssatz zu und erstellen und wenden dann einen Optionsfilter an, um eine gefilterte Variantenstruktur zu generieren. Diese Übung verbindet die Konzepte aus den vorherigen Themen: Optionssätze, Ausdrücke und Optionsfilter."
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "Diese Übung baut auf den vorherigen Übungen auf. Stellen Sie sicher, dass Sie die Übungen zur Options- und Regelerstellung abgeschlossen haben, bevor Sie fortfahren. Der in dieser Übung referenzierte Optionssatz sollte bereits im PTC Motorcycle-Produktkontext vorhanden sein."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex5",
-          "title": "Optionssatz zuweisen und Filter anwenden",
-          "objective": "Lernen Sie, wie Sie einem konfigurierbaren Produkt einen Optionssatz zuweisen und einen Optionsfilter anwenden, um eine gefilterte Variantenstruktur zu generieren.",
-          "tasks": [
-            {
-              "id": "ex5-t1",
-              "title": "Den Optionssatz dem konfigurierbaren Produkt zuweisen",
-              "steps": [
-                {
-                  "action": "Navigieren Sie zum konfigurierbaren Produkt PTC Motorcycle. Gehen Sie zu Durchsuchen > Produkte und wählen Sie PTC Motorcycle.",
-                  "detail": "PTC Motorcycle ist das konfigurierbare Produkt, das in diesem Kurs durchgehend verwendet wird. Sie werden den vorhandenen Optionssatz diesem Produkt zuweisen, damit Optionsfilter auf seine überladene Struktur angewendet werden können.",
-                  "hint": "Melden Sie sich als Anna Chen oder Ihrem zugewiesenen Schulungsbenutzer an. PTC Motorcycle sollte in der Produktliste erscheinen."
-                },
-                {
-                  "action": "Öffnen Sie das Aktionsmenü auf der PTC Motorcycle-Produktseite und wählen Sie 'Optionssatz zuweisen'.",
-                  "detail": "Die Aktion Optionssatz zuweisen verknüpft einen Optionssatz mit dem konfigurierbaren Produkt. Diese Aktion ist über das Aktionsmenü auf Produktebene oder über die Registerkarte Optionssatz verfügbar. Ein Produkt muss einen zugewiesenen Optionssatz haben, bevor Optionsfilter erstellt werden können.",
-                  "hint": "Wenn Sie die Aktion Optionssatz zuweisen nicht sehen, überprüfen Sie, ob das Produkt als Konfigurierbares Produkt gekennzeichnet ist und ob Sie die entsprechenden Berechtigungen haben."
-                },
-                {
-                  "action": "Wählen Sie im Zuweisungsdialog den PTC Motorcycle-Optionssatz aus der Liste der verfügbaren Optionssätze aus.",
-                  "detail": "Der Dialog zeigt die in diesem Produktkontext verfügbaren Optionssätze an. Wählen Sie den Optionssatz aus, der die Optionen Motorradtyp, Hubraum, Farbe, Räder und Satteltaschenposition zusammen mit den in vorherigen Übungen erstellten Einschluss- und Ausschlussregeln enthält.",
-                  "hint": "Wenn mehrere Optionssätze erscheinen, wählen Sie denjenigen, der den in früheren Übungen erstellten Optionen und Regeln entspricht."
-                },
-                {
-                  "action": "Bestätigen Sie die Zuweisung und überprüfen Sie, ob der Optionssatz jetzt auf der Registerkarte Optionssatz von PTC Motorcycle erscheint.",
-                  "detail": "Nach der Zuweisung sollte die Registerkarte Optionssatz den zugewiesenen Optionssatz mit allen seinen Optionen, Auswahlmöglichkeiten und Regeln anzeigen. Durchsuchen Sie die Optionen, um zu bestätigen, dass die Optionen Motorradtyp, Hubraum, Farbe, Räder und Satteltaschenposition mit ihren jeweiligen Auswahlmöglichkeiten vorhanden sind.",
-                  "hint": "Klicken Sie auf die Registerkarte Optionssatz auf der Produktseite. Erweitern Sie die Optionen, um Auswahlmöglichkeiten und Regeln zu überprüfen."
-                }
-              ]
-            },
-            {
-              "id": "ex5-t2",
-              "title": "Einen Optionsfilter erstellen und anwenden",
-              "steps": [
-                {
-                  "action": "Navigieren Sie zur PTC Motorcycle-Produktstruktur, indem Sie auf die Registerkarte Struktur klicken.",
-                  "detail": "Die Registerkarte Struktur zeigt die überladene Produktstruktur mit allen möglichen Designvariationen an. Sie werden einen Optionsfilter erstellen, um diese Struktur basierend auf Ihren Auswahlselektionen auf eine bestimmte Variante zu reduzieren.",
-                  "hint": "Die Registerkarte Struktur zeigt die vollständige Stückliste mit allen konfigurierbaren Modulen und ihren untergeordneten Teilen."
-                },
-                {
-                  "action": "Klicken Sie auf die Aktion 'Optionsfilter erstellen' in der Symbolleiste oder im Aktionsmenü der Strukturansicht.",
-                  "detail": "Die Aktion Optionsfilter erstellen öffnet einen Dialog, der alle Optionen aus dem zugewiesenen Optionssatz anzeigt. Sie werden bestimmte Auswahlmöglichkeiten für jede Option auswählen, um die Filterkriterien für die zu generierende Variante zu definieren.",
-                  "hint": "Suchen Sie nach einem Filtersymbol oder einer 'Optionsfilter'-Aktion in der Symbolleiste über dem Strukturbaum."
-                },
-                {
-                  "action": "Wählen Sie 'Gelände' für die Option Motorradtyp.",
-                  "detail": "Die Auswahl von Gelände definiert diese Variante als Gelände-Motorradkonfiguration. Beachten Sie, dass die von Ihnen erstellte Einschlussregel automatisch Gelände Vorne und Gelände Hinten für die Option Räder auswählt und die Ausschlussregel verhindert, dass Straße Vorne und Straße Hinten ausgewählt werden.",
-                  "hint": "Beobachten Sie, wie die Auswahlmöglichkeiten der Option Räder automatisch aktualisiert werden, wenn die Einschluss- und Ausschlussregeln angewendet werden."
-                },
-                {
-                  "action": "Wählen Sie Auswahlmöglichkeiten für die verbleibenden Optionen: wählen Sie einen Hubraum (z. B. 1000cc), eine Farbe (z. B. Schwarz) und überprüfen Sie die Satteltaschenposition (z. B. Nicht verwendet).",
-                  "detail": "Vervollständigen Sie den Optionsfilter, indem Sie für jede verbleibende Option eine Auswahl treffen. Die Kombination aller Auswahlmöglichkeiten definiert eine bestimmte Produktvariante. Regeln erzwingen weiterhin gültige Kombinationen, während Sie Auswahlen treffen.",
-                  "hint": "Wenn bestimmte Auswahlmöglichkeiten ausgegraut oder nicht verfügbar sind, prüfen Sie, ob eine Regel sie basierend auf Ihren vorherigen Auswahlen einschränkt."
-                },
-                {
-                  "action": "Klicken Sie auf 'Anwenden' oder 'OK', um den Optionsfilter auf die Produktstruktur anzuwenden.",
-                  "detail": "Windchill evaluiert die Ausdrücke, die jedem Teil und jeder Verknüpfung in der überladenen Struktur zugewiesen sind, anhand Ihrer ausgewählten Auswahlmöglichkeiten. Teile, deren Ausdrücke übereinstimmen, werden in das gefilterte Ergebnis aufgenommen; Teile, die nicht übereinstimmen, werden ausgeschlossen. Die Strukturansicht wird aktualisiert, um nur die Komponenten für diese spezifische Variante anzuzeigen.",
-                  "hint": "Die gefilterte Struktur sollte merklich kleiner sein als die vollständige überladene Struktur und nur die für die Geländevariante relevanten Teile enthalten."
-                }
-              ]
-            },
-            {
-              "id": "ex5-t3",
-              "title": "Die gefilterte Struktur überprüfen",
-              "steps": [
-                {
-                  "action": "Untersuchen Sie die in der Registerkarte Struktur angezeigte gefilterte Struktur. Notieren Sie, welche Teile einbezogen und welche entfernt wurden.",
-                  "detail": "Die gefilterte Struktur repräsentiert die Geländevariante des PTC Motorcycle. Vergleichen Sie sie mit der vollständigen überladenen Struktur, die Sie zuvor gesehen haben. Teile, die mit Straßenkomponenten verbunden sind (z. B. Straßenräder, Straßenbeleuchtung), sollten fehlen, während geländespezifische Teile vorhanden sein sollten.",
-                  "hint": "Erweitern Sie den Strukturbaum, um die vollständige Hierarchie der einbezogenen Teile zu sehen."
-                },
-                {
-                  "action": "Vergleichen Sie die gefilterte Struktur mit der vollständigen überladenen Struktur, indem Sie den Optionsfilter ein- und ausschalten (wenn die Oberfläche dies unterstützt) oder indem Sie die Unterschiede notieren.",
-                  "detail": "Die überladene Struktur enthält alle möglichen Teile für alle Varianten. Die gefilterte Struktur enthält nur die Teile für die von Ihnen angegebene Geländekonfiguration. Der Unterschied zwischen beiden veranschaulicht, wie Optionsfilter die Komplexität reduzieren, indem sie die Struktur auf eine einzelne gültige Konfiguration eingrenzen.",
-                  "hint": "Einige Windchill-Versionen ermöglichen es Ihnen, den Filter zu löschen, um zur vollständigen überladenen Ansicht zurückzukehren. Suchen Sie nach einer 'Filter löschen'- oder 'Alle anzeigen'-Aktion."
-                },
-                {
-                  "action": "Identifizieren Sie, welche konfigurierbaren Module vom Filter betroffen waren, und verstehen Sie, warum bestimmte Teile basierend auf den von Ihnen ausgewählten Auswahlmöglichkeiten einbezogen oder ausgeschlossen wurden.",
-                  "detail": "Jedes konfigurierbare Modul in der Struktur wurde möglicherweise unterschiedlich gefiltert, abhängig davon, welche Ausdrücke seinen untergeordneten Teilen zugewiesen waren. Beispielsweise sollte das Räder-Modul jetzt nur Geländeradteile anzeigen, da die Auswahlmöglichkeiten Gelände Vorne und Gelände Hinten ausgewählt (über die Einschlussregel) und die Straßenauswahlmöglichkeiten ausgeschlossen wurden.",
-                  "hint": "Klicken Sie auf einzelne Teile, um deren zugewiesene Ausdrücke zu sehen und zu verstehen, warum sie vom Filter einbezogen oder ausgeschlossen wurden."
-                },
-                {
-                  "action": "Notieren Sie die erstellte Variantenspezifikation. Überprüfen Sie die aufgezeichneten Auswahlmöglichkeiten, um zu bestätigen, dass sie Ihren Filterauswahlen entsprechen.",
-                  "detail": "Windchill zeichnet eine Variantenspezifikation auf, die die genauen Auswahlmöglichkeiten dokumentiert, die zur Generierung dieser Variante verwendet wurden. Diese Spezifikation ermöglicht die Wiederverwendung von Varianten: Wenn jemand in Zukunft dieselbe Kombination von Auswahlmöglichkeiten anfordert, kann Windchill diese vorhandene Variante finden, anstatt eine neue zu generieren, was Zeit spart und Konsistenz gewährleistet.",
-                  "hint": "Suchen Sie nach einem Link oder einer Registerkarte Variantenspezifikation, die mit der gefilterten Strukturansicht verknüpft ist."
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Ein Optionssatz muss einem konfigurierbaren Produkt zugewiesen werden, bevor Optionsfilter erstellt werden können",
-        "Die Erstellung eines Optionsfilters umfasst die Auswahl bestimmter Auswahlmöglichkeiten für jede Option im zugewiesenen Optionssatz",
-        "Regeln werden während des Filterprozesses automatisch durchgesetzt und stellen sicher, dass nur gültige Auswahlkombinationen möglich sind",
-        "Die gefilterte Struktur zeigt nur die für die ausgewählte Variante relevanten Teile und reduziert die Komplexität der vollständigen überladenen Struktur"
-      ]
-    },
-    {
-      "id": "m4t5",
-      "title": "Kursüberprüfung und Zusammenfassung",
-      "estimatedMinutes": 5,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Diese abschließende Übung überprüft die Schlüsselkonzepte aus allen vier Modulen des Kurses Optionen und konfigurierbare Produkte. Verwenden Sie diese Zusammenfassung, um Ihr Verständnis zu validieren und Bereiche zu identifizieren, die möglicherweise einer weiteren Überprüfung bedürfen, bevor Sie diese Konzepte in Ihrer täglichen Arbeit mit Windchill anwenden."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "Dies ist eine Überprüfungsübung. Arbeiten Sie jede Aufgabe durch, um die wichtigsten Konzepte des Kurses zu wiederholen. Verwenden Sie die Hinweise, um Ihr Gedächtnis zu Themen aufzufrischen, die weniger vertraut erscheinen."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex6",
-          "title": "Kursüberprüfung und Zusammenfassung",
-          "objective": "Überprüfen Sie die Schlüsselkonzepte aus allen vier Modulen und validieren Sie Ihr Verständnis von Optionen und konfigurierbaren Produkten.",
-          "tasks": [
-            {
-              "id": "ex6-t1",
-              "title": "Schlüsselkonzepte überprüfen",
-              "steps": [
-                {
-                  "action": "Erinnern Sie sich an die fünf Geschäftsstrategien für Produktvariabilität: Auftragsmontage, Lagermontage, Auftragskonfiguration, Auftragskonstruktion und Vertrag.",
-                  "detail": "Jede Strategie unterscheidet sich im Grad der Beteiligung der Produktentwicklung pro Auftrag. Auftragsmontage erfordert keine Konstruktionsbeteiligung pro Auftrag, während Vertrag eine vollständige kundenspezifische Konstruktion erfordert. Windchill OCP unterstützt hauptsächlich Auftragsmontage- und Auftragskonfigurationsstrategien.",
-                  "hint": "Der wesentliche Unterschied ist, wie viel Konstruktionsbeteiligung für jeden Kundenauftrag erforderlich ist."
-                },
-                {
-                  "action": "Überprüfen Sie die vier Schritte des generischen Plattformdesigns: Anforderungen analysieren, vorhandene Produkte auf Wiederverwendung prüfen, generische Produktdefinition erstellen und Plattform freigeben und pflegen.",
-                  "detail": "Plattformdesign etabliert die wiederverwendbare Grundlage, aus der alle Produktvarianten abgeleitet werden. Eine gut gestaltete Plattform maximiert die Teilwiederverwendung und identifiziert klar, welche Abschnitte fest und welche variabel sind.",
-                  "hint": "Prüfen Sie immer vorhandene Produkte auf Wiederverwendbarkeit, bevor Sie neue Designs von Grund auf erstellen."
-                },
-                {
-                  "action": "Erinnern Sie sich an das Konzept einer überladenen Produktstruktur und wie sie alle möglichen Designvariationen für ein konfigurierbares Produkt enthält.",
-                  "detail": "Eine überladene Struktur enthält ALLE Designalternativen unter konfigurierbaren Modulen. Während der Variantengenerierung reduzieren Optionsfilter diese Struktur auf nur die Teile, die für eine bestimmte Konfiguration benötigt werden. Die überladene Struktur ist die Hauptstruktur, aus der alle Varianten abgeleitet werden.",
-                  "hint": "Stellen Sie sich die überladene Struktur als Obermenge und die gefilterte Variante als Teilmenge vor."
-                },
-                {
-                  "action": "Überprüfen Sie die drei konfigurierbaren Objekte und ihre Hierarchie: Konfigurierbares Produkt, Konfigurierbares Modul und Modulvariante.",
-                  "detail": "Das Konfigurierbare Produkt ist das Endprodukt der obersten Ebene, das die vollständige überladene Struktur enthält. Konfigurierbare Module sind Abschnitte, die Variabilität mit mehreren Designalternativen erfassen. Modulvarianten sind die spezifischen Teile, die aus einem konfigurierbaren Modul nach Anwendung von Optionsfiltern ausgewählt werden.",
-                  "hint": "Die Hierarchie fließt vom Breitesten (Konfigurierbares Produkt) zum Spezifischsten (Modulvariante)."
-                }
-              ]
-            },
-            {
-              "id": "ex6-t2",
-              "title": "Optionen- und Varianten-Einrichtung überprüfen",
-              "steps": [
-                {
-                  "action": "Überprüfen Sie die wichtigsten O&V-Begriffe: Optionen, Auswahlmöglichkeiten, Optionspool, Optionssatz, Optionsfilter, Ausdrücke, Variantenspezifikation, Konfigurierbares Modul und Options-Manager-Rolle.",
-                  "detail": "Optionen repräsentieren variable Produktmerkmale, jeweils mit einer oder mehreren Auswahlmöglichkeiten. Der Optionspool ist das Hauptverzeichnis; Optionssätze sind kuratierte Teilmengen für Produktfamilien. Optionsfilter wenden Auswahlmöglichkeiten an, um Varianten zu generieren. Ausdrücke verknüpfen Auswahlmöglichkeiten mit Teilen. Variantenspezifikationen zeichnen die verwendeten Auswahlmöglichkeiten auf.",
-                  "hint": "Die Begriffe fallen in drei Kategorien: Strukturbegriffe, Logikbegriffe und Verwaltungsbegriffe."
-                },
-                {
-                  "action": "Erinnern Sie sich an den Unterschied zwischen Optionspool und Optionssatz und erklären Sie, warum beide benötigt werden.",
-                  "detail": "Der Optionspool enthält ALLE Optionen und Auswahlmöglichkeiten für einen Produktkontext — er ist der Hauptkatalog. Der Optionssatz wählt nur die relevanten Optionen für eine bestimmte Produktfamilie aus. Diese Trennung ermöglicht Wiederverwendung: Dieselbe Option (z. B. Farbe) kann in mehreren Optionssätzen für verschiedene Produktfamilien erscheinen, ohne Duplikation.",
-                  "hint": "Der Optionspool ist die Obermenge; der Optionssatz ist eine fokussierte Teilmenge, die auf eine Produktfamilie zugeschnitten ist."
-                },
-                {
-                  "action": "Überprüfen Sie die beiden Konfigurationsansätze: Top-Down (Windchill zuerst) und Bottom-Up (Creo zuerst) sowie die Einschränkung, dass nur Grundausdrücke an Creo übertragen werden.",
-                  "detail": "Top-Down beginnt mit der Teilestruktur in Windchill und gibt an Creo weiter. Bottom-Up beginnt mit der überladenen Baugruppe in Creo und checkt sie in Windchill ein. Unabhängig vom Ansatz werden nur Grundausdrücke von Windchill an Creo übergeben — erweiterte Ausdrücke verbleiben nur in Windchill.",
-                  "hint": "Der Ansatz hängt davon ab, ob PLM oder CAD Ihre Produktstruktur bestimmt."
-                },
-                {
-                  "action": "Erinnern Sie sich an die Präferenz Unterstützung konfigurierbarer Module und ihre Bedeutung sowie daran, wie Präferenzen von Standort- über Organisations- zu Produktebene vererbt werden.",
-                  "detail": "Die Unterstützung konfigurierbarer Module muss auf Ja gesetzt sein, um O&V-Funktionalität zu nutzen — der Standard ist Nein. Präferenzen werden von höheren Ebenen (Standort) an niedrigere Ebenen (Organisation, Produkt) vererbt und können auf jeder Ebene gesperrt oder überschrieben werden. Standortadministratoren, Organisationsadministratoren, Produktmanager und Bibliotheksmanager können O&V-Präferenzen ändern.",
-                  "hint": "Wenn O&V-Funktionen nicht verfügbar sind, ist die Unterstützung konfigurierbarer Module auf der entsprechenden Ebene zuerst zu prüfen."
-                }
-              ]
-            },
-            {
-              "id": "ex6-t3",
-              "title": "Regeln und Optionssätze überprüfen",
-              "steps": [
-                {
-                  "action": "Überprüfen Sie die vier Regeltypen: Einschlussregeln (automatische Auswahl zugehöriger Auswahlmöglichkeiten), Ausschlussregeln (Verhinderung inkompatibler Auswahlmöglichkeiten), Aktivierungsregeln (Steuerung der Auswahlsichtbarkeit) und bedingte Regeln (WENN/DANN-Logik).",
-                  "detail": "Einschlussregeln erzwingen, dass zugehörige Auswahlmöglichkeiten zusammen ausgewählt werden. Ausschlussregeln verhindern, dass widersprüchliche Auswahlmöglichkeiten koexistieren. Aktivierungsregeln zeigen oder verbergen Auswahlmöglichkeiten dynamisch basierend auf vorherigen Auswahlen. Bedingte Regeln bieten komplexe WENN/DANN-Logik mit mehreren Bedingungen. Windchill validiert Regeln, um Konflikte und Duplikate zu verhindern.",
-                  "hint": "Einschluss und Ausschluss behandeln einfache Beziehungen; Aktivierung und bedingt behandeln komplexere Szenarien."
-                },
-                {
-                  "action": "Überprüfen Sie Optionssätze, ihr Änderungsmanagement (Versionierung, Lebenszyklusstatus, Ein-/Auschecken) und den Prozess zur Zuweisung eines Optionssatzes zu einem konfigurierbaren Produkt.",
-                  "detail": "Optionssätze sind verwaltete Objekte mit voller Änderungsmanagement-Unterstützung. Sie müssen zum Bearbeiten ausgecheckt und zum Speichern eingecheckt werden. Der Zuweisungsprozess umfasst das Navigieren zum konfigurierbaren Produkt, das Auswählen von Optionssatz zuweisen aus dem Aktionsmenü, das Auswählen des entsprechenden Satzes und die Überprüfung der Zuweisung.",
-                  "hint": "Optionssätze folgen denselben Änderungsmanagement-Workflows wie andere Windchill-Objekte."
-                },
-                {
-                  "action": "Überprüfen Sie Ausdrücke (Grund vs. Erweitert) und wie sie Optionsauswahlmöglichkeiten mit Teilen und Verknüpfungen in der Produktstruktur verknüpfen.",
-                  "detail": "Grundausdrücke verwenden einfache Auswahlreferenzen (z. B. Farbe=Rot) und werden sowohl in Windchill als auch in Creo unterstützt. Erweiterte Ausdrücke verwenden boolesche Operatoren (UND, ODER, NICHT) für komplexe Logik, verbleiben aber nur in Windchill. Ausdrücke werden Teilen und Verknüpfungen zugewiesen, um festzulegen, wann eine Komponente in eine Variante aufgenommen wird.",
-                  "hint": "Erweiterte Ausdrücke sind leistungsfähiger, können aber nicht an Creo übergeben werden."
-                },
-                {
-                  "action": "Überprüfen Sie Optionsfilter und wie sie alles zusammenbringen: Der Optionssatz liefert das Vokabular, Ausdrücke verknüpfen Auswahlmöglichkeiten mit Teilen, Regeln erzwingen gültige Kombinationen, und der Filter reduziert die überladene Struktur zu einer bestimmten Variante.",
-                  "detail": "Die Erstellung eines Optionsfilters umfasst die Auswahl von Auswahlmöglichkeiten aus dem zugewiesenen Optionssatz. Windchill evaluiert den Ausdruck jedes Teils anhand der ausgewählten Auswahlmöglichkeiten und bezieht nur übereinstimmende Teile ein. Das Ergebnis ist eine gefilterte Struktur, die eine bestimmte Produktvariante darstellt. Eine Variantenspezifikation zeichnet die Auswahlmöglichkeiten für die zukünftige Wiederverwendung auf.",
-                  "hint": "Der Optionsfilter ist der Höhepunkt aller O&V-Konzepte, die zusammenwirken."
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Der Kurs umfasst vier Module: Übersicht konfigurierbare Produkte, Einrichtung von Optionen und Varianten, Regeln und Optionssätze",
-        "Schlüsselkonzepte umfassen Geschäftsstrategien, Plattformdesign, überladene Strukturen, Optionen, Auswahlmöglichkeiten, Regeln, Ausdrücke, Optionssätze und Optionsfilter",
-        "Optionsfilter bringen alle Konzepte zusammen, indem sie Auswahlmöglichkeiten auf eine überladene Struktur anwenden, um spezifische Produktvarianten zu generieren",
-        "Das Verständnis des gesamten O&V-Workflows vom Optionspool bis zur Variantengenerierung ist für eine effektive Produktkonfiguration in Windchill unerlässlich"
-      ]
-    }
-  ]
+ "id": "m4",
+ "title": "Optionssätze erkunden",
+ "description": "Definieren Sie Optionssätze, erkunden Sie das Änderungsmanagement für Optionssätze, weisen Sie Optionssätze zu, wenden Sie Ausdrücke an und verwenden Sie Optionsfilter zur Variantengenerierung.",
+ "topics": [
+ {
+ "id": "m4t1",
+ "title": "Optionssätze und Änderungsmanagement",
+ "estimatedMinutes": 5,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Ein Optionssatz ist eine kuratierte Sammlung von Optionen, Auswahlmöglichkeiten und Regeln, die das Konfigurationsvokabular für eine bestimmte Produktfamilie definiert. Während der Optionspool jede jemals für einen Produktkontext definierte Option enthält, wählt ein Optionssatz nur die relevante Teilmenge aus, die für eine bestimmte Produktlinie benötigt wird. Das Verständnis, wie Optionssätze verwaltet, versioniert und gesteuert werden, ist für die Aufrechterhaltung zuverlässiger Produktkonfigurationen unerlässlich."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Was ist ein Optionssatz?"
+ },
+ {
+ "type": "paragraph",
+ "text": "Ein Optionssatz bezieht seinen Inhalt aus dem Optionspool und verpackt ihn für die Verwendung mit einem bestimmten konfigurierbaren Produkt oder einer Produktfamilie. Er enthält die Optionen, Auswahlmöglichkeiten und Regeln, die gültige Konfigurationen für diese Familie definieren. Ein einzelner Optionspool kann mehrere Optionssätze speisen, die jeweils auf eine andere Produktlinie zugeschnitten sind. Diese Trennung ermöglicht es Organisationen, ein zentrales Verzeichnis von Optionen zu pflegen und gleichzeitig fokussierte Konfigurationsvokabulare für einzelne Produkte bereitzustellen."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Optionspool vs. Optionssatz vs. Optionsfilter"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Konzept", "Inhalt", "Geltungsbereich", "Zweck"],
+ "rows": [
+ ["Optionspool", "Alle für einen Produktkontext definierten Optionen, Auswahlmöglichkeiten und Regeln", "Gesamter Produktkontext (alle Produktfamilien)", "Hauptverzeichnis aller konfigurierbaren Merkmale, die über die Produkte der Organisation verfügbar sind"],
+ ["Optionssatz", "Eine kuratierte Teilmenge von Optionen, Auswahlmöglichkeiten und Regeln aus dem Optionspool", "Bestimmte Produktfamilie oder konfigurierbares Produkt", "Definiert das gültige Konfigurationsvokabular für eine bestimmte Produktlinie, einschließlich anwendbarer Regeln"],
+ ["Optionsfilter", "Eine bestimmte Reihe von Auswahlselektionen, die auf einen Optionssatz angewendet werden", "Eine einzelne Konfigurationsinstanz", "Filtert eine überladene Produktstruktur auf die Teile, die für eine bestimmte Produktvariante benötigt werden"]
+ ]
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Änderungsmanagement für Optionssätze"
+ },
+ {
+ "type": "paragraph",
+ "text": "Optionssätze in Windchill sind verwaltete Objekte, die den standardmäßigen Änderungsmanagement-Workflows folgen. Dies bedeutet, dass sie Versionierung, Lebenszyklusstatus und Ein-/Auscheckoperationen unterstützen und sicherstellen, dass Änderungen an Produktkonfigurationsdefinitionen kontrolliert und nachverfolgbar sind."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "Optionssätze folgen denselben Änderungsmanagement-Prinzipien wie andere Windchill-Objekte. Sie können zum Bearbeiten ausgecheckt, zum Speichern eingecheckt, zur Nachverfolgung der Entwicklung versioniert und durch Lebenszyklusstatus (z. B. In Bearbeitung, Freigegeben) gesteuert werden. Dies stellt sicher, dass Konfigurationsdefinitionen immer prüfbar sind und dass nicht autorisierte Änderungen freigegebene Produkte nicht beeinflussen können."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Steuerung von Optionssätzen"
+ },
+ {
+ "type": "paragraph",
+ "text": "Die Steuerung von Optionssätzen umfasst die Kontrolle darüber, wer sie erstellen, ändern und freigeben darf. Die Rolle des Options-Managers ist für die Pflege von Optionssätzen, das Hinzufügen oder Entfernen von Optionen und Auswahlmöglichkeiten, die Definition von Regeln und das Management des Lebenszyklus des Optionssatzes verantwortlich. Organisationen etablieren typischerweise Überprüfungs- und Genehmigungsprozesse, bevor ein Optionssatz für den Produktionseinsatz freigegeben wird."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Testen Sie Ihr Wissen"
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Ordnen Sie jedes Konzept der Optionssatzverwaltung seiner Beschreibung zu:",
+ "pairs": [
+ {"left": "Optionssatz-Versionierung", "right": "Verfolgt Änderungen am Optionssatz im Laufe der Zeit und erstellt eine Historie der Konfigurationsdefinitionen"},
+ {"left": "Ein-/Auschecken", "right": "Steuert gleichzeitiges Bearbeiten durch Sperren des Optionssatzes während der Bearbeitung"},
+ {"left": "Lebenszyklusstatus", "right": "Steuert den Reifegrad des Optionssatzes (z. B. In Bearbeitung, In Prüfung, Freigegeben)"},
+ {"left": "Options-Manager-Rolle", "right": "Die Windchill-Rolle, die für das Erstellen und Pflegen von Optionssätzen und deren Inhalt verantwortlich ist"}
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Ein Optionssatz ist eine kuratierte Sammlung von Optionen, Auswahlmöglichkeiten und Regeln aus dem Optionspool für eine bestimmte Produktfamilie",
+ "Der Optionspool ist das Hauptverzeichnis; der Optionssatz ist eine fokussierte Teilmenge; der Optionsfilter wendet bestimmte Auswahlmöglichkeiten an, um eine Variante zu generieren",
+ "Optionssätze sind verwaltete Objekte mit Versionierung, Lebenszyklusstatus und Ein-/Auschecken-Unterstützung",
+ "Die Options-Manager-Rolle ist für das Erstellen, Pflegen und Steuern von Optionssätzen verantwortlich"
+ ]
+ },
+ {
+ "id": "m4t2",
+ "title": "Optionssätze zuweisen und verwalten",
+ "estimatedMinutes": 5,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Nachdem ein Optionssatz erstellt und mit den entsprechenden Optionen, Auswahlmöglichkeiten und Regeln befüllt wurde, muss er einem konfigurierbaren Produkt oder konfigurierbaren Modul zugewiesen werden. Der Zuweisungsprozess verknüpft das Konfigurationsvokabular mit der Produktstruktur und ermöglicht die optionsbasierte Variantengenerierung. Eine ordnungsgemäße Verwaltung der Optionssatz-Mitgliedschaft stellt sicher, dass Produkte konfigurierbar bleiben, wenn sich die Anforderungen weiterentwickeln."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Optionssätze zuweisen"
+ },
+ {
+ "type": "paragraph",
+ "text": "Optionssätze werden konfigurierbaren Produkten und konfigurierbaren Modulen über die Windchill-Benutzeroberfläche zugewiesen. Ein konfigurierbares Produkt muss einen zugewiesenen Optionssatz haben, bevor Optionsfilter angewendet oder Varianten generiert werden können. Konfigurierbare Module innerhalb der Produktstruktur können auch eigene Optionssätze haben, sodass verschiedene Abschnitte des Produkts bei Bedarf unterschiedliche Konfigurationsvokabulare verwenden können."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Wichtige Schritte zur Zuweisung von Optionssätzen"
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Schritt 1: Zum konfigurierbaren Produkt navigieren",
+ "back": "Öffnen Sie das konfigurierbare Produkt in Windchill und suchen Sie das Aktionsmenü oder die Registerkarte Optionssatz. Das Produkt muss bereits als Konfigurierbares Produkt gekennzeichnet sein, bevor ein Optionssatz zugewiesen werden kann."
+ },
+ {
+ "front": "Schritt 2: Aktion Optionssatz zuweisen auswählen",
+ "back": "Verwenden Sie das Aktionsmenü oder die Registerkarte Optionssatz, um die Zuweisung zu initiieren. Windchill zeigt eine Liste der verfügbaren Optionssätze aus dem Produktkontext an. Nur Optionssätze, die zum selben Produktkontext (oder einem gemeinsamen Kontext) gehören, sind für die Zuweisung verfügbar."
+ },
+ {
+ "front": "Schritt 3: Den entsprechenden Optionssatz auswählen",
+ "back": "Wählen Sie den Optionssatz aus, der die für diese Produktfamilie relevanten Optionen, Auswahlmöglichkeiten und Regeln enthält. Überprüfen Sie den Inhalt des Optionssatzes, um sicherzustellen, dass er alle erforderlichen Konfigurationsparameter enthält, bevor Sie die Zuweisung abschließen."
+ },
+ {
+ "front": "Schritt 4: Zuweisung überprüfen",
+ "back": "Überprüfen Sie nach der Zuweisung, ob der Optionssatz auf der Registerkarte Optionssatz des Produkts erscheint. Bestätigen Sie, dass die Optionen und Auswahlmöglichkeiten aus dem zugewiesenen Satz jetzt für die Verwendung in Ausdrücken und Optionsfiltern der Produktstruktur verfügbar sind."
+ }
+ ]
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Verwaltung der Optionssatz-Mitgliedschaft"
+ },
+ {
+ "type": "paragraph",
+ "text": "Wenn sich die Produktanforderungen weiterentwickeln, müssen Optionssätze aktualisiert werden, um neue Optionen, zusätzliche Auswahlmöglichkeiten oder geänderte Regeln widerzuspiegeln. Der Options-Manager kann neue Optionen aus dem Optionspool hinzufügen, neue Auswahlmöglichkeiten zu vorhandenen Optionen innerhalb des Satzes hinzufügen, nicht mehr relevante Optionen oder Auswahlmöglichkeiten entfernen und Regeln aktualisieren, um die sich ändernde Geschäftslogik widerzuspiegeln. Alle Änderungen erfordern, dass der Optionssatz zuerst ausgecheckt wird, und Änderungen sind für andere erst nach dem Einchecken sichtbar."
+ },
+ {
+ "type": "callout",
+ "variant": "tip",
+ "text": "Best Practice: Organisieren Sie Optionssätze nach Produktfamilie, nicht nach einzelnem Produkt. Ein gut gestalteter Optionssatz deckt alle Konfigurationen innerhalb einer Produktfamilie ab. Vermeiden Sie es, einen Optionssatz pro Produktvariante zu erstellen, da dies den Zweck konfigurierbarer Produkte untergräbt und unnötigen Wartungsaufwand verursacht."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Den Zuweisungsprozess ordnen"
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Ordnen Sie die Schritte zur Zuweisung eines Optionssatzes zu einem konfigurierbaren Produkt in der richtigen Reihenfolge an:",
+ "correctOrder": [
+ "Zum konfigurierbaren Produkt in Windchill navigieren",
+ "Das Aktionsmenü öffnen und Optionssatz zuweisen auswählen",
+ "Den entsprechenden Optionssatz aus der verfügbaren Liste auswählen",
+ "Die Zuweisung bestätigen und überprüfen, ob der Optionssatz beim Produkt erscheint"
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Optionssätze müssen konfigurierbaren Produkten zugewiesen werden, bevor Optionsfilter oder Variantengenerierung verwendet werden können",
+ "Der Zuweisungsprozess umfasst das Navigieren zum Produkt, das Auswählen der Aktion Optionssatz zuweisen, das Auswählen des Satzes und die Überprüfung",
+ "Die Optionssatz-Mitgliedschaft kann durch Hinzufügen oder Entfernen von Optionen, Auswahlmöglichkeiten und Regeln aktualisiert werden, wenn sich die Anforderungen weiterentwickeln",
+ "Best Practice ist die Organisation von Optionssätzen nach Produktfamilie statt nach einzelner Produktvariante"
+ ]
+ },
+ {
+ "id": "m4t3",
+ "title": "Ausdrücke und Optionsfilter",
+ "estimatedMinutes": 5,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Ausdrücke und Optionsfilter sind die Mechanismen, die Optionsauswahlmöglichkeiten mit der Produktstruktur verbinden. Ausdrücke werden Teilen und Verknüpfungen zugewiesen, um festzulegen, wann eine Komponente in eine Variante aufgenommen werden soll. Optionsfilter verwenden die zugewiesenen Ausdrücke, um zu evaluieren, welche Teile basierend auf den Auswahlselektionen des Benutzers zu einer bestimmten Konfiguration gehören."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Grundausdrücke vs. Erweiterte Ausdrücke"
+ },
+ {
+ "type": "paragraph",
+ "text": "Windchill unterstützt zwei Arten von Ausdrücken zur Zuweisung von Auswahlmöglichkeiten an Teile und Verknüpfungen. Grundausdrücke verwenden einfache Auswahlreferenzen, während erweiterte Ausdrücke Operatoren und Funktionen für komplexe Auswahllogik hinzufügen. Die Art des Ausdrucks, die Sie verwenden, hängt von der Komplexität Ihrer Konfigurationsanforderungen und davon ab, ob eine Creo-Integration erforderlich ist."
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Aspekt", "Grundausdruck", "Erweiterter Ausdruck"],
+ "rows": [
+ ["Syntax", "Einfache Auswahlreferenz (z. B. Farbe=Rot)", "Umfasst Auswahlmöglichkeiten, Operatoren (UND, ODER, NICHT) und Funktionen"],
+ ["Fähigkeit", "Weist eine einzelne Auswahl oder eine einfache Liste von Auswahlmöglichkeiten einem Teil oder einer Verknüpfung zu", "Unterstützt komplexe logische Bedingungen, die mehrere Optionen und Auswahlmöglichkeiten mit booleschen Operatoren kombinieren"],
+ ["Creo-Unterstützung", "Wird von Windchill an Creo übergeben und in beiden Systemen unterstützt", "Verbleibt nur in Windchill; wird NICHT an Creo übergeben"],
+ ["Anwendungsfälle", "Unkomplizierte Konfigurationen, bei denen ein Teil einbezogen wird, wenn eine einzelne Auswahl getroffen wird", "Komplexe Konfigurationen, bei denen die Einbeziehung eines Teils von Kombinationen von Auswahlmöglichkeiten über mehrere Optionen abhängt"],
+ ["Beispiel", "Motorradtyp = Gelände", "(Motorradtyp = Gelände) UND (Hubraum = 1200cc)"],
+ ["Erforderliche Präferenz", "Unterstützte Ausdrücke-Präferenz auf Grund oder Beide gesetzt", "Unterstützte Ausdrücke-Präferenz auf Beide gesetzt"]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "Erweiterte Ausdrücke werden NICHT von Windchill an Creo übergeben. Wenn Ihr Workflow die Konfiguration von Varianten in Creo beinhaltet, müssen Sie Grundausdrücke für alle Auswahlzuweisungen verwenden, die in Creo sichtbar sein müssen. Planen Sie Ihre Ausdrucksstrategie sorgfältig basierend auf Ihren Creo-Integrationsanforderungen."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Optionsfilter"
+ },
+ {
+ "type": "paragraph",
+ "text": "Ein Optionsfilter ist eine Reihe von Auswahlselektionen, die auf eine überladene Produktstruktur angewendet werden, um eine gefilterte Variante zu generieren. Wenn Sie einen Optionsfilter erstellen, wählen Sie bestimmte Auswahlmöglichkeiten für jede Option im zugewiesenen Optionssatz aus. Windchill evaluiert dann die Ausdrücke an jedem Teil und jeder Verknüpfung in der Struktur und bezieht nur die Teile ein, deren Ausdrücke mit den ausgewählten Auswahlmöglichkeiten übereinstimmen. Das Ergebnis ist eine reduzierte Struktur, die eine bestimmte Produktvariante darstellt."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Optionsfilter-Konzepte"
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Einen Optionsfilter erstellen",
+ "back": "Navigieren Sie zur konfigurierbaren Produktstruktur und wählen Sie die Aktion Optionsfilter erstellen. Windchill zeigt die Optionen aus dem zugewiesenen Optionssatz an. Wählen Sie für jede Option eine Auswahl aus, um die Filterkriterien zu definieren. Regeln im Optionssatz erzwingen automatisch gültige Auswahlkombinationen."
+ },
+ {
+ "front": "Einen Optionsfilter anwenden",
+ "back": "Nach der Erstellung wird der Optionsfilter auf die überladene Struktur angewendet. Windchill evaluiert den Ausdruck jedes Teils anhand der Auswahlmöglichkeiten des Filters. Teile, deren Ausdrücke übereinstimmen, werden einbezogen; Teile, deren Ausdrücke nicht übereinstimmen, werden ausgeschlossen. Das Ergebnis ist eine gefilterte Struktur, die nur die Komponenten für diese spezifische Variante zeigt."
+ },
+ {
+ "front": "Variantenspezifikation",
+ "back": "Wenn ein Optionsfilter angewendet wird, um eine Variante zu generieren, erstellt Windchill eine Variantenspezifikation, die die genauen verwendeten Auswahlmöglichkeiten aufzeichnet. Diese Spezifikation ermöglicht die Wiederverwendung von Varianten - wenn dieselben Auswahlmöglichkeiten später angefordert werden, kann Windchill die vorhandene Variante finden und wiederverwenden, anstatt eine neue zu generieren."
+ },
+ {
+ "front": "Regeldurchsetzung während der Filterung",
+ "back": "Einschluss-, Ausschluss-, Aktivierungs- und bedingte Regeln werden während des Optionsfilterprozesses durchgesetzt. Wenn ein Benutzer eine Auswahl trifft, die eine Einschlussregel auslöst, werden die zugehörigen Auswahlmöglichkeiten automatisch ausgewählt. Wenn eine Auswahl eine Ausschlussregel verletzt, wird sie verhindert. Dies stellt sicher, dass jede generierte Variante gültig ist."
+ }
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "insight",
+ "text": "Der Optionsfilter ist der Punkt, an dem alles zusammenkommt: Der Optionssatz liefert das Vokabular, Ausdrücke verknüpfen Auswahlmöglichkeiten mit Teilen, Regeln erzwingen gültige Kombinationen, und der Filter wendet bestimmte Auswahlmöglichkeiten an, um die überladene Struktur zu einer konkreten Variante zu reduzieren. Die Beherrschung von Optionsfiltern ist der Schlüssel zur effektiven Produktkonfiguration in Windchill."
+ }
+ ],
+ "keyTakeaways": [
+ "Grundausdrücke verwenden einfache Auswahlreferenzen und werden an Creo übergeben; erweiterte Ausdrücke verwenden boolesche Logik und verbleiben nur in Windchill",
+ "Ausdrücke werden Teilen und Verknüpfungen zugewiesen, um festzulegen, wann eine Komponente in eine Variante aufgenommen wird",
+ "Optionsfilter wenden bestimmte Auswahlselektionen auf eine überladene Struktur an, um eine gefilterte Variante zu generieren",
+ "Variantenspezifikationen zeichnen die zur Generierung einer Variante verwendeten Auswahlmöglichkeiten auf und ermöglichen die Wiederverwendung vorhandener Varianten"
+ ]
+ },
+ {
+ "id": "m4t4",
+ "title": "Optionssatz zuweisen und Filter anwenden",
+ "estimatedMinutes": 5,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "In dieser Übung weisen Sie dem konfigurierbaren Produkt PTC Motorcycle einen Optionssatz zu und erstellen und wenden dann einen Optionsfilter an, um eine gefilterte Variantenstruktur zu generieren. Diese Übung verbindet die Konzepte aus den vorherigen Themen: Optionssätze, Ausdrücke und Optionsfilter."
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "Diese Übung baut auf den vorherigen Übungen auf. Stellen Sie sicher, dass Sie die Übungen zur Options- und Regelerstellung abgeschlossen haben, bevor Sie fortfahren. Der in dieser Übung referenzierte Optionssatz sollte bereits im PTC Motorcycle-Produktkontext vorhanden sein."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex5",
+ "title": "Optionssatz zuweisen und Filter anwenden",
+ "objective": "Lernen Sie, wie Sie einem konfigurierbaren Produkt einen Optionssatz zuweisen und einen Optionsfilter anwenden, um eine gefilterte Variantenstruktur zu generieren.",
+ "tasks": [
+ {
+ "id": "ex5-t1",
+ "title": "Den Optionssatz dem konfigurierbaren Produkt zuweisen",
+ "steps": [
+ {
+ "action": "Navigieren Sie zum konfigurierbaren Produkt PTC Motorcycle. Gehen Sie zu Durchsuchen > Produkte und wählen Sie PTC Motorcycle.",
+ "detail": "PTC Motorcycle ist das konfigurierbare Produkt, das in diesem Kurs durchgehend verwendet wird. Sie werden den vorhandenen Optionssatz diesem Produkt zuweisen, damit Optionsfilter auf seine überladene Struktur angewendet werden können.",
+ "hint": "Melden Sie sich als Anna Chen oder Ihrem zugewiesenen Schulungsbenutzer an. PTC Motorcycle sollte in der Produktliste erscheinen."
+ },
+ {
+ "action": "Öffnen Sie das Aktionsmenü auf der PTC Motorcycle-Produktseite und wählen Sie 'Optionssatz zuweisen'.",
+ "detail": "Die Aktion Optionssatz zuweisen verknüpft einen Optionssatz mit dem konfigurierbaren Produkt. Diese Aktion ist über das Aktionsmenü auf Produktebene oder über die Registerkarte Optionssatz verfügbar. Ein Produkt muss einen zugewiesenen Optionssatz haben, bevor Optionsfilter erstellt werden können.",
+ "hint": "Wenn Sie die Aktion Optionssatz zuweisen nicht sehen, überprüfen Sie, ob das Produkt als Konfigurierbares Produkt gekennzeichnet ist und ob Sie die entsprechenden Berechtigungen haben."
+ },
+ {
+ "action": "Wählen Sie im Zuweisungsdialog den PTC Motorcycle-Optionssatz aus der Liste der verfügbaren Optionssätze aus.",
+ "detail": "Der Dialog zeigt die in diesem Produktkontext verfügbaren Optionssätze an. Wählen Sie den Optionssatz aus, der die Optionen Motorradtyp, Hubraum, Farbe, Räder und Satteltaschenposition zusammen mit den in vorherigen Übungen erstellten Einschluss- und Ausschlussregeln enthält.",
+ "hint": "Wenn mehrere Optionssätze erscheinen, wählen Sie denjenigen, der den in früheren Übungen erstellten Optionen und Regeln entspricht."
+ },
+ {
+ "action": "Bestätigen Sie die Zuweisung und überprüfen Sie, ob der Optionssatz jetzt auf der Registerkarte Optionssatz von PTC Motorcycle erscheint.",
+ "detail": "Nach der Zuweisung sollte die Registerkarte Optionssatz den zugewiesenen Optionssatz mit allen seinen Optionen, Auswahlmöglichkeiten und Regeln anzeigen. Durchsuchen Sie die Optionen, um zu bestätigen, dass die Optionen Motorradtyp, Hubraum, Farbe, Räder und Satteltaschenposition mit ihren jeweiligen Auswahlmöglichkeiten vorhanden sind.",
+ "hint": "Klicken Sie auf die Registerkarte Optionssatz auf der Produktseite. Erweitern Sie die Optionen, um Auswahlmöglichkeiten und Regeln zu überprüfen."
+ }
+ ]
+ },
+ {
+ "id": "ex5-t2",
+ "title": "Einen Optionsfilter erstellen und anwenden",
+ "steps": [
+ {
+ "action": "Navigieren Sie zur PTC Motorcycle-Produktstruktur, indem Sie auf die Registerkarte Struktur klicken.",
+ "detail": "Die Registerkarte Struktur zeigt die überladene Produktstruktur mit allen möglichen Designvariationen an. Sie werden einen Optionsfilter erstellen, um diese Struktur basierend auf Ihren Auswahlselektionen auf eine bestimmte Variante zu reduzieren.",
+ "hint": "Die Registerkarte Struktur zeigt die vollständige Stückliste mit allen konfigurierbaren Modulen und ihren untergeordneten Teilen."
+ },
+ {
+ "action": "Klicken Sie auf die Aktion 'Optionsfilter erstellen' in der Symbolleiste oder im Aktionsmenü der Strukturansicht.",
+ "detail": "Die Aktion Optionsfilter erstellen öffnet einen Dialog, der alle Optionen aus dem zugewiesenen Optionssatz anzeigt. Sie werden bestimmte Auswahlmöglichkeiten für jede Option auswählen, um die Filterkriterien für die zu generierende Variante zu definieren.",
+ "hint": "Suchen Sie nach einem Filtersymbol oder einer 'Optionsfilter'-Aktion in der Symbolleiste über dem Strukturbaum."
+ },
+ {
+ "action": "Wählen Sie 'Gelände' für die Option Motorradtyp.",
+ "detail": "Die Auswahl von Gelände definiert diese Variante als Gelände-Motorradkonfiguration. Beachten Sie, dass die von Ihnen erstellte Einschlussregel automatisch Gelände Vorne und Gelände Hinten für die Option Räder auswählt und die Ausschlussregel verhindert, dass Straße Vorne und Straße Hinten ausgewählt werden.",
+ "hint": "Beobachten Sie, wie die Auswahlmöglichkeiten der Option Räder automatisch aktualisiert werden, wenn die Einschluss- und Ausschlussregeln angewendet werden."
+ },
+ {
+ "action": "Wählen Sie Auswahlmöglichkeiten für die verbleibenden Optionen: wählen Sie einen Hubraum (z. B. 1000cc), eine Farbe (z. B. Schwarz) und überprüfen Sie die Satteltaschenposition (z. B. Nicht verwendet).",
+ "detail": "Vervollständigen Sie den Optionsfilter, indem Sie für jede verbleibende Option eine Auswahl treffen. Die Kombination aller Auswahlmöglichkeiten definiert eine bestimmte Produktvariante. Regeln erzwingen weiterhin gültige Kombinationen, während Sie Auswahlen treffen.",
+ "hint": "Wenn bestimmte Auswahlmöglichkeiten ausgegraut oder nicht verfügbar sind, prüfen Sie, ob eine Regel sie basierend auf Ihren vorherigen Auswahlen einschränkt."
+ },
+ {
+ "action": "Klicken Sie auf 'Anwenden' oder 'OK', um den Optionsfilter auf die Produktstruktur anzuwenden.",
+ "detail": "Windchill evaluiert die Ausdrücke, die jedem Teil und jeder Verknüpfung in der überladenen Struktur zugewiesen sind, anhand Ihrer ausgewählten Auswahlmöglichkeiten. Teile, deren Ausdrücke übereinstimmen, werden in das gefilterte Ergebnis aufgenommen; Teile, die nicht übereinstimmen, werden ausgeschlossen. Die Strukturansicht wird aktualisiert, um nur die Komponenten für diese spezifische Variante anzuzeigen.",
+ "hint": "Die gefilterte Struktur sollte merklich kleiner sein als die vollständige überladene Struktur und nur die für die Geländevariante relevanten Teile enthalten."
+ }
+ ]
+ },
+ {
+ "id": "ex5-t3",
+ "title": "Die gefilterte Struktur überprüfen",
+ "steps": [
+ {
+ "action": "Untersuchen Sie die in der Registerkarte Struktur angezeigte gefilterte Struktur. Notieren Sie, welche Teile einbezogen und welche entfernt wurden.",
+ "detail": "Die gefilterte Struktur repräsentiert die Geländevariante des PTC Motorcycle. Vergleichen Sie sie mit der vollständigen überladenen Struktur, die Sie zuvor gesehen haben. Teile, die mit Straßenkomponenten verbunden sind (z. B. Straßenräder, Straßenbeleuchtung), sollten fehlen, während geländespezifische Teile vorhanden sein sollten.",
+ "hint": "Erweitern Sie den Strukturbaum, um die vollständige Hierarchie der einbezogenen Teile zu sehen."
+ },
+ {
+ "action": "Vergleichen Sie die gefilterte Struktur mit der vollständigen überladenen Struktur, indem Sie den Optionsfilter ein- und ausschalten (wenn die Oberfläche dies unterstützt) oder indem Sie die Unterschiede notieren.",
+ "detail": "Die überladene Struktur enthält alle möglichen Teile für alle Varianten. Die gefilterte Struktur enthält nur die Teile für die von Ihnen angegebene Geländekonfiguration. Der Unterschied zwischen beiden veranschaulicht, wie Optionsfilter die Komplexität reduzieren, indem sie die Struktur auf eine einzelne gültige Konfiguration eingrenzen.",
+ "hint": "Einige Windchill-Versionen ermöglichen es Ihnen, den Filter zu löschen, um zur vollständigen überladenen Ansicht zurückzukehren. Suchen Sie nach einer 'Filter löschen'- oder 'Alle anzeigen'-Aktion."
+ },
+ {
+ "action": "Identifizieren Sie, welche konfigurierbaren Module vom Filter betroffen waren, und verstehen Sie, warum bestimmte Teile basierend auf den von Ihnen ausgewählten Auswahlmöglichkeiten einbezogen oder ausgeschlossen wurden.",
+ "detail": "Jedes konfigurierbare Modul in der Struktur wurde möglicherweise unterschiedlich gefiltert, abhängig davon, welche Ausdrücke seinen untergeordneten Teilen zugewiesen waren. Beispielsweise sollte das Räder-Modul jetzt nur Geländeradteile anzeigen, da die Auswahlmöglichkeiten Gelände Vorne und Gelände Hinten ausgewählt (über die Einschlussregel) und die Straßenauswahlmöglichkeiten ausgeschlossen wurden.",
+ "hint": "Klicken Sie auf einzelne Teile, um deren zugewiesene Ausdrücke zu sehen und zu verstehen, warum sie vom Filter einbezogen oder ausgeschlossen wurden."
+ },
+ {
+ "action": "Notieren Sie die erstellte Variantenspezifikation. Überprüfen Sie die aufgezeichneten Auswahlmöglichkeiten, um zu bestätigen, dass sie Ihren Filterauswahlen entsprechen.",
+ "detail": "Windchill zeichnet eine Variantenspezifikation auf, die die genauen Auswahlmöglichkeiten dokumentiert, die zur Generierung dieser Variante verwendet wurden. Diese Spezifikation ermöglicht die Wiederverwendung von Varianten: Wenn jemand in Zukunft dieselbe Kombination von Auswahlmöglichkeiten anfordert, kann Windchill diese vorhandene Variante finden, anstatt eine neue zu generieren, was Zeit spart und Konsistenz gewährleistet.",
+ "hint": "Suchen Sie nach einem Link oder einer Registerkarte Variantenspezifikation, die mit der gefilterten Strukturansicht verknüpft ist."
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Ein Optionssatz muss einem konfigurierbaren Produkt zugewiesen werden, bevor Optionsfilter erstellt werden können",
+ "Die Erstellung eines Optionsfilters umfasst die Auswahl bestimmter Auswahlmöglichkeiten für jede Option im zugewiesenen Optionssatz",
+ "Regeln werden während des Filterprozesses automatisch durchgesetzt und stellen sicher, dass nur gültige Auswahlkombinationen möglich sind",
+ "Die gefilterte Struktur zeigt nur die für die ausgewählte Variante relevanten Teile und reduziert die Komplexität der vollständigen überladenen Struktur"
+ ]
+ },
+ {
+ "id": "m4t5",
+ "title": "Kursüberprüfung und Zusammenfassung",
+ "estimatedMinutes": 5,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Diese abschließende Übung überprüft die Schlüsselkonzepte aus allen vier Modulen des Kurses Optionen und konfigurierbare Produkte. Verwenden Sie diese Zusammenfassung, um Ihr Verständnis zu validieren und Bereiche zu identifizieren, die möglicherweise einer weiteren Überprüfung bedürfen, bevor Sie diese Konzepte in Ihrer täglichen Arbeit mit Windchill anwenden."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "Dies ist eine Überprüfungsübung. Arbeiten Sie jede Aufgabe durch, um die wichtigsten Konzepte des Kurses zu wiederholen. Verwenden Sie die Hinweise, um Ihr Gedächtnis zu Themen aufzufrischen, die weniger vertraut erscheinen."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex6",
+ "title": "Kursüberprüfung und Zusammenfassung",
+ "objective": "Überprüfen Sie die Schlüsselkonzepte aus allen vier Modulen und validieren Sie Ihr Verständnis von Optionen und konfigurierbaren Produkten.",
+ "tasks": [
+ {
+ "id": "ex6-t1",
+ "title": "Schlüsselkonzepte überprüfen",
+ "steps": [
+ {
+ "action": "Erinnern Sie sich an die fünf Geschäftsstrategien für Produktvariabilität: Auftragsmontage, Lagermontage, Auftragskonfiguration, Auftragskonstruktion und Vertrag.",
+ "detail": "Jede Strategie unterscheidet sich im Grad der Beteiligung der Produktentwicklung pro Auftrag. Auftragsmontage erfordert keine Konstruktionsbeteiligung pro Auftrag, während Vertrag eine vollständige kundenspezifische Konstruktion erfordert. Windchill OCP unterstützt hauptsächlich Auftragsmontage- und Auftragskonfigurationsstrategien.",
+ "hint": "Der wesentliche Unterschied ist, wie viel Konstruktionsbeteiligung für jeden Kundenauftrag erforderlich ist."
+ },
+ {
+ "action": "Überprüfen Sie die vier Schritte des generischen Plattformdesigns: Anforderungen analysieren, vorhandene Produkte auf Wiederverwendung prüfen, generische Produktdefinition erstellen und Plattform freigeben und pflegen.",
+ "detail": "Plattformdesign etabliert die wiederverwendbare Grundlage, aus der alle Produktvarianten abgeleitet werden. Eine gut gestaltete Plattform maximiert die Teilwiederverwendung und identifiziert klar, welche Abschnitte fest und welche variabel sind.",
+ "hint": "Prüfen Sie immer vorhandene Produkte auf Wiederverwendbarkeit, bevor Sie neue Designs von Grund auf erstellen."
+ },
+ {
+ "action": "Erinnern Sie sich an das Konzept einer überladenen Produktstruktur und wie sie alle möglichen Designvariationen für ein konfigurierbares Produkt enthält.",
+ "detail": "Eine überladene Struktur enthält ALLE Designalternativen unter konfigurierbaren Modulen. Während der Variantengenerierung reduzieren Optionsfilter diese Struktur auf nur die Teile, die für eine bestimmte Konfiguration benötigt werden. Die überladene Struktur ist die Hauptstruktur, aus der alle Varianten abgeleitet werden.",
+ "hint": "Stellen Sie sich die überladene Struktur als Obermenge und die gefilterte Variante als Teilmenge vor."
+ },
+ {
+ "action": "Überprüfen Sie die drei konfigurierbaren Objekte und ihre Hierarchie: Konfigurierbares Produkt, Konfigurierbares Modul und Modulvariante.",
+ "detail": "Das Konfigurierbare Produkt ist das Endprodukt der obersten Ebene, das die vollständige überladene Struktur enthält. Konfigurierbare Module sind Abschnitte, die Variabilität mit mehreren Designalternativen erfassen. Modulvarianten sind die spezifischen Teile, die aus einem konfigurierbaren Modul nach Anwendung von Optionsfiltern ausgewählt werden.",
+ "hint": "Die Hierarchie fließt vom Breitesten (Konfigurierbares Produkt) zum Spezifischsten (Modulvariante)."
+ }
+ ]
+ },
+ {
+ "id": "ex6-t2",
+ "title": "Optionen- und Varianten-Einrichtung überprüfen",
+ "steps": [
+ {
+ "action": "Überprüfen Sie die wichtigsten O&V-Begriffe: Optionen, Auswahlmöglichkeiten, Optionspool, Optionssatz, Optionsfilter, Ausdrücke, Variantenspezifikation, Konfigurierbares Modul und Options-Manager-Rolle.",
+ "detail": "Optionen repräsentieren variable Produktmerkmale, jeweils mit einer oder mehreren Auswahlmöglichkeiten. Der Optionspool ist das Hauptverzeichnis; Optionssätze sind kuratierte Teilmengen für Produktfamilien. Optionsfilter wenden Auswahlmöglichkeiten an, um Varianten zu generieren. Ausdrücke verknüpfen Auswahlmöglichkeiten mit Teilen. Variantenspezifikationen zeichnen die verwendeten Auswahlmöglichkeiten auf.",
+ "hint": "Die Begriffe fallen in drei Kategorien: Strukturbegriffe, Logikbegriffe und Verwaltungsbegriffe."
+ },
+ {
+ "action": "Erinnern Sie sich an den Unterschied zwischen Optionspool und Optionssatz und erklären Sie, warum beide benötigt werden.",
+ "detail": "Der Optionspool enthält ALLE Optionen und Auswahlmöglichkeiten für einen Produktkontext - er ist der Hauptkatalog. Der Optionssatz wählt nur die relevanten Optionen für eine bestimmte Produktfamilie aus. Diese Trennung ermöglicht Wiederverwendung: Dieselbe Option (z. B. Farbe) kann in mehreren Optionssätzen für verschiedene Produktfamilien erscheinen, ohne Duplikation.",
+ "hint": "Der Optionspool ist die Obermenge; der Optionssatz ist eine fokussierte Teilmenge, die auf eine Produktfamilie zugeschnitten ist."
+ },
+ {
+ "action": "Überprüfen Sie die beiden Konfigurationsansätze: Top-Down (Windchill zuerst) und Bottom-Up (Creo zuerst) sowie die Einschränkung, dass nur Grundausdrücke an Creo übertragen werden.",
+ "detail": "Top-Down beginnt mit der Teilestruktur in Windchill und gibt an Creo weiter. Bottom-Up beginnt mit der überladenen Baugruppe in Creo und checkt sie in Windchill ein. Unabhängig vom Ansatz werden nur Grundausdrücke von Windchill an Creo übergeben - erweiterte Ausdrücke verbleiben nur in Windchill.",
+ "hint": "Der Ansatz hängt davon ab, ob PLM oder CAD Ihre Produktstruktur bestimmt."
+ },
+ {
+ "action": "Erinnern Sie sich an die Präferenz Unterstützung konfigurierbarer Module und ihre Bedeutung sowie daran, wie Präferenzen von Standort- über Organisations- zu Produktebene vererbt werden.",
+ "detail": "Die Unterstützung konfigurierbarer Module muss auf Ja gesetzt sein, um O&V-Funktionalität zu nutzen - der Standard ist Nein. Präferenzen werden von höheren Ebenen (Standort) an niedrigere Ebenen (Organisation, Produkt) vererbt und können auf jeder Ebene gesperrt oder überschrieben werden. Standortadministratoren, Organisationsadministratoren, Produktmanager und Bibliotheksmanager können O&V-Präferenzen ändern.",
+ "hint": "Wenn O&V-Funktionen nicht verfügbar sind, ist die Unterstützung konfigurierbarer Module auf der entsprechenden Ebene zuerst zu prüfen."
+ }
+ ]
+ },
+ {
+ "id": "ex6-t3",
+ "title": "Regeln und Optionssätze überprüfen",
+ "steps": [
+ {
+ "action": "Überprüfen Sie die vier Regeltypen: Einschlussregeln (automatische Auswahl zugehöriger Auswahlmöglichkeiten), Ausschlussregeln (Verhinderung inkompatibler Auswahlmöglichkeiten), Aktivierungsregeln (Steuerung der Auswahlsichtbarkeit) und bedingte Regeln (WENN/DANN-Logik).",
+ "detail": "Einschlussregeln erzwingen, dass zugehörige Auswahlmöglichkeiten zusammen ausgewählt werden. Ausschlussregeln verhindern, dass widersprüchliche Auswahlmöglichkeiten koexistieren. Aktivierungsregeln zeigen oder verbergen Auswahlmöglichkeiten dynamisch basierend auf vorherigen Auswahlen. Bedingte Regeln bieten komplexe WENN/DANN-Logik mit mehreren Bedingungen. Windchill validiert Regeln, um Konflikte und Duplikate zu verhindern.",
+ "hint": "Einschluss und Ausschluss behandeln einfache Beziehungen; Aktivierung und bedingt behandeln komplexere Szenarien."
+ },
+ {
+ "action": "Überprüfen Sie Optionssätze, ihr Änderungsmanagement (Versionierung, Lebenszyklusstatus, Ein-/Auschecken) und den Prozess zur Zuweisung eines Optionssatzes zu einem konfigurierbaren Produkt.",
+ "detail": "Optionssätze sind verwaltete Objekte mit voller Änderungsmanagement-Unterstützung. Sie müssen zum Bearbeiten ausgecheckt und zum Speichern eingecheckt werden. Der Zuweisungsprozess umfasst das Navigieren zum konfigurierbaren Produkt, das Auswählen von Optionssatz zuweisen aus dem Aktionsmenü, das Auswählen des entsprechenden Satzes und die Überprüfung der Zuweisung.",
+ "hint": "Optionssätze folgen denselben Änderungsmanagement-Workflows wie andere Windchill-Objekte."
+ },
+ {
+ "action": "Überprüfen Sie Ausdrücke (Grund vs. Erweitert) und wie sie Optionsauswahlmöglichkeiten mit Teilen und Verknüpfungen in der Produktstruktur verknüpfen.",
+ "detail": "Grundausdrücke verwenden einfache Auswahlreferenzen (z. B. Farbe=Rot) und werden sowohl in Windchill als auch in Creo unterstützt. Erweiterte Ausdrücke verwenden boolesche Operatoren (UND, ODER, NICHT) für komplexe Logik, verbleiben aber nur in Windchill. Ausdrücke werden Teilen und Verknüpfungen zugewiesen, um festzulegen, wann eine Komponente in eine Variante aufgenommen wird.",
+ "hint": "Erweiterte Ausdrücke sind leistungsfähiger, können aber nicht an Creo übergeben werden."
+ },
+ {
+ "action": "Überprüfen Sie Optionsfilter und wie sie alles zusammenbringen: Der Optionssatz liefert das Vokabular, Ausdrücke verknüpfen Auswahlmöglichkeiten mit Teilen, Regeln erzwingen gültige Kombinationen, und der Filter reduziert die überladene Struktur zu einer bestimmten Variante.",
+ "detail": "Die Erstellung eines Optionsfilters umfasst die Auswahl von Auswahlmöglichkeiten aus dem zugewiesenen Optionssatz. Windchill evaluiert den Ausdruck jedes Teils anhand der ausgewählten Auswahlmöglichkeiten und bezieht nur übereinstimmende Teile ein. Das Ergebnis ist eine gefilterte Struktur, die eine bestimmte Produktvariante darstellt. Eine Variantenspezifikation zeichnet die Auswahlmöglichkeiten für die zukünftige Wiederverwendung auf.",
+ "hint": "Der Optionsfilter ist der Höhepunkt aller O&V-Konzepte, die zusammenwirken."
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Der Kurs umfasst vier Module: Übersicht konfigurierbare Produkte, Einrichtung von Optionen und Varianten, Regeln und Optionssätze",
+ "Schlüsselkonzepte umfassen Geschäftsstrategien, Plattformdesign, überladene Strukturen, Optionen, Auswahlmöglichkeiten, Regeln, Ausdrücke, Optionssätze und Optionsfilter",
+ "Optionsfilter bringen alle Konzepte zusammen, indem sie Auswahlmöglichkeiten auf eine überladene Struktur anwenden, um spezifische Produktvarianten zu generieren",
+ "Das Verständnis des gesamten O&V-Workflows vom Optionspool bis zur Variantengenerierung ist für eine effektive Produktkonfiguration in Windchill unerlässlich"
+ ]
+ }
+ ]
 }

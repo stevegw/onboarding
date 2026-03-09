@@ -86,7 +86,7 @@
     },
     {
       "term": "Traceability",
-      "definition": "The ability to link and follow relationships between artifacts across the product lifecycle — from requirements through design, implementation, and testing."
+      "definition": "The ability to link and follow relationships between artifacts across the product lifecycle - from requirements through design, implementation, and testing."
     },
     {
       "term": "Tracker",
@@ -106,7 +106,7 @@
     },
     {
       "term": "Widget",
-      "definition": "An embeddable component on a wiki page that displays live tracker data — tables, charts, query results, or metrics. Widgets auto-update as underlying data changes."
+      "definition": "An embeddable component on a wiki page that displays live tracker data - tables, charts, query results, or metrics. Widgets auto-update as underlying data changes."
     },
     {
       "term": "Wiki Page",

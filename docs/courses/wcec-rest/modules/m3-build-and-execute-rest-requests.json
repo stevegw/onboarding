@@ -1,491 +1,491 @@
 {
-  "id": "m3",
-  "title": "Build and Execute REST Requests",
-  "description": "Secure requests with nonce tokens, retrieve part structures and process plans, change life cycle states, and visualize JSON responses.",
-  "topics": [
-    {
-      "id": "m3t1",
-      "title": "Secure WRS Requests with Nonce Tokens",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Not all WRS requests are created equal. GET requests retrieve data safely, but POST, PATCH, and DELETE requests modify Windchill objects and require an extra layer of security. Before you can execute any write operation, you must obtain a <strong>nonce token</strong> — a short-lived credential that proves your request is intentional and not a replay attack."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "What is a Nonce Token?"
-        },
-        {
-          "type": "paragraph",
-          "text": "A <strong>nonce</strong> (number used once) is a randomly generated authentication string that prevents <em>replay attacks</em> — a scenario where a malicious client captures a signed-in request and resubmits it without the user's knowledge. In WRS, the nonce acts as a <strong>CSRF token</strong> (Cross-Site Request Forgery token): it is bound to the authenticated client session and expires after 24 hours, making captured requests useless after that window."
-        },
-        {
-          "type": "paragraph",
-          "text": "The nonce concept is similar to an <strong>appkey</strong> in ThingWorx — it is bound to the client and temporarily authorizes API execution. For prototyping purposes, nonces are used alongside basic authentication (username and password) to validate write requests in tools such as Postman."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Fetching a Nonce via GetCSRFToken()"
-        },
-        {
-          "type": "paragraph",
-          "text": "Nonces are retrieved with a <strong>GET</strong> request to the PTC Common domain: <code>/servlet/odata/PTC/GetCSRFToken()</code>. The response body contains two fields: <code>NonceKey</code> (always the string <code>CSRF_NONCE</code>) and <code>NonceValue</code> (a long encoded string). To secure a write request, add a request header named <code>CSRF_NONCE</code> with the value copied from the response. Nonce strings expire after 24 hours, so fetch a fresh nonce at the start of each prototyping session. You can store the nonce in an environment variable or a global variable in your prototyping tool to reuse it across requests in that session."
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "Any POST, PATCH, or DELETE request without a valid CSRF token and proper permissions will fail. Nonces expire after 24 hours — fetch a new one at the start of each prototyping session rather than reusing a saved value."
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange the steps in the correct order for securing a WRS write request.",
-          "items": [
-            "Authenticate with credentials",
-            "Fetch a nonce via GetCSRFToken()",
-            "Copy the NonceValue from the response",
-            "Add the CSRF_NONCE header to the write request",
-            "Execute the POST, PATCH, or DELETE request"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Nonce tokens (CSRF tokens) are required for all POST, PATCH, and DELETE requests in WRS.",
-        "Nonces prevent replay attacks — captured requests cannot be resubmitted after the token expires.",
-        "Fetch nonces via a GET request to <code>GetCSRFToken()</code> in the PTC Common domain and add the CSRF_NONCE header to write requests.",
-        "Nonces expire after 24 hours; always fetch a fresh nonce at the start of each prototyping session."
-      ]
-    },
-    {
-      "id": "m3t2",
-      "title": "Object Reference Patterns",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "When a WRS request targets a specific Windchill object — a particular part revision, a specific document — you need more than just a name or number. Windchill uses <strong>object references</strong> to uniquely identify persistable objects in its database, and understanding the two reference patterns is essential for constructing targeted requests."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Two Reference Patterns: OR and VR"
-        },
-        {
-          "type": "paragraph",
-          "text": "Parts, documents, and other persistable objects in Windchill each have a string representation using <code>&lt;class&gt;:&lt;key&gt;</code> syntax. WRS uses two reference patterns built on this format:"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Pattern", "Syntax", "When to Use"],
-          "rows": [
-            ["Object Reference (OR)", "OR:&lt;class&gt;:&lt;key&gt;<br>e.g., OR:wt.part.WTPart:54321", "URL construction for the Information page; targets a specific object instance"],
-            ["Version Reference (VR)", "VR:&lt;class&gt;:&lt;key&gt;<br>e.g., VR:wt.part.WTPart:54321", "Iterated objects that can be checked out and back in; always resolves to the latest iteration in a branch"]
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Finding and Decoding Object IDs"
-        },
-        {
-          "type": "paragraph",
-          "text": "Object references can be retrieved from the <strong>Details</strong> tab of an object's Information page in the Windchill UI, or from the <code>ID</code> property in a WRS response. When object IDs appear in a browser URL, they are percent-encoded: <code>oid=OR%3Awt.part.WTPart%3A514559</code>. Convert <code>%3A</code> to a colon to read the actual reference: <code>OR:wt.part.WTPart:514559</code>."
-        },
-        {
-          "type": "paragraph",
-          "text": "Object IDs control how much information is called and returned. You can use a container OID to expand multiple levels of content, for example: <code>/Windchill/servlet/odata/&lt;domain&gt;/Containers('&lt;oid&gt;')?$expand=Folders($levels=max)</code>. The OID scopes the request to a specific object while query parameters control the depth and selection of returned data."
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "You can find an object's reference ID in the URL of its Information page in the Windchill UI. Convert percent-encoded characters to read the actual reference — <code>%3A</code> is a colon, so <code>OR%3Awt.part.WTPart%3A514559</code> becomes <code>OR:wt.part.WTPart:514559</code>."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each reference concept to its correct description.",
-          "pairs": [
-            {
-              "left": "Object Reference (OR)",
-              "right": "Identifies a specific object instance for URL construction"
-            },
-            {
-              "left": "Version Reference (VR)",
-              "right": "Always points to the latest iteration of an iterated object in a branch"
-            },
-            {
-              "left": "Percent Encoding",
-              "right": "Represents special characters in URLs using %XX syntax"
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Object References (OR) identify specific object instances and are used in URL construction.",
-        "Version References (VR) always resolve to the latest iteration of an iterated object in a branch.",
-        "Object IDs can be extracted from Windchill Information page URLs by converting percent-encoded characters (%3A = colon).",
-        "Object references scope WRS requests to a specific Windchill entity and control the depth of returned data."
-      ]
-    },
-    {
-      "id": "m3t3",
-      "title": "Retrieve Part Structures and Parse JSON",
-      "estimatedMinutes": 7,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "One of the most common WRS use cases for manufacturing engineers is retrieving a bill of materials — the part structure that defines what goes into a product. This topic walks through how to retrieve a part structure using the <code>GetPartStructure</code> function, and how to parse and visualize the JSON response to make it human-readable."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Retrieving a Part Structure with GetPartStructure"
-        },
-        {
-          "type": "paragraph",
-          "text": "The <strong>GetPartStructure</strong> function lives in the Product Management domain (<code>ProdMgmt</code>) and returns the hierarchical component tree for a specific part. Because it is a function that performs a server-side operation, it is called with a <strong>POST</strong> request. The URL targets the specific part by OID and appends the function name: <code>/ProdMgmt/Parts('&lt;OID&gt;')/PTC.ProdMgmt.GetPartStructure</code>."
-        },
-        {
-          "type": "paragraph",
-          "text": "To retrieve the full multi-level BOM with part details and quantities, use an <code>$expand</code> query option: <code>$expand=Components($expand=Part($select=Name,Number),PartUse;$levels=max)</code>. This expands <strong>Components</strong> (the child parts), the <strong>Part</strong> navigation property on each component (to include Name and Number), and the <strong>PartUse</strong> navigation property (to include quantities and units) — all the way to the bottom of the structure (<code>$levels=max</code>)."
-        },
-        {
-          "type": "callout",
-          "variant": "insight",
-          "text": "<strong>GetPartStructure</strong> is one of several ways to retrieve BOMs from WRS. <strong>GetMultiLevelComponentsReport</strong> returns a flat list of leaf components, while <strong>GetBOMWithInlineNavCriteria</strong> supports working copies and plant filters. Choose the function that best matches your use case."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Parsing JSON and Visualizing Responses"
-        },
-        {
-          "type": "paragraph",
-          "text": "WRS responses are returned as <strong>JSON</strong> — the preferred data format for WRS. JSON represents data as key/value pairs enclosed in double quotes, separated by colons, and grouped in curly brackets. <strong>Parsing JSON</strong> means converting the raw JSON string in a response into a structured data object, enabling operations such as sorting, counting, and mapping attributes like <code>PartUse.Quantity</code>, <code>PartUse.Unit.Display</code>, and <code>PartUse.Source</code>."
-        },
-        {
-          "type": "paragraph",
-          "text": "Postman's <strong>Visualizer</strong> feature renders JSON responses as HTML using <strong>Handlebars templates</strong>. A Handlebars template uses double-curly-brace syntax — <code>{{PartUse.Quantity}}</code>, <code>{{PartUse.Unit.Display}}</code> — to extract values from the parsed response. The <code>pm.visualizer.set()</code> function accepts three parameters: <em>layout</em> (required — the HTML template string), <em>data</em> (optional — the data object), and <em>options</em> (optional — rendering options). Use <code>pm.response.json()</code> to pass the parsed response as the data object."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each JSON and visualization concept to its correct description.",
-          "pairs": [
-            {
-              "left": "Parse JSON",
-              "right": "Convert a JSON string into a structured data object"
-            },
-            {
-              "left": "Postman Visualizer",
-              "right": "Render a JSON response as an HTML table or chart"
-            },
-            {
-              "left": "Handlebars template",
-              "right": "Use {{property}} syntax to extract values from the response"
-            },
-            {
-              "left": "Key/value pairs",
-              "right": "Data format with double-quoted strings separated by colons"
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "GetPartStructure retrieves a hierarchical BOM via POST to the ProdMgmt domain, using $expand to include Components, Part details, and PartUse data at all levels.",
-        "JSON parsing converts the raw response string into a structured data object, enabling sorting, counting, and attribute mapping.",
-        "Postman Visualizer renders JSON responses as HTML using Handlebars templates with {{property}} syntax.",
-        "Alternative BOM functions — GetMultiLevelComponentsReport and GetBOMWithInlineNavCriteria — serve different retrieval scenarios."
-      ]
-    },
-    {
-      "id": "m3t4",
-      "title": "Process Plans and Access Control in WRS",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Beyond parts and documents, WRS exposes manufacturing process data through the Manufacturing Process Management domain. This topic covers how to retrieve process plans, how access control governs WRS requests, and how to transition objects between life cycle states using the SetState action."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "The Manufacturing Process Management Domain"
-        },
-        {
-          "type": "paragraph",
-          "text": "The <strong>Manufacturing Process Management</strong> domain provides OData entities for process plans, operations, sequences, bills of process (BOPs), and resources. A GET request to <code>ProcessPlans</code> returns the operations that belong to a process plan structure. Each operation in the response is represented by an <strong>OperationHolder</strong> — an entity type that can represent a process plan, a sequence, an operation, or a standard procedure, depending on its type property."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Access Control and Troubleshooting"
-        },
-        {
-          "type": "paragraph",
-          "text": "WRS enforces the same access control rules as the Windchill user interface. Permissions are governed by the <strong>Policy Administrator</strong> utility and attribute-based rules configured in Windchill. If a WRS request returns a <strong>403 Forbidden</strong> error, the authenticated user does not have the necessary authorization for that operation. Not all users can fetch Groups, PATCH CAD Documents, or create Supplier organizations — these restrictions apply equally in WRS and the UI."
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "<strong>Exception:</strong> Saved searches are <em>not</em> limited by access control — the <code>SavedQueries</code> entity set returns all users' saved searches regardless of permissions. Permissions cannot be checked or modified through WRS; troubleshooting must be done in the Windchill UI."
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["HTTP Status", "Error", "Common Cause"],
-          "rows": [
-            ["403", "Forbidden", "User lacks the required permissions for the requested operation"],
-            ["401", "Unauthorized", "Invalid or missing credentials, or expired nonce token"],
-            ["400", "Bad Request", "Malformed URL, incorrect query syntax, or invalid request body"],
-            ["500", "Internal Server Error", "Server-side processing failure — check WRS logs"]
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Changing Life Cycle States with SetState"
-        },
-        {
-          "type": "paragraph",
-          "text": "The <strong>SetState</strong> action transitions a Windchill object to a valid target life cycle state. It is invoked as a POST request targeting the specific object: <code>/ProdMgmt/Parts('&lt;OID&gt;')/PTC.ProdMgmt.SetState</code>. The request body must contain the target state in a display-value pair format: <code>{\"State\": {\"Display\": \"Released\", \"Value\": \"RELEASED\"}}</code>. The target state must already exist in the Windchill lifecycle template — SetState cannot create new states."
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange the troubleshooting steps in the correct order for a WRS access error.",
-          "items": [
-            "Check the nonce and authorization headers",
-            "Try a different REST client",
-            "Switch the domain version",
-            "Check REST endpoint customizations",
-            "Turn on logging of the com.ptc.odata package"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "The Manufacturing Process Management domain exposes process plans, operations, BOPs, and resources as OData entities.",
-        "WRS enforces the same access control rules as the Windchill UI — a 403 error means the user lacks required permissions.",
-        "Saved searches are an exception: the SavedQueries entity set is not limited by access control.",
-        "The SetState action transitions objects to valid target life cycle states via POST with a display-value pair body."
-      ]
-    },
-    {
-      "id": "m3t5",
-      "title": "Exercise - Fetch a Nonce Token and Get Object IDs",
-      "estimatedMinutes": 10,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In this exercise you will fetch a nonce token for use in action-related requests, and retrieve a part's object identifier for use in subsequent targeted requests. Both values are prerequisites for the exercises that follow."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "You need access to a running Windchill environment with WRS installed and Postman configured from Module 2. Have your sign-in credentials available — the nonce token is bound to the authenticated user."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex4",
-          "title": "Fetch a Nonce Token and Get Object IDs",
-          "objective": "Fetch a nonce value for use in action-related requests and retrieve an object's identifier for use in subsequent requests.",
-          "tasks": [
-            {
-              "id": "ex4-t1",
-              "title": "Fetch a Nonce Token",
-              "steps": [
-                {
-                  "action": "In Postman, create a new request with method GET and URL for GetCSRFToken()",
-                  "detail": "The GetCSRFToken() function is in the PTC Common domain. The URL follows the pattern <code>/servlet/odata/PTC/GetCSRFToken()</code>.",
-                  "hint": null
-                },
-                {
-                  "action": "Set Basic Auth credentials in the Authorization tab",
-                  "detail": "The nonce token is bound to the authenticated user. Different users may have different permissions for subsequent write requests.",
-                  "hint": null
-                },
-                {
-                  "action": "Send the request, verify a 200 status, and copy the NonceValue from the response body",
-                  "detail": "Save the nonce value in a text file or environment variable — you will need it for POST, PATCH, and DELETE requests in the exercises that follow. The nonce expires after 24 hours.",
-                  "hint": "Copy only the value between the quotation marks, not the quotes themselves"
-                }
-              ]
-            },
-            {
-              "id": "ex4-t2",
-              "title": "Get a Part Object ID",
-              "steps": [
-                {
-                  "action": "Create a new GET request with query parameters to filter and select specific parts",
-                  "detail": "Use <code>$select</code> to return only Name and View, and <code>$filter</code> with <code>startswith</code> to narrow results. Include a View filter to get the correct object reference for your use case.",
-                  "hint": null
-                },
-                {
-                  "action": "Set Basic Auth credentials and send the request",
-                  "detail": "The response returns matching parts with their object identifiers (OIDs) in the ID property.",
-                  "hint": null
-                },
-                {
-                  "action": "In the response, locate the object ID value in the ID field",
-                  "detail": "The ID value follows the <code>OR:&lt;class&gt;:&lt;key&gt;</code> format. You will use this OID in subsequent requests to identify the specific part.",
-                  "hint": "Look for the ID property in the response JSON — it starts with <code>OR:wt.part.WTPart:</code>"
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "The GetCSRFToken() function provides nonce values for securing write operations; nonces are bound to the authenticated user and expire after 24 hours.",
-        "Object IDs follow the OR:&lt;class&gt;:&lt;key&gt; pattern and uniquely identify specific Windchill objects.",
-        "Both nonces and OIDs are prerequisites for building targeted WRS write requests.",
-        "Store the nonce in an environment variable to reuse it across requests within the same session."
-      ]
-    },
-    {
-      "id": "m3t6",
-      "title": "Exercise - Retrieve a Part Structure and Visualize",
-      "estimatedMinutes": 12,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In this exercise you will retrieve a bill of materials using the GetPartStructure function and add a Postman Visualizer script to render the response as a human-readable HTML table."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "You need the part OID and nonce token from the previous exercise. The nonce must have been fetched within the last 24 hours — if it has expired, repeat Exercise 4, Task 1 to fetch a fresh one."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex5",
-          "title": "Retrieve a Part Structure and Visualize",
-          "objective": "Retrieve a bill of materials using GetPartStructure and visualize the response data in a table.",
-          "tasks": [
-            {
-              "id": "ex5-t1",
-              "title": "Retrieve the Part Structure",
-              "steps": [
-                {
-                  "action": "Create a new POST request targeting the GetPartStructure function on a specific part",
-                  "detail": "The URL includes the part OID and the GetPartStructure function with <code>$expand</code> to include Components, Part details, and PartUse data at all levels.",
-                  "hint": "The URL pattern is <code>/ProdMgmt/Parts('&lt;OID&gt;')/PTC.ProdMgmt.GetPartStructure?$expand=Components($expand=Part($select=Name,Number),PartUse;$levels=max)</code>"
-                },
-                {
-                  "action": "Set Basic Auth, add CSRF_NONCE header with your saved nonce value, and set Content-Type to application/json",
-                  "detail": "POST requests require both the CSRF_NONCE header and Content-Type header in addition to authorization. Add these in the Headers tab.",
-                  "hint": null
-                },
-                {
-                  "action": "Send the request and examine the Components hierarchy in the response body",
-                  "detail": "The response contains a nested hierarchy of child parts with their properties, including PartUse quantities and units. Each level of Components may contain further nested Components.",
-                  "hint": null
-                }
-              ]
-            },
-            {
-              "id": "ex5-t2",
-              "title": "Add a Postman Visualizer Test",
-              "steps": [
-                {
-                  "action": "In the Tests tab, add a Handlebars template script to visualize the response as an HTML table",
-                  "detail": "The template uses <code>{{#each response.Components}}</code> to iterate over parts and <code>{{PartUse.Quantity}}</code> to extract values. Use <code>pm.visualizer.set()</code> to render the template.",
-                  "hint": "Use <code>pm.response.json()</code> to pass the parsed response to the template as the data object"
-                },
-                {
-                  "action": "Send the request again and click the Visualize tab in the response pane",
-                  "detail": "The Visualizer renders the Handlebars template as an HTML table showing part names, numbers, quantities, and units in a human-readable format.",
-                  "hint": null
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "GetPartStructure with $expand retrieves a multi-level part hierarchy including Components, Part details, and PartUse quantities.",
-        "POST requests to WRS functions require both the CSRF_NONCE header and the Content-Type header.",
-        "Postman Visualizer uses Handlebars templates to render JSON responses as formatted HTML.",
-        "Visualization makes complex nested JSON responses human-readable for validation and demonstration."
-      ]
-    },
-    {
-      "id": "m3t7",
-      "title": "Exercise - Retrieve a Process Plan and Change Life Cycle State",
-      "estimatedMinutes": 12,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In this exercise you will fetch a process plan from the Manufacturing Process Management domain and execute a life cycle state change on a part using the SetState action."
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "You need a valid nonce token and a part OID from Exercise 4. The SetState action modifies Windchill data — ensure you are working in a training or sandbox environment, not a production system."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex6",
-          "title": "Retrieve a Process Plan and Change Life Cycle State",
-          "objective": "Fetch a process plan from the Manufacturing Process Management domain and execute a life cycle state change.",
-          "tasks": [
-            {
-              "id": "ex6-t1",
-              "title": "Retrieve a Process Plan",
-              "steps": [
-                {
-                  "action": "Create a GET request targeting ProcessPlans with OperationUsageLinks expanded and ordered by OperationLabel",
-                  "detail": "The Manufacturing Process Management domain provides process plan entities. The URL expands Operation navigation properties and orders results by their label.",
-                  "hint": null
-                },
-                {
-                  "action": "Set Basic Auth credentials and send the request",
-                  "detail": "If you receive a 403 error, the authenticated user does not have the necessary access permissions. Try authenticating as a different user with the required permissions.",
-                  "hint": "Access control rules from the Policy Administrator apply to WRS requests just as they do in the Windchill UI"
-                },
-                {
-                  "action": "Examine the response body and note the operation sequence",
-                  "detail": "The operations are listed in order by their OperationLabel. Each operation includes properties from the Manufacturing Process Management domain, such as type and sequence number.",
-                  "hint": null
-                }
-              ]
-            },
-            {
-              "id": "ex6-t2",
-              "title": "Change a Life Cycle State",
-              "steps": [
-                {
-                  "action": "In a browser, navigate to the part's Information page and observe the current and available life cycle states",
-                  "detail": "Life cycle states must already exist in Windchill. The SetState action can only transition to valid target states defined in the object's lifecycle template.",
-                  "hint": null
-                },
-                {
-                  "action": "Create a POST request targeting the SetState function on the part, with CSRF_NONCE and Content-Type headers",
-                  "detail": "The URL pattern is <code>/ProdMgmt/Parts('&lt;OID&gt;')/PTC.ProdMgmt.SetState</code>. This is a POST action that modifies the object's state.",
-                  "hint": null
-                },
-                {
-                  "action": "In the Body tab, select raw and enter the JSON for the target state",
-                  "detail": "The body must contain the State property with both Display and Value keys, such as <code>{\"State\": {\"Display\": \"Released\", \"Value\": \"RELEASED\"}}</code>.",
-                  "hint": "Select the raw radio button and ensure the format dropdown is set to JSON"
-                },
-                {
-                  "action": "Send the request, verify 200 OK status, and check the State property in the response",
-                  "detail": "A successful state change returns the updated object with the new life cycle state. Refresh the Windchill browser to confirm the change is reflected in the UI.",
-                  "hint": null
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Process plans are accessed through the Manufacturing Process Management domain using the ProcessPlans entity set.",
-        "Access control applies equally in WRS and the Windchill UI — a 403 error means the user lacks the required permissions.",
-        "The SetState action requires a POST request with a CSRF_NONCE header and a JSON body containing the target state in display-value pair format.",
-        "Always verify a life cycle state change by refreshing the object's Information page in the Windchill UI."
-      ]
-    }
-  ]
+ "id": "m3",
+ "title": "Build and Execute REST Requests",
+ "description": "Secure requests with nonce tokens, retrieve part structures and process plans, change life cycle states, and visualize JSON responses.",
+ "topics": [
+ {
+ "id": "m3t1",
+ "title": "Secure WRS Requests with Nonce Tokens",
+ "estimatedMinutes": 6,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Not all WRS requests are created equal. GET requests retrieve data safely, but POST, PATCH, and DELETE requests modify Windchill objects and require an extra layer of security. Before you can execute any write operation, you must obtain a <strong>nonce token</strong> - a short-lived credential that proves your request is intentional and not a replay attack."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "What is a Nonce Token?"
+ },
+ {
+ "type": "paragraph",
+ "text": "A <strong>nonce</strong> (number used once) is a randomly generated authentication string that prevents <em>replay attacks</em> - a scenario where a malicious client captures a signed-in request and resubmits it without the user's knowledge. In WRS, the nonce acts as a <strong>CSRF token</strong> (Cross-Site Request Forgery token): it is bound to the authenticated client session and expires after 24 hours, making captured requests useless after that window."
+ },
+ {
+ "type": "paragraph",
+ "text": "The nonce concept is similar to an <strong>appkey</strong> in ThingWorx - it is bound to the client and temporarily authorizes API execution. For prototyping purposes, nonces are used alongside basic authentication (username and password) to validate write requests in tools such as Postman."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Fetching a Nonce via GetCSRFToken()"
+ },
+ {
+ "type": "paragraph",
+ "text": "Nonces are retrieved with a <strong>GET</strong> request to the PTC Common domain: <code>/servlet/odata/PTC/GetCSRFToken()</code>. The response body contains two fields: <code>NonceKey</code> (always the string <code>CSRF_NONCE</code>) and <code>NonceValue</code> (a long encoded string). To secure a write request, add a request header named <code>CSRF_NONCE</code> with the value copied from the response. Nonce strings expire after 24 hours, so fetch a fresh nonce at the start of each prototyping session. You can store the nonce in an environment variable or a global variable in your prototyping tool to reuse it across requests in that session."
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "Any POST, PATCH, or DELETE request without a valid CSRF token and proper permissions will fail. Nonces expire after 24 hours - fetch a new one at the start of each prototyping session rather than reusing a saved value."
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Arrange the steps in the correct order for securing a WRS write request.",
+ "items": [
+ "Authenticate with credentials",
+ "Fetch a nonce via GetCSRFToken()",
+ "Copy the NonceValue from the response",
+ "Add the CSRF_NONCE header to the write request",
+ "Execute the POST, PATCH, or DELETE request"
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Nonce tokens (CSRF tokens) are required for all POST, PATCH, and DELETE requests in WRS.",
+ "Nonces prevent replay attacks - captured requests cannot be resubmitted after the token expires.",
+ "Fetch nonces via a GET request to <code>GetCSRFToken()</code> in the PTC Common domain and add the CSRF_NONCE header to write requests.",
+ "Nonces expire after 24 hours; always fetch a fresh nonce at the start of each prototyping session."
+ ]
+ },
+ {
+ "id": "m3t2",
+ "title": "Object Reference Patterns",
+ "estimatedMinutes": 6,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "When a WRS request targets a specific Windchill object - a particular part revision, a specific document - you need more than just a name or number. Windchill uses <strong>object references</strong> to uniquely identify persistable objects in its database, and understanding the two reference patterns is essential for constructing targeted requests."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Two Reference Patterns: OR and VR"
+ },
+ {
+ "type": "paragraph",
+ "text": "Parts, documents, and other persistable objects in Windchill each have a string representation using <code>&lt;class&gt;:&lt;key&gt;</code> syntax. WRS uses two reference patterns built on this format:"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Pattern", "Syntax", "When to Use"],
+ "rows": [
+ ["Object Reference (OR)", "OR:&lt;class&gt;:&lt;key&gt;<br>e.g., OR:wt.part.WTPart:54321", "URL construction for the Information page; targets a specific object instance"],
+ ["Version Reference (VR)", "VR:&lt;class&gt;:&lt;key&gt;<br>e.g., VR:wt.part.WTPart:54321", "Iterated objects that can be checked out and back in; always resolves to the latest iteration in a branch"]
+ ]
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Finding and Decoding Object IDs"
+ },
+ {
+ "type": "paragraph",
+ "text": "Object references can be retrieved from the <strong>Details</strong> tab of an object's Information page in the Windchill UI, or from the <code>ID</code> property in a WRS response. When object IDs appear in a browser URL, they are percent-encoded: <code>oid=OR%3Awt.part.WTPart%3A514559</code>. Convert <code>%3A</code> to a colon to read the actual reference: <code>OR:wt.part.WTPart:514559</code>."
+ },
+ {
+ "type": "paragraph",
+ "text": "Object IDs control how much information is called and returned. You can use a container OID to expand multiple levels of content, for example: <code>/Windchill/servlet/odata/&lt;domain&gt;/Containers('&lt;oid&gt;')?$expand=Folders($levels=max)</code>. The OID scopes the request to a specific object while query parameters control the depth and selection of returned data."
+ },
+ {
+ "type": "callout",
+ "variant": "tip",
+ "text": "You can find an object's reference ID in the URL of its Information page in the Windchill UI. Convert percent-encoded characters to read the actual reference - <code>%3A</code> is a colon, so <code>OR%3Awt.part.WTPart%3A514559</code> becomes <code>OR:wt.part.WTPart:514559</code>."
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each reference concept to its correct description.",
+ "pairs": [
+ {
+ "left": "Object Reference (OR)",
+ "right": "Identifies a specific object instance for URL construction"
+ },
+ {
+ "left": "Version Reference (VR)",
+ "right": "Always points to the latest iteration of an iterated object in a branch"
+ },
+ {
+ "left": "Percent Encoding",
+ "right": "Represents special characters in URLs using %XX syntax"
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Object References (OR) identify specific object instances and are used in URL construction.",
+ "Version References (VR) always resolve to the latest iteration of an iterated object in a branch.",
+ "Object IDs can be extracted from Windchill Information page URLs by converting percent-encoded characters (%3A = colon).",
+ "Object references scope WRS requests to a specific Windchill entity and control the depth of returned data."
+ ]
+ },
+ {
+ "id": "m3t3",
+ "title": "Retrieve Part Structures and Parse JSON",
+ "estimatedMinutes": 7,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "One of the most common WRS use cases for manufacturing engineers is retrieving a bill of materials - the part structure that defines what goes into a product. This topic walks through how to retrieve a part structure using the <code>GetPartStructure</code> function, and how to parse and visualize the JSON response to make it human-readable."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Retrieving a Part Structure with GetPartStructure"
+ },
+ {
+ "type": "paragraph",
+ "text": "The <strong>GetPartStructure</strong> function lives in the Product Management domain (<code>ProdMgmt</code>) and returns the hierarchical component tree for a specific part. Because it is a function that performs a server-side operation, it is called with a <strong>POST</strong> request. The URL targets the specific part by OID and appends the function name: <code>/ProdMgmt/Parts('&lt;OID&gt;')/PTC.ProdMgmt.GetPartStructure</code>."
+ },
+ {
+ "type": "paragraph",
+ "text": "To retrieve the full multi-level BOM with part details and quantities, use an <code>$expand</code> query option: <code>$expand=Components($expand=Part($select=Name,Number),PartUse;$levels=max)</code>. This expands <strong>Components</strong> (the child parts), the <strong>Part</strong> navigation property on each component (to include Name and Number), and the <strong>PartUse</strong> navigation property (to include quantities and units) - all the way to the bottom of the structure (<code>$levels=max</code>)."
+ },
+ {
+ "type": "callout",
+ "variant": "insight",
+ "text": "<strong>GetPartStructure</strong> is one of several ways to retrieve BOMs from WRS. <strong>GetMultiLevelComponentsReport</strong> returns a flat list of leaf components, while <strong>GetBOMWithInlineNavCriteria</strong> supports working copies and plant filters. Choose the function that best matches your use case."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Parsing JSON and Visualizing Responses"
+ },
+ {
+ "type": "paragraph",
+ "text": "WRS responses are returned as <strong>JSON</strong> - the preferred data format for WRS. JSON represents data as key/value pairs enclosed in double quotes, separated by colons, and grouped in curly brackets. <strong>Parsing JSON</strong> means converting the raw JSON string in a response into a structured data object, enabling operations such as sorting, counting, and mapping attributes like <code>PartUse.Quantity</code>, <code>PartUse.Unit.Display</code>, and <code>PartUse.Source</code>."
+ },
+ {
+ "type": "paragraph",
+ "text": "Postman's <strong>Visualizer</strong> feature renders JSON responses as HTML using <strong>Handlebars templates</strong>. A Handlebars template uses double-curly-brace syntax - <code>{{PartUse.Quantity}}</code>, <code>{{PartUse.Unit.Display}}</code> - to extract values from the parsed response. The <code>pm.visualizer.set()</code> function accepts three parameters: <em>layout</em> (required - the HTML template string), <em>data</em> (optional - the data object), and <em>options</em> (optional - rendering options). Use <code>pm.response.json()</code> to pass the parsed response as the data object."
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each JSON and visualization concept to its correct description.",
+ "pairs": [
+ {
+ "left": "Parse JSON",
+ "right": "Convert a JSON string into a structured data object"
+ },
+ {
+ "left": "Postman Visualizer",
+ "right": "Render a JSON response as an HTML table or chart"
+ },
+ {
+ "left": "Handlebars template",
+ "right": "Use {{property}} syntax to extract values from the response"
+ },
+ {
+ "left": "Key/value pairs",
+ "right": "Data format with double-quoted strings separated by colons"
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "GetPartStructure retrieves a hierarchical BOM via POST to the ProdMgmt domain, using $expand to include Components, Part details, and PartUse data at all levels.",
+ "JSON parsing converts the raw response string into a structured data object, enabling sorting, counting, and attribute mapping.",
+ "Postman Visualizer renders JSON responses as HTML using Handlebars templates with {{property}} syntax.",
+ "Alternative BOM functions - GetMultiLevelComponentsReport and GetBOMWithInlineNavCriteria - serve different retrieval scenarios."
+ ]
+ },
+ {
+ "id": "m3t4",
+ "title": "Process Plans and Access Control in WRS",
+ "estimatedMinutes": 6,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Beyond parts and documents, WRS exposes manufacturing process data through the Manufacturing Process Management domain. This topic covers how to retrieve process plans, how access control governs WRS requests, and how to transition objects between life cycle states using the SetState action."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "The Manufacturing Process Management Domain"
+ },
+ {
+ "type": "paragraph",
+ "text": "The <strong>Manufacturing Process Management</strong> domain provides OData entities for process plans, operations, sequences, bills of process (BOPs), and resources. A GET request to <code>ProcessPlans</code> returns the operations that belong to a process plan structure. Each operation in the response is represented by an <strong>OperationHolder</strong> - an entity type that can represent a process plan, a sequence, an operation, or a standard procedure, depending on its type property."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Access Control and Troubleshooting"
+ },
+ {
+ "type": "paragraph",
+ "text": "WRS enforces the same access control rules as the Windchill user interface. Permissions are governed by the <strong>Policy Administrator</strong> utility and attribute-based rules configured in Windchill. If a WRS request returns a <strong>403 Forbidden</strong> error, the authenticated user does not have the necessary authorization for that operation. Not all users can fetch Groups, PATCH CAD Documents, or create Supplier organizations - these restrictions apply equally in WRS and the UI."
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "<strong>Exception:</strong> Saved searches are <em>not</em> limited by access control - the <code>SavedQueries</code> entity set returns all users' saved searches regardless of permissions. Permissions cannot be checked or modified through WRS; troubleshooting must be done in the Windchill UI."
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["HTTP Status", "Error", "Common Cause"],
+ "rows": [
+ ["403", "Forbidden", "User lacks the required permissions for the requested operation"],
+ ["401", "Unauthorized", "Invalid or missing credentials, or expired nonce token"],
+ ["400", "Bad Request", "Malformed URL, incorrect query syntax, or invalid request body"],
+ ["500", "Internal Server Error", "Server-side processing failure - check WRS logs"]
+ ]
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Changing Life Cycle States with SetState"
+ },
+ {
+ "type": "paragraph",
+ "text": "The <strong>SetState</strong> action transitions a Windchill object to a valid target life cycle state. It is invoked as a POST request targeting the specific object: <code>/ProdMgmt/Parts('&lt;OID&gt;')/PTC.ProdMgmt.SetState</code>. The request body must contain the target state in a display-value pair format: <code>{\"State\": {\"Display\": \"Released\", \"Value\": \"RELEASED\"}}</code>. The target state must already exist in the Windchill lifecycle template - SetState cannot create new states."
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Arrange the troubleshooting steps in the correct order for a WRS access error.",
+ "items": [
+ "Check the nonce and authorization headers",
+ "Try a different REST client",
+ "Switch the domain version",
+ "Check REST endpoint customizations",
+ "Turn on logging of the com.ptc.odata package"
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "The Manufacturing Process Management domain exposes process plans, operations, BOPs, and resources as OData entities.",
+ "WRS enforces the same access control rules as the Windchill UI - a 403 error means the user lacks required permissions.",
+ "Saved searches are an exception: the SavedQueries entity set is not limited by access control.",
+ "The SetState action transitions objects to valid target life cycle states via POST with a display-value pair body."
+ ]
+ },
+ {
+ "id": "m3t5",
+ "title": "Exercise - Fetch a Nonce Token and Get Object IDs",
+ "estimatedMinutes": 10,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "In this exercise you will fetch a nonce token for use in action-related requests, and retrieve a part's object identifier for use in subsequent targeted requests. Both values are prerequisites for the exercises that follow."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "You need access to a running Windchill environment with WRS installed and Postman configured from Module 2. Have your sign-in credentials available - the nonce token is bound to the authenticated user."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex4",
+ "title": "Fetch a Nonce Token and Get Object IDs",
+ "objective": "Fetch a nonce value for use in action-related requests and retrieve an object's identifier for use in subsequent requests.",
+ "tasks": [
+ {
+ "id": "ex4-t1",
+ "title": "Fetch a Nonce Token",
+ "steps": [
+ {
+ "action": "In Postman, create a new request with method GET and URL for GetCSRFToken()",
+ "detail": "The GetCSRFToken() function is in the PTC Common domain. The URL follows the pattern <code>/servlet/odata/PTC/GetCSRFToken()</code>.",
+ "hint": null
+ },
+ {
+ "action": "Set Basic Auth credentials in the Authorization tab",
+ "detail": "The nonce token is bound to the authenticated user. Different users may have different permissions for subsequent write requests.",
+ "hint": null
+ },
+ {
+ "action": "Send the request, verify a 200 status, and copy the NonceValue from the response body",
+ "detail": "Save the nonce value in a text file or environment variable - you will need it for POST, PATCH, and DELETE requests in the exercises that follow. The nonce expires after 24 hours.",
+ "hint": "Copy only the value between the quotation marks, not the quotes themselves"
+ }
+ ]
+ },
+ {
+ "id": "ex4-t2",
+ "title": "Get a Part Object ID",
+ "steps": [
+ {
+ "action": "Create a new GET request with query parameters to filter and select specific parts",
+ "detail": "Use <code>$select</code> to return only Name and View, and <code>$filter</code> with <code>startswith</code> to narrow results. Include a View filter to get the correct object reference for your use case.",
+ "hint": null
+ },
+ {
+ "action": "Set Basic Auth credentials and send the request",
+ "detail": "The response returns matching parts with their object identifiers (OIDs) in the ID property.",
+ "hint": null
+ },
+ {
+ "action": "In the response, locate the object ID value in the ID field",
+ "detail": "The ID value follows the <code>OR:&lt;class&gt;:&lt;key&gt;</code> format. You will use this OID in subsequent requests to identify the specific part.",
+ "hint": "Look for the ID property in the response JSON - it starts with <code>OR:wt.part.WTPart:</code>"
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "The GetCSRFToken() function provides nonce values for securing write operations; nonces are bound to the authenticated user and expire after 24 hours.",
+ "Object IDs follow the OR:&lt;class&gt;:&lt;key&gt; pattern and uniquely identify specific Windchill objects.",
+ "Both nonces and OIDs are prerequisites for building targeted WRS write requests.",
+ "Store the nonce in an environment variable to reuse it across requests within the same session."
+ ]
+ },
+ {
+ "id": "m3t6",
+ "title": "Exercise - Retrieve a Part Structure and Visualize",
+ "estimatedMinutes": 12,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "In this exercise you will retrieve a bill of materials using the GetPartStructure function and add a Postman Visualizer script to render the response as a human-readable HTML table."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "You need the part OID and nonce token from the previous exercise. The nonce must have been fetched within the last 24 hours - if it has expired, repeat Exercise 4, Task 1 to fetch a fresh one."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex5",
+ "title": "Retrieve a Part Structure and Visualize",
+ "objective": "Retrieve a bill of materials using GetPartStructure and visualize the response data in a table.",
+ "tasks": [
+ {
+ "id": "ex5-t1",
+ "title": "Retrieve the Part Structure",
+ "steps": [
+ {
+ "action": "Create a new POST request targeting the GetPartStructure function on a specific part",
+ "detail": "The URL includes the part OID and the GetPartStructure function with <code>$expand</code> to include Components, Part details, and PartUse data at all levels.",
+ "hint": "The URL pattern is <code>/ProdMgmt/Parts('&lt;OID&gt;')/PTC.ProdMgmt.GetPartStructure?$expand=Components($expand=Part($select=Name,Number),PartUse;$levels=max)</code>"
+ },
+ {
+ "action": "Set Basic Auth, add CSRF_NONCE header with your saved nonce value, and set Content-Type to application/json",
+ "detail": "POST requests require both the CSRF_NONCE header and Content-Type header in addition to authorization. Add these in the Headers tab.",
+ "hint": null
+ },
+ {
+ "action": "Send the request and examine the Components hierarchy in the response body",
+ "detail": "The response contains a nested hierarchy of child parts with their properties, including PartUse quantities and units. Each level of Components may contain further nested Components.",
+ "hint": null
+ }
+ ]
+ },
+ {
+ "id": "ex5-t2",
+ "title": "Add a Postman Visualizer Test",
+ "steps": [
+ {
+ "action": "In the Tests tab, add a Handlebars template script to visualize the response as an HTML table",
+ "detail": "The template uses <code>{{#each response.Components}}</code> to iterate over parts and <code>{{PartUse.Quantity}}</code> to extract values. Use <code>pm.visualizer.set()</code> to render the template.",
+ "hint": "Use <code>pm.response.json()</code> to pass the parsed response to the template as the data object"
+ },
+ {
+ "action": "Send the request again and click the Visualize tab in the response pane",
+ "detail": "The Visualizer renders the Handlebars template as an HTML table showing part names, numbers, quantities, and units in a human-readable format.",
+ "hint": null
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "GetPartStructure with $expand retrieves a multi-level part hierarchy including Components, Part details, and PartUse quantities.",
+ "POST requests to WRS functions require both the CSRF_NONCE header and the Content-Type header.",
+ "Postman Visualizer uses Handlebars templates to render JSON responses as formatted HTML.",
+ "Visualization makes complex nested JSON responses human-readable for validation and demonstration."
+ ]
+ },
+ {
+ "id": "m3t7",
+ "title": "Exercise - Retrieve a Process Plan and Change Life Cycle State",
+ "estimatedMinutes": 12,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "In this exercise you will fetch a process plan from the Manufacturing Process Management domain and execute a life cycle state change on a part using the SetState action."
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "You need a valid nonce token and a part OID from Exercise 4. The SetState action modifies Windchill data - ensure you are working in a training or sandbox environment, not a production system."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex6",
+ "title": "Retrieve a Process Plan and Change Life Cycle State",
+ "objective": "Fetch a process plan from the Manufacturing Process Management domain and execute a life cycle state change.",
+ "tasks": [
+ {
+ "id": "ex6-t1",
+ "title": "Retrieve a Process Plan",
+ "steps": [
+ {
+ "action": "Create a GET request targeting ProcessPlans with OperationUsageLinks expanded and ordered by OperationLabel",
+ "detail": "The Manufacturing Process Management domain provides process plan entities. The URL expands Operation navigation properties and orders results by their label.",
+ "hint": null
+ },
+ {
+ "action": "Set Basic Auth credentials and send the request",
+ "detail": "If you receive a 403 error, the authenticated user does not have the necessary access permissions. Try authenticating as a different user with the required permissions.",
+ "hint": "Access control rules from the Policy Administrator apply to WRS requests just as they do in the Windchill UI"
+ },
+ {
+ "action": "Examine the response body and note the operation sequence",
+ "detail": "The operations are listed in order by their OperationLabel. Each operation includes properties from the Manufacturing Process Management domain, such as type and sequence number.",
+ "hint": null
+ }
+ ]
+ },
+ {
+ "id": "ex6-t2",
+ "title": "Change a Life Cycle State",
+ "steps": [
+ {
+ "action": "In a browser, navigate to the part's Information page and observe the current and available life cycle states",
+ "detail": "Life cycle states must already exist in Windchill. The SetState action can only transition to valid target states defined in the object's lifecycle template.",
+ "hint": null
+ },
+ {
+ "action": "Create a POST request targeting the SetState function on the part, with CSRF_NONCE and Content-Type headers",
+ "detail": "The URL pattern is <code>/ProdMgmt/Parts('&lt;OID&gt;')/PTC.ProdMgmt.SetState</code>. This is a POST action that modifies the object's state.",
+ "hint": null
+ },
+ {
+ "action": "In the Body tab, select raw and enter the JSON for the target state",
+ "detail": "The body must contain the State property with both Display and Value keys, such as <code>{\"State\": {\"Display\": \"Released\", \"Value\": \"RELEASED\"}}</code>.",
+ "hint": "Select the raw radio button and ensure the format dropdown is set to JSON"
+ },
+ {
+ "action": "Send the request, verify 200 OK status, and check the State property in the response",
+ "detail": "A successful state change returns the updated object with the new life cycle state. Refresh the Windchill browser to confirm the change is reflected in the UI.",
+ "hint": null
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Process plans are accessed through the Manufacturing Process Management domain using the ProcessPlans entity set.",
+ "Access control applies equally in WRS and the Windchill UI - a 403 error means the user lacks the required permissions.",
+ "The SetState action requires a POST request with a CSRF_NONCE header and a JSON body containing the target state in display-value pair format.",
+ "Always verify a life cycle state change by refreshing the object's Information page in the Windchill UI."
+ ]
+ }
+ ]
 }

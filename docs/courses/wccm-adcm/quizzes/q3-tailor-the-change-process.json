@@ -1,71 +1,71 @@
 {
-  "moduleId": "m3",
-  "title": "Tailor the Change Process Knowledge Check",
-  "questions": [
-    {
-      "id": "m3-kc-001",
-      "question": "What is the recommended best practice before modifying an OOTB workflow template in Windchill?",
-      "options": [
-        "Export the workflow to XML and edit it in a text editor",
-        "Use Save As to create a copy and modify the copy",
-        "Modify the original directly and document your changes",
-        "Delete the original and create a new workflow from scratch"
-      ],
-      "answerIndex": 1,
-      "rationale": "The recommended practice is to always use Save As to create a copy of the OOTB workflow template and then modify the copy. This preserves the original as a reference and fallback, and ensures future Windchill upgrades do not conflict with your customizations. Modifying the original directly removes your baseline. Deleting and recreating from scratch is unnecessary and error-prone. Exporting to XML is not the standard approach for workflow modification.",
-      "topic": "m3t1"
-    },
-    {
-      "id": "m3-kc-002",
-      "question": "What is the key difference between an Activity node and a Robot node in a Windchill workflow?",
-      "options": [
-        "Activity nodes run automatically; Robot nodes require manual action",
-        "Activity nodes are manual tasks that appear in My Tasks; Robot nodes are automated actions that do not appear in task lists",
-        "Activity nodes handle routing; Robot nodes handle notifications only",
-        "Activity nodes can only be assigned to administrators; Robot nodes can be assigned to any role"
-      ],
-      "answerIndex": 1,
-      "rationale": "Activity nodes represent manual tasks completed by assigned roles and appear in the user's My Tasks list. Robot nodes are automated actions executed by the system that do NOT appear in any user's task list. The distinction is not about routing vs. notifications — both node types can participate in routing. Activity nodes are not limited to administrators; they can be assigned to any role. The options are reversed in option A — Activity nodes are manual, not automatic.",
-      "topic": "m3t1"
-    },
-    {
-      "id": "m3-kc-003",
-      "question": "What is the purpose of the Phase Process property in a life cycle template?",
-      "options": [
-        "It defines the access control permissions for users in that phase",
-        "It specifies which roles are authorized to act during the phase",
-        "It determines which workflow is triggered when an object enters that life cycle state",
-        "It sets the naming convention for objects created in that phase"
-      ],
-      "answerIndex": 2,
-      "rationale": "The Phase Process property specifies which workflow is triggered when an object enters a specific life cycle state, enabling process automation. Access control permissions are configured separately through the phase's access settings. Authorized roles are also a separate phase property. Phase Process has nothing to do with object naming conventions — it solely controls workflow triggering.",
-      "topic": "m3t2"
-    },
-    {
-      "id": "m3-kc-004",
-      "question": "What is the primary function of an Object Initialization Rule (OIR) in Windchill?",
-      "options": [
-        "It validates that all required fields are filled before an object can be saved",
-        "It establishes default values and template assignments when a change object is created",
-        "It controls which users can access the OIR Manager in the Utilities page",
-        "It defines the XML schema used for exporting change objects"
-      ],
-      "answerIndex": 1,
-      "rationale": "OIRs establish default values and template assignments (life cycle, workflow, team template, versioning scheme) when a change object is created. They are not field validation rules — they set initial defaults. OIRs do not control user access to the OIR Manager; that is managed through access control policies. OIRs are written in XML but they do not define export schemas — they define initialization behavior.",
-      "topic": "m3t3"
-    },
-    {
-      "id": "m3-kc-005",
-      "question": "At which context level does PTC recommend creating and managing Object Initialization Rules?",
-      "options": [
-        "Site level, so rules apply globally to all organizations",
-        "Application level, so each product has its own specific rules",
-        "Organization level, for consistency across products and libraries",
-        "User level, so each administrator can define their own rules"
-      ],
-      "answerIndex": 2,
-      "rationale": "PTC recommends creating and managing OIRs at the organization level because it provides a consistent baseline across all products and libraries within that organization, while still allowing application-level overrides when needed. Site-level rules are too broad and do not account for organizational differences. Application-level rules alone would require maintaining separate rules for every product. There is no user-level OIR context in Windchill.",
-      "topic": "m3t3"
-    }
-  ]
+ "moduleId": "m3",
+ "title": "Tailor the Change Process Knowledge Check",
+ "questions": [
+ {
+ "id": "m3-kc-001",
+ "question": "What is the recommended best practice before modifying an OOTB workflow template in Windchill?",
+ "options": [
+ "Export the workflow to XML and edit it in a text editor",
+ "Use Save As to create a copy and modify the copy",
+ "Modify the original directly and document your changes",
+ "Delete the original and create a new workflow from scratch"
+ ],
+ "answerIndex": 1,
+ "rationale": "The recommended practice is to always use Save As to create a copy of the OOTB workflow template and then modify the copy. This preserves the original as a reference and fallback, and ensures future Windchill upgrades do not conflict with your customizations. Modifying the original directly removes your baseline. Deleting and recreating from scratch is unnecessary and error-prone. Exporting to XML is not the standard approach for workflow modification.",
+ "topic": "m3t1"
+ },
+ {
+ "id": "m3-kc-002",
+ "question": "What is the key difference between an Activity node and a Robot node in a Windchill workflow?",
+ "options": [
+ "Activity nodes run automatically; Robot nodes require manual action",
+ "Activity nodes are manual tasks that appear in My Tasks; Robot nodes are automated actions that do not appear in task lists",
+ "Activity nodes handle routing; Robot nodes handle notifications only",
+ "Activity nodes can only be assigned to administrators; Robot nodes can be assigned to any role"
+ ],
+ "answerIndex": 1,
+ "rationale": "Activity nodes represent manual tasks completed by assigned roles and appear in the user's My Tasks list. Robot nodes are automated actions executed by the system that do NOT appear in any user's task list. The distinction is not about routing vs. notifications - both node types can participate in routing. Activity nodes are not limited to administrators; they can be assigned to any role. The options are reversed in option A - Activity nodes are manual, not automatic.",
+ "topic": "m3t1"
+ },
+ {
+ "id": "m3-kc-003",
+ "question": "What is the purpose of the Phase Process property in a life cycle template?",
+ "options": [
+ "It defines the access control permissions for users in that phase",
+ "It specifies which roles are authorized to act during the phase",
+ "It determines which workflow is triggered when an object enters that life cycle state",
+ "It sets the naming convention for objects created in that phase"
+ ],
+ "answerIndex": 2,
+ "rationale": "The Phase Process property specifies which workflow is triggered when an object enters a specific life cycle state, enabling process automation. Access control permissions are configured separately through the phase's access settings. Authorized roles are also a separate phase property. Phase Process has nothing to do with object naming conventions - it solely controls workflow triggering.",
+ "topic": "m3t2"
+ },
+ {
+ "id": "m3-kc-004",
+ "question": "What is the primary function of an Object Initialization Rule (OIR) in Windchill?",
+ "options": [
+ "It validates that all required fields are filled before an object can be saved",
+ "It establishes default values and template assignments when a change object is created",
+ "It controls which users can access the OIR Manager in the Utilities page",
+ "It defines the XML schema used for exporting change objects"
+ ],
+ "answerIndex": 1,
+ "rationale": "OIRs establish default values and template assignments (life cycle, workflow, team template, versioning scheme) when a change object is created. They are not field validation rules - they set initial defaults. OIRs do not control user access to the OIR Manager; that is managed through access control policies. OIRs are written in XML but they do not define export schemas - they define initialization behavior.",
+ "topic": "m3t3"
+ },
+ {
+ "id": "m3-kc-005",
+ "question": "At which context level does PTC recommend creating and managing Object Initialization Rules?",
+ "options": [
+ "Site level, so rules apply globally to all organizations",
+ "Application level, so each product has its own specific rules",
+ "Organization level, for consistency across products and libraries",
+ "User level, so each administrator can define their own rules"
+ ],
+ "answerIndex": 2,
+ "rationale": "PTC recommends creating and managing OIRs at the organization level because it provides a consistent baseline across all products and libraries within that organization, while still allowing application-level overrides when needed. Site-level rules are too broad and do not account for organizational differences. Application-level rules alone would require maintaining separate rules for every product. There is no user-level OIR context in Windchill.",
+ "topic": "m3t3"
+ }
+ ]
 }

@@ -1,483 +1,483 @@
 {
-  "id": "m1",
-  "title": "Life Cycle Fundamentals",
-  "description": "Understand life cycle concepts including phases, gates, states, and transitions. Identify business processes, compare basic and advanced life cycle types, and create life cycle templates.",
-  "topics": [
-    {
-      "id": "m1t1",
-      "title": "Life Cycle Concepts",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Every product-related object in Windchill must have a life cycle. A life cycle is an automated, graphical model that uses <strong>phases</strong> and <strong>gates</strong> to manage objects from initial conceptualization through to obsolescence. It defines the states of maturity for an object, which is distinct from versioning — versioning reflects an object's revision history, while life cycle states describe where the object sits in the business process."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Why Life Cycle States Matter"
-        },
-        {
-          "type": "paragraph",
-          "text": "Life cycle states serve four critical purposes in Windchill. They provide <strong>visible status</strong> so users can immediately see an object's maturity. They drive <strong>business administration</strong> by determining which processes and workflows apply. They support <strong>data management</strong> by controlling how data is organized and progressed. Finally, they enforce <strong>access control</strong> by governing who can view, modify, or approve the object at each stage."
-        },
-        {
-          "type": "comparison-table",
-          "headers": [
-            "State",
-            "Modification Access",
-            "Read Access",
-            "Typical Use"
-          ],
-          "rows": [
-            [
-              "In Work",
-              "Creator and team members can modify",
-              "Limited to project team",
-              "Active design and development"
-            ],
-            [
-              "Under Review",
-              "Locked from modification",
-              "Review participants",
-              "Formal review or approval gate"
-            ],
-            [
-              "Released",
-              "No modification allowed",
-              "Broader organization-wide access",
-              "Approved for production use"
-            ],
-            [
-              "Obsolete",
-              "No modification allowed",
-              "Read-only historical reference",
-              "Retired from active use"
-            ]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "insight",
-          "text": "Life cycle maturity and version history address different concerns. An object can be at version B.2 (reflecting two major revisions) while in the <strong>In Work</strong> state — meaning this particular version is still being developed. Don't confuse a high version number with a released status."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Phases and Gates"
-        },
-        {
-          "type": "paragraph",
-          "text": "Every life cycle state consists of two distinct areas. A <strong>phase</strong> is a defined period during which specific activities occur — such as design work, review, or testing. A <strong>gate</strong> is a checkpoint that prevents objects from advancing until certain requirements have been met. While an object is in a gate, it is locked from modification, ensuring data integrity during evaluation."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each life cycle concept to its description:",
-          "pairs": [
-            {
-              "left": "Phase",
-              "right": "A defined period where specific work activities occur"
-            },
-            {
-              "left": "Gate",
-              "right": "A checkpoint that locks objects until requirements are met"
-            },
-            {
-              "left": "Life cycle state",
-              "right": "Represents the maturity level of an object"
-            },
-            {
-              "left": "Versioning",
-              "right": "Reflects the revision history of an object over time"
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Every product-related object in Windchill must have a life cycle that models its progression from conceptualization to obsolescence",
-        "Life cycle states drive visible status, business administration, data management, and access control",
-        "A phase is a working period for activities, while a gate is a checkpoint that locks objects until criteria are met",
-        "Life cycle maturity is distinct from versioning — states reflect business readiness, versions reflect revision history"
-      ]
-    },
-    {
-      "id": "m1t2",
-      "title": "Identifying Business Processes",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Before configuring life cycles in Windchill, you must first assess your current business processes for each data type. This discovery step ensures that the life cycle you build accurately reflects how your organization actually works — rather than imposing a generic template that doesn't fit."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Process Discovery"
-        },
-        {
-          "type": "paragraph",
-          "text": "Effective process discovery involves asking a series of targeted questions for each data type: What events and tasks occur during the object's lifecycle? Who performs each task and what role do they fill? What access permissions are needed at each stage? What criteria must be met before an object can be promoted to the next state? The answers to these questions are best captured in swim lane diagrams or flowcharts that visualize the handoffs between roles."
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "When identifying major stages of data maturity, focus on the points where access control or responsibilities change. Each of those transition points typically maps to a life cycle state in Windchill."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Four Templates That Define a Business Process"
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Life Cycle Template",
-              "back": "Defines the maturity states an object passes through — such as In Work, Under Review, Released, and Obsolete. This is the structural backbone of the business process."
-            },
-            {
-              "front": "Workflow Template",
-              "back": "Defines the events, tasks, and routing logic that occur at each stage. Workflows automate the activities that move objects between life cycle states."
-            },
-            {
-              "front": "Team Template",
-              "back": "Defines the generic roles needed to execute the process — such as Author, Reviewer, and Approver. Team templates are reusable across contexts."
-            },
-            {
-              "front": "Context Team",
-              "back": "Maps actual participants (real users) to the generic roles defined in the team template for a specific product, library, or project."
-            }
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "Determine early whether a business process is specific to a single product or library, or whether it applies across the entire organization or site. This decision affects where you create and scope your templates."
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange the process discovery steps in the correct order:",
-          "items": [
-            "Identify events and tasks for each data type",
-            "Determine who performs each task and their role",
-            "Define access permissions needed at each stage",
-            "Establish promotion criteria between states"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Always assess current business processes before configuring life cycles to ensure they reflect real organizational workflows",
-        "Process discovery involves identifying events, roles, permissions, and promotion criteria for each data type",
-        "Four templates define a complete business process: life cycle, workflow, team, and context team",
-        "Scope decisions — whether a process applies to a single product or across the organization — must be made early"
-      ]
-    },
-    {
-      "id": "m1t3",
-      "title": "Life Cycle Types and Properties",
-      "estimatedMinutes": 7,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Windchill provides two distinct types of life cycles — <strong>Basic</strong> and <strong>Advanced</strong> — each suited to different levels of process complexity. Understanding the differences between them is essential for choosing the right approach when configuring automation for your change processes."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Basic vs. Advanced Life Cycles"
-        },
-        {
-          "type": "comparison-table",
-          "headers": [
-            "Characteristic",
-            "Basic Life Cycle",
-            "Advanced Life Cycle"
-          ],
-          "rows": [
-            [
-              "Movement mechanism",
-              "Predefined transitions only",
-              "Workflows for state movement"
-            ],
-            [
-              "Performance",
-              "Improved performance (recommended)",
-              "Additional processing overhead"
-            ],
-            [
-              "Customization",
-              "Standard state transitions",
-              "Company-specific processes and logic"
-            ],
-            [
-              "Access control",
-              "Standard access policies",
-              "Special access control at transition points"
-            ],
-            [
-              "Recommendation",
-              "Use for most object types",
-              "Use when standard transitions are insufficient"
-            ],
-            [
-              "Routing support",
-              "Not applicable",
-              "May be available for routing (ProjectLink)"
-            ]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "Basic life cycles are recommended for most use cases due to their improved performance. Only choose an advanced life cycle when your business process requires workflow-driven movement, company-specific logic, or special access control that cannot be achieved with predefined transitions."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Life Cycle Properties"
-        },
-        {
-          "type": "paragraph",
-          "text": "When creating a life cycle template, you configure several key properties. The <strong>Type</strong> determines whether it is Basic or Advanced. The <strong>Name</strong> must be unique because it is used in Object Initialization Rules (OIRs) to assign life cycles to objects. The <strong>Object Class</strong> should generally remain as <code>wt.fc.WTObject</code>. You can also set whether the life cycle is <strong>Enabled</strong> or hidden, and whether it is <strong>Available for Routing</strong>."
-        },
-        {
-          "type": "heading",
-          "level": 3,
-          "text": "Scope and Administration"
-        },
-        {
-          "type": "paragraph",
-          "text": "Life cycle templates are created using the <strong>Life Cycle Template Administration</strong> utility, which allows you to create, import, export, enable, hide, and delete templates. Templates can be scoped at three levels: <strong>Site</strong> (system-wide availability), <strong>Organization</strong> (available within an organizational unit), or a specific <strong>application context</strong> such as a product, library, project, or program. In Windchill 12.1 and later, you can add new state names through the Customize Modeled Enumerations utility."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each life cycle property to its purpose:",
-          "pairs": [
-            {
-              "left": "Type",
-              "right": "Determines whether the life cycle is Basic or Advanced"
-            },
-            {
-              "left": "Name",
-              "right": "Must be unique; used in Object Initialization Rules"
-            },
-            {
-              "left": "Scope",
-              "right": "Controls where the template is available (Site, Org, or context)"
-            },
-            {
-              "left": "Object Class",
-              "right": "Should generally remain as wt.fc.WTObject"
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Basic life cycles use predefined transitions and offer better performance — recommended for most object types",
-        "Advanced life cycles use workflows for state movement and are needed only for company-specific processes or special access control",
-        "Life cycle names must be unique because Object Initialization Rules reference them to assign life cycles to objects",
-        "Templates can be scoped at the Site, Organization, or application context level"
-      ]
-    },
-    {
-      "id": "m1t4",
-      "title": "Life Cycle Transitions",
-      "estimatedMinutes": 7,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Transitions are predefined actions that provide the business logic for moving objects between life cycle states. For basic life cycles, transitions are the <strong>only</strong> mechanism for state movement. Advanced life cycles supplement transitions with workflows, but transitions still form the foundation of state-to-state navigation."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Transition Types"
-        },
-        {
-          "type": "comparison-table",
-          "headers": [
-            "Transition Type",
-            "Purpose",
-            "Example"
-          ],
-          "rows": [
-            [
-              "Change",
-              "Path used when releasing through a change process",
-              "In Work → Released via change notice"
-            ],
-            [
-              "Lock",
-              "Moves to an interim state during promotion",
-              "Design → Under Review (locked)"
-            ],
-            [
-              "Obsolescence",
-              "Path for making versions obsolete through change process",
-              "Released → Obsolete via change notice"
-            ],
-            [
-              "Production Released",
-              "Path for releasing to production through change process",
-              "Under Review → Released for manufacturing"
-            ],
-            [
-              "Promote",
-              "Path for promoting or demoting state through promotion request",
-              "In Work → Released via promotion request"
-            ],
-            [
-              "Refine",
-              "Custom workflow path for rework",
-              "Under Review → In Work for revision"
-            ],
-            [
-              "Revise",
-              "Path when creating a new version",
-              "Released → In Work (new version B.1 created)"
-            ],
-            [
-              "Set State",
-              "Directly sets state using the Set State action",
-              "Any state → multiple destinations allowed"
-            ]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "The <strong>Set State</strong> transition is unique because it allows multiple destination states from a single source. This gives administrators flexibility to handle exceptional cases without creating a separate transition for each possible path."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Transition Example"
-        },
-        {
-          "type": "paragraph",
-          "text": "Consider an object in the <strong>Design</strong> state. From Design, a <strong>Promote</strong> transition can advance it to Released, a <strong>Lock</strong> transition can move it into Under Review (locking it from modification during evaluation), and a <strong>Revise</strong> transition creates a new version that starts back in Design. Each transition type encodes specific business logic that controls not just the destination state, but also what happens along the way — such as locking the object, creating a new version, or triggering a change process."
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange these transition types from most routine to most exceptional:",
-          "items": [
-            "Promote (standard advancement through states)",
-            "Lock (interim hold during review)",
-            "Revise (create new version for continued work)",
-            "Obsolescence (retire a version from active use)"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Transitions are predefined actions that provide business logic for moving objects between life cycle states",
-        "For basic life cycles, transitions are the only means of state movement; advanced life cycles also use workflows",
-        "Eight transition types exist — Change, Lock, Obsolescence, Production Released, Promote, Refine, Revise, and Set State — each encoding specific business behavior",
-        "Set State transitions uniquely allow multiple destination states from a single source"
-      ]
-    },
-    {
-      "id": "m1t5",
-      "title": "Exercise 1 - Create a Basic Life Cycle Template",
-      "estimatedMinutes": 8,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In this exercise, you will import and configure a basic life cycle template for a Development Plan document used by PTC Publications. You will add two new states, reorder the state sequence, and define transition properties to create a complete five-state life cycle."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "You must be signed in as <strong>bpatterson/ptc</strong> and have access to the PTC Publications context to complete this exercise. The Plan Development Life Cycle must be available for import."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex1",
-          "title": "Create a Basic Life Cycle Template",
-          "objective": "Import a life cycle template, add two new phases (Rework and Under Review), reorder states, and define transitions to produce a five-state basic life cycle.",
-          "tasks": [
-            {
-              "id": "ex1-t1",
-              "title": "Import the Life Cycle",
-              "steps": [
-                {
-                  "action": "Sign in to Windchill as bpatterson with password ptc.",
-                  "detail": "You need the bpatterson account because it has the necessary permissions to administer life cycle templates in the PTC Publications context.",
-                  "hint": null
-                },
-                {
-                  "action": "Navigate to PTC Publications > Utilities > Life Cycle Template Administration.",
-                  "detail": "The Life Cycle Template Administration utility is the central tool for creating, importing, exporting, and managing life cycle templates.",
-                  "hint": "Use the product context navigation to find the Utilities section."
-                },
-                {
-                  "action": "Import the Plan Development Life Cycle template.",
-                  "detail": "Importing a predefined template gives you a starting point that you will customize with additional states and transitions.",
-                  "hint": "Look for an Import button or action in the administration toolbar."
-                },
-                {
-                  "action": "Open the imported life cycle in the editor and review its existing states and properties. Confirm the Type is set to Basic.",
-                  "detail": "Before making changes, verify that the template was imported correctly and understand the baseline configuration — including which states and transitions already exist.",
-                  "hint": null
-                }
-              ]
-            },
-            {
-              "id": "ex1-t2",
-              "title": "Add Two Phases",
-              "steps": [
-                {
-                  "action": "Click the New Phase icon and select the Rework state.",
-                  "detail": "The Rework state will allow objects to cycle back for revision when issues are found during review.",
-                  "hint": "The New Phase icon is typically in the life cycle editor toolbar."
-                },
-                {
-                  "action": "Click the New Phase icon again and select the Under Review state.",
-                  "detail": "Under Review serves as a gate where objects are locked from modification while stakeholders evaluate them.",
-                  "hint": null
-                }
-              ]
-            },
-            {
-              "id": "ex1-t3",
-              "title": "Reorder States and Define Transitions",
-              "steps": [
-                {
-                  "action": "Drag the Rework state to position it after Creation in the state sequence.",
-                  "detail": "State order in the editor reflects the expected flow of the business process. Rework logically follows Creation because objects may need rework before advancing further.",
-                  "hint": "Click and drag the state box in the graphical editor."
-                },
-                {
-                  "action": "Drag the Under Review state to position it after Rework.",
-                  "detail": "Under Review is an interim evaluation state before Release, so it belongs between Rework and Released.",
-                  "hint": null
-                },
-                {
-                  "action": "Define transitions for the Creation state: Set State to Rework, Lock to Under Review. Verify the existing Promote to Released transition.",
-                  "detail": "These transitions allow objects in Creation to be sent back for rework, moved into review, or promoted directly to Released.",
-                  "hint": "Select the Creation state and use the transition configuration panel to add each transition type."
-                },
-                {
-                  "action": "Define transitions for the Rework state: Revise and Set State to Creation, Lock to Under Review, and Promote to Released.",
-                  "detail": "Rework objects can return to Creation for a fresh start (via Revise or Set State), move to Under Review for evaluation, or advance directly to Released if rework is complete.",
-                  "hint": null
-                },
-                {
-                  "action": "Click Save & Close, then check in the life cycle template.",
-                  "detail": "Saving and checking in makes the template available for use. The completed life cycle should have five states: Creation, Rework, Under Review, Released, and Obsolete.",
-                  "hint": "Review the state diagram one final time before saving to confirm all transitions are correct."
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Life cycle templates can be imported and customized rather than built from scratch",
-        "New phases are added using the New Phase icon and selecting from predefined state names",
-        "State order in the editor should reflect the expected business process flow",
-        "The completed life cycle has five states — Creation, Rework, Under Review, Released, and Obsolete — with transitions defining valid paths between them"
-      ]
-    }
-  ]
+ "id": "m1",
+ "title": "Life Cycle Fundamentals",
+ "description": "Understand life cycle concepts including phases, gates, states, and transitions. Identify business processes, compare basic and advanced life cycle types, and create life cycle templates.",
+ "topics": [
+ {
+ "id": "m1t1",
+ "title": "Life Cycle Concepts",
+ "estimatedMinutes": 6,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Every product-related object in Windchill must have a life cycle. A life cycle is an automated, graphical model that uses <strong>phases</strong> and <strong>gates</strong> to manage objects from initial conceptualization through to obsolescence. It defines the states of maturity for an object, which is distinct from versioning - versioning reflects an object's revision history, while life cycle states describe where the object sits in the business process."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Why Life Cycle States Matter"
+ },
+ {
+ "type": "paragraph",
+ "text": "Life cycle states serve four critical purposes in Windchill. They provide <strong>visible status</strong> so users can immediately see an object's maturity. They drive <strong>business administration</strong> by determining which processes and workflows apply. They support <strong>data management</strong> by controlling how data is organized and progressed. Finally, they enforce <strong>access control</strong> by governing who can view, modify, or approve the object at each stage."
+ },
+ {
+ "type": "comparison-table",
+ "headers": [
+ "State",
+ "Modification Access",
+ "Read Access",
+ "Typical Use"
+ ],
+ "rows": [
+ [
+ "In Work",
+ "Creator and team members can modify",
+ "Limited to project team",
+ "Active design and development"
+ ],
+ [
+ "Under Review",
+ "Locked from modification",
+ "Review participants",
+ "Formal review or approval gate"
+ ],
+ [
+ "Released",
+ "No modification allowed",
+ "Broader organization-wide access",
+ "Approved for production use"
+ ],
+ [
+ "Obsolete",
+ "No modification allowed",
+ "Read-only historical reference",
+ "Retired from active use"
+ ]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "insight",
+ "text": "Life cycle maturity and version history address different concerns. An object can be at version B.2 (reflecting two major revisions) while in the <strong>In Work</strong> state - meaning this particular version is still being developed. Don't confuse a high version number with a released status."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Phases and Gates"
+ },
+ {
+ "type": "paragraph",
+ "text": "Every life cycle state consists of two distinct areas. A <strong>phase</strong> is a defined period during which specific activities occur - such as design work, review, or testing. A <strong>gate</strong> is a checkpoint that prevents objects from advancing until certain requirements have been met. While an object is in a gate, it is locked from modification, ensuring data integrity during evaluation."
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each life cycle concept to its description:",
+ "pairs": [
+ {
+ "left": "Phase",
+ "right": "A defined period where specific work activities occur"
+ },
+ {
+ "left": "Gate",
+ "right": "A checkpoint that locks objects until requirements are met"
+ },
+ {
+ "left": "Life cycle state",
+ "right": "Represents the maturity level of an object"
+ },
+ {
+ "left": "Versioning",
+ "right": "Reflects the revision history of an object over time"
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Every product-related object in Windchill must have a life cycle that models its progression from conceptualization to obsolescence",
+ "Life cycle states drive visible status, business administration, data management, and access control",
+ "A phase is a working period for activities, while a gate is a checkpoint that locks objects until criteria are met",
+ "Life cycle maturity is distinct from versioning - states reflect business readiness, versions reflect revision history"
+ ]
+ },
+ {
+ "id": "m1t2",
+ "title": "Identifying Business Processes",
+ "estimatedMinutes": 5,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Before configuring life cycles in Windchill, you must first assess your current business processes for each data type. This discovery step ensures that the life cycle you build accurately reflects how your organization actually works - rather than imposing a generic template that doesn't fit."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Process Discovery"
+ },
+ {
+ "type": "paragraph",
+ "text": "Effective process discovery involves asking a series of targeted questions for each data type: What events and tasks occur during the object's lifecycle? Who performs each task and what role do they fill? What access permissions are needed at each stage? What criteria must be met before an object can be promoted to the next state? The answers to these questions are best captured in swim lane diagrams or flowcharts that visualize the handoffs between roles."
+ },
+ {
+ "type": "callout",
+ "variant": "tip",
+ "text": "When identifying major stages of data maturity, focus on the points where access control or responsibilities change. Each of those transition points typically maps to a life cycle state in Windchill."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Four Templates That Define a Business Process"
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Life Cycle Template",
+ "back": "Defines the maturity states an object passes through - such as In Work, Under Review, Released, and Obsolete. This is the structural backbone of the business process."
+ },
+ {
+ "front": "Workflow Template",
+ "back": "Defines the events, tasks, and routing logic that occur at each stage. Workflows automate the activities that move objects between life cycle states."
+ },
+ {
+ "front": "Team Template",
+ "back": "Defines the generic roles needed to execute the process - such as Author, Reviewer, and Approver. Team templates are reusable across contexts."
+ },
+ {
+ "front": "Context Team",
+ "back": "Maps actual participants (real users) to the generic roles defined in the team template for a specific product, library, or project."
+ }
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "Determine early whether a business process is specific to a single product or library, or whether it applies across the entire organization or site. This decision affects where you create and scope your templates."
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Arrange the process discovery steps in the correct order:",
+ "items": [
+ "Identify events and tasks for each data type",
+ "Determine who performs each task and their role",
+ "Define access permissions needed at each stage",
+ "Establish promotion criteria between states"
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Always assess current business processes before configuring life cycles to ensure they reflect real organizational workflows",
+ "Process discovery involves identifying events, roles, permissions, and promotion criteria for each data type",
+ "Four templates define a complete business process: life cycle, workflow, team, and context team",
+ "Scope decisions - whether a process applies to a single product or across the organization - must be made early"
+ ]
+ },
+ {
+ "id": "m1t3",
+ "title": "Life Cycle Types and Properties",
+ "estimatedMinutes": 7,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Windchill provides two distinct types of life cycles - <strong>Basic</strong> and <strong>Advanced</strong> - each suited to different levels of process complexity. Understanding the differences between them is essential for choosing the right approach when configuring automation for your change processes."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Basic vs. Advanced Life Cycles"
+ },
+ {
+ "type": "comparison-table",
+ "headers": [
+ "Characteristic",
+ "Basic Life Cycle",
+ "Advanced Life Cycle"
+ ],
+ "rows": [
+ [
+ "Movement mechanism",
+ "Predefined transitions only",
+ "Workflows for state movement"
+ ],
+ [
+ "Performance",
+ "Improved performance (recommended)",
+ "Additional processing overhead"
+ ],
+ [
+ "Customization",
+ "Standard state transitions",
+ "Company-specific processes and logic"
+ ],
+ [
+ "Access control",
+ "Standard access policies",
+ "Special access control at transition points"
+ ],
+ [
+ "Recommendation",
+ "Use for most object types",
+ "Use when standard transitions are insufficient"
+ ],
+ [
+ "Routing support",
+ "Not applicable",
+ "May be available for routing (ProjectLink)"
+ ]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "Basic life cycles are recommended for most use cases due to their improved performance. Only choose an advanced life cycle when your business process requires workflow-driven movement, company-specific logic, or special access control that cannot be achieved with predefined transitions."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Life Cycle Properties"
+ },
+ {
+ "type": "paragraph",
+ "text": "When creating a life cycle template, you configure several key properties. The <strong>Type</strong> determines whether it is Basic or Advanced. The <strong>Name</strong> must be unique because it is used in Object Initialization Rules (OIRs) to assign life cycles to objects. The <strong>Object Class</strong> should generally remain as <code>wt.fc.WTObject</code>. You can also set whether the life cycle is <strong>Enabled</strong> or hidden, and whether it is <strong>Available for Routing</strong>."
+ },
+ {
+ "type": "heading",
+ "level": 3,
+ "text": "Scope and Administration"
+ },
+ {
+ "type": "paragraph",
+ "text": "Life cycle templates are created using the <strong>Life Cycle Template Administration</strong> utility, which allows you to create, import, export, enable, hide, and delete templates. Templates can be scoped at three levels: <strong>Site</strong> (system-wide availability), <strong>Organization</strong> (available within an organizational unit), or a specific <strong>application context</strong> such as a product, library, project, or program. In Windchill 12.1 and later, you can add new state names through the Customize Modeled Enumerations utility."
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each life cycle property to its purpose:",
+ "pairs": [
+ {
+ "left": "Type",
+ "right": "Determines whether the life cycle is Basic or Advanced"
+ },
+ {
+ "left": "Name",
+ "right": "Must be unique; used in Object Initialization Rules"
+ },
+ {
+ "left": "Scope",
+ "right": "Controls where the template is available (Site, Org, or context)"
+ },
+ {
+ "left": "Object Class",
+ "right": "Should generally remain as wt.fc.WTObject"
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Basic life cycles use predefined transitions and offer better performance - recommended for most object types",
+ "Advanced life cycles use workflows for state movement and are needed only for company-specific processes or special access control",
+ "Life cycle names must be unique because Object Initialization Rules reference them to assign life cycles to objects",
+ "Templates can be scoped at the Site, Organization, or application context level"
+ ]
+ },
+ {
+ "id": "m1t4",
+ "title": "Life Cycle Transitions",
+ "estimatedMinutes": 7,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Transitions are predefined actions that provide the business logic for moving objects between life cycle states. For basic life cycles, transitions are the <strong>only</strong> mechanism for state movement. Advanced life cycles supplement transitions with workflows, but transitions still form the foundation of state-to-state navigation."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Transition Types"
+ },
+ {
+ "type": "comparison-table",
+ "headers": [
+ "Transition Type",
+ "Purpose",
+ "Example"
+ ],
+ "rows": [
+ [
+ "Change",
+ "Path used when releasing through a change process",
+ "In Work → Released via change notice"
+ ],
+ [
+ "Lock",
+ "Moves to an interim state during promotion",
+ "Design → Under Review (locked)"
+ ],
+ [
+ "Obsolescence",
+ "Path for making versions obsolete through change process",
+ "Released → Obsolete via change notice"
+ ],
+ [
+ "Production Released",
+ "Path for releasing to production through change process",
+ "Under Review → Released for manufacturing"
+ ],
+ [
+ "Promote",
+ "Path for promoting or demoting state through promotion request",
+ "In Work → Released via promotion request"
+ ],
+ [
+ "Refine",
+ "Custom workflow path for rework",
+ "Under Review → In Work for revision"
+ ],
+ [
+ "Revise",
+ "Path when creating a new version",
+ "Released → In Work (new version B.1 created)"
+ ],
+ [
+ "Set State",
+ "Directly sets state using the Set State action",
+ "Any state → multiple destinations allowed"
+ ]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "tip",
+ "text": "The <strong>Set State</strong> transition is unique because it allows multiple destination states from a single source. This gives administrators flexibility to handle exceptional cases without creating a separate transition for each possible path."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Transition Example"
+ },
+ {
+ "type": "paragraph",
+ "text": "Consider an object in the <strong>Design</strong> state. From Design, a <strong>Promote</strong> transition can advance it to Released, a <strong>Lock</strong> transition can move it into Under Review (locking it from modification during evaluation), and a <strong>Revise</strong> transition creates a new version that starts back in Design. Each transition type encodes specific business logic that controls not just the destination state, but also what happens along the way - such as locking the object, creating a new version, or triggering a change process."
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Arrange these transition types from most routine to most exceptional:",
+ "items": [
+ "Promote (standard advancement through states)",
+ "Lock (interim hold during review)",
+ "Revise (create new version for continued work)",
+ "Obsolescence (retire a version from active use)"
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Transitions are predefined actions that provide business logic for moving objects between life cycle states",
+ "For basic life cycles, transitions are the only means of state movement; advanced life cycles also use workflows",
+ "Eight transition types exist - Change, Lock, Obsolescence, Production Released, Promote, Refine, Revise, and Set State - each encoding specific business behavior",
+ "Set State transitions uniquely allow multiple destination states from a single source"
+ ]
+ },
+ {
+ "id": "m1t5",
+ "title": "Exercise 1 - Create a Basic Life Cycle Template",
+ "estimatedMinutes": 8,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "In this exercise, you will import and configure a basic life cycle template for a Development Plan document used by PTC Publications. You will add two new states, reorder the state sequence, and define transition properties to create a complete five-state life cycle."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "You must be signed in as <strong>bpatterson/ptc</strong> and have access to the PTC Publications context to complete this exercise. The Plan Development Life Cycle must be available for import."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex1",
+ "title": "Create a Basic Life Cycle Template",
+ "objective": "Import a life cycle template, add two new phases (Rework and Under Review), reorder states, and define transitions to produce a five-state basic life cycle.",
+ "tasks": [
+ {
+ "id": "ex1-t1",
+ "title": "Import the Life Cycle",
+ "steps": [
+ {
+ "action": "Sign in to Windchill as bpatterson with password ptc.",
+ "detail": "You need the bpatterson account because it has the necessary permissions to administer life cycle templates in the PTC Publications context.",
+ "hint": null
+ },
+ {
+ "action": "Navigate to PTC Publications > Utilities > Life Cycle Template Administration.",
+ "detail": "The Life Cycle Template Administration utility is the central tool for creating, importing, exporting, and managing life cycle templates.",
+ "hint": "Use the product context navigation to find the Utilities section."
+ },
+ {
+ "action": "Import the Plan Development Life Cycle template.",
+ "detail": "Importing a predefined template gives you a starting point that you will customize with additional states and transitions.",
+ "hint": "Look for an Import button or action in the administration toolbar."
+ },
+ {
+ "action": "Open the imported life cycle in the editor and review its existing states and properties. Confirm the Type is set to Basic.",
+ "detail": "Before making changes, verify that the template was imported correctly and understand the baseline configuration - including which states and transitions already exist.",
+ "hint": null
+ }
+ ]
+ },
+ {
+ "id": "ex1-t2",
+ "title": "Add Two Phases",
+ "steps": [
+ {
+ "action": "Click the New Phase icon and select the Rework state.",
+ "detail": "The Rework state will allow objects to cycle back for revision when issues are found during review.",
+ "hint": "The New Phase icon is typically in the life cycle editor toolbar."
+ },
+ {
+ "action": "Click the New Phase icon again and select the Under Review state.",
+ "detail": "Under Review serves as a gate where objects are locked from modification while stakeholders evaluate them.",
+ "hint": null
+ }
+ ]
+ },
+ {
+ "id": "ex1-t3",
+ "title": "Reorder States and Define Transitions",
+ "steps": [
+ {
+ "action": "Drag the Rework state to position it after Creation in the state sequence.",
+ "detail": "State order in the editor reflects the expected flow of the business process. Rework logically follows Creation because objects may need rework before advancing further.",
+ "hint": "Click and drag the state box in the graphical editor."
+ },
+ {
+ "action": "Drag the Under Review state to position it after Rework.",
+ "detail": "Under Review is an interim evaluation state before Release, so it belongs between Rework and Released.",
+ "hint": null
+ },
+ {
+ "action": "Define transitions for the Creation state: Set State to Rework, Lock to Under Review. Verify the existing Promote to Released transition.",
+ "detail": "These transitions allow objects in Creation to be sent back for rework, moved into review, or promoted directly to Released.",
+ "hint": "Select the Creation state and use the transition configuration panel to add each transition type."
+ },
+ {
+ "action": "Define transitions for the Rework state: Revise and Set State to Creation, Lock to Under Review, and Promote to Released.",
+ "detail": "Rework objects can return to Creation for a fresh start (via Revise or Set State), move to Under Review for evaluation, or advance directly to Released if rework is complete.",
+ "hint": null
+ },
+ {
+ "action": "Click Save & Close, then check in the life cycle template.",
+ "detail": "Saving and checking in makes the template available for use. The completed life cycle should have five states: Creation, Rework, Under Review, Released, and Obsolete.",
+ "hint": "Review the state diagram one final time before saving to confirm all transitions are correct."
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Life cycle templates can be imported and customized rather than built from scratch",
+ "New phases are added using the New Phase icon and selecting from predefined state names",
+ "State order in the editor should reflect the expected business process flow",
+ "The completed life cycle has five states - Creation, Rework, Under Review, Released, and Obsolete - with transitions defining valid paths between them"
+ ]
+ }
+ ]
 }

@@ -1,7 +1,7 @@
 {
   "id": "cb-overview",
   "title": "Codebeamer: Fundamentals Overview",
-  "description": "Introduction to Codebeamer ALM platform — trackers, requirements management, test management, and data visualization.",
+  "description": "Introduction to Codebeamer ALM platform - trackers, requirements management, test management, and data visualization.",
   "prerequisite": null,
   "modules": [
     {

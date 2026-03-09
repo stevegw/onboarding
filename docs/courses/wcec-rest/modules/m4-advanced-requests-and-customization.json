@@ -1,355 +1,355 @@
 {
-  "id": "m4",
-  "title": "Advanced Requests and Customization",
-  "description": "Create multiple objects in a single request, extend and create custom WRS domains, and implement OAuth2 authentication for end-user applications.",
-  "topics": [
-    {
-      "id": "m4t1",
-      "title": "Batch and Multi-Object Processing",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Every HTTP request to the Windchill REST Services server involves a round trip between the client and the server. In high-latency environments or when many related operations must be performed together, individual requests can add up to significant delays. WRS provides two mechanisms to reduce these round trips: <strong>batch requests</strong> and <strong>multi-object endpoints</strong>."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Batch Requests"
-        },
-        {
-          "type": "paragraph",
-          "text": "A batch request groups multiple HTTP operations into a single request envelope. This is especially useful when a sequence of operations must be treated as a single transaction. WRS batch requests use the <code>multipart/mixed;boundary=batch</code> Content-Type header and follow the OData changeset specification. Each individual operation inside the batch is separated by boundary markers within the request body."
-        },
-        {
-          "type": "paragraph",
-          "text": "A typical batch workflow might perform all four stages of a document lifecycle in one round trip: <strong>Create document</strong> → <strong>Check out</strong> → <strong>Upload content</strong> → <strong>Check in</strong>. Grouping these as a changeset ensures they succeed or fail together, preserving data integrity without requiring the client to manage partial failures across separate calls."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Multi-Object Endpoints"
-        },
-        {
-          "type": "paragraph",
-          "text": "When the goal is to <em>create or update multiple similar objects simultaneously</em>, multi-object endpoints are more efficient than batch processing. These specialized endpoints accept a single request body containing attribute values for every object to be created. For example, the <code>/CreateParts</code> endpoint in the Product Management domain creates multiple parts in one call — analogous to creating multiple objects at once in the Windchill user interface."
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "When creating or updating multiple objects simultaneously, use multi-object endpoints (e.g., <code>/CreateParts</code>) rather than batch processing — they are more efficient. Reserve batch requests for sequences of <em>different</em> operations that must execute as a single transaction."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each processing approach to its primary use case.",
-          "pairs": [
-            {
-              "left": "Batch Processing",
-              "right": "Multiple related operations grouped in a single transaction"
-            },
-            {
-              "left": "Multi-Object Endpoints",
-              "right": "Creating or updating multiple similar objects simultaneously"
-            },
-            {
-              "left": "Single Request",
-              "right": "Standard CRUD operation on one entity"
-            },
-            {
-              "left": "$expand",
-              "right": "Retrieving related entities in a single read request"
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Batch processing groups multiple related operations into a single HTTP request using the OData changeset specification.",
-        "Multi-object endpoints like <code>/CreateParts</code> are more efficient than batch requests when creating or updating multiple similar objects.",
-        "Reducing round trips with batch or multi-object approaches significantly improves performance in high-latency environments."
-      ]
-    },
-    {
-      "id": "m4t2",
-      "title": "Extend WRS Domains",
-      "estimatedMinutes": 7,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Windchill installations frequently include custom soft types — specialized subtypes of standard Windchill objects with additional attributes. To expose those custom types through WRS, you extend an existing PTC domain rather than building a new one from scratch. Extensions are additive: they enrich a domain without altering its core definitions."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "What Can Be Extended"
-        },
-        {
-          "type": "paragraph",
-          "text": "WRS supports five categories of domain extension:"
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Type Extensions",
-              "back": "Add OData entity types that correspond to custom soft types in Windchill. This allows the REST API to expose your organization's specialized objects alongside standard PTC entities."
-            },
-            {
-              "front": "Custom Properties",
-              "back": "Add new structural properties (attributes) to existing PTC domain entities. Use this to surface additional data fields that standard entities do not expose."
-            },
-            {
-              "front": "Custom Navigation",
-              "back": "Add new navigation properties between entities in a PTC domain. Navigation properties represent relationships, such as a custom part linking to a supplier record."
-            },
-            {
-              "front": "New Functions and Actions",
-              "back": "Add new OData functions (read operations) and actions (state-changing operations) to existing PTC domains, enabling custom business logic to be invoked through the standard REST interface."
-            }
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Extension Configuration Path"
-        },
-        {
-          "type": "paragraph",
-          "text": "Extensions are placed in a <strong>custom configuration path</strong> that mirrors the folder structure of the corresponding PTC domain. The key principle is that you replicate the <em>folder structure only</em> — you do <strong>not</strong> copy or modify the original PTC JSON or JS files."
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Configuration", "Path"],
-          "rows": [
-            ["PTC domain configs", "<code>$WT_HOME/codebase/rest/ptc/domain/</code>"],
-            ["Custom extension configs", "<code>$WT_HOME/codebase/rest/custom/domain/&lt;domain name&gt;/&lt;version&gt;/entity/</code>"]
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "For example, to expose a custom soft type <code>com.custom.PurchasePart</code> (a subclass of <code>WTPart</code> with a <code>SupplierName</code> attribute), you would mirror the <strong>ProdMgmt</strong> domain folder in the custom path, then create a <code>PurchasePart.json</code> file that declares the entity's name, <code>wcType</code>, collection name, parent reference, and attributes. No existing PTC file is touched."
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "Entity types, structural properties, and navigation properties present in PTC domains <strong>cannot be modified</strong> — only extended. Always create extension files in the custom configuration path. Never edit PTC domain configuration files directly, as changes will be overwritten during upgrades."
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange the steps to extend a PTC domain in the correct order.",
-          "items": [
-            "Identify the PTC domain to extend",
-            "Mirror the domain folder structure in the custom config path",
-            "Create the entity JSON configuration file",
-            "Define custom properties and parent references",
-            "Save to the custom domain entity folder"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "PTC domains can be extended with custom type definitions, properties, navigation properties, functions, and actions.",
-        "Extensions mirror the PTC folder structure in the custom configuration path — only the folder hierarchy is copied, not the source files.",
-        "Existing PTC entity types, structural properties, and navigation properties cannot be modified, only extended."
-      ]
-    },
-    {
-      "id": "m4t3",
-      "title": "Create Custom Domains",
-      "estimatedMinutes": 7,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "When the data you need to expose through WRS belongs to a functional area that no existing PTC domain covers, you can create an entirely new <strong>custom domain</strong>. A custom domain follows the same namespace and configuration conventions as PTC domains but resides entirely within the custom configuration path."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Custom Domain Requirements"
-        },
-        {
-          "type": "paragraph",
-          "text": "Each custom domain requires its own folder and a corresponding JSON configuration file that describes the domain's metadata. The configuration declares the domain's name, identifier, description, namespace, container name, and default version. PTC uses the namespace convention <code>PTC.&lt;domainName&gt;</code>; custom domains should follow a similar pattern using your organization's prefix."
-        },
-        {
-          "type": "paragraph",
-          "text": "Within the domain, Windchill types must be explicitly exposed as OData entities, and navigational relationships between entities must be declared so clients can traverse related data. Initially, custom domains are <em>read-only</em> — information can be retrieved from Windchill through the domain, but write operations require additional configuration."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Process to Create a Custom Domain"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Step", "Action"],
-          "rows": [
-            ["1", "Identify a domain identifier for the new custom domain"],
-            ["2", "Create a new folder at <code>$WT_HOME/codebase/rest/custom/domain/CustomDomainName/</code>"],
-            ["3", "Create the domain identifier JSON (<code>CustomDomainName.json</code>) with name, ID, description, namespace, container name, and default version"],
-            ["4", "Create a version subfolder: <code>.../CustomDomainName/v1/</code>"],
-            ["5", "Create an <code>entity/</code> subfolder and add entity configuration files for each exposed Windchill type"],
-            ["6", "Create <code>import.json</code> to register all entities with the domain configuration"],
-            ["7", "Test the domain by calling its metadata endpoint and verifying the response"]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "insight",
-          "text": "In most cases, extending PTC Domains achieves the data access requirements for your application. Create custom domains only when you need to expose functional areas that are not available in any existing PTC domain. Custom domains add maintenance overhead and should be created deliberately."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each domain customization concept to its correct description.",
-          "pairs": [
-            {
-              "left": "Domain Extension",
-              "right": "Add entities, properties, or actions to existing PTC domains"
-            },
-            {
-              "left": "Custom Domain",
-              "right": "Create new domains for functional areas not in PTC domains"
-            },
-            {
-              "left": "import.json",
-              "right": "Register entities with the domain configuration"
-            },
-            {
-              "left": "Entity JSON",
-              "right": "Define the OData entity type with properties and relationships"
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Custom domains expose Windchill data from functional areas not available in any existing PTC domain.",
-        "Each custom domain requires a folder, a JSON configuration file, a version subfolder, entity definitions, and an import.json registration file.",
-        "Custom domains follow the same namespace and configuration conventions as PTC domains — prefer extending existing domains when the data is already available."
-      ]
-    },
-    {
-      "id": "m4t4",
-      "title": "OAuth2 Authentication Flow",
-      "estimatedMinutes": 7,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Integrations that run on behalf of a human user — browser applications, mobile apps, or customer portals — require a way to authenticate that user against Windchill without embedding their credentials in the application. <strong>OAuth2</strong> is the industry-standard networking protocol that solves this problem by delegating authorization to Windchill and issuing short-lived access tokens to the client."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "OAuth2 and WRS"
-        },
-        {
-          "type": "paragraph",
-          "text": "WRS does not contain its own authorization code or SSO compatibility — the <em>client</em> application must drive the OAuth2 flow. OAuth2 can be used for system-to-system communication in standalone mode or for calls made on behalf of a logged-in user. The result in either case is an <strong>access token</strong> that the client includes in every subsequent WRS request."
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "Basic authentication is <strong>not supported</strong> in Windchill+ Select or MedDev systems. A token-based authentication approach per the OAuth2 specification is required for these environments. Attempting basic auth will result in rejected requests."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "The Five-Step Authorization Flow"
-        },
-        {
-          "type": "paragraph",
-          "text": "The OAuth2 authorization code flow proceeds as follows. In step 1, the client application constructs an authorization URL containing parameters such as <code>response_type=code</code>, <code>client_id</code>, <code>redirect_uri</code>, <code>scope</code>, and <code>state</code>. The <code>state</code> parameter is a random string that the client generates and later verifies to prevent redirect endpoint attacks."
-        },
-        {
-          "type": "paragraph",
-          "text": "In steps 2 and 3, the user is redirected to the OAuth prompt, clicks <strong>Allow</strong>, and is redirected back to the client's <code>redirect_uri</code> with an <strong>authorization code</strong> appended as a query parameter. In step 4, the client exchanges this short-lived code for an <strong>access token</strong> and a <strong>refresh token</strong> by sending a POST request to the server's token endpoint. The server replies with <code>access_token</code>, <code>refresh_token</code>, <code>token_type</code> (Bearer), and <code>expires_in</code>. In step 5, the client includes the access token as a <code>Bearer</code> token in the <code>Authorization</code> header of every WRS request, refreshing it as needed before expiry."
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange the OAuth2 authorization flow steps in the correct order.",
-          "items": [
-            "Create authorization prompt for user sign-in",
-            "User approves the request at OAuth prompt",
-            "Authorization code returned via redirect URL",
-            "Exchange authorization code for access token",
-            "Use access token in Authorization header for WRS requests"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "OAuth2 provides token-based authentication for browser and mobile WRS applications, delegating authorization to Windchill rather than embedding credentials.",
-        "The authorization flow involves user approval, an authorization code returned via redirect, and an exchange for short-lived access and refresh tokens.",
-        "Basic authentication is not supported in Windchill+ Select or MedDev systems — token-based authentication per the OAuth2 specification is required."
-      ]
-    },
-    {
-      "id": "m4t5",
-      "title": "Exercise - Create Multiple Parts",
-      "estimatedMinutes": 8,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In this exercise, you will use the <code>/CreateParts</code> multi-object endpoint to create two new Windchill parts in a single REST request. You will configure the request in Postman, send the payload, and verify the results both in the API response and in the Windchill user interface."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "You will need a valid CSRF nonce before beginning Task 1. If you do not have one, send a GET request to the <code>GetCSRFToken()</code> function endpoint first and copy the returned nonce value."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex7",
-          "title": "Create Multiple Parts",
-          "objective": "Use a multi-object endpoint to create two new parts in Windchill through a single REST request.",
-          "tasks": [
-            {
-              "id": "ex7-t1",
-              "title": "Set Up the Multi-Object Request",
-              "steps": [
-                {
-                  "action": "In Postman, create a new request with method POST targeting the CreateParts endpoint.",
-                  "detail": "The CreateParts multi-object endpoint is in the Product Management domain. The URL is <code>/servlet/odata/ProdMgmt/CreateParts</code>.",
-                  "hint": null
-                },
-                {
-                  "action": "Set Basic Auth credentials, add a <code>CSRF_NONCE</code> header with a valid nonce value, and set <code>Content-Type</code> to <code>application/json</code>.",
-                  "detail": "Multi-object endpoints modify data and therefore require both the <code>CSRF_NONCE</code> header and the <code>Content-Type</code> header in addition to authentication.",
-                  "hint": "If your nonce has expired, fetch a new one using the GetCSRFToken() function endpoint before proceeding."
-                },
-                {
-                  "action": "In the Body tab, select raw and enter the JSON array containing attributes for both new parts.",
-                  "detail": "The body includes properties for each part: Name, Number, context/container, folder location, and any required attributes. All values are specified as JSON key/value pairs within a JSON array — one object per part.",
-                  "hint": "Ensure the JSON body is valid — use a JSON validator if the syntax is unclear."
-                }
-              ]
-            },
-            {
-              "id": "ex7-t2",
-              "title": "Execute and Verify",
-              "steps": [
-                {
-                  "action": "Send the request and confirm a successful status code.",
-                  "detail": "A <code>201 Created</code> or <code>200 OK</code> status confirms the parts were created. The response body contains the full attribute details of both newly created objects.",
-                  "hint": null
-                },
-                {
-                  "action": "In the response JSON, locate the <code>FolderLocation</code> property to verify the product context and subfolder.",
-                  "detail": "The FolderLocation value confirms that the parts were created in the correct product context and folder, matching the values provided in the request body.",
-                  "hint": null
-                },
-                {
-                  "action": "In a browser, navigate to the product in Windchill and locate the two new parts in the appropriate folder.",
-                  "detail": "The parts should appear in the same folder specified in the request body. This confirms that the REST request successfully created the objects in Windchill and that the data is consistent with the API response.",
-                  "hint": null
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Multi-object endpoints like <code>/CreateParts</code> create multiple Windchill objects in a single REST request, reducing round trips and improving efficiency.",
-        "The request body contains a JSON array with one attribute object per part, including Name, Number, container context, and folder location.",
-        "Results can be verified both in the API response body and by browsing to the target folder in the Windchill user interface."
-      ]
-    }
-  ]
+ "id": "m4",
+ "title": "Advanced Requests and Customization",
+ "description": "Create multiple objects in a single request, extend and create custom WRS domains, and implement OAuth2 authentication for end-user applications.",
+ "topics": [
+ {
+ "id": "m4t1",
+ "title": "Batch and Multi-Object Processing",
+ "estimatedMinutes": 6,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Every HTTP request to the Windchill REST Services server involves a round trip between the client and the server. In high-latency environments or when many related operations must be performed together, individual requests can add up to significant delays. WRS provides two mechanisms to reduce these round trips: <strong>batch requests</strong> and <strong>multi-object endpoints</strong>."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Batch Requests"
+ },
+ {
+ "type": "paragraph",
+ "text": "A batch request groups multiple HTTP operations into a single request envelope. This is especially useful when a sequence of operations must be treated as a single transaction. WRS batch requests use the <code>multipart/mixed;boundary=batch</code> Content-Type header and follow the OData changeset specification. Each individual operation inside the batch is separated by boundary markers within the request body."
+ },
+ {
+ "type": "paragraph",
+ "text": "A typical batch workflow might perform all four stages of a document lifecycle in one round trip: <strong>Create document</strong> → <strong>Check out</strong> → <strong>Upload content</strong> → <strong>Check in</strong>. Grouping these as a changeset ensures they succeed or fail together, preserving data integrity without requiring the client to manage partial failures across separate calls."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Multi-Object Endpoints"
+ },
+ {
+ "type": "paragraph",
+ "text": "When the goal is to <em>create or update multiple similar objects simultaneously</em>, multi-object endpoints are more efficient than batch processing. These specialized endpoints accept a single request body containing attribute values for every object to be created. For example, the <code>/CreateParts</code> endpoint in the Product Management domain creates multiple parts in one call - analogous to creating multiple objects at once in the Windchill user interface."
+ },
+ {
+ "type": "callout",
+ "variant": "tip",
+ "text": "When creating or updating multiple objects simultaneously, use multi-object endpoints (e.g., <code>/CreateParts</code>) rather than batch processing - they are more efficient. Reserve batch requests for sequences of <em>different</em> operations that must execute as a single transaction."
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each processing approach to its primary use case.",
+ "pairs": [
+ {
+ "left": "Batch Processing",
+ "right": "Multiple related operations grouped in a single transaction"
+ },
+ {
+ "left": "Multi-Object Endpoints",
+ "right": "Creating or updating multiple similar objects simultaneously"
+ },
+ {
+ "left": "Single Request",
+ "right": "Standard CRUD operation on one entity"
+ },
+ {
+ "left": "$expand",
+ "right": "Retrieving related entities in a single read request"
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Batch processing groups multiple related operations into a single HTTP request using the OData changeset specification.",
+ "Multi-object endpoints like <code>/CreateParts</code> are more efficient than batch requests when creating or updating multiple similar objects.",
+ "Reducing round trips with batch or multi-object approaches significantly improves performance in high-latency environments."
+ ]
+ },
+ {
+ "id": "m4t2",
+ "title": "Extend WRS Domains",
+ "estimatedMinutes": 7,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Windchill installations frequently include custom soft types - specialized subtypes of standard Windchill objects with additional attributes. To expose those custom types through WRS, you extend an existing PTC domain rather than building a new one from scratch. Extensions are additive: they enrich a domain without altering its core definitions."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "What Can Be Extended"
+ },
+ {
+ "type": "paragraph",
+ "text": "WRS supports five categories of domain extension:"
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Type Extensions",
+ "back": "Add OData entity types that correspond to custom soft types in Windchill. This allows the REST API to expose your organization's specialized objects alongside standard PTC entities."
+ },
+ {
+ "front": "Custom Properties",
+ "back": "Add new structural properties (attributes) to existing PTC domain entities. Use this to surface additional data fields that standard entities do not expose."
+ },
+ {
+ "front": "Custom Navigation",
+ "back": "Add new navigation properties between entities in a PTC domain. Navigation properties represent relationships, such as a custom part linking to a supplier record."
+ },
+ {
+ "front": "New Functions and Actions",
+ "back": "Add new OData functions (read operations) and actions (state-changing operations) to existing PTC domains, enabling custom business logic to be invoked through the standard REST interface."
+ }
+ ]
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Extension Configuration Path"
+ },
+ {
+ "type": "paragraph",
+ "text": "Extensions are placed in a <strong>custom configuration path</strong> that mirrors the folder structure of the corresponding PTC domain. The key principle is that you replicate the <em>folder structure only</em> - you do <strong>not</strong> copy or modify the original PTC JSON or JS files."
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Configuration", "Path"],
+ "rows": [
+ ["PTC domain configs", "<code>$WT_HOME/codebase/rest/ptc/domain/</code>"],
+ ["Custom extension configs", "<code>$WT_HOME/codebase/rest/custom/domain/&lt;domain name&gt;/&lt;version&gt;/entity/</code>"]
+ ]
+ },
+ {
+ "type": "paragraph",
+ "text": "For example, to expose a custom soft type <code>com.custom.PurchasePart</code> (a subclass of <code>WTPart</code> with a <code>SupplierName</code> attribute), you would mirror the <strong>ProdMgmt</strong> domain folder in the custom path, then create a <code>PurchasePart.json</code> file that declares the entity's name, <code>wcType</code>, collection name, parent reference, and attributes. No existing PTC file is touched."
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "Entity types, structural properties, and navigation properties present in PTC domains <strong>cannot be modified</strong> - only extended. Always create extension files in the custom configuration path. Never edit PTC domain configuration files directly, as changes will be overwritten during upgrades."
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Arrange the steps to extend a PTC domain in the correct order.",
+ "items": [
+ "Identify the PTC domain to extend",
+ "Mirror the domain folder structure in the custom config path",
+ "Create the entity JSON configuration file",
+ "Define custom properties and parent references",
+ "Save to the custom domain entity folder"
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "PTC domains can be extended with custom type definitions, properties, navigation properties, functions, and actions.",
+ "Extensions mirror the PTC folder structure in the custom configuration path - only the folder hierarchy is copied, not the source files.",
+ "Existing PTC entity types, structural properties, and navigation properties cannot be modified, only extended."
+ ]
+ },
+ {
+ "id": "m4t3",
+ "title": "Create Custom Domains",
+ "estimatedMinutes": 7,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "When the data you need to expose through WRS belongs to a functional area that no existing PTC domain covers, you can create an entirely new <strong>custom domain</strong>. A custom domain follows the same namespace and configuration conventions as PTC domains but resides entirely within the custom configuration path."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Custom Domain Requirements"
+ },
+ {
+ "type": "paragraph",
+ "text": "Each custom domain requires its own folder and a corresponding JSON configuration file that describes the domain's metadata. The configuration declares the domain's name, identifier, description, namespace, container name, and default version. PTC uses the namespace convention <code>PTC.&lt;domainName&gt;</code>; custom domains should follow a similar pattern using your organization's prefix."
+ },
+ {
+ "type": "paragraph",
+ "text": "Within the domain, Windchill types must be explicitly exposed as OData entities, and navigational relationships between entities must be declared so clients can traverse related data. Initially, custom domains are <em>read-only</em> - information can be retrieved from Windchill through the domain, but write operations require additional configuration."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Process to Create a Custom Domain"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Step", "Action"],
+ "rows": [
+ ["1", "Identify a domain identifier for the new custom domain"],
+ ["2", "Create a new folder at <code>$WT_HOME/codebase/rest/custom/domain/CustomDomainName/</code>"],
+ ["3", "Create the domain identifier JSON (<code>CustomDomainName.json</code>) with name, ID, description, namespace, container name, and default version"],
+ ["4", "Create a version subfolder: <code>.../CustomDomainName/v1/</code>"],
+ ["5", "Create an <code>entity/</code> subfolder and add entity configuration files for each exposed Windchill type"],
+ ["6", "Create <code>import.json</code> to register all entities with the domain configuration"],
+ ["7", "Test the domain by calling its metadata endpoint and verifying the response"]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "insight",
+ "text": "In most cases, extending PTC Domains achieves the data access requirements for your application. Create custom domains only when you need to expose functional areas that are not available in any existing PTC domain. Custom domains add maintenance overhead and should be created deliberately."
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each domain customization concept to its correct description.",
+ "pairs": [
+ {
+ "left": "Domain Extension",
+ "right": "Add entities, properties, or actions to existing PTC domains"
+ },
+ {
+ "left": "Custom Domain",
+ "right": "Create new domains for functional areas not in PTC domains"
+ },
+ {
+ "left": "import.json",
+ "right": "Register entities with the domain configuration"
+ },
+ {
+ "left": "Entity JSON",
+ "right": "Define the OData entity type with properties and relationships"
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Custom domains expose Windchill data from functional areas not available in any existing PTC domain.",
+ "Each custom domain requires a folder, a JSON configuration file, a version subfolder, entity definitions, and an import.json registration file.",
+ "Custom domains follow the same namespace and configuration conventions as PTC domains - prefer extending existing domains when the data is already available."
+ ]
+ },
+ {
+ "id": "m4t4",
+ "title": "OAuth2 Authentication Flow",
+ "estimatedMinutes": 7,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Integrations that run on behalf of a human user - browser applications, mobile apps, or customer portals - require a way to authenticate that user against Windchill without embedding their credentials in the application. <strong>OAuth2</strong> is the industry-standard networking protocol that solves this problem by delegating authorization to Windchill and issuing short-lived access tokens to the client."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "OAuth2 and WRS"
+ },
+ {
+ "type": "paragraph",
+ "text": "WRS does not contain its own authorization code or SSO compatibility - the <em>client</em> application must drive the OAuth2 flow. OAuth2 can be used for system-to-system communication in standalone mode or for calls made on behalf of a logged-in user. The result in either case is an <strong>access token</strong> that the client includes in every subsequent WRS request."
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "Basic authentication is <strong>not supported</strong> in Windchill+ Select or MedDev systems. A token-based authentication approach per the OAuth2 specification is required for these environments. Attempting basic auth will result in rejected requests."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "The Five-Step Authorization Flow"
+ },
+ {
+ "type": "paragraph",
+ "text": "The OAuth2 authorization code flow proceeds as follows. In step 1, the client application constructs an authorization URL containing parameters such as <code>response_type=code</code>, <code>client_id</code>, <code>redirect_uri</code>, <code>scope</code>, and <code>state</code>. The <code>state</code> parameter is a random string that the client generates and later verifies to prevent redirect endpoint attacks."
+ },
+ {
+ "type": "paragraph",
+ "text": "In steps 2 and 3, the user is redirected to the OAuth prompt, clicks <strong>Allow</strong>, and is redirected back to the client's <code>redirect_uri</code> with an <strong>authorization code</strong> appended as a query parameter. In step 4, the client exchanges this short-lived code for an <strong>access token</strong> and a <strong>refresh token</strong> by sending a POST request to the server's token endpoint. The server replies with <code>access_token</code>, <code>refresh_token</code>, <code>token_type</code> (Bearer), and <code>expires_in</code>. In step 5, the client includes the access token as a <code>Bearer</code> token in the <code>Authorization</code> header of every WRS request, refreshing it as needed before expiry."
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Arrange the OAuth2 authorization flow steps in the correct order.",
+ "items": [
+ "Create authorization prompt for user sign-in",
+ "User approves the request at OAuth prompt",
+ "Authorization code returned via redirect URL",
+ "Exchange authorization code for access token",
+ "Use access token in Authorization header for WRS requests"
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "OAuth2 provides token-based authentication for browser and mobile WRS applications, delegating authorization to Windchill rather than embedding credentials.",
+ "The authorization flow involves user approval, an authorization code returned via redirect, and an exchange for short-lived access and refresh tokens.",
+ "Basic authentication is not supported in Windchill+ Select or MedDev systems - token-based authentication per the OAuth2 specification is required."
+ ]
+ },
+ {
+ "id": "m4t5",
+ "title": "Exercise - Create Multiple Parts",
+ "estimatedMinutes": 8,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "In this exercise, you will use the <code>/CreateParts</code> multi-object endpoint to create two new Windchill parts in a single REST request. You will configure the request in Postman, send the payload, and verify the results both in the API response and in the Windchill user interface."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "You will need a valid CSRF nonce before beginning Task 1. If you do not have one, send a GET request to the <code>GetCSRFToken()</code> function endpoint first and copy the returned nonce value."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex7",
+ "title": "Create Multiple Parts",
+ "objective": "Use a multi-object endpoint to create two new parts in Windchill through a single REST request.",
+ "tasks": [
+ {
+ "id": "ex7-t1",
+ "title": "Set Up the Multi-Object Request",
+ "steps": [
+ {
+ "action": "In Postman, create a new request with method POST targeting the CreateParts endpoint.",
+ "detail": "The CreateParts multi-object endpoint is in the Product Management domain. The URL is <code>/servlet/odata/ProdMgmt/CreateParts</code>.",
+ "hint": null
+ },
+ {
+ "action": "Set Basic Auth credentials, add a <code>CSRF_NONCE</code> header with a valid nonce value, and set <code>Content-Type</code> to <code>application/json</code>.",
+ "detail": "Multi-object endpoints modify data and therefore require both the <code>CSRF_NONCE</code> header and the <code>Content-Type</code> header in addition to authentication.",
+ "hint": "If your nonce has expired, fetch a new one using the GetCSRFToken() function endpoint before proceeding."
+ },
+ {
+ "action": "In the Body tab, select raw and enter the JSON array containing attributes for both new parts.",
+ "detail": "The body includes properties for each part: Name, Number, context/container, folder location, and any required attributes. All values are specified as JSON key/value pairs within a JSON array - one object per part.",
+ "hint": "Ensure the JSON body is valid - use a JSON validator if the syntax is unclear."
+ }
+ ]
+ },
+ {
+ "id": "ex7-t2",
+ "title": "Execute and Verify",
+ "steps": [
+ {
+ "action": "Send the request and confirm a successful status code.",
+ "detail": "A <code>201 Created</code> or <code>200 OK</code> status confirms the parts were created. The response body contains the full attribute details of both newly created objects.",
+ "hint": null
+ },
+ {
+ "action": "In the response JSON, locate the <code>FolderLocation</code> property to verify the product context and subfolder.",
+ "detail": "The FolderLocation value confirms that the parts were created in the correct product context and folder, matching the values provided in the request body.",
+ "hint": null
+ },
+ {
+ "action": "In a browser, navigate to the product in Windchill and locate the two new parts in the appropriate folder.",
+ "detail": "The parts should appear in the same folder specified in the request body. This confirms that the REST request successfully created the objects in Windchill and that the data is consistent with the API response.",
+ "hint": null
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Multi-object endpoints like <code>/CreateParts</code> create multiple Windchill objects in a single REST request, reducing round trips and improving efficiency.",
+ "The request body contains a JSON array with one attribute object per part, including Name, Number, container context, and folder location.",
+ "Results can be verified both in the API response body and by browsing to the target folder in the Windchill user interface."
+ ]
+ }
+ ]
 }

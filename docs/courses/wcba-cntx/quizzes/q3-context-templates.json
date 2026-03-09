@@ -1,58 +1,58 @@
 {
-  "moduleId": "m3",
-  "title": "Context Templates Knowledge Check",
-  "questions": [
-    {
-      "id": "m3-kc-001",
-      "question": "Which user-facing template type provides initial settings for files created in a CAD authoring application?",
-      "options": [
-        "Document Templates",
-        "Note Templates",
-        "CAD Document Templates",
-        "Context Templates"
-      ],
-      "answerIndex": 2,
-      "rationale": "CAD Document Templates provide initial settings for CAD authoring files such as Creo parts, assemblies, and drawings. Document Templates provide style and layout for documentation, Note Templates provide boilerplate text for design markups, and Context Templates define business environment settings for new contexts — not individual CAD files.",
-      "topic": "m3t1"
-    },
-    {
-      "id": "m3-kc-002",
-      "question": "What is the most significant administrative element established by a context template?",
-      "options": [
-        "Default forum topics and notebook folders",
-        "The series of access control rules written to context team roles",
-        "Project plans and deliverables",
-        "Data types and life cycle templates"
-      ],
-      "answerIndex": 1,
-      "rationale": "The most significant administrative element in a context template is the series of access control rules written to context team roles. These rules determine who can view, create, modify, and delete objects in any context created from the template. While forum topics, project plans, and data types are also established by context templates, access control rules have the greatest impact on security and governance.",
-      "topic": "m3t2"
-    },
-    {
-      "id": "m3-kc-003",
-      "question": "A CAD document template created at the organization level is available to which scope?",
-      "options": [
-        "Only the specific context where it was created",
-        "All organizations and sub-contexts across the site",
-        "All contexts within that organization",
-        "Only users with site administrator privileges"
-      ],
-      "answerIndex": 2,
-      "rationale": "CAD document template scoping follows a hierarchy: site-level templates are available to all organizations and sub-contexts, organization-level templates are available to all contexts within that organization, and sub-organization-level templates are available only within that specific context. An organization-level template falls in the middle tier.",
-      "topic": "m3t3"
-    },
-    {
-      "id": "m3-kc-004",
-      "question": "Which of the following is an out-of-the-box Library Template provided by Windchill?",
-      "options": [
-        "Product Design",
-        "General (PDM)",
-        "Part Library",
-        "Program Library"
-      ],
-      "answerIndex": 2,
-      "rationale": "Windchill provides three out-of-the-box Library Templates: General Library, Part Library, and Document Library. Product Design is a Product Template, General (PDM) is an Organization Template, and Program Library is not a standard out-of-the-box template.",
-      "topic": "m3t2"
-    }
-  ]
+ "moduleId": "m3",
+ "title": "Context Templates Knowledge Check",
+ "questions": [
+ {
+ "id": "m3-kc-001",
+ "question": "Which user-facing template type provides initial settings for files created in a CAD authoring application?",
+ "options": [
+ "Document Templates",
+ "Note Templates",
+ "CAD Document Templates",
+ "Context Templates"
+ ],
+ "answerIndex": 2,
+ "rationale": "CAD Document Templates provide initial settings for CAD authoring files such as Creo parts, assemblies, and drawings. Document Templates provide style and layout for documentation, Note Templates provide boilerplate text for design markups, and Context Templates define business environment settings for new contexts - not individual CAD files.",
+ "topic": "m3t1"
+ },
+ {
+ "id": "m3-kc-002",
+ "question": "What is the most significant administrative element established by a context template?",
+ "options": [
+ "Default forum topics and notebook folders",
+ "The series of access control rules written to context team roles",
+ "Project plans and deliverables",
+ "Data types and life cycle templates"
+ ],
+ "answerIndex": 1,
+ "rationale": "The most significant administrative element in a context template is the series of access control rules written to context team roles. These rules determine who can view, create, modify, and delete objects in any context created from the template. While forum topics, project plans, and data types are also established by context templates, access control rules have the greatest impact on security and governance.",
+ "topic": "m3t2"
+ },
+ {
+ "id": "m3-kc-003",
+ "question": "A CAD document template created at the organization level is available to which scope?",
+ "options": [
+ "Only the specific context where it was created",
+ "All organizations and sub-contexts across the site",
+ "All contexts within that organization",
+ "Only users with site administrator privileges"
+ ],
+ "answerIndex": 2,
+ "rationale": "CAD document template scoping follows a hierarchy: site-level templates are available to all organizations and sub-contexts, organization-level templates are available to all contexts within that organization, and sub-organization-level templates are available only within that specific context. An organization-level template falls in the middle tier.",
+ "topic": "m3t3"
+ },
+ {
+ "id": "m3-kc-004",
+ "question": "Which of the following is an out-of-the-box Library Template provided by Windchill?",
+ "options": [
+ "Product Design",
+ "General (PDM)",
+ "Part Library",
+ "Program Library"
+ ],
+ "answerIndex": 2,
+ "rationale": "Windchill provides three out-of-the-box Library Templates: General Library, Part Library, and Document Library. Product Design is a Product Template, General (PDM) is an Organization Template, and Program Library is not a standard out-of-the-box template.",
+ "topic": "m3t2"
+ }
+ ]
 }

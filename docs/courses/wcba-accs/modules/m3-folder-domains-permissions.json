@@ -1,296 +1,296 @@
 {
-  "id": "m3",
-  "title": "Folder Domains and Advanced Permissions",
-  "description": "Create folder domains, understand permissions for move and lifecycle operations, and define notification and indexing policies.",
-  "topics": [
-    {
-      "id": "m3t1",
-      "title": "Folder and Shared Team Domains",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "While the default domain governs all objects in a context, Windchill also supports folder-level domains for more granular access control, and shared team domains that apply common rules across contexts."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Folder Domains"
-        },
-        {
-          "type": "paragraph",
-          "text": "By default, folders inherit policies from their parent context's domain. Administrators can create new domains and associate them with specific folders to apply different access control policies. Folder domains must be created as children of the context's default domain."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "To assign a domain to a folder, the <strong>Display Folder Domains</strong> preference must be set to Yes. After the assignment, the preference can be reverted. Creating a product template from this setup preserves the domain configuration."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Shared Team Domains"
-        },
-        {
-          "type": "paragraph",
-          "text": "Creating a shared team automatically creates a domain with the same name. Every product or library using the shared team has its Default domain connected to the shared team domain instead of the PDM domain."
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "Because the shared team domain sits at the same level as PDM, any specific rules in the PDM domain will be <strong>ignored</strong> when resolving the ACL inside a product or library using the shared team."
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Feature", "Folder Domain", "Shared Team Domain"],
-          "rows": [
-            ["Created", "Manually by administrator", "Automatically when shared team is created"],
-            ["Associated with", "Specific folders within a context", "All contexts using the shared team"],
-            ["Parent domain", "Child of context's Default domain", "Same level as PDM domain"],
-            ["Use case", "Restrict access to a specific folder", "Apply common rules across multiple contexts"]
-          ]
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each scenario to the correct domain approach:",
-          "pairs": [
-            {"left": "Restrict the 'Team Information' folder to team members only", "right": "Folder Domain"},
-            {"left": "Apply consistent rules across all products sharing the same team", "right": "Shared Team Domain"},
-            {"left": "Set global rules for all public products in an organization", "right": "PDM Domain"},
-            {"left": "Bypass global rules for a confidential product", "right": "Private Domain"}
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Folder domains enable different access control policies for specific folders within a context.",
-        "The Display Folder Domains preference must be enabled to assign domains to folders.",
-        "Shared team domains automatically override PDM domain rules for contexts using the shared team.",
-        "Use folder domains for granular control and shared team domains for consistent cross-context policies."
-      ]
-    },
-    {
-      "id": "m3t2",
-      "title": "Permissions for Common Operations",
-      "estimatedMinutes": 7,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Some Windchill operations require specific combinations of permissions. Understanding which permissions are needed for move, lifecycle, and content operations prevents access control problems."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Move Operation Permissions"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Scenario", "Required Permissions"],
-          "rows": [
-            ["Same container, same domain", "Modify permission only"],
-            ["Same container, different domains", "Change Domain on source domain + Create by Move on target domain"],
-            ["Different containers and domains", "Change Context on object type/state in source container's domain"]
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Lifecycle State Change Permissions"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Method", "Requirements"],
-          "rows": [
-            ["Process-driven (Promotion/Change)", "Valid transition in lifecycle template + Read permission + Create on tracking object"],
-            ["Administrative Set State", "Administrative permission on the business object"],
-            ["Non-administrative Set State", "Valid transition + Set State permission on the object in current state"],
-            ["Reassign Life Cycle", "Administrative permission (or Modify in project context)"]
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Content and Identity Permissions"
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Modify vs Modify Identity",
-              "back": "Modify changes non-identity attributes. Modify Identity changes identity attributes like part number and organization identifier (but not the part name)."
-            },
-            {
-              "front": "Read vs Download",
-              "back": "Read allows viewing an object and its metadata. Download allows downloading primary content and attachment files. Both are needed for full access to content."
-            },
-            {
-              "front": "Change Permissions",
-              "back": "Enables a user to access and change permissions of other users through the Edit Access Control interface. Granted users can only assign permissions they themselves have."
-            }
-          ]
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange these move scenarios from simplest (fewest permissions) to most complex:",
-          "items": [
-            "Move within the same folder domain (Modify only)",
-            "Move to a different domain in the same product (Change Domain + Create by Move)",
-            "Move to a different product context (Change Context + appropriate folder permissions)"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Move operations require different permissions depending on whether the domain or context changes.",
-        "Lifecycle state changes can be process-driven, administrative, or non-administrative — each requires different permissions.",
-        "Modify permission changes non-identity attributes; Modify Identity changes identity attributes like part number.",
-        "Change Permissions allows a user to grant others only permissions they already possess."
-      ]
-    },
-    {
-      "id": "m3t3",
-      "title": "Notification and Indexing Policies",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In addition to access control, the Policy Administrator enables you to define notification rules that alert users about system events and indexing rules that control which objects are searchable."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Notification Policies"
-        },
-        {
-          "type": "paragraph",
-          "text": "Notification rules provide an automated method of notifying users via email about system events such as object check-in, state changes, or modifications."
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Component", "Description"],
-          "rows": [
-            ["Context (Domain)", "The domain in which the notification rule applies"],
-            ["Object Type", "The type of object that triggers the notification"],
-            ["Event Type", "The system event that triggers the email (e.g., check-in, state change)"],
-            ["Participants", "The users, groups, or organizations that receive the notification"]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "Consider using Windchill's subscription capabilities as an alternative to notification rules. Subscriptions are set up by individual users and can be canceled without administrator involvement."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Indexing Policies"
-        },
-        {
-          "type": "paragraph",
-          "text": "Indexing rules identify which objects to index for keyword search. The default out-of-the-box rule indexes all object types at all lifecycle states in the <code>wblib</code> collection. Access control filters search results to expose only authorized objects."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "Notification troubleshooting checklist: verify the mail server delivers email, Windchill connects to the mail server, the user has a valid email address, and the recipient has at least Read permission on the object class."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each policy type to its purpose:",
-          "pairs": [
-            {"left": "Control who can read, modify, and delete objects", "right": "Access Control Policy"},
-            {"left": "Send email alerts when system events occur", "right": "Notification Policy"},
-            {"left": "Determine which objects appear in keyword searches", "right": "Indexing Policy"}
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Notification rules automatically email participants about system events like check-in or state changes.",
-        "The default indexing rule indexes all object types at all states — access control filters search results.",
-        "User subscriptions are an alternative to admin-created notification rules and can be self-managed.",
-        "Notification delivery requires a working mail server, valid email addresses, and Read permission on the object."
-      ]
-    },
-    {
-      "id": "m3t4",
-      "title": "Create a Folder Domain",
-      "estimatedMinutes": 10,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In this exercise, you restrict access to the Team Information folder in the PTC New Publication Template product. Users outside the context team should not be able to read the content."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "You should be signed in as <code>bpatterson/ptc</code> (business administrator)."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex4",
-          "title": "Create a Folder Domain",
-          "objective": "Create a new folder domain, define a deny rule for non-team members, and assign the domain to the Team Information folder.",
-          "tasks": [
-            {
-              "id": "ex4-t1",
-              "title": "Create the Domain and Access Control Rule",
-              "steps": [
-                {
-                  "action": "In Policy Administration, right-click the <strong>Default</strong> domain of PTC New Publication Template and select <strong>New</strong>.",
-                  "detail": "The new domain must be a child of the product's default domain to control folder access.",
-                  "hint": null
-                },
-                {
-                  "action": "Name the domain <code>Team Only</code> with description <code>Restricts read access to context team and users added by ad hoc rules</code>.",
-                  "detail": "This domain will contain rules that restrict read access.",
-                  "hint": null
-                },
-                {
-                  "action": "Click the Team Only domain and create a new access control rule.",
-                  "detail": "Collapse the Domains pane to give more room for the rule table.",
-                  "hint": null
-                },
-                {
-                  "action": "Set Type = <strong>WTObject</strong>, State = <strong>All</strong>, Participant = <strong>Team Members</strong>, select <strong>All except selected participant</strong>.",
-                  "detail": "This targets everyone who is NOT a team member.",
-                  "hint": null
-                },
-                {
-                  "action": "In the Deny column, select <strong>Read</strong> and <strong>Download</strong>, then click OK.",
-                  "detail": "Non-team members will be denied Read and Download access to all objects in folders assigned to this domain.",
-                  "hint": null
-                }
-              ]
-            },
-            {
-              "id": "ex4-t2",
-              "title": "Assign the Domain to the Folder",
-              "steps": [
-                {
-                  "action": "Navigate to <strong>Preference Management</strong> and set <strong>Display Folder Domains</strong> to <strong>Yes</strong>.",
-                  "detail": "This preference must be enabled before you can assign domains to folders.",
-                  "hint": "Search for 'Domains' in the preference search field."
-                },
-                {
-                  "action": "Navigate to PTC New Publication Template folders, right-click <strong>Team Information</strong> folder, and select <strong>Edit</strong>.",
-                  "detail": "The Edit Folder dialog allows you to assign a domain to the folder.",
-                  "hint": null
-                },
-                {
-                  "action": "Click <strong>Find</strong>, expand the Default domain, select <strong>Team Only</strong>, and click OK.",
-                  "detail": "Notice the 'Inherit domain from parent' checkbox is cleared because a domain has been explicitly selected.",
-                  "hint": null
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Folder domains must be created as children of the context's Default domain.",
-        "The 'All except selected participant' option is powerful for restricting access to only team members.",
-        "Display Folder Domains preference must be enabled before assigning domains to folders.",
-        "Creating a product template from this setup preserves the folder domain configuration."
-      ]
-    }
-  ]
+ "id": "m3",
+ "title": "Folder Domains and Advanced Permissions",
+ "description": "Create folder domains, understand permissions for move and lifecycle operations, and define notification and indexing policies.",
+ "topics": [
+ {
+ "id": "m3t1",
+ "title": "Folder and Shared Team Domains",
+ "estimatedMinutes": 6,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "While the default domain governs all objects in a context, Windchill also supports folder-level domains for more granular access control, and shared team domains that apply common rules across contexts."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Folder Domains"
+ },
+ {
+ "type": "paragraph",
+ "text": "By default, folders inherit policies from their parent context's domain. Administrators can create new domains and associate them with specific folders to apply different access control policies. Folder domains must be created as children of the context's default domain."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "To assign a domain to a folder, the <strong>Display Folder Domains</strong> preference must be set to Yes. After the assignment, the preference can be reverted. Creating a product template from this setup preserves the domain configuration."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Shared Team Domains"
+ },
+ {
+ "type": "paragraph",
+ "text": "Creating a shared team automatically creates a domain with the same name. Every product or library using the shared team has its Default domain connected to the shared team domain instead of the PDM domain."
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "Because the shared team domain sits at the same level as PDM, any specific rules in the PDM domain will be <strong>ignored</strong> when resolving the ACL inside a product or library using the shared team."
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Feature", "Folder Domain", "Shared Team Domain"],
+ "rows": [
+ ["Created", "Manually by administrator", "Automatically when shared team is created"],
+ ["Associated with", "Specific folders within a context", "All contexts using the shared team"],
+ ["Parent domain", "Child of context's Default domain", "Same level as PDM domain"],
+ ["Use case", "Restrict access to a specific folder", "Apply common rules across multiple contexts"]
+ ]
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each scenario to the correct domain approach:",
+ "pairs": [
+ {"left": "Restrict the 'Team Information' folder to team members only", "right": "Folder Domain"},
+ {"left": "Apply consistent rules across all products sharing the same team", "right": "Shared Team Domain"},
+ {"left": "Set global rules for all public products in an organization", "right": "PDM Domain"},
+ {"left": "Bypass global rules for a confidential product", "right": "Private Domain"}
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Folder domains enable different access control policies for specific folders within a context.",
+ "The Display Folder Domains preference must be enabled to assign domains to folders.",
+ "Shared team domains automatically override PDM domain rules for contexts using the shared team.",
+ "Use folder domains for granular control and shared team domains for consistent cross-context policies."
+ ]
+ },
+ {
+ "id": "m3t2",
+ "title": "Permissions for Common Operations",
+ "estimatedMinutes": 7,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Some Windchill operations require specific combinations of permissions. Understanding which permissions are needed for move, lifecycle, and content operations prevents access control problems."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Move Operation Permissions"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Scenario", "Required Permissions"],
+ "rows": [
+ ["Same container, same domain", "Modify permission only"],
+ ["Same container, different domains", "Change Domain on source domain + Create by Move on target domain"],
+ ["Different containers and domains", "Change Context on object type/state in source container's domain"]
+ ]
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Lifecycle State Change Permissions"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Method", "Requirements"],
+ "rows": [
+ ["Process-driven (Promotion/Change)", "Valid transition in lifecycle template + Read permission + Create on tracking object"],
+ ["Administrative Set State", "Administrative permission on the business object"],
+ ["Non-administrative Set State", "Valid transition + Set State permission on the object in current state"],
+ ["Reassign Life Cycle", "Administrative permission (or Modify in project context)"]
+ ]
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Content and Identity Permissions"
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Modify vs Modify Identity",
+ "back": "Modify changes non-identity attributes. Modify Identity changes identity attributes like part number and organization identifier (but not the part name)."
+ },
+ {
+ "front": "Read vs Download",
+ "back": "Read allows viewing an object and its metadata. Download allows downloading primary content and attachment files. Both are needed for full access to content."
+ },
+ {
+ "front": "Change Permissions",
+ "back": "Enables a user to access and change permissions of other users through the Edit Access Control interface. Granted users can only assign permissions they themselves have."
+ }
+ ]
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Arrange these move scenarios from simplest (fewest permissions) to most complex:",
+ "items": [
+ "Move within the same folder domain (Modify only)",
+ "Move to a different domain in the same product (Change Domain + Create by Move)",
+ "Move to a different product context (Change Context + appropriate folder permissions)"
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Move operations require different permissions depending on whether the domain or context changes.",
+ "Lifecycle state changes can be process-driven, administrative, or non-administrative - each requires different permissions.",
+ "Modify permission changes non-identity attributes; Modify Identity changes identity attributes like part number.",
+ "Change Permissions allows a user to grant others only permissions they already possess."
+ ]
+ },
+ {
+ "id": "m3t3",
+ "title": "Notification and Indexing Policies",
+ "estimatedMinutes": 5,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "In addition to access control, the Policy Administrator enables you to define notification rules that alert users about system events and indexing rules that control which objects are searchable."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Notification Policies"
+ },
+ {
+ "type": "paragraph",
+ "text": "Notification rules provide an automated method of notifying users via email about system events such as object check-in, state changes, or modifications."
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Component", "Description"],
+ "rows": [
+ ["Context (Domain)", "The domain in which the notification rule applies"],
+ ["Object Type", "The type of object that triggers the notification"],
+ ["Event Type", "The system event that triggers the email (e.g., check-in, state change)"],
+ ["Participants", "The users, groups, or organizations that receive the notification"]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "tip",
+ "text": "Consider using Windchill's subscription capabilities as an alternative to notification rules. Subscriptions are set up by individual users and can be canceled without administrator involvement."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Indexing Policies"
+ },
+ {
+ "type": "paragraph",
+ "text": "Indexing rules identify which objects to index for keyword search. The default out-of-the-box rule indexes all object types at all lifecycle states in the <code>wblib</code> collection. Access control filters search results to expose only authorized objects."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "Notification troubleshooting checklist: verify the mail server delivers email, Windchill connects to the mail server, the user has a valid email address, and the recipient has at least Read permission on the object class."
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each policy type to its purpose:",
+ "pairs": [
+ {"left": "Control who can read, modify, and delete objects", "right": "Access Control Policy"},
+ {"left": "Send email alerts when system events occur", "right": "Notification Policy"},
+ {"left": "Determine which objects appear in keyword searches", "right": "Indexing Policy"}
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Notification rules automatically email participants about system events like check-in or state changes.",
+ "The default indexing rule indexes all object types at all states - access control filters search results.",
+ "User subscriptions are an alternative to admin-created notification rules and can be self-managed.",
+ "Notification delivery requires a working mail server, valid email addresses, and Read permission on the object."
+ ]
+ },
+ {
+ "id": "m3t4",
+ "title": "Create a Folder Domain",
+ "estimatedMinutes": 10,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "In this exercise, you restrict access to the Team Information folder in the PTC New Publication Template product. Users outside the context team should not be able to read the content."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "You should be signed in as <code>bpatterson/ptc</code> (business administrator)."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex4",
+ "title": "Create a Folder Domain",
+ "objective": "Create a new folder domain, define a deny rule for non-team members, and assign the domain to the Team Information folder.",
+ "tasks": [
+ {
+ "id": "ex4-t1",
+ "title": "Create the Domain and Access Control Rule",
+ "steps": [
+ {
+ "action": "In Policy Administration, right-click the <strong>Default</strong> domain of PTC New Publication Template and select <strong>New</strong>.",
+ "detail": "The new domain must be a child of the product's default domain to control folder access.",
+ "hint": null
+ },
+ {
+ "action": "Name the domain <code>Team Only</code> with description <code>Restricts read access to context team and users added by ad hoc rules</code>.",
+ "detail": "This domain will contain rules that restrict read access.",
+ "hint": null
+ },
+ {
+ "action": "Click the Team Only domain and create a new access control rule.",
+ "detail": "Collapse the Domains pane to give more room for the rule table.",
+ "hint": null
+ },
+ {
+ "action": "Set Type = <strong>WTObject</strong>, State = <strong>All</strong>, Participant = <strong>Team Members</strong>, select <strong>All except selected participant</strong>.",
+ "detail": "This targets everyone who is NOT a team member.",
+ "hint": null
+ },
+ {
+ "action": "In the Deny column, select <strong>Read</strong> and <strong>Download</strong>, then click OK.",
+ "detail": "Non-team members will be denied Read and Download access to all objects in folders assigned to this domain.",
+ "hint": null
+ }
+ ]
+ },
+ {
+ "id": "ex4-t2",
+ "title": "Assign the Domain to the Folder",
+ "steps": [
+ {
+ "action": "Navigate to <strong>Preference Management</strong> and set <strong>Display Folder Domains</strong> to <strong>Yes</strong>.",
+ "detail": "This preference must be enabled before you can assign domains to folders.",
+ "hint": "Search for 'Domains' in the preference search field."
+ },
+ {
+ "action": "Navigate to PTC New Publication Template folders, right-click <strong>Team Information</strong> folder, and select <strong>Edit</strong>.",
+ "detail": "The Edit Folder dialog allows you to assign a domain to the folder.",
+ "hint": null
+ },
+ {
+ "action": "Click <strong>Find</strong>, expand the Default domain, select <strong>Team Only</strong>, and click OK.",
+ "detail": "Notice the 'Inherit domain from parent' checkbox is cleared because a domain has been explicitly selected.",
+ "hint": null
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Folder domains must be created as children of the context's Default domain.",
+ "The 'All except selected participant' option is powerful for restricting access to only team members.",
+ "Display Folder Domains preference must be enabled before assigning domains to folders.",
+ "Creating a product template from this setup preserves the folder domain configuration."
+ ]
+ }
+ ]
 }

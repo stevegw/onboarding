@@ -12,7 +12,7 @@
         "To provide version control for source code repositories"
       ],
       "answerIndex": 1,
-      "rationale": "ALM is a continuous process that manages the entire application lifecycle — from planning through development, testing, deployment, and retirement — by integrating people, processes, and tools. It is not limited to testing, version control, or tool replacement.",
+      "rationale": "ALM is a continuous process that manages the entire application lifecycle - from planning through development, testing, deployment, and retirement - by integrating people, processes, and tools. It is not limited to testing, version control, or tool replacement.",
       "topic": "m1t1"
     },
     {
@@ -38,7 +38,7 @@
         "REST API Integrations"
       ],
       "answerIndex": 2,
-      "rationale": "Codebeamer provides industry templates — pre-built project templates for automotive (ASPICE, ISO 26262), medical devices (IEC 62304), aviation (DO-178C), and other regulated industries. These templates include pre-configured trackers, workflows, and traceability structures.",
+      "rationale": "Codebeamer provides industry templates - pre-built project templates for automotive (ASPICE, ISO 26262), medical devices (IEC 62304), aviation (DO-178C), and other regulated industries. These templates include pre-configured trackers, workflows, and traceability structures.",
       "topic": "m1t2"
     },
     {
@@ -51,7 +51,7 @@
         "Development → Design → Requirements → Testing"
       ],
       "answerIndex": 1,
-      "rationale": "The ALM development framework follows the cycle: Requirements (what must the product do) → Design (how will it work) → Development (build it) → Testing (verify it meets requirements). This cycle is iterative — testing may reveal gaps that restart the cycle.",
+      "rationale": "The ALM development framework follows the cycle: Requirements (what must the product do) → Design (how will it work) → Development (build it) → Testing (verify it meets requirements). This cycle is iterative - testing may reveal gaps that restart the cycle.",
       "topic": "m1t3"
     },
     {
@@ -64,7 +64,7 @@
         "Over 1 billion lines"
       ],
       "answerIndex": 2,
-      "rationale": "A modern car can contain over 100 million lines of code — more than a fighter jet or a commercial operating system. This staggering complexity makes structured Application Lifecycle Management essential for managing requirements, development, and testing.",
+      "rationale": "A modern car can contain over 100 million lines of code - more than a fighter jet or a commercial operating system. This staggering complexity makes structured Application Lifecycle Management essential for managing requirements, development, and testing.",
       "topic": "m1t1"
     }
   ]

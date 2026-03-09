@@ -1,426 +1,426 @@
 {
-  "id": "m1",
-  "title": "Business Administration Introduction",
-  "description": "Identify business administrator responsibilities and configuration drivers. Understand policies, processes, participants, and the Windchill system architecture.",
-  "topics": [
-    {
-      "id": "m1t1",
-      "title": "Business Administrator Responsibilities",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "The Windchill business administrator manages the Windchill environment and applies business rules that govern how product data is created, managed, and secured. The BA role may not correspond directly to an organization's job title — responsibilities are often shared across a team depending on the organization's size and structure."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Six Responsibility Areas"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Responsibility Area", "Key Activities"],
-          "rows": [
-            [
-              "Product Data Configuration",
-              "Manage object types, type-specific attributes, numbering and versioning schemes, and rules governing object creation"
-            ],
-            [
-              "Product Data Template Definition",
-              "Create and manage object templates and context templates that standardize how new objects and contexts are initialized"
-            ],
-            [
-              "Access Control and Monitoring",
-              "Create and manage access control policies, notification rules, and processes including workflows, life cycles, and CAD viewable publishing"
-            ],
-            [
-              "System Behavior",
-              "Create profiles for UI visibility (actions, tabs, attributes), configure public info page tabs, saved searches, system preferences, and Visualization services"
-            ],
-            [
-              "User Management and Assistance",
-              "Manage users, groups, roles, and shared teams; undo checkouts; provide user assistance and troubleshooting"
-            ],
-            [
-              "License Management and Reporting",
-              "Assign licenses, monitor license usage reporting, run security auditing reports, and define and manage reports"
-            ]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "insight",
-          "text": "The business administrator role is not a single job title — it is a set of responsibilities. In smaller organizations one person may handle all six areas, while in larger enterprises these responsibilities are distributed across a team of specialists."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Responsibilities in Practice"
-        },
-        {
-          "type": "paragraph",
-          "text": "Each responsibility area maps to specific Windchill administration tools. Product data configuration uses the Type and Attribute Management utility, access control uses the Policy Administration tool, and user management operates through Participant Administration. Understanding these mappings helps you navigate the Windchill administration interface efficiently."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each business administrator responsibility area to its key activities:",
-          "pairs": [
-            {
-              "left": "Product Data Configuration",
-              "right": "Object types, attributes, numbering and versioning schemes"
-            },
-            {
-              "left": "Access Control and Monitoring",
-              "right": "Policies, notification rules, workflows, life cycles"
-            },
-            {
-              "left": "User Management and Assistance",
-              "right": "Users, groups, roles, shared teams, undo checkouts"
-            },
-            {
-              "left": "License Management and Reporting",
-              "right": "License assignment, usage reporting, security audits"
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "The business administrator manages the Windchill environment and enforces business rules across six responsibility areas",
-        "The BA role may be fulfilled by one person or shared across a team depending on organization size",
-        "The six areas cover product data configuration, templates, access control, system behavior, user management, and license management"
-      ]
-    },
-    {
-      "id": "m1t2",
-      "title": "Business Configuration Drivers",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Windchill configuration is driven by a thorough analysis of the product development process. Before configuring anything in the system, you need a complete understanding of your company's product development stages, the data involved at each stage, and how that data matures over time."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Four Configuration Driver Areas"
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "1. Identify Your Product Data",
-              "back": "Determine what types of product data your organization creates and manages — parts, documents, CAD models, specifications, and other artifacts that flow through the development process."
-            },
-            {
-              "front": "2. Identify Your Product Development Stages",
-              "back": "Map out the stages your products pass through from concept to release — such as concept, design, prototype, validation, and production. Each stage has distinct activities and approval gates."
-            },
-            {
-              "front": "3. Map Product Data in Development Stages",
-              "back": "Determine which product data types are created, modified, or consumed at each development stage. This mapping reveals the relationships between data and process."
-            },
-            {
-              "front": "4. Identify Life Cycle and Maturity Process",
-              "back": "Define how each type of product data matures through its life cycle — what states it passes through, what approvals are required, and when it transitions from one state to the next."
-            }
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "Start your configuration analysis by interviewing stakeholders across engineering, manufacturing, and quality. Each group interacts with product data differently and has unique requirements for how it should be managed in Windchill."
-        },
-        {
-          "type": "paragraph",
-          "text": "The output of this analysis directly feeds into the Windchill configuration — it determines the policies, processes, and participant structures you will set up. Skipping this analysis leads to a system that does not match how the business actually works, resulting in workarounds and user frustration."
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange the four configuration driver areas in the correct analysis sequence:",
-          "items": [
-            "Identify your product data",
-            "Identify your product development stages",
-            "Map your product data in the product development stages",
-            "Identify the life cycle and maturity process for each product data"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Windchill configuration must be driven by analysis of the actual product development process",
-        "Four driver areas guide the analysis: product data, development stages, data-stage mapping, and life cycle maturity",
-        "The output of this analysis feeds directly into setting up policies, processes, and participants in Windchill"
-      ]
-    },
-    {
-      "id": "m1t3",
-      "title": "Policies, Processes, and Participants",
-      "estimatedMinutes": 7,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "The business analysis from the configuration drivers leads to a formal specification that answers three fundamental questions: Which actor can run a specific action? On which object? When is the action allowed? These questions are answered through Windchill's policies, processes, and participant structures."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Domain Policies"
-        },
-        {
-          "type": "paragraph",
-          "text": "Domain policies define the rules that govern behavior within a Windchill context. Three key policy types control what happens to objects and who gets notified:"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Policy Type", "Purpose"],
-          "rows": [
-            [
-              "Access Rules",
-              "Control which users or groups can perform specific actions (create, read, modify, delete) on specific object types in specific life cycle states"
-            ],
-            [
-              "Notification Rules",
-              "Automatically notify users or groups when specific events occur, such as an object changing state or being modified"
-            ],
-            [
-              "Indexing Rules",
-              "Control which objects and attributes are indexed for full-text search, determining what users can find through search"
-            ]
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Life Cycles and Workflows"
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Life Cycles",
-              "back": "A sequence of states representing the maturity of an object. For example, a document might progress through <strong>In Work</strong>, <strong>Under Review</strong>, <strong>Released</strong>, and <strong>Obsolete</strong>. Access permissions often change based on the current life cycle state."
-            },
-            {
-              "front": "Workflows",
-              "back": "Automated business processes that pass tasks and information between participants. Workflows enforce approval sequences, review gates, and notification chains — ensuring the right people take action at the right time."
-            },
-            {
-              "front": "Participants",
-              "back": "Users, groups, and organizations that interact with Windchill objects. Participants are the actors in the system who create, review, approve, and consume product data."
-            },
-            {
-              "front": "Roles and Teams",
-              "back": "Roles identify the function a participant performs (e.g., Reviewer, Approver, Author). Teams map specific participants to roles within a context — for example, John Smith is the Reviewer for a particular product."
-            }
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "Life cycles and access rules work together — access permissions frequently change based on an object's life cycle state. For example, an <em>In Work</em> document may be editable by the author, but a <em>Released</em> document is read-only for everyone. Failing to coordinate these settings can leave data exposed or locked out at the wrong times."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each building block to its role in Windchill administration:",
-          "pairs": [
-            {
-              "left": "Life Cycles",
-              "right": "Sequential states representing object maturity"
-            },
-            {
-              "left": "Workflows",
-              "right": "Automated processes passing tasks between participants"
-            },
-            {
-              "left": "Roles",
-              "right": "Identify the function a participant performs"
-            },
-            {
-              "left": "Access Rules",
-              "right": "Control who can perform actions on which objects"
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Business analysis answers three questions: which actor, which action, on which object, and when",
-        "Domain policies include access rules, notification rules, and indexing rules",
-        "Life cycles define object maturity states; workflows automate business processes between participants",
-        "Roles identify task functions while teams map specific people to those roles within a context"
-      ]
-    },
-    {
-      "id": "m1t4",
-      "title": "Windchill System Architecture",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Windchill is a three-tier enterprise application that separates client access, application logic, and data storage into distinct layers. Understanding this architecture helps business administrators know where configuration changes take effect and how different system components interact."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Three-Tier Architecture"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Tier", "Components", "Function"],
-          "rows": [
-            [
-              "Client Tier",
-              "Web browser, CAD tools (Creo, SolidWorks), Microsoft 365, Arbortext Editor",
-              "Provides the user interface for accessing and interacting with Windchill data and functionality"
-            ],
-            [
-              "Application Tier",
-              "Java-based Windchill server, web server, content vaults, optional ThingWorx Navigate",
-              "Processes business logic, manages sessions, and stores content files in vaults on the file system"
-            ],
-            [
-              "Database Tier",
-              "Database server (PLM data), administrative directory (user authentication)",
-              "Persists all PLM metadata and object relationships; authenticates users against the directory"
-            ]
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Additional Components"
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Visualization Publication Worker",
-              "back": "Generates lightweight viewable representations (e.g., 3D thumbnails, PDF renditions) of CAD files and documents so users can view content without the native authoring application."
-            },
-            {
-              "front": "Indexing Server",
-              "back": "Indexes object metadata and content files for full-text search. Allows users to find objects by searching across attributes, names, descriptions, and embedded document text."
-            },
-            {
-              "front": "LDAP Directory",
-              "back": "An external directory service (such as Microsoft Active Directory) used for single sign-on (SSO) and centralized user authentication across the enterprise."
-            },
-            {
-              "front": "ERP Integration",
-              "back": "Connects Windchill to Enterprise Resource Planning systems for manufacturing release. Ensures that released product data flows seamlessly into downstream manufacturing and procurement processes."
-            }
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "Content vaults store the actual files (CAD models, documents, images) on the file system, while the database stores metadata and relationships. This separation allows Windchill to scale efficiently — metadata queries are fast in the database, while large files are managed on optimized file storage."
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange the three Windchill architecture tiers from the user-facing layer to the data storage layer:",
-          "items": [
-            "Client Tier (web browser, CAD tools)",
-            "Application Tier (Windchill server, web server, vaults)",
-            "Database Tier (database server, administrative directory)"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Windchill uses a three-tier architecture: client tier, application tier, and database tier",
-        "Content vaults store files on the file system while the database stores metadata and relationships",
-        "Additional components include the visualization publication worker, indexing server, LDAP directory, and ERP integration"
-      ]
-    },
-    {
-      "id": "m1t5",
-      "title": "Exercise 1 - Create an Organization",
-      "estimatedMinutes": 8,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In this exercise, you will create an organization context in Windchill. Organizations are top-level containers that represent companies or divisions. PTC Publications handles technical documentation and training, and you will create an organization context to support its product data management needs."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "You need access to the Windchill training server and site administrator credentials to complete this exercise. Sign in as <strong>wcadmin</strong> with the password <strong>wcadmin</strong>."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex1",
-          "title": "Create an Organization",
-          "objective": "Create an organization context in Windchill and verify that the organization participant is registered in the system.",
-          "tasks": [
-            {
-              "id": "ex1-t1",
-              "title": "Create an Organization",
-              "steps": [
-                {
-                  "action": "Sign in to Windchill as wcadmin/wcadmin (the site administrator account).",
-                  "detail": "The site administrator has full privileges to create and manage organizations, which are top-level contexts in the Windchill hierarchy.",
-                  "hint": "Use the Windchill URL provided by your instructor. If prompted for a domain, use the default."
-                },
-                {
-                  "action": "Navigate to Organizations by clicking Browse > Organizations, then click View All to see the list of existing organizations.",
-                  "detail": "The Organizations list shows all organization contexts currently defined in the system. You will add a new organization to this list.",
-                  "hint": "The Browse menu is in the top navigation bar. If you do not see Organizations, check under the Site context."
-                },
-                {
-                  "action": "Click the Create new organization action to open the organization creation form.",
-                  "detail": "The creation form allows you to specify the organization name, description, and optionally select a context template to pre-populate the organization with default settings.",
-                  "hint": "Look for a 'New Organization' or 'Create' button in the toolbar above the organizations table."
-                },
-                {
-                  "action": "Enter 'Example PTC Publications' as the organization name and 'Enterprise publications context' as the description.",
-                  "detail": "The organization name must be unique across the system. The description helps other administrators understand the purpose of this organization context.",
-                  "hint": null
-                },
-                {
-                  "action": "Note the available templates in the template dropdown, but leave the defaults unchanged. Click OK to create the organization.",
-                  "detail": "Context templates can pre-configure an organization with folders, life cycles, workflows, and access policies. For this exercise, you will use the default settings and configure the organization manually in later exercises.",
-                  "hint": "If a template is pre-selected, you may leave it or select 'None' depending on your Windchill version."
-                },
-                {
-                  "action": "Verify that 'Example PTC Publications' now appears in the Organizations table.",
-                  "detail": "The organization should appear in the list with the name and description you entered. If it does not appear, refresh the page or check for any error messages.",
-                  "hint": null
-                }
-              ]
-            },
-            {
-              "id": "ex1-t2",
-              "title": "Verify Organization Participant",
-              "steps": [
-                {
-                  "action": "Navigate to Site > Utilities > Participant Administration.",
-                  "detail": "Participant Administration allows you to search for and manage all participant types in Windchill, including users, groups, and organizations. When you create an organization context, Windchill automatically creates a corresponding organization participant.",
-                  "hint": "The Utilities section is accessible from the Site context. You may need to switch to the Site context first."
-                },
-                {
-                  "action": "Click Find Participant, select Organization as the participant type, and click Search.",
-                  "detail": "This search returns all organization participants registered in the system. Your newly created organization should appear in the results.",
-                  "hint": "If the search returns many results, use the name filter to search for 'Example PTC Publications'."
-                },
-                {
-                  "action": "Verify that the 'Example PTC Publications' organization principal is listed in the search results.",
-                  "detail": "The organization participant is automatically created when the organization context is created. This participant can be used in access control policies, team assignments, and notification rules.",
-                  "hint": null
-                },
-                {
-                  "action": "Close your browser to end the session.",
-                  "detail": "You have successfully created an organization context and verified its participant registration. In later exercises, you will add products and libraries within this organization.",
-                  "hint": null
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Organizations are top-level contexts in Windchill that represent companies or divisions",
-        "Creating an organization automatically registers an organization participant in the system",
-        "Context templates can pre-configure organizations with default settings, but manual configuration is also possible"
-      ]
-    }
-  ]
+ "id": "m1",
+ "title": "Business Administration Introduction",
+ "description": "Identify business administrator responsibilities and configuration drivers. Understand policies, processes, participants, and the Windchill system architecture.",
+ "topics": [
+ {
+ "id": "m1t1",
+ "title": "Business Administrator Responsibilities",
+ "estimatedMinutes": 6,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "The Windchill business administrator manages the Windchill environment and applies business rules that govern how product data is created, managed, and secured. The BA role may not correspond directly to an organization's job title - responsibilities are often shared across a team depending on the organization's size and structure."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Six Responsibility Areas"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Responsibility Area", "Key Activities"],
+ "rows": [
+ [
+ "Product Data Configuration",
+ "Manage object types, type-specific attributes, numbering and versioning schemes, and rules governing object creation"
+ ],
+ [
+ "Product Data Template Definition",
+ "Create and manage object templates and context templates that standardize how new objects and contexts are initialized"
+ ],
+ [
+ "Access Control and Monitoring",
+ "Create and manage access control policies, notification rules, and processes including workflows, life cycles, and CAD viewable publishing"
+ ],
+ [
+ "System Behavior",
+ "Create profiles for UI visibility (actions, tabs, attributes), configure public info page tabs, saved searches, system preferences, and Visualization services"
+ ],
+ [
+ "User Management and Assistance",
+ "Manage users, groups, roles, and shared teams; undo checkouts; provide user assistance and troubleshooting"
+ ],
+ [
+ "License Management and Reporting",
+ "Assign licenses, monitor license usage reporting, run security auditing reports, and define and manage reports"
+ ]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "insight",
+ "text": "The business administrator role is not a single job title - it is a set of responsibilities. In smaller organizations one person may handle all six areas, while in larger enterprises these responsibilities are distributed across a team of specialists."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Responsibilities in Practice"
+ },
+ {
+ "type": "paragraph",
+ "text": "Each responsibility area maps to specific Windchill administration tools. Product data configuration uses the Type and Attribute Management utility, access control uses the Policy Administration tool, and user management operates through Participant Administration. Understanding these mappings helps you navigate the Windchill administration interface efficiently."
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each business administrator responsibility area to its key activities:",
+ "pairs": [
+ {
+ "left": "Product Data Configuration",
+ "right": "Object types, attributes, numbering and versioning schemes"
+ },
+ {
+ "left": "Access Control and Monitoring",
+ "right": "Policies, notification rules, workflows, life cycles"
+ },
+ {
+ "left": "User Management and Assistance",
+ "right": "Users, groups, roles, shared teams, undo checkouts"
+ },
+ {
+ "left": "License Management and Reporting",
+ "right": "License assignment, usage reporting, security audits"
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "The business administrator manages the Windchill environment and enforces business rules across six responsibility areas",
+ "The BA role may be fulfilled by one person or shared across a team depending on organization size",
+ "The six areas cover product data configuration, templates, access control, system behavior, user management, and license management"
+ ]
+ },
+ {
+ "id": "m1t2",
+ "title": "Business Configuration Drivers",
+ "estimatedMinutes": 5,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Windchill configuration is driven by a thorough analysis of the product development process. Before configuring anything in the system, you need a complete understanding of your company's product development stages, the data involved at each stage, and how that data matures over time."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Four Configuration Driver Areas"
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "1. Identify Your Product Data",
+ "back": "Determine what types of product data your organization creates and manages - parts, documents, CAD models, specifications, and other artifacts that flow through the development process."
+ },
+ {
+ "front": "2. Identify Your Product Development Stages",
+ "back": "Map out the stages your products pass through from concept to release - such as concept, design, prototype, validation, and production. Each stage has distinct activities and approval gates."
+ },
+ {
+ "front": "3. Map Product Data in Development Stages",
+ "back": "Determine which product data types are created, modified, or consumed at each development stage. This mapping reveals the relationships between data and process."
+ },
+ {
+ "front": "4. Identify Life Cycle and Maturity Process",
+ "back": "Define how each type of product data matures through its life cycle - what states it passes through, what approvals are required, and when it transitions from one state to the next."
+ }
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "tip",
+ "text": "Start your configuration analysis by interviewing stakeholders across engineering, manufacturing, and quality. Each group interacts with product data differently and has unique requirements for how it should be managed in Windchill."
+ },
+ {
+ "type": "paragraph",
+ "text": "The output of this analysis directly feeds into the Windchill configuration - it determines the policies, processes, and participant structures you will set up. Skipping this analysis leads to a system that does not match how the business actually works, resulting in workarounds and user frustration."
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Arrange the four configuration driver areas in the correct analysis sequence:",
+ "items": [
+ "Identify your product data",
+ "Identify your product development stages",
+ "Map your product data in the product development stages",
+ "Identify the life cycle and maturity process for each product data"
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Windchill configuration must be driven by analysis of the actual product development process",
+ "Four driver areas guide the analysis: product data, development stages, data-stage mapping, and life cycle maturity",
+ "The output of this analysis feeds directly into setting up policies, processes, and participants in Windchill"
+ ]
+ },
+ {
+ "id": "m1t3",
+ "title": "Policies, Processes, and Participants",
+ "estimatedMinutes": 7,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "The business analysis from the configuration drivers leads to a formal specification that answers three fundamental questions: Which actor can run a specific action? On which object? When is the action allowed? These questions are answered through Windchill's policies, processes, and participant structures."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Domain Policies"
+ },
+ {
+ "type": "paragraph",
+ "text": "Domain policies define the rules that govern behavior within a Windchill context. Three key policy types control what happens to objects and who gets notified:"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Policy Type", "Purpose"],
+ "rows": [
+ [
+ "Access Rules",
+ "Control which users or groups can perform specific actions (create, read, modify, delete) on specific object types in specific life cycle states"
+ ],
+ [
+ "Notification Rules",
+ "Automatically notify users or groups when specific events occur, such as an object changing state or being modified"
+ ],
+ [
+ "Indexing Rules",
+ "Control which objects and attributes are indexed for full-text search, determining what users can find through search"
+ ]
+ ]
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Life Cycles and Workflows"
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Life Cycles",
+ "back": "A sequence of states representing the maturity of an object. For example, a document might progress through <strong>In Work</strong>, <strong>Under Review</strong>, <strong>Released</strong>, and <strong>Obsolete</strong>. Access permissions often change based on the current life cycle state."
+ },
+ {
+ "front": "Workflows",
+ "back": "Automated business processes that pass tasks and information between participants. Workflows enforce approval sequences, review gates, and notification chains - ensuring the right people take action at the right time."
+ },
+ {
+ "front": "Participants",
+ "back": "Users, groups, and organizations that interact with Windchill objects. Participants are the actors in the system who create, review, approve, and consume product data."
+ },
+ {
+ "front": "Roles and Teams",
+ "back": "Roles identify the function a participant performs (e.g., Reviewer, Approver, Author). Teams map specific participants to roles within a context - for example, John Smith is the Reviewer for a particular product."
+ }
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "Life cycles and access rules work together - access permissions frequently change based on an object's life cycle state. For example, an <em>In Work</em> document may be editable by the author, but a <em>Released</em> document is read-only for everyone. Failing to coordinate these settings can leave data exposed or locked out at the wrong times."
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each building block to its role in Windchill administration:",
+ "pairs": [
+ {
+ "left": "Life Cycles",
+ "right": "Sequential states representing object maturity"
+ },
+ {
+ "left": "Workflows",
+ "right": "Automated processes passing tasks between participants"
+ },
+ {
+ "left": "Roles",
+ "right": "Identify the function a participant performs"
+ },
+ {
+ "left": "Access Rules",
+ "right": "Control who can perform actions on which objects"
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Business analysis answers three questions: which actor, which action, on which object, and when",
+ "Domain policies include access rules, notification rules, and indexing rules",
+ "Life cycles define object maturity states; workflows automate business processes between participants",
+ "Roles identify task functions while teams map specific people to those roles within a context"
+ ]
+ },
+ {
+ "id": "m1t4",
+ "title": "Windchill System Architecture",
+ "estimatedMinutes": 5,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Windchill is a three-tier enterprise application that separates client access, application logic, and data storage into distinct layers. Understanding this architecture helps business administrators know where configuration changes take effect and how different system components interact."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Three-Tier Architecture"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Tier", "Components", "Function"],
+ "rows": [
+ [
+ "Client Tier",
+ "Web browser, CAD tools (Creo, SolidWorks), Microsoft 365, Arbortext Editor",
+ "Provides the user interface for accessing and interacting with Windchill data and functionality"
+ ],
+ [
+ "Application Tier",
+ "Java-based Windchill server, web server, content vaults, optional ThingWorx Navigate",
+ "Processes business logic, manages sessions, and stores content files in vaults on the file system"
+ ],
+ [
+ "Database Tier",
+ "Database server (PLM data), administrative directory (user authentication)",
+ "Persists all PLM metadata and object relationships; authenticates users against the directory"
+ ]
+ ]
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Additional Components"
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Visualization Publication Worker",
+ "back": "Generates lightweight viewable representations (e.g., 3D thumbnails, PDF renditions) of CAD files and documents so users can view content without the native authoring application."
+ },
+ {
+ "front": "Indexing Server",
+ "back": "Indexes object metadata and content files for full-text search. Allows users to find objects by searching across attributes, names, descriptions, and embedded document text."
+ },
+ {
+ "front": "LDAP Directory",
+ "back": "An external directory service (such as Microsoft Active Directory) used for single sign-on (SSO) and centralized user authentication across the enterprise."
+ },
+ {
+ "front": "ERP Integration",
+ "back": "Connects Windchill to Enterprise Resource Planning systems for manufacturing release. Ensures that released product data flows seamlessly into downstream manufacturing and procurement processes."
+ }
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "Content vaults store the actual files (CAD models, documents, images) on the file system, while the database stores metadata and relationships. This separation allows Windchill to scale efficiently - metadata queries are fast in the database, while large files are managed on optimized file storage."
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Arrange the three Windchill architecture tiers from the user-facing layer to the data storage layer:",
+ "items": [
+ "Client Tier (web browser, CAD tools)",
+ "Application Tier (Windchill server, web server, vaults)",
+ "Database Tier (database server, administrative directory)"
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Windchill uses a three-tier architecture: client tier, application tier, and database tier",
+ "Content vaults store files on the file system while the database stores metadata and relationships",
+ "Additional components include the visualization publication worker, indexing server, LDAP directory, and ERP integration"
+ ]
+ },
+ {
+ "id": "m1t5",
+ "title": "Exercise 1 - Create an Organization",
+ "estimatedMinutes": 8,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "In this exercise, you will create an organization context in Windchill. Organizations are top-level containers that represent companies or divisions. PTC Publications handles technical documentation and training, and you will create an organization context to support its product data management needs."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "You need access to the Windchill training server and site administrator credentials to complete this exercise. Sign in as <strong>wcadmin</strong> with the password <strong>wcadmin</strong>."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex1",
+ "title": "Create an Organization",
+ "objective": "Create an organization context in Windchill and verify that the organization participant is registered in the system.",
+ "tasks": [
+ {
+ "id": "ex1-t1",
+ "title": "Create an Organization",
+ "steps": [
+ {
+ "action": "Sign in to Windchill as wcadmin/wcadmin (the site administrator account).",
+ "detail": "The site administrator has full privileges to create and manage organizations, which are top-level contexts in the Windchill hierarchy.",
+ "hint": "Use the Windchill URL provided by your instructor. If prompted for a domain, use the default."
+ },
+ {
+ "action": "Navigate to Organizations by clicking Browse > Organizations, then click View All to see the list of existing organizations.",
+ "detail": "The Organizations list shows all organization contexts currently defined in the system. You will add a new organization to this list.",
+ "hint": "The Browse menu is in the top navigation bar. If you do not see Organizations, check under the Site context."
+ },
+ {
+ "action": "Click the Create new organization action to open the organization creation form.",
+ "detail": "The creation form allows you to specify the organization name, description, and optionally select a context template to pre-populate the organization with default settings.",
+ "hint": "Look for a 'New Organization' or 'Create' button in the toolbar above the organizations table."
+ },
+ {
+ "action": "Enter 'Example PTC Publications' as the organization name and 'Enterprise publications context' as the description.",
+ "detail": "The organization name must be unique across the system. The description helps other administrators understand the purpose of this organization context.",
+ "hint": null
+ },
+ {
+ "action": "Note the available templates in the template dropdown, but leave the defaults unchanged. Click OK to create the organization.",
+ "detail": "Context templates can pre-configure an organization with folders, life cycles, workflows, and access policies. For this exercise, you will use the default settings and configure the organization manually in later exercises.",
+ "hint": "If a template is pre-selected, you may leave it or select 'None' depending on your Windchill version."
+ },
+ {
+ "action": "Verify that 'Example PTC Publications' now appears in the Organizations table.",
+ "detail": "The organization should appear in the list with the name and description you entered. If it does not appear, refresh the page or check for any error messages.",
+ "hint": null
+ }
+ ]
+ },
+ {
+ "id": "ex1-t2",
+ "title": "Verify Organization Participant",
+ "steps": [
+ {
+ "action": "Navigate to Site > Utilities > Participant Administration.",
+ "detail": "Participant Administration allows you to search for and manage all participant types in Windchill, including users, groups, and organizations. When you create an organization context, Windchill automatically creates a corresponding organization participant.",
+ "hint": "The Utilities section is accessible from the Site context. You may need to switch to the Site context first."
+ },
+ {
+ "action": "Click Find Participant, select Organization as the participant type, and click Search.",
+ "detail": "This search returns all organization participants registered in the system. Your newly created organization should appear in the results.",
+ "hint": "If the search returns many results, use the name filter to search for 'Example PTC Publications'."
+ },
+ {
+ "action": "Verify that the 'Example PTC Publications' organization principal is listed in the search results.",
+ "detail": "The organization participant is automatically created when the organization context is created. This participant can be used in access control policies, team assignments, and notification rules.",
+ "hint": null
+ },
+ {
+ "action": "Close your browser to end the session.",
+ "detail": "You have successfully created an organization context and verified its participant registration. In later exercises, you will add products and libraries within this organization.",
+ "hint": null
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Organizations are top-level contexts in Windchill that represent companies or divisions",
+ "Creating an organization automatically registers an organization participant in the system",
+ "Context templates can pre-configure organizations with default settings, but manual configuration is also possible"
+ ]
+ }
+ ]
 }

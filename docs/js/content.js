@@ -84,7 +84,7 @@
       }
     }
 
-    // Fetch from server — resolve against course dir
+    // Fetch from server - resolve against course dir
     var base = courseBase();
     if (locale !== "en") {
       return fetch(base + localePath + cacheBuster)

@@ -25,7 +25,7 @@
         "Test Set"
       ],
       "answerIndex": 1,
-      "rationale": "A Test Configuration defines the environment parameters for test execution — such as operating system, browser version, hardware model, or firmware version. A single test case can be executed across multiple configurations to verify cross-platform compatibility.",
+      "rationale": "A Test Configuration defines the environment parameters for test execution - such as operating system, browser version, hardware model, or firmware version. A single test case can be executed across multiple configurations to verify cross-platform compatibility.",
       "topic": "m3t2"
     },
     {

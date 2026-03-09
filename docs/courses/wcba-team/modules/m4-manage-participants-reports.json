@@ -1,416 +1,416 @@
 {
-  "id": "m4",
-  "title": "Managing Participants and Reports",
-  "description": "Update and delete participant accounts, understand system and business process implications of deletion, and generate audit and license usage reports.",
-  "topics": [
-    {
-      "id": "m4t1",
-      "title": "Managing Existing Participants",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Participant administration is an ongoing responsibility. As users join and leave the organization, their accounts must be updated or removed. Understanding the correct procedures for modifying and deleting user accounts ensures that Windchill data integrity is maintained and that no work is lost during transitions."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Updating User Accounts"
-        },
-        {
-          "type": "paragraph",
-          "text": "To update a user's account information, connect as the organization administrator and open the <strong>Participant Administration</strong> table. Search for the participant you need to modify, then select <strong>Edit</strong> from the context menu. You can change attributes such as the user's name, email address, and other profile fields. Changes take effect immediately and are reflected across all contexts where the user participates."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Preparing to Delete a User"
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange the steps for preparing and completing a user deletion in the correct order.",
-          "items": [
-            "Complete or reassign all user assignments",
-            "Check in or undo checkout of all work items",
-            "Delete the user account",
-            "Delete the user's Personal Cabinet if necessary"
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "You must clear all pending assignments and check in all work before deleting a user. Windchill will not allow deletion of an account that has outstanding assignments or checked-out items."
-        }
-      ],
-      "keyTakeaways": [
-        "User accounts are updated through the Participant Administration table using the Edit context menu action.",
-        "All assignments must be completed or reassigned before a user can be deleted.",
-        "Checked-out items must be checked in or undone before deletion proceeds.",
-        "The user's Personal Cabinet should be deleted after the account is removed."
-      ]
-    },
-    {
-      "id": "m4t2",
-      "title": "Deleting Users and System Implications",
-      "estimatedMinutes": 7,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Deleting a user account has wide-reaching effects across the Windchill system. The method of deletion determines what is cleaned up automatically and what requires manual intervention. Understanding these implications helps administrators avoid orphaned data and disrupted business processes."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Deletion Options and Effects"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Action", "Effect on Directory Server", "Effect on Windchill"],
-          "rows": [
-            ["Delete from Windchill and Directory Server", "User removed", "User object and all references removed"],
-            ["Delete from Windchill only", "User entry remains", "User object removed, Windchill maintenance performed"],
-            ["Delete from Directory Server only (non-Windchill tool)", "User removed", "User becomes disconnected participant — must be cleaned up manually"]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "If a user is deleted from the directory server using an external LDAP tool rather than through Windchill, the user becomes a <strong>disconnected participant</strong>. This orphaned record must be found and cleaned up manually using the Participant Administration tool."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Impact on Running Processes"
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Role Mappings",
-              "back": "User is automatically removed from role mappings in lifecycle templates, workflow templates, context teams, team templates, and team instances."
-            },
-            {
-              "front": "Workflow Tasks",
-              "back": "Future tasks are reassigned to the responsible role. If the deleted user held the responsible role, tasks go to the process initiator."
-            },
-            {
-              "front": "Personal Cabinet and Workspaces",
-              "back": "Deleting the Personal Cabinet removes all server-side workspaces and any work uploaded but not checked in. Items must be checked in first."
-            }
-          ]
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each consequence to the deletion method that causes it.",
-          "pairs": [
-            { "left": "User can no longer sign in", "right": "Deleted from Directory Server" },
-            { "left": "Access control rules removed", "right": "Deleted from Windchill" },
-            { "left": "User becomes disconnected participant", "right": "Deleted from Directory Server only" },
-            { "left": "User still appears in iteration history", "right": "Both deletion methods" }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Deleting from both Windchill and the directory server provides the cleanest removal of a user account.",
-        "Deleting a user from the directory server with a non-Windchill tool creates a disconnected participant that must be cleaned up manually.",
-        "Workflow tasks assigned to a deleted user are reassigned to the responsible role or the process initiator.",
-        "A deleted user still appears in iteration history but without an active email link."
-      ]
-    },
-    {
-      "id": "m4t3",
-      "title": "Deleting Groups and Organizations",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Groups and organizations are foundational structures in Windchill's participant model. Deleting a group has cascading effects on access control, notifications, and role mappings. Organization contexts, however, have permanent implications that require careful upfront planning."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Impact of Deleting a Group"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["System Area", "Impact"],
-          "rows": [
-            ["Group membership", "All users are disassociated from the group (users are not deleted)"],
-            ["Search results", "Group no longer appears in most searches"],
-            ["Access control", "All rules referencing the group are removed from every domain"],
-            ["Notifications", "Group is removed from all notification lists"],
-            ["Role mappings", "Group is removed from lifecycle, workflow, context team, and team template role mappings"]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "Organization contexts <strong>cannot be deleted</strong> in Windchill. An organization participant cannot be deleted if it is associated with an organization context. Plan your organization structure carefully before implementation."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Best Practices"
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Organization Strategy",
-              "back": "Use a single organization context for medium-sized implementations. Multiple orgs are only needed for distinct, separate divisions that don't share data."
-            },
-            {
-              "front": "Directory Server",
-              "back": "Identify whether to use a pre-established corporate LDAP or create a new one. Windchill needs the bundled directory server even when using corporate LDAP."
-            },
-            {
-              "front": "User Account Standards",
-              "back": "Always specify a valid email address — without it, notifications fail and users may not appear in search tools. Don't change default domain settings."
-            }
-          ]
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each participant management scenario to the correct concept.",
-          "pairs": [
-            { "left": "Cannot be deleted in Windchill", "right": "Organization Context" },
-            { "left": "Users are disassociated but not deleted", "right": "Group Deletion" },
-            { "left": "Must be cleaned up after external LDAP deletion", "right": "Disconnected Participant" }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Deleting a group removes all access control rules that reference it across every domain.",
-        "Organization contexts cannot be deleted — plan your organizational structure before implementation.",
-        "Group deletion disassociates users but does not delete them from the system.",
-        "Always specify valid email addresses for users to ensure notifications and search functionality work correctly."
-      ]
-    },
-    {
-      "id": "m4t4",
-      "title": "Reports, Auditing, and License Usage",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Windchill provides a suite of reporting and auditing tools that help business administrators monitor system usage, track security events, and manage license compliance. Reports can be generated in multiple formats including PDF, XML, HTML, and CSV, and can be customized using the Query Builder or third-party tools."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Report Authoring Tools"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Tool", "Purpose", "Output"],
-          "rows": [
-            ["Query Builder", "Define and save queries against Windchill data using SQL concepts", "Report templates displayed in Report Templates table"],
-            ["Jasper Report Studio", "Open-source Java reporting tool for rich, flexible reports", "PDF, Excel, CSV, XML, HTML reports"],
-            ["Info*Engine Tasks", "Create data sources for Windchill Business Reporting", "Custom data sources for reports"]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "Do not edit predefined Windchill reports. If you need to customize a report, create a new one based on the existing template. This preserves the default reports for future reference and upgrades."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Security Auditing and License Usage"
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Audit Log Purge Manager",
-              "back": "View audit log purge history and create jobs to purge old audit records."
-            },
-            {
-              "front": "License Usage Reporting",
-              "back": "View license usage reports, edit license counts, and track license count change history."
-            },
-            {
-              "front": "Usage Reporting",
-              "back": "Report the number of unique users accessing Windchill by year, month, week, day, or 30-minute intervals."
-            },
-            {
-              "front": "Security Audit Reporting",
-              "back": "Create and view security audit reports, save report queries, and filter by event type, context, and user."
-            }
-          ]
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange the Query Builder configuration steps in the correct order.",
-          "items": [
-            "Configure report Properties",
-            "Define Tables and Joins",
-            "Set Select or Constrain fields",
-            "Add additional Criteria"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Windchill reports can be output in PDF, XML, HTML, and CSV formats using Query Builder, Jasper Report Studio, or Info*Engine Tasks.",
-        "The Query Builder uses SQL concepts organized across Properties, Tables and Joins, Select or Constrain, and Criteria tabs.",
-        "Security Audit Reporting allows filtering by event type, context, and user to track system access and changes.",
-        "Usage Reporting provides unique user counts filterable by time period for license compliance monitoring."
-      ]
-    },
-    {
-      "id": "m4t5",
-      "title": "Exercise - Delete a User Account",
-      "estimatedMinutes": 8,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Harold Lloyd has resigned from the organization, and his user account must be fully removed from the system. In this exercise you will delete his Windchill and directory server account, then clean up his Personal Cabinet to ensure no orphaned data remains."
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "Before deleting any user account, verify that all checked-out work has been checked in or undone. Deleting the Personal Cabinet permanently removes all server-side workspaces and any unchecked-in work."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex6",
-          "title": "Delete a User Account",
-          "objective": "Completely remove Harold Lloyd's user account from both the Windchill database and directory server, then clean up the Personal Cabinet.",
-          "tasks": [
-            {
-              "id": "ex6-t1",
-              "title": "Delete the User Account",
-              "steps": [
-                {
-                  "action": "Sign in as site administrator",
-                  "detail": "Launch Windchill and sign in with wcadmin credentials.",
-                  "hint": null
-                },
-                {
-                  "action": "Open Participant Administration",
-                  "detail": "Browse to Organizations > PTC Publications > Utilities and click Participant Administration.",
-                  "hint": null
-                },
-                {
-                  "action": "Find the user to delete",
-                  "detail": "Click Add participants to table, search for hlloyd, and add Lloyd Harold to the table.",
-                  "hint": null
-                },
-                {
-                  "action": "Delete the user completely",
-                  "detail": "Right-click the user and select Delete from Windchill and Windchill Directory Server. Confirm the action.",
-                  "hint": "Verify the user no longer appears in the Participant Administration table."
-                }
-              ]
-            },
-            {
-              "id": "ex6-t2",
-              "title": "Delete the Personal Cabinet",
-              "steps": [
-                {
-                  "action": "Navigate to Personal Cabinets Administration",
-                  "detail": "Browse to Site > Utilities and click Personal Cabinets Administration in the System Administration section.",
-                  "hint": null
-                },
-                {
-                  "action": "Check for outstanding work",
-                  "detail": "Click the Checked Out Work icon for hlloyd to verify no objects are checked out.",
-                  "hint": "If objects are checked out, they must be checked in or undone before the cabinet can be deleted."
-                },
-                {
-                  "action": "Delete the Personal Cabinet",
-                  "detail": "Select the checkbox for hlloyd and click Delete. Confirm the action.",
-                  "hint": null
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "User accounts should be deleted from both Windchill and the directory server for a complete removal.",
-        "The Personal Cabinet must be deleted separately after the user account is removed.",
-        "Always verify that no objects are checked out before deleting a Personal Cabinet to avoid data loss."
-      ]
-    },
-    {
-      "id": "m4t6",
-      "title": "Exercise - Execute Audit and License Reports",
-      "estimatedMinutes": 8,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Business administrators regularly generate security audit and license usage reports for compliance reviews and management reporting. In this exercise you will create a security audit report filtered to login events and then generate a license usage report."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "Sign in as <strong>wcadmin</strong> (site administrator) to access the auditing and license management tools on the Site Utilities page."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex7",
-          "title": "Execute Audit and License Reports",
-          "objective": "Create a security audit report for login events and generate a license usage report for management review.",
-          "tasks": [
-            {
-              "id": "ex7-t1",
-              "title": "Create a Security Audit Report",
-              "steps": [
-                {
-                  "action": "Open Security Audit Reporting",
-                  "detail": "From the Site Utilities page, select Security Audit Reporting in the Auditing Administration section.",
-                  "hint": null
-                },
-                {
-                  "action": "Configure the report parameters",
-                  "detail": "Set Duration to Current Year and set Only events of type to Login.",
-                  "hint": "You can also filter by context, objects, and user for more targeted reports."
-                },
-                {
-                  "action": "Preview the report",
-                  "detail": "Click Preview to generate an HTML report showing sign-in actions from today's exercises.",
-                  "hint": "Use Generate for full CSV or XML reports."
-                }
-              ]
-            },
-            {
-              "id": "ex7-t2",
-              "title": "Generate a License Usage Report",
-              "steps": [
-                {
-                  "action": "Navigate to License Management",
-                  "detail": "Click Site in the breadcrumb links and select License Management.",
-                  "hint": null
-                },
-                {
-                  "action": "Review license information",
-                  "detail": "Select the License Information tab to view licenses with their types, quantities, and expiration dates.",
-                  "hint": "Click the View information icon on any license to see profile details and members."
-                },
-                {
-                  "action": "Check license notifications",
-                  "detail": "Select the License Notifications tab to verify any pending notifications.",
-                  "hint": null
-                },
-                {
-                  "action": "Generate the license usage report",
-                  "detail": "Select the Report tab and generate the license report for the last three months. Open and review the downloaded report.",
-                  "hint": "Note the active license groups, user counts, and the Deleted Users number."
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Security Audit Reporting can filter events by type, duration, context, and user for targeted audit reports.",
-        "License Usage Reporting shows license types, quantities, expiration dates, and historical usage data.",
-        "The Preview option generates a quick HTML report while Generate produces full CSV or XML output."
-      ]
-    }
-  ]
+ "id": "m4",
+ "title": "Managing Participants and Reports",
+ "description": "Update and delete participant accounts, understand system and business process implications of deletion, and generate audit and license usage reports.",
+ "topics": [
+ {
+ "id": "m4t1",
+ "title": "Managing Existing Participants",
+ "estimatedMinutes": 5,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Participant administration is an ongoing responsibility. As users join and leave the organization, their accounts must be updated or removed. Understanding the correct procedures for modifying and deleting user accounts ensures that Windchill data integrity is maintained and that no work is lost during transitions."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Updating User Accounts"
+ },
+ {
+ "type": "paragraph",
+ "text": "To update a user's account information, connect as the organization administrator and open the <strong>Participant Administration</strong> table. Search for the participant you need to modify, then select <strong>Edit</strong> from the context menu. You can change attributes such as the user's name, email address, and other profile fields. Changes take effect immediately and are reflected across all contexts where the user participates."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Preparing to Delete a User"
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Arrange the steps for preparing and completing a user deletion in the correct order.",
+ "items": [
+ "Complete or reassign all user assignments",
+ "Check in or undo checkout of all work items",
+ "Delete the user account",
+ "Delete the user's Personal Cabinet if necessary"
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "You must clear all pending assignments and check in all work before deleting a user. Windchill will not allow deletion of an account that has outstanding assignments or checked-out items."
+ }
+ ],
+ "keyTakeaways": [
+ "User accounts are updated through the Participant Administration table using the Edit context menu action.",
+ "All assignments must be completed or reassigned before a user can be deleted.",
+ "Checked-out items must be checked in or undone before deletion proceeds.",
+ "The user's Personal Cabinet should be deleted after the account is removed."
+ ]
+ },
+ {
+ "id": "m4t2",
+ "title": "Deleting Users and System Implications",
+ "estimatedMinutes": 7,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Deleting a user account has wide-reaching effects across the Windchill system. The method of deletion determines what is cleaned up automatically and what requires manual intervention. Understanding these implications helps administrators avoid orphaned data and disrupted business processes."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Deletion Options and Effects"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Action", "Effect on Directory Server", "Effect on Windchill"],
+ "rows": [
+ ["Delete from Windchill and Directory Server", "User removed", "User object and all references removed"],
+ ["Delete from Windchill only", "User entry remains", "User object removed, Windchill maintenance performed"],
+ ["Delete from Directory Server only (non-Windchill tool)", "User removed", "User becomes disconnected participant - must be cleaned up manually"]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "If a user is deleted from the directory server using an external LDAP tool rather than through Windchill, the user becomes a <strong>disconnected participant</strong>. This orphaned record must be found and cleaned up manually using the Participant Administration tool."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Impact on Running Processes"
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Role Mappings",
+ "back": "User is automatically removed from role mappings in lifecycle templates, workflow templates, context teams, team templates, and team instances."
+ },
+ {
+ "front": "Workflow Tasks",
+ "back": "Future tasks are reassigned to the responsible role. If the deleted user held the responsible role, tasks go to the process initiator."
+ },
+ {
+ "front": "Personal Cabinet and Workspaces",
+ "back": "Deleting the Personal Cabinet removes all server-side workspaces and any work uploaded but not checked in. Items must be checked in first."
+ }
+ ]
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each consequence to the deletion method that causes it.",
+ "pairs": [
+ { "left": "User can no longer sign in", "right": "Deleted from Directory Server" },
+ { "left": "Access control rules removed", "right": "Deleted from Windchill" },
+ { "left": "User becomes disconnected participant", "right": "Deleted from Directory Server only" },
+ { "left": "User still appears in iteration history", "right": "Both deletion methods" }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Deleting from both Windchill and the directory server provides the cleanest removal of a user account.",
+ "Deleting a user from the directory server with a non-Windchill tool creates a disconnected participant that must be cleaned up manually.",
+ "Workflow tasks assigned to a deleted user are reassigned to the responsible role or the process initiator.",
+ "A deleted user still appears in iteration history but without an active email link."
+ ]
+ },
+ {
+ "id": "m4t3",
+ "title": "Deleting Groups and Organizations",
+ "estimatedMinutes": 6,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Groups and organizations are foundational structures in Windchill's participant model. Deleting a group has cascading effects on access control, notifications, and role mappings. Organization contexts, however, have permanent implications that require careful upfront planning."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Impact of Deleting a Group"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["System Area", "Impact"],
+ "rows": [
+ ["Group membership", "All users are disassociated from the group (users are not deleted)"],
+ ["Search results", "Group no longer appears in most searches"],
+ ["Access control", "All rules referencing the group are removed from every domain"],
+ ["Notifications", "Group is removed from all notification lists"],
+ ["Role mappings", "Group is removed from lifecycle, workflow, context team, and team template role mappings"]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "Organization contexts <strong>cannot be deleted</strong> in Windchill. An organization participant cannot be deleted if it is associated with an organization context. Plan your organization structure carefully before implementation."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Best Practices"
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Organization Strategy",
+ "back": "Use a single organization context for medium-sized implementations. Multiple orgs are only needed for distinct, separate divisions that don't share data."
+ },
+ {
+ "front": "Directory Server",
+ "back": "Identify whether to use a pre-established corporate LDAP or create a new one. Windchill needs the bundled directory server even when using corporate LDAP."
+ },
+ {
+ "front": "User Account Standards",
+ "back": "Always specify a valid email address - without it, notifications fail and users may not appear in search tools. Don't change default domain settings."
+ }
+ ]
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each participant management scenario to the correct concept.",
+ "pairs": [
+ { "left": "Cannot be deleted in Windchill", "right": "Organization Context" },
+ { "left": "Users are disassociated but not deleted", "right": "Group Deletion" },
+ { "left": "Must be cleaned up after external LDAP deletion", "right": "Disconnected Participant" }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Deleting a group removes all access control rules that reference it across every domain.",
+ "Organization contexts cannot be deleted - plan your organizational structure before implementation.",
+ "Group deletion disassociates users but does not delete them from the system.",
+ "Always specify valid email addresses for users to ensure notifications and search functionality work correctly."
+ ]
+ },
+ {
+ "id": "m4t4",
+ "title": "Reports, Auditing, and License Usage",
+ "estimatedMinutes": 6,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Windchill provides a suite of reporting and auditing tools that help business administrators monitor system usage, track security events, and manage license compliance. Reports can be generated in multiple formats including PDF, XML, HTML, and CSV, and can be customized using the Query Builder or third-party tools."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Report Authoring Tools"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Tool", "Purpose", "Output"],
+ "rows": [
+ ["Query Builder", "Define and save queries against Windchill data using SQL concepts", "Report templates displayed in Report Templates table"],
+ ["Jasper Report Studio", "Open-source Java reporting tool for rich, flexible reports", "PDF, Excel, CSV, XML, HTML reports"],
+ ["Info*Engine Tasks", "Create data sources for Windchill Business Reporting", "Custom data sources for reports"]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "tip",
+ "text": "Do not edit predefined Windchill reports. If you need to customize a report, create a new one based on the existing template. This preserves the default reports for future reference and upgrades."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Security Auditing and License Usage"
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Audit Log Purge Manager",
+ "back": "View audit log purge history and create jobs to purge old audit records."
+ },
+ {
+ "front": "License Usage Reporting",
+ "back": "View license usage reports, edit license counts, and track license count change history."
+ },
+ {
+ "front": "Usage Reporting",
+ "back": "Report the number of unique users accessing Windchill by year, month, week, day, or 30-minute intervals."
+ },
+ {
+ "front": "Security Audit Reporting",
+ "back": "Create and view security audit reports, save report queries, and filter by event type, context, and user."
+ }
+ ]
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Arrange the Query Builder configuration steps in the correct order.",
+ "items": [
+ "Configure report Properties",
+ "Define Tables and Joins",
+ "Set Select or Constrain fields",
+ "Add additional Criteria"
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Windchill reports can be output in PDF, XML, HTML, and CSV formats using Query Builder, Jasper Report Studio, or Info*Engine Tasks.",
+ "The Query Builder uses SQL concepts organized across Properties, Tables and Joins, Select or Constrain, and Criteria tabs.",
+ "Security Audit Reporting allows filtering by event type, context, and user to track system access and changes.",
+ "Usage Reporting provides unique user counts filterable by time period for license compliance monitoring."
+ ]
+ },
+ {
+ "id": "m4t5",
+ "title": "Exercise - Delete a User Account",
+ "estimatedMinutes": 8,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Harold Lloyd has resigned from the organization, and his user account must be fully removed from the system. In this exercise you will delete his Windchill and directory server account, then clean up his Personal Cabinet to ensure no orphaned data remains."
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "Before deleting any user account, verify that all checked-out work has been checked in or undone. Deleting the Personal Cabinet permanently removes all server-side workspaces and any unchecked-in work."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex6",
+ "title": "Delete a User Account",
+ "objective": "Completely remove Harold Lloyd's user account from both the Windchill database and directory server, then clean up the Personal Cabinet.",
+ "tasks": [
+ {
+ "id": "ex6-t1",
+ "title": "Delete the User Account",
+ "steps": [
+ {
+ "action": "Sign in as site administrator",
+ "detail": "Launch Windchill and sign in with wcadmin credentials.",
+ "hint": null
+ },
+ {
+ "action": "Open Participant Administration",
+ "detail": "Browse to Organizations > PTC Publications > Utilities and click Participant Administration.",
+ "hint": null
+ },
+ {
+ "action": "Find the user to delete",
+ "detail": "Click Add participants to table, search for hlloyd, and add Lloyd Harold to the table.",
+ "hint": null
+ },
+ {
+ "action": "Delete the user completely",
+ "detail": "Right-click the user and select Delete from Windchill and Windchill Directory Server. Confirm the action.",
+ "hint": "Verify the user no longer appears in the Participant Administration table."
+ }
+ ]
+ },
+ {
+ "id": "ex6-t2",
+ "title": "Delete the Personal Cabinet",
+ "steps": [
+ {
+ "action": "Navigate to Personal Cabinets Administration",
+ "detail": "Browse to Site > Utilities and click Personal Cabinets Administration in the System Administration section.",
+ "hint": null
+ },
+ {
+ "action": "Check for outstanding work",
+ "detail": "Click the Checked Out Work icon for hlloyd to verify no objects are checked out.",
+ "hint": "If objects are checked out, they must be checked in or undone before the cabinet can be deleted."
+ },
+ {
+ "action": "Delete the Personal Cabinet",
+ "detail": "Select the checkbox for hlloyd and click Delete. Confirm the action.",
+ "hint": null
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "User accounts should be deleted from both Windchill and the directory server for a complete removal.",
+ "The Personal Cabinet must be deleted separately after the user account is removed.",
+ "Always verify that no objects are checked out before deleting a Personal Cabinet to avoid data loss."
+ ]
+ },
+ {
+ "id": "m4t6",
+ "title": "Exercise - Execute Audit and License Reports",
+ "estimatedMinutes": 8,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Business administrators regularly generate security audit and license usage reports for compliance reviews and management reporting. In this exercise you will create a security audit report filtered to login events and then generate a license usage report."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "Sign in as <strong>wcadmin</strong> (site administrator) to access the auditing and license management tools on the Site Utilities page."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex7",
+ "title": "Execute Audit and License Reports",
+ "objective": "Create a security audit report for login events and generate a license usage report for management review.",
+ "tasks": [
+ {
+ "id": "ex7-t1",
+ "title": "Create a Security Audit Report",
+ "steps": [
+ {
+ "action": "Open Security Audit Reporting",
+ "detail": "From the Site Utilities page, select Security Audit Reporting in the Auditing Administration section.",
+ "hint": null
+ },
+ {
+ "action": "Configure the report parameters",
+ "detail": "Set Duration to Current Year and set Only events of type to Login.",
+ "hint": "You can also filter by context, objects, and user for more targeted reports."
+ },
+ {
+ "action": "Preview the report",
+ "detail": "Click Preview to generate an HTML report showing sign-in actions from today's exercises.",
+ "hint": "Use Generate for full CSV or XML reports."
+ }
+ ]
+ },
+ {
+ "id": "ex7-t2",
+ "title": "Generate a License Usage Report",
+ "steps": [
+ {
+ "action": "Navigate to License Management",
+ "detail": "Click Site in the breadcrumb links and select License Management.",
+ "hint": null
+ },
+ {
+ "action": "Review license information",
+ "detail": "Select the License Information tab to view licenses with their types, quantities, and expiration dates.",
+ "hint": "Click the View information icon on any license to see profile details and members."
+ },
+ {
+ "action": "Check license notifications",
+ "detail": "Select the License Notifications tab to verify any pending notifications.",
+ "hint": null
+ },
+ {
+ "action": "Generate the license usage report",
+ "detail": "Select the Report tab and generate the license report for the last three months. Open and review the downloaded report.",
+ "hint": "Note the active license groups, user counts, and the Deleted Users number."
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Security Audit Reporting can filter events by type, duration, context, and user for targeted audit reports.",
+ "License Usage Reporting shows license types, quantities, expiration dates, and historical usage data.",
+ "The Preview option generates a quick HTML report while Generate produces full CSV or XML output."
+ ]
+ }
+ ]
 }

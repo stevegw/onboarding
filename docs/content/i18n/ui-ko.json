@@ -54,7 +54,7 @@
   "topic.stepsProgress": "{done}/{total} 단계",
   "topic.doThis": "수행할 작업",
   "topic.whyItMatters": "중요한 이유",
-  "topic.doneNextStep": "완료 — 다음 단계",
+  "topic.doneNextStep": "완료 - 다음 단계",
   "topic.topicsComplete": "{done}/{total} 주제 완료",
   "topic.moduleBadge": "모듈 {num}",
   "topic.topics": "주제",

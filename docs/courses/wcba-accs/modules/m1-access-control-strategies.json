@@ -1,281 +1,281 @@
 {
-  "id": "m1",
-  "title": "Access Control Strategies",
-  "description": "Examine three primary strategies for user access in Windchill, compare access control priorities, and review the Windchill domain architecture.",
-  "topics": [
-    {
-      "id": "m1t1",
-      "title": "Understanding Access Control in Windchill",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Administrators can control user and group access in Windchill using three strategies that can be combined to define proper object access control. Understanding how these strategies interact is essential for building a secure and manageable access control schema."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Three Access Control Strategies"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Strategy", "Scope", "Key Characteristics"],
-          "rows": [
-            ["Domain Policies", "All objects of a class within a context", "Access, notification, and indexing rules applied to a storage context. Rules apply broadly to all objects of the same type."],
-            ["Ad Hoc Permissions", "Individual object instances", "Life cycle and object-level permissions. Can only grant access, never deny. Supersedes domain policy access control rules."],
-            ["Security Labels", "Individual objects with classification", "Classify objects with labels (e.g., Top Secret, Restricted). Denies all access to unauthorized users, regardless of any other rules."]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "insight",
-          "text": "Domain policies establish the default behavior for all objects of a type. Ad hoc permissions provide exceptions for specific objects. Security labels provide the strongest possible restriction, overriding everything."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Strategy Interactions"
-        },
-        {
-          "type": "paragraph",
-          "text": "When planning your access control strategy, use policy rules to establish default behavior for specific object types. Ad hoc and life cycle access control rules should be used sparingly to limit complexity and administration effort."
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "Access control directly related to a business process should use life cycle ad hoc rules. Access control at the discretion of administrators or object creators should use the Edit Access Control interface."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each access control scenario to the appropriate strategy:",
-          "pairs": [
-            {"left": "All engineers can read CAD documents in a product", "right": "Domain Policy"},
-            {"left": "Grant a specific user edit access to one document", "right": "Ad Hoc Permission"},
-            {"left": "Restrict a classified document to authorized personnel only", "right": "Security Label"},
-            {"left": "Allow reviewers to read documents during the review process", "right": "Ad Hoc Permission"}
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Three strategies combine to define access control: domain policies, ad hoc permissions, and security labels.",
-        "Domain policies apply broadly to all objects of a class; ad hoc permissions target individual objects.",
-        "Security labels are the strongest control, denying all access to unauthorized users regardless of other rules.",
-        "Use domain policies for defaults, ad hoc for exceptions, and security labels for classified content."
-      ]
-    },
-    {
-      "id": "m1t2",
-      "title": "Access Control Priorities",
-      "estimatedMinutes": 7,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Windchill resolves access by applying the <strong>strongest rule</strong> that applies to the object. Understanding the priority order is critical for predicting how rules interact and ensuring users get the correct access."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Priority Order (Strongest to Weakest)"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Priority", "Rule Source", "Grant/Deny", "Description"],
-          "rows": [
-            ["1 (Strongest)", "Security Label", "Deny", "Denies access to any unauthorized user — no other rule can override"],
-            ["2", "Domain Rule", "Absolute Deny", "Cannot be overridden by any grant rule, ad hoc, or user permission"],
-            ["3", "Ad Hoc Rule", "Grant", "Object-level grant that overrides domain-level deny (but not security labels or absolute deny)"],
-            ["4", "Domain Rule (Owner)", "Grant", "Grant to the Owner pseudo-role — supersedes group-level deny"],
-            ["5", "Domain Rule (Named User)", "Deny/Grant", "Deny to a named user takes precedence over grant to the same user"],
-            ["6", "Domain Rule (Group/Role)", "Deny/Grant", "Rules for groups, context roles, organization roles, and the All pseudo-role"],
-            ["7 (Weakest)", "Default Deny", "Deny", "If no rule is set, access is denied by default"]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "The main point to remember is that the <strong>strongest rule that applies takes precedence</strong>, regardless of where in the domain, context, or object hierarchy it originates."
-        },
-        {
-          "type": "paragraph",
-          "text": "If the security label denies the user and there is no security agreement, there is no reason to review other rules. Absolute deny permissions are similarly absolute — no grant rule is stronger."
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange these access control rules from strongest to weakest:",
-          "items": [
-            "Security label deny",
-            "Absolute deny domain rule",
-            "Ad hoc grant rule",
-            "Domain grant to a group of users"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "The strongest rule that applies to an object takes precedence, regardless of its origin.",
-        "Security labels are the strongest rule — they cannot be overridden by any other access control mechanism.",
-        "Absolute deny domain rules cannot be overridden by ad hoc rules or user-specific grants.",
-        "If no rule is set for a participant, access is denied by default."
-      ]
-    },
-    {
-      "id": "m1t3",
-      "title": "Windchill Context and Domain Architecture",
-      "estimatedMinutes": 7,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Windchill system behavior is based on a hierarchical context model. The Site context represents the system, organizations are components of the Site, and products, libraries, projects, and programs are components within an organization. Domains and cabinets are connected to this hierarchy."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Cabinets and Domains"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Object", "Purpose", "Visibility"],
-          "rows": [
-            ["Default Cabinet", "Stores user data objects (parts, documents)", "Content visible via Folders page"],
-            ["System Cabinet", "Stores administrative templates (life cycles, workflows)", "Not visible to non-admin users"],
-            ["Personal Cabinet", "Stores user's notebook, checked-out copies, workspaces", "Visible only to the user"],
-            ["Administrative Domain", "Controls access, indexing, and notification rules for objects", "Managed through Policy Administrator"]
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Domain Architecture"
-        },
-        {
-          "type": "paragraph",
-          "text": "All domains are children of the <strong>/(Root)</strong> domain, which establishes rules governing the entire Windchill installation. The domain hierarchy includes specialized domains for different purposes."
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "User / Organization Domains",
-              "back": "Control participants (users, groups, organizations). It is recommended not to alter these domains as the defaults are needed for participants to operate correctly."
-            },
-            {
-              "front": "System Domains",
-              "back": "Associated with System cabinets, controlling administrative templates. Every context has a system domain. Do not alter or add rules to these domains."
-            },
-            {
-              "front": "Data Domains (Default / PDM / Project)",
-              "back": "Govern access, notification, and indexing for data objects. This is where business administrators concentrate most domain administration efforts."
-            },
-            {
-              "front": "Private Domain",
-              "back": "Bypasses global rules from Default and PDM domains. Used when a product or library is set to private, enabling restrictive access rules."
-            }
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "As a business administrator, concentrate most of your domain administration efforts on the data domains (Default, PDM, Project). Avoid modifying User, System, and special Site domains."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each domain type to its primary purpose:",
-          "pairs": [
-            {"left": "Stores rules for parts, documents, and CAD files", "right": "Data Domain (Default)"},
-            {"left": "Controls life cycle and workflow templates", "right": "System Domain"},
-            {"left": "Bypasses global PDM rules for restricted contexts", "right": "Private Domain"},
-            {"left": "Parent to all public Product and Library domains", "right": "PDM Domain"}
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Windchill uses a hierarchical context model with the /(Root) domain at the top governing all domains.",
-        "Every access-controlled object is associated with exactly one administrative domain.",
-        "Business administrators should focus on data domains (Default, PDM, Project) and avoid modifying User and System domains.",
-        "The Private domain bypasses global rules, enabling restrictive access for sensitive contexts."
-      ]
-    },
-    {
-      "id": "m1t4",
-      "title": "Review Domain Architecture",
-      "estimatedMinutes": 8,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In this exercise, you review the domains available in the Windchill installation using the Policy Administrator utility. You will explore the domain hierarchy and understand how different domains are structured."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "You will sign in as business administrator bpatterson/ptc to access the Policy Administrator."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex1",
-          "title": "Review Domain Architecture",
-          "objective": "Access the Policy Administrator, explore the domain hierarchy, and identify the purpose of each domain level.",
-          "tasks": [
-            {
-              "id": "ex1-t1",
-              "title": "Access the Policy Administrator",
-              "steps": [
-                {
-                  "action": "Sign in to Windchill as <code>bpatterson/ptc</code>.",
-                  "detail": "bpatterson is a business administrator with access to the Policy Administrator utility.",
-                  "hint": null
-                },
-                {
-                  "action": "Navigate to <strong>Organizations > PTC Publications > Utilities</strong> and click <strong>Policy Administration</strong>.",
-                  "detail": "The Policy Administrator is the central utility for managing domains and access control rules.",
-                  "hint": "Expand the Navigator panel to access the Organizations section."
-                }
-              ]
-            },
-            {
-              "id": "ex1-t2",
-              "title": "Explore the Domain Hierarchy",
-              "steps": [
-                {
-                  "action": "Select the <strong>/ (Root)</strong> domain name.",
-                  "detail": "The Root domain contains rules that govern the entire Windchill installation.",
-                  "hint": null
-                },
-                {
-                  "action": "Expand the <strong>Default</strong> node beneath Root.",
-                  "detail": "This domain governs policies for PTC Publications data.",
-                  "hint": null
-                },
-                {
-                  "action": "Note the <strong>PDM</strong> domain — this is the parent of all Product and Library public default domains.",
-                  "detail": "The PDM domain is different from the Organization domain. Rules here affect all public products and libraries.",
-                  "hint": null
-                },
-                {
-                  "action": "Click the <strong>Project</strong> domain.",
-                  "detail": "This is the parent of Product and Project domains. Note the rule permitting all PTC Publications members to create projects.",
-                  "hint": null
-                },
-                {
-                  "action": "Note the <strong>Private</strong> domain and click the <strong>System</strong> domain.",
-                  "detail": "Private bypasses global rules. System controls administrative templates — hover over rows in the Type column to see the object types.",
-                  "hint": null
-                },
-                {
-                  "action": "Expand the <strong>User</strong> node and observe the organization domains.",
-                  "detail": "The User domain is the parent for organization and unaffiliated participant domains.",
-                  "hint": "Note that bpatterson cannot view domains in other organization contexts."
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "The Policy Administrator is accessed from the Utilities section of an organization context.",
-        "The Root domain contains rules governing the entire Windchill installation.",
-        "The PDM domain is the parent of all public Product and Library default domains.",
-        "User and System domains should not be modified — they contain essential default rules."
-      ]
-    }
-  ]
+ "id": "m1",
+ "title": "Access Control Strategies",
+ "description": "Examine three primary strategies for user access in Windchill, compare access control priorities, and review the Windchill domain architecture.",
+ "topics": [
+ {
+ "id": "m1t1",
+ "title": "Understanding Access Control in Windchill",
+ "estimatedMinutes": 6,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Administrators can control user and group access in Windchill using three strategies that can be combined to define proper object access control. Understanding how these strategies interact is essential for building a secure and manageable access control schema."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Three Access Control Strategies"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Strategy", "Scope", "Key Characteristics"],
+ "rows": [
+ ["Domain Policies", "All objects of a class within a context", "Access, notification, and indexing rules applied to a storage context. Rules apply broadly to all objects of the same type."],
+ ["Ad Hoc Permissions", "Individual object instances", "Life cycle and object-level permissions. Can only grant access, never deny. Supersedes domain policy access control rules."],
+ ["Security Labels", "Individual objects with classification", "Classify objects with labels (e.g., Top Secret, Restricted). Denies all access to unauthorized users, regardless of any other rules."]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "insight",
+ "text": "Domain policies establish the default behavior for all objects of a type. Ad hoc permissions provide exceptions for specific objects. Security labels provide the strongest possible restriction, overriding everything."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Strategy Interactions"
+ },
+ {
+ "type": "paragraph",
+ "text": "When planning your access control strategy, use policy rules to establish default behavior for specific object types. Ad hoc and life cycle access control rules should be used sparingly to limit complexity and administration effort."
+ },
+ {
+ "type": "callout",
+ "variant": "tip",
+ "text": "Access control directly related to a business process should use life cycle ad hoc rules. Access control at the discretion of administrators or object creators should use the Edit Access Control interface."
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each access control scenario to the appropriate strategy:",
+ "pairs": [
+ {"left": "All engineers can read CAD documents in a product", "right": "Domain Policy"},
+ {"left": "Grant a specific user edit access to one document", "right": "Ad Hoc Permission"},
+ {"left": "Restrict a classified document to authorized personnel only", "right": "Security Label"},
+ {"left": "Allow reviewers to read documents during the review process", "right": "Ad Hoc Permission"}
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Three strategies combine to define access control: domain policies, ad hoc permissions, and security labels.",
+ "Domain policies apply broadly to all objects of a class; ad hoc permissions target individual objects.",
+ "Security labels are the strongest control, denying all access to unauthorized users regardless of other rules.",
+ "Use domain policies for defaults, ad hoc for exceptions, and security labels for classified content."
+ ]
+ },
+ {
+ "id": "m1t2",
+ "title": "Access Control Priorities",
+ "estimatedMinutes": 7,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Windchill resolves access by applying the <strong>strongest rule</strong> that applies to the object. Understanding the priority order is critical for predicting how rules interact and ensuring users get the correct access."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Priority Order (Strongest to Weakest)"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Priority", "Rule Source", "Grant/Deny", "Description"],
+ "rows": [
+ ["1 (Strongest)", "Security Label", "Deny", "Denies access to any unauthorized user - no other rule can override"],
+ ["2", "Domain Rule", "Absolute Deny", "Cannot be overridden by any grant rule, ad hoc, or user permission"],
+ ["3", "Ad Hoc Rule", "Grant", "Object-level grant that overrides domain-level deny (but not security labels or absolute deny)"],
+ ["4", "Domain Rule (Owner)", "Grant", "Grant to the Owner pseudo-role - supersedes group-level deny"],
+ ["5", "Domain Rule (Named User)", "Deny/Grant", "Deny to a named user takes precedence over grant to the same user"],
+ ["6", "Domain Rule (Group/Role)", "Deny/Grant", "Rules for groups, context roles, organization roles, and the All pseudo-role"],
+ ["7 (Weakest)", "Default Deny", "Deny", "If no rule is set, access is denied by default"]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "The main point to remember is that the <strong>strongest rule that applies takes precedence</strong>, regardless of where in the domain, context, or object hierarchy it originates."
+ },
+ {
+ "type": "paragraph",
+ "text": "If the security label denies the user and there is no security agreement, there is no reason to review other rules. Absolute deny permissions are similarly absolute - no grant rule is stronger."
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Arrange these access control rules from strongest to weakest:",
+ "items": [
+ "Security label deny",
+ "Absolute deny domain rule",
+ "Ad hoc grant rule",
+ "Domain grant to a group of users"
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "The strongest rule that applies to an object takes precedence, regardless of its origin.",
+ "Security labels are the strongest rule - they cannot be overridden by any other access control mechanism.",
+ "Absolute deny domain rules cannot be overridden by ad hoc rules or user-specific grants.",
+ "If no rule is set for a participant, access is denied by default."
+ ]
+ },
+ {
+ "id": "m1t3",
+ "title": "Windchill Context and Domain Architecture",
+ "estimatedMinutes": 7,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Windchill system behavior is based on a hierarchical context model. The Site context represents the system, organizations are components of the Site, and products, libraries, projects, and programs are components within an organization. Domains and cabinets are connected to this hierarchy."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Cabinets and Domains"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Object", "Purpose", "Visibility"],
+ "rows": [
+ ["Default Cabinet", "Stores user data objects (parts, documents)", "Content visible via Folders page"],
+ ["System Cabinet", "Stores administrative templates (life cycles, workflows)", "Not visible to non-admin users"],
+ ["Personal Cabinet", "Stores user's notebook, checked-out copies, workspaces", "Visible only to the user"],
+ ["Administrative Domain", "Controls access, indexing, and notification rules for objects", "Managed through Policy Administrator"]
+ ]
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Domain Architecture"
+ },
+ {
+ "type": "paragraph",
+ "text": "All domains are children of the <strong>/(Root)</strong> domain, which establishes rules governing the entire Windchill installation. The domain hierarchy includes specialized domains for different purposes."
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "User / Organization Domains",
+ "back": "Control participants (users, groups, organizations). It is recommended not to alter these domains as the defaults are needed for participants to operate correctly."
+ },
+ {
+ "front": "System Domains",
+ "back": "Associated with System cabinets, controlling administrative templates. Every context has a system domain. Do not alter or add rules to these domains."
+ },
+ {
+ "front": "Data Domains (Default / PDM / Project)",
+ "back": "Govern access, notification, and indexing for data objects. This is where business administrators concentrate most domain administration efforts."
+ },
+ {
+ "front": "Private Domain",
+ "back": "Bypasses global rules from Default and PDM domains. Used when a product or library is set to private, enabling restrictive access rules."
+ }
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "tip",
+ "text": "As a business administrator, concentrate most of your domain administration efforts on the data domains (Default, PDM, Project). Avoid modifying User, System, and special Site domains."
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each domain type to its primary purpose:",
+ "pairs": [
+ {"left": "Stores rules for parts, documents, and CAD files", "right": "Data Domain (Default)"},
+ {"left": "Controls life cycle and workflow templates", "right": "System Domain"},
+ {"left": "Bypasses global PDM rules for restricted contexts", "right": "Private Domain"},
+ {"left": "Parent to all public Product and Library domains", "right": "PDM Domain"}
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Windchill uses a hierarchical context model with the /(Root) domain at the top governing all domains.",
+ "Every access-controlled object is associated with exactly one administrative domain.",
+ "Business administrators should focus on data domains (Default, PDM, Project) and avoid modifying User and System domains.",
+ "The Private domain bypasses global rules, enabling restrictive access for sensitive contexts."
+ ]
+ },
+ {
+ "id": "m1t4",
+ "title": "Review Domain Architecture",
+ "estimatedMinutes": 8,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "In this exercise, you review the domains available in the Windchill installation using the Policy Administrator utility. You will explore the domain hierarchy and understand how different domains are structured."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "You will sign in as business administrator bpatterson/ptc to access the Policy Administrator."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex1",
+ "title": "Review Domain Architecture",
+ "objective": "Access the Policy Administrator, explore the domain hierarchy, and identify the purpose of each domain level.",
+ "tasks": [
+ {
+ "id": "ex1-t1",
+ "title": "Access the Policy Administrator",
+ "steps": [
+ {
+ "action": "Sign in to Windchill as <code>bpatterson/ptc</code>.",
+ "detail": "bpatterson is a business administrator with access to the Policy Administrator utility.",
+ "hint": null
+ },
+ {
+ "action": "Navigate to <strong>Organizations > PTC Publications > Utilities</strong> and click <strong>Policy Administration</strong>.",
+ "detail": "The Policy Administrator is the central utility for managing domains and access control rules.",
+ "hint": "Expand the Navigator panel to access the Organizations section."
+ }
+ ]
+ },
+ {
+ "id": "ex1-t2",
+ "title": "Explore the Domain Hierarchy",
+ "steps": [
+ {
+ "action": "Select the <strong>/ (Root)</strong> domain name.",
+ "detail": "The Root domain contains rules that govern the entire Windchill installation.",
+ "hint": null
+ },
+ {
+ "action": "Expand the <strong>Default</strong> node beneath Root.",
+ "detail": "This domain governs policies for PTC Publications data.",
+ "hint": null
+ },
+ {
+ "action": "Note the <strong>PDM</strong> domain - this is the parent of all Product and Library public default domains.",
+ "detail": "The PDM domain is different from the Organization domain. Rules here affect all public products and libraries.",
+ "hint": null
+ },
+ {
+ "action": "Click the <strong>Project</strong> domain.",
+ "detail": "This is the parent of Product and Project domains. Note the rule permitting all PTC Publications members to create projects.",
+ "hint": null
+ },
+ {
+ "action": "Note the <strong>Private</strong> domain and click the <strong>System</strong> domain.",
+ "detail": "Private bypasses global rules. System controls administrative templates - hover over rows in the Type column to see the object types.",
+ "hint": null
+ },
+ {
+ "action": "Expand the <strong>User</strong> node and observe the organization domains.",
+ "detail": "The User domain is the parent for organization and unaffiliated participant domains.",
+ "hint": "Note that bpatterson cannot view domains in other organization contexts."
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "The Policy Administrator is accessed from the Utilities section of an organization context.",
+ "The Root domain contains rules governing the entire Windchill installation.",
+ "The PDM domain is the parent of all public Product and Library default domains.",
+ "User and System domains should not be modified - they contain essential default rules."
+ ]
+ }
+ ]
 }

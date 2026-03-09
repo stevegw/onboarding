@@ -1,472 +1,472 @@
 {
-  "id": "m4",
-  "title": "Explorar los conjuntos de opciones",
-  "description": "Defina los conjuntos de opciones, explore la gestión de cambios para conjuntos de opciones, asigne conjuntos de opciones, aplique expresiones y utilice filtros de opciones para generar variantes.",
-  "topics": [
-    {
-      "id": "m4t1",
-      "title": "Conjuntos de opciones y gestión de cambios",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Un conjunto de opciones es una colección curada de opciones, elecciones y reglas que define el vocabulario de configuración para una familia de productos específica. Mientras que el pool de opciones contiene cada opción definida para un contexto de producto, un conjunto de opciones selecciona solo el subconjunto relevante necesario para una línea de producto particular. Comprender cómo se gestionan, versionan y gobiernan los conjuntos de opciones es esencial para mantener configuraciones de producto fiables."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "¿Qué es un conjunto de opciones?"
-        },
-        {
-          "type": "paragraph",
-          "text": "Un conjunto de opciones obtiene su contenido del pool de opciones y lo empaqueta para su uso con un producto configurable o familia de productos específica. Contiene las opciones, elecciones y reglas que definen las configuraciones válidas para esa familia. Un único pool de opciones puede alimentar múltiples conjuntos de opciones, cada uno adaptado a una línea de producto diferente. Esta separación permite a las organizaciones mantener un repositorio centralizado de opciones mientras proporcionan vocabularios de configuración enfocados para productos individuales."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Pool de opciones vs. Conjunto de opciones vs. Filtro de opciones"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Concepto", "Qué contiene", "Ámbito", "Propósito"],
-          "rows": [
-            ["Pool de opciones", "Todas las opciones, elecciones y reglas definidas para un contexto de producto", "Contexto completo del producto (todas las familias de productos)", "Repositorio maestro de todas las características configurables disponibles en los productos de la organización"],
-            ["Conjunto de opciones", "Un subconjunto curado de opciones, elecciones y reglas del pool de opciones", "Familia de productos o producto configurable específico", "Define el vocabulario de configuración válido para una línea de producto particular, incluyendo las reglas aplicables"],
-            ["Filtro de opciones", "Un conjunto específico de selecciones de elecciones aplicadas a un conjunto de opciones", "Una única instancia de configuración", "Filtra una estructura de producto sobrecargada hasta los artículos necesarios para una variante de producto específica"]
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Gestión de cambios para conjuntos de opciones"
-        },
-        {
-          "type": "paragraph",
-          "text": "Los conjuntos de opciones en Windchill son objetos gestionados que siguen flujos de trabajo de gestión de cambios estándar. Esto significa que soportan versionado, estados de ciclo de vida y operaciones de entrada/salida, asegurando que los cambios en las definiciones de configuración de producto sean controlados y rastreables."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "Los conjuntos de opciones siguen los mismos principios de gestión de cambios que otros objetos de Windchill. Pueden extraerse para edición, registrarse para guardar cambios, versionarse para rastrear la evolución a lo largo del tiempo y gobernarse mediante estados de ciclo de vida (por ej., En Trabajo, Liberado). Esto asegura que las definiciones de configuración siempre sean auditables y que los cambios no autorizados no puedan afectar los productos liberados."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Gobernanza del conjunto de opciones"
-        },
-        {
-          "type": "paragraph",
-          "text": "La gobernanza de los conjuntos de opciones implica controlar quién puede crearlos, modificarlos y liberarlos. El rol de Gestor de Opciones es responsable de mantener los conjuntos de opciones, añadir o eliminar opciones y elecciones, definir reglas y gestionar el ciclo de vida del conjunto de opciones. Las organizaciones típicamente establecen procesos de revisión y aprobación antes de que un conjunto de opciones se libere para uso en producción."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Ponga a prueba sus conocimientos"
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Asocie cada concepto de gestión de conjuntos de opciones con su descripción:",
-          "pairs": [
-            {"left": "Versionado de conjuntos de opciones", "right": "Rastrea los cambios al conjunto de opciones a lo largo del tiempo, creando un historial de definiciones de configuración"},
-            {"left": "Entrada/Salida", "right": "Controla la edición concurrente bloqueando el conjunto de opciones mientras se está modificando"},
-            {"left": "Estados de ciclo de vida", "right": "Gobierna la madurez del conjunto de opciones (por ej., En Trabajo, En Revisión, Liberado)"},
-            {"left": "Rol de Gestor de Opciones", "right": "El rol de Windchill responsable de crear y mantener los conjuntos de opciones y su contenido"}
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Un conjunto de opciones es una colección curada de opciones, elecciones y reglas obtenidas del pool de opciones para una familia de productos específica",
-        "El pool de opciones es el repositorio maestro; el conjunto de opciones es un subconjunto enfocado; el filtro de opciones aplica elecciones específicas para generar una variante",
-        "Los conjuntos de opciones son objetos gestionados con versionado, estados de ciclo de vida y soporte de entrada/salida",
-        "El rol de Gestor de Opciones es responsable de crear, mantener y gobernar los conjuntos de opciones"
-      ]
-    },
-    {
-      "id": "m4t2",
-      "title": "Asignación y gestión de conjuntos de opciones",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Una vez que un conjunto de opciones ha sido creado y poblado con las opciones, elecciones y reglas apropiadas, debe asignarse a un producto configurable o módulo configurable. El proceso de asignación vincula el vocabulario de configuración con la estructura del producto, habilitando la generación de variantes basada en opciones. La gestión adecuada de la membresía del conjunto de opciones asegura que los productos permanezcan configurables a medida que evolucionan los requisitos."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Asignación de conjuntos de opciones"
-        },
-        {
-          "type": "paragraph",
-          "text": "Los conjuntos de opciones se asignan a productos configurables y módulos configurables a través de la interfaz de usuario de Windchill. Un producto configurable debe tener un conjunto de opciones asignado antes de que se puedan aplicar filtros de opciones o generar variantes. Los módulos configurables dentro de la estructura del producto también pueden tener sus propios conjuntos de opciones, permitiendo que diferentes secciones del producto utilicen diferentes vocabularios de configuración cuando sea necesario."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Pasos clave para asignar conjuntos de opciones"
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Paso 1: Navegar al producto configurable",
-              "back": "Abrir el producto configurable en Windchill y localizar el menú de acciones o la pestaña Conjunto de Opciones. El producto ya debe estar designado como Producto Configurable antes de que se pueda asignar un conjunto de opciones."
-            },
-            {
-              "front": "Paso 2: Seleccionar la acción Asignar Conjunto de Opciones",
-              "back": "Usar el menú de Acciones o la pestaña Conjunto de Opciones para iniciar la asignación. Windchill presenta una lista de conjuntos de opciones disponibles del contexto del producto. Solo los conjuntos de opciones que pertenecen al mismo contexto de producto (o un contexto compartido) están disponibles para la asignación."
-            },
-            {
-              "front": "Paso 3: Elegir el conjunto de opciones apropiado",
-              "back": "Seleccionar el conjunto de opciones que contiene las opciones, elecciones y reglas relevantes para esta familia de productos. Revisar el contenido del conjunto de opciones para confirmar que incluye todos los parámetros de configuración necesarios antes de completar la asignación."
-            },
-            {
-              "front": "Paso 4: Verificar la asignación",
-              "back": "Después de la asignación, verificar que el conjunto de opciones aparece en la pestaña Conjunto de Opciones del producto. Confirmar que las opciones y elecciones del conjunto asignado están ahora disponibles para su uso en expresiones y filtros de opciones en la estructura del producto."
-            }
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Gestión de la membresía del conjunto de opciones"
-        },
-        {
-          "type": "paragraph",
-          "text": "A medida que evolucionan los requisitos del producto, los conjuntos de opciones deben actualizarse para reflejar nuevas opciones, elecciones adicionales o reglas modificadas. El Gestor de Opciones puede añadir nuevas opciones del pool de opciones, añadir nuevas elecciones a opciones existentes dentro del conjunto, eliminar opciones o elecciones que ya no son relevantes, y actualizar reglas para reflejar la lógica de negocio cambiante. Todos los cambios requieren que el conjunto de opciones se extraiga primero, y los cambios solo son visibles para otros después del registro."
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "Buena práctica: organizar los conjuntos de opciones por familia de productos, no por producto individual. Un conjunto de opciones bien diseñado cubre todas las configuraciones dentro de una familia de productos. Evite crear un conjunto de opciones por variante de producto, ya que esto anula el propósito de los productos configurables y crea una sobrecarga de mantenimiento innecesaria."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Ordene el proceso de asignación"
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Ordene los pasos para asignar un conjunto de opciones a un producto configurable en el orden correcto:",
-          "correctOrder": [
-            "Navegar al producto configurable en Windchill",
-            "Abrir el menú de Acciones y seleccionar Asignar Conjunto de Opciones",
-            "Seleccionar el conjunto de opciones apropiado de la lista disponible",
-            "Confirmar la asignación y verificar que el conjunto de opciones aparece en el producto"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Los conjuntos de opciones deben asignarse a productos configurables antes de que se puedan usar filtros de opciones o la generación de variantes",
-        "El proceso de asignación implica navegar al producto, seleccionar la acción Asignar Conjunto de Opciones, elegir el conjunto y verificar",
-        "La membresía del conjunto de opciones puede actualizarse añadiendo o eliminando opciones, elecciones y reglas a medida que evolucionan los requisitos",
-        "La buena práctica es organizar los conjuntos de opciones por familia de productos en lugar de por variante de producto individual"
-      ]
-    },
-    {
-      "id": "m4t3",
-      "title": "Expresiones y filtros de opciones",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Las expresiones y los filtros de opciones son los mecanismos que conectan las elecciones de opciones con la estructura del producto. Las expresiones se asignan a artículos y enlaces de uso para especificar cuándo un componente debe incluirse en una variante. Los filtros de opciones usan las expresiones asignadas para evaluar qué artículos pertenecen a una configuración específica basándose en las selecciones de elecciones del usuario."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Expresiones básicas vs. avanzadas"
-        },
-        {
-          "type": "paragraph",
-          "text": "Windchill soporta dos tipos de expresiones para asignar elecciones a artículos y enlaces de uso. Las expresiones básicas usan referencias de elecciones simples, mientras que las expresiones avanzadas añaden operadores y funciones para lógica de selección compleja. El tipo de expresión que use depende de la complejidad de sus requisitos de configuración y de si se necesita integración con Creo."
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Aspecto", "Expresión básica", "Expresión avanzada"],
-          "rows": [
-            ["Sintaxis", "Referencia de elección simple (por ej., Color=Rojo)", "Incluye elecciones, operadores (Y, O, NO) y funciones"],
-            ["Capacidad", "Asigna una elección única o una lista simple de elecciones a un artículo o enlace de uso", "Soporta condiciones lógicas complejas combinando múltiples opciones y elecciones con operadores booleanos"],
-            ["Soporte en Creo", "Se pasa de Windchill a Creo y se soporta en ambos sistemas", "Permanece solo en Windchill; NO se pasa a Creo"],
-            ["Casos de uso", "Configuraciones directas donde un artículo se incluye cuando se selecciona una única elección", "Configuraciones complejas donde la inclusión del artículo depende de combinaciones de elecciones de múltiples opciones"],
-            ["Ejemplo", "Motorcycle Type = Off Road", "(Motorcycle Type = Off Road) AND (Engine Size = 1200cc)"],
-            ["Preferencia requerida", "Preferencia Expresiones Soportadas establecida en Básica o Ambas", "Preferencia Expresiones Soportadas establecida en Ambas"]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "Las expresiones avanzadas NO se pasan de Windchill a Creo. Si su flujo de trabajo implica configurar variantes en Creo, debe usar expresiones básicas para cualquier asignación de elecciones que necesite ser visible en Creo. Planifique su estrategia de expresiones cuidadosamente según sus requisitos de integración con Creo."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Filtros de opciones"
-        },
-        {
-          "type": "paragraph",
-          "text": "Un filtro de opciones es un conjunto de selecciones de elecciones que se aplica a una estructura de producto sobrecargada para generar una variante filtrada. Cuando crea un filtro de opciones, selecciona elecciones específicas para cada opción en el conjunto de opciones asignado. Windchill entonces evalúa las expresiones en cada artículo y enlace de uso en la estructura, incluyendo solo los artículos cuyas expresiones coinciden con las elecciones seleccionadas. El resultado es una estructura reducida que representa una variante de producto específica."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Conceptos de filtro de opciones"
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Creación de un filtro de opciones",
-              "back": "Navegar a la estructura del producto configurable y seleccionar la acción Crear Filtro de Opciones. Windchill presenta las opciones del conjunto de opciones asignado. Seleccionar una elección para cada opción para definir los criterios del filtro. Las reglas del conjunto de opciones aplican automáticamente las combinaciones válidas de elecciones."
-            },
-            {
-              "front": "Aplicación de un filtro de opciones",
-              "back": "Una vez creado, el filtro de opciones se aplica a la estructura sobrecargada. Windchill evalúa la expresión de cada artículo contra las elecciones del filtro. Los artículos cuyas expresiones coinciden se incluyen; los artículos cuyas expresiones no coinciden se excluyen. El resultado es una estructura filtrada que muestra solo los componentes para esa variante específica."
-            },
-            {
-              "front": "Especificación de variante",
-              "back": "Cuando se aplica un filtro de opciones para generar una variante, Windchill crea una especificación de variante que registra las elecciones exactas utilizadas. Esta especificación permite la reutilización de variantes — si se solicitan las mismas elecciones posteriormente, Windchill puede encontrar y reutilizar la variante existente en lugar de generar una nueva."
-            },
-            {
-              "front": "Aplicación de reglas durante el filtrado",
-              "back": "Las reglas de inclusión, exclusión, habilitación y condicionales se aplican durante el proceso de filtro de opciones. Si un usuario selecciona una elección que dispara una regla de inclusión, las elecciones relacionadas se seleccionan automáticamente. Si una elección viola una regla de exclusión, se previene. Esto asegura que cada variante generada sea válida."
-            }
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "insight",
-          "text": "El filtro de opciones es donde todo se une: el conjunto de opciones proporciona el vocabulario, las expresiones vinculan las elecciones a los artículos, las reglas aplican las combinaciones válidas, y el filtro aplica elecciones específicas para reducir la estructura sobrecargada a una variante concreta. Dominar los filtros de opciones es la clave para una configuración de producto efectiva en Windchill."
-        }
-      ],
-      "keyTakeaways": [
-        "Las expresiones básicas usan referencias de elecciones simples y se pasan a Creo; las expresiones avanzadas usan lógica booleana y permanecen solo en Windchill",
-        "Las expresiones se asignan a artículos y enlaces de uso para especificar cuándo un componente se incluye en una variante",
-        "Los filtros de opciones aplican selecciones de elecciones específicas a una estructura sobrecargada para generar una variante filtrada",
-        "Las especificaciones de variante registran las elecciones utilizadas para generar una variante, habilitando la reutilización de variantes existentes"
-      ]
-    },
-    {
-      "id": "m4t4",
-      "title": "Asignar conjunto de opciones y aplicar filtro",
-      "estimatedMinutes": 5,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "En este ejercicio, asignará un conjunto de opciones al producto configurable PTC Motorcycle y luego creará y aplicará un filtro de opciones para generar una estructura de variante filtrada. Este ejercicio reúne los conceptos de los temas anteriores: conjuntos de opciones, expresiones y filtros de opciones."
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "Este ejercicio se basa en los ejercicios anteriores. Asegúrese de haber completado los ejercicios de creación de opciones y reglas antes de continuar. El conjunto de opciones referenciado en este ejercicio ya debería existir en el contexto del producto PTC Motorcycle."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex5",
-          "title": "Asignar conjunto de opciones y aplicar filtro",
-          "objective": "Aprender a asignar un conjunto de opciones a un producto configurable y aplicar un filtro de opciones para generar una estructura de variante filtrada.",
-          "tasks": [
-            {
-              "id": "ex5-t1",
-              "title": "Asignar el conjunto de opciones al producto configurable",
-              "steps": [
-                {
-                  "action": "Navegue al producto configurable PTC Motorcycle. Vaya a Explorar > Productos y seleccione PTC Motorcycle.",
-                  "detail": "PTC Motorcycle es el producto configurable utilizado a lo largo de este curso. Asignará el conjunto de opciones existente a este producto para que se puedan aplicar filtros de opciones a su estructura sobrecargada.",
-                  "hint": "Inicie sesión como Anna Chen o su usuario de formación asignado. PTC Motorcycle debería aparecer en la lista de Productos."
-                },
-                {
-                  "action": "Abra el menú de Acciones en la página del producto PTC Motorcycle y seleccione 'Asignar Conjunto de Opciones'.",
-                  "detail": "La acción Asignar Conjunto de Opciones vincula un conjunto de opciones al producto configurable. Esta acción está disponible desde el menú de Acciones a nivel de producto o desde la pestaña Conjunto de Opciones. Un producto debe tener un conjunto de opciones asignado antes de que se puedan crear filtros de opciones.",
-                  "hint": "Si no ve la acción Asignar Conjunto de Opciones, verifique que el producto esté designado como Producto Configurable y que tenga los permisos apropiados."
-                },
-                {
-                  "action": "En el diálogo de asignación, seleccione el conjunto de opciones PTC Motorcycle de la lista de conjuntos de opciones disponibles.",
-                  "detail": "El diálogo muestra los conjuntos de opciones disponibles en este contexto de producto. Seleccione el conjunto de opciones que contiene las opciones Motorcycle Type, Engine Size, Color, Wheels y Saddle Bag Location junto con las reglas de inclusión y exclusión creadas en ejercicios anteriores.",
-                  "hint": "Si aparecen múltiples conjuntos de opciones, elija el que coincida con las opciones y reglas que creó en ejercicios anteriores."
-                },
-                {
-                  "action": "Confirme la asignación y verifique que el conjunto de opciones ahora aparece en la pestaña Conjunto de Opciones de PTC Motorcycle.",
-                  "detail": "Después de la asignación, la pestaña Conjunto de Opciones debería mostrar el conjunto de opciones asignado con todas sus opciones, elecciones y reglas. Explore las opciones para confirmar que Motorcycle Type, Engine Size, Color, Wheels y Saddle Bag Location están presentes con sus respectivas elecciones.",
-                  "hint": "Haga clic en la pestaña Conjunto de Opciones en la página del producto. Expanda las opciones para verificar las elecciones y reglas."
-                }
-              ]
-            },
-            {
-              "id": "ex5-t2",
-              "title": "Crear y aplicar un filtro de opciones",
-              "steps": [
-                {
-                  "action": "Navegue a la estructura del producto PTC Motorcycle haciendo clic en la pestaña Estructura.",
-                  "detail": "La pestaña Estructura muestra la estructura de producto sobrecargada que contiene todas las variaciones de diseño posibles. Creará un filtro de opciones para reducir esta estructura a una variante específica basada en sus selecciones de elecciones.",
-                  "hint": "La pestaña Estructura muestra la Lista de Materiales completa con todos los módulos configurables y sus artículos secundarios."
-                },
-                {
-                  "action": "Haga clic en la acción 'Crear Filtro de Opciones' en la barra de herramientas de la vista de estructura o el menú de Acciones.",
-                  "detail": "La acción Crear Filtro de Opciones abre un diálogo que presenta todas las opciones del conjunto de opciones asignado. Seleccionará elecciones específicas para cada opción para definir los criterios del filtro de la variante que desea generar.",
-                  "hint": "Busque un icono de filtro o la acción 'Filtro de Opciones' en la barra de herramientas sobre el árbol de estructura."
-                },
-                {
-                  "action": "Seleccione 'Off Road' para la opción Motorcycle Type.",
-                  "detail": "Seleccionar Off Road define esta variante como una configuración de motocicleta todo terreno. Observe que la regla de inclusión que creó selecciona automáticamente Off Road Front y Off Road Rear para la opción Wheels, y la regla de exclusión impide que se seleccionen On Road Front y On Road Rear.",
-                  "hint": "Observe cómo las elecciones de la opción Wheels se actualizan automáticamente a medida que se aplican las reglas de inclusión y exclusión."
-                },
-                {
-                  "action": "Seleccione elecciones para las opciones restantes: elija un Engine Size (por ej., 1000cc), un Color (por ej., Black), y verifique el Saddle Bag Location (por ej., Not Used).",
-                  "detail": "Complete el filtro de opciones seleccionando una elección para cada opción restante. La combinación de todas las elecciones define una variante de producto específica. Las reglas continúan aplicando las combinaciones válidas a medida que realiza selecciones.",
-                  "hint": "Si ciertas elecciones están en gris o no disponibles, verifique si una regla las está restringiendo basándose en sus selecciones previas."
-                },
-                {
-                  "action": "Haga clic en 'Aplicar' o 'Aceptar' para aplicar el filtro de opciones a la estructura del producto.",
-                  "detail": "Windchill evalúa las expresiones asignadas a cada artículo y enlace de uso en la estructura sobrecargada contra sus elecciones seleccionadas. Los artículos cuyas expresiones coinciden se incluyen en el resultado filtrado; los artículos que no coinciden se excluyen. La vista de estructura se actualiza para mostrar solo los componentes para esta variante específica.",
-                  "hint": "La estructura filtrada debería ser notablemente más pequeña que la estructura sobrecargada completa, conteniendo solo los artículos relevantes para la variante Off Road."
-                }
-              ]
-            },
-            {
-              "id": "ex5-t3",
-              "title": "Revisar la estructura filtrada",
-              "steps": [
-                {
-                  "action": "Examine la estructura filtrada mostrada en la pestaña Estructura. Note qué artículos están incluidos y cuáles se han eliminado.",
-                  "detail": "La estructura filtrada representa la variante Off Road de la PTC Motorcycle. Compárela con la estructura sobrecargada completa que vio anteriormente. Los artículos asociados con componentes de carretera (por ej., ruedas de carretera, iluminación homologada) deberían estar ausentes, mientras que los artículos específicos de todo terreno deberían estar presentes.",
-                  "hint": "Expanda el árbol de estructura para ver la jerarquía completa de artículos incluidos."
-                },
-                {
-                  "action": "Compare la estructura filtrada con la estructura sobrecargada completa alternando el filtro de opciones (si la interfaz lo soporta) o anotando las diferencias.",
-                  "detail": "La estructura sobrecargada contiene todos los artículos posibles para todas las variantes. La estructura filtrada contiene solo los artículos para la configuración Off Road que especificó. La diferencia entre las dos ilustra cómo los filtros de opciones reducen la complejidad al estrechar la estructura a una única configuración válida.",
-                  "hint": "Algunas versiones de Windchill permiten limpiar el filtro para volver a la vista sobrecargada completa. Busque una acción 'Limpiar Filtro' o 'Mostrar Todo'."
-                },
-                {
-                  "action": "Identifique qué módulos configurables fueron afectados por el filtro y comprenda por qué artículos específicos fueron incluidos o excluidos según las elecciones que seleccionó.",
-                  "detail": "Cada módulo configurable en la estructura puede haber sido filtrado de manera diferente dependiendo de qué expresiones fueron asignadas a sus artículos secundarios. Por ejemplo, el módulo Wheels ahora debería mostrar solo artículos de ruedas todo terreno porque las elecciones Off Road Front y Off Road Rear fueron seleccionadas (mediante la regla de inclusión) y las elecciones de carretera fueron excluidas.",
-                  "hint": "Haga clic en artículos individuales para ver sus expresiones asignadas y entender por qué fueron incluidos o excluidos por el filtro."
-                },
-                {
-                  "action": "Anote la especificación de variante que fue creada. Revise las elecciones registradas para confirmar que coinciden con sus selecciones del filtro.",
-                  "detail": "Windchill registra una especificación de variante documentando las elecciones exactas utilizadas para generar esta variante. Esta especificación permite la reutilización de variantes: si alguien solicita la misma combinación de elecciones en el futuro, Windchill puede encontrar esta variante existente en lugar de generar una nueva, ahorrando tiempo y asegurando consistencia.",
-                  "hint": "Busque un enlace o pestaña de Especificación de Variante asociada con la vista de estructura filtrada."
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Un conjunto de opciones debe asignarse a un producto configurable antes de que se puedan crear filtros de opciones",
-        "Crear un filtro de opciones implica seleccionar elecciones específicas para cada opción en el conjunto de opciones asignado",
-        "Las reglas se aplican automáticamente durante el proceso de filtrado, asegurando solo combinaciones válidas de elecciones",
-        "La estructura filtrada muestra solo los artículos relevantes para la variante seleccionada, reduciendo la complejidad de la estructura sobrecargada completa"
-      ]
-    },
-    {
-      "id": "m4t5",
-      "title": "Revisión y resumen del curso",
-      "estimatedMinutes": 5,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Este ejercicio final revisa los conceptos clave de los cuatro módulos del curso de Opciones y Productos Configurables. Use este resumen para validar su comprensión e identificar las áreas que puedan necesitar revisión adicional antes de aplicar estos conceptos en su trabajo diario con Windchill."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "Este es un ejercicio de revisión. Trabaje en cada tarea para revisar los conceptos principales del curso. Use las pistas para refrescar su memoria sobre los temas que se sientan menos familiares."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex6",
-          "title": "Revisión y resumen del curso",
-          "objective": "Revisar los conceptos clave de los cuatro módulos y validar su comprensión de Opciones y Productos Configurables.",
-          "tasks": [
-            {
-              "id": "ex6-t1",
-              "title": "Revisar los conceptos clave",
-              "steps": [
-                {
-                  "action": "Recuerde las cinco estrategias de negocio para la variabilidad de productos: Ensamblaje bajo pedido, Ensamblaje para stock, Configuración bajo pedido, Ingeniería bajo pedido y Contrato.",
-                  "detail": "Cada estrategia difiere en el nivel de participación del desarrollo de producto por pedido. El ensamblaje bajo pedido no requiere participación de ingeniería por pedido, mientras que el contrato requiere ingeniería completamente personalizada. Windchill OCP soporta principalmente las estrategias de Ensamblaje bajo pedido y Configuración bajo pedido.",
-                  "hint": "El diferenciador clave es cuánta participación de ingeniería se necesita para cada pedido del cliente."
-                },
-                {
-                  "action": "Revise los cuatro pasos del diseño de plataforma genérica: analizar requisitos, evaluar productos existentes para reutilización, crear la definición genérica del producto y liberar y mantener la plataforma.",
-                  "detail": "El diseño de plataforma establece la base reutilizable de la que se derivan todas las variantes de producto. Una plataforma bien diseñada maximiza la reutilización de artículos e identifica claramente qué secciones son fijas frente a variables.",
-                  "hint": "Siempre evaluar los productos existentes para reutilización antes de crear nuevos diseños desde cero."
-                },
-                {
-                  "action": "Recuerde el concepto de estructura de producto sobrecargada y cómo contiene todas las variaciones de diseño posibles para un producto configurable.",
-                  "detail": "Una estructura sobrecargada incluye TODAS las alternativas de diseño bajo módulos configurables. Durante la generación de variantes, los filtros de opciones reducen esta estructura a solo los artículos necesarios para una configuración específica. La estructura sobrecargada es la estructura maestra de la que se derivan todas las variantes.",
-                  "hint": "Piense en la estructura sobrecargada como un superconjunto y la variante filtrada como un subconjunto."
-                },
-                {
-                  "action": "Revise los tres objetos configurables y su jerarquía: Producto Configurable, Módulo Configurable y Variante de Módulo.",
-                  "detail": "El Producto Configurable es el artículo de nivel superior que contiene la estructura sobrecargada completa. Los Módulos Configurables son secciones que capturan la variabilidad con múltiples alternativas de diseño. Las Variantes de Módulo son los artículos específicos seleccionados de un módulo configurable después de aplicar los filtros de opciones.",
-                  "hint": "La jerarquía fluye desde lo más amplio (Producto Configurable) hasta lo más específico (Variante de Módulo)."
-                }
-              ]
-            },
-            {
-              "id": "ex6-t2",
-              "title": "Revisar la configuración de Opciones y Variantes",
-              "steps": [
-                {
-                  "action": "Revise la terminología clave de O&V: opciones, elecciones, pool de opciones, conjunto de opciones, filtro de opciones, expresiones, especificación de variante, módulo configurable y rol de Gestor de Opciones.",
-                  "detail": "Las opciones representan características variables del producto, cada una con una o más elecciones. El pool de opciones es el repositorio maestro; los conjuntos de opciones son subconjuntos curados para familias de productos. Los filtros de opciones aplican elecciones para generar variantes. Las expresiones vinculan elecciones a artículos. Las especificaciones de variante registran las elecciones utilizadas.",
-                  "hint": "Los términos se dividen en tres categorías: términos de estructura, términos de lógica y términos de gestión."
-                },
-                {
-                  "action": "Recuerde la diferencia entre el pool de opciones y el conjunto de opciones, y explique por qué ambos son necesarios.",
-                  "detail": "El pool de opciones contiene TODAS las opciones y elecciones para un contexto de producto — es el catálogo maestro. El conjunto de opciones selecciona solo las opciones relevantes para una familia de productos específica. Esta separación permite la reutilización: la misma opción (por ej., Color) puede aparecer en múltiples conjuntos de opciones para diferentes familias de productos sin duplicación.",
-                  "hint": "El pool de opciones es el superconjunto; el conjunto de opciones es un subconjunto enfocado adaptado para una familia de productos."
-                },
-                {
-                  "action": "Revise los dos enfoques de configuración: descendente (Windchill primero) y ascendente (Creo primero), y la limitación de que solo las expresiones básicas se transfieren a Creo.",
-                  "detail": "El descendente comienza con la estructura de artículos en Windchill y se propaga a Creo. El ascendente comienza con el ensamblaje sobrecargado en Creo y lo registra en Windchill. Independientemente del enfoque, solo las expresiones básicas se pasan de Windchill a Creo — las expresiones avanzadas permanecen solo en Windchill.",
-                  "hint": "El enfoque depende de si PLM o CAD dirige la estructura de su producto."
-                },
-                {
-                  "action": "Recuerde la preferencia Soporte de Módulo Configurable y su importancia, así como cómo las preferencias se heredan de nivel de sitio a organización a nivel de producto.",
-                  "detail": "El Soporte de Módulo Configurable debe establecerse en Sí para usar cualquier funcionalidad de O&V — su valor predeterminado es No. Las preferencias se heredan de niveles superiores (sitio) a niveles inferiores (organización, producto) y pueden bloquearse o anularse en cada nivel. Los Administradores del Sitio, Administradores de la Organización, Gestores de Producto y Gestores de Biblioteca pueden modificar las preferencias de O&V.",
-                  "hint": "Si las funciones de O&V no están disponibles, lo primero que debe verificar es la preferencia Soporte de Módulo Configurable al nivel apropiado."
-                }
-              ]
-            },
-            {
-              "id": "ex6-t3",
-              "title": "Revisar reglas y conjuntos de opciones",
-              "steps": [
-                {
-                  "action": "Revise los cuatro tipos de reglas: reglas de inclusión (seleccionan automáticamente elecciones relacionadas), reglas de exclusión (previenen elecciones incompatibles), reglas de habilitación (controlan la visibilidad de elecciones) y reglas condicionales (lógica SI/ENTONCES).",
-                  "detail": "Las reglas de inclusión fuerzan la selección conjunta de elecciones relacionadas. Las reglas de exclusión previenen la coexistencia de elecciones en conflicto. Las reglas de habilitación muestran u ocultan dinámicamente elecciones basándose en selecciones previas. Las reglas condicionales proporcionan lógica compleja SI/ENTONCES de múltiples condiciones. Windchill valida las reglas para prevenir conflictos y duplicados.",
-                  "hint": "La inclusión y exclusión manejan relaciones simples; la habilitación y condicional manejan escenarios más complejos."
-                },
-                {
-                  "action": "Revise los conjuntos de opciones, su gestión de cambios (versionado, estados de ciclo de vida, entrada/salida) y el proceso para asignar un conjunto de opciones a un producto configurable.",
-                  "detail": "Los conjuntos de opciones son objetos gestionados con soporte completo de gestión de cambios. Deben extraerse para edición y registrarse para guardar cambios. El proceso de asignación implica navegar al producto configurable, seleccionar Asignar Conjunto de Opciones del menú de Acciones, elegir el conjunto apropiado y verificar la asignación.",
-                  "hint": "Los conjuntos de opciones siguen los mismos flujos de trabajo de gestión de cambios que otros objetos de Windchill."
-                },
-                {
-                  "action": "Revise las expresiones (básicas vs. avanzadas) y cómo vinculan las elecciones de opciones a artículos y enlaces de uso en la estructura del producto.",
-                  "detail": "Las expresiones básicas usan referencias de elecciones simples (por ej., Color=Rojo) y se soportan tanto en Windchill como en Creo. Las expresiones avanzadas usan operadores booleanos (Y, O, NO) para lógica compleja pero permanecen solo en Windchill. Las expresiones se asignan a artículos y enlaces de uso para especificar cuándo un componente se incluye en una variante.",
-                  "hint": "Las expresiones avanzadas son más potentes pero no pueden pasarse a Creo."
-                },
-                {
-                  "action": "Revise los filtros de opciones y cómo reúnen todo: el conjunto de opciones proporciona el vocabulario, las expresiones vinculan elecciones a artículos, las reglas aplican las combinaciones válidas, y el filtro reduce la estructura sobrecargada a una variante específica.",
-                  "detail": "Crear un filtro de opciones implica seleccionar elecciones del conjunto de opciones asignado. Windchill evalúa la expresión de cada artículo contra las elecciones seleccionadas e incluye solo los artículos que coinciden. El resultado es una estructura filtrada que representa una variante de producto específica. Una especificación de variante registra las elecciones para reutilización futura.",
-                  "hint": "El filtro de opciones es la culminación de todos los conceptos de O&V trabajando juntos."
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "El curso cubre cuatro módulos: visión general de productos configurables, configuración de opciones y variantes, reglas y conjuntos de opciones",
-        "Los conceptos clave incluyen estrategias de negocio, diseño de plataformas, estructuras sobrecargadas, opciones, elecciones, reglas, expresiones, conjuntos de opciones y filtros de opciones",
-        "Los filtros de opciones reúnen todos los conceptos aplicando elecciones a una estructura sobrecargada para generar variantes de producto específicas",
-        "Comprender el flujo completo de O&V desde el pool de opciones hasta la generación de variantes es esencial para una configuración de producto efectiva en Windchill"
-      ]
-    }
-  ]
+ "id": "m4",
+ "title": "Explorar los conjuntos de opciones",
+ "description": "Defina los conjuntos de opciones, explore la gestión de cambios para conjuntos de opciones, asigne conjuntos de opciones, aplique expresiones y utilice filtros de opciones para generar variantes.",
+ "topics": [
+ {
+ "id": "m4t1",
+ "title": "Conjuntos de opciones y gestión de cambios",
+ "estimatedMinutes": 5,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Un conjunto de opciones es una colección curada de opciones, elecciones y reglas que define el vocabulario de configuración para una familia de productos específica. Mientras que el pool de opciones contiene cada opción definida para un contexto de producto, un conjunto de opciones selecciona solo el subconjunto relevante necesario para una línea de producto particular. Comprender cómo se gestionan, versionan y gobiernan los conjuntos de opciones es esencial para mantener configuraciones de producto fiables."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "¿Qué es un conjunto de opciones?"
+ },
+ {
+ "type": "paragraph",
+ "text": "Un conjunto de opciones obtiene su contenido del pool de opciones y lo empaqueta para su uso con un producto configurable o familia de productos específica. Contiene las opciones, elecciones y reglas que definen las configuraciones válidas para esa familia. Un único pool de opciones puede alimentar múltiples conjuntos de opciones, cada uno adaptado a una línea de producto diferente. Esta separación permite a las organizaciones mantener un repositorio centralizado de opciones mientras proporcionan vocabularios de configuración enfocados para productos individuales."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Pool de opciones vs. Conjunto de opciones vs. Filtro de opciones"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Concepto", "Qué contiene", "Ámbito", "Propósito"],
+ "rows": [
+ ["Pool de opciones", "Todas las opciones, elecciones y reglas definidas para un contexto de producto", "Contexto completo del producto (todas las familias de productos)", "Repositorio maestro de todas las características configurables disponibles en los productos de la organización"],
+ ["Conjunto de opciones", "Un subconjunto curado de opciones, elecciones y reglas del pool de opciones", "Familia de productos o producto configurable específico", "Define el vocabulario de configuración válido para una línea de producto particular, incluyendo las reglas aplicables"],
+ ["Filtro de opciones", "Un conjunto específico de selecciones de elecciones aplicadas a un conjunto de opciones", "Una única instancia de configuración", "Filtra una estructura de producto sobrecargada hasta los artículos necesarios para una variante de producto específica"]
+ ]
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Gestión de cambios para conjuntos de opciones"
+ },
+ {
+ "type": "paragraph",
+ "text": "Los conjuntos de opciones en Windchill son objetos gestionados que siguen flujos de trabajo de gestión de cambios estándar. Esto significa que soportan versionado, estados de ciclo de vida y operaciones de entrada/salida, asegurando que los cambios en las definiciones de configuración de producto sean controlados y rastreables."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "Los conjuntos de opciones siguen los mismos principios de gestión de cambios que otros objetos de Windchill. Pueden extraerse para edición, registrarse para guardar cambios, versionarse para rastrear la evolución a lo largo del tiempo y gobernarse mediante estados de ciclo de vida (por ej., En Trabajo, Liberado). Esto asegura que las definiciones de configuración siempre sean auditables y que los cambios no autorizados no puedan afectar los productos liberados."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Gobernanza del conjunto de opciones"
+ },
+ {
+ "type": "paragraph",
+ "text": "La gobernanza de los conjuntos de opciones implica controlar quién puede crearlos, modificarlos y liberarlos. El rol de Gestor de Opciones es responsable de mantener los conjuntos de opciones, añadir o eliminar opciones y elecciones, definir reglas y gestionar el ciclo de vida del conjunto de opciones. Las organizaciones típicamente establecen procesos de revisión y aprobación antes de que un conjunto de opciones se libere para uso en producción."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Ponga a prueba sus conocimientos"
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Asocie cada concepto de gestión de conjuntos de opciones con su descripción:",
+ "pairs": [
+ {"left": "Versionado de conjuntos de opciones", "right": "Rastrea los cambios al conjunto de opciones a lo largo del tiempo, creando un historial de definiciones de configuración"},
+ {"left": "Entrada/Salida", "right": "Controla la edición concurrente bloqueando el conjunto de opciones mientras se está modificando"},
+ {"left": "Estados de ciclo de vida", "right": "Gobierna la madurez del conjunto de opciones (por ej., En Trabajo, En Revisión, Liberado)"},
+ {"left": "Rol de Gestor de Opciones", "right": "El rol de Windchill responsable de crear y mantener los conjuntos de opciones y su contenido"}
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Un conjunto de opciones es una colección curada de opciones, elecciones y reglas obtenidas del pool de opciones para una familia de productos específica",
+ "El pool de opciones es el repositorio maestro; el conjunto de opciones es un subconjunto enfocado; el filtro de opciones aplica elecciones específicas para generar una variante",
+ "Los conjuntos de opciones son objetos gestionados con versionado, estados de ciclo de vida y soporte de entrada/salida",
+ "El rol de Gestor de Opciones es responsable de crear, mantener y gobernar los conjuntos de opciones"
+ ]
+ },
+ {
+ "id": "m4t2",
+ "title": "Asignación y gestión de conjuntos de opciones",
+ "estimatedMinutes": 5,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Una vez que un conjunto de opciones ha sido creado y poblado con las opciones, elecciones y reglas apropiadas, debe asignarse a un producto configurable o módulo configurable. El proceso de asignación vincula el vocabulario de configuración con la estructura del producto, habilitando la generación de variantes basada en opciones. La gestión adecuada de la membresía del conjunto de opciones asegura que los productos permanezcan configurables a medida que evolucionan los requisitos."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Asignación de conjuntos de opciones"
+ },
+ {
+ "type": "paragraph",
+ "text": "Los conjuntos de opciones se asignan a productos configurables y módulos configurables a través de la interfaz de usuario de Windchill. Un producto configurable debe tener un conjunto de opciones asignado antes de que se puedan aplicar filtros de opciones o generar variantes. Los módulos configurables dentro de la estructura del producto también pueden tener sus propios conjuntos de opciones, permitiendo que diferentes secciones del producto utilicen diferentes vocabularios de configuración cuando sea necesario."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Pasos clave para asignar conjuntos de opciones"
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Paso 1: Navegar al producto configurable",
+ "back": "Abrir el producto configurable en Windchill y localizar el menú de acciones o la pestaña Conjunto de Opciones. El producto ya debe estar designado como Producto Configurable antes de que se pueda asignar un conjunto de opciones."
+ },
+ {
+ "front": "Paso 2: Seleccionar la acción Asignar Conjunto de Opciones",
+ "back": "Usar el menú de Acciones o la pestaña Conjunto de Opciones para iniciar la asignación. Windchill presenta una lista de conjuntos de opciones disponibles del contexto del producto. Solo los conjuntos de opciones que pertenecen al mismo contexto de producto (o un contexto compartido) están disponibles para la asignación."
+ },
+ {
+ "front": "Paso 3: Elegir el conjunto de opciones apropiado",
+ "back": "Seleccionar el conjunto de opciones que contiene las opciones, elecciones y reglas relevantes para esta familia de productos. Revisar el contenido del conjunto de opciones para confirmar que incluye todos los parámetros de configuración necesarios antes de completar la asignación."
+ },
+ {
+ "front": "Paso 4: Verificar la asignación",
+ "back": "Después de la asignación, verificar que el conjunto de opciones aparece en la pestaña Conjunto de Opciones del producto. Confirmar que las opciones y elecciones del conjunto asignado están ahora disponibles para su uso en expresiones y filtros de opciones en la estructura del producto."
+ }
+ ]
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Gestión de la membresía del conjunto de opciones"
+ },
+ {
+ "type": "paragraph",
+ "text": "A medida que evolucionan los requisitos del producto, los conjuntos de opciones deben actualizarse para reflejar nuevas opciones, elecciones adicionales o reglas modificadas. El Gestor de Opciones puede añadir nuevas opciones del pool de opciones, añadir nuevas elecciones a opciones existentes dentro del conjunto, eliminar opciones o elecciones que ya no son relevantes, y actualizar reglas para reflejar la lógica de negocio cambiante. Todos los cambios requieren que el conjunto de opciones se extraiga primero, y los cambios solo son visibles para otros después del registro."
+ },
+ {
+ "type": "callout",
+ "variant": "tip",
+ "text": "Buena práctica: organizar los conjuntos de opciones por familia de productos, no por producto individual. Un conjunto de opciones bien diseñado cubre todas las configuraciones dentro de una familia de productos. Evite crear un conjunto de opciones por variante de producto, ya que esto anula el propósito de los productos configurables y crea una sobrecarga de mantenimiento innecesaria."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Ordene el proceso de asignación"
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Ordene los pasos para asignar un conjunto de opciones a un producto configurable en el orden correcto:",
+ "correctOrder": [
+ "Navegar al producto configurable en Windchill",
+ "Abrir el menú de Acciones y seleccionar Asignar Conjunto de Opciones",
+ "Seleccionar el conjunto de opciones apropiado de la lista disponible",
+ "Confirmar la asignación y verificar que el conjunto de opciones aparece en el producto"
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Los conjuntos de opciones deben asignarse a productos configurables antes de que se puedan usar filtros de opciones o la generación de variantes",
+ "El proceso de asignación implica navegar al producto, seleccionar la acción Asignar Conjunto de Opciones, elegir el conjunto y verificar",
+ "La membresía del conjunto de opciones puede actualizarse añadiendo o eliminando opciones, elecciones y reglas a medida que evolucionan los requisitos",
+ "La buena práctica es organizar los conjuntos de opciones por familia de productos en lugar de por variante de producto individual"
+ ]
+ },
+ {
+ "id": "m4t3",
+ "title": "Expresiones y filtros de opciones",
+ "estimatedMinutes": 5,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Las expresiones y los filtros de opciones son los mecanismos que conectan las elecciones de opciones con la estructura del producto. Las expresiones se asignan a artículos y enlaces de uso para especificar cuándo un componente debe incluirse en una variante. Los filtros de opciones usan las expresiones asignadas para evaluar qué artículos pertenecen a una configuración específica basándose en las selecciones de elecciones del usuario."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Expresiones básicas vs. avanzadas"
+ },
+ {
+ "type": "paragraph",
+ "text": "Windchill soporta dos tipos de expresiones para asignar elecciones a artículos y enlaces de uso. Las expresiones básicas usan referencias de elecciones simples, mientras que las expresiones avanzadas añaden operadores y funciones para lógica de selección compleja. El tipo de expresión que use depende de la complejidad de sus requisitos de configuración y de si se necesita integración con Creo."
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Aspecto", "Expresión básica", "Expresión avanzada"],
+ "rows": [
+ ["Sintaxis", "Referencia de elección simple (por ej., Color=Rojo)", "Incluye elecciones, operadores (Y, O, NO) y funciones"],
+ ["Capacidad", "Asigna una elección única o una lista simple de elecciones a un artículo o enlace de uso", "Soporta condiciones lógicas complejas combinando múltiples opciones y elecciones con operadores booleanos"],
+ ["Soporte en Creo", "Se pasa de Windchill a Creo y se soporta en ambos sistemas", "Permanece solo en Windchill; NO se pasa a Creo"],
+ ["Casos de uso", "Configuraciones directas donde un artículo se incluye cuando se selecciona una única elección", "Configuraciones complejas donde la inclusión del artículo depende de combinaciones de elecciones de múltiples opciones"],
+ ["Ejemplo", "Motorcycle Type = Off Road", "(Motorcycle Type = Off Road) AND (Engine Size = 1200cc)"],
+ ["Preferencia requerida", "Preferencia Expresiones Soportadas establecida en Básica o Ambas", "Preferencia Expresiones Soportadas establecida en Ambas"]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "Las expresiones avanzadas NO se pasan de Windchill a Creo. Si su flujo de trabajo implica configurar variantes en Creo, debe usar expresiones básicas para cualquier asignación de elecciones que necesite ser visible en Creo. Planifique su estrategia de expresiones cuidadosamente según sus requisitos de integración con Creo."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Filtros de opciones"
+ },
+ {
+ "type": "paragraph",
+ "text": "Un filtro de opciones es un conjunto de selecciones de elecciones que se aplica a una estructura de producto sobrecargada para generar una variante filtrada. Cuando crea un filtro de opciones, selecciona elecciones específicas para cada opción en el conjunto de opciones asignado. Windchill entonces evalúa las expresiones en cada artículo y enlace de uso en la estructura, incluyendo solo los artículos cuyas expresiones coinciden con las elecciones seleccionadas. El resultado es una estructura reducida que representa una variante de producto específica."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Conceptos de filtro de opciones"
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Creación de un filtro de opciones",
+ "back": "Navegar a la estructura del producto configurable y seleccionar la acción Crear Filtro de Opciones. Windchill presenta las opciones del conjunto de opciones asignado. Seleccionar una elección para cada opción para definir los criterios del filtro. Las reglas del conjunto de opciones aplican automáticamente las combinaciones válidas de elecciones."
+ },
+ {
+ "front": "Aplicación de un filtro de opciones",
+ "back": "Una vez creado, el filtro de opciones se aplica a la estructura sobrecargada. Windchill evalúa la expresión de cada artículo contra las elecciones del filtro. Los artículos cuyas expresiones coinciden se incluyen; los artículos cuyas expresiones no coinciden se excluyen. El resultado es una estructura filtrada que muestra solo los componentes para esa variante específica."
+ },
+ {
+ "front": "Especificación de variante",
+ "back": "Cuando se aplica un filtro de opciones para generar una variante, Windchill crea una especificación de variante que registra las elecciones exactas utilizadas. Esta especificación permite la reutilización de variantes - si se solicitan las mismas elecciones posteriormente, Windchill puede encontrar y reutilizar la variante existente en lugar de generar una nueva."
+ },
+ {
+ "front": "Aplicación de reglas durante el filtrado",
+ "back": "Las reglas de inclusión, exclusión, habilitación y condicionales se aplican durante el proceso de filtro de opciones. Si un usuario selecciona una elección que dispara una regla de inclusión, las elecciones relacionadas se seleccionan automáticamente. Si una elección viola una regla de exclusión, se previene. Esto asegura que cada variante generada sea válida."
+ }
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "insight",
+ "text": "El filtro de opciones es donde todo se une: el conjunto de opciones proporciona el vocabulario, las expresiones vinculan las elecciones a los artículos, las reglas aplican las combinaciones válidas, y el filtro aplica elecciones específicas para reducir la estructura sobrecargada a una variante concreta. Dominar los filtros de opciones es la clave para una configuración de producto efectiva en Windchill."
+ }
+ ],
+ "keyTakeaways": [
+ "Las expresiones básicas usan referencias de elecciones simples y se pasan a Creo; las expresiones avanzadas usan lógica booleana y permanecen solo en Windchill",
+ "Las expresiones se asignan a artículos y enlaces de uso para especificar cuándo un componente se incluye en una variante",
+ "Los filtros de opciones aplican selecciones de elecciones específicas a una estructura sobrecargada para generar una variante filtrada",
+ "Las especificaciones de variante registran las elecciones utilizadas para generar una variante, habilitando la reutilización de variantes existentes"
+ ]
+ },
+ {
+ "id": "m4t4",
+ "title": "Asignar conjunto de opciones y aplicar filtro",
+ "estimatedMinutes": 5,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "En este ejercicio, asignará un conjunto de opciones al producto configurable PTC Motorcycle y luego creará y aplicará un filtro de opciones para generar una estructura de variante filtrada. Este ejercicio reúne los conceptos de los temas anteriores: conjuntos de opciones, expresiones y filtros de opciones."
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "Este ejercicio se basa en los ejercicios anteriores. Asegúrese de haber completado los ejercicios de creación de opciones y reglas antes de continuar. El conjunto de opciones referenciado en este ejercicio ya debería existir en el contexto del producto PTC Motorcycle."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex5",
+ "title": "Asignar conjunto de opciones y aplicar filtro",
+ "objective": "Aprender a asignar un conjunto de opciones a un producto configurable y aplicar un filtro de opciones para generar una estructura de variante filtrada.",
+ "tasks": [
+ {
+ "id": "ex5-t1",
+ "title": "Asignar el conjunto de opciones al producto configurable",
+ "steps": [
+ {
+ "action": "Navegue al producto configurable PTC Motorcycle. Vaya a Explorar > Productos y seleccione PTC Motorcycle.",
+ "detail": "PTC Motorcycle es el producto configurable utilizado a lo largo de este curso. Asignará el conjunto de opciones existente a este producto para que se puedan aplicar filtros de opciones a su estructura sobrecargada.",
+ "hint": "Inicie sesión como Anna Chen o su usuario de formación asignado. PTC Motorcycle debería aparecer en la lista de Productos."
+ },
+ {
+ "action": "Abra el menú de Acciones en la página del producto PTC Motorcycle y seleccione 'Asignar Conjunto de Opciones'.",
+ "detail": "La acción Asignar Conjunto de Opciones vincula un conjunto de opciones al producto configurable. Esta acción está disponible desde el menú de Acciones a nivel de producto o desde la pestaña Conjunto de Opciones. Un producto debe tener un conjunto de opciones asignado antes de que se puedan crear filtros de opciones.",
+ "hint": "Si no ve la acción Asignar Conjunto de Opciones, verifique que el producto esté designado como Producto Configurable y que tenga los permisos apropiados."
+ },
+ {
+ "action": "En el diálogo de asignación, seleccione el conjunto de opciones PTC Motorcycle de la lista de conjuntos de opciones disponibles.",
+ "detail": "El diálogo muestra los conjuntos de opciones disponibles en este contexto de producto. Seleccione el conjunto de opciones que contiene las opciones Motorcycle Type, Engine Size, Color, Wheels y Saddle Bag Location junto con las reglas de inclusión y exclusión creadas en ejercicios anteriores.",
+ "hint": "Si aparecen múltiples conjuntos de opciones, elija el que coincida con las opciones y reglas que creó en ejercicios anteriores."
+ },
+ {
+ "action": "Confirme la asignación y verifique que el conjunto de opciones ahora aparece en la pestaña Conjunto de Opciones de PTC Motorcycle.",
+ "detail": "Después de la asignación, la pestaña Conjunto de Opciones debería mostrar el conjunto de opciones asignado con todas sus opciones, elecciones y reglas. Explore las opciones para confirmar que Motorcycle Type, Engine Size, Color, Wheels y Saddle Bag Location están presentes con sus respectivas elecciones.",
+ "hint": "Haga clic en la pestaña Conjunto de Opciones en la página del producto. Expanda las opciones para verificar las elecciones y reglas."
+ }
+ ]
+ },
+ {
+ "id": "ex5-t2",
+ "title": "Crear y aplicar un filtro de opciones",
+ "steps": [
+ {
+ "action": "Navegue a la estructura del producto PTC Motorcycle haciendo clic en la pestaña Estructura.",
+ "detail": "La pestaña Estructura muestra la estructura de producto sobrecargada que contiene todas las variaciones de diseño posibles. Creará un filtro de opciones para reducir esta estructura a una variante específica basada en sus selecciones de elecciones.",
+ "hint": "La pestaña Estructura muestra la Lista de Materiales completa con todos los módulos configurables y sus artículos secundarios."
+ },
+ {
+ "action": "Haga clic en la acción 'Crear Filtro de Opciones' en la barra de herramientas de la vista de estructura o el menú de Acciones.",
+ "detail": "La acción Crear Filtro de Opciones abre un diálogo que presenta todas las opciones del conjunto de opciones asignado. Seleccionará elecciones específicas para cada opción para definir los criterios del filtro de la variante que desea generar.",
+ "hint": "Busque un icono de filtro o la acción 'Filtro de Opciones' en la barra de herramientas sobre el árbol de estructura."
+ },
+ {
+ "action": "Seleccione 'Off Road' para la opción Motorcycle Type.",
+ "detail": "Seleccionar Off Road define esta variante como una configuración de motocicleta todo terreno. Observe que la regla de inclusión que creó selecciona automáticamente Off Road Front y Off Road Rear para la opción Wheels, y la regla de exclusión impide que se seleccionen On Road Front y On Road Rear.",
+ "hint": "Observe cómo las elecciones de la opción Wheels se actualizan automáticamente a medida que se aplican las reglas de inclusión y exclusión."
+ },
+ {
+ "action": "Seleccione elecciones para las opciones restantes: elija un Engine Size (por ej., 1000cc), un Color (por ej., Black), y verifique el Saddle Bag Location (por ej., Not Used).",
+ "detail": "Complete el filtro de opciones seleccionando una elección para cada opción restante. La combinación de todas las elecciones define una variante de producto específica. Las reglas continúan aplicando las combinaciones válidas a medida que realiza selecciones.",
+ "hint": "Si ciertas elecciones están en gris o no disponibles, verifique si una regla las está restringiendo basándose en sus selecciones previas."
+ },
+ {
+ "action": "Haga clic en 'Aplicar' o 'Aceptar' para aplicar el filtro de opciones a la estructura del producto.",
+ "detail": "Windchill evalúa las expresiones asignadas a cada artículo y enlace de uso en la estructura sobrecargada contra sus elecciones seleccionadas. Los artículos cuyas expresiones coinciden se incluyen en el resultado filtrado; los artículos que no coinciden se excluyen. La vista de estructura se actualiza para mostrar solo los componentes para esta variante específica.",
+ "hint": "La estructura filtrada debería ser notablemente más pequeña que la estructura sobrecargada completa, conteniendo solo los artículos relevantes para la variante Off Road."
+ }
+ ]
+ },
+ {
+ "id": "ex5-t3",
+ "title": "Revisar la estructura filtrada",
+ "steps": [
+ {
+ "action": "Examine la estructura filtrada mostrada en la pestaña Estructura. Note qué artículos están incluidos y cuáles se han eliminado.",
+ "detail": "La estructura filtrada representa la variante Off Road de la PTC Motorcycle. Compárela con la estructura sobrecargada completa que vio anteriormente. Los artículos asociados con componentes de carretera (por ej., ruedas de carretera, iluminación homologada) deberían estar ausentes, mientras que los artículos específicos de todo terreno deberían estar presentes.",
+ "hint": "Expanda el árbol de estructura para ver la jerarquía completa de artículos incluidos."
+ },
+ {
+ "action": "Compare la estructura filtrada con la estructura sobrecargada completa alternando el filtro de opciones (si la interfaz lo soporta) o anotando las diferencias.",
+ "detail": "La estructura sobrecargada contiene todos los artículos posibles para todas las variantes. La estructura filtrada contiene solo los artículos para la configuración Off Road que especificó. La diferencia entre las dos ilustra cómo los filtros de opciones reducen la complejidad al estrechar la estructura a una única configuración válida.",
+ "hint": "Algunas versiones de Windchill permiten limpiar el filtro para volver a la vista sobrecargada completa. Busque una acción 'Limpiar Filtro' o 'Mostrar Todo'."
+ },
+ {
+ "action": "Identifique qué módulos configurables fueron afectados por el filtro y comprenda por qué artículos específicos fueron incluidos o excluidos según las elecciones que seleccionó.",
+ "detail": "Cada módulo configurable en la estructura puede haber sido filtrado de manera diferente dependiendo de qué expresiones fueron asignadas a sus artículos secundarios. Por ejemplo, el módulo Wheels ahora debería mostrar solo artículos de ruedas todo terreno porque las elecciones Off Road Front y Off Road Rear fueron seleccionadas (mediante la regla de inclusión) y las elecciones de carretera fueron excluidas.",
+ "hint": "Haga clic en artículos individuales para ver sus expresiones asignadas y entender por qué fueron incluidos o excluidos por el filtro."
+ },
+ {
+ "action": "Anote la especificación de variante que fue creada. Revise las elecciones registradas para confirmar que coinciden con sus selecciones del filtro.",
+ "detail": "Windchill registra una especificación de variante documentando las elecciones exactas utilizadas para generar esta variante. Esta especificación permite la reutilización de variantes: si alguien solicita la misma combinación de elecciones en el futuro, Windchill puede encontrar esta variante existente en lugar de generar una nueva, ahorrando tiempo y asegurando consistencia.",
+ "hint": "Busque un enlace o pestaña de Especificación de Variante asociada con la vista de estructura filtrada."
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Un conjunto de opciones debe asignarse a un producto configurable antes de que se puedan crear filtros de opciones",
+ "Crear un filtro de opciones implica seleccionar elecciones específicas para cada opción en el conjunto de opciones asignado",
+ "Las reglas se aplican automáticamente durante el proceso de filtrado, asegurando solo combinaciones válidas de elecciones",
+ "La estructura filtrada muestra solo los artículos relevantes para la variante seleccionada, reduciendo la complejidad de la estructura sobrecargada completa"
+ ]
+ },
+ {
+ "id": "m4t5",
+ "title": "Revisión y resumen del curso",
+ "estimatedMinutes": 5,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Este ejercicio final revisa los conceptos clave de los cuatro módulos del curso de Opciones y Productos Configurables. Use este resumen para validar su comprensión e identificar las áreas que puedan necesitar revisión adicional antes de aplicar estos conceptos en su trabajo diario con Windchill."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "Este es un ejercicio de revisión. Trabaje en cada tarea para revisar los conceptos principales del curso. Use las pistas para refrescar su memoria sobre los temas que se sientan menos familiares."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex6",
+ "title": "Revisión y resumen del curso",
+ "objective": "Revisar los conceptos clave de los cuatro módulos y validar su comprensión de Opciones y Productos Configurables.",
+ "tasks": [
+ {
+ "id": "ex6-t1",
+ "title": "Revisar los conceptos clave",
+ "steps": [
+ {
+ "action": "Recuerde las cinco estrategias de negocio para la variabilidad de productos: Ensamblaje bajo pedido, Ensamblaje para stock, Configuración bajo pedido, Ingeniería bajo pedido y Contrato.",
+ "detail": "Cada estrategia difiere en el nivel de participación del desarrollo de producto por pedido. El ensamblaje bajo pedido no requiere participación de ingeniería por pedido, mientras que el contrato requiere ingeniería completamente personalizada. Windchill OCP soporta principalmente las estrategias de Ensamblaje bajo pedido y Configuración bajo pedido.",
+ "hint": "El diferenciador clave es cuánta participación de ingeniería se necesita para cada pedido del cliente."
+ },
+ {
+ "action": "Revise los cuatro pasos del diseño de plataforma genérica: analizar requisitos, evaluar productos existentes para reutilización, crear la definición genérica del producto y liberar y mantener la plataforma.",
+ "detail": "El diseño de plataforma establece la base reutilizable de la que se derivan todas las variantes de producto. Una plataforma bien diseñada maximiza la reutilización de artículos e identifica claramente qué secciones son fijas frente a variables.",
+ "hint": "Siempre evaluar los productos existentes para reutilización antes de crear nuevos diseños desde cero."
+ },
+ {
+ "action": "Recuerde el concepto de estructura de producto sobrecargada y cómo contiene todas las variaciones de diseño posibles para un producto configurable.",
+ "detail": "Una estructura sobrecargada incluye TODAS las alternativas de diseño bajo módulos configurables. Durante la generación de variantes, los filtros de opciones reducen esta estructura a solo los artículos necesarios para una configuración específica. La estructura sobrecargada es la estructura maestra de la que se derivan todas las variantes.",
+ "hint": "Piense en la estructura sobrecargada como un superconjunto y la variante filtrada como un subconjunto."
+ },
+ {
+ "action": "Revise los tres objetos configurables y su jerarquía: Producto Configurable, Módulo Configurable y Variante de Módulo.",
+ "detail": "El Producto Configurable es el artículo de nivel superior que contiene la estructura sobrecargada completa. Los Módulos Configurables son secciones que capturan la variabilidad con múltiples alternativas de diseño. Las Variantes de Módulo son los artículos específicos seleccionados de un módulo configurable después de aplicar los filtros de opciones.",
+ "hint": "La jerarquía fluye desde lo más amplio (Producto Configurable) hasta lo más específico (Variante de Módulo)."
+ }
+ ]
+ },
+ {
+ "id": "ex6-t2",
+ "title": "Revisar la configuración de Opciones y Variantes",
+ "steps": [
+ {
+ "action": "Revise la terminología clave de O&V: opciones, elecciones, pool de opciones, conjunto de opciones, filtro de opciones, expresiones, especificación de variante, módulo configurable y rol de Gestor de Opciones.",
+ "detail": "Las opciones representan características variables del producto, cada una con una o más elecciones. El pool de opciones es el repositorio maestro; los conjuntos de opciones son subconjuntos curados para familias de productos. Los filtros de opciones aplican elecciones para generar variantes. Las expresiones vinculan elecciones a artículos. Las especificaciones de variante registran las elecciones utilizadas.",
+ "hint": "Los términos se dividen en tres categorías: términos de estructura, términos de lógica y términos de gestión."
+ },
+ {
+ "action": "Recuerde la diferencia entre el pool de opciones y el conjunto de opciones, y explique por qué ambos son necesarios.",
+ "detail": "El pool de opciones contiene TODAS las opciones y elecciones para un contexto de producto - es el catálogo maestro. El conjunto de opciones selecciona solo las opciones relevantes para una familia de productos específica. Esta separación permite la reutilización: la misma opción (por ej., Color) puede aparecer en múltiples conjuntos de opciones para diferentes familias de productos sin duplicación.",
+ "hint": "El pool de opciones es el superconjunto; el conjunto de opciones es un subconjunto enfocado adaptado para una familia de productos."
+ },
+ {
+ "action": "Revise los dos enfoques de configuración: descendente (Windchill primero) y ascendente (Creo primero), y la limitación de que solo las expresiones básicas se transfieren a Creo.",
+ "detail": "El descendente comienza con la estructura de artículos en Windchill y se propaga a Creo. El ascendente comienza con el ensamblaje sobrecargado en Creo y lo registra en Windchill. Independientemente del enfoque, solo las expresiones básicas se pasan de Windchill a Creo - las expresiones avanzadas permanecen solo en Windchill.",
+ "hint": "El enfoque depende de si PLM o CAD dirige la estructura de su producto."
+ },
+ {
+ "action": "Recuerde la preferencia Soporte de Módulo Configurable y su importancia, así como cómo las preferencias se heredan de nivel de sitio a organización a nivel de producto.",
+ "detail": "El Soporte de Módulo Configurable debe establecerse en Sí para usar cualquier funcionalidad de O&V - su valor predeterminado es No. Las preferencias se heredan de niveles superiores (sitio) a niveles inferiores (organización, producto) y pueden bloquearse o anularse en cada nivel. Los Administradores del Sitio, Administradores de la Organización, Gestores de Producto y Gestores de Biblioteca pueden modificar las preferencias de O&V.",
+ "hint": "Si las funciones de O&V no están disponibles, lo primero que debe verificar es la preferencia Soporte de Módulo Configurable al nivel apropiado."
+ }
+ ]
+ },
+ {
+ "id": "ex6-t3",
+ "title": "Revisar reglas y conjuntos de opciones",
+ "steps": [
+ {
+ "action": "Revise los cuatro tipos de reglas: reglas de inclusión (seleccionan automáticamente elecciones relacionadas), reglas de exclusión (previenen elecciones incompatibles), reglas de habilitación (controlan la visibilidad de elecciones) y reglas condicionales (lógica SI/ENTONCES).",
+ "detail": "Las reglas de inclusión fuerzan la selección conjunta de elecciones relacionadas. Las reglas de exclusión previenen la coexistencia de elecciones en conflicto. Las reglas de habilitación muestran u ocultan dinámicamente elecciones basándose en selecciones previas. Las reglas condicionales proporcionan lógica compleja SI/ENTONCES de múltiples condiciones. Windchill valida las reglas para prevenir conflictos y duplicados.",
+ "hint": "La inclusión y exclusión manejan relaciones simples; la habilitación y condicional manejan escenarios más complejos."
+ },
+ {
+ "action": "Revise los conjuntos de opciones, su gestión de cambios (versionado, estados de ciclo de vida, entrada/salida) y el proceso para asignar un conjunto de opciones a un producto configurable.",
+ "detail": "Los conjuntos de opciones son objetos gestionados con soporte completo de gestión de cambios. Deben extraerse para edición y registrarse para guardar cambios. El proceso de asignación implica navegar al producto configurable, seleccionar Asignar Conjunto de Opciones del menú de Acciones, elegir el conjunto apropiado y verificar la asignación.",
+ "hint": "Los conjuntos de opciones siguen los mismos flujos de trabajo de gestión de cambios que otros objetos de Windchill."
+ },
+ {
+ "action": "Revise las expresiones (básicas vs. avanzadas) y cómo vinculan las elecciones de opciones a artículos y enlaces de uso en la estructura del producto.",
+ "detail": "Las expresiones básicas usan referencias de elecciones simples (por ej., Color=Rojo) y se soportan tanto en Windchill como en Creo. Las expresiones avanzadas usan operadores booleanos (Y, O, NO) para lógica compleja pero permanecen solo en Windchill. Las expresiones se asignan a artículos y enlaces de uso para especificar cuándo un componente se incluye en una variante.",
+ "hint": "Las expresiones avanzadas son más potentes pero no pueden pasarse a Creo."
+ },
+ {
+ "action": "Revise los filtros de opciones y cómo reúnen todo: el conjunto de opciones proporciona el vocabulario, las expresiones vinculan elecciones a artículos, las reglas aplican las combinaciones válidas, y el filtro reduce la estructura sobrecargada a una variante específica.",
+ "detail": "Crear un filtro de opciones implica seleccionar elecciones del conjunto de opciones asignado. Windchill evalúa la expresión de cada artículo contra las elecciones seleccionadas e incluye solo los artículos que coinciden. El resultado es una estructura filtrada que representa una variante de producto específica. Una especificación de variante registra las elecciones para reutilización futura.",
+ "hint": "El filtro de opciones es la culminación de todos los conceptos de O&V trabajando juntos."
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "El curso cubre cuatro módulos: visión general de productos configurables, configuración de opciones y variantes, reglas y conjuntos de opciones",
+ "Los conceptos clave incluyen estrategias de negocio, diseño de plataformas, estructuras sobrecargadas, opciones, elecciones, reglas, expresiones, conjuntos de opciones y filtros de opciones",
+ "Los filtros de opciones reúnen todos los conceptos aplicando elecciones a una estructura sobrecargada para generar variantes de producto específicas",
+ "Comprender el flujo completo de O&V desde el pool de opciones hasta la generación de variantes es esencial para una configuración de producto efectiva en Windchill"
+ ]
+ }
+ ]
 }

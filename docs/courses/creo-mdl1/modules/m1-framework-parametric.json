@@ -1,357 +1,357 @@
 {
-  "id": "m1",
-  "title": "Modeling Parts Framework & Parametric Concepts",
-  "description": "Explore the Creo design process, understand the model creation workflow, examine the belt sander case study, and learn the core concepts of parametric modeling including feature-based design, associativity, and Creo file types.",
-  "topics": [
-    {
-      "id": "m1t1",
-      "title": "The Creo Design Process",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Creo Parametric follows a structured design process to create 3D solid models. Understanding the overall workflow helps you approach modeling tasks methodically and efficiently."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "The Four Phases of Creo Design"
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Model",
-              "back": "Create 3D solid models of individual parts using features like extrudes, revolves, and rounds. Parts are the fundamental building blocks of any design."
-            },
-            {
-              "front": "Assemble",
-              "back": "Combine individual parts into assemblies using placement constraints. Assemblies represent how parts fit together in the real product."
-            },
-            {
-              "front": "Document",
-              "back": "Generate 2D engineering drawings from 3D models with dimensions, annotations, and drawing views. Drawings communicate manufacturing intent."
-            },
-            {
-              "front": "Analyze",
-              "back": "Validate designs using tools like mass properties, interference checks, and simulation. Analysis ensures the design meets functional requirements before manufacturing."
-            }
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "insight",
-          "text": "Creo maintains full associativity between models, assemblies, and drawings. A dimension change in the part model automatically updates everywhere — in assemblies and drawings — eliminating manual rework."
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange the four phases of the Creo design process in their typical order:",
-          "items": [
-            "Model",
-            "Assemble",
-            "Document",
-            "Analyze"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Creo follows a four-phase design process: Model, Assemble, Document, Analyze",
-        "Parts are the fundamental building blocks created in the modeling phase",
-        "Full associativity ensures changes propagate automatically across models, assemblies, and drawings"
-      ]
-    },
-    {
-      "id": "m1t2",
-      "title": "The Model Creation Process",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Creating a 3D model in Creo Parametric follows a three-step iterative process. Each step builds on the previous one to refine the design toward the final result."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Plan, Create, Verify"
-        },
-        {
-          "type": "comparison-table",
-          "headers": [
-            "Step",
-            "Description",
-            "Key Activities"
-          ],
-          "rows": [
-            [
-              "Plan",
-              "Determine the design approach before modeling. Analyze the part geometry and decide which features to use and in what order.",
-              "Identify base feature, plan feature sequence, consider parent-child relationships, choose datum references"
-            ],
-            [
-              "Create",
-              "Build the model by adding features one at a time. Each feature modifies the solid geometry by adding or removing material.",
-              "Select feature type, define sketch plane, create sketch geometry, set dimensions, specify depth/direction"
-            ],
-            [
-              "Verify",
-              "Check the model against design intent. Examine dimensions, geometry, and feature relationships to ensure correctness.",
-              "Review dimensions, check mass properties, inspect feature tree, verify parent-child dependencies"
-            ]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "Spending time planning before you start modeling saves significant rework later. Experienced designers typically spend 30-40% of their time planning the feature sequence."
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Planning in Depth",
-              "back": "During planning, determine the base feature (usually the largest shape), the feature creation order, and which surfaces to use as sketch planes. Consider how the part will be manufactured — modeling order often follows manufacturing sequence."
-            },
-            {
-              "front": "Creating in Depth",
-              "back": "Each feature requires selecting a feature type (extrude, revolve, etc.), choosing a sketch plane, drawing the cross-section, adding dimensions, and specifying depth. Features build on each other through parent-child relationships."
-            },
-            {
-              "front": "Verifying in Depth",
-              "back": "Verification includes checking dimensions against specifications, using mass properties to validate weight and volume, examining the Model Tree for correct feature order, and testing that design intent is captured through constraints and relations."
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Model creation follows an iterative Plan-Create-Verify cycle",
-        "Planning the feature sequence before modeling reduces rework",
-        "Each feature builds on previous features through parent-child relationships"
-      ]
-    },
-    {
-      "id": "m1t3",
-      "title": "Belt Sander Case Study",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "The belt sander is the primary case study used throughout this course. By examining its components, you can understand how a real product is decomposed into individual parts that are modeled as features in Creo."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Belt Sander Components"
-        },
-        {
-          "type": "paragraph",
-          "text": "A belt sander assembly consists of multiple parts, each created using specific modeling features. Understanding the relationship between physical components and Creo features is essential for effective modeling."
-        },
-        {
-          "type": "comparison-table",
-          "headers": [
-            "Component",
-            "Primary Feature Type",
-            "Purpose in Assembly"
-          ],
-          "rows": [
-            [
-              "Tabletop",
-              "Extrude (with cutout)",
-              "Provides the flat work surface and mounting platform for other components"
-            ],
-            [
-              "Slider",
-              "Extrude",
-              "Guides the sanding belt along the tabletop surface"
-            ],
-            [
-              "Roller Bracket",
-              "Extrude + Rounds",
-              "Supports the rollers that drive the sanding belt"
-            ],
-            [
-              "Drive Roller",
-              "Revolve",
-              "Drives the sanding belt using a cylindrical rotation feature"
-            ],
-            [
-              "Idler Roller",
-              "Revolve",
-              "Provides tension and guides the sanding belt path"
-            ],
-            [
-              "Adjustment Bolt",
-              "Revolve + Helical Sweep",
-              "Allows tension adjustment of the sanding belt"
-            ]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "Throughout this course, you will build several belt sander components step by step. Each exercise builds on the previous one, gradually introducing new features and techniques."
-        }
-      ],
-      "keyTakeaways": [
-        "The belt sander assembly demonstrates common Creo modeling techniques",
-        "Different components use different feature types (extrude, revolve, etc.)",
-        "Understanding the final assembly helps you plan individual part models"
-      ]
-    },
-    {
-      "id": "m1t4",
-      "title": "Parametric Modeling Concepts",
-      "estimatedMinutes": 8,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Creo Parametric is built on the concept of parametric modeling — a method where the model geometry is driven by parameters (dimensions and constraints) that capture design intent. Changes to parameters automatically update the entire model."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Core Parametric Concepts"
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Feature-Based",
-              "back": "Models are built by combining individual features (extrudes, revolves, rounds, etc.). Each feature captures a specific aspect of the design. Features are listed in the Model Tree and can be individually edited, reordered, or suppressed."
-            },
-            {
-              "front": "Parametric",
-              "back": "Dimensions and constraints are parameters that control geometry. Changing a dimension value automatically regenerates the model to reflect the new size. Relations can link dimensions so changing one automatically updates others."
-            },
-            {
-              "front": "Associative",
-              "back": "Changes made to a part model automatically propagate to assemblies and drawings that reference it. This bidirectional link ensures all representations of the design stay synchronized without manual updates."
-            },
-            {
-              "front": "Parent-Child",
-              "back": "Features depend on references from earlier features, creating parent-child relationships. If a parent feature changes, all child features update automatically. If a parent is deleted, child features may fail."
-            }
-          ]
-        },
-        {
-          "type": "image",
-          "src": "images/dimensions_drive.png",
-          "alt": "Dimensions drive features",
-          "caption": "Dimensions drive features",
-          "size": "medium"
-        },
-        {
-          "type": "callout",
-          "variant": "insight",
-          "text": "Parametric modeling captures design intent, not just geometry. A hole that is dimensioned as 'centered on the face' will remain centered even when the face size changes. This intelligence distinguishes parametric models from simple geometric shapes."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each parametric modeling concept to its key benefit:",
-          "pairs": [
-            {
-              "left": "Feature-Based",
-              "right": "Models can be built and edited one feature at a time"
-            },
-            {
-              "left": "Parametric",
-              "right": "Dimension changes automatically regenerate the model"
-            },
-            {
-              "left": "Associative",
-              "right": "Changes propagate from parts to assemblies and drawings"
-            },
-            {
-              "left": "Parent-Child",
-              "right": "Dependent features update when their references change"
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Parametric modeling captures design intent through dimensions and constraints",
-        "Models are built feature-by-feature, with each feature listed in the Model Tree",
-        "Associativity links parts, assemblies, and drawings so changes propagate automatically",
-        "Parent-child relationships mean features depend on references from earlier features"
-      ]
-    },
-    {
-      "id": "m1t5",
-      "title": "Creo File Types & Design Associativity",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Creo Parametric uses distinct file types for different design objects. Understanding these file types and how they relate to each other through design associativity is fundamental to working effectively in Creo."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Core File Types"
-        },
-        {
-          "type": "comparison-table",
-          "headers": [
-            "Extension",
-            "Object Type",
-            "Description"
-          ],
-          "rows": [
-            [
-              ".prt",
-              "Part",
-              "A 3D solid model containing features. Parts are the basic building blocks and can be used independently or in assemblies."
-            ],
-            [
-              ".asm",
-              "Assembly",
-              "A collection of parts and sub-assemblies positioned using placement constraints. Assemblies define how components fit together."
-            ],
-            [
-              ".drw",
-              "Drawing",
-              "A 2D engineering drawing generated from 3D parts or assemblies. Contains views, dimensions, and annotations for manufacturing."
-            ]
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Design Associativity"
-        },
-        {
-          "type": "paragraph",
-          "text": "Design associativity is the automatic link between related Creo files. When you modify a part dimension, every assembly containing that part and every drawing referencing it updates automatically. This eliminates manual synchronization and reduces errors."
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "Creo files depend on each other through associativity. Renaming or moving files outside of Creo can break these links. Always use Creo's file management tools (Rename, Backup) rather than operating system file operations."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each file extension to its purpose:",
-          "pairs": [
-            {
-              "left": ".prt",
-              "right": "3D solid model of an individual part"
-            },
-            {
-              "left": ".asm",
-              "right": "Collection of parts positioned with constraints"
-            },
-            {
-              "left": ".drw",
-              "right": "2D engineering drawing with views and dimensions"
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Creo uses .prt (parts), .asm (assemblies), and .drw (drawings) as core file types",
-        "Design associativity automatically links parts, assemblies, and drawings",
-        "Never rename or move Creo files outside of the application — use Creo's built-in file management tools"
-      ]
-    }
-  ]
+ "id": "m1",
+ "title": "Modeling Parts Framework & Parametric Concepts",
+ "description": "Explore the Creo design process, understand the model creation workflow, examine the belt sander case study, and learn the core concepts of parametric modeling including feature-based design, associativity, and Creo file types.",
+ "topics": [
+ {
+ "id": "m1t1",
+ "title": "The Creo Design Process",
+ "estimatedMinutes": 6,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Creo Parametric follows a structured design process to create 3D solid models. Understanding the overall workflow helps you approach modeling tasks methodically and efficiently."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "The Four Phases of Creo Design"
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Model",
+ "back": "Create 3D solid models of individual parts using features like extrudes, revolves, and rounds. Parts are the fundamental building blocks of any design."
+ },
+ {
+ "front": "Assemble",
+ "back": "Combine individual parts into assemblies using placement constraints. Assemblies represent how parts fit together in the real product."
+ },
+ {
+ "front": "Document",
+ "back": "Generate 2D engineering drawings from 3D models with dimensions, annotations, and drawing views. Drawings communicate manufacturing intent."
+ },
+ {
+ "front": "Analyze",
+ "back": "Validate designs using tools like mass properties, interference checks, and simulation. Analysis ensures the design meets functional requirements before manufacturing."
+ }
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "insight",
+ "text": "Creo maintains full associativity between models, assemblies, and drawings. A dimension change in the part model automatically updates everywhere - in assemblies and drawings - eliminating manual rework."
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Arrange the four phases of the Creo design process in their typical order:",
+ "items": [
+ "Model",
+ "Assemble",
+ "Document",
+ "Analyze"
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Creo follows a four-phase design process: Model, Assemble, Document, Analyze",
+ "Parts are the fundamental building blocks created in the modeling phase",
+ "Full associativity ensures changes propagate automatically across models, assemblies, and drawings"
+ ]
+ },
+ {
+ "id": "m1t2",
+ "title": "The Model Creation Process",
+ "estimatedMinutes": 6,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Creating a 3D model in Creo Parametric follows a three-step iterative process. Each step builds on the previous one to refine the design toward the final result."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Plan, Create, Verify"
+ },
+ {
+ "type": "comparison-table",
+ "headers": [
+ "Step",
+ "Description",
+ "Key Activities"
+ ],
+ "rows": [
+ [
+ "Plan",
+ "Determine the design approach before modeling. Analyze the part geometry and decide which features to use and in what order.",
+ "Identify base feature, plan feature sequence, consider parent-child relationships, choose datum references"
+ ],
+ [
+ "Create",
+ "Build the model by adding features one at a time. Each feature modifies the solid geometry by adding or removing material.",
+ "Select feature type, define sketch plane, create sketch geometry, set dimensions, specify depth/direction"
+ ],
+ [
+ "Verify",
+ "Check the model against design intent. Examine dimensions, geometry, and feature relationships to ensure correctness.",
+ "Review dimensions, check mass properties, inspect feature tree, verify parent-child dependencies"
+ ]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "tip",
+ "text": "Spending time planning before you start modeling saves significant rework later. Experienced designers typically spend 30-40% of their time planning the feature sequence."
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Planning in Depth",
+ "back": "During planning, determine the base feature (usually the largest shape), the feature creation order, and which surfaces to use as sketch planes. Consider how the part will be manufactured - modeling order often follows manufacturing sequence."
+ },
+ {
+ "front": "Creating in Depth",
+ "back": "Each feature requires selecting a feature type (extrude, revolve, etc.), choosing a sketch plane, drawing the cross-section, adding dimensions, and specifying depth. Features build on each other through parent-child relationships."
+ },
+ {
+ "front": "Verifying in Depth",
+ "back": "Verification includes checking dimensions against specifications, using mass properties to validate weight and volume, examining the Model Tree for correct feature order, and testing that design intent is captured through constraints and relations."
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Model creation follows an iterative Plan-Create-Verify cycle",
+ "Planning the feature sequence before modeling reduces rework",
+ "Each feature builds on previous features through parent-child relationships"
+ ]
+ },
+ {
+ "id": "m1t3",
+ "title": "Belt Sander Case Study",
+ "estimatedMinutes": 5,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "The belt sander is the primary case study used throughout this course. By examining its components, you can understand how a real product is decomposed into individual parts that are modeled as features in Creo."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Belt Sander Components"
+ },
+ {
+ "type": "paragraph",
+ "text": "A belt sander assembly consists of multiple parts, each created using specific modeling features. Understanding the relationship between physical components and Creo features is essential for effective modeling."
+ },
+ {
+ "type": "comparison-table",
+ "headers": [
+ "Component",
+ "Primary Feature Type",
+ "Purpose in Assembly"
+ ],
+ "rows": [
+ [
+ "Tabletop",
+ "Extrude (with cutout)",
+ "Provides the flat work surface and mounting platform for other components"
+ ],
+ [
+ "Slider",
+ "Extrude",
+ "Guides the sanding belt along the tabletop surface"
+ ],
+ [
+ "Roller Bracket",
+ "Extrude + Rounds",
+ "Supports the rollers that drive the sanding belt"
+ ],
+ [
+ "Drive Roller",
+ "Revolve",
+ "Drives the sanding belt using a cylindrical rotation feature"
+ ],
+ [
+ "Idler Roller",
+ "Revolve",
+ "Provides tension and guides the sanding belt path"
+ ],
+ [
+ "Adjustment Bolt",
+ "Revolve + Helical Sweep",
+ "Allows tension adjustment of the sanding belt"
+ ]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "Throughout this course, you will build several belt sander components step by step. Each exercise builds on the previous one, gradually introducing new features and techniques."
+ }
+ ],
+ "keyTakeaways": [
+ "The belt sander assembly demonstrates common Creo modeling techniques",
+ "Different components use different feature types (extrude, revolve, etc.)",
+ "Understanding the final assembly helps you plan individual part models"
+ ]
+ },
+ {
+ "id": "m1t4",
+ "title": "Parametric Modeling Concepts",
+ "estimatedMinutes": 8,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Creo Parametric is built on the concept of parametric modeling - a method where the model geometry is driven by parameters (dimensions and constraints) that capture design intent. Changes to parameters automatically update the entire model."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Core Parametric Concepts"
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Feature-Based",
+ "back": "Models are built by combining individual features (extrudes, revolves, rounds, etc.). Each feature captures a specific aspect of the design. Features are listed in the Model Tree and can be individually edited, reordered, or suppressed."
+ },
+ {
+ "front": "Parametric",
+ "back": "Dimensions and constraints are parameters that control geometry. Changing a dimension value automatically regenerates the model to reflect the new size. Relations can link dimensions so changing one automatically updates others."
+ },
+ {
+ "front": "Associative",
+ "back": "Changes made to a part model automatically propagate to assemblies and drawings that reference it. This bidirectional link ensures all representations of the design stay synchronized without manual updates."
+ },
+ {
+ "front": "Parent-Child",
+ "back": "Features depend on references from earlier features, creating parent-child relationships. If a parent feature changes, all child features update automatically. If a parent is deleted, child features may fail."
+ }
+ ]
+ },
+ {
+ "type": "image",
+ "src": "images/dimensions_drive.png",
+ "alt": "Dimensions drive features",
+ "caption": "Dimensions drive features",
+ "size": "medium"
+ },
+ {
+ "type": "callout",
+ "variant": "insight",
+ "text": "Parametric modeling captures design intent, not just geometry. A hole that is dimensioned as 'centered on the face' will remain centered even when the face size changes. This intelligence distinguishes parametric models from simple geometric shapes."
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each parametric modeling concept to its key benefit:",
+ "pairs": [
+ {
+ "left": "Feature-Based",
+ "right": "Models can be built and edited one feature at a time"
+ },
+ {
+ "left": "Parametric",
+ "right": "Dimension changes automatically regenerate the model"
+ },
+ {
+ "left": "Associative",
+ "right": "Changes propagate from parts to assemblies and drawings"
+ },
+ {
+ "left": "Parent-Child",
+ "right": "Dependent features update when their references change"
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Parametric modeling captures design intent through dimensions and constraints",
+ "Models are built feature-by-feature, with each feature listed in the Model Tree",
+ "Associativity links parts, assemblies, and drawings so changes propagate automatically",
+ "Parent-child relationships mean features depend on references from earlier features"
+ ]
+ },
+ {
+ "id": "m1t5",
+ "title": "Creo File Types & Design Associativity",
+ "estimatedMinutes": 5,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Creo Parametric uses distinct file types for different design objects. Understanding these file types and how they relate to each other through design associativity is fundamental to working effectively in Creo."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Core File Types"
+ },
+ {
+ "type": "comparison-table",
+ "headers": [
+ "Extension",
+ "Object Type",
+ "Description"
+ ],
+ "rows": [
+ [
+ ".prt",
+ "Part",
+ "A 3D solid model containing features. Parts are the basic building blocks and can be used independently or in assemblies."
+ ],
+ [
+ ".asm",
+ "Assembly",
+ "A collection of parts and sub-assemblies positioned using placement constraints. Assemblies define how components fit together."
+ ],
+ [
+ ".drw",
+ "Drawing",
+ "A 2D engineering drawing generated from 3D parts or assemblies. Contains views, dimensions, and annotations for manufacturing."
+ ]
+ ]
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Design Associativity"
+ },
+ {
+ "type": "paragraph",
+ "text": "Design associativity is the automatic link between related Creo files. When you modify a part dimension, every assembly containing that part and every drawing referencing it updates automatically. This eliminates manual synchronization and reduces errors."
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "Creo files depend on each other through associativity. Renaming or moving files outside of Creo can break these links. Always use Creo's file management tools (Rename, Backup) rather than operating system file operations."
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each file extension to its purpose:",
+ "pairs": [
+ {
+ "left": ".prt",
+ "right": "3D solid model of an individual part"
+ },
+ {
+ "left": ".asm",
+ "right": "Collection of parts positioned with constraints"
+ },
+ {
+ "left": ".drw",
+ "right": "2D engineering drawing with views and dimensions"
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Creo uses .prt (parts), .asm (assemblies), and .drw (drawings) as core file types",
+ "Design associativity automatically links parts, assemblies, and drawings",
+ "Never rename or move Creo files outside of the application - use Creo's built-in file management tools"
+ ]
+ }
+ ]
 }

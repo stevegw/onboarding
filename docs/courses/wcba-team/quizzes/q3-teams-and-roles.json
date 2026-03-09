@@ -1,71 +1,71 @@
 {
-  "moduleId": "m3",
-  "title": "Teams and Roles Knowledge Check",
-  "questions": [
-    {
-      "id": "m3-kc-001",
-      "question": "Which context group has no corresponding context role on the team page?",
-      "options": [
-        "Guest",
-        "Members",
-        "Product Manager",
-        "Team Members"
-      ],
-      "answerIndex": 3,
-      "rationale": "Team Members is a hidden group that collects all non-Guest participants. It has no matching role on the team page and is only visible in Policy Administration.",
-      "topic": "m3t2"
-    },
-    {
-      "id": "m3-kc-002",
-      "question": "Which of the following can resource bundle roles do that context team roles cannot?",
-      "options": [
-        "Resolve access control",
-        "Be used in workflow and lifecycle templates",
-        "Be assigned to participants",
-        "Be visible on the team page"
-      ],
-      "answerIndex": 1,
-      "rationale": "Resource bundle roles are available to workflow, lifecycle, and team template administration tools. Context team roles can only be used for access control resolution. Both can resolve access control and be assigned to participants.",
-      "topic": "m3t2"
-    },
-    {
-      "id": "m3-kc-003",
-      "question": "What happens when a shared team is updated?",
-      "options": [
-        "Only new contexts receive the update",
-        "All associated contexts reflect the change",
-        "Context managers must manually apply updates",
-        "The shared team must be re-associated with each context"
-      ],
-      "answerIndex": 1,
-      "rationale": "Changes to a shared team are automatically reflected in all associated contexts. Use Show Team Uses to verify which contexts will be affected before making changes.",
-      "topic": "m3t3"
-    },
-    {
-      "id": "m3-kc-004",
-      "question": "During team instance resolution, what does the context team contribute?",
-      "options": [
-        "It adds new roles to the team instance",
-        "It populates participants into existing team instance roles",
-        "It defines the lifecycle template",
-        "It initiates the workflow process"
-      ],
-      "answerIndex": 1,
-      "rationale": "The context team only augments existing team instance roles with additional participants — it does not add new roles. New roles come from team templates, lifecycle templates, and workflow templates.",
-      "topic": "m3t4"
-    },
-    {
-      "id": "m3-kc-005",
-      "question": "Why should you avoid adding all available roles to a team template?",
-      "options": [
-        "It causes Windchill to crash",
-        "It creates confusion with long lists of unused roles",
-        "It violates Windchill licensing terms",
-        "It prevents workflows from starting"
-      ],
-      "answerIndex": 1,
-      "rationale": "Adding all roles as a safety net generates team instances with every resource bundle role, creating confusion for users who must traverse a long list of unused and unresolved roles to find the relevant personnel.",
-      "topic": "m3t4"
-    }
-  ]
+ "moduleId": "m3",
+ "title": "Teams and Roles Knowledge Check",
+ "questions": [
+ {
+ "id": "m3-kc-001",
+ "question": "Which context group has no corresponding context role on the team page?",
+ "options": [
+ "Guest",
+ "Members",
+ "Product Manager",
+ "Team Members"
+ ],
+ "answerIndex": 3,
+ "rationale": "Team Members is a hidden group that collects all non-Guest participants. It has no matching role on the team page and is only visible in Policy Administration.",
+ "topic": "m3t2"
+ },
+ {
+ "id": "m3-kc-002",
+ "question": "Which of the following can resource bundle roles do that context team roles cannot?",
+ "options": [
+ "Resolve access control",
+ "Be used in workflow and lifecycle templates",
+ "Be assigned to participants",
+ "Be visible on the team page"
+ ],
+ "answerIndex": 1,
+ "rationale": "Resource bundle roles are available to workflow, lifecycle, and team template administration tools. Context team roles can only be used for access control resolution. Both can resolve access control and be assigned to participants.",
+ "topic": "m3t2"
+ },
+ {
+ "id": "m3-kc-003",
+ "question": "What happens when a shared team is updated?",
+ "options": [
+ "Only new contexts receive the update",
+ "All associated contexts reflect the change",
+ "Context managers must manually apply updates",
+ "The shared team must be re-associated with each context"
+ ],
+ "answerIndex": 1,
+ "rationale": "Changes to a shared team are automatically reflected in all associated contexts. Use Show Team Uses to verify which contexts will be affected before making changes.",
+ "topic": "m3t3"
+ },
+ {
+ "id": "m3-kc-004",
+ "question": "During team instance resolution, what does the context team contribute?",
+ "options": [
+ "It adds new roles to the team instance",
+ "It populates participants into existing team instance roles",
+ "It defines the lifecycle template",
+ "It initiates the workflow process"
+ ],
+ "answerIndex": 1,
+ "rationale": "The context team only augments existing team instance roles with additional participants - it does not add new roles. New roles come from team templates, lifecycle templates, and workflow templates.",
+ "topic": "m3t4"
+ },
+ {
+ "id": "m3-kc-005",
+ "question": "Why should you avoid adding all available roles to a team template?",
+ "options": [
+ "It causes Windchill to crash",
+ "It creates confusion with long lists of unused roles",
+ "It violates Windchill licensing terms",
+ "It prevents workflows from starting"
+ ],
+ "answerIndex": 1,
+ "rationale": "Adding all roles as a safety net generates team instances with every resource bundle role, creating confusion for users who must traverse a long list of unused and unresolved roles to find the relevant personnel.",
+ "topic": "m3t4"
+ }
+ ]
 }

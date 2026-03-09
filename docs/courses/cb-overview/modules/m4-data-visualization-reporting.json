@@ -23,7 +23,7 @@
           "rows": [
             ["Column filters", "Low", "Quick ad-hoc filtering on visible columns in Table view"],
             ["Saved filters", "Low", "Reusable named filter combinations for common queries"],
-            ["cbQL (Codebeamer Query Language)", "Medium–High", "Complex queries with boolean logic, field comparisons, and cross-tracker conditions"],
+            ["cbQL (Codebeamer Query Language)", "Medium-High", "Complex queries with boolean logic, field comparisons, and cross-tracker conditions"],
             ["Reports", "Medium", "Formatted output combining data from multiple trackers with charts and tables"]
           ]
         },
@@ -39,7 +39,7 @@
         {
           "type": "callout",
           "variant": "tip",
-          "text": "Example cbQL query: tracker.id IN (1234) AND status = 'In Progress' AND priority = 'High' — this finds all high-priority in-progress items in tracker 1234."
+          "text": "Example cbQL query: tracker.id IN (1234) AND status = 'In Progress' AND priority = 'High' - this finds all high-priority in-progress items in tracker 1234."
         },
         {
           "type": "heading",
@@ -48,7 +48,7 @@
         },
         {
           "type": "paragraph",
-          "text": "Codebeamer wiki pages serve as project documentation and dashboards. You can embed live widgets — charts, tables, query results — directly in wiki pages. Reports combine data from multiple sources into formatted, shareable documents."
+          "text": "Codebeamer wiki pages serve as project documentation and dashboards. You can embed live widgets - charts, tables, query results - directly in wiki pages. Reports combine data from multiple sources into formatted, shareable documents."
         },
         {
           "type": "reveal-cards",
@@ -59,7 +59,7 @@
             },
             {
               "front": "Widgets",
-              "back": "Embeddable components that display live tracker data — tables, charts, query results, and metrics. Widgets auto-update as underlying data changes."
+              "back": "Embeddable components that display live tracker data - tables, charts, query results, and metrics. Widgets auto-update as underlying data changes."
             },
             {
               "front": "Reports",
@@ -105,12 +105,12 @@
         },
         {
           "type": "paragraph",
-          "text": "When a requirement changes, top-down traceability shows every downstream artifact that may be affected — system requirements that need updating, tasks that need rework, and tests that need re-execution. When a test fails, bottom-up traceability shows which requirements are impacted, helping the team prioritize the fix."
+          "text": "When a requirement changes, top-down traceability shows every downstream artifact that may be affected - system requirements that need updating, tasks that need rework, and tests that need re-execution. When a test fails, bottom-up traceability shows which requirements are impacted, helping the team prioritize the fix."
         },
         {
           "type": "callout",
           "variant": "insight",
-          "text": "The Test Coverage Browser is a compliance auditor's best friend. It shows at a glance which requirements have been tested, which passed, and which have gaps — without manually cross-referencing spreadsheets."
+          "text": "The Test Coverage Browser is a compliance auditor's best friend. It shows at a glance which requirements have been tested, which passed, and which have gaps - without manually cross-referencing spreadsheets."
         },
         {
           "type": "interactive-match",
@@ -161,7 +161,7 @@
                 },
                 {
                   "action": "Add a second filter on the Priority column to show only 'High' priority items.",
-                  "detail": "Multiple column filters combine with AND logic — items must match ALL active filters. This progressively narrows the result set.",
+                  "detail": "Multiple column filters combine with AND logic - items must match ALL active filters. This progressively narrows the result set.",
                   "hint": null
                 },
                 {
@@ -388,7 +388,7 @@
       "content": [
         {
           "type": "paragraph",
-          "text": "In this exercise, you will create a project wiki page and add live widgets that display tracker data — creating a custom project dashboard."
+          "text": "In this exercise, you will create a project wiki page and add live widgets that display tracker data - creating a custom project dashboard."
         },
         {
           "type": "exercise",

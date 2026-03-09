@@ -1,71 +1,71 @@
 {
-  "moduleId": "m1",
-  "title": "Life Cycle Fundamentals Knowledge Check",
-  "questions": [
-    {
-      "id": "m1-kc-001",
-      "question": "What are the two distinct areas that make up a life cycle state in Windchill?",
-      "options": [
-        "Version and revision",
-        "Phase and gate",
-        "Workflow and template",
-        "Input and output"
-      ],
-      "answerIndex": 1,
-      "rationale": "A life cycle state consists of a phase (a defined period where specific activities occur) and a gate (a checkpoint that prevents advancement until requirements are met). Version and revision relate to versioning, not life cycle structure. Workflow and template are separate configuration artifacts. Input and output are not life cycle components.",
-      "topic": "m1t1"
-    },
-    {
-      "id": "m1-kc-002",
-      "question": "Which four templates together define a complete business process in Windchill?",
-      "options": [
-        "Life cycle, workflow, team, and context team templates",
-        "Life cycle, access control, version, and numbering templates",
-        "Workflow, routing, approval, and notification templates",
-        "Team, organization, site, and product templates"
-      ],
-      "answerIndex": 0,
-      "rationale": "A complete business process is defined by four templates working together: life cycle (maturity states), workflow (events and tasks), team (generic roles), and context team (maps real users to roles). The other options mix unrelated concepts — access control policies, numbering schemes, and organizational structures are separate Windchill features, not part of the four-template business process model.",
-      "topic": "m1t2"
-    },
-    {
-      "id": "m1-kc-003",
-      "question": "What is the primary difference between a basic and an advanced life cycle in Windchill?",
-      "options": [
-        "Basic life cycles support more states than advanced life cycles",
-        "Advanced life cycles cannot be scoped to a specific product or library",
-        "Basic life cycles use predefined transitions, while advanced life cycles use workflows for state movement",
-        "Advanced life cycles have better performance than basic life cycles"
-      ],
-      "answerIndex": 2,
-      "rationale": "The fundamental difference is the movement mechanism: basic life cycles rely solely on predefined transitions, while advanced life cycles use workflows to control state movement. Basic life cycles actually have better performance (not worse), both types support the same state options, and both can be scoped at any level including product or library.",
-      "topic": "m1t3"
-    },
-    {
-      "id": "m1-kc-004",
-      "question": "Which transition type is unique in allowing multiple destination states from a single source state?",
-      "options": [
-        "Promote",
-        "Lock",
-        "Set State",
-        "Revise"
-      ],
-      "answerIndex": 2,
-      "rationale": "The Set State transition is unique because it allows multiple destination states from a single source, giving administrators flexibility for exceptional cases. Promote moves to a specific higher state, Lock moves to a specific interim state (like Under Review), and Revise creates a new version starting in a specific initial state — each targets a defined destination rather than allowing multiple options.",
-      "topic": "m1t4"
-    },
-    {
-      "id": "m1-kc-005",
-      "question": "Why must a life cycle template name be unique in Windchill?",
-      "options": [
-        "Because Windchill cannot store two files with the same name in a single folder",
-        "Because the name is displayed to end users as the object's status label",
-        "Because Object Initialization Rules reference life cycle templates by name to assign them to objects",
-        "Because the name is used as the primary key in the Windchill database"
-      ],
-      "answerIndex": 2,
-      "rationale": "Life cycle template names must be unique because Object Initialization Rules (OIRs) reference them by name to automatically assign the correct life cycle when objects are created. The name is not a database primary key, not a file system constraint, and not displayed as a status label — status labels come from the state names within the life cycle, not the template name itself.",
-      "topic": "m1t3"
-    }
-  ]
+ "moduleId": "m1",
+ "title": "Life Cycle Fundamentals Knowledge Check",
+ "questions": [
+ {
+ "id": "m1-kc-001",
+ "question": "What are the two distinct areas that make up a life cycle state in Windchill?",
+ "options": [
+ "Version and revision",
+ "Phase and gate",
+ "Workflow and template",
+ "Input and output"
+ ],
+ "answerIndex": 1,
+ "rationale": "A life cycle state consists of a phase (a defined period where specific activities occur) and a gate (a checkpoint that prevents advancement until requirements are met). Version and revision relate to versioning, not life cycle structure. Workflow and template are separate configuration artifacts. Input and output are not life cycle components.",
+ "topic": "m1t1"
+ },
+ {
+ "id": "m1-kc-002",
+ "question": "Which four templates together define a complete business process in Windchill?",
+ "options": [
+ "Life cycle, workflow, team, and context team templates",
+ "Life cycle, access control, version, and numbering templates",
+ "Workflow, routing, approval, and notification templates",
+ "Team, organization, site, and product templates"
+ ],
+ "answerIndex": 0,
+ "rationale": "A complete business process is defined by four templates working together: life cycle (maturity states), workflow (events and tasks), team (generic roles), and context team (maps real users to roles). The other options mix unrelated concepts - access control policies, numbering schemes, and organizational structures are separate Windchill features, not part of the four-template business process model.",
+ "topic": "m1t2"
+ },
+ {
+ "id": "m1-kc-003",
+ "question": "What is the primary difference between a basic and an advanced life cycle in Windchill?",
+ "options": [
+ "Basic life cycles support more states than advanced life cycles",
+ "Advanced life cycles cannot be scoped to a specific product or library",
+ "Basic life cycles use predefined transitions, while advanced life cycles use workflows for state movement",
+ "Advanced life cycles have better performance than basic life cycles"
+ ],
+ "answerIndex": 2,
+ "rationale": "The fundamental difference is the movement mechanism: basic life cycles rely solely on predefined transitions, while advanced life cycles use workflows to control state movement. Basic life cycles actually have better performance (not worse), both types support the same state options, and both can be scoped at any level including product or library.",
+ "topic": "m1t3"
+ },
+ {
+ "id": "m1-kc-004",
+ "question": "Which transition type is unique in allowing multiple destination states from a single source state?",
+ "options": [
+ "Promote",
+ "Lock",
+ "Set State",
+ "Revise"
+ ],
+ "answerIndex": 2,
+ "rationale": "The Set State transition is unique because it allows multiple destination states from a single source, giving administrators flexibility for exceptional cases. Promote moves to a specific higher state, Lock moves to a specific interim state (like Under Review), and Revise creates a new version starting in a specific initial state - each targets a defined destination rather than allowing multiple options.",
+ "topic": "m1t4"
+ },
+ {
+ "id": "m1-kc-005",
+ "question": "Why must a life cycle template name be unique in Windchill?",
+ "options": [
+ "Because Windchill cannot store two files with the same name in a single folder",
+ "Because the name is displayed to end users as the object's status label",
+ "Because Object Initialization Rules reference life cycle templates by name to assign them to objects",
+ "Because the name is used as the primary key in the Windchill database"
+ ],
+ "answerIndex": 2,
+ "rationale": "Life cycle template names must be unique because Object Initialization Rules (OIRs) reference them by name to automatically assign the correct life cycle when objects are created. The name is not a database primary key, not a file system constraint, and not displayed as a status label - status labels come from the state names within the life cycle, not the template name itself.",
+ "topic": "m1t3"
+ }
+ ]
 }

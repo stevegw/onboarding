@@ -123,7 +123,7 @@
       var script = document.createElement("script");
       script.src = src;
       script.onload = resolve;
-      script.onerror = resolve; // graceful — will fall back to fetch
+      script.onerror = resolve; // graceful - will fall back to fetch
       document.head.appendChild(script);
     });
   }

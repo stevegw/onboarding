@@ -1,447 +1,447 @@
 {
-  "id": "m2",
-  "title": "Access Windchill Objects",
-  "description": "Explore the tools available for testing WRS requests, apply OData query parameters to refine responses, configure Postman for REST calls, and interpret HTTP status codes and response headers.",
-  "topics": [
-    {
-      "id": "m2t1",
-      "title": "WRS Testing Tools and the API Catalog",
-      "estimatedMinutes": 7,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Testing HTTP requests before building a full application confirms that the API works as expected and allows early prototyping without committing to a specific language or platform. Several tools are available for this purpose, each with different capabilities suited to different scenarios."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "WRS Testing Tools"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Tool", "Response Format", "Headers", "Params", "Auth"],
-          "rows": [
-            ["API Catalog (UI)", "JSON", "No", "Yes", "Yes"],
-            ["Browser", "XML", "No", "No", "Basic only"],
-            ["Command Line (cURL)", "stdout", "Yes", "No", "Yes"],
-            ["Postman", "JSON", "Yes", "No", "Yes"],
-            ["Third-Party App Code", "Controlled", "Yes", "No", "Yes"]
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "The API Catalog"
-        },
-        {
-          "type": "paragraph",
-          "text": "The API Catalog is accessible from the Windchill Navigator when the <strong>Client Customization</strong> site-level preference is set to <strong>Yes</strong>. Once enabled, the API Catalog is visible to any Windchill user — there is no additional access control on catalog visibility. The catalog has three main components:"
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Domain List",
-              "back": "The left pane displays all available WRS domains, such as PTC Product Management and PTC Document Management. Select a domain to see its entity sets and service endpoints."
-            },
-            {
-              "front": "Version Selection",
-              "back": "WRS supports API versioning. The version selector lets you choose which API version to browse, allowing clients to remain on a stable version while newer versions are introduced."
-            },
-            {
-              "front": "Interactive Endpoint Testing",
-              "back": "Each service endpoint displays its HTTP method, entity set, and a description. Expanding an endpoint reveals input parameters and a Try it out button to send a live request and see the JSON response."
-            }
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "The API Catalog does not need to be visible to use WRS through other clients. You can disable the catalog preference after initial setup and continue calling WRS endpoints from Postman, cURL, or custom code."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each WRS testing tool to its key characteristic:",
-          "pairs": [
-            {
-              "left": "API Catalog",
-              "right": "Interactive JSON testing with built-in parameter support"
-            },
-            {
-              "left": "Browser",
-              "right": "Returns XML with basic authentication only"
-            },
-            {
-              "left": "cURL",
-              "right": "Command-line tool with full header control and stdout output"
-            },
-            {
-              "left": "Postman",
-              "right": "JSON responses with full header and authorization control"
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "The API Catalog provides interactive documentation and live testing for all WRS domains and endpoints.",
-        "Multiple tools can test WRS requests — the API Catalog and Postman are most commonly used for prototyping.",
-        "API Catalog visibility is controlled by a site-level Client Customization preference that only site administrators can set."
-      ]
-    },
-    {
-      "id": "m2t2",
-      "title": "Query Parameters",
-      "estimatedMinutes": 8,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Query parameters allow you to refine the data returned by a WRS request — filtering records, selecting specific properties, sorting results, and expanding related entities. WRS follows the OData protocol for system query options, giving you a standardized and predictable way to shape responses."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Query Parameter Syntax"
-        },
-        {
-          "type": "paragraph",
-          "text": "Query parameters are appended to the URL after a <code>?</code> character. Multiple parameters are separated by <code>&amp;</code>. Each OData system query option is prefixed with <code>$</code> and its value is separated by <code>=</code>. For example: <code>ProdMgmt/Parts?$select=Name,Number&amp;$top=10</code>"
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "OData System Query Options"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Parameter", "SQL Equivalent", "Purpose"],
-          "rows": [
-            ["<code>$select</code>", "SELECT", "Returns only specified properties, comma-separated. Reduces payload size."],
-            ["<code>$filter</code>", "WHERE", "Filters records using operators: EQ, NE, GT, LT, GE, LE, AND, OR, NOT, startswith, endswith, contains."],
-            ["<code>$top</code>", "TOP / LIMIT", "Limits the number of entities returned in the response."],
-            ["<code>$skip</code>", "OFFSET", "Skips the specified number of records from the top of the result set."],
-            ["<code>$orderby</code>", "ORDER BY", "Sorts results ascending or descending. Can sort by attachments, primary content, and representations."],
-            ["<code>$expand</code>", "JOIN", "Includes related entities via navigation properties. Supports nested expansion using parentheses."]
-          ]
-        },
-        {
-          "type": "paragraph",
-          "text": "The <code>$expand</code> parameter is particularly powerful for retrieving hierarchical data. Navigation properties can be nested — for example, <code>ProdMgmt/Parts?$expand=Uses($expand=Uses)</code> expands the Uses relationship two levels deep, returning a part's direct usages and each of those usages' child usages in a single request. Values can also be comma-separated to expand multiple navigation properties simultaneously."
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "Query parameters are <strong>case-sensitive</strong>. <code>UsedBy</code> works correctly, but <code>usedby</code> or <code>used By</code> returns a 4xx error. The <code>$orderby</code> parameter is resource-intensive — omit it unless sorting is required."
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange these query parameters in the order they are most commonly applied when building a WRS request:",
-          "items": [
-            "$filter — narrow the result set to matching records",
-            "$select — limit which properties are returned",
-            "$expand — include related navigation properties",
-            "$orderby — sort the results",
-            "$top — cap the total number of records returned"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Query parameters refine WRS responses using <code>$select</code>, <code>$filter</code>, <code>$top</code>, <code>$skip</code>, <code>$orderby</code>, and <code>$expand</code>.",
-        "Parameters are case-sensitive and must be typed exactly — even a single character difference produces a 4xx error.",
-        "The <code>$expand</code> parameter enables multi-level data retrieval through nested navigation properties in a single request."
-      ]
-    },
-    {
-      "id": "m2t3",
-      "title": "Postman and HTTP Response Headers",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Postman is a powerful tool for prototyping REST requests. It gives full control over the HTTP method, URL, headers, authorization, and body — and once a request is working, Postman can generate copy-paste code in multiple programming languages, accelerating client development."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Working with Postman"
-        },
-        {
-          "type": "paragraph",
-          "text": "Building a request in Postman involves four inputs: <strong>method</strong> (GET, POST, PATCH, DELETE), <strong>URL</strong> (the endpoint with any query parameters), <strong>headers</strong> (authorization and content type), and optionally a <strong>body</strong> (for POST and PATCH). Requests can be saved in named collections and shared with other team members, making Postman an effective collaboration tool for REST API development."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "REST Statelessness and HTTP Headers"
-        },
-        {
-          "type": "paragraph",
-          "text": "REST requests are <strong>stateless</strong> — every request contains all information required to process it. No session context is stored on the server between calls. HTTP headers carry the metadata that makes this possible, passing authentication credentials and format instructions with every request."
-        },
-        {
-          "type": "callout",
-          "variant": "insight",
-          "text": "Statelessness is a core REST principle: because any client request contains all required information to service the request, WRS endpoints are easy to consume from any language or platform without managing server-side sessions."
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Header", "Purpose"],
-          "rows": [
-            ["Authorization", "Carries credentials (Basic Auth or token) for access control. Required on every WRS request."],
-            ["Content-Type", "Always set to <code>application/json</code> for WRS. Tells the server to expect and return JSON data."],
-            ["CSRF_NONCE", "A nonce key that prevents cross-site request forgery replay attacks. Required for state-changing requests."]
-          ]
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each HTTP header to its purpose in a WRS request:",
-          "pairs": [
-            {
-              "left": "Authorization",
-              "right": "Carries credentials for access control on every request"
-            },
-            {
-              "left": "Content-Type",
-              "right": "Declares the data format as application/json"
-            },
-            {
-              "left": "CSRF_NONCE",
-              "right": "Prevents cross-site request forgery replay attacks"
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Postman enables full control over method, URL, headers, authorization, and body for REST requests.",
-        "Every WRS request requires Authorization and Content-Type headers because REST is stateless — no session context is stored on the server.",
-        "Statelessness means each request is self-contained with all required information, making WRS easy to consume from any platform."
-      ]
-    },
-    {
-      "id": "m2t4",
-      "title": "HTTP Request Body and Status Codes",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "POST and PATCH requests require a request body containing the input parameters for the operation. Understanding the body format and how to interpret HTTP status codes is essential for building reliable WRS integrations."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Request Body Format"
-        },
-        {
-          "type": "paragraph",
-          "text": "The request body contains input parameters formatted as <strong>JSON</strong>. JSON uses key/value pairs enclosed in double quotes, separated by colons, and wrapped in curly brackets. For example, creating a document requires a Name, description, content title, and container — each provided as a JSON property in the body. The <code>Content-Type: application/json</code> header must accompany any request that includes a body."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "HTTP Status Codes"
-        },
-        {
-          "type": "paragraph",
-          "text": "Every WRS response includes an HTTP status code that immediately indicates whether the request succeeded or failed. WRS error messages are generic — client applications must translate status codes into user-friendly messages appropriate for the end user."
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Status Code", "Meaning", "Next Step"],
-          "rows": [
-            ["200 / 2xx", "Success — the request was processed correctly", "Read the response body for returned data"],
-            ["400", "Bad request — the client sent invalid input", "Check request syntax, parameters, and body format"],
-            ["401", "Unauthorized — authentication failed or missing", "Use the WWW-Authenticate header to determine the required auth method"],
-            ["403", "Forbidden — authenticated but not permitted", "Verify the user has the required Windchill access"],
-            ["500", "Internal server error — problem on the server side", "Review server logs and report the issue to the administrator"]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "A 200 status code confirms success. Any other code means the request failed — the response body usually contains details explaining why, though WRS error messages are generic and client applications should define friendly messages for end users."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each HTTP status code to its meaning:",
-          "pairs": [
-            {
-              "left": "200",
-              "right": "Request succeeded — response body contains the result"
-            },
-            {
-              "left": "400",
-              "right": "Bad request due to invalid input or syntax error"
-            },
-            {
-              "left": "401",
-              "right": "Authentication failed or credentials not provided"
-            },
-            {
-              "left": "500",
-              "right": "Internal server error — problem on the Windchill side"
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "POST and PATCH requests require a JSON-formatted body containing the necessary input parameters for the operation.",
-        "HTTP status codes immediately indicate success (200) or the category of failure (400, 401, 403, 500).",
-        "WRS returns generic error messages — client applications must translate status codes into meaningful messages for end users."
-      ]
-    },
-    {
-      "id": "m2t5",
-      "title": "Exercise - Expose the API Catalog and Query Parts",
-      "estimatedMinutes": 10,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In this exercise, you will switch a site-level preference to expose the WRS API Catalog in the Windchill Navigator, then use the catalog to test query options that filter, sort, and expand a list of Windchill parts."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "Task 1 requires site administrator access to modify the Client Customization preference. Tasks 2 and 3 can be performed as any Windchill user once the preference has been enabled."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex2",
-          "title": "Expose the API Catalog and Query Parts",
-          "objective": "Switch a site-level preference to expose the WRS API Catalog, then use query options to retrieve a filtered list of Windchill parts.",
-          "tasks": [
-            {
-              "id": "ex2-t1",
-              "title": "Set the Client Customization Preference",
-              "steps": [
-                {
-                  "action": "Sign in to Windchill as a site administrator.",
-                  "detail": "Only site administrators can modify site-level preferences that control API Catalog visibility.",
-                  "hint": null
-                },
-                {
-                  "action": "Navigate to Site > Utilities > Preference Management.",
-                  "detail": "The Client Customization preference controls whether the API Catalog link appears in the Windchill Navigator.",
-                  "hint": "Use the Browse link to navigate the site utilities."
-                },
-                {
-                  "action": "Set the Client Customization preference value to Yes.",
-                  "detail": "This makes the API Catalog and documentation visible to all Windchill users. There is no additional access control for the catalog.",
-                  "hint": "Right-click the preference to change its value."
-                }
-              ]
-            },
-            {
-              "id": "ex2-t2",
-              "title": "Access the API Catalog",
-              "steps": [
-                {
-                  "action": "Sign in to Windchill as a non-administrative user.",
-                  "detail": "The API Catalog should now be visible to any user since the preference was enabled.",
-                  "hint": null
-                },
-                {
-                  "action": "Click the Customization icon and select the OData REST APIs link.",
-                  "detail": "The Customization icon appears in the Navigator after the preference is set. You may need to refresh the browser.",
-                  "hint": "Look for the Documentation link first, then the OData REST APIs link in the API section."
-                },
-                {
-                  "action": "Select a domain, choose the latest API Version, and execute a GET endpoint.",
-                  "detail": "Expanding a service endpoint shows the method, parameters, and a Try it out button. The response body returns JSON data matching your request.",
-                  "hint": null
-                }
-              ]
-            },
-            {
-              "id": "ex2-t3",
-              "title": "Get Parts with Query Options",
-              "steps": [
-                {
-                  "action": "Browse to PTC Product Management Domain and select the latest API Version.",
-                  "detail": "The Product Management domain contains entity sets for Parts, BOMs, and related product data.",
-                  "hint": null
-                },
-                {
-                  "action": "Expand the GET /Parts endpoint and enter query parameters: <code>$select=Name,Number</code>, <code>$filter=startswith(Name,'engine')</code>, <code>$top=10</code>, <code>$orderby=Number</code>, <code>$expand=UsedBy</code>.",
-                  "detail": "These parameters filter parts whose names start with 'engine', return only Name and Number properties, limit results to 10 sorted by Number, and expand the UsedBy navigation property to include related data.",
-                  "hint": "Type parameters exactly as shown — query parameters are case-sensitive."
-                },
-                {
-                  "action": "Execute the request and review the response body, status code, and headers.",
-                  "detail": "A 200 status code confirms success. The response body contains JSON with matching parts. The Curl request and Request URL can be copied for use in other clients.",
-                  "hint": null
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Enabling the API Catalog requires setting the Client Customization preference to Yes at the site level — only site administrators can make this change.",
-        "The API Catalog generates a complete URL with all query parameters that can be copied and reused in Postman, cURL, or custom application code.",
-        "Query parameters like <code>$filter</code>, <code>$select</code>, <code>$expand</code>, and <code>$top</code> can be combined to precisely control the data returned by a WRS request."
-      ]
-    },
-    {
-      "id": "m2t6",
-      "title": "Exercise - Read and Review Responses in Postman",
-      "estimatedMinutes": 8,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In this exercise, you will take the request URL generated by the API Catalog in the previous exercise and reproduce it in Postman — setting the method, headers, and authorization — then compare the Postman response to the API Catalog response."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex3",
-          "title": "Read and Review Responses in Postman",
-          "objective": "Populate a service endpoint with query options in Postman and read the response, confirming it matches the result from the API Catalog.",
-          "tasks": [
-            {
-              "id": "ex3-t1",
-              "title": "Set Up the Request in Postman",
-              "steps": [
-                {
-                  "action": "Copy the Request URL from the previous API Catalog exercise.",
-                  "detail": "The API Catalog generates the complete URL including all query parameters. You can reuse this URL in any REST client without retyping the parameters.",
-                  "hint": null
-                },
-                {
-                  "action": "Create a new request in Postman, set the method to GET, and paste the URL.",
-                  "detail": "Postman automatically populates the Params tab with query options extracted from the URL. Notice the encoding syntax in the URL, keys, and values.",
-                  "hint": null
-                },
-                {
-                  "action": "Set Basic Auth credentials and add a Content-Type header of <code>application/json</code>.",
-                  "detail": "Authorization is required for all WRS requests. The Content-Type header tells the server to expect and return JSON data.",
-                  "hint": "In the Authorization tab, select Basic Auth as the Type, then enter your Windchill username and password."
-                }
-              ]
-            },
-            {
-              "id": "ex3-t2",
-              "title": "Execute and Compare",
-              "steps": [
-                {
-                  "action": "Send the request and verify the 200 status code.",
-                  "detail": "The response in Postman should be identical to the response generated in the API Catalog for the same request.",
-                  "hint": null
-                },
-                {
-                  "action": "Review the response in the Body pane and compare it to the API Catalog response.",
-                  "detail": "Postman provides additional options for formatting, searching, and saving responses that are not available in the API Catalog. Saved requests can be organized into collections for repeatable testing workflows.",
-                  "hint": null
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Postman provides a powerful environment for prototyping and saving WRS requests, with full control over headers, authorization, and body.",
-        "Responses in Postman match those from the API Catalog for identical requests — the tool used does not change the WRS response.",
-        "Saved Postman collections enable repeatable, shareable testing workflows that accelerate WRS client development."
-      ]
-    }
-  ]
+ "id": "m2",
+ "title": "Access Windchill Objects",
+ "description": "Explore the tools available for testing WRS requests, apply OData query parameters to refine responses, configure Postman for REST calls, and interpret HTTP status codes and response headers.",
+ "topics": [
+ {
+ "id": "m2t1",
+ "title": "WRS Testing Tools and the API Catalog",
+ "estimatedMinutes": 7,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Testing HTTP requests before building a full application confirms that the API works as expected and allows early prototyping without committing to a specific language or platform. Several tools are available for this purpose, each with different capabilities suited to different scenarios."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "WRS Testing Tools"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Tool", "Response Format", "Headers", "Params", "Auth"],
+ "rows": [
+ ["API Catalog (UI)", "JSON", "No", "Yes", "Yes"],
+ ["Browser", "XML", "No", "No", "Basic only"],
+ ["Command Line (cURL)", "stdout", "Yes", "No", "Yes"],
+ ["Postman", "JSON", "Yes", "No", "Yes"],
+ ["Third-Party App Code", "Controlled", "Yes", "No", "Yes"]
+ ]
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "The API Catalog"
+ },
+ {
+ "type": "paragraph",
+ "text": "The API Catalog is accessible from the Windchill Navigator when the <strong>Client Customization</strong> site-level preference is set to <strong>Yes</strong>. Once enabled, the API Catalog is visible to any Windchill user - there is no additional access control on catalog visibility. The catalog has three main components:"
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Domain List",
+ "back": "The left pane displays all available WRS domains, such as PTC Product Management and PTC Document Management. Select a domain to see its entity sets and service endpoints."
+ },
+ {
+ "front": "Version Selection",
+ "back": "WRS supports API versioning. The version selector lets you choose which API version to browse, allowing clients to remain on a stable version while newer versions are introduced."
+ },
+ {
+ "front": "Interactive Endpoint Testing",
+ "back": "Each service endpoint displays its HTTP method, entity set, and a description. Expanding an endpoint reveals input parameters and a Try it out button to send a live request and see the JSON response."
+ }
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "tip",
+ "text": "The API Catalog does not need to be visible to use WRS through other clients. You can disable the catalog preference after initial setup and continue calling WRS endpoints from Postman, cURL, or custom code."
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each WRS testing tool to its key characteristic:",
+ "pairs": [
+ {
+ "left": "API Catalog",
+ "right": "Interactive JSON testing with built-in parameter support"
+ },
+ {
+ "left": "Browser",
+ "right": "Returns XML with basic authentication only"
+ },
+ {
+ "left": "cURL",
+ "right": "Command-line tool with full header control and stdout output"
+ },
+ {
+ "left": "Postman",
+ "right": "JSON responses with full header and authorization control"
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "The API Catalog provides interactive documentation and live testing for all WRS domains and endpoints.",
+ "Multiple tools can test WRS requests - the API Catalog and Postman are most commonly used for prototyping.",
+ "API Catalog visibility is controlled by a site-level Client Customization preference that only site administrators can set."
+ ]
+ },
+ {
+ "id": "m2t2",
+ "title": "Query Parameters",
+ "estimatedMinutes": 8,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Query parameters allow you to refine the data returned by a WRS request - filtering records, selecting specific properties, sorting results, and expanding related entities. WRS follows the OData protocol for system query options, giving you a standardized and predictable way to shape responses."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Query Parameter Syntax"
+ },
+ {
+ "type": "paragraph",
+ "text": "Query parameters are appended to the URL after a <code>?</code> character. Multiple parameters are separated by <code>&amp;</code>. Each OData system query option is prefixed with <code>$</code> and its value is separated by <code>=</code>. For example: <code>ProdMgmt/Parts?$select=Name,Number&amp;$top=10</code>"
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "OData System Query Options"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Parameter", "SQL Equivalent", "Purpose"],
+ "rows": [
+ ["<code>$select</code>", "SELECT", "Returns only specified properties, comma-separated. Reduces payload size."],
+ ["<code>$filter</code>", "WHERE", "Filters records using operators: EQ, NE, GT, LT, GE, LE, AND, OR, NOT, startswith, endswith, contains."],
+ ["<code>$top</code>", "TOP / LIMIT", "Limits the number of entities returned in the response."],
+ ["<code>$skip</code>", "OFFSET", "Skips the specified number of records from the top of the result set."],
+ ["<code>$orderby</code>", "ORDER BY", "Sorts results ascending or descending. Can sort by attachments, primary content, and representations."],
+ ["<code>$expand</code>", "JOIN", "Includes related entities via navigation properties. Supports nested expansion using parentheses."]
+ ]
+ },
+ {
+ "type": "paragraph",
+ "text": "The <code>$expand</code> parameter is particularly powerful for retrieving hierarchical data. Navigation properties can be nested - for example, <code>ProdMgmt/Parts?$expand=Uses($expand=Uses)</code> expands the Uses relationship two levels deep, returning a part's direct usages and each of those usages' child usages in a single request. Values can also be comma-separated to expand multiple navigation properties simultaneously."
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "Query parameters are <strong>case-sensitive</strong>. <code>UsedBy</code> works correctly, but <code>usedby</code> or <code>used By</code> returns a 4xx error. The <code>$orderby</code> parameter is resource-intensive - omit it unless sorting is required."
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Arrange these query parameters in the order they are most commonly applied when building a WRS request:",
+ "items": [
+ "$filter - narrow the result set to matching records",
+ "$select - limit which properties are returned",
+ "$expand - include related navigation properties",
+ "$orderby - sort the results",
+ "$top - cap the total number of records returned"
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Query parameters refine WRS responses using <code>$select</code>, <code>$filter</code>, <code>$top</code>, <code>$skip</code>, <code>$orderby</code>, and <code>$expand</code>.",
+ "Parameters are case-sensitive and must be typed exactly - even a single character difference produces a 4xx error.",
+ "The <code>$expand</code> parameter enables multi-level data retrieval through nested navigation properties in a single request."
+ ]
+ },
+ {
+ "id": "m2t3",
+ "title": "Postman and HTTP Response Headers",
+ "estimatedMinutes": 6,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Postman is a powerful tool for prototyping REST requests. It gives full control over the HTTP method, URL, headers, authorization, and body - and once a request is working, Postman can generate copy-paste code in multiple programming languages, accelerating client development."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Working with Postman"
+ },
+ {
+ "type": "paragraph",
+ "text": "Building a request in Postman involves four inputs: <strong>method</strong> (GET, POST, PATCH, DELETE), <strong>URL</strong> (the endpoint with any query parameters), <strong>headers</strong> (authorization and content type), and optionally a <strong>body</strong> (for POST and PATCH). Requests can be saved in named collections and shared with other team members, making Postman an effective collaboration tool for REST API development."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "REST Statelessness and HTTP Headers"
+ },
+ {
+ "type": "paragraph",
+ "text": "REST requests are <strong>stateless</strong> - every request contains all information required to process it. No session context is stored on the server between calls. HTTP headers carry the metadata that makes this possible, passing authentication credentials and format instructions with every request."
+ },
+ {
+ "type": "callout",
+ "variant": "insight",
+ "text": "Statelessness is a core REST principle: because any client request contains all required information to service the request, WRS endpoints are easy to consume from any language or platform without managing server-side sessions."
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Header", "Purpose"],
+ "rows": [
+ ["Authorization", "Carries credentials (Basic Auth or token) for access control. Required on every WRS request."],
+ ["Content-Type", "Always set to <code>application/json</code> for WRS. Tells the server to expect and return JSON data."],
+ ["CSRF_NONCE", "A nonce key that prevents cross-site request forgery replay attacks. Required for state-changing requests."]
+ ]
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each HTTP header to its purpose in a WRS request:",
+ "pairs": [
+ {
+ "left": "Authorization",
+ "right": "Carries credentials for access control on every request"
+ },
+ {
+ "left": "Content-Type",
+ "right": "Declares the data format as application/json"
+ },
+ {
+ "left": "CSRF_NONCE",
+ "right": "Prevents cross-site request forgery replay attacks"
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Postman enables full control over method, URL, headers, authorization, and body for REST requests.",
+ "Every WRS request requires Authorization and Content-Type headers because REST is stateless - no session context is stored on the server.",
+ "Statelessness means each request is self-contained with all required information, making WRS easy to consume from any platform."
+ ]
+ },
+ {
+ "id": "m2t4",
+ "title": "HTTP Request Body and Status Codes",
+ "estimatedMinutes": 6,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "POST and PATCH requests require a request body containing the input parameters for the operation. Understanding the body format and how to interpret HTTP status codes is essential for building reliable WRS integrations."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Request Body Format"
+ },
+ {
+ "type": "paragraph",
+ "text": "The request body contains input parameters formatted as <strong>JSON</strong>. JSON uses key/value pairs enclosed in double quotes, separated by colons, and wrapped in curly brackets. For example, creating a document requires a Name, description, content title, and container - each provided as a JSON property in the body. The <code>Content-Type: application/json</code> header must accompany any request that includes a body."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "HTTP Status Codes"
+ },
+ {
+ "type": "paragraph",
+ "text": "Every WRS response includes an HTTP status code that immediately indicates whether the request succeeded or failed. WRS error messages are generic - client applications must translate status codes into user-friendly messages appropriate for the end user."
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Status Code", "Meaning", "Next Step"],
+ "rows": [
+ ["200 / 2xx", "Success - the request was processed correctly", "Read the response body for returned data"],
+ ["400", "Bad request - the client sent invalid input", "Check request syntax, parameters, and body format"],
+ ["401", "Unauthorized - authentication failed or missing", "Use the WWW-Authenticate header to determine the required auth method"],
+ ["403", "Forbidden - authenticated but not permitted", "Verify the user has the required Windchill access"],
+ ["500", "Internal server error - problem on the server side", "Review server logs and report the issue to the administrator"]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "tip",
+ "text": "A 200 status code confirms success. Any other code means the request failed - the response body usually contains details explaining why, though WRS error messages are generic and client applications should define friendly messages for end users."
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Match each HTTP status code to its meaning:",
+ "pairs": [
+ {
+ "left": "200",
+ "right": "Request succeeded - response body contains the result"
+ },
+ {
+ "left": "400",
+ "right": "Bad request due to invalid input or syntax error"
+ },
+ {
+ "left": "401",
+ "right": "Authentication failed or credentials not provided"
+ },
+ {
+ "left": "500",
+ "right": "Internal server error - problem on the Windchill side"
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "POST and PATCH requests require a JSON-formatted body containing the necessary input parameters for the operation.",
+ "HTTP status codes immediately indicate success (200) or the category of failure (400, 401, 403, 500).",
+ "WRS returns generic error messages - client applications must translate status codes into meaningful messages for end users."
+ ]
+ },
+ {
+ "id": "m2t5",
+ "title": "Exercise - Expose the API Catalog and Query Parts",
+ "estimatedMinutes": 10,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "In this exercise, you will switch a site-level preference to expose the WRS API Catalog in the Windchill Navigator, then use the catalog to test query options that filter, sort, and expand a list of Windchill parts."
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "Task 1 requires site administrator access to modify the Client Customization preference. Tasks 2 and 3 can be performed as any Windchill user once the preference has been enabled."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex2",
+ "title": "Expose the API Catalog and Query Parts",
+ "objective": "Switch a site-level preference to expose the WRS API Catalog, then use query options to retrieve a filtered list of Windchill parts.",
+ "tasks": [
+ {
+ "id": "ex2-t1",
+ "title": "Set the Client Customization Preference",
+ "steps": [
+ {
+ "action": "Sign in to Windchill as a site administrator.",
+ "detail": "Only site administrators can modify site-level preferences that control API Catalog visibility.",
+ "hint": null
+ },
+ {
+ "action": "Navigate to Site > Utilities > Preference Management.",
+ "detail": "The Client Customization preference controls whether the API Catalog link appears in the Windchill Navigator.",
+ "hint": "Use the Browse link to navigate the site utilities."
+ },
+ {
+ "action": "Set the Client Customization preference value to Yes.",
+ "detail": "This makes the API Catalog and documentation visible to all Windchill users. There is no additional access control for the catalog.",
+ "hint": "Right-click the preference to change its value."
+ }
+ ]
+ },
+ {
+ "id": "ex2-t2",
+ "title": "Access the API Catalog",
+ "steps": [
+ {
+ "action": "Sign in to Windchill as a non-administrative user.",
+ "detail": "The API Catalog should now be visible to any user since the preference was enabled.",
+ "hint": null
+ },
+ {
+ "action": "Click the Customization icon and select the OData REST APIs link.",
+ "detail": "The Customization icon appears in the Navigator after the preference is set. You may need to refresh the browser.",
+ "hint": "Look for the Documentation link first, then the OData REST APIs link in the API section."
+ },
+ {
+ "action": "Select a domain, choose the latest API Version, and execute a GET endpoint.",
+ "detail": "Expanding a service endpoint shows the method, parameters, and a Try it out button. The response body returns JSON data matching your request.",
+ "hint": null
+ }
+ ]
+ },
+ {
+ "id": "ex2-t3",
+ "title": "Get Parts with Query Options",
+ "steps": [
+ {
+ "action": "Browse to PTC Product Management Domain and select the latest API Version.",
+ "detail": "The Product Management domain contains entity sets for Parts, BOMs, and related product data.",
+ "hint": null
+ },
+ {
+ "action": "Expand the GET /Parts endpoint and enter query parameters: <code>$select=Name,Number</code>, <code>$filter=startswith(Name,'engine')</code>, <code>$top=10</code>, <code>$orderby=Number</code>, <code>$expand=UsedBy</code>.",
+ "detail": "These parameters filter parts whose names start with 'engine', return only Name and Number properties, limit results to 10 sorted by Number, and expand the UsedBy navigation property to include related data.",
+ "hint": "Type parameters exactly as shown - query parameters are case-sensitive."
+ },
+ {
+ "action": "Execute the request and review the response body, status code, and headers.",
+ "detail": "A 200 status code confirms success. The response body contains JSON with matching parts. The Curl request and Request URL can be copied for use in other clients.",
+ "hint": null
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Enabling the API Catalog requires setting the Client Customization preference to Yes at the site level - only site administrators can make this change.",
+ "The API Catalog generates a complete URL with all query parameters that can be copied and reused in Postman, cURL, or custom application code.",
+ "Query parameters like <code>$filter</code>, <code>$select</code>, <code>$expand</code>, and <code>$top</code> can be combined to precisely control the data returned by a WRS request."
+ ]
+ },
+ {
+ "id": "m2t6",
+ "title": "Exercise - Read and Review Responses in Postman",
+ "estimatedMinutes": 8,
+ "isExercise": true,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "In this exercise, you will take the request URL generated by the API Catalog in the previous exercise and reproduce it in Postman - setting the method, headers, and authorization - then compare the Postman response to the API Catalog response."
+ },
+ {
+ "type": "exercise",
+ "exerciseId": "ex3",
+ "title": "Read and Review Responses in Postman",
+ "objective": "Populate a service endpoint with query options in Postman and read the response, confirming it matches the result from the API Catalog.",
+ "tasks": [
+ {
+ "id": "ex3-t1",
+ "title": "Set Up the Request in Postman",
+ "steps": [
+ {
+ "action": "Copy the Request URL from the previous API Catalog exercise.",
+ "detail": "The API Catalog generates the complete URL including all query parameters. You can reuse this URL in any REST client without retyping the parameters.",
+ "hint": null
+ },
+ {
+ "action": "Create a new request in Postman, set the method to GET, and paste the URL.",
+ "detail": "Postman automatically populates the Params tab with query options extracted from the URL. Notice the encoding syntax in the URL, keys, and values.",
+ "hint": null
+ },
+ {
+ "action": "Set Basic Auth credentials and add a Content-Type header of <code>application/json</code>.",
+ "detail": "Authorization is required for all WRS requests. The Content-Type header tells the server to expect and return JSON data.",
+ "hint": "In the Authorization tab, select Basic Auth as the Type, then enter your Windchill username and password."
+ }
+ ]
+ },
+ {
+ "id": "ex3-t2",
+ "title": "Execute and Compare",
+ "steps": [
+ {
+ "action": "Send the request and verify the 200 status code.",
+ "detail": "The response in Postman should be identical to the response generated in the API Catalog for the same request.",
+ "hint": null
+ },
+ {
+ "action": "Review the response in the Body pane and compare it to the API Catalog response.",
+ "detail": "Postman provides additional options for formatting, searching, and saving responses that are not available in the API Catalog. Saved requests can be organized into collections for repeatable testing workflows.",
+ "hint": null
+ }
+ ]
+ }
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Postman provides a powerful environment for prototyping and saving WRS requests, with full control over headers, authorization, and body.",
+ "Responses in Postman match those from the API Catalog for identical requests - the tool used does not change the WRS response.",
+ "Saved Postman collections enable repeatable, shareable testing workflows that accelerate WRS client development."
+ ]
+ }
+ ]
 }

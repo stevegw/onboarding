@@ -1,58 +1,58 @@
 {
-  "moduleId": "m2",
-  "title": "Evaluación de conocimientos: Opciones y Variantes",
-  "questions": [
-    {
-      "id": "m2-kc-001",
-      "question": "¿Qué afirmación describe correctamente una opción en Opciones y Variantes de Windchill?",
-      "options": [
-        "Un contenedor que alberga todas las elecciones definidas para cada producto del sistema",
-        "Un registro de las entradas del usuario utilizadas para generar una variante específica",
-        "Una colección curada de reglas asignadas a una familia de productos",
-        "Una característica particular del producto que puede variar entre configuraciones, con una o más elecciones disponibles"
-      ],
-      "answerIndex": 3,
-      "rationale": "Una opción representa una característica particular del producto que puede variar entre configuraciones y tiene una o más elecciones que definen valores válidos. La opción A describe un pool de opciones, la opción B describe una especificación de variante y la opción C describe un conjunto de opciones (parcialmente).",
-      "topic": "m2t1"
-    },
-    {
-      "id": "m2-kc-002",
-      "question": "¿Cuál es la relación entre un pool de opciones y un conjunto de opciones?",
-      "options": [
-        "Son contenedores idénticos utilizados indistintamente",
-        "El pool de opciones es un subconjunto del conjunto de opciones para una familia de productos",
-        "El conjunto de opciones es un subconjunto curado del pool de opciones, que contiene solo las opciones relevantes para una familia de productos específica",
-        "El pool de opciones contiene reglas mientras que el conjunto de opciones contiene elecciones"
-      ],
-      "answerIndex": 2,
-      "rationale": "El pool de opciones es el repositorio maestro de TODAS las opciones y elecciones para un contexto de producto, mientras que un conjunto de opciones es un subconjunto curado que contiene solo las opciones relevantes para las configuraciones de una familia de productos específica.",
-      "topic": "m2t2"
-    },
-    {
-      "id": "m2-kc-003",
-      "question": "¿Qué objeto configurable representa los artículos específicos seleccionados de los artículos opcionales dentro de un módulo configurable?",
-      "options": [
-        "Producto configurable",
-        "Variante de módulo",
-        "Filtro de opciones",
-        "Módulo configurable"
-      ],
-      "answerIndex": 1,
-      "rationale": "Una Variante de Módulo representa los artículos específicos seleccionados de los artículos opcionales dentro de un módulo configurable, basándose en criterios de selección y elecciones. El Producto Configurable es el artículo de nivel superior, el Módulo Configurable captura la variabilidad a nivel de componente, y un Filtro de Opciones son los criterios utilizados para filtrar la estructura.",
-      "topic": "m2t3"
-    },
-    {
-      "id": "m2-kc-004",
-      "question": "¿Cuál es una limitación clave al utilizar los enfoques de configuración descendente o ascendente con Creo?",
-      "options": [
-        "Las configuraciones ascendentes no pueden usar conjuntos de opciones",
-        "Las configuraciones descendentes requieren actualizaciones manuales de CAD",
-        "Solo las expresiones básicas se pasan de Windchill a Creo — las expresiones avanzadas permanecen solo en Windchill",
-        "Las configuraciones descendentes y ascendentes no pueden producir los mismos resultados de variante"
-      ],
-      "answerIndex": 2,
-      "rationale": "Independientemente del enfoque utilizado (descendente o ascendente), solo las expresiones básicas se pasan de Windchill a Creo. Las expresiones avanzadas permanecen solo en Windchill. Esta es una limitación crítica a considerar al planificar la estrategia de configuración.",
-      "topic": "m2t4"
-    }
-  ]
+ "moduleId": "m2",
+ "title": "Evaluación de conocimientos: Opciones y Variantes",
+ "questions": [
+ {
+ "id": "m2-kc-001",
+ "question": "¿Qué afirmación describe correctamente una opción en Opciones y Variantes de Windchill?",
+ "options": [
+ "Un contenedor que alberga todas las elecciones definidas para cada producto del sistema",
+ "Un registro de las entradas del usuario utilizadas para generar una variante específica",
+ "Una colección curada de reglas asignadas a una familia de productos",
+ "Una característica particular del producto que puede variar entre configuraciones, con una o más elecciones disponibles"
+ ],
+ "answerIndex": 3,
+ "rationale": "Una opción representa una característica particular del producto que puede variar entre configuraciones y tiene una o más elecciones que definen valores válidos. La opción A describe un pool de opciones, la opción B describe una especificación de variante y la opción C describe un conjunto de opciones (parcialmente).",
+ "topic": "m2t1"
+ },
+ {
+ "id": "m2-kc-002",
+ "question": "¿Cuál es la relación entre un pool de opciones y un conjunto de opciones?",
+ "options": [
+ "Son contenedores idénticos utilizados indistintamente",
+ "El pool de opciones es un subconjunto del conjunto de opciones para una familia de productos",
+ "El conjunto de opciones es un subconjunto curado del pool de opciones, que contiene solo las opciones relevantes para una familia de productos específica",
+ "El pool de opciones contiene reglas mientras que el conjunto de opciones contiene elecciones"
+ ],
+ "answerIndex": 2,
+ "rationale": "El pool de opciones es el repositorio maestro de TODAS las opciones y elecciones para un contexto de producto, mientras que un conjunto de opciones es un subconjunto curado que contiene solo las opciones relevantes para las configuraciones de una familia de productos específica.",
+ "topic": "m2t2"
+ },
+ {
+ "id": "m2-kc-003",
+ "question": "¿Qué objeto configurable representa los artículos específicos seleccionados de los artículos opcionales dentro de un módulo configurable?",
+ "options": [
+ "Producto configurable",
+ "Variante de módulo",
+ "Filtro de opciones",
+ "Módulo configurable"
+ ],
+ "answerIndex": 1,
+ "rationale": "Una Variante de Módulo representa los artículos específicos seleccionados de los artículos opcionales dentro de un módulo configurable, basándose en criterios de selección y elecciones. El Producto Configurable es el artículo de nivel superior, el Módulo Configurable captura la variabilidad a nivel de componente, y un Filtro de Opciones son los criterios utilizados para filtrar la estructura.",
+ "topic": "m2t3"
+ },
+ {
+ "id": "m2-kc-004",
+ "question": "¿Cuál es una limitación clave al utilizar los enfoques de configuración descendente o ascendente con Creo?",
+ "options": [
+ "Las configuraciones ascendentes no pueden usar conjuntos de opciones",
+ "Las configuraciones descendentes requieren actualizaciones manuales de CAD",
+ "Solo las expresiones básicas se pasan de Windchill a Creo - las expresiones avanzadas permanecen solo en Windchill",
+ "Las configuraciones descendentes y ascendentes no pueden producir los mismos resultados de variante"
+ ],
+ "answerIndex": 2,
+ "rationale": "Independientemente del enfoque utilizado (descendente o ascendente), solo las expresiones básicas se pasan de Windchill a Creo. Las expresiones avanzadas permanecen solo en Windchill. Esta es una limitación crítica a considerar al planificar la estrategia de configuración.",
+ "topic": "m2t4"
+ }
+ ]
 }

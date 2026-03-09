@@ -276,7 +276,7 @@
 }
 
 /* ============================================================
-   Author Mode — FAB + Modal
+   Author Mode - FAB + Modal
    ============================================================ */
 .author-fab {
   position: fixed; bottom: 80px; right: 24px; z-index: 80;
@@ -563,7 +563,7 @@
 }
 
 /* ============================================================
-   Author Mode — Inline Block Toolbars (edit mode)
+   Author Mode - Inline Block Toolbars (edit mode)
    ============================================================ */
 .author-block-wrapper {
   position: relative;
@@ -629,7 +629,7 @@
 .author-preselected-icon { font-size: 14px; }
 
 /* ============================================================
-   Author Mode — Edit Forms
+   Author Mode - Edit Forms
    ============================================================ */
 .author-textarea {
   padding: 8px 12px; border-radius: 6px;
@@ -758,7 +758,7 @@
 }
 
 /* ============================================================
-   Author Mode — Toast Notifications
+   Author Mode - Toast Notifications
    ============================================================ */
 .author-toast-container {
   position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);

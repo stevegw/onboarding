@@ -1,319 +1,319 @@
 {
-  "id": "m2",
-  "title": "Windchill-Optionen und -Varianten überprüfen",
-  "description": "Untersuchen Sie die Terminologie von Optionen und Varianten, besprechen Sie Optionen und Auswahlmöglichkeiten, erkunden Sie konfigurierbare Strukturen, vergleichen Sie Konfigurationsansätze und überprüfen Sie wichtige Präferenzen.",
-  "topics": [
-    {
-      "id": "m2t1",
-      "title": "Terminologie für Optionen und Varianten",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Optionen und Varianten (O&V) in Windchill verwendet ein umfangreiches Vokabular spezialisierter Begriffe. Die Beherrschung dieser Terminologie ist unerlässlich, bevor Sie mit konfigurierbaren Produkten arbeiten, da diese Begriffe in der gesamten Windchill-Oberfläche und -Dokumentation vorkommen."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Wichtige O&V-Begriffe"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Begriff", "Kategorie", "Definition"],
-          "rows": [
-            ["Erweiterter Ausdruck", "Logik", "Umfasst Auswahlmöglichkeiten, Operatoren und Funktionen. Kann Teilen und Teileverwendungsverknüpfungen zugewiesen werden, um komplexe Auswahlkriterien zu definieren."],
-            ["Erweiterte Auswahllogik", "Logik", "Logik für ein konfigurierbares Modul unter Verwendung von Parametern und Einschränkungen, um Benutzereingaben während der Konfiguration zu steuern."],
-            ["Grundausdruck", "Logik", "Optionsauswahlmöglichkeiten, die Teilen und Verknüpfungen zugewiesen werden können, um festzulegen, wann eine Komponente in eine Variante aufgenommen wird."],
-            ["Bedingte Regel", "Logik", "WENN/DANN-Anweisungen, die festlegen, wann Auswahlmöglichkeiten eingeschlossen, aktiviert oder deaktiviert werden sollen, basierend auf anderen Auswahlen."],
-            ["Konfigurierbares Modul", "Struktur", "Ein Windchill-Teil mit untergeordneten Teilen, die Designvariationen darstellen. Der Baustein für Produktvariabilität."],
-            ["Konfigurierbare Produktstruktur", "Struktur", "Eine Produktstruktur, die konfigurierbare Module enthält, die mehrere Produktvarianten unterstützen."],
-            ["Aktivierungsregel", "Logik", "Lässt nur bestimmte Auswahlmöglichkeiten in der Auswahlliste erscheinen, sobald eine Zielauswahl getroffen wurde."],
-            ["Ausschlussregel", "Logik", "Beschränkt die Auswahl inkompatibler Auswahlmöglichkeiten und verhindert ungültige Konfigurationen."],
-            ["Einschlussregel", "Logik", "Verknüpft die Auswahl einer Auswahlmöglichkeit mit der automatischen Einbeziehung zugehöriger Auswahlmöglichkeiten."],
-            ["Optionsfilter", "Verwaltung", "Kriterien zum Filtern einer Produktstruktur basierend auf Teilen zugewiesenen Auswahlmöglichkeiten."],
-            ["Options-Manager", "Verwaltung", "Eine Windchill-Kontextrolle, die für das Erstellen von Optionen und Auswahlmöglichkeiten und die Pflege von Optionssätzen verantwortlich ist."],
-            ["Parameter", "Logik", "Ein Attribut innerhalb eines konfigurierbaren Moduls, das für die erweiterte Auswahllogik mit Einschränkungen verwendet wird."],
-            ["Produktfamilie", "Struktur", "Eine Gruppe verwandter Produkte, die wesentliche Teile gemeinsam nutzen, definiert durch einen Optionssatz und eine konfigurierbare Produktstruktur."],
-            ["Variante", "Struktur", "Ein Teil oder eine Struktur, die eine bestimmte Konfiguration darstellt und während des Konfigurationsprozesses erstellt wird."],
-            ["Variantenspezifikation", "Verwaltung", "Eine Aufzeichnung der Benutzereingaben (Auswahlmöglichkeiten und Parameterwerte), die zur Generierung einer bestimmten Variante verwendet werden."]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "insight",
-          "text": "Diese 15 Begriffe fallen in drei Kategorien: Strukturbegriffe (Konfigurierbares Modul, konfigurierbare Produktstruktur, Produktfamilie, Variante) definieren, wie Produkte organisiert sind; Logikbegriffe (Ausdrücke, Regeln, Parameter) definieren, wie Konfigurationen bestimmt werden; Verwaltungsbegriffe (Optionsfilter, Options-Manager, Variantenspezifikation) definieren, wie Konfigurationen verwaltet werden."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Testen Sie Ihr Wissen"
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Ordnen Sie jeden O&V-Begriff seiner Definition zu:",
-          "pairs": [
-            {"left": "Konfigurierbares Modul", "right": "Ein Windchill-Teil mit untergeordneten Teilen, die Designvariationen darstellen"},
-            {"left": "Variantenspezifikation", "right": "Eine Aufzeichnung der Benutzereingaben zur Generierung einer bestimmten Variante"},
-            {"left": "Ausschlussregel", "right": "Beschränkt die Auswahl inkompatibler Auswahlmöglichkeiten"},
-            {"left": "Optionsfilter", "right": "Kriterien zum Filtern der Produktstruktur basierend auf zugewiesenen Auswahlmöglichkeiten"}
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Optionen und Varianten hat ein Vokabular von mehr als 15 spezialisierten Begriffen, die Sie verstehen müssen",
-        "Die Begriffe fallen in drei Kategorien: Struktur (Konfigurierbares Modul, Produktfamilie), Logik (Ausdrücke, Regeln, Parameter) und Verwaltung (Optionsfilter, Options-Manager)",
-        "Das Verständnis der Terminologie ist unerlässlich, bevor Sie mit O&V in Windchill arbeiten"
-      ]
-    },
-    {
-      "id": "m2t2",
-      "title": "Optionen und Auswahlmöglichkeiten",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Optionen und Auswahlmöglichkeiten sind die grundlegenden Bausteine zur Definition der Produktvariabilität in Windchill. Eine Option repräsentiert ein bestimmtes Produktmerkmal, und jede Option hat eine oder mehrere Auswahlmöglichkeiten, die die gültigen Werte für dieses Merkmal definieren."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Wie Optionen und Auswahlmöglichkeiten funktionieren"
-        },
-        {
-          "type": "paragraph",
-          "text": "Eine Option ist ein bestimmtes Produktmerkmal, das über Konfigurationen hinweg variieren kann. Jede Option hat eine bis viele verfügbare Auswahlmöglichkeiten. Optionen können als erforderlich (der Benutzer muss eine Auswahl treffen) oder als Einzelauswahl (es kann nur eine Auswahl gleichzeitig getroffen werden) gekennzeichnet werden. Optionen sind auf bestimmte Produktvariationen anwendbar, und Auswahlmöglichkeiten können Teilen, Vorkommen oder Verknüpfungen in der Produktstruktur zugewiesen werden."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Optionspool vs. Optionssatz"
-        },
-        {
-          "type": "paragraph",
-          "text": "Optionen und Auswahlmöglichkeiten sind in zwei Schlüsselbehältern organisiert: dem Optionspool und dem Optionssatz. Das Verständnis der Beziehung zwischen diesen beiden ist entscheidend für die Verwaltung der Produktkonfigurierbarkeit."
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Optionspool",
-              "back": "Der Optionspool enthält ALLE für einen Produktkontext definierten Optionen und Auswahlmöglichkeiten. Er ist das Hauptverzeichnis, aus dem Optionssätze ihren Inhalt beziehen. Stellen Sie ihn sich als den vollständigen Katalog jedes möglichen variablen Merkmals vor."
-            },
-            {
-              "front": "Optionssatz",
-              "back": "Ein Optionssatz ist eine kuratierte Sammlung von Optionen, Auswahlmöglichkeiten und Regeln, die zur Definition von Konfigurationen innerhalb einer bestimmten Produktfamilie verwendet wird. Er ist eine Teilmenge des Optionspools und enthält nur die für eine bestimmte Produktlinie oder ein Konfigurationsszenario relevanten Optionen."
-            },
-            {
-              "front": "Warum zwei Behälter?",
-              "back": "Der Optionspool kann Optionen für viele Produktfamilien enthalten. Ein Optionssatz wählt nur die relevanten Optionen für eine bestimmte Produktfamilie aus. Diese Trennung ermöglicht Wiederverwendung — dieselbe Option (z. B. Farbe) kann in mehreren Optionssätzen für verschiedene Produktfamilien erscheinen."
-            }
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "Denken Sie daran: Der Optionspool ist die Obermenge, und der Optionssatz ist eine kuratierte Teilmenge. Ein Produkt kann viele Optionen in seinem Pool haben, aber der Optionssatz einer bestimmten Produktfamilie enthält nur die für die Konfigurationen dieser Familie relevanten Optionen."
-        }
-      ],
-      "keyTakeaways": [
-        "Eine Option repräsentiert ein variables Produktmerkmal; jede Option hat eine oder mehrere Auswahlmöglichkeiten",
-        "Optionen können als erforderlich oder Einzelauswahl gekennzeichnet sein, und Auswahlmöglichkeiten können Teilen, Vorkommen oder Verknüpfungen zugewiesen werden",
-        "Der Optionspool ist das Hauptverzeichnis aller Optionen und Auswahlmöglichkeiten für einen Produktkontext",
-        "Ein Optionssatz ist eine kuratierte Teilmenge des Optionspools zur Definition von Konfigurationen für eine bestimmte Produktfamilie"
-      ]
-    },
-    {
-      "id": "m2t3",
-      "title": "Elemente einer konfigurierbaren Struktur",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Eine konfigurierbare Struktur in Windchill enthält sowohl Standardteile (in jeder Variante vorhanden) als auch optionale Teile (nur enthalten, wenn bestimmte Auswahlmöglichkeiten getroffen werden). Drei konfigurierbare Schlüsselobjekte bilden eine Hierarchie, die definiert, wie Produktvariabilität erfasst und aufgelöst wird."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Drei konfigurierbare Objekte"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Objekt", "Rolle", "Beschreibung"],
-          "rows": [
-            ["Konfigurierbares Produkt", "Endprodukt der obersten Ebene", "Das Produkt der obersten Ebene, das eine Sammlung von Produktvariationen darstellt. Es ist der Einstiegspunkt für die Konfiguration und enthält die vollständige überladene Struktur."],
-            ["Konfigurierbares Modul", "Konfigurierbare Komponente", "Eine konfigurierbare Komponente, die Variabilität auf Komponentenebene erfasst. Dargestellt durch eine überladene Struktur, die alle Designvariationen für diesen Abschnitt des Produkts enthält."],
-            ["Modulvariante", "Spezifische Auswahl", "Die spezifischen Teile, die aus den optionalen Teilen innerhalb eines konfigurierbaren Moduls ausgewählt werden, basierend auf Auswahlkriterien und Auswahlmöglichkeiten. Repräsentiert eine aufgelöste Konfiguration eines Moduls."]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "Eine überladene Struktur enthält ALLE möglichen Designvariationen für ein konfigurierbares Modul. Während des Konfigurationsprozesses reduzieren Optionsfilter diese überladene Struktur auf nur die Teile, die für eine bestimmte Konfiguration benötigt werden, und erzeugen so eine Modulvariante."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Hierarchie konfigurierbarer Objekte"
-        },
-        {
-          "type": "paragraph",
-          "text": "Die drei konfigurierbaren Objekte bilden eine klare Hierarchie vom Breitesten zum Spezifischsten. Das Verständnis dieser Hierarchie ist der Schlüssel zur Arbeit mit konfigurierbaren Strukturen."
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Ordnen Sie die konfigurierbaren Objekte von der höchsten Ebene (breiteste) bis zur niedrigsten Ebene (spezifischste):",
-          "correctOrder": [
-            "Konfigurierbares Produkt",
-            "Konfigurierbares Modul",
-            "Modulvariante"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Drei konfigurierbare Objekte bilden eine Hierarchie: Konfigurierbares Produkt, Konfigurierbares Modul und Modulvariante",
-        "Konfigurierbare Module erfassen Variabilität mithilfe überladener Strukturen, die alle Designvariationen enthalten",
-        "Modulvarianten sind die spezifischen Teile, die aus einem konfigurierbaren Modul nach Anwendung von Optionsfiltern ausgewählt werden",
-        "Eine konfigurierbare Struktur enthält sowohl Standardteile (immer vorhanden) als auch optionale Teile (bedingt einbezogen)"
-      ]
-    },
-    {
-      "id": "m2t4",
-      "title": "Top-Down- und Bottom-Up-Konfiguration",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Windchill unterstützt zwei Ansätze zur Erstellung konfigurierbarer Produkte: Top-Down (beginnend in Windchill) und Bottom-Up (beginnend in Creo). Der gewählte Ansatz hängt davon ab, wo Ihr Produktdesign seinen Ursprung hat und wie Ihre Organisation CAD- und PLM-Daten verwaltet."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Vergleich der beiden Ansätze"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Aspekt", "Top-Down (Windchill zuerst)", "Bottom-Up (Creo zuerst)"],
-          "rows": [
-            ["Ausgangspunkt", "Teilestruktur zuerst in Windchill erstellen", "Konfigurierbares Produkt (überladene Baugruppe) zuerst in Creo erstellen"],
-            ["Optionsdefinition", "Optionspool und Optionssatz in Windchill erstellen, dann Auswahlmöglichkeiten Teilen zuweisen", "Überladene Baugruppe in Creo öffnen, in Windchill einchecken, dann Optionen und Auswahlmöglichkeiten in Windchill definieren"],
-            ["Strukturfluss", "CAD-Struktur aus Windchill-Struktur generieren, an Creo weitergeben", "Creo-Baugruppe in Windchill einchecken, als konfigurierbares Produkt kennzeichnen, Auswahlmöglichkeiten zuweisen"],
-            ["Konfiguration", "Teilestruktur in Windchill mit Variantenspezifikation konfigurieren, dann in Creo öffnen", "Variante in Creo konfigurieren, in Windchill einchecken, Variantenstrukturen überprüfen"],
-            ["Ausdrucksbeschränkung", "Nur Grundausdrücke werden von Windchill an Creo übergeben", "Nur Grundausdrücke werden von Windchill an Creo übergeben"],
-            ["Am besten geeignet für", "Organisationen, bei denen PLM die Produktstruktur bestimmt", "Organisationen, bei denen CAD-Design die Produktstruktur bestimmt"]
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Top-Down-Workflow"
-        },
-        {
-          "type": "paragraph",
-          "text": "Beim Top-Down-Ansatz beginnen Sie mit der Erstellung der Teilestruktur in Windchill: Erstellen Sie den Optionspool, den Optionssatz, richten Sie konfigurierbare Module ein und weisen Sie Teilen Auswahlmöglichkeiten zu. Dann generieren Sie die CAD-Struktur und konfigurieren die Teilestruktur. In Creo öffnen Sie das konfigurierbare Produkt, checken es ein, konfigurieren es mithilfe einer Variantenspezifikation und verknüpfen die Variante."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Bottom-Up-Workflow"
-        },
-        {
-          "type": "paragraph",
-          "text": "Beim Bottom-Up-Ansatz beginnen Sie in Creo, indem Sie die überladene Baugruppe öffnen und sie in Windchill einchecken. Dann definieren Sie in Windchill Optionen und Auswahlmöglichkeiten, erstellen und weisen den Optionssatz zu, kennzeichnen das konfigurierbare Produkt, weisen Auswahlmöglichkeiten zu, konfigurieren und geben Auswahlmöglichkeiten an CAD weiter. Zurück in Creo überprüfen Sie die Auswahlzuweisungen, konfigurieren die Variante und checken ein. Abschließend überprüfen Sie die Variantenstrukturen in Windchill."
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "Unabhängig vom gewählten Ansatz werden nur Grundausdrücke von Windchill an Creo übergeben. Erweiterte Ausdrücke verbleiben nur in Windchill. Dies ist eine wichtige Einschränkung, die Sie bei der Planung Ihrer Konfigurationsstrategie berücksichtigen sollten."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Ordnen Sie die Schritte zu"
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Ordnen Sie jeden Schritt dem richtigen Konfigurationsansatz zu:",
-          "pairs": [
-            {"left": "Teilestruktur zuerst in Windchill erstellen", "right": "Top-Down"},
-            {"left": "Überladene Baugruppe zuerst in Creo öffnen", "right": "Bottom-Up"},
-            {"left": "CAD-Struktur aus Windchill generieren", "right": "Top-Down"},
-            {"left": "Creo-Baugruppe in Windchill einchecken, dann Optionen definieren", "right": "Bottom-Up"}
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Top-Down-Konfiguration beginnt in Windchill und wird an Creo weitergegeben; Bottom-Up beginnt in Creo und wird an Windchill weitergegeben",
-        "Nur Grundausdrücke werden zwischen Windchill und Creo übertragen — erweiterte Ausdrücke verbleiben nur in Windchill",
-        "Beide Ansätze enden letztlich mit verifizierten Variantenstrukturen in beiden Systemen",
-        "Die Wahl des Ansatzes hängt davon ab, ob PLM oder CAD Ihre Produktstruktur bestimmt"
-      ]
-    },
-    {
-      "id": "m2t5",
-      "title": "Optionen- und Varianten-Präferenzen",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Windchill verwendet eine Reihe von Präferenzen zur Steuerung des Optionen- und Varianten-Verhaltens. Die wichtigste Präferenz ist die Unterstützung konfigurierbarer Module, die auf Ja gesetzt werden muss, bevor eine O&V-Funktionalität verwendet werden kann. Präferenzen folgen einem Vererbungsmodell von übergeordneten Behältern zu untergeordneten Kontexten."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Wichtige O&V-Präferenzen"
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Unterstützung konfigurierbarer Module",
-              "back": "Steuert die Möglichkeit, optionale Produktstrukturen zu erstellen. Standard ist Nein. Muss auf Ja gesetzt werden, um O&V-Funktionalität zu nutzen. Dies ist die Schlüsselpräferenz — wenn sie auf Nein steht, können keine konfigurierbaren Module erstellt werden."
-            },
-            {
-              "front": "Erweiterte Logik",
-              "back": "Aktiviert oder deaktiviert die erweiterte Auswahllogik unter Verwendung von Parametern und Einschränkungen innerhalb konfigurierbarer Module. Erforderlich für Auftragskonfigurations- und Auftragskonstruktionsszenarien."
-            },
-            {
-              "front": "Anzeigeformat für Auswahlmöglichkeiten",
-              "back": "Steuert, wie Auswahlmöglichkeiten den Benutzern während der Konfiguration angezeigt werden. Optionen umfassen die Anzeige von Auswahlname, Nummer oder beidem. Beeinflusst die Benutzererfahrung während der Variantenspezifikation."
-            },
-            {
-              "front": "Unterstützte Ausdrücke",
-              "back": "Bestimmt, welche Ausdruckstypen zur Verfügung stehen: nur Grundausdrücke oder sowohl Grund- als auch erweiterte Ausdrücke. Begrenzt die Komplexität der Auswahllogik, die erstellt werden kann."
-            }
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Präferenzvererbung und Rollen"
-        },
-        {
-          "type": "paragraph",
-          "text": "O&V-Präferenzen werden von übergeordneten Behältern (Standortebene) an untergeordnete Kontexte (Organisation, Produkt) vererbt. Auf Standortebene festgelegte Präferenzen dienen als Standardwerte. Untergeordnete Kontexte können geerbte Werte überschreiben oder als geerbt belassen. Präferenzen können auch auf einer höheren Ebene gesperrt werden, um Überschreibungen auf niedrigerer Ebene zu verhindern."
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Rolle", "Geltungsbereich", "Fähigkeit"],
-          "rows": [
-            ["Standortadministrator", "Gesamter Windchill-Standort", "Legt standortweite Standardpräferenzen fest, die für alle Organisationen und Produkte gelten, sofern sie nicht überschrieben werden."],
-            ["Organisationsadministrator", "Bestimmte Organisation", "Kann Präferenzen auf Standortebene für seine Organisation überschreiben. Einstellungen gelten für alle Produkte innerhalb der Organisation."],
-            ["Produktmanager", "Bestimmtes Produkt", "Kann Präferenzen auf Organisationsebene für seinen Produktkontext überschreiben. Detaillierteste Steuerungsebene."],
-            ["Bibliotheksmanager", "Bestimmte Bibliothek", "Kann Präferenzen für Bibliothekskontexte überschreiben und das O&V-Verhalten für gemeinsam genutzte Bibliotheksinhalte steuern."]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "Wenn O&V-Funktionen in einem bestimmten Produktkontext nicht verfügbar sind, sollten Sie zuerst die Präferenz Unterstützung konfigurierbarer Module überprüfen. Stellen Sie sicher, dass sie auf der entsprechenden Ebene (Standort, Organisation oder Produkt) auf Ja gesetzt ist. Prüfen Sie auch, ob eine Sperre auf höherer Ebene die Änderung der Präferenz verhindert."
-        }
-      ],
-      "keyTakeaways": [
-        "Die Unterstützung konfigurierbarer Module muss auf Ja gesetzt sein, um Optionen- und Varianten-Funktionalität zu nutzen — der Standard ist Nein",
-        "Präferenzen werden von höheren Ebenen (Standort) an niedrigere Ebenen (Organisation, Produkt) vererbt und können gesperrt oder überschrieben werden",
-        "Vier Rollen können O&V-Präferenzen ändern: Standortadministrator, Organisationsadministrator, Produktmanager und Bibliotheksmanager",
-        "Das Verständnis der Präferenzvererbung ist für die Diagnose von O&V-Problemen in bestimmten Produktkontexten unerlässlich"
-      ]
-    }
-  ]
+ "id": "m2",
+ "title": "Windchill-Optionen und -Varianten überprüfen",
+ "description": "Untersuchen Sie die Terminologie von Optionen und Varianten, besprechen Sie Optionen und Auswahlmöglichkeiten, erkunden Sie konfigurierbare Strukturen, vergleichen Sie Konfigurationsansätze und überprüfen Sie wichtige Präferenzen.",
+ "topics": [
+ {
+ "id": "m2t1",
+ "title": "Terminologie für Optionen und Varianten",
+ "estimatedMinutes": 5,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Optionen und Varianten (O&V) in Windchill verwendet ein umfangreiches Vokabular spezialisierter Begriffe. Die Beherrschung dieser Terminologie ist unerlässlich, bevor Sie mit konfigurierbaren Produkten arbeiten, da diese Begriffe in der gesamten Windchill-Oberfläche und -Dokumentation vorkommen."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Wichtige O&V-Begriffe"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Begriff", "Kategorie", "Definition"],
+ "rows": [
+ ["Erweiterter Ausdruck", "Logik", "Umfasst Auswahlmöglichkeiten, Operatoren und Funktionen. Kann Teilen und Teileverwendungsverknüpfungen zugewiesen werden, um komplexe Auswahlkriterien zu definieren."],
+ ["Erweiterte Auswahllogik", "Logik", "Logik für ein konfigurierbares Modul unter Verwendung von Parametern und Einschränkungen, um Benutzereingaben während der Konfiguration zu steuern."],
+ ["Grundausdruck", "Logik", "Optionsauswahlmöglichkeiten, die Teilen und Verknüpfungen zugewiesen werden können, um festzulegen, wann eine Komponente in eine Variante aufgenommen wird."],
+ ["Bedingte Regel", "Logik", "WENN/DANN-Anweisungen, die festlegen, wann Auswahlmöglichkeiten eingeschlossen, aktiviert oder deaktiviert werden sollen, basierend auf anderen Auswahlen."],
+ ["Konfigurierbares Modul", "Struktur", "Ein Windchill-Teil mit untergeordneten Teilen, die Designvariationen darstellen. Der Baustein für Produktvariabilität."],
+ ["Konfigurierbare Produktstruktur", "Struktur", "Eine Produktstruktur, die konfigurierbare Module enthält, die mehrere Produktvarianten unterstützen."],
+ ["Aktivierungsregel", "Logik", "Lässt nur bestimmte Auswahlmöglichkeiten in der Auswahlliste erscheinen, sobald eine Zielauswahl getroffen wurde."],
+ ["Ausschlussregel", "Logik", "Beschränkt die Auswahl inkompatibler Auswahlmöglichkeiten und verhindert ungültige Konfigurationen."],
+ ["Einschlussregel", "Logik", "Verknüpft die Auswahl einer Auswahlmöglichkeit mit der automatischen Einbeziehung zugehöriger Auswahlmöglichkeiten."],
+ ["Optionsfilter", "Verwaltung", "Kriterien zum Filtern einer Produktstruktur basierend auf Teilen zugewiesenen Auswahlmöglichkeiten."],
+ ["Options-Manager", "Verwaltung", "Eine Windchill-Kontextrolle, die für das Erstellen von Optionen und Auswahlmöglichkeiten und die Pflege von Optionssätzen verantwortlich ist."],
+ ["Parameter", "Logik", "Ein Attribut innerhalb eines konfigurierbaren Moduls, das für die erweiterte Auswahllogik mit Einschränkungen verwendet wird."],
+ ["Produktfamilie", "Struktur", "Eine Gruppe verwandter Produkte, die wesentliche Teile gemeinsam nutzen, definiert durch einen Optionssatz und eine konfigurierbare Produktstruktur."],
+ ["Variante", "Struktur", "Ein Teil oder eine Struktur, die eine bestimmte Konfiguration darstellt und während des Konfigurationsprozesses erstellt wird."],
+ ["Variantenspezifikation", "Verwaltung", "Eine Aufzeichnung der Benutzereingaben (Auswahlmöglichkeiten und Parameterwerte), die zur Generierung einer bestimmten Variante verwendet werden."]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "insight",
+ "text": "Diese 15 Begriffe fallen in drei Kategorien: Strukturbegriffe (Konfigurierbares Modul, konfigurierbare Produktstruktur, Produktfamilie, Variante) definieren, wie Produkte organisiert sind; Logikbegriffe (Ausdrücke, Regeln, Parameter) definieren, wie Konfigurationen bestimmt werden; Verwaltungsbegriffe (Optionsfilter, Options-Manager, Variantenspezifikation) definieren, wie Konfigurationen verwaltet werden."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Testen Sie Ihr Wissen"
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Ordnen Sie jeden O&V-Begriff seiner Definition zu:",
+ "pairs": [
+ {"left": "Konfigurierbares Modul", "right": "Ein Windchill-Teil mit untergeordneten Teilen, die Designvariationen darstellen"},
+ {"left": "Variantenspezifikation", "right": "Eine Aufzeichnung der Benutzereingaben zur Generierung einer bestimmten Variante"},
+ {"left": "Ausschlussregel", "right": "Beschränkt die Auswahl inkompatibler Auswahlmöglichkeiten"},
+ {"left": "Optionsfilter", "right": "Kriterien zum Filtern der Produktstruktur basierend auf zugewiesenen Auswahlmöglichkeiten"}
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Optionen und Varianten hat ein Vokabular von mehr als 15 spezialisierten Begriffen, die Sie verstehen müssen",
+ "Die Begriffe fallen in drei Kategorien: Struktur (Konfigurierbares Modul, Produktfamilie), Logik (Ausdrücke, Regeln, Parameter) und Verwaltung (Optionsfilter, Options-Manager)",
+ "Das Verständnis der Terminologie ist unerlässlich, bevor Sie mit O&V in Windchill arbeiten"
+ ]
+ },
+ {
+ "id": "m2t2",
+ "title": "Optionen und Auswahlmöglichkeiten",
+ "estimatedMinutes": 5,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Optionen und Auswahlmöglichkeiten sind die grundlegenden Bausteine zur Definition der Produktvariabilität in Windchill. Eine Option repräsentiert ein bestimmtes Produktmerkmal, und jede Option hat eine oder mehrere Auswahlmöglichkeiten, die die gültigen Werte für dieses Merkmal definieren."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Wie Optionen und Auswahlmöglichkeiten funktionieren"
+ },
+ {
+ "type": "paragraph",
+ "text": "Eine Option ist ein bestimmtes Produktmerkmal, das über Konfigurationen hinweg variieren kann. Jede Option hat eine bis viele verfügbare Auswahlmöglichkeiten. Optionen können als erforderlich (der Benutzer muss eine Auswahl treffen) oder als Einzelauswahl (es kann nur eine Auswahl gleichzeitig getroffen werden) gekennzeichnet werden. Optionen sind auf bestimmte Produktvariationen anwendbar, und Auswahlmöglichkeiten können Teilen, Vorkommen oder Verknüpfungen in der Produktstruktur zugewiesen werden."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Optionspool vs. Optionssatz"
+ },
+ {
+ "type": "paragraph",
+ "text": "Optionen und Auswahlmöglichkeiten sind in zwei Schlüsselbehältern organisiert: dem Optionspool und dem Optionssatz. Das Verständnis der Beziehung zwischen diesen beiden ist entscheidend für die Verwaltung der Produktkonfigurierbarkeit."
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Optionspool",
+ "back": "Der Optionspool enthält ALLE für einen Produktkontext definierten Optionen und Auswahlmöglichkeiten. Er ist das Hauptverzeichnis, aus dem Optionssätze ihren Inhalt beziehen. Stellen Sie ihn sich als den vollständigen Katalog jedes möglichen variablen Merkmals vor."
+ },
+ {
+ "front": "Optionssatz",
+ "back": "Ein Optionssatz ist eine kuratierte Sammlung von Optionen, Auswahlmöglichkeiten und Regeln, die zur Definition von Konfigurationen innerhalb einer bestimmten Produktfamilie verwendet wird. Er ist eine Teilmenge des Optionspools und enthält nur die für eine bestimmte Produktlinie oder ein Konfigurationsszenario relevanten Optionen."
+ },
+ {
+ "front": "Warum zwei Behälter?",
+ "back": "Der Optionspool kann Optionen für viele Produktfamilien enthalten. Ein Optionssatz wählt nur die relevanten Optionen für eine bestimmte Produktfamilie aus. Diese Trennung ermöglicht Wiederverwendung - dieselbe Option (z. B. Farbe) kann in mehreren Optionssätzen für verschiedene Produktfamilien erscheinen."
+ }
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "tip",
+ "text": "Denken Sie daran: Der Optionspool ist die Obermenge, und der Optionssatz ist eine kuratierte Teilmenge. Ein Produkt kann viele Optionen in seinem Pool haben, aber der Optionssatz einer bestimmten Produktfamilie enthält nur die für die Konfigurationen dieser Familie relevanten Optionen."
+ }
+ ],
+ "keyTakeaways": [
+ "Eine Option repräsentiert ein variables Produktmerkmal; jede Option hat eine oder mehrere Auswahlmöglichkeiten",
+ "Optionen können als erforderlich oder Einzelauswahl gekennzeichnet sein, und Auswahlmöglichkeiten können Teilen, Vorkommen oder Verknüpfungen zugewiesen werden",
+ "Der Optionspool ist das Hauptverzeichnis aller Optionen und Auswahlmöglichkeiten für einen Produktkontext",
+ "Ein Optionssatz ist eine kuratierte Teilmenge des Optionspools zur Definition von Konfigurationen für eine bestimmte Produktfamilie"
+ ]
+ },
+ {
+ "id": "m2t3",
+ "title": "Elemente einer konfigurierbaren Struktur",
+ "estimatedMinutes": 5,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Eine konfigurierbare Struktur in Windchill enthält sowohl Standardteile (in jeder Variante vorhanden) als auch optionale Teile (nur enthalten, wenn bestimmte Auswahlmöglichkeiten getroffen werden). Drei konfigurierbare Schlüsselobjekte bilden eine Hierarchie, die definiert, wie Produktvariabilität erfasst und aufgelöst wird."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Drei konfigurierbare Objekte"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Objekt", "Rolle", "Beschreibung"],
+ "rows": [
+ ["Konfigurierbares Produkt", "Endprodukt der obersten Ebene", "Das Produkt der obersten Ebene, das eine Sammlung von Produktvariationen darstellt. Es ist der Einstiegspunkt für die Konfiguration und enthält die vollständige überladene Struktur."],
+ ["Konfigurierbares Modul", "Konfigurierbare Komponente", "Eine konfigurierbare Komponente, die Variabilität auf Komponentenebene erfasst. Dargestellt durch eine überladene Struktur, die alle Designvariationen für diesen Abschnitt des Produkts enthält."],
+ ["Modulvariante", "Spezifische Auswahl", "Die spezifischen Teile, die aus den optionalen Teilen innerhalb eines konfigurierbaren Moduls ausgewählt werden, basierend auf Auswahlkriterien und Auswahlmöglichkeiten. Repräsentiert eine aufgelöste Konfiguration eines Moduls."]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "info",
+ "text": "Eine überladene Struktur enthält ALLE möglichen Designvariationen für ein konfigurierbares Modul. Während des Konfigurationsprozesses reduzieren Optionsfilter diese überladene Struktur auf nur die Teile, die für eine bestimmte Konfiguration benötigt werden, und erzeugen so eine Modulvariante."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Hierarchie konfigurierbarer Objekte"
+ },
+ {
+ "type": "paragraph",
+ "text": "Die drei konfigurierbaren Objekte bilden eine klare Hierarchie vom Breitesten zum Spezifischsten. Das Verständnis dieser Hierarchie ist der Schlüssel zur Arbeit mit konfigurierbaren Strukturen."
+ },
+ {
+ "type": "interactive-sort",
+ "prompt": "Ordnen Sie die konfigurierbaren Objekte von der höchsten Ebene (breiteste) bis zur niedrigsten Ebene (spezifischste):",
+ "correctOrder": [
+ "Konfigurierbares Produkt",
+ "Konfigurierbares Modul",
+ "Modulvariante"
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Drei konfigurierbare Objekte bilden eine Hierarchie: Konfigurierbares Produkt, Konfigurierbares Modul und Modulvariante",
+ "Konfigurierbare Module erfassen Variabilität mithilfe überladener Strukturen, die alle Designvariationen enthalten",
+ "Modulvarianten sind die spezifischen Teile, die aus einem konfigurierbaren Modul nach Anwendung von Optionsfiltern ausgewählt werden",
+ "Eine konfigurierbare Struktur enthält sowohl Standardteile (immer vorhanden) als auch optionale Teile (bedingt einbezogen)"
+ ]
+ },
+ {
+ "id": "m2t4",
+ "title": "Top-Down- und Bottom-Up-Konfiguration",
+ "estimatedMinutes": 5,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Windchill unterstützt zwei Ansätze zur Erstellung konfigurierbarer Produkte: Top-Down (beginnend in Windchill) und Bottom-Up (beginnend in Creo). Der gewählte Ansatz hängt davon ab, wo Ihr Produktdesign seinen Ursprung hat und wie Ihre Organisation CAD- und PLM-Daten verwaltet."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Vergleich der beiden Ansätze"
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Aspekt", "Top-Down (Windchill zuerst)", "Bottom-Up (Creo zuerst)"],
+ "rows": [
+ ["Ausgangspunkt", "Teilestruktur zuerst in Windchill erstellen", "Konfigurierbares Produkt (überladene Baugruppe) zuerst in Creo erstellen"],
+ ["Optionsdefinition", "Optionspool und Optionssatz in Windchill erstellen, dann Auswahlmöglichkeiten Teilen zuweisen", "Überladene Baugruppe in Creo öffnen, in Windchill einchecken, dann Optionen und Auswahlmöglichkeiten in Windchill definieren"],
+ ["Strukturfluss", "CAD-Struktur aus Windchill-Struktur generieren, an Creo weitergeben", "Creo-Baugruppe in Windchill einchecken, als konfigurierbares Produkt kennzeichnen, Auswahlmöglichkeiten zuweisen"],
+ ["Konfiguration", "Teilestruktur in Windchill mit Variantenspezifikation konfigurieren, dann in Creo öffnen", "Variante in Creo konfigurieren, in Windchill einchecken, Variantenstrukturen überprüfen"],
+ ["Ausdrucksbeschränkung", "Nur Grundausdrücke werden von Windchill an Creo übergeben", "Nur Grundausdrücke werden von Windchill an Creo übergeben"],
+ ["Am besten geeignet für", "Organisationen, bei denen PLM die Produktstruktur bestimmt", "Organisationen, bei denen CAD-Design die Produktstruktur bestimmt"]
+ ]
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Top-Down-Workflow"
+ },
+ {
+ "type": "paragraph",
+ "text": "Beim Top-Down-Ansatz beginnen Sie mit der Erstellung der Teilestruktur in Windchill: Erstellen Sie den Optionspool, den Optionssatz, richten Sie konfigurierbare Module ein und weisen Sie Teilen Auswahlmöglichkeiten zu. Dann generieren Sie die CAD-Struktur und konfigurieren die Teilestruktur. In Creo öffnen Sie das konfigurierbare Produkt, checken es ein, konfigurieren es mithilfe einer Variantenspezifikation und verknüpfen die Variante."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Bottom-Up-Workflow"
+ },
+ {
+ "type": "paragraph",
+ "text": "Beim Bottom-Up-Ansatz beginnen Sie in Creo, indem Sie die überladene Baugruppe öffnen und sie in Windchill einchecken. Dann definieren Sie in Windchill Optionen und Auswahlmöglichkeiten, erstellen und weisen den Optionssatz zu, kennzeichnen das konfigurierbare Produkt, weisen Auswahlmöglichkeiten zu, konfigurieren und geben Auswahlmöglichkeiten an CAD weiter. Zurück in Creo überprüfen Sie die Auswahlzuweisungen, konfigurieren die Variante und checken ein. Abschließend überprüfen Sie die Variantenstrukturen in Windchill."
+ },
+ {
+ "type": "callout",
+ "variant": "warning",
+ "text": "Unabhängig vom gewählten Ansatz werden nur Grundausdrücke von Windchill an Creo übergeben. Erweiterte Ausdrücke verbleiben nur in Windchill. Dies ist eine wichtige Einschränkung, die Sie bei der Planung Ihrer Konfigurationsstrategie berücksichtigen sollten."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Ordnen Sie die Schritte zu"
+ },
+ {
+ "type": "interactive-match",
+ "prompt": "Ordnen Sie jeden Schritt dem richtigen Konfigurationsansatz zu:",
+ "pairs": [
+ {"left": "Teilestruktur zuerst in Windchill erstellen", "right": "Top-Down"},
+ {"left": "Überladene Baugruppe zuerst in Creo öffnen", "right": "Bottom-Up"},
+ {"left": "CAD-Struktur aus Windchill generieren", "right": "Top-Down"},
+ {"left": "Creo-Baugruppe in Windchill einchecken, dann Optionen definieren", "right": "Bottom-Up"}
+ ]
+ }
+ ],
+ "keyTakeaways": [
+ "Top-Down-Konfiguration beginnt in Windchill und wird an Creo weitergegeben; Bottom-Up beginnt in Creo und wird an Windchill weitergegeben",
+ "Nur Grundausdrücke werden zwischen Windchill und Creo übertragen - erweiterte Ausdrücke verbleiben nur in Windchill",
+ "Beide Ansätze enden letztlich mit verifizierten Variantenstrukturen in beiden Systemen",
+ "Die Wahl des Ansatzes hängt davon ab, ob PLM oder CAD Ihre Produktstruktur bestimmt"
+ ]
+ },
+ {
+ "id": "m2t5",
+ "title": "Optionen- und Varianten-Präferenzen",
+ "estimatedMinutes": 5,
+ "content": [
+ {
+ "type": "paragraph",
+ "text": "Windchill verwendet eine Reihe von Präferenzen zur Steuerung des Optionen- und Varianten-Verhaltens. Die wichtigste Präferenz ist die Unterstützung konfigurierbarer Module, die auf Ja gesetzt werden muss, bevor eine O&V-Funktionalität verwendet werden kann. Präferenzen folgen einem Vererbungsmodell von übergeordneten Behältern zu untergeordneten Kontexten."
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Wichtige O&V-Präferenzen"
+ },
+ {
+ "type": "reveal-cards",
+ "cards": [
+ {
+ "front": "Unterstützung konfigurierbarer Module",
+ "back": "Steuert die Möglichkeit, optionale Produktstrukturen zu erstellen. Standard ist Nein. Muss auf Ja gesetzt werden, um O&V-Funktionalität zu nutzen. Dies ist die Schlüsselpräferenz - wenn sie auf Nein steht, können keine konfigurierbaren Module erstellt werden."
+ },
+ {
+ "front": "Erweiterte Logik",
+ "back": "Aktiviert oder deaktiviert die erweiterte Auswahllogik unter Verwendung von Parametern und Einschränkungen innerhalb konfigurierbarer Module. Erforderlich für Auftragskonfigurations- und Auftragskonstruktionsszenarien."
+ },
+ {
+ "front": "Anzeigeformat für Auswahlmöglichkeiten",
+ "back": "Steuert, wie Auswahlmöglichkeiten den Benutzern während der Konfiguration angezeigt werden. Optionen umfassen die Anzeige von Auswahlname, Nummer oder beidem. Beeinflusst die Benutzererfahrung während der Variantenspezifikation."
+ },
+ {
+ "front": "Unterstützte Ausdrücke",
+ "back": "Bestimmt, welche Ausdruckstypen zur Verfügung stehen: nur Grundausdrücke oder sowohl Grund- als auch erweiterte Ausdrücke. Begrenzt die Komplexität der Auswahllogik, die erstellt werden kann."
+ }
+ ]
+ },
+ {
+ "type": "heading",
+ "level": 2,
+ "text": "Präferenzvererbung und Rollen"
+ },
+ {
+ "type": "paragraph",
+ "text": "O&V-Präferenzen werden von übergeordneten Behältern (Standortebene) an untergeordnete Kontexte (Organisation, Produkt) vererbt. Auf Standortebene festgelegte Präferenzen dienen als Standardwerte. Untergeordnete Kontexte können geerbte Werte überschreiben oder als geerbt belassen. Präferenzen können auch auf einer höheren Ebene gesperrt werden, um Überschreibungen auf niedrigerer Ebene zu verhindern."
+ },
+ {
+ "type": "comparison-table",
+ "headers": ["Rolle", "Geltungsbereich", "Fähigkeit"],
+ "rows": [
+ ["Standortadministrator", "Gesamter Windchill-Standort", "Legt standortweite Standardpräferenzen fest, die für alle Organisationen und Produkte gelten, sofern sie nicht überschrieben werden."],
+ ["Organisationsadministrator", "Bestimmte Organisation", "Kann Präferenzen auf Standortebene für seine Organisation überschreiben. Einstellungen gelten für alle Produkte innerhalb der Organisation."],
+ ["Produktmanager", "Bestimmtes Produkt", "Kann Präferenzen auf Organisationsebene für seinen Produktkontext überschreiben. Detaillierteste Steuerungsebene."],
+ ["Bibliotheksmanager", "Bestimmte Bibliothek", "Kann Präferenzen für Bibliothekskontexte überschreiben und das O&V-Verhalten für gemeinsam genutzte Bibliotheksinhalte steuern."]
+ ]
+ },
+ {
+ "type": "callout",
+ "variant": "tip",
+ "text": "Wenn O&V-Funktionen in einem bestimmten Produktkontext nicht verfügbar sind, sollten Sie zuerst die Präferenz Unterstützung konfigurierbarer Module überprüfen. Stellen Sie sicher, dass sie auf der entsprechenden Ebene (Standort, Organisation oder Produkt) auf Ja gesetzt ist. Prüfen Sie auch, ob eine Sperre auf höherer Ebene die Änderung der Präferenz verhindert."
+ }
+ ],
+ "keyTakeaways": [
+ "Die Unterstützung konfigurierbarer Module muss auf Ja gesetzt sein, um Optionen- und Varianten-Funktionalität zu nutzen - der Standard ist Nein",
+ "Präferenzen werden von höheren Ebenen (Standort) an niedrigere Ebenen (Organisation, Produkt) vererbt und können gesperrt oder überschrieben werden",
+ "Vier Rollen können O&V-Präferenzen ändern: Standortadministrator, Organisationsadministrator, Produktmanager und Bibliotheksmanager",
+ "Das Verständnis der Präferenzvererbung ist für die Diagnose von O&V-Problemen in bestimmten Produktkontexten unerlässlich"
+ ]
+ }
+ ]
 }

@@ -51,7 +51,7 @@
         "User interface themes that customize the look of Codebeamer"
       ],
       "answerIndex": 1,
-      "rationale": "Widgets are embeddable components on wiki pages that display live tracker data — including tables, charts, query results, and metrics. They auto-update as the underlying data changes, making wiki pages effective as project dashboards.",
+      "rationale": "Widgets are embeddable components on wiki pages that display live tracker data - including tables, charts, query results, and metrics. They auto-update as the underlying data changes, making wiki pages effective as project dashboards.",
       "topic": "m4t1"
     },
     {
