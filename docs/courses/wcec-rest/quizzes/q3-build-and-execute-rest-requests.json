@@ -1,0 +1,71 @@
+{
+  "moduleId": "m3",
+  "title": "Build and Execute REST Requests Knowledge Check",
+  "questions": [
+    {
+      "id": "m3-kc-001",
+      "question": "Why are nonce tokens (CSRF tokens) required for POST, PATCH, and DELETE requests in WRS?",
+      "options": [
+        "To encrypt the data being transmitted between client and server",
+        "To prevent replay attacks by ensuring requests cannot be resubmitted",
+        "To compress large JSON payloads for faster transmission",
+        "To authenticate the domain configuration on the Windchill server"
+      ],
+      "answerIndex": 1,
+      "rationale": "Nonce tokens prevent replay attacks where a malicious client stores signed-in requests and resubmits them later. The randomly generated strings expire after 24 hours. Nonces do not encrypt data, compress payloads, or authenticate domain configurations.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-002",
+      "question": "What is the difference between an Object Reference (OR) and a Version Reference (VR) in Windchill?",
+      "options": [
+        "OR identifies a specific object while VR always points to the latest iteration",
+        "OR is used for documents while VR is used for parts",
+        "OR includes version history while VR does not",
+        "OR is used in URL construction while VR is used only in response bodies"
+      ],
+      "answerIndex": 0,
+      "rationale": "An Object Reference (OR) identifies a specific object instance, while a Version Reference (VR) always leads to the latest iteration in a branch for iterated objects. Both can be used for parts and documents, both appear in URLs and responses, and neither stores version history by itself.",
+      "topic": "m3t2"
+    },
+    {
+      "id": "m3-kc-003",
+      "question": "What happens when a WRS request returns a 403 Forbidden status code?",
+      "options": [
+        "The URL syntax is incorrect and needs to be reformatted",
+        "The nonce token has expired and must be refreshed",
+        "The user does not have the necessary access permissions for the operation",
+        "The domain version is incompatible with the entity set"
+      ],
+      "answerIndex": 2,
+      "rationale": "A 403 Forbidden error means the user lacks the necessary authorization for the operation, just as in the Windchill user interface. Incorrect URL syntax returns a 400, an expired nonce may return 401, and domain version issues are separate from access control.",
+      "topic": "m3t4"
+    },
+    {
+      "id": "m3-kc-004",
+      "question": "What format must the body of a SetState request use to change a life cycle state?",
+      "options": [
+        "A plain text string with the state name",
+        "An XML element with state attributes",
+        "A JSON object with Display and Value keys inside a State property",
+        "A URL-encoded query string with the target state"
+      ],
+      "answerIndex": 2,
+      "rationale": "The SetState action requires a JSON body with the State property containing both Display and Value keys, such as {\"State\": {\"Display\": \"Released\", \"Value\": \"RELEASED\"}}. Plain text, XML, and URL-encoded formats are not accepted by WRS.",
+      "topic": "m3t4"
+    },
+    {
+      "id": "m3-kc-005",
+      "question": "What does the Postman Visualizer use to render response data as HTML?",
+      "options": [
+        "SQL query templates",
+        "Handlebars templates with {{property}} syntax",
+        "CSS stylesheets applied to raw JSON",
+        "Built-in Postman chart components"
+      ],
+      "answerIndex": 1,
+      "rationale": "The Postman Visualizer uses Handlebars templates to filter and render JSON/XML responses into human-readable HTML formats. The template uses {{property}} syntax to extract values. It does not use SQL, CSS styling of raw JSON, or built-in chart components for custom visualizations.",
+      "topic": "m3t3"
+    }
+  ]
+}

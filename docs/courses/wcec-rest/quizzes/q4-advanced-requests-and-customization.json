@@ -1,0 +1,58 @@
+{
+  "moduleId": "m4",
+  "title": "Advanced Requests and Customization Knowledge Check",
+  "questions": [
+    {
+      "id": "m4-kc-001",
+      "question": "When should you use multi-object endpoints instead of batch processing in WRS?",
+      "options": [
+        "When you need to perform different operations on unrelated objects",
+        "When creating or updating multiple objects of the same type simultaneously",
+        "When you need to read data from multiple domains in one request",
+        "When you want to bypass access control checks for efficiency"
+      ],
+      "answerIndex": 1,
+      "rationale": "Multi-object endpoints like /CreateParts are more efficient than batch processing when creating or updating multiple objects of the same type simultaneously. Batch processing is better for grouping different related operations. Multi-object endpoints do not bypass access control or read from multiple domains.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-002",
+      "question": "Where must custom domain extension files be saved in the Windchill codebase?",
+      "options": [
+        "$WT_HOME/codebase/rest/ptc/domain/",
+        "$WT_HOME/codebase/rest/custom/domain/",
+        "$WT_HOME/codebase/odata/extensions/",
+        "$WT_HOME/codebase/config/rest/custom/"
+      ],
+      "answerIndex": 1,
+      "rationale": "Custom extensions and new domains must be saved in $WT_HOME/codebase/rest/custom/domain/. The ptc/domain path contains PTC's own domain configurations and should never be modified. The other paths do not exist in the standard Windchill configuration.",
+      "topic": "m4t2"
+    },
+    {
+      "id": "m4-kc-003",
+      "question": "What limitation applies when extending PTC domains in WRS?",
+      "options": [
+        "Only one custom entity can be added per domain",
+        "Custom properties must be numeric types only",
+        "Existing entity types, structural properties, and navigation properties cannot be modified",
+        "Extensions are only available in the latest domain version"
+      ],
+      "answerIndex": 2,
+      "rationale": "Entity types, structural properties, and navigation properties present in PTC domains cannot be modified — only extended with new entities, properties, navigation, functions, or actions. There is no limit on the number of entities, property types are not restricted to numeric, and extensions can target specific versions.",
+      "topic": "m4t2"
+    },
+    {
+      "id": "m4-kc-004",
+      "question": "In the OAuth2 authorization flow, what is exchanged for an access token?",
+      "options": [
+        "The user's password and username",
+        "A CSRF nonce token",
+        "An authorization code received after user approval",
+        "The client's API key and secret"
+      ],
+      "answerIndex": 2,
+      "rationale": "In the OAuth2 flow, the authorization code received after user approval is exchanged via a POST request for an access token from the server's token endpoint. Basic auth credentials are used separately, CSRF nonces are for WRS operations, and API keys are a different authentication mechanism.",
+      "topic": "m4t4"
+    }
+  ]
+}

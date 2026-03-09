@@ -1,0 +1,58 @@
+{
+  "moduleId": "m2",
+  "title": "Access Windchill Objects Knowledge Check",
+  "questions": [
+    {
+      "id": "m2-kc-001",
+      "question": "What site-level preference must be set to make the WRS API Catalog visible in the Windchill Navigator?",
+      "options": [
+        "REST Services Enabled",
+        "Client Customization",
+        "API Documentation Visibility",
+        "OData Service Discovery"
+      ],
+      "answerIndex": 1,
+      "rationale": "The Client Customization preference must be set to Yes at the Site level to make the API Catalog visible. Once enabled, it is accessible to any Windchill user with no additional access control. The other options are not actual Windchill preferences.",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-002",
+      "question": "Which query parameter would you use to include related entities in a WRS response?",
+      "options": [
+        "$filter",
+        "$select",
+        "$expand",
+        "$orderby"
+      ],
+      "answerIndex": 2,
+      "rationale": "$expand includes related entities by expanding navigation properties, and can be nested for multi-level retrieval. $filter narrows results by conditions, $select limits which properties are returned, and $orderby sorts the results.",
+      "topic": "m2t2"
+    },
+    {
+      "id": "m2-kc-003",
+      "question": "What Content-Type header value is always used when working with Windchill REST Services?",
+      "options": [
+        "text/xml",
+        "application/json",
+        "multipart/form-data",
+        "text/html"
+      ],
+      "answerIndex": 1,
+      "rationale": "When working with Windchill REST Services, the Content-Type is always application/json. JSON is the preferred format for WRS requests and responses. XML, form-data, and HTML are not used for standard WRS operations.",
+      "topic": "m2t3"
+    },
+    {
+      "id": "m2-kc-004",
+      "question": "What does an HTTP status code of 401 indicate in a WRS response?",
+      "options": [
+        "The request was successful",
+        "The server encountered an internal error",
+        "The request URL was malformed",
+        "The request lacks valid authentication credentials"
+      ],
+      "answerIndex": 3,
+      "rationale": "A 401 Unauthorized status code means the request lacks valid authentication credentials. A 200 indicates success, a 500 indicates an internal server error, and a 400 indicates a bad request with a malformed URL or body.",
+      "topic": "m2t4"
+    }
+  ]
+}

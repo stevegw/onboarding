@@ -1,0 +1,124 @@
+{
+  "terms": [
+    {
+      "term": "REST (Representational State Transfer)",
+      "definition": "A web service architecture that transfers representations of resources over the internet using standard HTTP methods. REST APIs exchange data between clients and servers in a stateless manner, meaning each request contains all information needed to process it."
+    },
+    {
+      "term": "OData (Open Data Protocol)",
+      "definition": "A REST-based protocol developed for querying and updating data. Built on standardized technologies such as HTTP, Atom/XML, and JSON, OData provides a uniform way to describe data models and define URLs for accessing resources."
+    },
+    {
+      "term": "Windchill REST Services (WRS)",
+      "definition": "A Windchill module that enables communication with Windchill and third-party enterprise systems to read and modify Windchill data using RESTful APIs based on the OData protocol. WRS operates on its own release cycle and is bundled with supported Windchill versions."
+    },
+    {
+      "term": "Domain",
+      "definition": "A configuration root in WRS that exposes Windchill object types and object collections as OData entity types and entity sets. Domains are designed to enable access to smaller, functionally independent areas of the Windchill schema, such as Product Management or Document Management."
+    },
+    {
+      "term": "Entity Data Model (EDM)",
+      "definition": "The specification of entities available for a domain in WRS. The EDM contains all data points available from a domain and can be accessed by appending $metadata to the domain root URL. Each entity contains structural and navigation properties."
+    },
+    {
+      "term": "Structural Property",
+      "definition": "A metadata property that describes data values related to an entity type, such as Name, Number, or State. Structural properties have values that can be read or modified through WRS requests."
+    },
+    {
+      "term": "Navigation Property",
+      "definition": "A metadata property that references related entities or entity sets. Navigation properties define relationships between entities, such as a part's Uses or Components. Their values are only included in responses when explicitly requested using $expand."
+    },
+    {
+      "term": "Entity Set",
+      "definition": "A collection of entities of a specific type within a domain. Requests are performed on entity sets to retrieve, create, update, or delete entities. For example, Parts is an entity set in the Product Management domain."
+    },
+    {
+      "term": "Service Root",
+      "definition": "The base URL component of a WRS request that includes the scheme, host, port, and the path to the OData servlet. For example: https://windchill.ptc.com/Windchill/servlet/odata."
+    },
+    {
+      "term": "HTTP Methods",
+      "definition": "The standard operations used in WRS to interact with resources: GET (read), POST (create or action), PATCH (update), and DELETE (remove). The method used depends on the type of operation and the configuration of the entity set."
+    },
+    {
+      "term": "Query Parameters",
+      "definition": "OData system query options appended to URLs to filter, order, select, or paginate data. Common parameters include $select, $filter, $top, $skip, $orderby, and $expand. Parameters are prefixed with $ and separated by & characters."
+    },
+    {
+      "term": "$select",
+      "definition": "A query parameter that specifies which properties to include in the response, operating like the SQL SELECT clause. Entered as a comma-separated list to limit the returned data to only the needed fields."
+    },
+    {
+      "term": "$filter",
+      "definition": "A query parameter that filters entities based on conditions, operating like the SQL WHERE clause. Supports logical operators (EQ, NE, GT, LT, AND, OR, NOT) and functions (startswith, endswith, contains)."
+    },
+    {
+      "term": "$expand",
+      "definition": "A query parameter that includes related entities in the response by expanding navigation properties. Values can be nested or comma-separated, enabling multi-level data retrieval such as $expand=Uses($expand=Uses)."
+    },
+    {
+      "term": "API Catalog",
+      "definition": "An interactive documentation tool accessible from the Windchill Navigator that lists all available WRS domains and service endpoints. Users can execute HTTP operations directly from the catalog to test requests and review responses."
+    },
+    {
+      "term": "Postman",
+      "definition": "A third-party desktop application used to prototype and test REST API requests. Postman supports configuring methods, URLs, headers, authorization, and request bodies, and can save requests in collections for reuse."
+    },
+    {
+      "term": "Nonce Token (CSRF Token)",
+      "definition": "A randomly generated authentication string required for POST, PATCH, and DELETE requests that modify Windchill data. Nonces prevent replay attacks by expiring after 24 hours and are fetched via the GetCSRFToken() function in the PTC Common domain."
+    },
+    {
+      "term": "Object Reference (OR)",
+      "definition": "A string identifier for a Windchill object in the format OR:<class>:<key>, such as OR:wt.part.WTPart:54321. Used in OData URLs to identify specific objects for read or modify operations."
+    },
+    {
+      "term": "Version Reference (VR)",
+      "definition": "A string identifier for an iterated Windchill object in the format VR:<class>:<key>. The VR always points to the latest iteration in a branch, making it useful for objects that are checked out and checked in."
+    },
+    {
+      "term": "HTTP Status Code",
+      "definition": "A numeric code returned by the server indicating the result of a request. A 200 code means success, 400 indicates a bad request, 401 means unauthorized access, 403 means forbidden, and 500 indicates an internal server error."
+    },
+    {
+      "term": "Request Header",
+      "definition": "Name/value pairs sent with an HTTP request that provide metadata about the request. Common WRS headers include Authorization (credentials), Content-Type (always application/json), and CSRF_NONCE (the nonce token for write operations)."
+    },
+    {
+      "term": "Request Body",
+      "definition": "The payload of an HTTP request containing input parameters in JSON format. Required for POST and PATCH operations that create or modify data, such as specifying a part name, description, and container location."
+    },
+    {
+      "term": "JSON (JavaScript Object Notation)",
+      "definition": "The preferred data format for WRS requests and responses. JSON uses key/value pairs in double quotes separated by colons, contained in curly brackets. Parsing JSON converts strings into structured data objects for operations like sorting or mapping."
+    },
+    {
+      "term": "Batch Processing",
+      "definition": "The ability to group multiple OData operations into a single HTTP request to reduce network overhead. Batch requests use the multipart/mixed content type and are useful in high-latency environments or when operations should be processed as a single transaction."
+    },
+    {
+      "term": "Multi-Object Endpoint",
+      "definition": "A specialized WRS endpoint for creating or updating multiple objects simultaneously, such as /CreateParts. Multi-object endpoints are more efficient than batch requests for operations on collections of similar objects."
+    },
+    {
+      "term": "Domain Extension",
+      "definition": "The process of adding custom entity types, properties, navigation, functions, or actions to existing PTC domains. Extensions mirror the PTC domain folder structure in a custom configuration path at $WT_HOME/codebase/rest/custom/domain/."
+    },
+    {
+      "term": "Custom Domain",
+      "definition": "A user-created WRS domain for functional areas not covered by PTC domains. Custom domains require configuration files defining the domain metadata, version folder structure, and entity definitions in the custom configuration path."
+    },
+    {
+      "term": "OAuth2",
+      "definition": "A networking protocol and authorization framework used for system-to-system communication and user authentication in WRS. OAuth2 provides access tokens through an authorization flow involving user approval, authorization codes, and token exchange."
+    },
+    {
+      "term": "Postman Visualizer",
+      "definition": "A feature in Postman that renders API response data as HTML using Handlebars templates. Visualizer enables extraction and display of specific response data in formats like tables, charts, or graphs for easier interpretation."
+    },
+    {
+      "term": "Percent Encoding",
+      "definition": "A URL encoding syntax that replaces special characters with a percent sign followed by hexadecimal digits. Common encodings in WRS URLs include %3A for colon (:), %27 for apostrophe ('), and %20 for space."
+    }
+  ]
+}

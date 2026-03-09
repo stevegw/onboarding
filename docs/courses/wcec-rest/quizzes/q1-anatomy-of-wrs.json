@@ -1,0 +1,71 @@
+{
+  "moduleId": "m1",
+  "title": "Anatomy of WRS Knowledge Check",
+  "questions": [
+    {
+      "id": "m1-kc-001",
+      "question": "What protocol does Windchill REST Services use as its foundation for querying and updating data?",
+      "options": [
+        "SOAP (Simple Object Access Protocol)",
+        "OData (Open Data Protocol)",
+        "GraphQL",
+        "gRPC (Remote Procedure Call)"
+      ],
+      "answerIndex": 1,
+      "rationale": "Windchill REST Services is based on the OData (Open Data Protocol), a REST-based protocol built on HTTP, Atom/XML, and JSON. SOAP is an older XML-based protocol, not REST. GraphQL and gRPC are alternative API technologies not used by WRS.",
+      "topic": "m1t1"
+    },
+    {
+      "id": "m1-kc-002",
+      "question": "What is the purpose of a domain in Windchill REST Services?",
+      "options": [
+        "To store user authentication credentials for API access",
+        "To define the visual layout of the Windchill user interface",
+        "To expose functionally independent areas of the Windchill schema as OData entities",
+        "To manage the Windchill server's network configuration"
+      ],
+      "answerIndex": 2,
+      "rationale": "Domains expose Windchill object types and collections as OData entity types and entity sets, providing access to smaller, functionally independent areas of the schema. Domains do not handle authentication, UI layout, or network configuration.",
+      "topic": "m1t3"
+    },
+    {
+      "id": "m1-kc-003",
+      "question": "How do you access the Entity Data Model (EDM) for a WRS domain?",
+      "options": [
+        "Append $metadata to the domain root URL",
+        "Send a POST request with a metadata flag in the body",
+        "Use the $expand=metadata query parameter",
+        "Access the Windchill Site Administration console"
+      ],
+      "answerIndex": 0,
+      "rationale": "The EDM is accessed by appending $metadata to the domain root URL (e.g., /ProdMgmt/$metadata). This returns the specification of all entities, structural properties, and navigation properties available in the domain. It does not require a POST request, $expand parameter, or the admin console.",
+      "topic": "m1t3"
+    },
+    {
+      "id": "m1-kc-004",
+      "question": "Which HTTP method is used to update an existing resource in Windchill REST Services?",
+      "options": [
+        "GET",
+        "POST",
+        "PATCH",
+        "DELETE"
+      ],
+      "answerIndex": 2,
+      "rationale": "PATCH is used to update an existing resource in WRS by reading the persistable and producing a new version. GET is read-only, POST creates new resources or performs actions, and DELETE removes entities.",
+      "topic": "m1t4"
+    },
+    {
+      "id": "m1-kc-005",
+      "question": "What is the difference between structural properties and navigation properties in a WRS entity?",
+      "options": [
+        "Structural properties are read-only while navigation properties can be modified",
+        "Structural properties hold data values while navigation properties reference related entities",
+        "Structural properties define URL paths while navigation properties define query parameters",
+        "Structural properties are unique to custom domains while navigation properties exist in PTC domains"
+      ],
+      "answerIndex": 1,
+      "rationale": "Structural properties describe data values related to an entity (like Name or Number), while navigation properties reference other entities or entity sets (like Uses or Components). Both can exist in any domain, both can be read, and neither directly defines URLs or query parameters.",
+      "topic": "m1t3"
+    }
+  ]
+}

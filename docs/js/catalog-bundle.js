@@ -265,14 +265,15 @@
           "comingSoon": true
         },
         {
-          "id": "wc-rest",
+          "id": "wcec-rest",
           "title": "REST Services",
-          "description": "Build and consume Windchill REST APIs for integration and automation.",
+          "description": "Connect and manipulate data sent to and from Windchill. Prototype multiple types of REST requests for a process-based use case and analyze the responses.",
           "pdfFile": "WCEC-REST-Training-Guide.pdf",
-          "modules": 0,
+          "prerequisite": "wcfd-over",
+          "modules": 4,
           "estimatedHours": 4,
           "locales": ["en"],
-          "comingSoon": true
+          "comingSoon": false
         }
       ]
     },

@@ -1,0 +1,48 @@
+{
+  "id": "wcec-rest",
+  "title": "Windchill: REST Services",
+  "description": "Connect and manipulate data sent to and from Windchill. Prototype multiple types of REST requests for a process-based use case and analyze the responses.",
+  "prerequisite": "wcfd-over",
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Anatomy of WRS",
+      "description": "Compare the characteristics of RESTful APIs to Windchill REST Services. Understand domains, metadata, structural and navigation properties, OData URL components, and HTTP methods.",
+      "estimatedMinutes": 30,
+      "topicCount": 5,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m1-anatomy-of-wrs.json",
+      "quizFile": "quizzes/q1-anatomy-of-wrs.json"
+    },
+    {
+      "id": "m2",
+      "title": "Access Windchill Objects",
+      "description": "Use the WRS API Catalog and Postman to prototype basic REST requests. Apply query parameters to refine results and interpret HTTP responses.",
+      "estimatedMinutes": 40,
+      "topicCount": 6,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m2-access-windchill-objects.json",
+      "quizFile": "quizzes/q2-access-windchill-objects.json"
+    },
+    {
+      "id": "m3",
+      "title": "Build and Execute REST Requests",
+      "description": "Secure requests with nonce tokens, retrieve part structures and process plans, change life cycle states, and visualize JSON responses.",
+      "estimatedMinutes": 45,
+      "topicCount": 7,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m3-build-and-execute-rest-requests.json",
+      "quizFile": "quizzes/q3-build-and-execute-rest-requests.json"
+    },
+    {
+      "id": "m4",
+      "title": "Advanced Requests and Customization",
+      "description": "Create multiple objects in a single request, extend and create custom WRS domains, and implement OAuth2 authentication for end-user applications.",
+      "estimatedMinutes": 30,
+      "topicCount": 5,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m4-advanced-requests-and-customization.json",
+      "quizFile": "quizzes/q4-advanced-requests-and-customization.json"
+    }
+  ]
+}
