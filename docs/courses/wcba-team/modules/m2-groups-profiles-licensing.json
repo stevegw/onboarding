@@ -1,0 +1,291 @@
+{
+  "id": "m2",
+  "title": "Groups, Profiles, and Licensing",
+  "description": "Understand how Windchill organizes users into groups, assigns licenses through license groups, and controls UI visibility through license and standard profiles.",
+  "topics": [
+    {
+      "id": "m2t1",
+      "title": "User and Group Structure",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A Windchill site must contain at least one organization, and within that organization, users and groups form a structured hierarchy. Understanding this hierarchy is essential for managing access, applying policies, and organizing your team effectively."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Organization and Group Hierarchy"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Level", "Description", "Key Points"],
+          "rows": [
+            ["Site", "The top-level container for all Windchill objects and organizations.", "Every Windchill deployment has exactly one site context."],
+            ["Organization", "A principal that acts as a container for users, groups, and policies.", "A site must have at least one organization; the organization principal includes all associated users."],
+            ["Group", "An organizational-level set of users or other groups.", "Groups can contain both individual users and nested groups, enabling flexible membership structures."],
+            ["User", "An individual account representing a person who accesses the system.", "Users can belong to multiple groups and must be associated with an organization."]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "The organization principal acts like a supergroup — its membership automatically includes all users associated with that organization. This makes it convenient for applying broad rules and policies without manually adding every user."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the Windchill hierarchy from broadest scope to most specific:",
+          "items": [
+            "Site",
+            "Organization",
+            "Group",
+            "User"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "A Windchill site must contain at least one organization, which acts as the top-level container for users and groups.",
+        "The organization principal functions as a supergroup that automatically includes all associated users.",
+        "Groups are organizational-level constructs that can contain both users and other groups.",
+        "The hierarchy flows from Site to Organization to Group to User, each level narrowing the scope."
+      ]
+    },
+    {
+      "id": "m2t2",
+      "title": "PTC Windchill PLM Licenses",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Windchill functionality is organized into license packages, each grouping a set of capabilities together. Every user must have an assigned license to access the system, and understanding which packages provide which capabilities is critical for proper system administration."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Windchill License Packages"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Windchill Base",
+              "back": "Core PDM, Visualization (AR/3D/2D), Project Planning, Document Management, Change Management, PTC Non-CAD Integration."
+            },
+            {
+              "front": "EBOM Management",
+              "back": "Engineering BOM creation, filtering, and management capabilities."
+            },
+            {
+              "front": "BOM Transformation",
+              "back": "BOM restructuring and manufacturing view generation."
+            },
+            {
+              "front": "PTC Author License",
+              "back": "Base set of capabilities and prerequisite to all licenses except PTC Contributor and SLM packages."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Every user must have an assigned license to access Windchill. Without a license assignment, users cannot log in or perform any actions in the system."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each capability description to the correct Windchill license package:",
+          "pairs": [
+            { "left": "Core PDM and Document Management", "right": "Windchill Base" },
+            { "left": "Engineering BOM capabilities", "right": "EBOM Management" },
+            { "left": "Base prerequisite for most licenses", "right": "PTC Author License" }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Windchill functionality is organized into license packages that group related capabilities together.",
+        "The Windchill Base package includes Core PDM, Visualization, Project Planning, Document Management, Change Management, and PTC Non-CAD Integration.",
+        "The PTC Author License is a prerequisite to all other licenses except PTC Contributor and SLM packages.",
+        "Every user must have an assigned license to access the Windchill system."
+      ]
+    },
+    {
+      "id": "m2t3",
+      "title": "License Groups and User Licensing",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "License groups are the mechanism through which licenses are assigned to users in Windchill. Understanding the difference between Named User and Active Daily User license types — and how the License Exclusion group works — is essential for managing license capacity and cost effectively."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Named User vs Active Daily User Licenses"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Feature", "Named User", "Active Daily User"],
+          "rows": [
+            ["User limit", "Fixed number of specific users", "Unlimited members can be added to the group"],
+            ["Capacity behavior", "When at capacity, no additional users can be added", "Concurrent daily usage is tracked against purchased count"],
+            ["License period", "Persistent — assigned user always has access", "Resets daily at 23:59:59 GMT"],
+            ["Best for", "Users who need guaranteed, consistent access", "Large teams with variable daily usage patterns"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "The License Exclusion group allows a user to be licensed without counting against the purchased license total. This is ideal for testing and administrative accounts and is only available at the site context level."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "License Group Assignment"
+        },
+        {
+          "type": "paragraph",
+          "text": "Users must be added to the appropriate license group to receive their license. If a user is a member of both a Named User and an Active Daily User license group, they can sign in at any time — the Named User license guarantees access regardless of the daily concurrent limit."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each licensing characteristic to the correct license type or group:",
+          "pairs": [
+            { "left": "Fixed number of users in the group", "right": "Named User License" },
+            { "left": "Unlimited users, concurrent daily tracking", "right": "Active Daily User License" },
+            { "left": "License resets at 23:59:59 GMT", "right": "Active Daily User License" },
+            { "left": "User excluded from purchased count", "right": "License Exclusion Group" }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Named User licenses assign a fixed number of specific users, while Active Daily User licenses allow unlimited members with concurrent daily tracking.",
+        "Active Daily User licenses reset at 23:59:59 GMT, freeing up capacity for the next day.",
+        "The License Exclusion group enables users to be licensed without consuming purchased license count, ideal for testing and administration.",
+        "A user who belongs to both Named User and Active Daily User groups can sign in at any time."
+      ]
+    },
+    {
+      "id": "m2t4",
+      "title": "License Profiles and Profile Interaction",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Each license group in Windchill has a corresponding license profile that controls which UI actions are visible to users. Understanding how license profiles and standard profiles interact determines what users can see and do in the system."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "How Profiles Control Visibility"
+        },
+        {
+          "type": "paragraph",
+          "text": "License profiles are PTC-maintained and read-only — they define the default set of UI actions available for each license type. If you need to customize visibility beyond what the license profile provides, you can save it as a standard profile and modify the copy."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "License profiles are PTC-maintained and read-only. To customize action visibility, save the license profile as a standard profile and edit the copy. The PTC Author License is a prerequisite to all licenses except PTC Contributor and SLM packages."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Profile Interaction Rules"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Scenario", "Rule", "Result"],
+          "rows": [
+            ["Action Yes in any license profile", "License Sum", "Action is available"],
+            ["Action Yes in any standard profile", "Standard Profile Sum", "Action is available"],
+            ["Action No in standard profile sum", "Standard overrides license", "Action is hidden"],
+            ["Action No in license sum", "License overrides standard", "Action is hidden"]
+          ]
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the steps showing how Windchill evaluates and combines profiles:",
+          "items": [
+            "Evaluate license profiles",
+            "Sum license profile results",
+            "Evaluate standard profiles",
+            "Sum standard profile results",
+            "Combine: No in either sum hides the action"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Each license group has a corresponding license profile that controls UI action visibility for its members.",
+        "License profiles are PTC-maintained and read-only; save as a standard profile to customize.",
+        "When combining profile sums, a No in either the license sum or the standard profile sum will hide the action.",
+        "Yes prevails within each profile type (license or standard), but No prevails when combining across types."
+      ]
+    },
+    {
+      "id": "m2t5",
+      "title": "Exercise - Assign Users to License Groups",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will assign newly created user accounts to a license group so they can access the Windchill system. Without a license group assignment, users cannot log in or perform any actions."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Before starting this exercise, ensure you are signed in as <strong>wcadmin</strong> with administrative privileges."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex2",
+          "title": "Assign Users to a License Group",
+          "objective": "Assign the newly created user accounts to the PTC PDMLink Module License group to grant them system access.",
+          "tasks": [
+            {
+              "id": "ex2-t1",
+              "title": "Assign Users to a License Group",
+              "steps": [
+                {
+                  "action": "Navigate to License Profiles",
+                  "detail": "Browse to PTC Publications > Profiles in the Navigator.",
+                  "hint": null
+                },
+                {
+                  "action": "Open the PTC PDMLink Module License profile",
+                  "detail": "Locate the PTC PDMLink Module License profile in the License Profiles table and click the View information icon.",
+                  "hint": null
+                },
+                {
+                  "action": "Access the license group",
+                  "detail": "Scroll to the Profile Members table and click the PTC PDMLink Module License group link.",
+                  "hint": null
+                },
+                {
+                  "action": "Edit the group membership",
+                  "detail": "Click Actions > Edit Group and browse to Step 2 to add members.",
+                  "hint": null
+                },
+                {
+                  "action": "Add the new users to the group",
+                  "detail": "Click the Add members to group icon, search for amansor and asanthosh, and add them to the group.",
+                  "hint": "You can search for multiple users and add them in a single operation."
+                },
+                {
+                  "action": "Save the changes",
+                  "detail": "Click OK and then Finish to complete the license group assignment.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Users must be assigned to a license group before they can access Windchill.",
+        "License group membership is managed through the License Profiles area under PTC Publications > Profiles.",
+        "Multiple users can be searched for and added to a license group in a single operation.",
+        "The PTC PDMLink Module License group grants access to core PDMLink capabilities."
+      ]
+    }
+  ]
+}

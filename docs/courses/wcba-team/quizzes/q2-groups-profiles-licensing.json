@@ -1,0 +1,71 @@
+{
+  "moduleId": "m2",
+  "title": "Groups, Profiles, and Licensing Knowledge Check",
+  "questions": [
+    {
+      "id": "m2-kc-001",
+      "question": "What acts as a supergroup containing all users associated with it?",
+      "options": [
+        "Site context",
+        "Organization principal",
+        "License group",
+        "Directory server"
+      ],
+      "answerIndex": 1,
+      "rationale": "The organization principal acts like a supergroup whose membership includes all users associated with that organization, enabling convenient application of rules and policies. The site context is the top-level container but does not function as a group. License groups manage license assignments, not organizational membership. Directory servers authenticate users but do not serve as group containers.",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-002",
+      "question": "Which license type resets its usage count daily at 23:59:59 GMT?",
+      "options": [
+        "Named User License",
+        "Active Daily User License",
+        "License Exclusion",
+        "Standard Profile License"
+      ],
+      "answerIndex": 1,
+      "rationale": "Active Daily User licenses track concurrent daily usage and reset at 23:59:59 GMT, freeing capacity for the next day. Named User licenses have a fixed count of specific users and do not reset. License Exclusion is a group type, not a license type with usage tracking. Standard Profile License is not a valid Windchill license type.",
+      "topic": "m2t3"
+    },
+    {
+      "id": "m2-kc-003",
+      "question": "What is the PTC Author License's relationship to other Windchill licenses?",
+      "options": [
+        "It replaces all other licenses",
+        "It is optional for advanced users",
+        "It is a prerequisite to most other licenses",
+        "It only applies to CAD users"
+      ],
+      "answerIndex": 2,
+      "rationale": "The PTC Author License provides a base set of capabilities and is a prerequisite to all licenses except PTC Contributor and SLM packages. It does not replace other licenses — users still need additional packages for specific capabilities. It is not optional; most license types require it. It applies broadly, not just to CAD users.",
+      "topic": "m2t2"
+    },
+    {
+      "id": "m2-kc-004",
+      "question": "When combining license and standard profile sums, what happens if an action is marked No in the standard profile sum?",
+      "options": [
+        "The license sum overrides it to Yes",
+        "The action is hidden regardless of the license sum",
+        "The system prompts the administrator",
+        "The action defaults to Yes"
+      ],
+      "answerIndex": 1,
+      "rationale": "When combining profiles, an unchecked (No) action in either the standard or license sum prevails — if the standard profile sum says No, the action is hidden even if the license sum says Yes. The license sum does not override the standard profile sum. The system does not prompt administrators for profile conflicts. Actions never default to Yes when explicitly set to No in a profile sum.",
+      "topic": "m2t4"
+    },
+    {
+      "id": "m2-kc-005",
+      "question": "What is the purpose of the License Exclusion group?",
+      "options": [
+        "To deny licenses to specific users",
+        "To enable testing users without consuming purchased license count",
+        "To exclude users from all Windchill access",
+        "To create temporary license assignments"
+      ],
+      "answerIndex": 1,
+      "rationale": "The License Exclusion group enables a user to be licensed without being counted against the purchased license total. It is used for testing and administrative purposes and is only available at the site context level. It does not deny licenses or exclude users from access — it grants access while excluding them from the count. It is not for temporary assignments; it provides persistent exclusion from license counting.",
+      "topic": "m2t3"
+    }
+  ]
+}

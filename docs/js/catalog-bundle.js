@@ -160,14 +160,15 @@
           "comingSoon": true
         },
         {
-          "id": "wc-teams",
+          "id": "wcba-team",
           "title": "Participants and Teams",
-          "description": "Manage participants, teams, roles, and organizational structures in Windchill.",
+          "description": "Plan and associate participants with the roles, groups, context teams, and access needed for business processes.",
           "pdfFile": "WCBA-TEAM-Training-Guide.pdf",
-          "modules": 0,
-          "estimatedHours": 4,
+          "prerequisite": "wc-context",
+          "modules": 4,
+          "estimatedHours": 3,
           "locales": ["en"],
-          "comingSoon": true
+          "comingSoon": false
         },
         {
           "id": "wc-objtypes",

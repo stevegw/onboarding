@@ -1,0 +1,58 @@
+{
+  "moduleId": "m1",
+  "title": "Participants Knowledge Check",
+  "questions": [
+    {
+      "id": "m1-kc-001",
+      "question": "What are the three types of participants in Windchill?",
+      "options": [
+        "Organizations, groups, and users",
+        "Products, libraries, and projects",
+        "Contexts, domains, and roles",
+        "Administrators, managers, and users"
+      ],
+      "answerIndex": 0,
+      "rationale": "Participants in Windchill are organizations, groups, and users. Products, libraries, and projects are context types, not participants. Contexts, domains, and roles are structural and security concepts. Administrators, managers, and users describe roles, not participant types.",
+      "topic": "m1t1"
+    },
+    {
+      "id": "m1-kc-002",
+      "question": "Which participant attribute is stored in the directory server rather than the Windchill database?",
+      "options": [
+        "Access control rules",
+        "Team membership",
+        "Email address",
+        "Context assignments"
+      ],
+      "answerIndex": 2,
+      "rationale": "Email address is shared identity information stored in the directory server so it can be used across enterprise applications. Access control rules, team membership, and context assignments are all Windchill-specific data stored in the Windchill database.",
+      "topic": "m1t1"
+    },
+    {
+      "id": "m1-kc-003",
+      "question": "What is the primary benefit of organizing users into groups?",
+      "options": [
+        "Groups are required to create user accounts",
+        "Groups enable more efficient policy application",
+        "Groups replace the need for teams",
+        "Groups automatically assign licenses"
+      ],
+      "answerIndex": 1,
+      "rationale": "Groups simplify applying access control, notifications, and role assignments to multiple users at once, rather than managing each user individually. Groups are not required to create accounts, they do not replace teams (which serve a different context-specific purpose), and they do not automatically assign licenses.",
+      "topic": "m1t2"
+    },
+    {
+      "id": "m1-kc-004",
+      "question": "What happens if a user account is not associated with an organization?",
+      "options": [
+        "The account cannot be created",
+        "The user is placed in the Unaffiliated domain",
+        "The user receives full system access",
+        "The user is automatically assigned to the site organization"
+      ],
+      "answerIndex": 1,
+      "rationale": "Users without an organization association are placed in the Unaffiliated domain, which may make the account unavailable to certain search tools within the organization. The account can still be created, but it does not receive full access or get automatically assigned to the site organization.",
+      "topic": "m1t3"
+    }
+  ]
+}

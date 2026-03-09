@@ -1,0 +1,58 @@
+{
+  "moduleId": "m4",
+  "title": "Managing Participants and Reports Knowledge Check",
+  "questions": [
+    {
+      "id": "m4-kc-001",
+      "question": "What must be done before a user account can be deleted in Windchill?",
+      "options": [
+        "The user's email must be removed",
+        "All assignments must be completed or reassigned",
+        "The user's license must be revoked",
+        "The administrator group must approve the deletion"
+      ],
+      "answerIndex": 1,
+      "rationale": "Windchill requires that all pending assignments be completed or reassigned before allowing user deletion. Checked-out items must also be checked in or undone. Removing the email, revoking a license, or obtaining group approval are not prerequisites for account deletion.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-002",
+      "question": "What happens when a user is deleted from the directory server by a non-Windchill tool?",
+      "options": [
+        "The user is automatically removed from Windchill",
+        "The user becomes a disconnected participant in Windchill",
+        "All Windchill data associated with the user is deleted",
+        "Nothing — Windchill is unaffected"
+      ],
+      "answerIndex": 1,
+      "rationale": "The user object remains in Windchill but no longer points to a valid directory server entry. The user becomes a disconnected participant that must be found and cleaned up manually using the Participant Administration tool. Windchill does not automatically detect or remove the orphaned record, and the user's data is not deleted.",
+      "topic": "m4t2"
+    },
+    {
+      "id": "m4-kc-003",
+      "question": "What happens to access control rules when a group is deleted in Windchill?",
+      "options": [
+        "Rules are transferred to individual members",
+        "All rules referencing the group are removed",
+        "Rules become inactive but remain",
+        "The system prevents deletion if rules exist"
+      ],
+      "answerIndex": 1,
+      "rationale": "Deleting a group from Windchill automatically removes all access control rules that reference that specific group from every domain's access control policy. The rules are not transferred to individual members, nor do they remain in an inactive state. Windchill does not prevent the deletion based on existing rules — it simply removes them.",
+      "topic": "m4t3"
+    },
+    {
+      "id": "m4-kc-004",
+      "question": "What information does Usage Reporting provide to business administrators?",
+      "options": [
+        "A count of unique users that accessed Windchill during a specified time period",
+        "A count of external users currently signed in",
+        "A count of unique object types created by a specific user",
+        "A list of all security audit events"
+      ],
+      "answerIndex": 0,
+      "rationale": "Usage Reporting provides a count of unique users who accessed the Windchill system, filterable by year, month, week, day, or 30-minute intervals. It distinguishes between internal and external user licenses. It does not show currently signed-in users, object creation counts, or security audit events — those are covered by other tools.",
+      "topic": "m4t4"
+    }
+  ]
+}

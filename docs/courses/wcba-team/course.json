@@ -1,0 +1,48 @@
+{
+  "id": "wcba-team",
+  "title": "Windchill: Participants and Teams",
+  "description": "Plan and associate participants with the roles, groups, context teams, and access needed for business processes. Create new accounts, assign license profiles, and launch queries for license planning and audit.",
+  "prerequisite": "Windchill: Introduction and Context Administration",
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Participants",
+      "description": "Identify participants and participant architecture in Windchill. Understand how organizations, groups, and users are stored across the directory server and Windchill database.",
+      "estimatedMinutes": 25,
+      "topicCount": 4,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m1-participants.json",
+      "quizFile": "quizzes/q1-participants.json"
+    },
+    {
+      "id": "m2",
+      "title": "Groups, Profiles, and Licensing",
+      "description": "Manage user groups, assign license profiles, and understand how license groups and standard profiles control feature visibility and access in Windchill.",
+      "estimatedMinutes": 30,
+      "topicCount": 5,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m2-groups-profiles-licensing.json",
+      "quizFile": "quizzes/q2-groups-profiles-licensing.json"
+    },
+    {
+      "id": "m3",
+      "title": "Teams and Roles",
+      "description": "Configure context teams, shared teams, and team templates. Understand role types, team instances, and how role resolution drives access control and workflow assignment.",
+      "estimatedMinutes": 50,
+      "topicCount": 7,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m3-teams-and-roles.json",
+      "quizFile": "quizzes/q3-teams-and-roles.json"
+    },
+    {
+      "id": "m4",
+      "title": "Managing Participants and Reports",
+      "description": "Update and delete participant accounts, understand system and business process implications of deletion, and generate audit and license usage reports.",
+      "estimatedMinutes": 40,
+      "topicCount": 6,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m4-manage-participants-reports.json",
+      "quizFile": "quizzes/q4-manage-participants-reports.json"
+    }
+  ]
+}
