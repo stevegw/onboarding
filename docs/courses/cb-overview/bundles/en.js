@@ -198,7 +198,7 @@
         },
         {
           "type": "paragraph",
-          "text": "Modern products contain increasingly complex software. A modern car, for example, can contain over 100 million lines of code â€” more than a fighter jet or a commercial operating system. Managing this complexity without a structured approach leads to missed requirements, untested features, and costly defects discovered late in the development cycle."
+          "text": "Modern products contain increasingly complex software. A modern car, for example, can contain over 100 million lines of code - more than a fighter jet or a commercial operating system. Managing this complexity without a structured approach leads to missed requirements, untested features, and costly defects discovered late in the development cycle."
         },
         {
           "type": "comparison-table",
@@ -245,7 +245,7 @@
           "cards": [
             {
               "front": "End-to-End Traceability",
-              "back": "Link every requirement to its design, implementation, and test â€” providing a complete audit trail from stakeholder need to verified product."
+              "back": "Link every requirement to its design, implementation, and test - providing a complete audit trail from stakeholder need to verified product."
             },
             {
               "front": "Improved Collaboration",
@@ -275,7 +275,7 @@
       "content": [
         {
           "type": "paragraph",
-          "text": "Codebeamer is PTC's ALM platform designed for organizations developing complex products in regulated industries. It provides an integrated environment for requirements management, test management, project tracking, and analytics â€” all connected through configurable trackers and workflows."
+          "text": "Codebeamer is PTC's ALM platform designed for organizations developing complex products in regulated industries. It provides an integrated environment for requirements management, test management, project tracking, and analytics - all connected through configurable trackers and workflows."
         },
         {
           "type": "heading",
@@ -287,7 +287,7 @@
           "cards": [
             {
               "front": "Requirements Management",
-              "back": "Capture, organize, and trace requirements at multiple levels â€” stakeholder, system, software, and hardware. Support for baselines, reviews, and approval workflows."
+              "back": "Capture, organize, and trace requirements at multiple levels - stakeholder, system, software, and hardware. Support for baselines, reviews, and approval workflows."
             },
             {
               "front": "Test Management",
@@ -319,7 +319,7 @@
         {
           "type": "callout",
           "variant": "info",
-          "text": "Codebeamer supports both Agile and traditional methodologies. Teams can use Scrum boards and sprints alongside V-model traceability â€” or combine approaches in a hybrid workflow."
+          "text": "Codebeamer supports both Agile and traditional methodologies. Teams can use Scrum boards and sprints alongside V-model traceability - or combine approaches in a hybrid workflow."
         },
         {
           "type": "interactive-match",
@@ -397,7 +397,7 @@
         {
           "type": "callout",
           "variant": "tip",
-          "text": "The cycle is iterative â€” testing may reveal requirement gaps that restart the cycle. Codebeamer's traceability links make it easy to trace a bug back through development and design to the original requirement."
+          "text": "The cycle is iterative - testing may reveal requirement gaps that restart the cycle. Codebeamer's traceability links make it easy to trace a bug back through development and design to the original requirement."
         },
         {
           "type": "heading",
@@ -406,7 +406,7 @@
         },
         {
           "type": "paragraph",
-          "text": "Throughout this course, we use the PTC Electric Car project as a practical scenario. This sample project demonstrates how a cross-functional team uses Codebeamer to manage the development of an electric vehicle â€” from capturing customer requirements through system design, implementation, and testing."
+          "text": "Throughout this course, we use the PTC Electric Car project as a practical scenario. This sample project demonstrates how a cross-functional team uses Codebeamer to manage the development of an electric vehicle - from capturing customer requirements through system design, implementation, and testing."
         },
         {
           "type": "interactive-sort",
@@ -1174,19 +1174,19 @@
             [
               "Standalone test tools",
               "Tests managed in a separate tool (e.g., spreadsheets, dedicated test tools)",
-              "No direct link to requirements â€” manual effort to maintain traceability"
+              "No direct link to requirements - manual effort to maintain traceability"
             ],
             [
               "Integrated ALM testing",
               "Tests live in the same platform as requirements and development items",
-              "Requires ALM platform adoption â€” but gains automatic traceability and coverage analysis"
+              "Requires ALM platform adoption - but gains automatic traceability and coverage analysis"
             ]
           ]
         },
         {
           "type": "callout",
           "variant": "insight",
-          "text": "In regulated industries, demonstrating that every requirement has been tested is not optional â€” it is a compliance requirement. Integrated test management makes this evidence automatic rather than manually assembled."
+          "text": "In regulated industries, demonstrating that every requirement has been tested is not optional - it is a compliance requirement. Integrated test management makes this evidence automatic rather than manually assembled."
         },
         {
           "type": "heading",
@@ -1271,7 +1271,7 @@
             [
               "Test Run",
               "A specific execution of test cases against a configuration",
-              "Sprint 3 Regression â€” run all login test cases on the Windows 11 + Chrome configuration"
+              "Sprint 3 Regression - run all login test cases on the Windows 11 + Chrome configuration"
             ],
             [
               "Test Set",
@@ -1376,7 +1376,7 @@
                   "hint": "Find the Test Configurations tracker in the Trackers section."
                 },
                 {
-                  "action": "Create a new test configuration named 'Standard Test Bench â€” Firmware v2.1'.",
+                  "action": "Create a new test configuration named 'Standard Test Bench - Firmware v2.1'.",
                   "detail": "The configuration name should clearly identify the test environment. Include key parameters like firmware version, hardware model, or operating conditions.",
                   "hint": "Click the 'New Item' button in the Test Configurations tracker."
                 },
@@ -1397,7 +1397,7 @@
                   "hint": "Click the 'New Item' button in the Test Cases tracker."
                 },
                 {
-                  "action": "Add test steps with actions and expected results. For example: Step 1 â€” Fully charge battery, expected: Charge indicator shows 100%. Step 2 â€” Run discharge test, expected: Usable capacity â‰¥ 75 kWh.",
+                  "action": "Add test steps with actions and expected results. For example: Step 1 - Fully charge battery, expected: Charge indicator shows 100%. Step 2 - Run discharge test, expected: Usable capacity â‰¥ 75 kWh.",
                   "detail": "Each test step should have a clear action (what the tester does) and an expected result (what should happen). This makes tests repeatable and results unambiguous.",
                   "hint": "Look for an 'Add Step' or 'Test Steps' section in the test case form."
                 },
@@ -1444,7 +1444,7 @@
               "title": "Create and Execute a Test Run",
               "steps": [
                 {
-                  "action": "Navigate to the Test Runs tracker and create a new test run. Assign it the test configuration you created ('Standard Test Bench â€” Firmware v2.1').",
+                  "action": "Navigate to the Test Runs tracker and create a new test run. Assign it the test configuration you created ('Standard Test Bench - Firmware v2.1').",
                   "detail": "A test run is an instance of executing a set of test cases in a specific configuration. It captures the actual results for each test step.",
                   "hint": "Click 'New Item' in the Test Runs tracker. Select the test configuration from the available options."
                 },

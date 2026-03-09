@@ -19,7 +19,7 @@
         },
         {
           "type": "paragraph",
-          "text": "Modern products contain increasingly complex software. A modern car, for example, can contain over 100 million lines of code â€” more than a fighter jet or a commercial operating system. Managing this complexity without a structured approach leads to missed requirements, untested features, and costly defects discovered late in the development cycle."
+          "text": "Modern products contain increasingly complex software. A modern car, for example, can contain over 100 million lines of code - more than a fighter jet or a commercial operating system. Managing this complexity without a structured approach leads to missed requirements, untested features, and costly defects discovered late in the development cycle."
         },
         {
           "type": "comparison-table",
@@ -66,7 +66,7 @@
           "cards": [
             {
               "front": "End-to-End Traceability",
-              "back": "Link every requirement to its design, implementation, and test â€” providing a complete audit trail from stakeholder need to verified product."
+              "back": "Link every requirement to its design, implementation, and test - providing a complete audit trail from stakeholder need to verified product."
             },
             {
               "front": "Improved Collaboration",
@@ -96,7 +96,7 @@
       "content": [
         {
           "type": "paragraph",
-          "text": "Codebeamer is PTC's ALM platform designed for organizations developing complex products in regulated industries. It provides an integrated environment for requirements management, test management, project tracking, and analytics â€” all connected through configurable trackers and workflows."
+          "text": "Codebeamer is PTC's ALM platform designed for organizations developing complex products in regulated industries. It provides an integrated environment for requirements management, test management, project tracking, and analytics - all connected through configurable trackers and workflows."
         },
         {
           "type": "heading",
@@ -108,7 +108,7 @@
           "cards": [
             {
               "front": "Requirements Management",
-              "back": "Capture, organize, and trace requirements at multiple levels â€” stakeholder, system, software, and hardware. Support for baselines, reviews, and approval workflows."
+              "back": "Capture, organize, and trace requirements at multiple levels - stakeholder, system, software, and hardware. Support for baselines, reviews, and approval workflows."
             },
             {
               "front": "Test Management",
@@ -140,7 +140,7 @@
         {
           "type": "callout",
           "variant": "info",
-          "text": "Codebeamer supports both Agile and traditional methodologies. Teams can use Scrum boards and sprints alongside V-model traceability â€” or combine approaches in a hybrid workflow."
+          "text": "Codebeamer supports both Agile and traditional methodologies. Teams can use Scrum boards and sprints alongside V-model traceability - or combine approaches in a hybrid workflow."
         },
         {
           "type": "interactive-match",
@@ -218,7 +218,7 @@
         {
           "type": "callout",
           "variant": "tip",
-          "text": "The cycle is iterative â€” testing may reveal requirement gaps that restart the cycle. Codebeamer's traceability links make it easy to trace a bug back through development and design to the original requirement."
+          "text": "The cycle is iterative - testing may reveal requirement gaps that restart the cycle. Codebeamer's traceability links make it easy to trace a bug back through development and design to the original requirement."
         },
         {
           "type": "heading",
@@ -227,7 +227,7 @@
         },
         {
           "type": "paragraph",
-          "text": "Throughout this course, we use the PTC Electric Car project as a practical scenario. This sample project demonstrates how a cross-functional team uses Codebeamer to manage the development of an electric vehicle â€” from capturing customer requirements through system design, implementation, and testing."
+          "text": "Throughout this course, we use the PTC Electric Car project as a practical scenario. This sample project demonstrates how a cross-functional team uses Codebeamer to manage the development of an electric vehicle - from capturing customer requirements through system design, implementation, and testing."
         },
         {
           "type": "interactive-sort",
