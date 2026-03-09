@@ -531,6 +531,10 @@
           tag === "TEXTAREA" || tag === "LABEL" || tag === "OPTION") return;
       if (e.target.closest("button, a, input, select, textarea, label, .sb-actions, .narr-bar, .match-container, .sort-container, .reveal-card, .exercise-step")) return;
 
+      // Hide highlight overlay before position detection — it can
+      // sit on top of text and cause caretRangeFromPoint to miss
+      hideOverlay();
+
       // Find the clicked text position
       var range = null;
       if (document.caretRangeFromPoint) {
@@ -564,8 +568,17 @@
       var tempFullText = buildFullText(tempMap);
       while (charPos > 0 && !/\s/.test(tempFullText[charPos - 1])) charPos--;
 
-      // Start narration from this position
-      startNarration(main, charPos);
+      // If narration is already active, cancel first and give the
+      // browser a moment before issuing a new speak() call — Chrome
+      // silently drops speak() issued immediately after cancel().
+      if (playState !== "stopped") {
+        stopNarration();
+        setTimeout(function () {
+          if (!collapsed) startNarration(main, charPos);
+        }, 60);
+      } else {
+        startNarration(main, charPos);
+      }
     };
 
     main.addEventListener("click", clickHandler);
