@@ -113,6 +113,17 @@
           "comingSoon": true
         },
         {
+          "id": "wccm-adcm",
+          "title": "Tailoring Change Management",
+          "description": "Plan and implement a tailored change management process. Create custom change objects, configure business rules, modify workflows and life cycles, and test the complete change process.",
+          "pdfFile": "WCCM-ADCM-Training-Guide.pdf",
+          "prerequisite": "wc-changeimpl",
+          "modules": 4,
+          "estimatedHours": 3,
+          "locales": ["en"],
+          "comingSoon": false
+        },
+        {
           "id": "wc-ocp1",
           "title": "Options & Configurable Products 1",
           "description": "Learn business approaches to configurable products, explore options and variants terminology, investigate rules, and master option sets.",

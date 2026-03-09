@@ -1,0 +1,71 @@
+{
+  "moduleId": "m2",
+  "title": "Plan for Change Knowledge Check",
+  "questions": [
+    {
+      "id": "m2-kc-001",
+      "question": "When creating a custom change object subtype, which Windchill utility is used?",
+      "options": [
+        "Preference Management",
+        "Business Rules Administration",
+        "Type and Attribute Management",
+        "Policy Administration"
+      ],
+      "answerIndex": 2,
+      "rationale": "Type and Attribute Management is the utility used to create custom subtypes of existing Windchill types. Preference Management configures system preferences, Business Rules Administration manages association and mapping rules, and Policy Administration handles access control policies.",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-002",
+      "question": "Which Change Management preference must be enabled before task form templates can be created?",
+      "options": [
+        "Sequenced Plan",
+        "Auto Associate",
+        "Task Form Templates",
+        "CN without CR"
+      ],
+      "answerIndex": 2,
+      "rationale": "The Task Form Templates preference must be enabled before task form templates can be created or used when submitting Change Notices. Sequenced Plan controls task ordering, Auto Associate controls automatic linking of change objects, and CN without CR allows Change Notices without Change Requests.",
+      "topic": "m2t2"
+    },
+    {
+      "id": "m2-kc-003",
+      "question": "In an association rule, what does the Owning Role property determine?",
+      "options": [
+        "Which object type can be deleted from the association",
+        "Which object's modify access is required to create the link",
+        "Which role has administrative control over both objects",
+        "Which object type appears first in search results"
+      ],
+      "answerIndex": 1,
+      "rationale": "The Owning Role determines which object's modify access is needed to create the association link. It does not control deletion, administrative access, or search result ordering. In the Delta Drills example, Role B (Change Notice) is the owning role, meaning modify access to the Change Notice is required.",
+      "topic": "m2t3"
+    },
+    {
+      "id": "m2-kc-004",
+      "question": "Which of the following communicates a planned change separate from the revision of a product?",
+      "options": [
+        "Mapping Rule",
+        "Association Rule",
+        "Release Target",
+        "Change Intent"
+      ],
+      "answerIndex": 3,
+      "rationale": "Change Intent is an optional field that communicates the intended product change separately from the actual revision. It allows planners to indicate what needs to happen (add, change, remove) before execution begins. Mapping Rules and Association Rules are configuration mechanisms, not planning fields. Release Target specifies where the change will be deployed, not the planned change itself.",
+      "topic": "m2t4"
+    },
+    {
+      "id": "m2-kc-005",
+      "question": "Which mapping rule type must be configured to enable redline creation for parts and documents?",
+      "options": [
+        "Change Intent Release Targets",
+        "Object Change Intents",
+        "Object Release States",
+        "Association Rules"
+      ],
+      "answerIndex": 2,
+      "rationale": "The Object Release States mapping rule maps an affected object type to its released state, and without this rule, Windchill cannot determine the released state and will not allow redline markup to be created. Change Intent Release Targets maps intents to release targets, Object Change Intents maps object types to valid intent values, and Association Rules are a different category of business rule entirely.",
+      "topic": "m2t4"
+    }
+  ]
+}

@@ -1,0 +1,391 @@
+{
+  "id": "m1",
+  "title": "Pieces of the Puzzle",
+  "description": "Identify the change objects and administrative elements used in Windchill change management. Understand the out-of-the-box change process, roles, and how to plan modifications.",
+  "topics": [
+    {
+      "id": "m1t1",
+      "title": "Change Management Building Blocks",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Windchill change management is built from two categories of building blocks that work together like pieces of a puzzle. <strong>Change Objects</strong> represent the formal records that track what needs to change and why, while <strong>Administrative Elements</strong> control how those changes flow through your organization. Understanding both categories is essential before tailoring any part of the process."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Change Objects"
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Change Object",
+            "Purpose"
+          ],
+          "rows": [
+            [
+              "Variance",
+              "Documents a temporary or permanent deviation from a released specification, such as allowing a non-standard material for a limited production run."
+            ],
+            [
+              "Problem Report",
+              "Identifies and records a need for change — captures the issue or deficiency that triggers the change process."
+            ],
+            [
+              "Change Request",
+              "Investigates the reported problem, analyzes impact, and plans how to address it. This is where scope and feasibility are determined."
+            ],
+            [
+              "Change Notice",
+              "Authorizes and implements the approved change. Contains the affected objects, resulting objects, and the change tasks needed to execute the work."
+            ],
+            [
+              "Change Task",
+              "Individual work assignments within a Change Notice. Each task is assigned to a role and tracked to completion."
+            ],
+            [
+              "Review Object",
+              "Supports formal reviews of change proposals by change review boards (CRB) or change implementation boards (CIB)."
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Administrative Elements"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Workflows",
+              "back": "Automate the change process by defining the sequence of activities, approvals, and notifications that a change object moves through from creation to completion."
+            },
+            {
+              "front": "Business Rules",
+              "back": "Control associations and mapping between change objects. For example, rules determine which object types can be linked as affected or resulting items on a Change Notice."
+            },
+            {
+              "front": "Templates",
+              "back": "Provide reusable starting points for change tasks, team structures, and context configurations. Templates standardize how new change objects are created."
+            },
+            {
+              "front": "Life Cycles",
+              "back": "Define the states an object progresses through (e.g., Open, Under Review, Resolved, Closed) and the valid transitions between those states."
+            },
+            {
+              "front": "Roles",
+              "back": "Three levels of Change Administrator roles (I, II, III) control who can create, review, approve, and implement changes at different stages of the process."
+            },
+            {
+              "front": "Preferences",
+              "back": "System-level and context-level settings that control change management behavior, such as whether certain fields are required or which object types are available."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Think of change objects as the <em>nouns</em> of change management (the things you create and track) and administrative elements as the <em>verbs and rules</em> (how those things move, who handles them, and what constraints apply). Together, they form the complete puzzle."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each administrative element to its function in the change process:",
+          "pairs": [
+            {
+              "left": "Workflows",
+              "right": "Automate the sequence of activities and approvals"
+            },
+            {
+              "left": "Life Cycles",
+              "right": "Define object states and valid transitions"
+            },
+            {
+              "left": "Business Rules",
+              "right": "Control associations and mapping between objects"
+            },
+            {
+              "left": "Templates",
+              "right": "Provide reusable starting points for change objects"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Windchill change management has two categories of building blocks: Change Objects (6 types) and Administrative Elements (6 types)",
+        "Change objects represent the formal records — Variance, Problem Report, Change Request, Change Notice, Change Task, and Review Object",
+        "Administrative elements control how changes flow — Workflows, Business Rules, Templates, Life Cycles, Roles, and Preferences",
+        "Both categories work together: change objects flow through workflows guided by life cycles, with business rules controlling behavior"
+      ]
+    },
+    {
+      "id": "m1t2",
+      "title": "The Out-of-the-Box Change Process",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Windchill ships with a complete out-of-the-box (OOTB) change management process that follows industry-standard practices. This five-step process provides a solid foundation that most organizations can use immediately or adapt to their specific needs. Understanding the OOTB process is a prerequisite to tailoring it effectively."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Five-Step OOTB Change Process"
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Step",
+            "Activity",
+            "Key Objects Used"
+          ],
+          "rows": [
+            [
+              "1. Identify Need for Change",
+              "A problem or deviation is discovered and formally documented. This triggers the entire change process.",
+              "Problem Report, Variance"
+            ],
+            [
+              "2. Investigate Need for Change",
+              "The reported issue is analyzed to understand scope, impact, and feasibility. A recommendation is made on whether to proceed.",
+              "Change Request"
+            ],
+            [
+              "3. Plan the Change",
+              "Affected objects and resulting objects are identified. Change tasks are created and assigned to the appropriate roles.",
+              "Change Notice, Change Task"
+            ],
+            [
+              "4. Change and Implement",
+              "Assigned change tasks are executed by the responsible roles. The actual modifications to parts, documents, or processes are carried out.",
+              "Change Task"
+            ],
+            [
+              "5. Review and Audit",
+              "An audit confirms that all changes were implemented correctly and completely. The change is formally closed.",
+              "Review Object"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Fast Track vs. Full Track"
+        },
+        {
+          "type": "paragraph",
+          "text": "The OOTB process supports two tracks depending on the risk and significance of the change. <strong>Full Track</strong> includes formal reviews by a Change Review Board (CRB) and Change Implementation Board (CIB), making it appropriate for significant changes with broad impact. <strong>Fast Track</strong> bypasses review board meetings entirely, allowing low-risk or routine changes to move quickly from identification to implementation."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Use Fast Track for routine, low-risk changes like minor document updates. Reserve Full Track for changes that affect product design, manufacturing processes, or regulatory compliance — anything where a formal review adds value."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Change Administrator Roles"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Change Admin I",
+              "back": "Creates and submits change objects such as Problem Reports and Change Requests. This is the entry-level role for initiating the change process."
+            },
+            {
+              "front": "Change Admin II",
+              "back": "Reviews, evaluates, and approves change proposals. Participates in CRB and CIB meetings. Acts as the gatekeeper for change quality and completeness."
+            },
+            {
+              "front": "Change Admin III",
+              "back": "Implements approved changes by executing change tasks. Responsible for the actual work of modifying parts, documents, or processes as directed by the Change Notice."
+            }
+          ]
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the five steps of the OOTB change process in the correct order:",
+          "items": [
+            "Identify Need for Change",
+            "Investigate Need for Change",
+            "Plan the Change",
+            "Change and Implement",
+            "Review and Audit the Change"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The OOTB change process has five steps: Identify, Investigate, Plan, Implement, and Review/Audit",
+        "Full Track includes CRB and CIB reviews for significant changes; Fast Track bypasses boards for low-risk changes",
+        "Three Change Admin roles map to different process stages: I (create/submit), II (review/approve), III (implement)",
+        "Understanding the OOTB process is essential before attempting to modify or extend it"
+      ]
+    },
+    {
+      "id": "m1t3",
+      "title": "Modifying the OOTB Change Process",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "While the out-of-the-box change process covers common scenarios, most enterprises need to tailor it to match their specific requirements. Windchill provides a rich set of configurable components that allow you to customize change management without writing code. The key is knowing <em>what</em> can be modified and following best practices to avoid breaking the foundation the OOTB process provides."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Configurable Components"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Business Objects & Soft Type Attributes",
+              "back": "Create custom subtypes of change objects using Type and Attribute Management (TAM). Add soft type attributes to capture enterprise-specific metadata fields on change objects without modifying the data model."
+            },
+            {
+              "front": "Workflow Templates",
+              "back": "Define custom process flows that control the sequence of activities, approvals, routing, and notifications for each change object type. Workflows can be as simple or as complex as your process requires."
+            },
+            {
+              "front": "Life Cycle Templates",
+              "back": "Customize the states an object progresses through and the valid transitions between them. Object Initialization Rules (OIR) connect a life cycle template to a workflow template, ensuring the right process runs at the right state."
+            },
+            {
+              "front": "Team Templates & Roles",
+              "back": "Define which roles participate in the change process and how team members are assigned. Custom team templates can add new roles or modify the responsibilities of existing ones."
+            },
+            {
+              "front": "Change Preferences & Business Rules",
+              "back": "System preferences control behavior settings such as required fields and available object types. Business rules govern change object associations and mapping, determining what can be linked as affected or resulting items."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "<strong>Never modify the original OOTB templates directly.</strong> Always make a copy of the existing template first, then modify the copy. This preserves the original as a reference and fallback, and ensures future Windchill upgrades do not conflict with your customizations."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Connecting the Pieces"
+        },
+        {
+          "type": "paragraph",
+          "text": "Object Initialization Rules (OIR) are the glue that connects life cycle templates to workflow templates. When a change object enters a specific life cycle state, the OIR determines which workflow to launch. Change object associations define what types of objects can be linked — for example, controlling which part types are valid as affected items on a Change Notice. Together, these mechanisms ensure your customized process behaves consistently."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each configurable component to what it controls:",
+          "pairs": [
+            {
+              "left": "Type and Attribute Management",
+              "right": "Custom subtypes and metadata fields on change objects"
+            },
+            {
+              "left": "Object Initialization Rules",
+              "right": "Connecting life cycle states to workflow templates"
+            },
+            {
+              "left": "Change Preferences",
+              "right": "System behavior settings like required fields"
+            },
+            {
+              "left": "Change Object Associations",
+              "right": "Rules for what can be linked as affected or resulting items"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Windchill provides numerous configurable components for tailoring change management: business objects, workflows, life cycles, teams, preferences, and business rules",
+        "Always copy OOTB templates before modifying them — never edit the originals directly",
+        "Object Initialization Rules connect life cycle states to workflow templates, forming the backbone of process automation",
+        "Change object associations and business rules control what can be linked between change objects"
+      ]
+    },
+    {
+      "id": "m1t4",
+      "title": "Planning a Change Strategy",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Before making any changes to Windchill's change management configuration, you need a clear strategy. Different types of PLM changes — from product design modifications to regulatory compliance updates — require different process flows, roles, and objects. A structured planning approach ensures your customizations address real business needs without introducing unnecessary complexity."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Types of PLM Changes"
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Change Type",
+            "Description"
+          ],
+          "rows": [
+            [
+              "Product Design",
+              "Modifications to part geometry, materials, specifications, or BOM structures driven by engineering improvements or defect corrections."
+            ],
+            [
+              "Process",
+              "Changes to manufacturing processes, assembly sequences, or quality procedures that affect how products are built."
+            ],
+            [
+              "Regulatory",
+              "Updates required to meet new or revised industry regulations, safety standards, or compliance requirements."
+            ],
+            [
+              "Document",
+              "Revisions to technical documents, work instructions, specifications, or other controlled documentation."
+            ],
+            [
+              "Quality",
+              "Corrections driven by quality findings, customer complaints, non-conformances, or continuous improvement initiatives."
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Nine-Step Setup Process"
+        },
+        {
+          "type": "paragraph",
+          "text": "Setting up a tailored change management process follows a structured nine-step approach: (1) Identify the data managed by the change process, (2) Determine which change objects are needed, (3) Identify requirements for each object, (4) Assess the current OOTB processes, (5) Evaluate discrepancies between current and needed, (6) Plan the modifications, (7) Set up or modify the change process, (8) Test the process thoroughly, (9) Deploy to production. This systematic approach minimizes the risk of gaps or misconfiguration."
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Throughout this course, you will apply these steps to <strong>Delta Drills</strong> — a fictitious company that manufactures power equipment. Delta Drills needs to handle new regulatory requirements by creating a custom review process, a dedicated Delta Review object, specialized user groups, and a Delta Change Notice. This scenario illustrates how to translate business needs into Windchill configuration."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange these key steps for setting up a change management process in the correct order:",
+          "items": [
+            "Identify the data managed by the change process",
+            "Determine which change objects are needed",
+            "Assess current OOTB processes and evaluate discrepancies",
+            "Plan and implement the modifications",
+            "Test the process and deploy to production"
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Steps 4 and 5 — assessing the OOTB process and evaluating discrepancies — are the most commonly skipped, and skipping them is the most common source of over-engineering. Always start from what Windchill already provides before building something new."
+        }
+      ],
+      "keyTakeaways": [
+        "PLM changes span five categories: Product Design, Process, Regulatory, Document, and Quality — each may require different change process configurations",
+        "A nine-step setup process provides a structured approach from identifying data needs through deployment",
+        "Always assess the existing OOTB process before planning modifications to avoid unnecessary customization",
+        "The Delta Drills scenario demonstrates how to translate real business requirements into Windchill change management configuration"
+      ]
+    }
+  ]
+}

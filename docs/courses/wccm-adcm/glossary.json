@@ -1,0 +1,108 @@
+{
+  "terms": [
+    {
+      "term": "Variance",
+      "definition": "A change object used to document a deviation from the standard product design or process. Variances are typically used when a temporary exception is needed rather than a permanent change."
+    },
+    {
+      "term": "Problem Report",
+      "definition": "A change object that identifies a need for change. Problem reports capture issues such as defects, failures, or improvement opportunities and initiate the investigation phase of the change process."
+    },
+    {
+      "term": "Change Request",
+      "definition": "A change object used to investigate and plan a proposed change. Change requests document the scope, impact, and implementation strategy before a change is approved and executed."
+    },
+    {
+      "term": "Change Notice",
+      "definition": "A change object that authorizes and tracks the implementation of an approved change. Change notices contain affected objects, resulting objects, and change tasks that must be completed."
+    },
+    {
+      "term": "Change Task",
+      "definition": "A work assignment within a change notice that specifies actions to be performed by assigned users. Change tasks can be sequenced, require review, and are tracked through completion."
+    },
+    {
+      "term": "Review Object",
+      "definition": "A change object used to conduct formal or informal reviews of product data. Review objects support workflows with reviewer assignments, approval decisions, and resolution tracking."
+    },
+    {
+      "term": "Change Admin I",
+      "definition": "A change management role responsible for creating and submitting change objects, assigning reviewers, and initiating the change process. Typically the first point of contact for change requests."
+    },
+    {
+      "term": "Change Admin II",
+      "definition": "A change management role responsible for reviewing and approving change requests. Change Admin II users participate in change review boards and make decisions about change implementation."
+    },
+    {
+      "term": "Change Admin III",
+      "definition": "A change management role responsible for implementing approved changes and completing change tasks. Change Admin III users perform the actual modifications to product data."
+    },
+    {
+      "term": "Fast Track",
+      "definition": "A streamlined change process path that bypasses formal review board meetings. Used for low-risk or urgent changes that do not require full committee approval."
+    },
+    {
+      "term": "Full Track",
+      "definition": "The complete change process path that includes formal Change Review Board (CRB) and Change Implementation Board (CIB) meetings. Used for significant changes requiring committee oversight."
+    },
+    {
+      "term": "Association Rule",
+      "definition": "A business rule that defines how change objects can be linked to each other. Association rules specify the association type, role types, cardinality, owning role, and required role for the relationship."
+    },
+    {
+      "term": "Mapping Rule",
+      "definition": "A business rule that maps object attributes and states to control change intent and release targets. Three types exist: Change Intent Release Targets, Object Change Intents, and Object Release States."
+    },
+    {
+      "term": "Change Intent",
+      "definition": "An optional field on affected objects in a change notice that communicates the intended product change. Change intent provides a plan for changes separate from the revision, defined by the Object Change Intents mapping rule."
+    },
+    {
+      "term": "Task Form Template",
+      "definition": "A template that defines the default tasks created when a change notice is submitted. Task form templates specify task names, assignees, reviewers, and sequencing for the change implementation plan."
+    },
+    {
+      "term": "Object Initialization Rule",
+      "definition": "An XML-based rule that connects a workflow template to a life cycle template. OIRs establish default values and display constraints for object attributes when an object is created. Definable at all context levels."
+    },
+    {
+      "term": "Life Cycle Template",
+      "definition": "An administrative template that defines the states and phases an object passes through during its lifetime. Life cycle templates control access, roles, and workflow associations for each phase."
+    },
+    {
+      "term": "Workflow Template",
+      "definition": "An administrative template that defines the sequence of automated and manual tasks in a business process. Workflow templates contain activity nodes, robot nodes, routing logic, and role assignments."
+    },
+    {
+      "term": "User-Defined Group",
+      "definition": "A custom group created to organize users for specific business processes. User-defined groups can be assigned to roles in team templates, enabling targeted task routing in change workflows."
+    },
+    {
+      "term": "Cardinality",
+      "definition": "A property of an association rule that defines how many objects of each type can be linked. Options include many:many, 1:many, many:1, and 1:1."
+    },
+    {
+      "term": "Owning Role",
+      "definition": "A property of an association rule that determines which object's modify access is required to create the association. The user must have modify access to the owning role object to create or delete the link."
+    },
+    {
+      "term": "Redline",
+      "definition": "A markup or revision comparison that shows changes between the affected object and resulting object in a change notice. Redline creation requires the Object Release States mapping rule to be defined."
+    },
+    {
+      "term": "Activity Node",
+      "definition": "A workflow element representing a manual task that must be completed by an assigned role. Activity nodes specify the responsible role, task template, instructions, and routing options."
+    },
+    {
+      "term": "Robot Node",
+      "definition": "A workflow element that executes automated actions such as setting object states, locking annotations, or sending notifications. Robot nodes do not appear in user task lists."
+    },
+    {
+      "term": "Modeled Enumeration",
+      "definition": "A predefined set of values managed through the Type and Attribute Management utility. Used to define selectable options for change object attributes such as category, priority, or change intent."
+    },
+    {
+      "term": "Delta Drills",
+      "definition": "A fictitious company scenario used throughout this course to demonstrate tailoring a change management process. Delta Drills needs to handle new regulatory requirements through a custom review and change notice workflow."
+    }
+  ]
+}

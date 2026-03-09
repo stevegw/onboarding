@@ -1,0 +1,604 @@
+{
+  "id": "m2",
+  "title": "Plan for Change",
+  "description": "Create custom change objects and user-defined groups. Configure change management preferences, task form templates, association rules, mapping rules, and change intent.",
+  "topics": [
+    {
+      "id": "m2t1",
+      "title": "Change Objects and User-Defined Groups",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Before tailoring a change management process, you need custom change objects and organized user groups. Windchill's <strong>Type and Attribute Management</strong> utility lets you create subtypes of existing change objects, while <strong>user-defined groups</strong> organize users for targeted task routing within business processes."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Creating Custom Change Object Subtypes"
+        },
+        {
+          "type": "paragraph",
+          "text": "Custom change objects are created as subtypes of existing Windchill types. A subtype inherits all properties and behaviors from its parent type, then adds or overrides attributes to meet your specific process needs. For the Delta Drills scenario, two subtypes are required: <strong>Delta Review</strong> (a subtype of Review Object) for regulation reviews, and <strong>Delta New Regulation Document</strong> (a subtype of WTDocument) for tracking regulation documents."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Custom Object", "Parent Type", "Purpose"],
+          "rows": [
+            ["Delta Review", "Review Object", "Tracks regulation review activities in the Delta Drills change process"],
+            ["Delta New Regulation Document", "WTDocument", "Stores regulation documents that trigger change requests"],
+            ["Delta Change Task", "Change Task (template)", "Defines the implementation task assigned to change implementers"],
+            ["Delta Regulatory Task", "Change Task (template)", "Defines the regulatory review task assigned to regulation reviewers"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "User-Defined Groups"
+        },
+        {
+          "type": "paragraph",
+          "text": "User-defined groups organize users by business function. Unlike Windchill's built-in context teams, user-defined groups can be assigned to roles in team templates for targeted task routing. For Delta Drills, two groups are needed: the <strong>Delta Regulation Group</strong> (regulation reviewers who evaluate new regulations) and the <strong>Delta Change Group</strong> (change implementers who execute change tasks)."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "User-defined groups provide three key benefits: they organize users by business function, they can be assigned to workflow activities for targeted task routing, and they enable granular access control for change objects."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each group to its purpose in the Delta Drills process:",
+          "pairs": [
+            {
+              "left": "Delta Regulation Group",
+              "right": "Reviews new regulations and evaluates compliance impact"
+            },
+            {
+              "left": "Delta Change Group",
+              "right": "Implements change tasks and executes engineering changes"
+            },
+            {
+              "left": "Delta Review (subtype)",
+              "right": "Tracks regulation review activities as a Review Object subtype"
+            },
+            {
+              "left": "Delta New Regulation Document (subtype)",
+              "right": "Stores regulation documents as a WTDocument subtype"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Custom change objects are created as subtypes that inherit all properties from their parent type.",
+        "User-defined groups organize users by business function and can be assigned to roles in team templates.",
+        "The Delta Drills scenario requires two subtypes (Delta Review, Delta New Regulation Document) and two groups (Delta Regulation Group, Delta Change Group).",
+        "Subtypes are created using the Type and Attribute Management utility under Site > Utilities."
+      ]
+    },
+    {
+      "id": "m2t2",
+      "title": "Change Preferences and Task Form Templates",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Windchill provides a set of <strong>Change Management Preferences</strong> that control how change objects behave. These preferences are configured at the organization or product level and determine whether features like sequenced plans, task templates, and auto-association are available in your change process."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Six Key Change Management Preferences"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "CN without CR",
+              "back": "Allows creating a Change Notice directly without first creating a Change Request. Useful when the change is pre-approved or originates from a regulation rather than a formal request."
+            },
+            {
+              "front": "Sequenced Plan",
+              "back": "Enables ordering change tasks in a specific sequence within a Change Notice. Tasks execute in the defined order rather than all at once, which is critical for processes where one task must complete before the next begins."
+            },
+            {
+              "front": "Task Form Templates",
+              "back": "Enables the use of predefined task templates when a Change Notice is submitted. Templates automatically create tasks with default names, assignees, reviewers, and sequencing — reducing manual setup and ensuring consistency."
+            },
+            {
+              "front": "Auto Associate",
+              "back": "Automatically associates change objects when they are created in the context of another change object. For example, creating a Change Notice from a Change Request automatically links them."
+            }
+          ]
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Preference", "Default", "Delta Drills Setting"],
+          "rows": [
+            ["CN without CR", "No", "Yes — regulation changes skip the CR step"],
+            ["Sequenced Plan", "No", "Yes — regulatory review must precede implementation"],
+            ["Task Form Templates", "No", "Yes — auto-creates Delta Change Task and Delta Regulatory Task"],
+            ["Auto Associate", "Yes", "Yes — keeps default auto-association behavior"],
+            ["Optional Assignee/Reviewer", "No", "No — assignees and reviewers are required"],
+            ["Embedded Change Task", "No", "No — tasks are created via templates, not embedded"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Task Form Templates"
+        },
+        {
+          "type": "paragraph",
+          "text": "Task Form Templates define the default tasks that are automatically created when a Change Notice is submitted. Each template specifies the task name, default assignee role, reviewer, and sequence position. For Delta Drills, two templates are needed: <strong>Delta Change Task</strong> (assigned to the Delta Change Group for implementation) and <strong>Delta Regulatory Task</strong> (assigned to the Delta Regulation Group for compliance review)."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Task Form Templates save significant time by eliminating manual task creation. When a Change Notice is submitted, the templates automatically generate all required tasks with the correct assignees and sequencing. Always verify that the <strong>Task Form Templates</strong> preference is enabled before creating templates."
+        }
+      ],
+      "keyTakeaways": [
+        "Six Change Management Preferences control the behavior of change objects: CN without CR, Sequenced Plan, Task Form Templates, Auto Associate, Optional Assignee/Reviewer, and Embedded Change Task.",
+        "Task Form Templates automatically create tasks with predefined names, assignees, and sequencing when a Change Notice is submitted.",
+        "The Task Form Templates preference must be enabled before templates can be created or used.",
+        "Delta Drills requires CN without CR, Sequenced Plan, and Task Form Templates all set to Yes."
+      ]
+    },
+    {
+      "id": "m2t3",
+      "title": "Association and Mapping Rules",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Windchill uses three categories of business rules to control how change objects interact: <strong>Business Rules</strong>, <strong>Association Rules</strong>, and <strong>Mapping Rules</strong>. Association Rules are particularly important because they define how change objects link to each other, controlling the relationships that drive your change process."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Association Rules"
+        },
+        {
+          "type": "paragraph",
+          "text": "An Association Rule defines how two change object types link to each other. Each rule specifies five properties: the association type, the two object types being linked (Role A and Role B), the cardinality of the relationship, the owning role (which object's modify access is needed), and an optional required role constraint."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Association Type", "Description", "Example"],
+          "rows": [
+            ["Change Process", "Links objects within the same change process flow", "Delta Review to Change Notice"],
+            ["Addressed By", "Links a problem report or request to the change that addresses it", "Change Request addressed by Change Notice"],
+            ["Related Change", "Links change objects that are related but not in a direct process flow", "Two Change Notices affecting the same product"],
+            ["Additional Reported Against", "Links additional affected objects to a change report", "Additional parts reported against a Problem Report"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "For the Delta Drills scenario, the association rule uses <strong>Change Process</strong> type, linking <strong>Delta Review</strong> (Role A) to <strong>Change Notice</strong> (Role B) with <strong>1:many</strong> cardinality. The owning role is <strong>Role B</strong>, meaning you need modify access to the Change Notice to create the link."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Association Rule Properties"
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each association rule property to its definition:",
+          "pairs": [
+            {
+              "left": "Association Type",
+              "right": "Defines the category of relationship (Change Process, Addressed By, etc.)"
+            },
+            {
+              "left": "Cardinality",
+              "right": "Defines how many objects can participate (1:1, 1:many, many:many)"
+            },
+            {
+              "left": "Owning Role",
+              "right": "Determines which object's modify access is required to create the link"
+            },
+            {
+              "left": "Required Role",
+              "right": "Constraint specifying which role must exist for the association to be created"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Three categories of business rules control change objects: Business Rules, Association Rules, and Mapping Rules.",
+        "Association Rules define how change object types link to each other using five properties: association type, Role A, Role B, cardinality, and owning role.",
+        "Four association types are available: Change Process, Addressed By, Related Change, and Additional Reported Against.",
+        "The owning role determines which object's modify access is needed to create the link between objects."
+      ]
+    },
+    {
+      "id": "m2t4",
+      "title": "Change Intent and Planning",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Mapping Rules extend the change management configuration by connecting change intents, release targets, and object states. Three types of mapping rules work together to define how affected objects are planned, tracked, and released through the change process."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Three Types of Mapping Rules"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Change Intent Release Targets",
+              "back": "Maps a change intent value to a release target for affected object types. For example, mapping the intent 'Change' to the release target 'Production' for Delta New Regulation Document."
+            },
+            {
+              "front": "Object Change Intents",
+              "back": "Maps an affected object type to the available change intent values. Defines which intents (such as Change, Add, Remove) are valid for each object type."
+            },
+            {
+              "front": "Object Release States",
+              "back": "Maps an affected object type to its released state. This rule controls whether redline markup can be created for parts and documents. <strong>Without this rule, redlines cannot be created.</strong>"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Change Intent as a Planning Tool"
+        },
+        {
+          "type": "paragraph",
+          "text": "Change Intent is an optional field on each affected object in a Change Notice. It communicates the <em>intended</em> product change separately from the actual revision. This separation allows planners to indicate what needs to happen (add a part, change a document, remove a component) before execution begins. To see Change Intent in the Affected Objects and Resulting Objects tables, you must create a custom view — it is not visible in the default table layout."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "The <strong>Object Release States</strong> mapping rule is required for redline creation. Without this rule configured for a given object type, Windchill cannot determine the released state and will not allow redline markup to be created for parts or documents."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the mapping rule configuration steps in the correct order:",
+          "items": [
+            "Create Object Change Intents rule to define valid intent values for each object type",
+            "Create Change Intent Release Targets rule to map intents to release targets",
+            "Create Object Release States rule to map object types to released states",
+            "Create a custom view to display Change Intent in Affected/Resulting Objects tables"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Three mapping rule types work together: Change Intent Release Targets, Object Change Intents, and Object Release States.",
+        "Change Intent provides planning separate from revision — it communicates what needs to happen before execution begins.",
+        "The Object Release States mapping rule is required for redline creation on parts and documents.",
+        "A custom view must be created to display Change Intent in the Affected Objects and Resulting Objects tables."
+      ]
+    },
+    {
+      "id": "m2t5",
+      "title": "Create Change Objects and Groups",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you create custom change object subtypes and user-defined groups for the Delta Drills regulation review process. You will use the Type and Attribute Management utility to create subtypes and the Organization Members page to create groups."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "This exercise combines creating both custom subtypes and user-defined groups. Ensure you have administrator access to the <strong>Site > Utilities</strong> area and the <strong>PTC Power Equipment</strong> organization."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex1",
+          "title": "Create Change Objects and Groups",
+          "objective": "Create custom change object subtypes and user-defined groups for the Delta Drills regulation review process.",
+          "tasks": [
+            {
+              "id": "ex1-t1",
+              "title": "Create the Delta Review Subtype",
+              "steps": [
+                {
+                  "action": "Navigate to <strong>Site > Utilities</strong> and open <strong>Type and Attribute Management</strong>.",
+                  "detail": "The Type and Attribute Management utility is the central location for creating and managing object types and their attributes.",
+                  "hint": null
+                },
+                {
+                  "action": "Expand <strong>Change Management</strong> and select <strong>Review Object</strong>.",
+                  "detail": "Review Object is the parent type from which Delta Review will inherit its properties and behaviors.",
+                  "hint": "Look under the Change Management category in the type tree."
+                },
+                {
+                  "action": "Click <strong>New Type</strong> and name it <code>Delta Review</code>.",
+                  "detail": "The new subtype will inherit all attributes and lifecycle behaviors from the Review Object parent type.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the icon and configure display attributes for the Delta Review subtype.",
+                  "detail": "Display attributes control which fields appear when users view or create Delta Review objects.",
+                  "hint": "Use a distinctive icon to help users quickly identify Delta Review objects in search results."
+                },
+                {
+                  "action": "Click <strong>Finish</strong> to create the Delta Review subtype.",
+                  "detail": "The new subtype is now available for use in change processes and can be selected when creating new review objects.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex1-t2",
+              "title": "Create the Delta New Regulation Document Subtype",
+              "steps": [
+                {
+                  "action": "In Type and Attribute Management, expand <strong>Document</strong>.",
+                  "detail": "The Document category contains WTDocument and its existing subtypes.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>WTDocument</strong> and click <strong>New Type</strong>.",
+                  "detail": "WTDocument is the parent type for all document subtypes in Windchill.",
+                  "hint": null
+                },
+                {
+                  "action": "Name the new type <code>Delta New Regulation Document</code>.",
+                  "detail": "This subtype will store regulation documents that trigger change requests in the Delta Drills process.",
+                  "hint": null
+                },
+                {
+                  "action": "Configure the display attributes and icon for the new document subtype.",
+                  "detail": "Ensure the display attributes include fields relevant to regulation tracking, such as regulation number or effective date.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Finish</strong> to create the Delta New Regulation Document subtype.",
+                  "detail": "The new document subtype is now available for use in the regulation review process.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex1-t3",
+              "title": "Create User-Defined Groups",
+              "steps": [
+                {
+                  "action": "Navigate to <strong>Organizations > PTC Power Equipment > Members</strong>.",
+                  "detail": "The Members page displays all users and groups within the PTC Power Equipment organization.",
+                  "hint": null
+                },
+                {
+                  "action": "Create a new group named <code>Delta Regulation Group</code>.",
+                  "detail": "This group will contain regulation reviewers who evaluate new regulations for compliance impact.",
+                  "hint": "Use the New Group action from the Members page toolbar."
+                },
+                {
+                  "action": "Add appropriate users to the Delta Regulation Group.",
+                  "detail": "Add users who are responsible for evaluating regulations and determining compliance requirements.",
+                  "hint": null
+                },
+                {
+                  "action": "Create another group named <code>Delta Change Group</code>.",
+                  "detail": "This group will contain change implementers who execute the engineering changes.",
+                  "hint": null
+                },
+                {
+                  "action": "Add users to the Delta Change Group.",
+                  "detail": "Add users who are responsible for implementing the change tasks resulting from regulation reviews.",
+                  "hint": null
+                },
+                {
+                  "action": "Assign the groups to roles in the team template, mapping the Delta Regulation Group to the <strong>Delta Regulation Manager</strong> role.",
+                  "detail": "Assigning groups to team template roles enables targeted task routing in workflows — tasks are automatically assigned to the correct group.",
+                  "hint": "Navigate to the team template for the product context to assign role mappings."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Custom subtypes are created in the Type and Attribute Management utility and inherit all parent type properties.",
+        "User-defined groups are created on the organization Members page and can be assigned to team template roles.",
+        "The Delta Drills process requires two subtypes (Delta Review, Delta New Regulation Document) and two groups (Delta Regulation Group, Delta Change Group).",
+        "Assigning groups to team template roles enables automated task routing in change workflows."
+      ]
+    },
+    {
+      "id": "m2t6",
+      "title": "Configure Preferences and Templates",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you set the Change Management preferences required for the Delta Drills process and create task form templates that automatically generate tasks when a Change Notice is submitted."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex2",
+          "title": "Configure Preferences and Templates",
+          "objective": "Set change management preferences and create task form templates for the Delta Drills process.",
+          "tasks": [
+            {
+              "id": "ex2-t1",
+              "title": "Set Change Management Preferences",
+              "steps": [
+                {
+                  "action": "Navigate to <strong>Organizations > PTC Power Equipment > Utilities > Preference Management</strong>.",
+                  "detail": "Preference Management is where you configure organization-level settings that control change management behavior.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the <strong>Allow CN without CR</strong> preference to <strong>Yes</strong>.",
+                  "detail": "This allows Change Notices to be created directly without requiring a preceding Change Request, which is needed for regulation-driven changes.",
+                  "hint": "Search for the preference name or browse under the Change Management category."
+                },
+                {
+                  "action": "Enable <strong>Sequenced Plan</strong> to allow task ordering.",
+                  "detail": "Sequenced Plan ensures change tasks execute in a defined order — the regulatory review must complete before the implementation task begins.",
+                  "hint": null
+                },
+                {
+                  "action": "Enable the <strong>Task Form Templates</strong> preference.",
+                  "detail": "This preference must be enabled before task form templates can be created or used when submitting Change Notices.",
+                  "hint": null
+                },
+                {
+                  "action": "Save the preference changes.",
+                  "detail": "Preferences take effect immediately after saving. Verify the changes by refreshing the Preference Management page.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex2-t2",
+              "title": "Create Task Form Templates",
+              "steps": [
+                {
+                  "action": "Navigate to <strong>Organizations > PTC Power Equipment > Templates</strong>.",
+                  "detail": "The Templates page contains all template types available for the organization, including task form templates.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Task Form Templates</strong> from the Pick a View menu.",
+                  "detail": "This view filters the templates list to show only task form templates, making it easier to create and manage them.",
+                  "hint": null
+                },
+                {
+                  "action": "Create a new template named <code>Delta Change Task</code>.",
+                  "detail": "This template defines the implementation task that will be automatically assigned to change implementers.",
+                  "hint": null
+                },
+                {
+                  "action": "Configure the task name, default assignee role, and review settings for the Delta Change Task.",
+                  "detail": "Set the assignee to the Delta Change Group role and configure any required review or approval steps.",
+                  "hint": "Ensure the sequence position reflects that this task runs after the regulatory task."
+                },
+                {
+                  "action": "Create a second template named <code>Delta Regulatory Task</code>.",
+                  "detail": "This template defines the regulatory review task that will be assigned to the Delta Regulation Group.",
+                  "hint": null
+                },
+                {
+                  "action": "Save both templates.",
+                  "detail": "The templates will be used automatically when a Change Notice is submitted, creating the defined tasks with the configured assignees and sequencing.",
+                  "hint": "Verify both templates appear in the Task Form Templates view after saving."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Change Management preferences are configured at the organization level under Preference Management.",
+        "The Task Form Templates preference must be enabled before templates can be created or used.",
+        "Task form templates automatically generate tasks with predefined names, assignees, and sequencing when a Change Notice is submitted.",
+        "The Delta Drills process requires three preferences enabled: CN without CR, Sequenced Plan, and Task Form Templates."
+      ]
+    },
+    {
+      "id": "m2t7",
+      "title": "Create Business Rules",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you create the association and mapping rules needed for the Delta Drills regulation review process. These rules define how change objects link to each other and how change intents map to release targets."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "You will use the <strong>Business Rules Administration</strong> page to create both the association rule and the mapping rule. Ensure the custom subtypes (Delta Review, Delta New Regulation Document) have been created before starting this exercise."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex3",
+          "title": "Create Business Rules",
+          "objective": "Create association and mapping rules for the Delta Drills regulation review process.",
+          "tasks": [
+            {
+              "id": "ex3-t1",
+              "title": "Create an Association Rule",
+              "steps": [
+                {
+                  "action": "Navigate to <strong>Organizations > PTC Power Equipment > Utilities > Business Rules Administration</strong>.",
+                  "detail": "Business Rules Administration is the central location for managing association rules, mapping rules, and other business rules.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Association Rules</strong> tab.",
+                  "detail": "The Association Rules tab displays all existing association rules and allows you to create new ones.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>New Association Rule</strong>.",
+                  "detail": "This opens the association rule creation form where you define the relationship between two change object types.",
+                  "hint": null
+                },
+                {
+                  "action": "Set Association Type to <code>Change Process</code>, Role A Type to <code>Delta Review</code>, Role B Type to <code>Change Notice</code>.",
+                  "detail": "The Change Process association type links objects within the same change process flow. Delta Review (Role A) initiates the process, and Change Notice (Role B) carries out the change.",
+                  "hint": "Use the type picker to search for Delta Review — it will appear under Review Object subtypes."
+                },
+                {
+                  "action": "Set Cardinality to <code>1:many</code> and Owning Role to <code>Role B</code>.",
+                  "detail": "1:many cardinality means one Delta Review can link to many Change Notices. Setting Role B as the owning role means you need modify access to the Change Notice to create the link.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong> to create the rule.",
+                  "detail": "The association rule is now active and will govern how Delta Review objects link to Change Notice objects.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex3-t2",
+              "title": "Create a Mapping Rule",
+              "steps": [
+                {
+                  "action": "From the Business Rules Administration page, select <strong>Mapping Rules</strong>.",
+                  "detail": "The Mapping Rules tab displays existing mapping rules and allows you to create new ones for change intent, release targets, and release states.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>New Mapping Rule</strong>.",
+                  "detail": "This opens the mapping rule creation form where you define how change intents map to release targets for a specific object type.",
+                  "hint": null
+                },
+                {
+                  "action": "Set Rule Name to <code>Change Intent Release Targets</code>.",
+                  "detail": "This rule type maps change intent values to release targets for affected object types.",
+                  "hint": null
+                },
+                {
+                  "action": "Set Type to <code>Delta New Regulation Document</code>.",
+                  "detail": "This specifies that the mapping rule applies to Delta New Regulation Document objects.",
+                  "hint": "Use the type picker to search for the custom document subtype you created earlier."
+                },
+                {
+                  "action": "Set Source Value to <code>None</code>, Mapped Value to <code>Change</code>, Default to <code>Change</code>.",
+                  "detail": "This configuration maps the default change intent to 'Change' for regulation documents, indicating that the document triggers a product change.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong> to create the mapping rule.",
+                  "detail": "The mapping rule is now active and will control how change intents are applied to Delta New Regulation Document objects.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Association rules and mapping rules are created in the Business Rules Administration utility.",
+        "The Delta Drills association rule uses Change Process type, linking Delta Review (Role A) to Change Notice (Role B) with 1:many cardinality.",
+        "Mapping rules define how change intents connect to release targets for specific object types.",
+        "Custom subtypes must exist before they can be referenced in association or mapping rules."
+      ]
+    }
+  ]
+}

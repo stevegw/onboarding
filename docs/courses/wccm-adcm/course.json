@@ -1,0 +1,47 @@
+{
+  "id": "wccm-adcm",
+  "title": "Windchill: Tailoring Change Management",
+  "description": "Plan and implement a tailored change management process. Create custom change objects, configure business rules, modify workflows and life cycles, and test the complete change process.",
+  "prerequisite": "wc-changeimpl",
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Pieces of the Puzzle",
+      "description": "Identify the change objects and administrative elements used in Windchill change management. Understand the out-of-the-box change process, roles, and how to plan modifications.",
+      "estimatedMinutes": 25,
+      "topicCount": 4,
+      "contentFile": "modules/m1-pieces-of-the-puzzle.json",
+      "quizFile": "quizzes/q1-pieces-of-the-puzzle.json"
+    },
+    {
+      "id": "m2",
+      "title": "Plan for Change",
+      "description": "Create custom change objects and user-defined groups. Configure change management preferences, task form templates, association rules, mapping rules, and change intent.",
+      "estimatedMinutes": 45,
+      "topicCount": 7,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m2-plan-for-change.json",
+      "quizFile": "quizzes/q2-plan-for-change.json"
+    },
+    {
+      "id": "m3",
+      "title": "Tailor the Change Process",
+      "description": "Modify existing workflows and life cycles to support a custom change process. Create object initialization rules to connect workflows with life cycles.",
+      "estimatedMinutes": 45,
+      "topicCount": 6,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m3-tailor-the-change-process.json",
+      "quizFile": "quizzes/q3-tailor-the-change-process.json"
+    },
+    {
+      "id": "m4",
+      "title": "Test the New Process",
+      "description": "Verify that a custom change process functions correctly. Create change objects, follow the workflow, and validate that life cycle states progress as expected.",
+      "estimatedMinutes": 25,
+      "topicCount": 4,
+      "exerciseTopicStart": 3,
+      "contentFile": "modules/m4-test-the-new-process.json",
+      "quizFile": "quizzes/q4-test-the-new-process.json"
+    }
+  ]
+}
