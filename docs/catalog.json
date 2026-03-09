@@ -30,14 +30,14 @@
           "comingSoon": false
         },
         {
-          "id": "wc-context",
+          "id": "wcba-cntx",
           "title": "Introduction and Context Administration",
-          "description": "Learn context administration including organizations, products, libraries, and projects.",
+          "description": "Configure Windchill to work with your enterprise's product development process. Identify contexts and their relationships, create and manage organizations, products, and libraries, build context templates, and control system behavior.",
           "pdfFile": "WCBA-CNTX-Training-Guide.pdf",
-          "modules": 0,
+          "modules": 4,
           "estimatedHours": 3,
           "locales": ["en"],
-          "comingSoon": true
+          "comingSoon": false
         },
         {
           "id": "wcba-team",

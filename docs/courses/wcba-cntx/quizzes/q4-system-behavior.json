@@ -1,0 +1,58 @@
+{
+  "moduleId": "m4",
+  "title": "System Behavior Knowledge Check",
+  "questions": [
+    {
+      "id": "m4-kc-001",
+      "question": "When an administrator modifies the Public tab on the Windchill Home page, which users are affected by the changes?",
+      "options": [
+        "All users on the site, including those who have already customized their Home pages",
+        "Only the administrator who made the changes",
+        "All users who have not already customized their own Home pages",
+        "Only users in the same organization as the administrator"
+      ],
+      "answerIndex": 2,
+      "rationale": "Changes to the Public tab are carried forward to the Home pages of all users on the site, except those who have already modified their own Home pages. Users who previously customized their layout retain their personal settings. The Private tab controls only the administrator's own Home page.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-002",
+      "question": "A workflow task has a 7-day deadline. How does Windchill calculate the due date?",
+      "options": [
+        "7 calendar days from the task creation date, including weekends and holidays",
+        "7 working days from the task creation date, excluding non-working days defined in the system calendar",
+        "7 business hours from the task creation date",
+        "7 days from the task creation date, adjusted only for the user's personal calendar"
+      ],
+      "answerIndex": 1,
+      "rationale": "Windchill calculates deadlines in working days, not calendar days. A 7-day deadline means 7 working days as defined by the system calendar. Out of the box, Saturday and Sunday are non-working days, but administrators can customize the system calendar to include holidays and company closures. The system calendar (not individual user calendars) determines deadline calculations.",
+      "topic": "m4t2"
+    },
+    {
+      "id": "m4-kc-003",
+      "question": "What is the key difference between Windchill preferences and properties?",
+      "options": [
+        "Preferences are stored in the database while properties are stored in memory",
+        "Preferences can only be set by the site administrator while properties can be set by any user",
+        "Preferences are managed through the UI and take effect without a server restart, while properties require a server restart",
+        "Preferences apply system-wide while properties apply per-context"
+      ],
+      "answerIndex": 2,
+      "rationale": "Preferences are managed through the Preference Management UI and do not require a server restart (at most a browser refresh). Properties are stored in configuration files, managed via the xconfmanager tool, and require a full Windchill server restart to take effect. Additionally, preferences can be set per-context and inherited, while properties affect the entire system.",
+      "topic": "m4t3"
+    },
+    {
+      "id": "m4-kc-004",
+      "question": "What happens when an administrator locks a preference at the Organization level?",
+      "options": [
+        "The preference is hidden from all users in the organization",
+        "The preference value cannot be overridden by any child context (products, libraries) within that organization",
+        "The preference reverts to the system default and cannot be changed",
+        "The preference is automatically applied to all other organizations on the site"
+      ],
+      "answerIndex": 1,
+      "rationale": "Locking a preference prevents child contexts (such as products and libraries within the organization) from overriding the value. This ensures consistent behavior across the organization. Locking does not hide the preference, revert it to defaults, or affect other organizations. It only enforces the locked value within the context hierarchy below the level where it was locked.",
+      "topic": "m4t3"
+    }
+  ]
+}

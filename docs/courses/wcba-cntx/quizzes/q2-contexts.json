@@ -1,0 +1,71 @@
+{
+  "moduleId": "m2",
+  "title": "Contexts Knowledge Check",
+  "questions": [
+    {
+      "id": "m2-kc-001",
+      "question": "Which level of the Windchill context hierarchy contains out-of-box configuration such as life cycles, workflows, and templates, and serves as the root of the hierarchy?",
+      "options": [
+        "Organization",
+        "Site",
+        "Application Context",
+        "Sub-organization"
+      ],
+      "answerIndex": 1,
+      "rationale": "The Site context is the root of the hierarchy, created during Windchill installation. It is unique per installation and contains out-of-box configuration including life cycles, workflows, templates, preferences, profiles, and team templates. Organization is the second level that represents business units. Application Contexts (Products, Libraries, etc.) are the third level where users work. Sub-organization is not a formal hierarchy level name.",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-002",
+      "question": "A team needs to store a catalog of standard fasteners that will be shared across multiple product lines. Which application context type is most appropriate?",
+      "options": [
+        "Product",
+        "Project",
+        "Library",
+        "Program"
+      ],
+      "answerIndex": 2,
+      "rationale": "A Library context is designed for storing common, reusable objects such as standards, commodity parts, and fasteners that are shared across products. A Product context is for product-specific design data. A Project context is for plans, tasks, and deliverables. A Program context coordinates multiple related projects and does not store design data.",
+      "topic": "m2t2"
+    },
+    {
+      "id": "m2-kc-003",
+      "question": "What must be true about a user before they can be assigned a context creator role such as Product Creator or Library Creator?",
+      "options": [
+        "They must be a Site Administrator",
+        "They must already manage at least one existing context",
+        "They must be a member of the organization",
+        "They must have completed Windchill training certification"
+      ],
+      "answerIndex": 2,
+      "rationale": "Only organization members can be assigned as context creators. The user must first exist as an organization participant before they can be granted creator privileges such as Product Creator or Library Creator. Being a Site Administrator, managing an existing context, or holding a training certification are not prerequisites for receiving a context creator role.",
+      "topic": "m2t3"
+    },
+    {
+      "id": "m2-kc-004",
+      "question": "When creating a new Product context in Windchill, what does selecting the Private Access option accomplish?",
+      "options": [
+        "It hides the product from all users except the creator",
+        "It prevents the product from inheriting Organization-level policies",
+        "It applies more restrictive access rules, requiring the product manager to explicitly define access control",
+        "It disables folder creation within the product context"
+      ],
+      "answerIndex": 2,
+      "rationale": "Enabling Private Access during product creation applies more restrictive access rules that require the product manager to explicitly define access control policies. It does not hide the product from all users, does not prevent inheritance of Organization-level policies, and does not disable folder creation.",
+      "topic": "m2t4"
+    },
+    {
+      "id": "m2-kc-005",
+      "question": "Which statement about Library contexts in Windchill is correct?",
+      "options": [
+        "Libraries can be deleted by the Library Manager when they are no longer needed",
+        "Libraries are identical to Product contexts and can store product structures",
+        "Libraries cannot be deleted once created and are intended for shared, reusable objects",
+        "Libraries are automatically created when a new Organization is provisioned"
+      ],
+      "answerIndex": 2,
+      "rationale": "Once a Library context is created in Windchill, it cannot be deleted. Libraries are designed to store common, reusable objects such as standards, commodity parts, and fasteners shared across products. While Libraries have almost identical composition to Product contexts, they serve a distinct purpose for shared data. Libraries are not automatically created with new Organizations — they must be explicitly created by a Library Creator.",
+      "topic": "m2t2"
+    }
+  ]
+}

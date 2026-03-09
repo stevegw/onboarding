@@ -1,0 +1,104 @@
+{
+  "terms": [
+    {
+      "term": "Business Administrator",
+      "definition": "A system, site, or organization administrator responsible for managing the Windchill environment, applying business rules, and configuring policies, processes, and participants. Responsibilities include product data configuration, access control, user management, licensing, and reporting."
+    },
+    {
+      "term": "Context",
+      "definition": "A defined container in Windchill where users work and objects are stored. All Windchill objects must reside within a context. Contexts provide the structure for user actions, access policies, and data organization."
+    },
+    {
+      "term": "Site Context",
+      "definition": "The root or top-level parent of the context hierarchy, created during Windchill installation. Contains administrative data, out-of-the-box configuration elements, and hosts one or more Organization contexts. Only accessed by administrators."
+    },
+    {
+      "term": "Organization Context",
+      "definition": "A second-tier context representing a major business unit or division. Always associated with an organization participant. Inherits Site-level policies and defines business rules, preferences, and configuration for all sub-organizational contexts."
+    },
+    {
+      "term": "Product Context",
+      "definition": "An application context that stores information related to a specific product or deliverable, including product definitions, structures (parts), supporting data, and documents. Created by product creators within an organization."
+    },
+    {
+      "term": "Library Context",
+      "definition": "An application context for storing reusable cross-product data such as commodity parts, standards documents, and material specifications. Objects are shared across multiple product lines. Once created, libraries cannot be deleted."
+    },
+    {
+      "term": "Project Context",
+      "definition": "An application context for tracking project plans including tasks, milestones, deliverables, and collaborative design work. Less formal than products — regular users can often create projects. Available only with PTC Windchill ProjectLink."
+    },
+    {
+      "term": "Program Context",
+      "definition": "An application context that groups interrelated projects under an umbrella plan. Contains links to other contexts and program-related documents but is not designed to store design data. Available only with PTC Windchill ProjectLink."
+    },
+    {
+      "term": "Application Context",
+      "definition": "A sub-organizational context (product, library, project, or program) where users perform their daily work. Inherits policies from parent Organization and Site contexts but can define context-specific overrides."
+    },
+    {
+      "term": "Context Creator",
+      "definition": "A user authorized to create and manage new application contexts. Types include Product Creator, Library Creator, Project Creator, and Program Creator. Only organization members can be assigned as context creators."
+    },
+    {
+      "term": "Context Manager",
+      "definition": "The user responsible for day-to-day administration of a context. Initially the context creator, but the manager role can be reassigned. Manages team assignments, folders, policies, and templates within the context."
+    },
+    {
+      "term": "Domain Policy",
+      "definition": "An administrative rule for managing access control, indexing, and event notification for objects within a domain. Domain policies are inherited from parent contexts and can be overridden at lower levels."
+    },
+    {
+      "term": "Object Class",
+      "definition": "The internal Java class name for a Windchill object type (e.g., wt.part.WTPart, wt.doc.WTDocument). Used by administrative tools when creating life cycles, access control rules, and object initialization rules."
+    },
+    {
+      "term": "Subtype",
+      "definition": "A custom object type created from a parent Windchill type using the Type and Attribute Management utility. Subtypes inherit parent properties and procedures while adding type-specific attributes."
+    },
+    {
+      "term": "Type and Attribute Management",
+      "definition": "A Windchill utility for creating and managing object types, custom subtypes, and attributes. Enables business administrators to control how objects are displayed and what metadata they carry."
+    },
+    {
+      "term": "Context Template",
+      "definition": "A template that establishes initial settings for new products, libraries, organizations, projects, or programs. Includes folder structure, team roles, access control policies, object initialization rules, and default life cycle and workflow templates."
+    },
+    {
+      "term": "Document Template",
+      "definition": "A template providing the desired style, structure, and layout for documentation. Enforces corporate standards and is available to users when creating new documents of the specified type."
+    },
+    {
+      "term": "CAD Document Template",
+      "definition": "A template providing initial settings for CAD authoring files. Created from a template model file in a CAD application like Creo. Available at Site, Organization, or application context level."
+    },
+    {
+      "term": "Preference",
+      "definition": "A configurable setting that defines default application behavior in Windchill. Can be set at Site, Organization, or application context levels and inherited by child contexts. Administrators can lock preferences to prevent overrides."
+    },
+    {
+      "term": "Property",
+      "definition": "A server configuration setting stored in files like wt.properties that controls system-level behavior. Unlike preferences, properties require a Windchill server restart to take effect and are managed via the xconfmanager tool."
+    },
+    {
+      "term": "Preference Management",
+      "definition": "A Windchill utility enabling administrators to set initial preference values, control user modification rights, and lock preferences across context levels. The term 'scope' in this utility is synonymous with 'context'."
+    },
+    {
+      "term": "Calendar Management",
+      "definition": "A Windchill feature for defining working versus non-working days and delegating work assignments. Affects workflow deadline calculations (working days, not calendar days). Maintained at the Site context level."
+    },
+    {
+      "term": "Folder",
+      "definition": "A logical storage structure within a context that helps users find information and enables administrators to apply unique domain policies. Folder creation in products and libraries is limited to managers by default."
+    },
+    {
+      "term": "Private Access",
+      "definition": "A product or library setting that prevents the context from inheriting access control from the organization, applying more restrictive rules from a private domain instead. Access must be explicitly defined."
+    },
+    {
+      "term": "Object Initialization Rule",
+      "definition": "A rule that determines the life cycle template, team template, and versioning scheme assigned to new objects of a specific type when created in a given context."
+    }
+  ]
+}

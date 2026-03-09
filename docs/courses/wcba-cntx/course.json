@@ -1,0 +1,48 @@
+{
+  "id": "wcba-cntx",
+  "title": "Windchill: Introduction and Context Administration",
+  "description": "Configure Windchill to work with your enterprise's product development process. Identify contexts and their relationships, create and manage organizations, products, and libraries, build context templates, and control system behavior.",
+  "prerequisite": null,
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Business Administration Introduction",
+      "description": "Identify business administrator responsibilities and configuration drivers. Understand policies, processes, participants, and the Windchill system architecture.",
+      "estimatedMinutes": 30,
+      "topicCount": 5,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m1-business-admin-introduction.json",
+      "quizFile": "quizzes/q1-business-admin-introduction.json"
+    },
+    {
+      "id": "m2",
+      "title": "Contexts",
+      "description": "Compare context types and their hierarchy. Create organizations, products, libraries, and folders. Assign context creators and manage objects within application contexts.",
+      "estimatedMinutes": 40,
+      "topicCount": 6,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m2-contexts.json",
+      "quizFile": "quizzes/q2-contexts.json"
+    },
+    {
+      "id": "m3",
+      "title": "Context Templates",
+      "description": "Understand template types and their benefits. Create product context templates, document templates, and CAD document templates to standardize configuration.",
+      "estimatedMinutes": 35,
+      "topicCount": 5,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m3-context-templates.json",
+      "quizFile": "quizzes/q3-context-templates.json"
+    },
+    {
+      "id": "m4",
+      "title": "System Behavior",
+      "description": "Configure the Windchill Home page, manage calendars and task delegation, and set preferences and properties to control system behavior across contexts.",
+      "estimatedMinutes": 35,
+      "topicCount": 6,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m4-system-behavior.json",
+      "quizFile": "quizzes/q4-system-behavior.json"
+    }
+  ]
+}
