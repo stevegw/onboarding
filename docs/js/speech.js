@@ -498,13 +498,10 @@
   function updateBar() {
     var bar = document.getElementById("narr-bar");
     if (!bar) return;
-    var app = document.getElementById("app");
     if (collapsed) {
       bar.classList.remove("open");
-      if (app) app.classList.remove("narr-open");
     } else {
       bar.classList.add("open");
-      if (app) app.classList.add("narr-open");
     }
   }
 

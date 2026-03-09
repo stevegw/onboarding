@@ -216,11 +216,6 @@
 }
 .notepad-fab:hover { transform: scale(1.08); }
 
-/* Shift FABs and panel up when narration bar is open */
-.narr-open .notepad-fab { bottom: 64px; }
-.narr-open .notepad-panel { bottom: 64px; }
-.narr-open .author-fab { bottom: 120px; }
-.narr-open .author-undo-fab { bottom: 176px; }
 
 .notepad-panel {
   position: fixed; bottom: 24px; right: 24px; z-index: 80;
@@ -919,10 +914,10 @@
    Narration Control Bar
    ============================================================ */
 .narr-bar {
-  position: fixed; bottom: 0; left: 260px; right: 0; height: 40px;
-  background: var(--c-bg-surface); border-top: 1px solid var(--c-border);
-  display: none; align-items: center; gap: 8px; padding: 0 16px;
-  z-index: 90;
+  display: none; align-items: center; gap: 6px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--c-border);
+  background: var(--c-bg-surface-hover);
 }
 .narr-bar.open { display: flex; }
 .narr-btn {
@@ -951,9 +946,6 @@
   z-index: 50; display: none;
 }
 
-@media (max-width: 768px) {
-  .narr-bar { left: 0; }
-}
 
 /* CJK: disable letter-spacing and uppercase (meaningless for CJK scripts) */
 html[lang="ja"] .module-num, html[lang="zh"] .module-num, html[lang="ko"] .module-num,
