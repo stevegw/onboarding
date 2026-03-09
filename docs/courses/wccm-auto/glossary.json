@@ -1,0 +1,112 @@
+{
+  "terms": [
+    {
+      "term": "Life Cycle",
+      "definition": "An automated, graphical model that employs phases and gates to manage objects as they progress from conceptualization to obsolescence. Every product-related object in Windchill must have a life cycle."
+    },
+    {
+      "term": "Phase",
+      "definition": "A defined period within a life cycle state during which specific activities occur. In advanced life cycles, a workflow template can be associated with the phase to automate tasks."
+    },
+    {
+      "term": "Gate",
+      "definition": "A checkpoint within a life cycle state that prevents object advancement until requirements are met. Objects are locked from modification while in a gate process."
+    },
+    {
+      "term": "State",
+      "definition": "A named condition within a life cycle that identifies an object's stage of maturity (e.g., In Work, Under Review, Released, Obsolete). Each state can have different business logic and access control."
+    },
+    {
+      "term": "Transition",
+      "definition": "A named path from a source state to a destination state in a life cycle. Transitions are predefined actions (Change, Lock, Promote, Refine, Revise, Set State) that provide business logic and enable life cycle movement."
+    },
+    {
+      "term": "Basic Life Cycle",
+      "definition": "A life cycle type that uses predefined transitions for life cycle movement without workflow automation. Offers improved performance during object creation and revision. Recommended for most Windchill objects."
+    },
+    {
+      "term": "Advanced Life Cycle",
+      "definition": "A life cycle type that uses workflow templates to automate state transitions in phases and gates. Required for objects needing company-specific business processes, special access control, or additional management flexibility."
+    },
+    {
+      "term": "Object Initialization Rule",
+      "definition": "A rule that assigns a life cycle template and team template to objects of a specific type when created in a given context. The life cycle template name is resolved by searching from the creation context up through the organization and site levels."
+    },
+    {
+      "term": "Version Series",
+      "definition": "A sequence of version labels (Numeric: 1, 2, 3 or Mil Std: A, B, C) applied to object revisions. Can be configured per life cycle state when state-based versioning is enabled in the object initialization rules."
+    },
+    {
+      "term": "State-Based Versioning",
+      "definition": "A versioning configuration where the version series changes based on the life cycle state in which a revision is conducted. Once a new version sequence starts (e.g., switching from numeric to alpha), the previous sequence is no longer used."
+    },
+    {
+      "term": "Workflow Template",
+      "definition": "A configurable process definition composed of nodes and links that automates business process tasks. Each template is designed to manage a specific object type and is applied to an advanced life cycle for that object type."
+    },
+    {
+      "term": "Activity Node",
+      "definition": "A workflow node that represents a step where users must perform a task or make a business decision. Users receive activities as tasks in their Tasks table with instructions, object links, and a Complete Task button."
+    },
+    {
+      "term": "Connector Node",
+      "definition": "A workflow node that controls activity execution using preset requirements. Types include Start (process entry point), And (waits for all inputs), Or (continues on any input), Conditional (Java-based criteria), and Threshold (waits for N inputs)."
+    },
+    {
+      "term": "Robot Node",
+      "definition": "A workflow node that automates system tasks. Basic types include Notification, Checkpoint (method), and Timer robots. Advanced types include Application, Expression, Synchronization, and URL robots requiring Java/API knowledge."
+    },
+    {
+      "term": "Terminal Node",
+      "definition": "A workflow node that ends all or part of a process. The End terminal stops the entire process and removes active tasks. The Ground terminal ends a branch while allowing parallel branches to continue."
+    },
+    {
+      "term": "Link",
+      "definition": "A connection between workflow nodes that defines routing, events, and flow control. Links specify which actions occur when predecessor nodes complete events, determining the sequence of activity execution."
+    },
+    {
+      "term": "Loop Link",
+      "definition": "A special link type that re-enables nodes in a workflow loop for repeated execution. Required because finished nodes disable themselves, and ordinary links cannot restart disabled nodes."
+    },
+    {
+      "term": "Routing Event",
+      "definition": "An exit condition from a workflow activity (e.g., Approve, Reject, Release, Rework) that determines which outgoing link fires. When routing events are defined, they replace the default Complete event."
+    },
+    {
+      "term": "Block Process",
+      "definition": "A sub-process built and stored within a parent workflow template for organizing complex workflows into smaller, manageable groups. Can only be referenced by the parent workflow template."
+    },
+    {
+      "term": "Proxy Process",
+      "definition": "A reference to a standalone workflow template that can be reused across multiple parent workflow templates. Built independently and managed by the Workflow Administrator."
+    },
+    {
+      "term": "Background Queue",
+      "definition": "A server-side processing queue that handles deferred Windchill tasks such as email notifications, life cycle processing, and workflow execution. Configured through the wt.properties file and managed via the Queue Management utility."
+    },
+    {
+      "term": "WfPropagationQueue",
+      "definition": "A workflow queue that processes state changes for connectors, assigned activities, and links. Handles routing expressions and transition expressions associated with workflow state changes."
+    },
+    {
+      "term": "WfUserWorkQueue",
+      "definition": "A workflow queue that instantiates workflow robots and executes workflow robot actions. Expression robots and other automated tasks are processed through this queue."
+    },
+    {
+      "term": "WfScheduleQueue",
+      "definition": "A workflow queue that processes timed events including deadline checks and expression-based Synchronization Robot executions."
+    },
+    {
+      "term": "Pool Queue",
+      "definition": "A queue type that processes entries in parallel using dynamically generated daemon threads. Each pool queue has one main thread that creates worker threads based on the wt.queue.execEntriesCount property (default: 6)."
+    },
+    {
+      "term": "Queue Pooling",
+      "definition": "A configuration of multiple parallel WfUserWorkQueue or WfPropagationQueue instances for workflow load balancing. Jobs are distributed in a circular manner across queues in the pool."
+    },
+    {
+      "term": "Dedicated Queue",
+      "definition": "A queue tied to a specific workflow template that isolates its processing from other workflows. Useful for frequently used or complex workflow templates with long-running queue entries."
+    }
+  ]
+}

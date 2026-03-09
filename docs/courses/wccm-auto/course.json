@@ -1,0 +1,48 @@
+{
+  "id": "wccm-auto",
+  "title": "Windchill: Automate Change Processes",
+  "description": "Configure life cycles and workflow templates to automate change processes. Understand life cycle types, transitions, workflow design approaches, and queue management for tuning workflow performance.",
+  "prerequisite": "Windchill: Access Control",
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Life Cycle Fundamentals",
+      "description": "Understand life cycle concepts including phases, gates, states, and transitions. Identify business processes, compare basic and advanced life cycle types, and create life cycle templates.",
+      "estimatedMinutes": 30,
+      "topicCount": 5,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m1-life-cycle-fundamentals.json",
+      "quizFile": "quizzes/q1-life-cycle-fundamentals.json"
+    },
+    {
+      "id": "m2",
+      "title": "Life Cycle Configuration",
+      "description": "Configure life cycle transitions, object initialization rules, version series, role participation, access control, and workflow association. Apply life cycle best practices.",
+      "estimatedMinutes": 35,
+      "topicCount": 5,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m2-life-cycle-configuration.json",
+      "quizFile": "quizzes/q2-life-cycle-configuration.json"
+    },
+    {
+      "id": "m3",
+      "title": "Workflow Templates",
+      "description": "Design and build workflow templates using activities, connectors, robots, terminal nodes, and links. Compare workflow design approaches and simplify complex processes with block and proxy processes.",
+      "estimatedMinutes": 50,
+      "topicCount": 7,
+      "exerciseTopicStart": 6,
+      "contentFile": "modules/m3-workflow-templates.json",
+      "quizFile": "quizzes/q3-workflow-templates.json"
+    },
+    {
+      "id": "m4",
+      "title": "Tune Workflow Processes",
+      "description": "Monitor and tune workflow performance using background queues, pool queues, queue pooling, and dedicated queues. Troubleshoot workflow queue entries.",
+      "estimatedMinutes": 40,
+      "topicCount": 6,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m4-tune-workflow-processes.json",
+      "quizFile": "quizzes/q4-tune-workflow-processes.json"
+    }
+  ]
+}

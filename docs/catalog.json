@@ -92,14 +92,15 @@
           "comingSoon": true
         },
         {
-          "id": "wc-autochange",
-          "title": "Automate Change",
-          "description": "Configure and automate change management workflows and processes.",
+          "id": "wccm-auto",
+          "title": "Automate Change Processes",
+          "description": "Configure life cycles and workflow templates to automate change processes. Understand queue management for tuning workflow performance.",
           "pdfFile": "WCCM-AUTO-Training-Guide.pdf",
-          "modules": 0,
-          "estimatedHours": 4,
+          "prerequisite": "wcba-accs",
+          "modules": 4,
+          "estimatedHours": 3,
           "locales": ["en"],
-          "comingSoon": true
+          "comingSoon": false
         },
         {
           "id": "wc-changeimpl",

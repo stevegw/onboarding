@@ -1,0 +1,58 @@
+{
+  "moduleId": "m4",
+  "title": "Tune Workflow Processes Knowledge Check",
+  "questions": [
+    {
+      "id": "m4-kc-001",
+      "question": "What does the Queue Management utility display when a queue has failed entries?",
+      "options": [
+        "A pop-up alert is sent to all system administrators automatically",
+        "The queue is automatically stopped and disabled until the issue is resolved",
+        "The Severe/Failed Entries column shows a count, and the method server log should be analyzed for root cause",
+        "Failed entries are deleted from the queue and logged to a separate error database"
+      ],
+      "answerIndex": 2,
+      "rationale": "Failed entries appear in the Severe/Failed Entries column of the Queue Management table. They indicate a processing failure, and the method server log must be analyzed to determine the root cause. The queue is not automatically stopped, no pop-up is sent, and entries are not auto-deleted.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-002",
+      "question": "Which workflow queue is responsible for instantiating workflow robots and executing robot actions such as expression robots?",
+      "options": [
+        "WfPropagationQueue",
+        "WfUserWorkQueue",
+        "WfScheduleQueue",
+        "WfExpressionQueue"
+      ],
+      "answerIndex": 1,
+      "rationale": "WfUserWorkQueue handles the instantiation of workflow robots and the execution of robot actions, including expression robots. WfPropagationQueue handles state change propagation for connectors and links. WfScheduleQueue handles timed events and deadline checks. WfExpressionQueue does not exist in Windchill.",
+      "topic": "m4t2"
+    },
+    {
+      "id": "m4-kc-003",
+      "question": "What is the primary reason to configure queue pooling in Windchill?",
+      "options": [
+        "To enable parallel processing of workflow entries, which is not available by default",
+        "To increase the number of worker threads within a single queue",
+        "To provide fault tolerance or distribute load across multiple background method servers",
+        "To create dedicated queues for specific workflow templates"
+      ],
+      "answerIndex": 2,
+      "rationale": "Queue pooling creates multiple queue instances for fault tolerance (if one queue fails, others continue) or multi-server load balancing. Parallel processing is already enabled by default through pool queues with worker threads. Queue pooling does not increase threads within a single queue, and dedicated queues are a separate mechanism configured via the dedicatedQueueMode property.",
+      "topic": "m4t3"
+    },
+    {
+      "id": "m4-kc-004",
+      "question": "In a pool queue, what controls the number of worker threads that can process entries simultaneously?",
+      "options": [
+        "The wt.workflow.engine.userWorkPoolSize property",
+        "The wt.queue.execEntriesCount property (default: 6)",
+        "The wt.queue.PoolQueue.threadKeepAlive property (default: 5)",
+        "The number of active workflow processes currently running"
+      ],
+      "answerIndex": 1,
+      "rationale": "The wt.queue.execEntriesCount property sets the default number of worker threads for pool queues (default: 6). Individual queues can also be configured with wt.queue.PoolQueue.<queue_name>.ThreadPoolSize. The userWorkPoolSize property controls queue pooling (number of queue instances), not thread count. The threadKeepAlive property controls how long idle threads persist, and active process count does not directly set thread limits.",
+      "topic": "m4t2"
+    }
+  ]
+}
