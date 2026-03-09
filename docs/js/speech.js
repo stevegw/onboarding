@@ -529,7 +529,7 @@
       var tag = e.target.tagName;
       if (tag === "BUTTON" || tag === "A" || tag === "INPUT" || tag === "SELECT" ||
           tag === "TEXTAREA" || tag === "LABEL" || tag === "OPTION") return;
-      if (e.target.closest("button, a, input, select, textarea, label, .sb-actions, .narr-bar, .match-container, .sort-container, .reveal-card, .exercise-step")) return;
+      if (e.target.closest("button, a, input, select, textarea, label, .sb-actions, .narr-bar")) return;
 
       // Hide highlight overlay before position detection — it can
       // sit on top of text and cause caretRangeFromPoint to miss
