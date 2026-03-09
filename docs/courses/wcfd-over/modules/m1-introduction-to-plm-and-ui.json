@@ -1,0 +1,474 @@
+{
+  "id": "m1",
+  "title": "Introduction to PLM and the UI",
+  "description": "Understand product life cycle management concepts, the transition from PDM to PLM, and explore the Windchill user interface including the Home page, Navigator, and workspace customization.",
+  "topics": [
+    {
+      "id": "m1t1",
+      "title": "What is Product Life Cycle Management?",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Every product follows a life cycle — from the initial spark of an idea through design, manufacturing, and ongoing service. At each stage, teams generate critical data: documents, concept sketches, MCAD and ECAD models, software, work instructions, service procedures, user manuals, and manufacturing processes. The more complex the product, the more complex this generated data becomes. And the longer a product remains in service, the longer that data must be stored, retrieved, updated, and modified."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Product Life Cycle"
+        },
+        {
+          "type": "paragraph",
+          "text": "<strong>Product Life Cycle Management (PLM)</strong> is the process of managing the complete journey of a product from inception through retirement. PLM ensures that the right data is available to the right people at the right time — across every stage of the product's life. It is the foundation of a <em>digital thread</em> strategy, connecting all product data in a continuous, traceable flow."
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Life Cycle Stage",
+            "Key Activities",
+            "Data Generated"
+          ],
+          "rows": [
+            [
+              "Requirements",
+              "Define what the product must do and the constraints it must meet",
+              "Requirements documents, regulatory specs, concept sketches"
+            ],
+            [
+              "Design",
+              "Create detailed product definitions using CAD, simulation, and analysis",
+              "MCAD/ECAD models, software, specifications, BOMs"
+            ],
+            [
+              "Manufacture",
+              "Build the product according to design specifications",
+              "Work instructions, manufacturing processes, quality records"
+            ],
+            [
+              "Service",
+              "Maintain, repair, and support the product in the field",
+              "Service procedures, user manuals, field change notices"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "PLM is the foundation of a <strong>digital thread</strong> strategy. A digital thread connects every piece of product data — from initial requirements through design, manufacturing, and service — into a single traceable flow, making data available to the right people at the right time."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the four product life cycle stages in the correct order:",
+          "items": [
+            "Requirements",
+            "Design",
+            "Manufacture",
+            "Service"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Every product follows a life cycle through requirements, design, manufacture, and service",
+        "Each stage generates critical data that must be stored, retrieved, and managed over the product's lifetime",
+        "PLM manages the complete journey of a product from inception to retirement",
+        "PLM is the foundation of a digital thread strategy, connecting product data across all stages"
+      ]
+    },
+    {
+      "id": "m1t2",
+      "title": "From PDM to PLM",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Before PLM, organizations relied on <strong>Product Data Management (PDM)</strong> systems to manage their design files. PDM works like a digital filing cabinet with tools to simplify work — it controls design files across CAD systems and ECAD tools. However, PDM has a significant limitation: it is <em>document-based</em>, meaning product data is hidden within individual documents rather than being independently accessible and interconnected."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "PDM vs. PLM"
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Aspect",
+            "PDM (Product Data Management)",
+            "PLM (Product Life Cycle Management)"
+          ],
+          "rows": [
+            [
+              "Approach",
+              "Document-based — product data lives inside files",
+              "Part-centric — data is linked to defined parts (WTParts)"
+            ],
+            [
+              "Data Model",
+              "Files and folders organized by project",
+              "Structured BOM with parts as basic elements"
+            ],
+            [
+              "Scope",
+              "Controls design files across CAD systems",
+              "Manages the entire product life cycle across disciplines"
+            ],
+            [
+              "Capabilities",
+              "File check-in/check-out, version control, search",
+              "Change management, configuration management, traceability, impact analysis"
+            ],
+            [
+              "Limitations",
+              "Product data hidden within documents",
+              "Requires organizational commitment to part-centric processes"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "PLM takes a <strong>part-centric</strong> approach. In Windchill, parts (called <em>WTParts</em>) are the basic building blocks. Once parts are defined, all relevant data — CAD models, documents, requirements — is linked to them, creating a structured <strong>Bill of Materials (BOM)</strong>. This part-centric model enables change and configuration management, business rules enforcement, traceability, and impact analyses. PLM becomes the central repository for the BOM and all downstream modifications."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "PLM Across Product Development"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Early Stage",
+              "back": "PLM provides BOM capabilities to define the initial product structure. Teams begin organizing parts and assemblies before detailed design work starts."
+            },
+            {
+              "front": "Concept & Development",
+              "back": "PLM adds CAD data management alongside BOM. Design engineers create 3D models and associate them with parts, building a rich product definition."
+            },
+            {
+              "front": "Manufacturing",
+              "back": "PLM supports supplier management, manufacturing BOMs, and process planning. Part data flows downstream to production without manual re-entry."
+            },
+            {
+              "front": "Product Deployment",
+              "back": "PLM manages service BOMs and product configuration. Field teams access accurate, up-to-date information for maintenance and support."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "By moving from PDM to PLM, organizations can reduce the number of disconnected systems they need to manage. PLM consolidates design data, BOM management, change control, and downstream processes into a single platform."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each product development stage to how PLM is used:",
+          "pairs": [
+            {
+              "left": "Early Stage",
+              "right": "BOM capabilities to define initial product structure"
+            },
+            {
+              "left": "Concept & Development",
+              "right": "BOM plus CAD data management for detailed design"
+            },
+            {
+              "left": "Manufacturing",
+              "right": "Supplier management and manufacturing BOMs"
+            },
+            {
+              "left": "Product Deployment",
+              "right": "Service BOMs and product configuration management"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "PDM is a document-based approach that controls design files but hides product data within documents",
+        "PLM uses a part-centric approach with WTParts as basic elements, linking all data to defined parts",
+        "PLM enables change management, configuration management, traceability, and impact analysis",
+        "PLM spans the entire product development cycle — from early BOM definition through manufacturing and service"
+      ]
+    },
+    {
+      "id": "m1t3",
+      "title": "The Windchill User Interface",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Casey Johnson is a mechanical engineer newly hired at PTC Tools, a company that designs and manufactures power tools. Casey has been assigned to the belt sander production team and is shadowing Mei Cheng, a senior design engineer, to learn the Windchill environment. Let's follow Casey as she explores the key components of the Windchill user interface."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Key UI Components"
+        },
+        {
+          "type": "paragraph",
+          "text": "The Windchill user interface is organized around four key areas that you will use constantly: the <strong>Home page</strong>, the <strong>Navigator</strong>, <strong>Quick Links</strong>, and <strong>Global Search</strong>. The Home page is your starting point — a customizable workspace displaying tables of information relevant to your daily work. The Navigator lets you find and browse files, and can be pinned, expanded, or collapsed. Quick Links provide fast access to commonly used tools, preferences, and the Help system. Global Search (also called simple search) sits in the header for quickly finding objects."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Home Page Tables"
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Table",
+            "Purpose"
+          ],
+          "rows": [
+            [
+              "Tasks",
+              "Work items assigned to you — action items that need your attention"
+            ],
+            [
+              "Updates",
+              "Recently changed objects — keeps you informed about modifications"
+            ],
+            [
+              "Checked-Out Work",
+              "Objects you currently have checked out for editing"
+            ],
+            [
+              "Packages",
+              "Collaboration with external parties — shared collections of objects"
+            ],
+            [
+              "Workspaces",
+              "Your private management area for organizing personal work"
+            ],
+            [
+              "Discussions",
+              "Online forums referencing Windchill objects — team communication threads"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Pin the Navigator panel so it stays expanded while you work. This gives you continuous access to Browse, search, and product navigation without needing to reopen it each time."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can control which tables are visible on your Home page using the <strong>Customize</strong> menu. This lets you tailor the Home page to show only the information most relevant to your role and daily workflow."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each Windchill UI component to its function:",
+          "pairs": [
+            {
+              "left": "Home Page",
+              "right": "Customizable starting point with tables for tasks, updates, and work items"
+            },
+            {
+              "left": "Navigator",
+              "right": "Find and browse files, expandable panel with Browse tab and Recent Products"
+            },
+            {
+              "left": "Quick Links",
+              "right": "Fast access to commonly used tools, preferences, and the Help system"
+            },
+            {
+              "left": "Global Search",
+              "right": "Header-based search for quickly finding objects across Windchill"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Windchill UI is organized around four key areas: Home page, Navigator, Quick Links, and Global Search",
+        "The Home page displays customizable tables including Tasks, Updates, Checked-Out Work, Packages, Workspaces, and Discussions",
+        "The Customize menu controls which tables are visible on your Home page",
+        "The Navigator can be pinned, expanded, or collapsed for convenient browsing"
+      ]
+    },
+    {
+      "id": "m1t4",
+      "title": "Browse the Windchill User Interface",
+      "estimatedMinutes": 7,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will sign in to Windchill, explore the Home page and Navigator, discover the products available to you, and view team members assigned to a product context."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "You need access to the Windchill training environment to complete this exercise. When prompted for an application, select <strong>Windchill Client</strong>. Wait a few minutes for the server to fully initialize before proceeding."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex1",
+          "title": "Browse the Windchill User Interface",
+          "objective": "Sign in to Windchill, explore the Home page and Navigator, discover available products, and view team members.",
+          "tasks": [
+            {
+              "id": "ex1-t1",
+              "title": "Sign In and Access UI Overview",
+              "steps": [
+                {
+                  "action": "Select Windchill Client when prompted for the application.",
+                  "detail": "The Windchill Client command window will open while the server starts up.",
+                  "hint": "Wait a few minutes for Windchill to fully initialize before proceeding."
+                },
+                {
+                  "action": "Select Casey Johnson from the sign-in options.",
+                  "detail": "This training environment provides preset user accounts for practice.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the Quick Links menu, then select Help > Welcome to Windchill.",
+                  "detail": "The Welcome window provides an overview of key UI component locations.",
+                  "hint": null
+                },
+                {
+                  "action": "Review the UI overview and close the Welcome to Windchill window.",
+                  "detail": "Familiarize yourself with the location of the Navigator, Global Search, and Quick Links.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex1-t2",
+              "title": "Explore the Navigator and Products",
+              "steps": [
+                {
+                  "action": "Expand the Navigator panel by clicking the Navigator bar.",
+                  "detail": "The Navigator lets you find and browse for files and information stored in Windchill.",
+                  "hint": null
+                },
+                {
+                  "action": "Resize the Navigator panel by dragging the green line on the right edge.",
+                  "detail": "Adjust the panel width to your preference for comfortable browsing.",
+                  "hint": null
+                },
+                {
+                  "action": "Pin the Navigator panel by clicking the Pin Navigator icon.",
+                  "detail": "Pinning keeps the Navigator expanded so it does not collapse when you click elsewhere.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the Browse tab and click the Recent Products icon, then View All.",
+                  "detail": "This shows all products you have access to as Casey Johnson.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Belt Sander to open the product context.",
+                  "detail": "This is the product you are assigned to work with in the training environment.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex1-t3",
+              "title": "View Your Team",
+              "steps": [
+                {
+                  "action": "In the Navigator Browse pane, expand the Belt Sander product.",
+                  "detail": "Expanding reveals navigation options like Team, Folders, and Details.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the Team link to view the Belt Sander team members.",
+                  "detail": "The Team page shows all members and their roles within this product context.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the Home icon to return to the Home page.",
+                  "detail": "The Home icon is always available in the header for quick navigation back to your starting point.",
+                  "hint": null
+                },
+                {
+                  "action": "Unpin the Navigator panel.",
+                  "detail": "Keep the Navigator unpinned when not actively browsing to maximize your workspace area.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Welcome to Windchill window provides a quick overview of the UI layout",
+        "The Navigator can be expanded, resized, and pinned for convenient access to products and files",
+        "The Browse tab in the Navigator lets you view all products you have access to",
+        "The Team page shows members and their roles within a product context"
+      ]
+    },
+    {
+      "id": "m1t5",
+      "title": "Tailor the Home Page",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will customize your Windchill Home page by adding relevant tables and rearranging them for efficient access to the information you use most often."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex2",
+          "title": "Tailor the Home Page",
+          "objective": "Customize your Windchill Home page by adding relevant tables and rearranging them for efficient access.",
+          "tasks": [
+            {
+              "id": "ex2-t1",
+              "title": "Add Tables to the Home Page",
+              "steps": [
+                {
+                  "action": "Click the Home icon to display your Home page.",
+                  "detail": "The Home page is your starting point in Windchill and the hub for your daily workflow.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Customize to open the table selection list.",
+                  "detail": "The Customize menu controls which tables are visible on your Home page.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the following tables: Tasks, Updates, Checked-Out Work, Packages, Discussions.",
+                  "detail": "These tables provide quick access to your most frequently used information.",
+                  "hint": "Some tables may already be selected by default."
+                },
+                {
+                  "action": "Click outside the list to close it.",
+                  "detail": "The selected tables now appear on your Home page.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex2-t2",
+              "title": "Rearrange the Tables",
+              "steps": [
+                {
+                  "action": "Drag the Checked-Out Work link from the far-right side to the far-left side of the list at the top.",
+                  "detail": "Moving Checked-Out Work to the top gives you immediate visibility of items you are actively editing.",
+                  "hint": null
+                },
+                {
+                  "action": "Drag the Updates link to place it after Checked-Out Work.",
+                  "detail": "This places your most time-sensitive information at the top of the page.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the Tasks link at the top of the page to scroll down and display the My Tasks table.",
+                  "detail": "Clicking a table name in the header scrolls directly to that table on the page.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Customize menu lets you select which tables appear on your Home page",
+        "Tables can be rearranged by dragging their links to change the display order",
+        "Placing frequently used tables like Checked-Out Work at the top improves daily efficiency",
+        "Clicking a table name in the header scrolls directly to that table on the page"
+      ]
+    }
+  ]
+}

@@ -9,21 +9,21 @@
       "icon": "&#9881;",
       "courses": [
         {
-          "id": "wc-overview",
+          "id": "wcfd-over",
           "title": "Windchill Fundamentals Overview",
-          "description": "Comprehensive introduction to Windchill PLM fundamentals, navigation, and core concepts.",
+          "description": "Explore how Windchill provides the tools to organize and access product data throughout the product life cycle. Navigate the user interface, browse and search for data, work with tables, and modify objects.",
           "pdfFile": "WCFD-OVER-Training-Guide.pdf",
-          "modules": 0,
+          "modules": 4,
           "estimatedHours": 4,
           "locales": ["en"],
-          "comingSoon": true
+          "comingSoon": false
         },
         {
           "id": "wcfd-ebom",
           "title": "Fundamentals of Engineering BOM (eBOM)",
           "description": "Learn to create, filter, and work with an engineering bill of materials (eBOM) using the Product Structure Browser.",
           "pdfFile": "WCFD-EBOM-Training-Guide.pdf",
-          "prerequisite": "wc-overview",
+          "prerequisite": "wcfd-over",
           "modules": 4,
           "estimatedHours": 2,
           "locales": ["en"],

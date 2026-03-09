@@ -1,0 +1,71 @@
+{
+  "moduleId": "m2",
+  "title": "Navigate Data Knowledge Check",
+  "questions": [
+    {
+      "id": "m2-kc-001",
+      "question": "Which of the following is used to organize data storage within Windchill?",
+      "options": [
+        "Folders",
+        "Business objects",
+        "Contexts",
+        "Relationships"
+      ],
+      "answerIndex": 2,
+      "rationale": "Contexts organize the Windchill database in alignment with how a company operates. Each context has data, a team, and policies. Folders are a storage structure within a context but do not organize the database at the top level. Business objects are the data itself, and relationships connect objects to each other.",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-002",
+      "question": "Which relationship type connects an object to the latest version of another object?",
+      "options": [
+        "Usage relationship",
+        "Description relationship",
+        "Reference relationship",
+        "Structure relationship"
+      ],
+      "answerIndex": 2,
+      "rationale": "A Reference relationship connects an object to the latest version of another object (e.g., the user manual references the belt sander). A Description relationship connects a specific version to a specific version. A Usage relationship connects a parent to a child in a structure. There is no \"Structure\" relationship type in Windchill.",
+      "topic": "m2t2"
+    },
+    {
+      "id": "m2-kc-003",
+      "question": "Which Windchill entity provides a central location for accessing details about, and performing actions on, an object?",
+      "options": [
+        "Mini information page",
+        "Navigator Browse tab",
+        "Folder Contents table",
+        "Information page"
+      ],
+      "answerIndex": 3,
+      "rationale": "The Information page is the central location for ALL information about an object, including attributes, relationships, history, and actions. The mini information page shows only basic attributes on hover. The Navigator Browse tab is used to browse contexts, and the Folder Contents table lists objects within a folder.",
+      "topic": "m2t3"
+    },
+    {
+      "id": "m2-kc-004",
+      "question": "What does the breadcrumb trail at the top of a Windchill page allow you to do?",
+      "options": [
+        "Search for objects by keyword across all contexts",
+        "Save your current search criteria for future use",
+        "Navigate quickly through the folder hierarchy by clicking linked elements",
+        "View a list of all recently modified objects in the system"
+      ],
+      "answerIndex": 2,
+      "rationale": "The breadcrumb trail displays the navigation hierarchy (e.g., Products > Belt Sander > Windchill Parts) with each element as a clickable link, allowing quick navigation through folder structures. It does not perform searches, save criteria, or show recently modified objects.",
+      "topic": "m2t3"
+    },
+    {
+      "id": "m2-kc-005",
+      "question": "What is the key difference between a standard global search and an index search in Windchill?",
+      "options": [
+        "Standard search uses wildcards while index search does not",
+        "Standard search applies keywords to names and numbers only, while index search also searches attributes and content",
+        "Index search is limited to a single context while standard search spans all contexts",
+        "Index search requires saved search criteria while standard search does not"
+      ],
+      "answerIndex": 1,
+      "rationale": "Standard search applies keywords to object names and numbers only, while index search has expanded capability that applies keywords to attributes AND content within files. Both search types support wildcards, both can span multiple contexts, and neither requires saved criteria.",
+      "topic": "m2t4"
+    }
+  ]
+}

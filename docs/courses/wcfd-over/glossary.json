@@ -1,0 +1,124 @@
+{
+  "terms": [
+    {
+      "term": "Product Life Cycle Management (PLM)",
+      "definition": "The strategic process of managing the complete journey of a product from inception to retirement. PLM organizes, creates, stores, and provides access to data generated throughout the product life cycle, enabling collaboration between multidisciplinary teams."
+    },
+    {
+      "term": "Product Data Management (PDM)",
+      "definition": "A document-based digital filing system for managing product data. PDM controls design files across CAD systems and other environments. As organizations grow, PDM naturally matures into the part-centric approach of PLM."
+    },
+    {
+      "term": "Windchill Part",
+      "definition": "A database representation of a physical item or embedded software used to build a product. Windchill parts (formerly WTParts) connect users to all related objects and can reference each other in a hierarchy called a product structure or BOM."
+    },
+    {
+      "term": "CAD Document",
+      "definition": "A business object that stores files developed in a CAD authoring tool such as Creo. Windchill displays the appropriate icon based on the file type. CAD documents can be linked to form a CAD structure hierarchy connected to a product structure."
+    },
+    {
+      "term": "Document",
+      "definition": "A business object that stores and manages content in Windchill. While typically used for documentation files, document objects can store any type of electronic file. Documents can be linked to form a document structure."
+    },
+    {
+      "term": "Business Object",
+      "definition": "Any kind of business data added to and managed within Windchill. Business objects have three primary purposes: storing attributes, storing content, and managing relationships that reference other objects in the system."
+    },
+    {
+      "term": "Bill of Materials (BOM)",
+      "definition": "A hierarchically organized list of parts and materials required to build a product. Also known as a product structure. BOMs are central to PLM and can be managed across engineering, manufacturing, and service contexts."
+    },
+    {
+      "term": "Context",
+      "definition": "A framework for organizing data in Windchill aligned with company operations. Contexts have three critical components: data unique to a product, a team of users, and a defined set of policies and processes. Contexts can be defined at site, organization, or application level."
+    },
+    {
+      "term": "Product Context",
+      "definition": "An application context that stores information related to a specific product or deliverable, including product definitions, structures, parts, and documents."
+    },
+    {
+      "term": "Library Context",
+      "definition": "An application context for storing information shared across the organization, such as standard components, common parts, and company-wide documents. Libraries eliminate redundant parts and maximize purchasing power."
+    },
+    {
+      "term": "Home Page",
+      "definition": "The starting point in Windchill that provides access to user-specific information including tasks, checked-out work, updates, packages, and discussions. The Home page can be customized to show the tables most relevant to your work."
+    },
+    {
+      "term": "Navigator",
+      "definition": "A panel used to find and browse for files and other information stored in Windchill. The Navigator can be expanded, pinned in place, and used to access products, libraries, and search functionality."
+    },
+    {
+      "term": "Information Page",
+      "definition": "A central location for accessing all information about and performing actions on a particular object. While tables show subset information, the Information page displays everything available for an object in one location."
+    },
+    {
+      "term": "Breadcrumb Trail",
+      "definition": "A navigation hierarchy displayed at the top of the Windchill page showing the path to the current table or object, including the context and folder structure. Breadcrumb elements serve as clickable links to their respective pages."
+    },
+    {
+      "term": "Description Relationship",
+      "definition": "A relationship that connects a specific version of one object to a specific version of another. Used when one object describes another, such as a drawing describing a part."
+    },
+    {
+      "term": "Reference Relationship",
+      "definition": "A relationship that connects an object to the latest version of another object. Used when one object references another, such as a user manual referencing a product."
+    },
+    {
+      "term": "Usage Relationship",
+      "definition": "A relationship that connects objects in a structure as parent and child. Used to build product structures, such as a belt sander using a motor and a handle."
+    },
+    {
+      "term": "Global Search",
+      "definition": "A search method available in the Windchill header that searches by keyword across contexts the user has access to. The scope is controlled by object type selection and keyword criteria. Also known as simple search."
+    },
+    {
+      "term": "Advanced Search",
+      "definition": "A search method that enables filtering by object type, context, criteria (such as life cycle state), and saved reports. More targeted than global search, allowing users to narrow results precisely."
+    },
+    {
+      "term": "Check Out",
+      "definition": "A command that creates a working copy of an object and locks it from modification by other users. The check-out action signals your intent to modify the object while keeping a read-only copy available to others."
+    },
+    {
+      "term": "Check In",
+      "definition": "A command that removes the lock placed during checkout, stores a new iteration of the object, and makes it available to other users for modification. The previous version is kept in version history."
+    },
+    {
+      "term": "Version",
+      "definition": "An attribute composed of a revision (letter) and iteration (number) separated by a decimal point (e.g., A.1). The revision tracks major changes, while the iteration tracks modifications within a revision."
+    },
+    {
+      "term": "Life Cycle",
+      "definition": "Defines the stages or states that a business object can exist in during its lifetime, such as In Work, Released, or Obsolete. Life cycles model the commercialization process and control object maturity."
+    },
+    {
+      "term": "Workflow",
+      "definition": "A process that captures a business procedure related to an object. Workflows route development and review tasks to appropriate users automatically, moving objects through life cycle states as milestones are completed."
+    },
+    {
+      "term": "Access Control",
+      "definition": "Policy rules set in domains for objects of a specific type and life cycle state that grant, deny, or absolutely deny permissions. Access controls determine whether users can read, modify, create, delete, or revise objects."
+    },
+    {
+      "term": "Wildcard",
+      "definition": "Special characters used in searches to replace other characters. The asterisk (*) replaces zero or more characters, and the question mark (?) replaces exactly one character."
+    },
+    {
+      "term": "Pick a View",
+      "definition": "A dropdown list on Windchill tables that provides predetermined views or a Customize option to configure the table layout. Views can filter displayed objects or change the table column arrangement."
+    },
+    {
+      "term": "Windchill Next Gen UI",
+      "definition": "A collection of modernized features in Windchill providing an improved Home page, enhanced folder browsing, quick actions, smart column filtering, and multiple-level grouping. Activated via toggles in the UI."
+    },
+    {
+      "term": "PDMLink",
+      "definition": "The core Windchill module that manages product data including version control, change management, configuration management, CAD design information, product structures, and documents."
+    },
+    {
+      "term": "Digital Thread",
+      "definition": "The use of digital tools and representations for design, evaluation, and life cycle management. PLM is the foundation of a digital thread strategy that makes data available to the right people at the right time."
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "id": "wcfd-over",
+  "title": "Windchill: Fundamentals Overview",
+  "description": "Explore how Windchill provides the tools to organize and access product data throughout the product life cycle. Navigate the user interface, browse and search for data, work with tables, and modify objects using check out/check in and version control.",
+  "prerequisite": null,
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Introduction to PLM and the UI",
+      "description": "Understand product life cycle management concepts, the transition from PDM to PLM, and explore the Windchill user interface including the Home page, Navigator, and workspace customization.",
+      "estimatedMinutes": 30,
+      "topicCount": 5,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m1-introduction-to-plm-and-ui.json",
+      "quizFile": "quizzes/q1-introduction-to-plm-and-ui.json"
+    },
+    {
+      "id": "m2",
+      "title": "Navigate Data",
+      "description": "Browse product contexts, understand business objects and their relationships, and use global and advanced search methods to locate product data efficiently.",
+      "estimatedMinutes": 40,
+      "topicCount": 6,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m2-navigate-data.json",
+      "quizFile": "quizzes/q2-navigate-data.json"
+    },
+    {
+      "id": "m3",
+      "title": "Investigate Tables",
+      "description": "Work with Windchill tables to organize and display product data. Personalize table layouts, create custom views, and explore the Windchill Next Gen UI.",
+      "estimatedMinutes": 30,
+      "topicCount": 5,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m3-investigate-tables.json",
+      "quizFile": "quizzes/q3-investigate-tables.json"
+    },
+    {
+      "id": "m4",
+      "title": "Modify Data and Windchill Modules",
+      "description": "Modify objects using check out and check in, understand version control and process management, explore access controls, and survey the key Windchill modules.",
+      "estimatedMinutes": 30,
+      "topicCount": 5,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m4-modify-data-and-modules.json",
+      "quizFile": "quizzes/q4-modify-data-and-modules.json"
+    }
+  ]
+}

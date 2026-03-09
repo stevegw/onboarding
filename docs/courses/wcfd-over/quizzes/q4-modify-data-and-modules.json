@@ -1,0 +1,58 @@
+{
+  "moduleId": "m4",
+  "title": "Modify Data and Windchill Modules Knowledge Check",
+  "questions": [
+    {
+      "id": "m4-kc-001",
+      "question": "What must you do before modifying an object in Windchill?",
+      "options": [
+        "Delete the previous version to make room for the new one",
+        "Request approval from the site administrator",
+        "Check out the object to create a working copy and lock it",
+        "Change the life cycle state to Obsolete"
+      ],
+      "answerIndex": 2,
+      "rationale": "You must check out the object before modifying it. Checking out creates a working copy you can edit and locks the object so no other user can modify it simultaneously. Deleting the previous version is not required (versions are kept in history), administrator approval is not needed for checkout, and changing the state to Obsolete would retire the object rather than prepare it for editing.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-002",
+      "question": "Which is NOT a capability used to manage object maturity?",
+      "options": [
+        "Life Cycle",
+        "Workflow",
+        "Object",
+        "Team"
+      ],
+      "answerIndex": 2,
+      "rationale": "Windchill uses three capabilities to manage object maturity: Life Cycles (define states), Workflows (route tasks and move objects between states), and Teams (determine who receives tasks). 'Object' is not a process management capability — it is a generic term for the items being managed. Life Cycles, Workflows, and Teams work together as an integrated process management system.",
+      "topic": "m4t2"
+    },
+    {
+      "id": "m4-kc-003",
+      "question": "Which attribute of an access control rule specifies the operations a user is allowed to perform?",
+      "options": [
+        "Domain",
+        "Life Cycle State",
+        "Actor",
+        "Permissions"
+      ],
+      "answerIndex": 3,
+      "rationale": "Permissions specify the operations allowed — such as Read, Modify, Create, Delete, or Revise. Domain defines the area of Windchill where the rule applies, Life Cycle State specifies the maturity level at which the rule takes effect, and Actor identifies the user or role the rule applies to. All five attributes (including Object Type) must be defined for a complete access control rule.",
+      "topic": "m4t3"
+    },
+    {
+      "id": "m4-kc-004",
+      "question": "Which Windchill module provides the core product data management capabilities including version control, change management, and BOM management?",
+      "options": [
+        "ProjectLink",
+        "MPMLink",
+        "PDMLink",
+        "Navigate"
+      ],
+      "answerIndex": 2,
+      "rationale": "PDMLink is the foundational Windchill module that manages product data including version control, change management, configuration management, CAD design information, product structures (BOMs), and documents. ProjectLink handles project management, MPMLink manages manufacturing processes, and Navigate provides simplified access to PLM data for non-PLM users.",
+      "topic": "m4t4"
+    }
+  ]
+}

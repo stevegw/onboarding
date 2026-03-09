@@ -1,0 +1,58 @@
+{
+  "moduleId": "m1",
+  "title": "Introduction to PLM and the UI Knowledge Check",
+  "questions": [
+    {
+      "id": "m1-kc-001",
+      "question": "The Windchill PLM system organizes, creates, stores, and gives access to the _______ created throughout the product's life cycle.",
+      "options": [
+        "Data",
+        "Revenue",
+        "Contracts",
+        "Employees"
+      ],
+      "answerIndex": 0,
+      "rationale": "PLM manages the data created throughout the product's life cycle — including documents, CAD models, BOMs, work instructions, and service procedures. PLM is not concerned with managing revenue, contracts, or employee records; its focus is on product-related data across all life cycle stages.",
+      "topic": "m1t1"
+    },
+    {
+      "id": "m1-kc-002",
+      "question": "What is the key difference between PDM and PLM in how they organize product information?",
+      "options": [
+        "PDM uses cloud storage while PLM uses local storage",
+        "PDM is document-based while PLM uses a part-centric approach with WTParts",
+        "PDM supports multiple CAD systems while PLM supports only one",
+        "PDM is newer technology that replaces PLM"
+      ],
+      "answerIndex": 1,
+      "rationale": "The fundamental distinction is that PDM is document-based — product data is hidden inside files — while PLM takes a part-centric approach using WTParts as basic building blocks, with all relevant data (CAD models, documents, requirements) linked to defined parts. PDM is not newer than PLM, and both can work with multiple CAD systems.",
+      "topic": "m1t2"
+    },
+    {
+      "id": "m1-kc-003",
+      "question": "Which Windchill UI component lets you find and browse for files, and can be pinned to remain visible?",
+      "options": [
+        "Global Search",
+        "Quick Links menu",
+        "Navigator",
+        "Tasks table"
+      ],
+      "answerIndex": 2,
+      "rationale": "The Navigator is the panel that lets you find and browse for files and information stored in Windchill. It can be expanded, collapsed, resized, and pinned to stay visible. Global Search is for keyword-based searching, Quick Links provides access to tools and preferences, and the Tasks table displays assigned work items.",
+      "topic": "m1t3"
+    },
+    {
+      "id": "m1-kc-004",
+      "question": "Which menu should you access to select the tables that are visible on your Home page?",
+      "options": [
+        "Quick Links",
+        "Customize",
+        "Navigator",
+        "Preferences"
+      ],
+      "answerIndex": 1,
+      "rationale": "The Customize menu controls which tables are visible on the Home page. You can select from tables such as Tasks, Updates, Checked-Out Work, Packages, Workspaces, and Discussions. Quick Links provides access to tools and Help, the Navigator is for browsing files, and Preferences is for user settings.",
+      "topic": "m1t3"
+    }
+  ]
+}

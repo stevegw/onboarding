@@ -1,0 +1,458 @@
+{
+  "id": "m3",
+  "title": "Investigate Tables",
+  "description": "Work with Windchill tables to organize and display product data. Personalize table layouts, create custom views, and explore the Windchill Next Gen UI.",
+  "topics": [
+    {
+      "id": "m3t1",
+      "title": "Windchill Table Structure",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Throughout Windchill, product data is presented in <strong>tables</strong>. Objects appear as rows and their attributes appear as columns. Every time you open a folder, view search results, or look at your Home page, you are working with tables. Understanding how tables work — and how to manipulate them — is essential for working efficiently with large datasets."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Two Categories of Interaction"
+        },
+        {
+          "type": "paragraph",
+          "text": "Tables support two broad categories of interaction. First, you can <strong>view information</strong> — reading the data displayed in rows and columns, sorting it, filtering it, and adjusting the layout to focus on what matters. Second, you can <strong>perform actions</strong> on information — selecting objects and using toolbar icons or the Actions menu to check out, revise, delete, or otherwise modify those objects."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Key Table Tools"
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Tool",
+            "What It Does",
+            "How to Access"
+          ],
+          "rows": [
+            [
+              "Toolbar and Actions Menu",
+              "Perform actions on selected objects such as check out, revise, or delete",
+              "Use toolbar icons above the table or right-click an object to open the Actions menu"
+            ],
+            [
+              "Pick a View",
+              "Switch between predetermined views, apply filters, or customize the table layout",
+              "Click the dropdown arrow next to the current view name above the table"
+            ],
+            [
+              "Search in Table",
+              "Filter the table to show only objects containing a specified text string",
+              "Type a search term into the Search in table field above the table"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Use <strong>Search in table</strong> to quickly filter large datasets. Type any text string and the table instantly narrows to show only objects whose visible column values contain that string. Click the red X to clear the filter and restore the full table."
+        },
+        {
+          "type": "paragraph",
+          "text": "Beyond these three key tools, you can manipulate columns directly. <strong>Adjust column width</strong> by dragging the column border, <strong>reorder columns</strong> by dragging column headers left or right, and <strong>sort rows</strong> by clicking a column header. Some tables also have a <strong>Table Display Options</strong> button for additional features like \"View selected object.\" Drag handles at the bottom of a table let you resize the table height. The number, content, and order of rows and columns strongly affects your ability to work efficiently with large datasets."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each table feature to its function:",
+          "pairs": [
+            {
+              "left": "Toolbar and Actions Menu",
+              "right": "Perform actions like check out, revise, or delete on selected objects"
+            },
+            {
+              "left": "Pick a View",
+              "right": "Switch between predetermined views or customize the table layout"
+            },
+            {
+              "left": "Search in Table",
+              "right": "Filter the table to show only objects containing a specified text string"
+            },
+            {
+              "left": "Column Header Drag",
+              "right": "Reorder columns by dragging them to a new position in the table"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Windchill presents product data in tables with objects as rows and attributes as columns",
+        "Tables support two categories of interaction: viewing information and performing actions on information",
+        "The three key table tools are the Toolbar/Actions menu, Pick a View, and Search in table",
+        "Columns can be resized, reordered, and sorted directly by interacting with column headers"
+      ]
+    },
+    {
+      "id": "m3t2",
+      "title": "Table Personalization and Custom Views",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Windchill tables are highly personalizable. You can move columns, lock them in place, group data by column values, and create entirely custom views that persist for future use. These capabilities let you tailor any table to match your specific workflow and the information you need most."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Column Operations"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Move Columns",
+              "back": "Drag a column header left or right to reposition it in the table. For example, drag the Name column to the left of Number to put the most useful information where you need it."
+            },
+            {
+              "front": "Lock a Column",
+              "back": "Hover over a column header, click the dropdown arrow, and select <strong>Lock</strong>. A locked column stays visible when you scroll horizontally through wide tables. Unlock it using the same dropdown menu."
+            },
+            {
+              "front": "Group By This Field",
+              "back": "Hover over a column header, click the dropdown, and select <strong>Group By This Field</strong>. The table sorts and groups objects based on that column's values (e.g., group by Version). Toggle off by clearing the <strong>Show in Groups</strong> checkbox."
+            },
+            {
+              "front": "Unlock a Column",
+              "back": "Hover over the locked column header, click the dropdown arrow, and select <strong>Unlock</strong>. You must unlock a column before you can use Group By — grouping is not available while any column is locked."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "You <strong>cannot use Group By</strong> while a column is locked. If you need to group by a field, unlock all locked columns first, then apply the grouping."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Creating Custom Views"
+        },
+        {
+          "type": "paragraph",
+          "text": "Custom views let you save a specific combination of object filters, column selections, and sort orders for reuse. Administrators commonly create custom views for their teams, but any user can create personal custom views for their own efficiency. Once created, custom views appear in the <strong>Pick a View</strong> dropdown and are available every time you return to that table."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the steps to create a custom view in the correct order:",
+          "items": [
+            "Open the Pick a View dropdown and select Customize",
+            "Click the New View icon and name the view",
+            "Select the object types to include (e.g., Part)",
+            "Add filter criteria (e.g., State = In Work)",
+            "Select the columns to display",
+            "Set the sort order and click Finish"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Columns can be moved by dragging, locked to stay visible during horizontal scrolling, and grouped by field value",
+        "You cannot use Group By while a column is locked — unlock columns first before grouping",
+        "Custom views save a combination of object filters, column selections, and sort orders for reuse",
+        "Both administrators and individual users can create custom views for personal efficiency"
+      ]
+    },
+    {
+      "id": "m3t3",
+      "title": "Windchill Next Gen UI",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Starting with Windchill 13.1.2, PTC introduced the <strong>Windchill Next Gen UI</strong> — a collection of modernized features that enhance the user experience. Next Gen focuses on modernizing the Home page and enhancing folder browsing, offering a more streamlined and customizable interface alongside the classic Windchill experience."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Switching Between Classic and Next Gen"
+        },
+        {
+          "type": "paragraph",
+          "text": "The classic Home page remains the default in Windchill. To switch to the modernized experience, click the <strong>\"New Home\"</strong> toggle in the upper-right corner of the Home page. Similarly, click the <strong>\"New Folders\"</strong> toggle to activate the enhanced folder browsing experience. You can switch back to the classic UI at any time using the same toggles."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Classic UI vs. Next Gen UI"
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Area",
+            "Classic UI",
+            "Next Gen UI"
+          ],
+          "rows": [
+            [
+              "Home Page Layout",
+              "Traditional table-based layout with customizable table order",
+              "Modernized and simplified layout with quick actions and dynamic auto-updating graphs"
+            ],
+            [
+              "Finding Recent Data",
+              "Browse through Recent Products in the Navigator",
+              "Easily find recently used data directly from the Home page"
+            ],
+            [
+              "Folder Browsing",
+              "Standard table view with basic column controls",
+              "Powerful table controls with smart column filtering, multiple-level grouping, and auto-resizing columns"
+            ],
+            [
+              "Favorites & Export",
+              "Basic favorites functionality",
+              "New favorites and export capabilities for folder contents"
+            ],
+            [
+              "Column Management",
+              "Manual column resizing and reordering",
+              "Auto-resizing columns with the ability to pin columns in place"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "The Next Gen UI aims to <strong>minimize the need for custom applications</strong> by providing a customizable, modern interface out of the box. As new functionality is added with each Windchill release, the Next Gen UI continues to close the gap between what organizations need and what Windchill provides natively."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each Next Gen UI feature to the benefit it provides:",
+          "pairs": [
+            {
+              "left": "Quick Actions on Home Page",
+              "right": "Faster access to frequently performed tasks without navigating through menus"
+            },
+            {
+              "left": "Dynamic Auto-Updating Graphs",
+              "right": "Real-time visual summaries of product data status without manual refresh"
+            },
+            {
+              "left": "Smart Column Filtering",
+              "right": "More precise control over which data is visible in folder tables"
+            },
+            {
+              "left": "Multiple-Level Grouping",
+              "right": "Organize folder contents by several attributes simultaneously for deeper analysis"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Windchill Next Gen UI is a collection of modernized features introduced starting with Windchill 13.1.2",
+        "Switch to Next Gen using the \"New Home\" and \"New Folders\" toggles in the upper-right corner",
+        "Next Gen provides quick actions, dynamic graphs, smart filtering, and multiple-level grouping",
+        "Next Gen aims to minimize the need for custom applications by offering a customizable native interface"
+      ]
+    },
+    {
+      "id": "m3t4",
+      "title": "Personalize Tables",
+      "estimatedMinutes": 8,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will navigate to a product folder and personalize the table by reordering columns, locking a column in place, and grouping data by a column value."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "This exercise builds on your familiarity with the Belt Sander product context. Make sure you are signed in to Windchill as <strong>Casey Johnson</strong> before proceeding."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex5",
+          "title": "Personalize Tables",
+          "objective": "Navigate to a product folder and personalize the table by reordering columns, locking columns, and grouping data.",
+          "tasks": [
+            {
+              "id": "ex5-t1",
+              "title": "Navigate to a Folder",
+              "steps": [
+                {
+                  "action": "Click the Browse link in the Navigator and expand the Belt Sander product.",
+                  "detail": "Access the product context to view its data.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Folders in the Browse pane and select the Windchill Parts folder.",
+                  "detail": "This folder contains the parts for the belt sander product.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the red X next to the Search in table field to clear any existing filter.",
+                  "detail": "Start with the full unfiltered table view.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex5-t2",
+              "title": "Change Column Order and Lock",
+              "steps": [
+                {
+                  "action": "Drag the Name column header from the right side to the left side of the Number column.",
+                  "detail": "Reordering columns puts the most useful information where you need it.",
+                  "hint": null
+                },
+                {
+                  "action": "Hover over the Name column header and click the dropdown arrow that appears.",
+                  "detail": "The column dropdown provides table manipulation options.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Lock to lock the Name column in place.",
+                  "detail": "Locked columns remain visible when you scroll horizontally through wide tables.",
+                  "hint": null
+                },
+                {
+                  "action": "Scroll right to verify the Name column stays visible, then scroll back.",
+                  "detail": "This confirms the lock is working correctly.",
+                  "hint": null
+                },
+                {
+                  "action": "Hover over the Name column header dropdown and click Unlock.",
+                  "detail": "You need to unlock the column before you can perform Group By operations.",
+                  "hint": "Cannot Group By while a column is locked."
+                }
+              ]
+            },
+            {
+              "id": "ex5-t3",
+              "title": "Group Information by Column",
+              "steps": [
+                {
+                  "action": "Hover over the Version column header and click the dropdown arrow.",
+                  "detail": "Grouping helps organize related objects together.",
+                  "hint": null
+                },
+                {
+                  "action": "Click \"Group By This Field\" to sort the table based on object versions.",
+                  "detail": "Objects are now organized by their version number.",
+                  "hint": null
+                },
+                {
+                  "action": "Review how the table is now grouped by version.",
+                  "detail": "This helps identify which objects are at the same version level.",
+                  "hint": null
+                },
+                {
+                  "action": "Hover over the Version column header dropdown again.",
+                  "detail": "You can toggle grouping off to return to the normal view.",
+                  "hint": null
+                },
+                {
+                  "action": "Clear the \"Show in Groups\" checkbox to remove the grouping.",
+                  "detail": "Returns the table to its standard flat view.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Columns can be reordered by dragging their headers to a new position",
+        "Locking a column keeps it visible when scrolling horizontally through wide tables",
+        "Group By organizes table rows by a column's values, but requires all columns to be unlocked first",
+        "The Show in Groups checkbox toggles grouping on and off without losing your column layout"
+      ]
+    },
+    {
+      "id": "m3t5",
+      "title": "Create a Custom Table View",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create a custom table view that displays only In Work parts with specific columns and a sort order, then apply that view for immediate use."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex6",
+          "title": "Create a Custom Table View",
+          "objective": "Create a custom table view to display only In Work parts with specific columns and sorting.",
+          "tasks": [
+            {
+              "id": "ex6-t1",
+              "title": "Access the Customize Dialog",
+              "steps": [
+                {
+                  "action": "In the Navigator Browse pane, navigate to Belt Sander > Folders > Windchill Parts.",
+                  "detail": "Start from the folder containing the parts you want to view.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the dropdown arrow to the right of the Folder Contents view name.",
+                  "detail": "This opens the Pick a View list.",
+                  "hint": null
+                },
+                {
+                  "action": "Select Customize from the Pick a View list.",
+                  "detail": "Customize opens the view configuration dialog.",
+                  "hint": "You may need to scroll down in the Pick a View list."
+                }
+              ]
+            },
+            {
+              "id": "ex6-t2",
+              "title": "Create a New View",
+              "steps": [
+                {
+                  "action": "Click the New View icon and type \"All Working Windchill Parts\" in the Name field.",
+                  "detail": "Choose a descriptive name that reflects the filter criteria.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Description field, type \"Windchill parts currently in the In Work state\" and click Next.",
+                  "detail": "A description helps others understand what the view shows.",
+                  "hint": null
+                },
+                {
+                  "action": "Clear the \"Select all rows\" checkbox and select only the Part checkbox, then click Next.",
+                  "detail": "This filters the view to show only part objects.",
+                  "hint": null
+                },
+                {
+                  "action": "Select State in the Criteria field, click Add, set the Value to \"In Work\", and click Next.",
+                  "detail": "Adding state criteria limits results to parts currently being worked on.",
+                  "hint": null
+                },
+                {
+                  "action": "Hold Ctrl and select Last Modified, Modified by, State, and Version, then click the Add arrow to move them to Selected Columns.",
+                  "detail": "These columns provide the most useful information for tracking work in progress.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Next, set the First Sort column to Name, and click Finish.",
+                  "detail": "Sorting by name makes it easy to locate specific parts alphabetically.",
+                  "hint": null
+                },
+                {
+                  "action": "Click OK to confirm the refresh, then select \"All Working Windchill Parts\" from the Pick a View list.",
+                  "detail": "Your custom view is now available for reuse whenever you return to this table.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Custom views are created through the Pick a View > Customize > New View workflow",
+        "Each custom view specifies object types, filter criteria, visible columns, and sort order",
+        "Custom views appear in the Pick a View dropdown for quick reuse",
+        "Creating personal custom views improves efficiency when working with large or complex tables"
+      ]
+    }
+  ]
+}

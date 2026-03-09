@@ -1,0 +1,437 @@
+{
+  "id": "m4",
+  "title": "Modify Data and Windchill Modules",
+  "description": "Modify objects using check out and check in, understand version control and process management, explore access controls, and survey the key Windchill modules.",
+  "topics": [
+    {
+      "id": "m4t1",
+      "title": "Iteration and Revision Control",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Windchill tracks every modification to an object through a detailed version history. Understanding how versioning works is essential before you modify any product data, because it determines how changes are recorded, who can make changes, and how previous states of an object can be retrieved."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Object Versioning"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every object in Windchill has a <strong>version</strong> composed of two parts: a <strong>revision</strong> (letter) and an <strong>iteration</strong> (number), separated by a decimal point. For example, <code>A.1</code> is revision A, iteration 1. Out of the box, Windchill uses letters for revisions and numbers for iterations, though administrators may assign unique versioning schemes. Each time you modify and check in an object, the iteration number increments (A.1 to A.2). When you reach a product development milestone and need to create a new revision, the revision letter increments and the iteration resets (A.2 to B.1)."
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Action",
+            "What Happens",
+            "When to Use"
+          ],
+          "rows": [
+            [
+              "Check Out",
+              "Creates a working copy you can modify; creates a read-only checked-out copy visible to others; locks the object from modification by anyone else",
+              "Before making any changes to an object — signals your intent to modify"
+            ],
+            [
+              "Check In",
+              "Removes the lock, stores a new iteration, makes the updated object available to others; previous version kept in history",
+              "After completing your modifications — saves changes and releases the lock"
+            ],
+            [
+              "Revise",
+              "Creates a new revision version (increments letter, resets iteration to 1); typically sets life cycle state to In Work",
+              "At a product development milestone — before making changes to a released object"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "You <strong>must</strong> check out an object before modifying it. Checking out locks the object so no other user can modify it simultaneously. If you skip the checkout step, your changes cannot be saved. Other users will see a read-only checked-out copy while you work, and the object remains locked until you check it back in."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Version History"
+        },
+        {
+          "type": "paragraph",
+          "text": "Windchill maintains a complete version history for every object. A typical progression looks like this: <code>A.1</code> (object created) <code>A.2</code> (modified and checked in) <code>A.2 Released</code> (reached a milestone) <code>B.1 In Work</code> (new revision created for further changes). Business rules may prevent changes beyond certain life cycle states, and the version history enables comparisons between any two versions — whether comparing attributes or graphical representations."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange these version history events in the correct chronological order:",
+          "items": [
+            "A.1 — Object created",
+            "A.2 — Object modified and checked in",
+            "A.2 Released — Milestone reached",
+            "B.1 In Work — New revision for further changes"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "A version consists of a revision letter and an iteration number separated by a decimal (e.g., A.1, B.3)",
+        "Check Out locks an object for your exclusive modification; Check In saves a new iteration and releases the lock",
+        "Revise creates a new revision at a milestone, incrementing the letter and resetting the iteration to 1",
+        "Version history enables comparisons between any two versions and maintains a complete audit trail"
+      ]
+    },
+    {
+      "id": "m4t2",
+      "title": "Process Control",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Beyond version control, Windchill provides a comprehensive process management framework that governs how objects move through their life cycle. Three core elements work together to ensure that development and review activities follow your organization's established procedures: <strong>Life Cycles</strong>, <strong>Workflows</strong>, and <strong>Teams</strong>."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Three Process Control Elements"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Life Cycle",
+              "back": "Establishes the states an object can exist in — for example, <em>In Work</em>, <em>Under Review</em>, <em>Released</em>, and <em>Obsolete</em>. Life cycles model the commercialization process by defining which states are valid and in what order objects can transition between them."
+            },
+            {
+              "front": "Workflow",
+              "back": "Routes development and review tasks to the appropriate people automatically. As milestones are completed, workflows move the object to the appropriate life cycle state. Workflows enforce the sequence of approvals and reviews required before an object can advance."
+            },
+            {
+              "front": "Team",
+              "back": "Defines the roles and individuals within a product context. Windchill determines the appropriate person to send tasks to based on their role within the team — for example, sending a review task to the user assigned the Reviewer role."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "How They Work Together"
+        },
+        {
+          "type": "paragraph",
+          "text": "These three elements form an integrated system: the <strong>life cycle</strong> defines which states an object can occupy, the <strong>workflow</strong> automates the movement of objects between those states by routing tasks and enforcing approval sequences, and the <strong>team</strong> determines who receives those tasks based on role assignments. An administrator plans and develops these process elements; end users participate by accepting and completing the tasks assigned to them."
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Life cycles, workflows, and teams form an integrated process management system. The life cycle defines <em>what states</em> are possible, the workflow defines <em>how</em> objects move between states, and the team defines <em>who</em> performs the work. Together, they ensure every object follows a controlled, repeatable path from creation to release."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each process control element to its role in Windchill:",
+          "pairs": [
+            {
+              "left": "Life Cycle",
+              "right": "Defines the valid states an object can exist in and their transitions"
+            },
+            {
+              "left": "Workflow",
+              "right": "Routes tasks automatically and moves objects between life cycle states"
+            },
+            {
+              "left": "Team",
+              "right": "Determines who receives tasks based on their assigned role"
+            },
+            {
+              "left": "Administrator",
+              "right": "Plans and develops process elements for life cycles, workflows, and teams"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Windchill uses Life Cycles, Workflows, and Teams as the three core elements of process management",
+        "Life cycles define object states (e.g., In Work, Released, Obsolete); workflows automate transitions between states",
+        "Teams determine who receives tasks based on role assignments within a product context",
+        "Administrators design the process elements; end users participate by completing assigned tasks"
+      ]
+    },
+    {
+      "id": "m4t3",
+      "title": "Access Controls",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Windchill protects product data through <strong>access control</strong> — a system of policy rules that determines who can perform which operations on specific objects. Access control ensures that only authorized users can view, modify, or manage product data, and that permissions are automatically adjusted as objects move through their life cycle."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Access Control Rule Attributes"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every access control rule is defined by five attributes that work together to specify exactly what is permitted. For example, a rule might state: <em>\"A Reviewer can read the Test Report Documents located in the Drill product if the document is at the Under Review life cycle state.\"</em>"
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Attribute",
+            "Description",
+            "Example"
+          ],
+          "rows": [
+            [
+              "Domain",
+              "The area of Windchill where the rule applies",
+              "Drill product"
+            ],
+            [
+              "Object Type",
+              "The type of object the rule governs",
+              "Test Report Document"
+            ],
+            [
+              "Life Cycle State",
+              "The maturity level at which the rule takes effect",
+              "Under Review"
+            ],
+            [
+              "Actor",
+              "The user or role the rule applies to",
+              "Reviewer"
+            ],
+            [
+              "Permissions",
+              "The specific operations that are allowed",
+              "Read"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Think of an access control rule as a sentence: <em>\"[Actor] can [Permissions] the [Object Type] in [Domain] when it is at [Life Cycle State].\"</em> All five attributes must be defined for a rule to take effect. Access can be granted through domains applied to storage contexts, life cycles, or security policies applied to folders and individual objects."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Common Permissions"
+        },
+        {
+          "type": "paragraph",
+          "text": "Windchill provides several permission types that control user interactions with objects. The most common are <strong>Read</strong> (view the object), <strong>Modify</strong> (edit attributes and content), <strong>Create</strong> (add new objects), <strong>Delete</strong> (remove objects), and <strong>Revise</strong> (create a new revision). Policy rules combine these permissions with the other attributes to precisely control what each participant can do."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each access control attribute to its definition:",
+          "pairs": [
+            {
+              "left": "Domain",
+              "right": "The area of Windchill where the access rule applies"
+            },
+            {
+              "left": "Object Type",
+              "right": "The kind of object the rule governs (e.g., Document, Part)"
+            },
+            {
+              "left": "Life Cycle State",
+              "right": "The maturity level at which the rule takes effect"
+            },
+            {
+              "left": "Permissions",
+              "right": "The specific operations allowed (e.g., Read, Modify, Create)"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Access control rules are defined by five attributes: Domain, Object Type, Life Cycle State, Actor, and Permissions",
+        "Each rule specifies exactly what a given actor can do to a specific object type in a particular domain and state",
+        "Common permissions include Read, Modify, Create, Delete, and Revise",
+        "Access can be granted through domains, life cycles, or security policies applied to folders and individual objects"
+      ]
+    },
+    {
+      "id": "m4t4",
+      "title": "Windchill Modules Overview",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Windchill PLM is a <strong>modular</strong> platform — organizations select the modules that match their specific business needs rather than deploying a single monolithic system. Each module addresses a different aspect of product life cycle management, from core data management to quality control and supplier management."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Core and Extended Modules"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "PDMLink (Core)",
+              "back": "The foundational Windchill module. Manages product data including version control, change management, configuration management, CAD design information, product structures (BOMs), and documents. PDMLink is the starting point for most Windchill deployments."
+            },
+            {
+              "front": "ProjectLink",
+              "back": "Provides project management capabilities — planning, executing, and monitoring projects. Enables collaborative product development by assigning tasks to team members, tracking milestones, and managing project deliverables alongside product data."
+            },
+            {
+              "front": "MPMLink",
+              "back": "Manages manufacturing process information by integrating product, process, and resource data. Defines manufacturing product structures and processes, and includes the BOM Transformer for converting engineering BOMs into manufacturing BOMs."
+            },
+            {
+              "front": "Navigate (formerly ThingWorx Navigate)",
+              "back": "Provides simplified access to PLM data for non-PLM users through role-based apps. Offers out-of-the-box applications for specific roles and supports custom app building, letting casual users consume PLM data without learning the full Windchill interface."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Additional Modules"
+        },
+        {
+          "type": "paragraph",
+          "text": "Beyond the core modules, Windchill offers several additional modules for specialized needs. <strong>PartsLink + SUMA (Supplier Management)</strong> provides part classification, supplier information, and Approved Manufacturer Lists (AMLs) to ensure parts meet technical and sourcing criteria. <strong>Options and Variants</strong> enables product variability management through modular design and configurable variant specifications. <strong>QMS (Quality Management System)</strong> manages product quality including CAPA, nonconformance management, and customer experience management. <strong>DTI (Desktop Integration)</strong> lets users access Windchill documents directly through Microsoft Office applications — Word, Excel, PowerPoint, and Outlook — without opening a browser."
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Windchill's modular architecture means your organization only pays for and deploys the capabilities it actually needs. A company focused on design and engineering might start with PDMLink alone, then add MPMLink when ready to integrate manufacturing processes, and QMS when quality management becomes a priority. This incremental approach reduces complexity and cost."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each Windchill module to its primary function:",
+          "pairs": [
+            {
+              "left": "PDMLink",
+              "right": "Core product data management — version control, change management, BOMs, and documents"
+            },
+            {
+              "left": "ProjectLink",
+              "right": "Project planning, execution, monitoring, and collaborative task management"
+            },
+            {
+              "left": "MPMLink",
+              "right": "Manufacturing process management — integrating product, process, and resource data"
+            },
+            {
+              "left": "Navigate",
+              "right": "Simplified role-based access to PLM data for non-PLM users"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Windchill PLM is modular — organizations select only the modules they need for their business",
+        "PDMLink is the core module providing product data management, version control, change management, and BOM capabilities",
+        "Additional modules like ProjectLink, MPMLink, Navigate, QMS, and Options and Variants extend Windchill for specialized needs",
+        "The modular approach allows incremental deployment, reducing complexity and cost"
+      ]
+    },
+    {
+      "id": "m4t5",
+      "title": "Modify a Document",
+      "estimatedMinutes": 8,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will check out a document, upload a modified version, check it back in, and observe how the version changes in the history. This exercise demonstrates the check out / check in workflow and version tracking you learned about in the first topic of this module."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "This exercise builds on the saved search you created in an earlier module. You will use the <strong>Belt Sander In Work Documents</strong> saved search to locate the document. Ensure you have completed the previous search exercises before proceeding."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex7",
+          "title": "Modify a Document",
+          "objective": "Check out a document, upload a modified version, check it back in, and observe the version change in the history.",
+          "tasks": [
+            {
+              "id": "ex7-t1",
+              "title": "Check Out the Document",
+              "steps": [
+                {
+                  "action": "In the Navigator search panel, click Search History and Saved Searches.",
+                  "detail": "Use your previously saved search to quickly find the document without re-entering search criteria.",
+                  "hint": null
+                },
+                {
+                  "action": "Click \"Belt Sander In Work Documents\" to perform the saved search.",
+                  "detail": "The saved search automatically applies your Document type and In Work state criteria, returning matching results.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the View information icon of the Belt Sander User Manual.",
+                  "detail": "Opens the Information page where you can view details and perform actions on the document.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the Actions menu and select Check Out.",
+                  "detail": "Checking out creates a working copy and locks the object from modification by others. This signals your intent to modify the document.",
+                  "hint": "A yellow icon will appear next to the object name after checkout, indicating it is checked out."
+                }
+              ]
+            },
+            {
+              "id": "ex7-t2",
+              "title": "Modify and Check In",
+              "steps": [
+                {
+                  "action": "Click the Actions menu and select Edit.",
+                  "detail": "Edit allows you to replace the document content with an updated file while the document is checked out.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Browse, select This PC, navigate to the updated Belt Sander User Manual file, and click Open.",
+                  "detail": "You are replacing the document content with the modified version. The original version is preserved in the version history.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Check In to check the document back in.",
+                  "detail": "Check In removes the lock and stores a new iteration, making the updated document available to other users.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Check In dialog, type \"Updated to account for part change\" and click OK.",
+                  "detail": "The check-in comment provides a record of what was changed, helping team members understand the modification history.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex7-t3",
+              "title": "Verify the Version Change",
+              "steps": [
+                {
+                  "action": "Observe the document name line and note the version is now A.3.",
+                  "detail": "The iteration number incremented from A.2 to A.3, reflecting the new modification you just checked in.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the History tab and explore the Version History table.",
+                  "detail": "The change you made is listed at the top of the version history, including the check-in comment you entered.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the Home icon and note the Belt Sander User Manual appears in the Updates table.",
+                  "detail": "The Updates table on your Home page shows recently modified objects, confirming your change is reflected across Windchill.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Always check out a document before modifying it to lock it from other users",
+        "Check In saves a new iteration and releases the lock, making the updated document available to others",
+        "The version history records every modification, including check-in comments for traceability",
+        "Recently modified objects appear in the Updates table on your Home page"
+      ]
+    }
+  ]
+}
