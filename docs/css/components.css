@@ -216,6 +216,12 @@
 }
 .notepad-fab:hover { transform: scale(1.08); }
 
+/* Shift FABs and panel up when narration bar is open */
+.narr-open .notepad-fab { bottom: 64px; }
+.narr-open .notepad-panel { bottom: 64px; }
+.narr-open .author-fab { bottom: 120px; }
+.narr-open .author-undo-fab { bottom: 176px; }
+
 .notepad-panel {
   position: fixed; bottom: 24px; right: 24px; z-index: 80;
   width: 320px; height: 380px;
@@ -810,6 +816,103 @@
 }
 .author-toast-close:hover {
   background: var(--c-bg-surface-hover); color: var(--c-text);
+}
+
+/* ============================================================
+   Export Modal
+   ============================================================ */
+.export-backdrop {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,0.5);
+  display: flex; align-items: center; justify-content: center;
+  animation: fadeInUp 0.15s ease;
+}
+.export-modal {
+  width: 480px; max-height: calc(100vh - 64px);
+  background: var(--c-bg-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.export-modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--c-border);
+}
+.export-modal-header h3 { margin: 0; font-size: 16px; color: var(--c-text-primary); }
+.export-modal-close {
+  width: 28px; height: 28px; border-radius: 6px;
+  border: none; background: transparent; color: var(--c-text-dim);
+  cursor: pointer; font-size: 16px; display: flex;
+  align-items: center; justify-content: center;
+}
+.export-modal-close:hover { background: var(--c-bg-surface-hover); color: var(--c-text); }
+.export-modal-body {
+  padding: 20px; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.export-field {}
+.export-label {
+  display: block; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--c-text-dim); margin-bottom: 8px;
+}
+.export-scope-options {
+  display: flex; flex-direction: column; gap: 6px;
+}
+.export-radio {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; border-radius: 8px;
+  border: 1px solid var(--c-border);
+  cursor: pointer; transition: all 0.15s;
+}
+.export-radio:hover { border-color: var(--c-border-hover); background: var(--c-bg-surface-hover); }
+.export-radio:has(input:checked) {
+  border-color: var(--c-accent); background: rgba(59,130,246,0.08);
+}
+.export-radio input[type="radio"] { accent-color: var(--c-accent); }
+.export-radio-label {
+  font-size: 14px; font-weight: 600; color: var(--c-text-primary);
+}
+.export-radio-detail {
+  font-size: 12px; color: var(--c-text-dim); margin-left: auto;
+}
+.export-input {
+  width: 100%; padding: 8px 12px;
+  border: 1px solid var(--c-border); border-radius: 6px;
+  background: var(--c-bg-surface); color: var(--c-text);
+  font-size: 13px; font-family: "SF Mono", "Consolas", monospace;
+  box-sizing: border-box;
+}
+.export-input:focus { outline: none; border-color: var(--c-accent); }
+.export-command-box {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 12px;
+  background: var(--c-bg); border: 1px solid var(--c-border);
+  border-radius: 6px;
+}
+.export-command {
+  flex: 1; font-size: 12px; color: var(--c-accent);
+  font-family: "SF Mono", "Consolas", monospace;
+  word-break: break-all;
+}
+.export-copy-btn {
+  width: 32px; height: 32px; border-radius: 6px; flex-shrink: 0;
+  border: 1px solid var(--c-border); background: transparent;
+  color: var(--c-text-dim); cursor: pointer; font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+}
+.export-copy-btn:hover { border-color: var(--c-border-hover); background: var(--c-bg-surface-hover); color: var(--c-text); }
+.export-hint {
+  font-size: 12px; color: var(--c-text-dim); line-height: 1.5; margin: 0;
+}
+.export-hint code {
+  font-family: "SF Mono", "Consolas", monospace;
+  font-size: 0.9em; background: var(--c-bg-surface-active);
+  padding: 1px 5px; border-radius: 3px;
 }
 
 /* ============================================================

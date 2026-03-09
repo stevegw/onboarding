@@ -69,10 +69,13 @@
           html += '</div>';
         }
 
-        // Author mode link
+        // Author mode link + Export link
         if (!isComingSoon) {
+          html += '<div class="catalog-card-actions">';
           var editUrl = window.location.origin + window.location.pathname + '?course=' + course.id + '&edit=true';
           html += '<a class="catalog-author-link" href="' + editUrl + '" target="_blank" title="Open in author mode">&#9998; Author</a>';
+          html += '<button class="catalog-export-link" data-export-course="' + course.id + '" title="Export as standalone app">&#128230; Export</button>';
+          html += '</div>';
         }
 
         html += '</div>';
@@ -93,10 +96,19 @@
 
     OB.ui.setMain(html);
 
-    // Stop author link clicks from triggering card navigation
+    // Stop author/export link clicks from triggering card navigation
     document.querySelectorAll(".catalog-author-link").forEach(function (link) {
       link.addEventListener("click", function (e) {
         e.stopPropagation();
+      });
+    });
+
+    // Export link click → open export modal
+    document.querySelectorAll(".catalog-export-link").forEach(function (btn) {
+      btn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var courseId = btn.getAttribute("data-export-course");
+        if (OB["export"]) OB["export"].openModal({ courseId: courseId });
       });
     });
 
