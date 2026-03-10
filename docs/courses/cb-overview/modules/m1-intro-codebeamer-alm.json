@@ -315,6 +315,13 @@
               ]
             }
           ]
+        },
+        {
+          "type": "image",
+          "src": "images/codebeamer_login.png",
+          "alt": "Login UI and using Account Name Admin and password ptc",
+          "caption": "Login UI and using Account Name Admin and password ptc",
+          "size": "medium"
         }
       ],
       "keyTakeaways": [
@@ -376,6 +383,13 @@
               ]
             }
           ]
+        },
+        {
+          "type": "image",
+          "src": "images/codebeamer_trackers.png",
+          "alt": "Trackers and Customer  Requirements Specifications",
+          "caption": "Trackers and Customer  Requirements Specifications",
+          "size": "medium"
         }
       ],
       "keyTakeaways": [
