@@ -147,6 +147,9 @@
               p.classList.contains("narr-bar") || p.classList.contains("narr-toggle-btn")) {
             return NodeFilter.FILTER_REJECT;
           }
+          if (window.getComputedStyle(p).display === "none") {
+            return NodeFilter.FILTER_REJECT;
+          }
           p = p.parentElement;
         }
         return NodeFilter.FILTER_ACCEPT;
