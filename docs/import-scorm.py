@@ -14,8 +14,10 @@ Usage:
 
 import argparse
 import json
+import math
 import os
 import re
+import subprocess
 import sys
 import xml.etree.ElementTree as ET
 import zipfile
@@ -781,6 +783,104 @@ def write_json(path, data):
 
 
 # ---------------------------------------------------------------------------
+# Catalog registration (--register)
+# ---------------------------------------------------------------------------
+
+def _build_catalog_entry(course_id, title, description, num_modules,
+                         estimated_hours):
+    """Build a catalog entry dict for both catalog.json and catalog-bundle."""
+    # Catalog titles omit the product family prefix
+    short_title = re.sub(
+        r"^(Windchill|Codebeamer|Creo)\s*:\s*", "", title
+    )
+    # Clean up _TODO description
+    if description.startswith("_TODO"):
+        description = short_title
+    return {
+        "id": course_id,
+        "title": short_title,
+        "description": description,
+        "modules": num_modules,
+        "estimatedHours": estimated_hours,
+        "locales": ["en"],
+        "comingSoon": False,
+    }
+
+
+def _insert_into_catalog(catalog, family, entry):
+    """Insert entry into the correct family's courses list. Returns True."""
+    for fam in catalog.get("families", []):
+        if fam["id"] == family:
+            if any(c["id"] == entry["id"] for c in fam["courses"]):
+                return False  # already present
+            fam["courses"].append(entry)
+            return True
+    return False
+
+
+def register_course(course_id, title, description, family, num_modules,
+                    total_minutes):
+    """Add course to catalog.json and catalog-bundle.js, run build-bundles."""
+    estimated_hours = max(1, math.ceil(total_minutes / 60))
+    entry = _build_catalog_entry(course_id, title, description,
+                                 num_modules, estimated_hours)
+
+    print("\nRegistering course in catalog...")
+
+    # --- catalog.json ---
+    catalog_path = os.path.join(DOCS_DIR, "catalog.json")
+    with open(catalog_path, "r", encoding="utf-8") as f:
+        catalog = json.load(f)
+
+    if _insert_into_catalog(catalog, family, entry):
+        with open(catalog_path, "w", encoding="utf-8") as f:
+            json.dump(catalog, f, indent=1, ensure_ascii=False)
+            f.write("\n")
+        print(f"  catalog.json -- added {course_id} to {family}")
+    else:
+        print(f"  catalog.json -- {course_id} already present, skipped")
+
+    # --- catalog-bundle.js ---
+    bundle_path = os.path.join(DOCS_DIR, "js", "catalog-bundle.js")
+    with open(bundle_path, "r", encoding="utf-8") as f:
+        bundle_text = f.read()
+
+    marker = "OB._catalogBundle = "
+    marker_pos = bundle_text.index(marker) + len(marker)
+
+    # Parse the embedded JSON object using raw_decode
+    decoder = json.JSONDecoder()
+    bundle_catalog, json_end = decoder.raw_decode(bundle_text, marker_pos)
+
+    if _insert_into_catalog(bundle_catalog, family, entry):
+        new_json = json.dumps(bundle_catalog, indent=1, ensure_ascii=False)
+        bundle_text = (bundle_text[:marker_pos]
+                       + new_json
+                       + bundle_text[json_end:])
+        with open(bundle_path, "w", encoding="utf-8") as f:
+            f.write(bundle_text)
+        print(f"  catalog-bundle.js -- added {course_id} to {family}")
+    else:
+        print(f"  catalog-bundle.js -- {course_id} already present, skipped")
+
+    # --- build-bundles.py ---
+    print("  Running build-bundles.py...")
+    result = subprocess.run(
+        [sys.executable, os.path.join(DOCS_DIR, "build-bundles.py")],
+        cwd=DOCS_DIR, capture_output=True, text=True,
+    )
+    if result.returncode == 0:
+        # Show just the line for this course
+        for line in result.stdout.splitlines():
+            if course_id in line or line.startswith("["):
+                pass  # skip per-course headers
+            if line.startswith("Done"):
+                print(f"  {line}")
+    else:
+        print(f"  WARNING: build-bundles.py failed:\n{result.stderr}")
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
@@ -797,6 +897,9 @@ def main():
                         help="Product family (windchill, codebeamer, creo)")
     parser.add_argument("--output", default=None,
                         help="Output dir (default: courses/<course-id>)")
+    parser.add_argument("--register", action="store_true",
+                        help="Auto-update catalog.json, catalog-bundle.js, "
+                             "and run build-bundles.py")
     args = parser.parse_args()
 
     zip_path = os.path.abspath(args.zip)
@@ -921,7 +1024,14 @@ def main():
 
     zf.close()
 
-    # 8. Count _TODOs across all output
+    # 8. Register in catalog if requested
+    if args.register:
+        total_minutes = sum(m.get("estimatedMinutes", 0)
+                            for m in modules_meta)
+        register_course(course_id, title, course_json["description"],
+                        args.family, len(chapters), total_minutes)
+
+    # 9. Count _TODOs across all output
     all_json_str = json.dumps(course_json) + json.dumps(glossary_json)
     for _, md in all_module_data:
         all_json_str += json.dumps(md)
@@ -929,7 +1039,7 @@ def main():
         all_json_str += json.dumps(qd)
     todo_count = all_json_str.count("_TODO")
 
-    # 9. Report
+    # 10. Report
     print(f"\n{'=' * 60}")
     print("IMPORT COMPLETE")
     print(f"{'=' * 60}")
@@ -939,17 +1049,23 @@ def main():
     print(f"Images: {extracted}")
     print(f"Quiz Qs extracted: {total_quiz_extracted}")
     print(f"_TODO markers: {todo_count}")
+    if args.register:
+        print(f"Catalog: registered in {args.family}")
+        print(f"Bundle: generated")
     print()
     print("Action items:")
-    print("  1. Review generated JSON -- search for _TODO markers")
-    print("  2. Add interactive elements to concept topics "
-          "(match, sort, reveal-cards)")
-    print(f"  3. Complete quiz questions "
-          f"(need ~{4 * len(chapters) - total_quiz_extracted} more)")
-    print("  4. Review and complete glossary definitions")
-    print("  5. Update docs/catalog.json AND docs/js/catalog-bundle.js")
-    print("  6. Run: cd docs && python build-bundles.py")
-    print(f"  7. Validate: python -m json.tool < "
+    n = 1
+    print(f"  {n}. Review generated JSON -- search for _TODO markers"); n += 1
+    print(f"  {n}. Add interactive elements to concept topics "
+          f"(match, sort, reveal-cards)"); n += 1
+    print(f"  {n}. Complete quiz questions "
+          f"(need ~{4 * len(chapters) - total_quiz_extracted} more)"); n += 1
+    print(f"  {n}. Review and complete glossary definitions"); n += 1
+    if not args.register:
+        print(f"  {n}. Update docs/catalog.json AND "
+              f"docs/js/catalog-bundle.js"); n += 1
+        print(f"  {n}. Run: cd docs && python build-bundles.py"); n += 1
+    print(f"  {n}. Validate: python -m json.tool < "
           f"courses/{course_id}/course.json")
 
 
