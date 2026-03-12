@@ -2,17 +2,25 @@
 """
 Import iSpring SCORM 1.2 packages into the onboarding platform.
 
-Parses iSpring's proprietary data-1.json format and generates the platform's
-JSON course structure (course.json, module files, quiz skeletons, glossary,
-and extracted images).
+Supports two iSpring package formats:
+  - Presentation: data-1.json with chapters and blocks
+  - Interactive: slide*.js + intr*.js + quiz*.js with base64-encoded JSON
+
+Generates the platform's JSON course structure (course.json, module files,
+quiz skeletons, glossary, and extracted images).
 
 Usage:
   cd docs && python import-scorm.py \
     --zip ../imports/Windchill-User-Accounts-and-Groups-iSpring.zip \
     --course-id wcba-uag --family windchill
+
+  cd docs && python import-scorm.py \
+    --zip ../imports/Interactive_iSpring_R2_CRFD-ASBY.zip \
+    --course-id creo-assy --family creo
 """
 
 import argparse
+import base64
 import json
 import math
 import os
@@ -21,6 +29,7 @@ import subprocess
 import sys
 import xml.etree.ElementTree as ET
 import zipfile
+import zlib
 
 DOCS_DIR = os.path.dirname(os.path.abspath(__file__))
 COURSES_DIR = os.path.join(DOCS_DIR, "courses")
@@ -99,7 +108,12 @@ def slugify(text):
 # ---------------------------------------------------------------------------
 
 def open_scorm_zip(zip_path):
-    """Open and validate the SCORM zip."""
+    """Open and validate the SCORM zip. Returns (zf, format, data_path).
+
+    format is "presentation" (data-1.json) or "interactive" (slide*.js).
+    data_path is the path to data-1.json for presentation format, None for
+    interactive.
+    """
     if not os.path.exists(zip_path):
         print(f"Error: ZIP file not found: {zip_path}", file=sys.stderr)
         sys.exit(1)
@@ -108,12 +122,17 @@ def open_scorm_zip(zip_path):
     if "imsmanifest.xml" not in names:
         print("Error: imsmanifest.xml not found in ZIP.", file=sys.stderr)
         sys.exit(1)
+    # Detect format: presentation (data-1.json) vs interactive (slide*.js)
     data_files = [n for n in names if n.endswith("data-1.json")]
-    if not data_files:
-        print("Error: No data-1.json found. Is this an iSpring package?",
-              file=sys.stderr)
-        sys.exit(1)
-    return zf, data_files[0]
+    if data_files:
+        return zf, "presentation", data_files[0]
+    slide_files = [n for n in names
+                   if re.match(r"res/data/slide\d+\.js$", n)]
+    if slide_files:
+        return zf, "interactive", None
+    print("Error: No data-1.json or slide*.js found. "
+          "Is this an iSpring package?", file=sys.stderr)
+    sys.exit(1)
 
 
 def parse_manifest(zf):
@@ -136,6 +155,590 @@ def parse_manifest(zf):
 def load_ispring_data(zf, data_path):
     """Load the iSpring content JSON."""
     return json.loads(zf.read(data_path))
+
+
+# ---------------------------------------------------------------------------
+# iSpring Interactive format helpers
+# ---------------------------------------------------------------------------
+
+def _decode_b64_json(js_text, var_name):
+    """Extract var <var_name> = "base64...", decode to dict."""
+    m = re.search(rf'var\s+{var_name}\s*=\s*"([^"]+)"', js_text)
+    if not m:
+        return None
+    return json.loads(base64.b64decode(m.group(1)))
+
+
+def load_pres_info(zf):
+    """Parse presInfo from res/index.html (base64 + zlib compressed JSON)."""
+    html = zf.read("res/index.html").decode("utf-8", errors="replace")
+    m = re.search(r'var\s+presInfo\s*=\s*"([^"]+)"', html)
+    if not m:
+        print("Error: presInfo not found in res/index.html", file=sys.stderr)
+        sys.exit(1)
+    raw = base64.b64decode(m.group(1))
+    return json.loads(zlib.decompress(raw))
+
+
+def _extract_text_from_html(html_str):
+    """Extract plain text from HTML, stripping tags but preserving structure.
+
+    Returns a list of non-empty text strings (one per logical block).
+    """
+    if not html_str:
+        return []
+    # Replace <br> with newlines
+    text = re.sub(r"<br\s*/?>", "\n", html_str)
+    # Replace <li> with numbered markers for later extraction
+    text = re.sub(r"<[^>]+>", "", text)
+    # Collapse whitespace but preserve newlines
+    lines = []
+    for line in text.split("\n"):
+        line = line.strip()
+        if line and len(line) > 1:
+            lines.append(line)
+    return lines
+
+
+def _html_to_inline(html_str):
+    """Convert iSpring HTML to platform inline HTML (strong/em only)."""
+    if not html_str:
+        return ""
+    # Keep only <strong>, <em>, <b>, <i>, <code>, <br>
+    # Convert <b> to <strong>, <i> to <em>
+    text = re.sub(r"<b\b[^>]*>", "<strong>", html_str)
+    text = re.sub(r"</b>", "</strong>", text)
+    text = re.sub(r"<i\b[^>]*>", "<em>", text)
+    text = re.sub(r"</i>", "</em>", text)
+    # Strip all tags except allowed
+    text = re.sub(
+        r"<(?!/?(strong|em|code|br)\b)[^>]+>", "", text
+    )
+    # Clean up zero-width spaces and excess whitespace
+    text = text.replace("\u200b", "").strip()
+    # Collapse multiple spaces
+    text = re.sub(r"  +", " ", text)
+    return text
+
+
+def _parse_steps_interaction(decoded):
+    """Parse a Steps interaction into exercise topics.
+
+    Returns list of dicts: {title, steps: [{action, detail, hint}]}
+    """
+    items = decoded.get("d", {}).get("C", {}).get("is", [])
+    tasks = []
+    for item in items:
+        # Title from t.d[0]
+        td = item.get("t", {}).get("d", [])
+        title = td[0] if td else "Untitled Task"
+        title = strip_html(title).strip()
+
+        # Steps from c.a (accessible HTML with <ol><li>)
+        c_html = item.get("c", {}).get("a", "")
+        steps = []
+        for li_match in re.finditer(r"<li>(.*?)</li>", c_html, re.S):
+            action = _html_to_inline(li_match.group(1)).strip()
+            if action:
+                # Split on <br> notes (italic hints)
+                hint = None
+                if "<em>" in action:
+                    em_match = re.search(
+                        r"<em>(.*?)</em>", action
+                    )
+                    if em_match:
+                        hint = strip_html(em_match.group(1)).strip()
+                        action = re.sub(
+                            r"\s*<em>.*?</em>", "", action
+                        ).strip()
+                steps.append({
+                    "action": action,
+                    "detail": "",
+                    "hint": hint,
+                })
+
+        # Image refs from c.r
+        image_refs = []
+        for res in item.get("c", {}).get("r", []):
+            if res.get("type") == "image":
+                asset = res.get("assetId", "")
+                # storage://images/xxx.png -> intr{N}/images/xxx.png
+                image_refs.append(asset)
+
+        tasks.append({
+            "title": title,
+            "steps": steps,
+            "image_refs": image_refs,
+        })
+    return tasks
+
+
+def _parse_tabs_interaction(decoded):
+    """Parse a Tabs interaction into reveal-cards.
+
+    Returns list of {front, back} dicts.
+    """
+    items = decoded.get("d", {}).get("C", {}).get("is", [])
+    cards = []
+    for item in items:
+        td = item.get("t", {}).get("d", [])
+        front = td[0] if td else "Untitled"
+        front = strip_html(front).strip()
+
+        # Content from c.d (plain text array) or c.a (accessible HTML)
+        cd = item.get("c", {}).get("d", [])
+        # cd may contain image refs (dicts) and text strings
+        text_parts = [p for p in cd if isinstance(p, str) and p.strip()]
+        if text_parts:
+            back = " ".join(text_parts)
+        else:
+            back = strip_html(item.get("c", {}).get("a", "")).strip()
+
+        if front and back:
+            cards.append({"front": front, "back": back})
+    return cards
+
+
+def _parse_interactive_quiz(decoded):
+    """Parse quiz JS decoded JSON into list of question dicts."""
+    questions = []
+    groups = decoded.get("d", {}).get("sl", {}).get("g", [])
+    for group in groups:
+        for slide in group.get("S", []):
+            tp = slide.get("tp", "")
+            if tp == "InfoSlide":
+                continue
+
+            # Question text from D.d[0]
+            D = slide.get("D", {})
+            d_list = D.get("d", []) if isinstance(D, dict) else []
+            q_text = d_list[0] if d_list else ""
+            q_text = strip_html(q_text).strip()
+            if not q_text:
+                continue
+
+            # Choices from C.chs[]
+            C = slide.get("C", {})
+            chs = C.get("chs", []) if isinstance(C, dict) else []
+            options = []
+            correct = 0
+            for idx, ch in enumerate(chs):
+                ch_td = ch.get("t", {}).get("d", [])
+                opt_text = ch_td[0] if ch_td else f"Option {idx + 1}"
+                opt_text = strip_html(opt_text).strip()
+                options.append(opt_text)
+                if ch.get("c") is True:
+                    correct = idx
+
+            if not options:
+                continue
+
+            questions.append({
+                "question": q_text,
+                "options": options,
+                "answerIndex": correct,
+                "rationale": "_TODO: Add rationale.",
+            })
+    return questions
+
+
+def _resolve_intr_image(zf, asset_ref, intr_num):
+    """Resolve a storage:// image ref to a zip path, handling extension mismatches.
+
+    asset_ref like "storage://images/img-abc123.png"
+    Returns the zip-relative path (under data/) or None.
+    """
+    clean = re.sub(r"^storage://", "", asset_ref)
+    base_path = f"data/intr{intr_num}/{clean}"
+    zip_path = f"res/{base_path}"
+    if zip_path in zf.namelist():
+        return base_path
+    # Try alternate extensions (.png vs .jpg mismatch)
+    stem = os.path.splitext(base_path)[0]
+    for ext in (".jpg", ".png", ".jpeg", ".svg"):
+        alt = f"{stem}{ext}"
+        if f"res/{alt}" in zf.namelist():
+            return alt
+    return None
+
+
+def process_interactive_package(zf, pres_info):
+    """Process an iSpring Interactive package.
+
+    Returns (modules_meta, all_module_data, all_quiz_data,
+             all_image_refs, all_topics_flat, total_quiz_extracted).
+    """
+    slides = pres_info.get("s", [])
+
+    # --- Group slides by title into sections ---
+    # Skip branding/title slides (first slide, last empty slide, etc.)
+    sections = []  # [{title, slides: [slide_dicts]}]
+    current_title = None
+    current_slides = []
+
+    for slide in slides:
+        t = slide.get("t", "").strip()
+        src = slide.get("s", "")
+        # Skip empty-title slides (end slides)
+        if not t:
+            continue
+        # Group consecutive slides with the same title
+        if t != current_title:
+            if current_slides and current_title:
+                sections.append({
+                    "title": current_title,
+                    "slides": current_slides,
+                })
+            current_title = t
+            current_slides = [slide]
+        else:
+            current_slides.append(slide)
+
+    if current_slides and current_title:
+        sections.append({
+            "title": current_title,
+            "slides": current_slides,
+        })
+
+    # --- Filter to substantive sections ---
+    # Skip title/branding sections: single-slide with short text and no
+    # interactions or quizzes
+    substantive = []
+    for sec in sections:
+        total_text = sum(len(s.get("x", "") or "") + len(s.get("n", "") or "")
+                         for s in sec["slides"])
+        has_interaction = any(s.get("st") in ("i", "q")
+                             for s in sec["slides"])
+        # Skip single-slide branding with little text
+        if len(sec["slides"]) <= 1 and total_text < 50 and not has_interaction:
+            continue
+        substantive.append(sec)
+
+    # Merge sections that share the same title (non-consecutive due to
+    # interleaved branding slides)
+    merged = []
+    title_idx = {}  # title -> index in merged list
+    for sec in substantive:
+        t = sec["title"]
+        if t in title_idx:
+            merged[title_idx[t]]["slides"].extend(sec["slides"])
+        else:
+            title_idx[t] = len(merged)
+            merged.append(sec)
+    substantive = merged
+
+    if not substantive:
+        print("Error: No substantive content found in interactive package.",
+              file=sys.stderr)
+        sys.exit(1)
+
+    print(f"Sections found: {len(substantive)}")
+    for i, sec in enumerate(substantive):
+        slide_types = []
+        for s in sec["slides"]:
+            st = s.get("st")
+            if st == "i":
+                slide_types.append(f"intr({s.get('it', '?')})")
+            elif st == "q":
+                slide_types.append("quiz")
+            else:
+                slide_types.append("slide")
+        print(f"  {i + 1}. {sec['title']} "
+              f"({len(sec['slides'])} slides: {', '.join(slide_types)})")
+    print()
+
+    # --- Process each section into a module ---
+    modules_meta = []
+    all_module_data = []
+    all_quiz_data = []
+    all_image_refs = []
+    all_topics_flat = []
+    exercise_counter = 0
+    total_quiz_extracted = 0
+
+    for sec_idx, section in enumerate(substantive):
+        m_idx = sec_idx + 1
+        m_id = f"m{m_idx}"
+        m_slug = slugify(section["title"])
+
+        topics = []
+        quiz_qs = []
+        concept_blocks = []  # Accumulate concept content
+
+        for slide in section["slides"]:
+            st = slide.get("st")
+            src = slide.get("s", "")
+            notes = slide.get("n", "") or ""
+            slide_text = slide.get("x", "") or ""
+
+            if st == "q":
+                # --- Quiz slide ---
+                js_text = zf.read(f"res/{src}").decode("utf-8", errors="replace")
+                decoded = _decode_b64_json(js_text, "quizInfo")
+                if decoded:
+                    quiz_qs.extend(_parse_interactive_quiz(decoded))
+
+            elif st == "i":
+                # --- Interaction slide ---
+                it = slide.get("it", "")
+                js_text = zf.read(f"res/{src}").decode("utf-8", errors="replace")
+                decoded = _decode_b64_json(js_text, "interactionJson")
+                if not decoded:
+                    continue
+
+                int_type = decoded.get("d", {}).get("s", {}).get("t", "")
+
+                if int_type == "Steps":
+                    # Flush any accumulated concept blocks as a concept topic
+                    if concept_blocks:
+                        topics.append(_build_concept_topic(
+                            concept_blocks, m_idx, len(topics) + 1))
+                        concept_blocks = []
+
+                    # Each task becomes an exercise topic
+                    tasks = _parse_steps_interaction(decoded)
+                    intr_num = re.search(r"intr(\d+)", src)
+                    for task in tasks:
+                        exercise_counter += 1
+                        topic_num = len(topics) + 1
+                        # Collect image refs
+                        if intr_num:
+                            for img_ref in task.get("image_refs", []):
+                                resolved = _resolve_intr_image(
+                                    zf, img_ref, intr_num.group(1))
+                                if resolved:
+                                    all_image_refs.append(resolved)
+
+                        topics.append(_build_interactive_exercise_topic(
+                            task, m_idx, topic_num, exercise_counter))
+
+                elif int_type == "Tabs":
+                    # Tabs → reveal-cards in a concept topic
+                    cards = _parse_tabs_interaction(decoded)
+                    if cards:
+                        concept_blocks.append({
+                            "type": "reveal-cards",
+                            "cards": cards,
+                        })
+
+                elif int_type == "Labeled Graphic":
+                    # Labeled graphic → extract bg image + callout
+                    bg = (decoded.get("d", {}).get("s", {})
+                          .get("b", {}).get("i", ""))
+                    intr_num = re.search(r"intr(\d+)", src)
+                    if bg and intr_num:
+                        resolved = _resolve_intr_image(
+                            zf, bg, intr_num.group(1))
+                        if resolved:
+                            all_image_refs.append(resolved)
+                            concept_blocks.append({
+                                "type": "image",
+                                "src": "",
+                                "alt": section["title"],
+                                "caption": "",
+                                "size": "large",
+                                "_orig_src": resolved,
+                            })
+                    concept_blocks.append({
+                        "type": "callout",
+                        "variant": "info",
+                        "text": "_TODO: This was a labeled graphic interaction."
+                                " Review the image and add descriptive content.",
+                    })
+
+            else:
+                # --- Regular slide ---
+                # Use speaker notes as primary paragraph content (richer text)
+                # Use slide text (x) as secondary if no notes
+                paragraphs = []
+                if notes:
+                    for para in notes.split("\n\n"):
+                        para = para.strip()
+                        if para and len(para) > 10:
+                            # Skip "Helpful links" lines and bullet-only text
+                            if (para.lower().startswith("helpful links")
+                                    or para.startswith("\u2022")
+                                    or para.startswith("\t\u2022")):
+                                continue
+                            paragraphs.append(para)
+                elif slide_text:
+                    # Extract meaningful text from slide text
+                    lines = _extract_text_from_html(slide_text)
+                    for line in lines:
+                        if len(line) > 15:
+                            paragraphs.append(line)
+
+                # Look for heading from slide text
+                slide_lines = _extract_text_from_html(slide_text)
+                if slide_lines:
+                    first_line = slide_lines[0]
+                    # If this differs from section title, it's a sub-heading
+                    if (first_line != section["title"]
+                            and len(first_line) > 3
+                            and len(first_line) < 80):
+                        concept_blocks.append({
+                            "type": "heading",
+                            "level": 2,
+                            "text": first_line,
+                        })
+
+                for para in paragraphs:
+                    concept_blocks.append({
+                        "type": "paragraph",
+                        "text": para,
+                    })
+
+                # Extract images from slide HTML
+                slide_js_path = f"res/{src}"
+                try:
+                    slide_js = zf.read(slide_js_path).decode(
+                        "utf-8", errors="replace")
+                    for img_m in re.finditer(
+                            r'src="(data/img\d+\.(?:png|jpg|svg))"',
+                            slide_js):
+                        img_src = img_m.group(1)
+                        # Skip tiny UI images (< img5 are usually branding)
+                        all_image_refs.append(img_src)
+                except KeyError:
+                    pass
+
+        # Flush remaining concept blocks
+        if concept_blocks:
+            topics.append(_build_concept_topic(
+                concept_blocks, m_idx, len(topics) + 1))
+
+        if not topics:
+            continue
+
+        total_quiz_extracted += len(quiz_qs)
+        all_topics_flat.extend(topics)
+
+        # Mark exercise start
+        concept_count = sum(1 for t in topics if not t.get("isExercise"))
+        exercise_count = sum(1 for t in topics if t.get("isExercise"))
+        ex_start = concept_count + 1 if exercise_count > 0 else None
+
+        # Module metadata
+        total_minutes = sum(t.get("estimatedMinutes", 5) for t in topics)
+        meta = {
+            "id": m_id,
+            "title": section["title"],
+            "description": f"_TODO: Add description for {section['title']}.",
+            "estimatedMinutes": total_minutes,
+            "topicCount": len(topics),
+            "contentFile": f"modules/{m_id}-{m_slug}.json",
+            "quizFile": f"quizzes/q{m_idx}-{m_slug}.json",
+        }
+        if ex_start:
+            meta["exerciseTopicStart"] = ex_start
+        modules_meta.append(meta)
+
+        # Module content
+        mod_json = generate_module_json(m_id, section["title"], topics)
+        all_module_data.append((meta["contentFile"], mod_json))
+
+        # Quiz
+        concept_ids = [t["id"] for t in topics if not t.get("isExercise")]
+        quiz_json = generate_quiz_json(m_id, section["title"],
+                                       quiz_qs, concept_ids)
+        all_quiz_data.append((meta["quizFile"], quiz_json))
+
+        print(f"Module {m_idx}: {section['title']}")
+        print(f"  Topics: {len(topics)} "
+              f"({concept_count} concept, {exercise_count} exercise)")
+        print(f"  Quiz Qs: {len(quiz_qs)} extracted + "
+              f"{max(0, 4 - len(quiz_qs))} _TODO")
+
+    return (modules_meta, all_module_data, all_quiz_data,
+            all_image_refs, all_topics_flat, total_quiz_extracted)
+
+
+def _build_concept_topic(blocks, module_idx, topic_num):
+    """Build a concept topic from accumulated content blocks."""
+    # Derive title from first heading, else first paragraph
+    title = None
+    for b in blocks:
+        if b.get("type") == "heading":
+            title = strip_html(b.get("text", ""))
+            break
+    if not title:
+        for b in blocks:
+            if b.get("type") == "paragraph":
+                raw = strip_html(b.get("text", ""))
+                title = raw[:60] + ("..." if len(raw) > 60 else "")
+                break
+    if not title:
+        title = "Overview"
+
+    # Add interactive element placeholder if none present
+    has_interactive = any(b.get("type") in ("reveal-cards", "interactive-match",
+                                            "interactive-sort")
+                         for b in blocks)
+    if not has_interactive:
+        blocks.append({
+            "type": "callout",
+            "variant": "info",
+            "text": "_TODO: Add an interactive element (interactive-match or "
+                    "interactive-sort) to reinforce this topic's concepts.",
+        })
+
+    return {
+        "id": f"m{module_idx}t{topic_num}",
+        "title": title,
+        "estimatedMinutes": max(5, len(blocks) * 2),
+        "content": blocks,
+        "keyTakeaways": [
+            "_TODO: Add 3-4 key takeaways for this topic.",
+        ],
+    }
+
+
+def _build_interactive_exercise_topic(task, module_idx, topic_num,
+                                      exercise_num):
+    """Build an exercise topic from a parsed Steps interaction task."""
+    task_title = re.sub(r"^Task\s+\d+[.:]\s*", "", task["title"],
+                        flags=re.I).strip()
+    if not task_title:
+        task_title = f"Exercise {exercise_num}"
+    topic_title = f"Exercise \u2014 {task_title}"
+
+    steps = task["steps"] if task["steps"] else [{
+        "action": "_TODO: Add step-by-step instructions.",
+        "detail": "",
+        "hint": None,
+    }]
+
+    content_blocks = [
+        {
+            "type": "paragraph",
+            "text": f"In this exercise you will "
+                    f"{task_title[0].lower()}{task_title[1:]}.",
+        },
+    ]
+
+    ex_id = f"ex{exercise_num}"
+    content_blocks.append({
+        "type": "exercise",
+        "exerciseId": ex_id,
+        "title": task_title,
+        "objective": f"Complete the {task_title.lower()} procedure.",
+        "tasks": [{
+            "id": f"{ex_id}-t1",
+            "title": task_title,
+            "steps": steps,
+        }],
+    })
+
+    return {
+        "id": f"m{module_idx}t{topic_num}",
+        "title": topic_title,
+        "estimatedMinutes": max(5, 3 + len(steps) * 2),
+        "isExercise": True,
+        "content": content_blocks,
+        "keyTakeaways": [
+            "_TODO: Add 3-4 key takeaways for this exercise.",
+        ],
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -667,6 +1270,46 @@ def update_image_srcs(topics, name_map):
                 block["src"] = f"images/{name_map.get(orig, os.path.basename(orig))}"
 
 
+def _plan_interactive_image_names(image_refs):
+    """Create descriptive filenames for interactive package images."""
+    name_map = {}
+    used = set()
+    for idx, src in enumerate(image_refs):
+        ext = os.path.splitext(src)[1] or ".png"
+        base = f"image-{idx + 1}"
+        name = f"{base}{ext}"
+        counter = 2
+        while name in used:
+            name = f"{base}-{counter}{ext}"
+            counter += 1
+        used.add(name)
+        name_map[src] = name
+    return name_map
+
+
+def _extract_interactive_images(zf, image_refs, name_map, output_dir):
+    """Extract images from interactive SCORM ZIP."""
+    os.makedirs(output_dir, exist_ok=True)
+    extracted = 0
+    seen = set()
+    for src in image_refs:
+        if src in seen:
+            continue
+        seen.add(src)
+        # Interactive images are under res/data/
+        zip_path = f"res/{src}"
+        new_name = name_map.get(src, os.path.basename(src))
+        try:
+            img_data = zf.read(zip_path)
+            out_path = os.path.join(output_dir, new_name)
+            with open(out_path, "wb") as f:
+                f.write(img_data)
+            extracted += 1
+        except KeyError:
+            print(f"  WARNING: Image not found in ZIP: {zip_path}")
+    return extracted
+
+
 # ---------------------------------------------------------------------------
 # Output generation
 # ---------------------------------------------------------------------------
@@ -912,83 +1555,102 @@ def main():
     print()
 
     # 1. Open and validate
-    zf, data_path = open_scorm_zip(zip_path)
+    zf, fmt, data_path = open_scorm_zip(zip_path)
     manifest_title = parse_manifest(zf)
-    data = load_ispring_data(zf, data_path)
     print(f"Course title: {manifest_title}")
+    print(f"Format: iSpring {fmt}")
 
-    # 2. Extract chapters
-    chapters = extract_chapters(data)
-    print(f"Chapters found: {len(chapters)}")
-    for i, ch in enumerate(chapters):
-        print(f"  {i + 1}. {ch['title']} ({len(ch['blocks'])} blocks)")
-    print()
+    if fmt == "presentation":
+        # ----- Presentation format (data-1.json) -----
+        data = load_ispring_data(zf, data_path)
 
-    # 3. Process each chapter into a module
-    modules_meta = []
-    all_module_data = []  # (content_file_path, module_json)
-    all_quiz_data = []    # (quiz_file_path, quiz_json)
-    all_image_refs = []
-    all_topics_flat = []
-    exercise_counter = 0
-    total_quiz_extracted = 0
+        # 2. Extract chapters
+        chapters = extract_chapters(data)
+        print(f"Chapters found: {len(chapters)}")
+        for i, ch in enumerate(chapters):
+            print(f"  {i + 1}. {ch['title']} ({len(ch['blocks'])} blocks)")
+        print()
 
-    for ch_idx, chapter in enumerate(chapters):
-        m_idx = ch_idx + 1
-        m_id = f"m{m_idx}"
-        ch_slug = slugify(chapter["title"])
+        # 3. Process each chapter into a module
+        modules_meta = []
+        all_module_data = []
+        all_quiz_data = []
+        all_image_refs = []
+        all_topics_flat = []
+        exercise_counter = 0
+        total_quiz_extracted = 0
 
-        # Convert blocks
-        blocks, quiz_qs, img_refs = convert_blocks(chapter["blocks"])
-        all_image_refs.extend(img_refs)
-        total_quiz_extracted += len(quiz_qs)
+        for ch_idx, chapter in enumerate(chapters):
+            m_idx = ch_idx + 1
+            m_id = f"m{m_idx}"
+            ch_slug = slugify(chapter["title"])
 
-        # Split into topics
-        topics, num_exercises, ex_start = chapter_to_topics(
-            blocks, m_idx, exercise_counter
-        )
-        exercise_counter += num_exercises
-        all_topics_flat.extend(topics)
+            blocks, quiz_qs, img_refs = convert_blocks(chapter["blocks"])
+            all_image_refs.extend(img_refs)
+            total_quiz_extracted += len(quiz_qs)
 
-        # Module metadata
-        total_minutes = sum(t.get("estimatedMinutes", 5) for t in topics)
-        meta = {
-            "id": m_id,
-            "title": chapter["title"],
-            "description": f"_TODO: Add description for {chapter['title']}.",
-            "estimatedMinutes": total_minutes,
-            "topicCount": len(topics),
-            "contentFile": f"modules/{m_id}-{ch_slug}.json",
-            "quizFile": f"quizzes/q{m_idx}-{ch_slug}.json",
-        }
-        if ex_start:
-            meta["exerciseTopicStart"] = ex_start
-        modules_meta.append(meta)
+            topics, num_exercises, ex_start = chapter_to_topics(
+                blocks, m_idx, exercise_counter
+            )
+            exercise_counter += num_exercises
+            all_topics_flat.extend(topics)
 
-        # Module content JSON
-        mod_json = generate_module_json(m_id, chapter["title"], topics)
-        all_module_data.append((meta["contentFile"], mod_json))
+            total_minutes = sum(
+                t.get("estimatedMinutes", 5) for t in topics)
+            meta = {
+                "id": m_id,
+                "title": chapter["title"],
+                "description": (f"_TODO: Add description for "
+                                f"{chapter['title']}."),
+                "estimatedMinutes": total_minutes,
+                "topicCount": len(topics),
+                "contentFile": f"modules/{m_id}-{ch_slug}.json",
+                "quizFile": f"quizzes/q{m_idx}-{ch_slug}.json",
+            }
+            if ex_start:
+                meta["exerciseTopicStart"] = ex_start
+            modules_meta.append(meta)
 
-        # Quiz JSON
-        concept_ids = [t["id"] for t in topics if not t.get("isExercise")]
-        quiz_json = generate_quiz_json(m_id, chapter["title"],
-                                       quiz_qs, concept_ids)
-        all_quiz_data.append((meta["quizFile"], quiz_json))
+            mod_json = generate_module_json(m_id, chapter["title"], topics)
+            all_module_data.append((meta["contentFile"], mod_json))
 
-        print(f"Module {m_idx}: {chapter['title']}")
-        print(f"  Topics: {len(topics)} "
-              f"({len(topics) - num_exercises} concept, "
-              f"{num_exercises} exercise)")
-        print(f"  Quiz Qs: {len(quiz_qs)} extracted + "
-              f"{max(0, 4 - len(quiz_qs))} _TODO")
+            concept_ids = [t["id"] for t in topics
+                           if not t.get("isExercise")]
+            quiz_json = generate_quiz_json(m_id, chapter["title"],
+                                           quiz_qs, concept_ids)
+            all_quiz_data.append((meta["quizFile"], quiz_json))
 
-    print()
+            print(f"Module {m_idx}: {chapter['title']}")
+            print(f"  Topics: {len(topics)} "
+                  f"({len(topics) - num_exercises} concept, "
+                  f"{num_exercises} exercise)")
+            print(f"  Quiz Qs: {len(quiz_qs)} extracted + "
+                  f"{max(0, 4 - len(quiz_qs))} _TODO")
 
-    # 4. Extract and rename images
-    name_map = plan_image_names(all_image_refs, chapters)
-    images_dir = os.path.join(output_dir, "images")
-    extracted = extract_images(zf, all_image_refs, name_map, images_dir)
-    print(f"Images extracted: {extracted}")
+        print()
+
+        # 4. Extract and rename images
+        name_map = plan_image_names(all_image_refs, chapters)
+        images_dir = os.path.join(output_dir, "images")
+        extracted = extract_images(zf, all_image_refs, name_map, images_dir)
+        print(f"Images extracted: {extracted}")
+
+    else:
+        # ----- Interactive format (slide*.js + intr*.js + quiz*.js) -----
+        pres_info = load_pres_info(zf)
+        print()
+
+        (modules_meta, all_module_data, all_quiz_data,
+         all_image_refs, all_topics_flat,
+         total_quiz_extracted) = process_interactive_package(zf, pres_info)
+        print()
+
+        # 4. Extract images (interactive format stores them differently)
+        name_map = _plan_interactive_image_names(all_image_refs)
+        images_dir = os.path.join(output_dir, "images")
+        extracted = _extract_interactive_images(
+            zf, all_image_refs, name_map, images_dir)
+        print(f"Images extracted: {extracted}")
 
     # Update image src paths in all topics
     for _, mod_json in all_module_data:
@@ -1025,11 +1687,12 @@ def main():
     zf.close()
 
     # 8. Register in catalog if requested
+    num_modules = len(modules_meta)
     if args.register:
         total_minutes = sum(m.get("estimatedMinutes", 0)
                             for m in modules_meta)
         register_course(course_id, title, course_json["description"],
-                        args.family, len(chapters), total_minutes)
+                        args.family, num_modules, total_minutes)
 
     # 9. Count _TODOs across all output
     all_json_str = json.dumps(course_json) + json.dumps(glossary_json)
@@ -1044,7 +1707,7 @@ def main():
     print("IMPORT COMPLETE")
     print(f"{'=' * 60}")
     print(f"Course: {course_id}")
-    print(f"Modules: {len(chapters)}")
+    print(f"Modules: {num_modules}")
     print(f"Topics: {len(all_topics_flat)}")
     print(f"Images: {extracted}")
     print(f"Quiz Qs extracted: {total_quiz_extracted}")
@@ -1059,7 +1722,7 @@ def main():
     print(f"  {n}. Add interactive elements to concept topics "
           f"(match, sort, reveal-cards)"); n += 1
     print(f"  {n}. Complete quiz questions "
-          f"(need ~{4 * len(chapters) - total_quiz_extracted} more)"); n += 1
+          f"(need ~{4 * num_modules - total_quiz_extracted} more)"); n += 1
     print(f"  {n}. Review and complete glossary definitions"); n += 1
     if not args.register:
         print(f"  {n}. Update docs/catalog.json AND "
