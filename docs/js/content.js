@@ -29,6 +29,7 @@
     currentCourseId = id;
     cache = {};
     courseData = null;
+    if (OB.search) OB.search.clearIndex();
   }
 
   function getCourseId() {

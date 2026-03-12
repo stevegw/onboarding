@@ -108,6 +108,13 @@
   "catalog.prerequisite": "前提条件",
   "catalog.backToCatalog": "全コース",
 
+  "search.placeholder": "コースを検索...",
+  "search.noResults": "結果が見つかりません。",
+  "search.resultCount": "{count} 件の結果",
+  "search.topicResults": "トピック",
+  "search.glossaryResults": "用語集",
+  "search.quizResults": "クイズの質問",
+
   "locale.en": "English",
   "locale.fr": "Français",
   "locale.de": "Deutsch",

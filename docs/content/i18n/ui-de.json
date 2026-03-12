@@ -108,6 +108,13 @@
   "catalog.prerequisite": "Voraussetzung",
   "catalog.backToCatalog": "Alle Kurse",
 
+  "search.placeholder": "Kurs durchsuchen...",
+  "search.noResults": "Keine Ergebnisse gefunden.",
+  "search.resultCount": "{count} Ergebnisse",
+  "search.topicResults": "Themen",
+  "search.glossaryResults": "Glossar",
+  "search.quizResults": "Quizfragen",
+
   "locale.en": "English",
   "locale.fr": "Français",
   "locale.de": "Deutsch",

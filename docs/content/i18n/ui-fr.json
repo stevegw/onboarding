@@ -108,6 +108,13 @@
   "catalog.prerequisite": "Prérequis",
   "catalog.backToCatalog": "Tous les cours",
 
+  "search.placeholder": "Rechercher dans le cours...",
+  "search.noResults": "Aucun résultat trouvé.",
+  "search.resultCount": "{count} résultats",
+  "search.topicResults": "Sujets",
+  "search.glossaryResults": "Glossaire",
+  "search.quizResults": "Questions de quiz",
+
   "locale.en": "English",
   "locale.fr": "Français",
   "locale.de": "Deutsch",

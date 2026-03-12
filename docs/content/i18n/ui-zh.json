@@ -108,6 +108,13 @@
   "catalog.prerequisite": "先决条件",
   "catalog.backToCatalog": "所有课程",
 
+  "search.placeholder": "搜索课程...",
+  "search.noResults": "未找到结果。",
+  "search.resultCount": "{count} 个结果",
+  "search.topicResults": "主题",
+  "search.glossaryResults": "术语表",
+  "search.quizResults": "测验问题",
+
   "locale.en": "English",
   "locale.fr": "Français",
   "locale.de": "Deutsch",

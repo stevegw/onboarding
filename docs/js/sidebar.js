@@ -77,9 +77,10 @@
       });
     });
 
-    // Hide back link in catalog mode
+    // Hide back link and search in catalog mode
     var navBack = document.getElementById("nav-back");
     if (navBack) navBack.style.display = "none";
+    if (OB.search) OB.search.hideSearchBox();
 
     // Hide course-specific progress bar
     var progressSection = document.querySelector(".sb-progress");
@@ -241,6 +242,9 @@
         OB.router.goToCatalog();
       });
     }
+
+    // Render search box in course mode
+    if (OB.search) OB.search.renderSearchBox();
 
     updateProgress(course);
   }
