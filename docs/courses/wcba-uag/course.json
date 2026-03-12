@@ -1,0 +1,38 @@
+{
+  "id": "wcba-uag",
+  "title": "Windchill: User Accounts and Groups",
+  "description": "_TODO: Add course description.",
+  "prerequisite": null,
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Create User Accounts",
+      "description": "_TODO: Add description for Create User Accounts.",
+      "estimatedMinutes": 84,
+      "topicCount": 5,
+      "contentFile": "modules/m1-create-user-accounts.json",
+      "quizFile": "quizzes/q1-create-user-accounts.json",
+      "exerciseTopicStart": 2
+    },
+    {
+      "id": "m2",
+      "title": "Delete User Accounts",
+      "description": "_TODO: Add description for Delete User Accounts.",
+      "estimatedMinutes": 47,
+      "topicCount": 4,
+      "contentFile": "modules/m2-delete-user-accounts.json",
+      "quizFile": "quizzes/q2-delete-user-accounts.json",
+      "exerciseTopicStart": 2
+    },
+    {
+      "id": "m3",
+      "title": "Create Groups",
+      "description": "_TODO: Add description for Create Groups.",
+      "estimatedMinutes": 30,
+      "topicCount": 3,
+      "contentFile": "modules/m3-create-groups.json",
+      "quizFile": "quizzes/q3-create-groups.json",
+      "exerciseTopicStart": 2
+    }
+  ]
+}

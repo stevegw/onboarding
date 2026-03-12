@@ -1,0 +1,147 @@
+{
+  "id": "m3",
+  "title": "Create Groups",
+  "description": "_TODO: Add description for Create Groups.",
+  "topics": [
+    {
+      "id": "m3t1",
+      "title": "Create a group using the Participant Administration utility.",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Create a group using the Participant Administration utility."
+        },
+        {
+          "type": "paragraph",
+          "text": "Create groups to organize users or other groups. Working with groups simplifies the administration of Windchill and the ability to maintainadministrative policies. For example, you can assign a license to a group; if you add a user to this group, they will inherit the same licenses allocated to the group, as long as there are licenses available."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "_TODO: Add an interactive element (interactive-match or interactive-sort) to reinforce this topic's concepts."
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this topic."
+      ]
+    },
+    {
+      "id": "m3t2",
+      "title": "Exercise — Access an Organization Utilities Page",
+      "estimatedMinutes": 11,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise you will access an Organization Utilities Page."
+        },
+        {
+          "type": "image",
+          "src": "images/m3-create-groups.png",
+          "alt": "View of the Utilities Page with Participant Administration link outlined for the next task.",
+          "caption": "Organization Utilities Page",
+          "size": "large"
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex8",
+          "title": "Access an Organization Utilities Page",
+          "objective": "Complete the access an organization utilities page procedure.",
+          "tasks": [
+            {
+              "id": "ex8-t1",
+              "title": "Access an Organization Utilities Page",
+              "steps": [
+                {
+                  "action": "Click the <strong>Browse</strong> link on the Navigator bar to expand it.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Organizations</strong> icon.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Expand <strong>your organization.</strong>",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Utilities</strong> link.",
+                  "detail": "",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this exercise."
+      ]
+    },
+    {
+      "id": "m3t3",
+      "title": "Exercise — Create a Group",
+      "estimatedMinutes": 13,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise you will create a Group."
+        },
+        {
+          "type": "image",
+          "src": "images/m3-create-groups-2.png",
+          "alt": "The Participation Administration Table is shown and the Create a New Group Icon is called out.  Your New Group is present in the table and is outlined.",
+          "caption": "Participant Administration Table",
+          "size": "medium"
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex9",
+          "title": "Create a Group",
+          "objective": "Complete the create a group procedure.",
+          "tasks": [
+            {
+              "id": "ex9-t1",
+              "title": "Create a Group",
+              "steps": [
+                {
+                  "action": "Click the <strong>Participant Administration</strong> link in the Business Administration section of the Utilities page.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Create new group</strong> icon at the top of the Participant Administration table.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Type the name of your group in the Name field.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Optional: Type information in the Description field.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Finish</strong>.",
+                  "detail": "",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this exercise."
+      ]
+    }
+  ]
+}

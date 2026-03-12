@@ -1,0 +1,368 @@
+{
+  "id": "m1",
+  "title": "Create User Accounts",
+  "description": "_TODO: Add description for Create User Accounts.",
+  "topics": [
+    {
+      "id": "m1t1",
+      "title": "Overview",
+      "estimatedMinutes": 10,
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "type": "paragraph",
+          "text": "Each Windchill user has a user account that includes user information, credentials, and an email address. Windchill maps access privileges for users through user accounts."
+        },
+        {
+          "type": "paragraph",
+          "text": "The user account can be created in Windchill by a site or organization administrator. If your Windchill is connected to a corporate directory, a login attempt will also create the user account . In either case, the user account must be assigned a Windchill license group."
+        },
+        {
+          "type": "image",
+          "src": "images/m1-overview.png",
+          "alt": "Screenshot",
+          "caption": "",
+          "size": "large"
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "_TODO: Add an interactive element (interactive-match or interactive-sort) to reinforce this topic's concepts."
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this topic."
+      ]
+    },
+    {
+      "id": "m1t2",
+      "title": "Exercise — Access a Utilities Page",
+      "estimatedMinutes": 11,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise you will access a Utilities Page."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex1",
+          "title": "Access a Utilities Page",
+          "objective": "Complete the access a utilities page procedure.",
+          "tasks": [
+            {
+              "id": "ex1-t1",
+              "title": "Access a Utilities Page",
+              "steps": [
+                {
+                  "action": "Click the <strong>Browse</strong> link on the Navigator to expand it.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Organizations</strong> icon.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Expand</strong> icon next to your organization.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Utilities</strong> link.",
+                  "detail": "",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this exercise."
+      ]
+    },
+    {
+      "id": "m1t3",
+      "title": "Exercise — Create the User Account for the Organization Administrator",
+      "estimatedMinutes": 13,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise you will create the User Account for the Organization Administrator."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "<em>Although not required, features that enable search, create privileges, and assign members require that users have an email address defined here.</em>"
+        },
+        {
+          "type": "image",
+          "src": "images/m1-task-2-create-the-user-account.jpg",
+          "alt": "New User Window",
+          "caption": "New User Window",
+          "size": "medium"
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex2",
+          "title": "Create the User Account for the Organization Administrator",
+          "objective": "Complete the create the user account for the organization administrator procedure.",
+          "tasks": [
+            {
+              "id": "ex2-t1",
+              "title": "Create the User Account for the Organization Administrator",
+              "steps": [
+                {
+                  "action": "Click the <strong>Participant Administration</strong> link in the Business Administration section of the Utilities page.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Create new user</strong> icon at the top of the Users table in the Participant Administration table.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Type a username in the Name field.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Fill in the Full Name, Last Name, Email, password, and password confirmation fields of the New User window.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Finish</strong> to create the new user.",
+                  "detail": "",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this exercise."
+      ]
+    },
+    {
+      "id": "m1t4",
+      "title": "Exercise — Add a User to the List of Organization Administrators",
+      "estimatedMinutes": 19,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise you will add a User to the List of Organization Administrators."
+        },
+        {
+          "type": "image",
+          "src": "images/m1-task-3-add-a-user-to-the-list-.jpg",
+          "alt": "Administrators Link",
+          "caption": "Administrators Link",
+          "size": "medium"
+        },
+        {
+          "type": "image",
+          "src": "images/m1-task-3-add-a-user-to-the-list--2.jpg",
+          "alt": "Add User to Administrators Group",
+          "caption": "Add User to Administrators Group",
+          "size": "medium"
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex3",
+          "title": "Add a User to the List of Organization Administrators",
+          "objective": "Complete the add a user to the list of organization administrators procedure.",
+          "tasks": [
+            {
+              "id": "ex3-t1",
+              "title": "Add a User to the List of Organization Administrators",
+              "steps": [
+                {
+                  "action": "Expand the Navigator.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Expand your organization.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Administrators</strong> link for your organization.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Add Users to the Administrators Group</strong> icon at the top of the Organization Administrators table.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Search</strong>.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Select a name<strong> </strong>from the search results.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Add >></strong>.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong> to add a user to the Administrators group.",
+                  "detail": "",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this exercise."
+      ]
+    },
+    {
+      "id": "m1t5",
+      "title": "Exercise — Add User to a License Group",
+      "estimatedMinutes": 31,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise you will add User to a License Group."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "<em>A license group represents a usage scenario and access control rules. A license profile enables or restricts user access to Windchill features. Every license group member is assigned with an individual license profile.</em>"
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "<em>The Profile Actions table indicates the actions available to users in this group. Click the Actions link at the top of the Details tab to view the Profile Actions table.</em>"
+        },
+        {
+          "type": "image",
+          "src": "images/m1-task-4-add-user-to-a-license-g.jpg",
+          "alt": "Add Members to Group",
+          "caption": "Add Members to Group",
+          "size": "large"
+        },
+        {
+          "type": "image",
+          "src": "images/m1-task-4-add-user-to-a-license-g-2.jpg",
+          "alt": "Find Participant",
+          "caption": "Find Participant",
+          "size": "medium"
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "_TODO: This section originally included a video demonstration. Consider adding screenshots or additional step-by-step detail."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex4",
+          "title": "Add User to a License Group",
+          "objective": "Complete the add user to a license group procedure.",
+          "tasks": [
+            {
+              "id": "ex4-t1",
+              "title": "Add User to a License Group",
+              "steps": [
+                {
+                  "action": "Click  <strong>Browse</strong> on the navigator bar.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Profiles</strong> link to view the profiles page.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "In the License Profile table find the desired license group.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>View information</strong> icon to the right of your group’s license profile.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Members of Profile</strong> link to bring you to the Profile Members table.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "In the Profile Members table, click your license group link.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Actions</strong> at the top of the page.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Edit Group</strong>.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Next</strong>.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Add members to group</strong> icon.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Use the Find Participant window to find your user.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Select your user and click <strong>Add>></strong> to add the user the Participant List.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong> to add member and close the participant window.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Finish</strong> button to close the Edit Group window.",
+                  "detail": "",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this exercise."
+      ]
+    }
+  ]
+}

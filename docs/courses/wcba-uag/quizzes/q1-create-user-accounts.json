@@ -1,0 +1,58 @@
+{
+  "moduleId": "m1",
+  "title": "Create User Accounts Knowledge Check",
+  "questions": [
+    {
+      "id": "m1-kc-001",
+      "question": "What does a license group represent in the context of access control?",
+      "options": [
+        "A specific software application",
+        "An organizational unit",
+        "A usage scenario and access control rules",
+        "A hardware configuration"
+      ],
+      "answerIndex": 2,
+      "rationale": "A license group represents a usage scenario and access control rules. The correct answer is that a license group represents a usage scenario and access control rules.",
+      "topic": "m1t1"
+    },
+    {
+      "id": "m1-kc-002",
+      "question": "True or False: Every member of a license group is assigned a collective license profile.",
+      "options": [
+        "True",
+        "False",
+        "_TODO: Add option",
+        "_TODO: Add option"
+      ],
+      "answerIndex": 1,
+      "rationale": "Each member is assigned an individual license profile, not a collective one. The statement is false because each member is assigned an individual license profile.",
+      "topic": "m1t1"
+    },
+    {
+      "id": "m1-kc-003",
+      "question": "_TODO: Add question 3 for Create User Accounts.",
+      "options": [
+        "_TODO: Option A",
+        "_TODO: Option B",
+        "_TODO: Option C",
+        "_TODO: Option D"
+      ],
+      "answerIndex": 0,
+      "rationale": "_TODO: Add rationale.",
+      "topic": "m1t1"
+    },
+    {
+      "id": "m1-kc-004",
+      "question": "_TODO: Add question 4 for Create User Accounts.",
+      "options": [
+        "_TODO: Option A",
+        "_TODO: Option B",
+        "_TODO: Option C",
+        "_TODO: Option D"
+      ],
+      "answerIndex": 0,
+      "rationale": "_TODO: Add rationale.",
+      "topic": "m1t1"
+    }
+  ]
+}

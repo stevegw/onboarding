@@ -171,6 +171,16 @@
  "comingSoon": false
  },
  {
+ "id": "wcba-uag",
+ "title": "User Accounts and Groups",
+ "description": "Create and delete user accounts, assign organization administrators and license groups, and create groups using Participant Administration utilities.",
+ "prerequisite": "wcba-team",
+ "modules": 3,
+ "estimatedHours": 3,
+ "locales": ["en"],
+ "comingSoon": false
+ },
+ {
  "id": "wc-objtypes",
  "title": "Object Types",
  "description": "Configure and manage Windchill object types, subtypes, and type hierarchies.",

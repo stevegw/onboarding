@@ -1,0 +1,196 @@
+{
+  "id": "m2",
+  "title": "Delete User Accounts",
+  "description": "_TODO: Add description for Delete User Accounts.",
+  "topics": [
+    {
+      "id": "m2t1",
+      "title": "Delete a user account and its personal cabinet.",
+      "estimatedMinutes": 8,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Delete a user account and its personal cabinet."
+        },
+        {
+          "type": "paragraph",
+          "text": "It is common for users to leave an organization, and then they need to be removed from the Windchill system. A business administrator must know how to delete a user account. The deletion of a user is possible in the Participant Administration window. An account removal involves personal cabinet and Windchill user deletion. Details about the deleted user, such as the user’s name, are retained in Windchill to allow searches for objects created by the user and to maintain auditing logs. The user also remains a member of any context teams but is marked as deleted."
+        },
+        {
+          "type": "paragraph",
+          "text": "<strong><<Video Removed>></strong>"
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "_TODO: Add an interactive element (interactive-match or interactive-sort) to reinforce this topic's concepts."
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this topic."
+      ]
+    },
+    {
+      "id": "m2t2",
+      "title": "Exercise — Add the User to Participant Administration Table",
+      "estimatedMinutes": 13,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise you will add the User to Participant Administration Table."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex5",
+          "title": "Add the User to Participant Administration Table",
+          "objective": "Complete the add the user to participant administration table procedure.",
+          "tasks": [
+            {
+              "id": "ex5-t1",
+              "title": "Add the User to Participant Administration Table",
+              "steps": [
+                {
+                  "action": "Click the <strong>Participant Administration</strong> link in the Business Administration section of the Utilities page.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Add participants to the table</strong> icon at the top of the Participant Administration table.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "In the Search for User window click the <strong>Participant Name</strong> field. Type the username of the participant that you want to delete.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click<strong>Search</strong>.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click<strong>OK</strong>to close the Find Participant window and return the selected records to the Participant Administration table.",
+                  "detail": "",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this exercise."
+      ]
+    },
+    {
+      "id": "m2t3",
+      "title": "Exercise — Delete a User Account",
+      "estimatedMinutes": 9,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise you will delete a User Account."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex6",
+          "title": "Delete a User Account",
+          "objective": "Complete the delete a user account procedure.",
+          "tasks": [
+            {
+              "id": "ex6-t1",
+              "title": "Delete a User Account",
+              "steps": [
+                {
+                  "action": "Select the checkbox to the left of your user.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Actions</strong> menu and select <strong>Delete from Windchill and Directory Server</strong>.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong> on the Delete Participant confirmation window.",
+                  "detail": "",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this exercise."
+      ]
+    },
+    {
+      "id": "m2t4",
+      "title": "Exercise — Delete the User’s Personal Cabinet",
+      "estimatedMinutes": 17,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise you will delete the User’s Personal Cabinet."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex7",
+          "title": "Delete the User’s Personal Cabinet",
+          "objective": "Complete the delete the user’s personal cabinet procedure.",
+          "tasks": [
+            {
+              "id": "ex7-t1",
+              "title": "Delete the User’s Personal Cabinet",
+              "steps": [
+                {
+                  "action": "Click <strong>Browse</strong> on the Navigator.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click<strong> Site</strong> > <strong>Utilities.</strong>",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Personal Cabinets Administration</strong> link in the System Administration section.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Select the checkbox to the left of the user.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click<strong>Delete</strong> at the top of the Personal Cabinets Administration window.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong> to confirm the deletion of the Personal Cabinet.",
+                  "detail": "",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Close</strong> to close the Personal Cabinets Administration window.",
+                  "detail": "",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this exercise."
+      ]
+    }
+  ]
+}
