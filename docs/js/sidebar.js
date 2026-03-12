@@ -77,10 +77,10 @@
       });
     });
 
-    // Hide back link and search in catalog mode
+    // Hide back link in catalog mode; show global search
     var navBack = document.getElementById("nav-back");
     if (navBack) navBack.style.display = "none";
-    if (OB.search) OB.search.hideSearchBox();
+    if (OB.search) OB.search.renderSearchBox({ global: true });
 
     // Hide course-specific progress bar
     var progressSection = document.querySelector(".sb-progress");

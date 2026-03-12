@@ -694,6 +694,14 @@ a.sb-search-result {
   color: var(--c-text-dim);
   margin-top: 2px;
 }
+.sb-search-course-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 4px;
+  vertical-align: middle;
+}
 
 /* Sidebar back link */
 .sb-back-link {

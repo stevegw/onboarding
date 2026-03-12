@@ -109,7 +109,9 @@
   "catalog.backToCatalog": "All Courses",
 
   "search.placeholder": "Search course...",
+  "search.placeholderGlobal": "Search all courses...",
   "search.noResults": "No results found.",
+  "search.building": "Building search index...",
   "search.resultCount": "{count} results",
   "search.topicResults": "Topics",
   "search.glossaryResults": "Glossary",
