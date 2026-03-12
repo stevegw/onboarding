@@ -1,0 +1,67 @@
+{
+  "id": "m11",
+  "title": "Assembly FEATURES",
+  "description": "_TODO: Add description for Assembly FEATURES.",
+  "topics": [
+    {
+      "id": "m11t1",
+      "title": "Switch windows",
+      "estimatedMinutes": 24,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Task 2: Verify the display level of the assembly feature \n1.\tOpen one of the HATCH-RING.PRT models from the Model Tree and observe it. Note: Select one of the HATCH-RING.PRT models in the Model Tree and click Open from the mini toolbar.\n2.\tFrom the Quick Access toolbar, click Windows and then select HATCH.ASM to switch windows."
+        },
+        {
+          "type": "paragraph",
+          "text": "Task 3: Remove a component from the intersected components list\n1.\tEdit the Intersection of Revolve 1 and clear the Automatic Update checkbox. Note: Select the revolve feature from the Model Tree and click Edit Definition from the mini toolbar. Then select the Intersection tab to view the options.\n2.\tRemove the last HATCH-RING model from the list of Intersected Models. Note: Click OK to view the updates."
+        },
+        {
+          "type": "paragraph",
+          "text": "Additional information\nTo remove intersected components, you can also right-click Revolve 1 and select Edit Intersection."
+        },
+        {
+          "type": "paragraph",
+          "text": "Task 5: Begin creating an assembly hole\n1.\tUsing the View Manager, activate the Comb0001 state. Note: To activate the Comb0001 state, select the All tab in the View Manager. To activate a state, double-click on the state name or right-click and select Activate.\n2.\tActivate the Default All state. Then, in the Model Tree, suppress the SCREW_SELF-TAP.PRT. Note: Select the part in the Model Tree and then click Suppress from the mini toolbar.\n3.\tCreate a Hole using datum axis A_2 and the front surface as references.\n4.\tEdit the depth to Through All and the diameter to 9."
+        },
+        {
+          "type": "paragraph",
+          "text": "Task 6: Determine which model the assembly hole will Intersect\n1.\tEdit the definition of the hole feature you created in the previous task, and then select the Intersection tab.\n2.\tClear the Automatic Update checkbox and remove OUTER.PRT from the Intersected Models list. \n3.\tResume the SCREW_SELFTAP.PRT and activate the Comb0001 state.\n4.\tOpen and observe the INNER.PRT."
+        },
+        {
+          "type": "paragraph",
+          "text": "Additional information\nWhen suppressing a component, any child relationships of that component will either need to be suppressed or suspended."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Switch windows"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can use open multiple windows simultaneously in Creo Parametric, each containing a different model. This is a common occurrence during the design process. However, all applicable functionality is available only on one active window at any given moment."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can use the Window group in the View ribbon tab to access commands for working with multiple windows."
+        },
+        {
+          "type": "paragraph",
+          "text": "When you switch the active window, you automatically switch the active model to the one in that window. You can switch windows and thus activate a model using any of the following methods:\n•\tClick Windows from the Quick Access toolbar to select the desired model.\n•\tClick Windows in the Window group of the View ribbon tab to select the desired model."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can determine which window is active in two ways:\n•\tThe word Active appears on the title bar of the active window next to the model name.\n•\tThe active model has a checkbox next to its name when you click Windows."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "_TODO: Add an interactive element (interactive-match or interactive-sort) to reinforce this topic's concepts."
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this topic."
+      ]
+    }
+  ]
+}

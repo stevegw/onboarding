@@ -1,0 +1,39 @@
+{
+  "id": "m3",
+  "title": "Assembly theory",
+  "description": "_TODO: Add description for Assembly theory.",
+  "topics": [
+    {
+      "id": "m3t1",
+      "title": "Belt sander components",
+      "estimatedMinutes": 10,
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Belt sander components"
+        },
+        {
+          "type": "paragraph",
+          "text": "Consider a case study example using the Assemble Systems Framework."
+        },
+        {
+          "type": "paragraph",
+          "text": "First, consider the planning for your case study. Here you have a belt sander comprised of several components including parts and subassemblies."
+        },
+        {
+          "type": "paragraph",
+          "text": "How you assemble components is important and driven by design intent. You can assemble components using constraints or connections. In this course, you will practice assembling components using constraints.  Throughout different exercises, you will utilize a variety of constraints to assemble the housing to assembly datums, the motor subassembly to the housing, and the tensioner arm to the housing. You will orient the table knob using parallel, normal, and angle offset constraints. You will utilize assembly tools such as the accessory window to assemble small components and use the explode state to animate a subassembly.  Each constraint added will remove one or more degree of freedom until movement is restricted in all desired degrees of freedom."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "_TODO: Add an interactive element (interactive-match or interactive-sort) to reinforce this topic's concepts."
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this topic."
+      ]
+    }
+  ]
+}

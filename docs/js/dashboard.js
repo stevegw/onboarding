@@ -31,6 +31,7 @@
       html += '<span class="catalog-family-icon" style="color:' + family.color + '">' + family.icon + '</span>';
       html += '<h2>' + esc(family.name) + '</h2>';
       html += '<span class="catalog-family-count">' + t("catalog.courses", { count: family.courses.length }) + '</span>';
+      html += '<button class="catalog-import-link" data-import-family="' + family.id + '" title="Import SCORM package">&#128229; Import</button>';
       html += '</div>';
 
       html += '<div class="catalog-grid">';
@@ -109,6 +110,14 @@
         e.stopPropagation();
         var courseId = btn.getAttribute("data-export-course");
         if (OB["export"]) OB["export"].openModal({ courseId: courseId });
+      });
+    });
+
+    // Import link click → open import modal
+    document.querySelectorAll(".catalog-import-link").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var familyId = btn.getAttribute("data-import-family");
+        if (OB["import"]) OB["import"].openModal({ familyId: familyId });
       });
     });
 

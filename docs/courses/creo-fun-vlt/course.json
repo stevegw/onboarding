@@ -1,0 +1,125 @@
+{
+  "id": "creo-fun-vlt",
+  "title": "Creo: VILT Direct to SCORM_CRFD-ASBY-Slides",
+  "description": "_TODO: Add course description.",
+  "prerequisite": null,
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Creo: Fundamentals of Assembly",
+      "description": "_TODO: Add description for Creo: Fundamentals of Assembly.",
+      "estimatedMinutes": 102,
+      "topicCount": 1,
+      "contentFile": "modules/m1-creo-fundamentals-of-assembly.json",
+      "quizFile": "quizzes/q1-creo-fundamentals-of-assembly.json"
+    },
+    {
+      "id": "m2",
+      "title": "REVIEW Assemble Systems Framework",
+      "description": "_TODO: Add description for REVIEW Assemble Systems Framework.",
+      "estimatedMinutes": 30,
+      "topicCount": 1,
+      "contentFile": "modules/m2-review-assemble-systems-framework.json",
+      "quizFile": "quizzes/q2-review-assemble-systems-framework.json"
+    },
+    {
+      "id": "m3",
+      "title": "Assembly theory",
+      "description": "_TODO: Add description for Assembly theory.",
+      "estimatedMinutes": 10,
+      "topicCount": 1,
+      "contentFile": "modules/m3-assembly-theory.json",
+      "quizFile": "quizzes/q3-assembly-theory.json"
+    },
+    {
+      "id": "m4",
+      "title": "Assembly Theory",
+      "description": "_TODO: Add description for Assembly Theory.",
+      "estimatedMinutes": 20,
+      "topicCount": 1,
+      "contentFile": "modules/m4-assembly-theory.json",
+      "quizFile": "quizzes/q4-assembly-theory.json"
+    },
+    {
+      "id": "m5",
+      "title": "Constraints: Default, Coincident, Distance",
+      "description": "_TODO: Add description for Constraints: Default, Coincident, Distance.",
+      "estimatedMinutes": 122,
+      "topicCount": 1,
+      "contentFile": "modules/m5-constraints-default-coincident-distance.json",
+      "quizFile": "quizzes/q5-constraints-default-coincident-distance.json"
+    },
+    {
+      "id": "m6",
+      "title": "Constraints: Parallel, Normal, Angle Offset, Automatic",
+      "description": "_TODO: Add description for Constraints: Parallel, Normal, Angle Offset, Automatic.",
+      "estimatedMinutes": 44,
+      "topicCount": 1,
+      "contentFile": "modules/m6-constraints-parallel-normal-angle-offset-automatic.json",
+      "quizFile": "quizzes/q6-constraints-parallel-normal-angle-offset-automatic.json"
+    },
+    {
+      "id": "m7",
+      "title": "Use the Accessory Window",
+      "description": "_TODO: Add description for Use the Accessory Window.",
+      "estimatedMinutes": 18,
+      "topicCount": 1,
+      "contentFile": "modules/m7-use-the-accessory-window.json",
+      "quizFile": "quizzes/q7-use-the-accessory-window.json"
+    },
+    {
+      "id": "m8",
+      "title": "Explode States",
+      "description": "_TODO: Add description for Explode States.",
+      "estimatedMinutes": 50,
+      "topicCount": 1,
+      "contentFile": "modules/m8-explode-states.json",
+      "quizFile": "quizzes/q8-explode-states.json"
+    },
+    {
+      "id": "m9",
+      "title": "Explode states",
+      "description": "_TODO: Add description for Explode states.",
+      "estimatedMinutes": 5,
+      "topicCount": 1,
+      "contentFile": "modules/m9-explode-states.json",
+      "quizFile": "quizzes/q9-explode-states.json"
+    },
+    {
+      "id": "m10",
+      "title": "Assembly Features",
+      "description": "_TODO: Add description for Assembly Features.",
+      "estimatedMinutes": 46,
+      "topicCount": 1,
+      "contentFile": "modules/m10-assembly-features.json",
+      "quizFile": "quizzes/q10-assembly-features.json"
+    },
+    {
+      "id": "m11",
+      "title": "Assembly FEATURES",
+      "description": "_TODO: Add description for Assembly FEATURES.",
+      "estimatedMinutes": 24,
+      "topicCount": 1,
+      "contentFile": "modules/m11-assembly-features.json",
+      "quizFile": "quizzes/q11-assembly-features.json"
+    },
+    {
+      "id": "m12",
+      "title": "Assembly features",
+      "description": "_TODO: Add description for Assembly features.",
+      "estimatedMinutes": 6,
+      "topicCount": 1,
+      "contentFile": "modules/m12-assembly-features.json",
+      "quizFile": "quizzes/q12-assembly-features.json"
+    },
+    {
+      "id": "m13",
+      "title": "Practice",
+      "description": "_TODO: Add description for Practice.",
+      "estimatedMinutes": 54,
+      "topicCount": 1,
+      "contentFile": "modules/m13-practice.json",
+      "quizFile": "quizzes/q13-practice.json"
+    }
+  ]
+}

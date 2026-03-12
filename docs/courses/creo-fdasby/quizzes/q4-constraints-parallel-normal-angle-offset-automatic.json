@@ -1,0 +1,58 @@
+{
+  "moduleId": "m4",
+  "title": "Constraints: Parallel, Normal, Angle Offset, Automatic Knowledge Check",
+  "questions": [
+    {
+      "id": "m4-kc-001",
+      "question": "What is the bicycle fork constraint status?",
+      "options": [
+        "Partially Constrained",
+        "Fully Constrained",
+        "Packaged",
+        "_TODO: Add option"
+      ],
+      "answerIndex": 1,
+      "rationale": "_TODO: Add rationale.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-002",
+      "question": "What constraints could be used to assemble the bicycle fork? (Select more than one response)",
+      "options": [
+        "Coincident",
+        "Angle Offset",
+        "Distance",
+        "Fix"
+      ],
+      "answerIndex": 3,
+      "rationale": "_TODO: Add rationale.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-003",
+      "question": "_TODO: Add question 3 for Constraints: Parallel, Normal, Angle Offset, Automatic.",
+      "options": [
+        "_TODO: Option A",
+        "_TODO: Option B",
+        "_TODO: Option C",
+        "_TODO: Option D"
+      ],
+      "answerIndex": 0,
+      "rationale": "_TODO: Add rationale.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-004",
+      "question": "_TODO: Add question 4 for Constraints: Parallel, Normal, Angle Offset, Automatic.",
+      "options": [
+        "_TODO: Option A",
+        "_TODO: Option B",
+        "_TODO: Option C",
+        "_TODO: Option D"
+      ],
+      "answerIndex": 0,
+      "rationale": "_TODO: Add rationale.",
+      "topic": "m4t1"
+    }
+  ]
+}

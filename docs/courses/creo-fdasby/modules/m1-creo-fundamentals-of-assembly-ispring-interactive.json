@@ -1,0 +1,26 @@
+{
+  "id": "m1",
+  "title": "Creo: Fundamentals of Assembly (iSpring Interactive)",
+  "description": "_TODO: Add description for Creo: Fundamentals of Assembly (iSpring Interactive).",
+  "topics": [
+    {
+      "id": "m1t1",
+      "title": "iSpring evaluation 3/10/26 M. Stirland",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "iSpring evaluation 3/10/26 M. Stirland"
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "_TODO: Add an interactive element (interactive-match or interactive-sort) to reinforce this topic's concepts."
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this topic."
+      ]
+    }
+  ]
+}

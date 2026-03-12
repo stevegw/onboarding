@@ -1,0 +1,121 @@
+{
+  "id": "m8",
+  "title": "Explode States",
+  "description": "_TODO: Add description for Explode States.",
+  "topics": [
+    {
+      "id": "m8t1",
+      "title": "Create offset lines between exploded components",
+      "estimatedMinutes": 50,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Use explode states to capture assembly parts in various states of assembly and disassembly.\rEasily reference these states when creating drawings and assembly or disassembly procedures."
+        },
+        {
+          "type": "paragraph",
+          "text": "Additional information\nIn the View Manager, you can use the Explode tab to create and save explode states."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Create offset lines between exploded components"
+        },
+        {
+          "type": "paragraph",
+          "text": "Additional information\n•\tCreate explode lines by specifying two references and applying the offset line in the Cosmetic Offset Line dialog.\n•\tOffset lines from the explode state are grouped together in the Model Tree."
+        },
+        {
+          "type": "paragraph",
+          "text": "Additional information\nCreate explode lines by specifying two references and applying the offset line in the Cosmetic Offset Line dialog."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Exploded state characteristics"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can use explode states to quickly reposition components in 3D space and save these assembly or disassembly views by selecting the View Manager’s Explode tab. When placing a drawing view, you can select explode states or use them to create assembly or disassembly procedures. You can turn on/off an explode state on or off, and you can also create multiple explode states. Before you can explode components from an assembly, you must specify the Motion type and Movement Reference."
+        },
+        {
+          "type": "paragraph",
+          "text": "Motion Type\nSpecify the type of motion for a selected component. Motion types include:\n\t•\tTranslate – Linearly moves the selected component. This is the default motion type.\n\t•\tRotate – Rotates the selected component about a specified Movement Reference.\n\t•\tCopy Position – Copies the exploded position from the selected component to other components. This option is available in the Options tab from the dashboard.\n\t•\tToggle Explode Location – Switches the placement location of the selected component between its original location and its current location. You can select this option to reset a component's position."
+        },
+        {
+          "type": "paragraph",
+          "text": "Movement Reference\nSpecifies the reference to define the direction of movement for the selected component. This reference is required when rotating components but is optional for translating components when you require a direction other than the three default directions. Available reference types include all datum features, planar surfaces, edges, and vertices."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can also click View Plane from the dashboard, which you can use to explode components parallel to the screen in the assembly's current orientation."
+        },
+        {
+          "type": "paragraph",
+          "text": "Once the Motion type and Movement Reference have been defined, you can select the components you wish to explode. There are three methods available:\n•\tMove one component – Move a single component in an assembly or subassembly by selecting it.\n•\tMove many components – Press Ctrl and select multiple components to move them all at once.\n•\tMove with Children – In the Options tab from the dashboard, you can select the Move with Children checkbox. Use this option to select a component to explode and move its children with it."
+        },
+        {
+          "type": "paragraph",
+          "text": "When you select a component for translation, the 3D Dragger displays at that location along with a coordinate system. You can hover over any of the three 3D Dragger axis arrows and drag to explode the component in that direction. When you select a component for rotation, a drag arrow displays. You can use the drag arrow to rotate the component about the Movement Reference."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can also specify the Motion increment of the component you are exploding. The default Motion increment value is Smooth, which enables the components to explode smoothly so that you can drop them at any relative position. You can also increment values of 1, 5, or 10 by selecting the desired value from the list, or you can type in your own increment value. The units used for the increment value are the same units used in the assembly. For example, if the assembly units are measured in millimeters, when you select an increment value of 10, the component explodes in 10-millimeter increments, snapping to each increment."
+        },
+        {
+          "type": "paragraph",
+          "text": "When using the explode functionality, consider the following:\n•\tIf you explode a subassembly in the context of a higher-level assembly, the system does not explode the components in the subassembly.\n•\tWhen you unexplode an assembly, the system retains the information so that the components can have the same explode position if you explode the assembly again.\n•\tAll assemblies have a Default Explode state that the system creates automatically from the defined component placement constraints.\n•\tMultiple occurrences of the same subassembly can have different explode states."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can create cosmetic explode lines to display the alignment of exploded components when the assembly is unexploded. Explode lines automatically update to reflect position changes made to the exploded components they reference. Creating new explode lines or editing existing explode lines modifies the explode state. You can save the modified explode state in the View Manager Explode tab."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can create an explode line in an explode state by specifying a reference on two different components. You can select surfaces, edges, or curves as references on the components. The explode line is then created between the two selected references and displays in the Model Tree as an Offset Line. If you select a cylindrical surface, you can specify that the resulting offset line either uses the cylinder axis or be created normal to the surface at the selected location."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can edit existing explode lines by selecting the explode line and clicking Edit Explode Line in the Explode Lines tab from the dashboard. You can also right-click and select Edit Explode Line. You can perform the following edit operations on an explode line:\n•\tEdit the explode line length – You can extend or shorten the ends of an explode line by dragging the handle at the desired end.\n•\tAdd Jogs – Select the explode line location where you want to create the jog, right-click, and select Add Jog. You can then drag the jog to its desired location. You can delete the jog by right-clicking its handle and selecting Remove Jog."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can modify the style of existing explode lines by selecting the explode line and either clicking Edit Line Styles in the Explode Lines tab from the dashboard or by right-clicking in the graphics window and selecting Modify Line Style. You can modify the line style to be Hidden, Geometry, Leader, Cut Plane, Phantom, or centerline. You can also modify the Line Font and Color. Click Default Line Style in the Explode Lines tab from the dashboard allows you to modify the default line style for every offset line created subsequently."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can remove explode lines by selecting the explode line and clicking Remove Explode Line in the Explode Lines tab from the dashboard. You can also right-click and select Remove Explode Line. Press Ctrl to select multiple explode lines at once."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Animation not following the explode sequence"
+        },
+        {
+          "type": "paragraph",
+          "text": "You have the option of animating your explode states for both exploding and unexploding operations. The system animates the movement of components from their start to end positions in the explode state. To turn on the animation, click File > Options and select the Show animation while exploding the assembly checkbox under the Assembly display settings section of the Entity Display category."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can also control the following options:\n•\tMaximum seconds an animation takes between explode states – Sets the duration of time the system takes to explode or unexplode the assembly.\n•\tFollow explode sequence – If turned on, this option causes the components to explode or unexplode in the order they were moved when the explode state was created, following the drag motions you used. If this checkbox is cleared, the system selects the shortest distance to move the components. All components are also moved at once, regardless of the order in which they were moved when the explode state was created."
+        },
+        {
+          "type": "paragraph",
+          "text": "Explode lines appear at the end of the animation when exploding and display until the end of the animation while unexploding."
+        },
+        {
+          "type": "paragraph",
+          "text": "The following configuration options determine the default animated explode state behavior:\n•\tanimate_explode_states – Controls whether explode states are animated. This option is set to yes by default.\n•\texplode_animation_max_time – Sets the default duration of time necessary to explode or unexplode the assembly."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "_TODO: Add an interactive element (interactive-match or interactive-sort) to reinforce this topic's concepts."
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this topic."
+      ]
+    }
+  ]
+}

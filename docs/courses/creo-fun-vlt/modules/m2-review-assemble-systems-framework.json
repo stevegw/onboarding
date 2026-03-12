@@ -1,0 +1,80 @@
+{
+  "id": "m2",
+  "title": "REVIEW Assemble Systems Framework",
+  "description": "_TODO: Add description for REVIEW Assemble Systems Framework.",
+  "topics": [
+    {
+      "id": "m2t1",
+      "title": "CREO DESIGN PROCESS FRAMEWORK",
+      "estimatedMinutes": 30,
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "CREO DESIGN PROCESS FRAMEWORK"
+        },
+        {
+          "type": "paragraph",
+          "text": "These are the high-level tasks associated with each section of the framework."
+        },
+        {
+          "type": "paragraph",
+          "text": "Let us revisit the Creo Parametric Design process framework. Recall that it consists of four different areas: Model, Assemble, Document, and Analyze."
+        },
+        {
+          "type": "paragraph",
+          "text": "Let us look at the second phase in the Creo Parametric Design process: Assemble Systems Framework."
+        },
+        {
+          "type": "paragraph",
+          "text": "Let us review the framework used in Assemblies."
+        },
+        {
+          "type": "paragraph",
+          "text": "The Assembly Systems Framework consists of three high-level sections: Plan, Create, and Verify. You must first plan the assembly by how you want to assemble it in Creo Parametric. Once you have a plan, you can execute that plan and create the assembly. Finally, you must verify if the assembly is successful or not by verifying it against some measure or criteria. If the assembly meets the verification criteria, then it is complete. If not, you must go back to the Create phase and modify the assembly based on the verification criteria. Once modified, you can compare it against the verification criteria. This becomes a cyclical process until the assembly meets the criteria."
+        },
+        {
+          "type": "paragraph",
+          "text": "Let us dive deeper into each of these sections."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Assemble Systems Framework"
+        },
+        {
+          "type": "paragraph",
+          "text": "Let us analyze each of the high-level sections starting with the Plan phase of the framework."
+        },
+        {
+          "type": "paragraph",
+          "text": "Typically, as a designer or an engineer, you need to solve a problem or provide guidance on a design to solve that problem. You would typically review the concept of that design and any design criteria, specification requirements, and so on."
+        },
+        {
+          "type": "paragraph",
+          "text": "From there, you would start considering the assembly you would create and the design intent you would apply to that assembly. After this, you would start creating the new Creo Parametric assembly."
+        },
+        {
+          "type": "paragraph",
+          "text": "You would then step into the Create phase, where you enter into a cyclical process of assembling models and possibly creating new models or subassemblies. You would then keep assembling and constraining components until the assembly is complete. Once the assembly is complete, you would determine if any assembly-level features should be created. If yes, you would enter into a cyclical process of creating assembly-level features until no more is required."
+        },
+        {
+          "type": "paragraph",
+          "text": "At this point, you would optimize the assembly."
+        },
+        {
+          "type": "paragraph",
+          "text": "Finally, you step into the Verify phase, comparing the assembly against the original specifications. If the assembly meets the specifications, then the assembly is complete. If the assembly fails to meet the specifications, you go back to the Creation phase to edit the assembly or create new models."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "_TODO: Add an interactive element (interactive-match or interactive-sort) to reinforce this topic's concepts."
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this topic."
+      ]
+    }
+  ]
+}

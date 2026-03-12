@@ -1,0 +1,59 @@
+{
+  "id": "m4",
+  "title": "Assembly Theory",
+  "description": "_TODO: Add description for Assembly Theory.",
+  "topics": [
+    {
+      "id": "m4t1",
+      "title": "Model Tree anatomy",
+      "estimatedMinutes": 20,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Most commercial product designs consist of numerous components and subassemblies. You can use Creo Parametric to create an assembly into which you can assemble multiple components and subassemblies. Subassemblies consist of components."
+        },
+        {
+          "type": "paragraph",
+          "text": "Components are added into an assembly using constraints or connections. Both constraints and connections locate components with respect to each other. \n•\tConstraints lock a component into position by restricting all six degrees of freedom (X, Y, Z translation, X, Y, Z rotation).\n•\tConnections only lock certain degrees of freedom, enabling movement of components to simulate machine-type motion. The degrees of freedom allowed vary by the connection type specified."
+        },
+        {
+          "type": "paragraph",
+          "text": "Creating features in an assembly is like creating features in a part, except for some restrictions and additional options. You can create assembly features that remove material such as holes, extrudes, and sweeps in an assembly. You cannot create an assembly feature that adds material, only features that remove material."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Model Tree anatomy"
+        },
+        {
+          "type": "paragraph",
+          "text": "Looking at the Model Tree in an open assembly, you can see that the Model Tree is divided into three areas: datums, components, and insert location."
+        },
+        {
+          "type": "paragraph",
+          "text": "Datums\nAny time a new assembly is created, a template should be used. The template includes three default datum planes and a default coordinate system. These datum entities can be used as references to assemble the components into the assembly."
+        },
+        {
+          "type": "paragraph",
+          "text": "Components\nEach subassembly or part assembled into the assembly displays in the Model Tree. The components display from top to bottom in the order they were assembled. Each component has a node that can be expanded to display the features that comprise the part. Each subassembly can be expanded to show the sub-components that comprise the subassembly, and each sub-component can, in turn, be expanded to display its features."
+        },
+        {
+          "type": "paragraph",
+          "text": "Insert location\nThis is the location where components are inserted upon assembly. By default, the insert location is at the bottom of the Model Tree. However, you can drag the Insert Location to any other location in the Model Tree, which becomes the location where components are assembled. Any components above the Insert Location can be selected as references to assemble the part. Any components after the Insert Location become suppressed and are unavailable to be used as references for assembling a part."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can select a datum or part from the Model Tree, and it highlights in the graphics window."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "_TODO: Add an interactive element (interactive-match or interactive-sort) to reinforce this topic's concepts."
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this topic."
+      ]
+    }
+  ]
+}

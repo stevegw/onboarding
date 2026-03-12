@@ -1,0 +1,58 @@
+{
+  "moduleId": "m5",
+  "title": "Einschränkungen: Parallel, Normal, Winkelversatz, Automatisch Knowledge Check",
+  "questions": [
+    {
+      "id": "m5-kc-001",
+      "question": "_TODO: Add question 1 for Einschränkungen: Parallel, Normal, Winkelversatz, Automatisch.",
+      "options": [
+        "_TODO: Option A",
+        "_TODO: Option B",
+        "_TODO: Option C",
+        "_TODO: Option D"
+      ],
+      "answerIndex": 0,
+      "rationale": "_TODO: Add rationale.",
+      "topic": "m5t1"
+    },
+    {
+      "id": "m5-kc-002",
+      "question": "_TODO: Add question 2 for Einschränkungen: Parallel, Normal, Winkelversatz, Automatisch.",
+      "options": [
+        "_TODO: Option A",
+        "_TODO: Option B",
+        "_TODO: Option C",
+        "_TODO: Option D"
+      ],
+      "answerIndex": 0,
+      "rationale": "_TODO: Add rationale.",
+      "topic": "m5t1"
+    },
+    {
+      "id": "m5-kc-003",
+      "question": "_TODO: Add question 3 for Einschränkungen: Parallel, Normal, Winkelversatz, Automatisch.",
+      "options": [
+        "_TODO: Option A",
+        "_TODO: Option B",
+        "_TODO: Option C",
+        "_TODO: Option D"
+      ],
+      "answerIndex": 0,
+      "rationale": "_TODO: Add rationale.",
+      "topic": "m5t1"
+    },
+    {
+      "id": "m5-kc-004",
+      "question": "_TODO: Add question 4 for Einschränkungen: Parallel, Normal, Winkelversatz, Automatisch.",
+      "options": [
+        "_TODO: Option A",
+        "_TODO: Option B",
+        "_TODO: Option C",
+        "_TODO: Option D"
+      ],
+      "answerIndex": 0,
+      "rationale": "_TODO: Add rationale.",
+      "topic": "m5t1"
+    }
+  ]
+}

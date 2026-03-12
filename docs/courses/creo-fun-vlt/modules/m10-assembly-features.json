@@ -1,0 +1,111 @@
+{
+  "id": "m10",
+  "title": "Assembly Features",
+  "description": "_TODO: Add description for Assembly Features.",
+  "topics": [
+    {
+      "id": "m10t1",
+      "title": "Assembly features characteristics",
+      "estimatedMinutes": 46,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Assembly Features"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can create cuts in assemblies that are visible only at the assembly level and do not show in the part model.\rReasons for use:\rDesign intent\rInterfering components"
+        },
+        {
+          "type": "paragraph",
+          "text": "Sometimes you may want to add cuts or holes at the assembly level so as not to modify the part. For instance, a self tapping screw might be installed once components are assembled, in which case the components would not be manufactured with the holes."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Assembly features characteristics"
+        },
+        {
+          "type": "paragraph",
+          "text": "Creating features in an assembly is like creating features in a part, except for some restrictions and additional options. You can create assembly datum features such as planes, axes, points, curves, and coordinate systems in an assembly. You can also create assembly features that remove material such as holes, extrudes, and sweeps. You cannot create an assembly feature that adds material, only features that remove material."
+        },
+        {
+          "type": "paragraph",
+          "text": "There are two main reasons for using assembly features: design intent and interfering components."
+        },
+        {
+          "type": "paragraph",
+          "text": "Design intent\nIf the product you have designed has material removed from it after the components have been assembled, you should do the same in Creo Parametric. One example of this assembly type is a weldment; parts are positioned, welded together, and holes or other material removal operations are performed on the assembly."
+        },
+        {
+          "type": "paragraph",
+          "text": "Interfering components\nIn some cases, the assembly of a component such as a force-fit clip or self-tapping hole may remove material. Still, in Creo Parametric, there is an interference between the components. You can use an assembly feature as a tool to eliminate that interference."
+        },
+        {
+          "type": "paragraph",
+          "text": "Be aware that any assembly feature that has its default edited to the Top Level display level can cause performance issues when working with large assemblies. For Creo Parametric to have a feature with only the Top Level assembly displayed, a duplicate instance is created for every intersected part: one part with the assembly features present and one as designed in the context of the part. Because of this, there are two instances of every intersected part in memory, increasing the memory used by the assembly. If the display level is edited to Part Level, twin instances are not created, and performance is not affected."
+        },
+        {
+          "type": "paragraph",
+          "text": "Only use assembly features when the real-world assembly process demands them."
+        },
+        {
+          "type": "paragraph",
+          "text": "When you create a hole or cut in an assembly, you can select the parts from which to remove material and the level at which the material removal is displayed. The feature can be displayed in the Top Level assembly, subassembly, or part level."
+        },
+        {
+          "type": "paragraph",
+          "text": "When you create an assembly-level cut or hole, the feature is displayed in all intersected components at the assembly level in which the feature was created. You can further configure the intersected components and display levels using the Intersection tab or the Intersected Components dialog. The Intersection tab can be opened from the feature dashboard. You can open the Intersected Components dialog by right-clicking the assembly feature and selecting Edit Intersection."
+        },
+        {
+          "type": "paragraph",
+          "text": "When you create an assembly feature such as a cut or hole, the system defaults to Automatic Update option. Automatic Update ensures the following:\n•\tAll components added to the assembly before the assembly feature are automatically added to the list of intersected components.\n•\tThe display level of the assembly feature is set to Top Level for all intersected components and cannot be edited to Part Level.\n•\tComponents cannot be manually removed from the list of intersected components."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can right-click any component in the Intersected Models list and select Information to obtain information about the assembly feature."
+        },
+        {
+          "type": "paragraph",
+          "text": "When Automatic Update is turned off, you can right-click a component and select Remove to manually remove the component from the list of models intersected by the feature. You can right-click and select Intersection Components Collector to manually add a model to the list of intersected models."
+        },
+        {
+          "type": "paragraph",
+          "text": "Note: Components assembled after the intersecting feature is created are not intersected unless they are reordered before the feature."
+        },
+        {
+          "type": "paragraph",
+          "text": "When Automatic Update is turned off, you can switch between Advanced Intersection to switch between basic and advanced intersection modes. In the Intersected Models area, each intersected model displays along with its defined display level."
+        },
+        {
+          "type": "paragraph",
+          "text": "When Advanced Intersection is turned off, the only options available in the shortcut menu when you right-click a component in the list are Remove and Information."
+        },
+        {
+          "type": "paragraph",
+          "text": "After you turn on Advanced Intersection, the following additional options are available in the shortcut menu when you right-click a component:\n•\tAdd Instance – Adds a family table instance of the selected component in the Intersected Models list to the family table instances list. This option is only available when the display level of the selected component is set to Top Level.\n•\tPart Level – Makes the new feature visible wherever this version of the part is used, even outside of the current assembly."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can also define the display level by selecting the Top Level assembly or a component’s file name from the list. Activate the list by selecting a component in the Intersected Models list and selecting a file name from the display column's list."
+        },
+        {
+          "type": "paragraph",
+          "text": "Note: You can edit the Advanced Intersection mode back to Basic mode only when all intersected components have the same display level, and no family table instances are intersected by the feature."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can use the settings area to define default settings for the intersected components. Settings include:\n•\tDefault Display Level – Use this list to set the display level to be applied to components as they are added to the Intersected Models list. Available options are Part Level, Top Level, and Sel Level. If you select the Sel Level option, you are prompted to select the file name of the component where you want the feature displayed.\n•\tAdd Instances – Adds a family table instance when inserting an assembly feature in the model.\n•\tCheck Geometry Option – Create a more stable feature when problem geometry is involved. This option is useful when assembly components have differing levels of accuracy when they are combined. When the Check Geometry Option checkbox is selected, it applies to the entire feature and not to individual intersected components.\n•\tShow Feature Properties In Sub-Models – Sets the default display of the assembly feature as a property of the individual components in the Model Tree. This option is only available when the Default Display Level is set to Part Level."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "_TODO: Add an interactive element (interactive-match or interactive-sort) to reinforce this topic's concepts."
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this topic."
+      ]
+    }
+  ]
+}

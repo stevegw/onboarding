@@ -1,0 +1,58 @@
+{
+  "moduleId": "m12",
+  "title": "Assembly features Knowledge Check",
+  "questions": [
+    {
+      "id": "m12-kc-001",
+      "question": "_TODO: Add question 1 for Assembly features.",
+      "options": [
+        "_TODO: Option A",
+        "_TODO: Option B",
+        "_TODO: Option C",
+        "_TODO: Option D"
+      ],
+      "answerIndex": 0,
+      "rationale": "_TODO: Add rationale.",
+      "topic": "m12t1"
+    },
+    {
+      "id": "m12-kc-002",
+      "question": "_TODO: Add question 2 for Assembly features.",
+      "options": [
+        "_TODO: Option A",
+        "_TODO: Option B",
+        "_TODO: Option C",
+        "_TODO: Option D"
+      ],
+      "answerIndex": 0,
+      "rationale": "_TODO: Add rationale.",
+      "topic": "m12t1"
+    },
+    {
+      "id": "m12-kc-003",
+      "question": "_TODO: Add question 3 for Assembly features.",
+      "options": [
+        "_TODO: Option A",
+        "_TODO: Option B",
+        "_TODO: Option C",
+        "_TODO: Option D"
+      ],
+      "answerIndex": 0,
+      "rationale": "_TODO: Add rationale.",
+      "topic": "m12t1"
+    },
+    {
+      "id": "m12-kc-004",
+      "question": "_TODO: Add question 4 for Assembly features.",
+      "options": [
+        "_TODO: Option A",
+        "_TODO: Option B",
+        "_TODO: Option C",
+        "_TODO: Option D"
+      ],
+      "answerIndex": 0,
+      "rationale": "_TODO: Add rationale.",
+      "topic": "m12t1"
+    }
+  ]
+}

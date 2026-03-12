@@ -1,0 +1,223 @@
+{
+  "id": "m1",
+  "title": "Creo: Fundamentals of Assembly",
+  "description": "_TODO: Add description for Creo: Fundamentals of Assembly.",
+  "topics": [
+    {
+      "id": "m1t1",
+      "title": "REVIEW Assemble Systems Framework",
+      "estimatedMinutes": 102,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Creo: Fundamentals of Assembly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Copyright © 2025 PTC Inc. and/or Its Subsidiary Companies. All Rights Reserved."
+        },
+        {
+          "type": "paragraph",
+          "text": "Training guides and related documentation from PTC Inc. and its subsidiary companies (collectively “PTC”) are subject to the copyright laws of the United States and other countries."
+        },
+        {
+          "type": "paragraph",
+          "text": "No part of this guide or documentation may be reproduced in any form without permission from PTC."
+        },
+        {
+          "type": "paragraph",
+          "text": "Creo: Fundamentals of Assembly"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "REVIEW Assemble Systems Framework"
+        },
+        {
+          "type": "paragraph",
+          "text": "REVIEW Assemble Systems Framework"
+        },
+        {
+          "type": "paragraph",
+          "text": "Constraints: Default, Coincident, Distance"
+        },
+        {
+          "type": "paragraph",
+          "text": "Constraints: Parallel, Normal, Angle Offset, Automatic"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use the Accessory Window"
+        },
+        {
+          "type": "paragraph",
+          "text": "Creo: Fundamentals of Assembly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Assembly Features"
+        },
+        {
+          "type": "paragraph",
+          "text": "Creo: Fundamentals of Assembly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use the Accessory Window"
+        },
+        {
+          "type": "paragraph",
+          "text": "Assembly Features"
+        },
+        {
+          "type": "paragraph",
+          "text": "REVIEW Assemble Systems Framework"
+        },
+        {
+          "type": "paragraph",
+          "text": "Constraints: Default, Coincident, Distance"
+        },
+        {
+          "type": "paragraph",
+          "text": "Constraints: Parallel, Normal, Angle Offset, Automatic"
+        },
+        {
+          "type": "paragraph",
+          "text": "Creo: Fundamentals of Assembly"
+        },
+        {
+          "type": "paragraph",
+          "text": "REVIEW Assemble Systems Framework"
+        },
+        {
+          "type": "paragraph",
+          "text": "Constraints: Default, Coincident, Distance"
+        },
+        {
+          "type": "paragraph",
+          "text": "Constraints: Parallel, Normal, Angle Offset, Automatic"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use the Accessory Window"
+        },
+        {
+          "type": "paragraph",
+          "text": "Assembly Features"
+        },
+        {
+          "type": "paragraph",
+          "text": "Creo: Fundamentals of Assembly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use the Accessory Window"
+        },
+        {
+          "type": "paragraph",
+          "text": "Assembly Features"
+        },
+        {
+          "type": "paragraph",
+          "text": "REVIEW Assemble Systems Framework"
+        },
+        {
+          "type": "paragraph",
+          "text": "Constraints: Default, Coincident, Distance"
+        },
+        {
+          "type": "paragraph",
+          "text": "Constraints: Parallel, Normal, Angle Offset, Automatic"
+        },
+        {
+          "type": "paragraph",
+          "text": "Creo: Fundamentals of Assembly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use the Accessory Window"
+        },
+        {
+          "type": "paragraph",
+          "text": "Assembly Features"
+        },
+        {
+          "type": "paragraph",
+          "text": "REVIEW Assemble Systems Framework"
+        },
+        {
+          "type": "paragraph",
+          "text": "Constraints: Default, Coincident, Distance"
+        },
+        {
+          "type": "paragraph",
+          "text": "Constraints: Parallel, Normal, Angle Offset, Automatic"
+        },
+        {
+          "type": "paragraph",
+          "text": "Creo: Fundamentals of Assembly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use the Accessory Window"
+        },
+        {
+          "type": "paragraph",
+          "text": "Assembly Features"
+        },
+        {
+          "type": "paragraph",
+          "text": "REVIEW Assemble Systems Framework"
+        },
+        {
+          "type": "paragraph",
+          "text": "Constraints: Default, Coincident, Distance"
+        },
+        {
+          "type": "paragraph",
+          "text": "Constraints: Parallel, Normal, Angle Offset, Automatic"
+        },
+        {
+          "type": "paragraph",
+          "text": "Creo: Fundamentals of Assembly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use the Accessory Window"
+        },
+        {
+          "type": "paragraph",
+          "text": "Assembly Features"
+        },
+        {
+          "type": "paragraph",
+          "text": "REVIEW Assemble Systems Framework"
+        },
+        {
+          "type": "paragraph",
+          "text": "Constraints: Default, Coincident, Distance"
+        },
+        {
+          "type": "paragraph",
+          "text": "Constraints: Parallel, Normal, Angle Offset, Automatic"
+        },
+        {
+          "type": "paragraph",
+          "text": "Creo: Fundamentals of Assembly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Assembly systems framework\rAssembly theory\rConstraints\rAccessory window\rExplode states\rAssembly features"
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "_TODO: Add an interactive element (interactive-match or interactive-sort) to reinforce this topic's concepts."
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this topic."
+      ]
+    }
+  ]
+}

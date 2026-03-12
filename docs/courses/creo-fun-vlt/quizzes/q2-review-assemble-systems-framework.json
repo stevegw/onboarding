@@ -1,0 +1,58 @@
+{
+  "moduleId": "m2",
+  "title": "REVIEW Assemble Systems Framework Knowledge Check",
+  "questions": [
+    {
+      "id": "m2-kc-001",
+      "question": "_TODO: Add question 1 for REVIEW Assemble Systems Framework.",
+      "options": [
+        "_TODO: Option A",
+        "_TODO: Option B",
+        "_TODO: Option C",
+        "_TODO: Option D"
+      ],
+      "answerIndex": 0,
+      "rationale": "_TODO: Add rationale.",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-002",
+      "question": "_TODO: Add question 2 for REVIEW Assemble Systems Framework.",
+      "options": [
+        "_TODO: Option A",
+        "_TODO: Option B",
+        "_TODO: Option C",
+        "_TODO: Option D"
+      ],
+      "answerIndex": 0,
+      "rationale": "_TODO: Add rationale.",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-003",
+      "question": "_TODO: Add question 3 for REVIEW Assemble Systems Framework.",
+      "options": [
+        "_TODO: Option A",
+        "_TODO: Option B",
+        "_TODO: Option C",
+        "_TODO: Option D"
+      ],
+      "answerIndex": 0,
+      "rationale": "_TODO: Add rationale.",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-004",
+      "question": "_TODO: Add question 4 for REVIEW Assemble Systems Framework.",
+      "options": [
+        "_TODO: Option A",
+        "_TODO: Option B",
+        "_TODO: Option C",
+        "_TODO: Option D"
+      ],
+      "answerIndex": 0,
+      "rationale": "_TODO: Add rationale.",
+      "topic": "m2t1"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "id": "m5",
+  "title": "Einschränkungen: Parallel, Normal, Winkelversatz, Automatisch",
+  "description": "_TODO: Add description for Einschränkungen: Parallel, Normal, Winkelversatz, Automatisch.",
+  "topics": [
+    {
+      "id": "m5t1",
+      "title": "Hinweise zu „Automatisch“",
+      "estimatedMinutes": 14,
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Hinweise zu „Automatisch“"
+        },
+        {
+          "type": "paragraph",
+          "text": "Wenn Sie eine Komponente zusammenbauen, ist der Standard-Einschränkungstyp Automatisch. Mit der Option „Automatisch“ ermittelt das System automatisch den zu erstellenden Einschränkungstyp, sobald Sie ein Referenzpaar auswählen. Die folgenden Punkte beeinflussen den erstellten Einschränkungstyp:\n•\tAusgewählte Referenzen – Die von Ihnen gewählten Referenzen können bestimmte, potenziell zu erstellende Einschränkungstypen automatisch ausschließen.\n•\tPosition der Komponente – In der Abbildung befindet sich die Welle oberhalb des Grundkörpers, und die Flächenreferenz der Welle liegt über der Flächenreferenz des Körpers; daher wird eine Abstandseinschränkung erstellt. Befindet sich die Komponente seitlich in etwa auf derselben Höhe wie die gewünschte endgültige Platzierung, erstellt das System eine Koinzidenz-Einschränkung, sobald die Referenzen ausgewählt sind.\n•\tAusrichtung der Komponente"
+        },
+        {
+          "type": "paragraph",
+          "text": "Zwischen dem Erstellen von Einschränkungen können Sie die Komponente weiter neu ausrichten, um ihre Position zu verfeinern. So kann das System den nächsten Einschränkungstyp und Versatz genauer bestimmen oder es erleichtert Ihnen die Auswahl des nächsten Referenzsatzes. Natürlich bestimmen die erstellten Einschränkungen, wie sich die Komponente bewegt."
+        },
+        {
+          "type": "paragraph",
+          "text": "Wenn Sie ein Referenzpaar auswählen, erstellt das System automatisch eine Einschränkung. Anschließend wartet das System in der Regel darauf, dass Sie ein zweites Referenzpaar auswählen, um eine zweite Einschränkung zu erstellen. Das System erstellt automatisch weitere Einschränkungen, bis die Komponente vollständig eingeschränkt ist."
+        },
+        {
+          "type": "paragraph",
+          "text": "Beim Zusammenbau von Komponenten stehen verschiedene Optionen im Kontextmenü (Rechtsklick) zur Verfügung, um Ihre Geschwindigkeit und Effizienz zu erhöhen, darunter:\n•\tNeue Einschränkung – Nützlich, wenn Sie zusätzliche Einschränkungen über das vom System minimal Erforderliche hinaus erstellen müssen.\n•\tLöschen – Löscht die für die aktuell aktive Einschränkung angegebenen Referenzen."
+        },
+        {
+          "type": "paragraph",
+          "text": "Bauen Sie Komponenten mit Automatisch zusammen. Das System erzeugt in der Regel anhand der angegebenen Referenzen eine Koinzidenz-Einschränkung. Sie können dann wechseln zwischen oder die Einschränkungstypen Versatz, Winkelversatz, Koinzidenz, Zentriert usw. erstellen. Die Einschränkung „Zentriert“ richtet Kugeln, Kegel, Tori oder Zylinder ohne Umkehr-Option aus."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "_TODO: Add an interactive element (interactive-match or interactive-sort) to reinforce this topic's concepts."
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this topic."
+      ]
+    }
+  ]
+}

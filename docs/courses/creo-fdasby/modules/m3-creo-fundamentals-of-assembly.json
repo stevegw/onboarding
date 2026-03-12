@@ -1,0 +1,46 @@
+{
+  "id": "m3",
+  "title": "Creo: Fundamentals of Assembly",
+  "description": "_TODO: Add description for Creo: Fundamentals of Assembly.",
+  "topics": [
+    {
+      "id": "m3t1",
+      "title": "Creo: Fundamentals of Assembly",
+      "estimatedMinutes": 14,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Creo: Fundamentals of Assembly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use the Accessory Window"
+        },
+        {
+          "type": "paragraph",
+          "text": "Assembly Features"
+        },
+        {
+          "type": "paragraph",
+          "text": "REVIEW Assemble Systems Framework"
+        },
+        {
+          "type": "paragraph",
+          "text": "Constraints: Default, Coincident, Distance"
+        },
+        {
+          "type": "paragraph",
+          "text": "Constraints: Parallel, Normal, Angle Offset, Automatic"
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "_TODO: Add an interactive element (interactive-match or interactive-sort) to reinforce this topic's concepts."
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this topic."
+      ]
+    }
+  ]
+}

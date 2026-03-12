@@ -1,0 +1,275 @@
+{
+  "id": "m5",
+  "title": "Constraints: Default, Coincident, Distance",
+  "description": "_TODO: Add description for Constraints: Default, Coincident, Distance.",
+  "topics": [
+    {
+      "id": "m5t1",
+      "title": "Create a new assembly using a template",
+      "estimatedMinutes": 122,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Create assemblies with a template for consistency and per company standards.\rComponent assembly is a fundamental Creo skill for creating products.\rConstraints are the building blocks for assemblies."
+        },
+        {
+          "type": "paragraph",
+          "text": "Constraints: Default, Coincident, Distance"
+        },
+        {
+          "type": "paragraph",
+          "text": "Utilizing datums is an important aspect of design intent and assembling components. You will assemble a subassembly that includes the housing part to the assembly level datums."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Create a new assembly using a template"
+        },
+        {
+          "type": "paragraph",
+          "text": "Task 2: Assemble a component using the Default constraint\n1.\tUse the Assemble tool to start the assembly of the component HOUSING.PRT. Note: Click Assemble from the Component group and then double-click HOUSING.PRT from the working directory.\n2.\tNotice that the component is purple. Also, notice that the constraint Status says No Constraints in the dashboard.\n3.\tUse the Default constraint. Note: You can select the constraint type from the Constraint Type list from the dashboard or right-click and select the constraint type.\n4.\tNotice the constraint Status reads Fully Constrained, and the component is now orange.\n5.\tComplete the assembly of the component and notice the color is now the actual component color."
+        },
+        {
+          "type": "paragraph",
+          "text": "Additional information\n•\tClick Saved Orientations from the Graphics toolbar to view the standard orientations.\n•\tThe component color changes while assembling the component."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Use the 3D dragger to position the subassembly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Task 4: Assemble a subassembly using the Default constraint\n1.\tEdit the constraint type to Default and complete the component placement.\n2.\tExpand SUB.ASM in the Assembly Tree.  Note: Click the arrow next to SUB.ASM in the Assembly Tree to expand the assembly node."
+        },
+        {
+          "type": "paragraph",
+          "text": "Additional information\nThe Default constraint will constrain the component's system-created coordinate system to the assembly's. Explore the constraints used in the subassembly to understand how the components were placed to utilize the Default constraint."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Select placement references​"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can assemble components using constraints. Constraints determine how a part is located within an assembly. There are many different constraints you can use to assemble components."
+        },
+        {
+          "type": "paragraph",
+          "text": "Most constraints are applied between parts within an assembly. They specify the relative position of a pair of references. The system adds constraints one at a time. Use placement constraints in combinations to specify both placement and orientation. It is important to select your constraints based on the design intent of your assembly so that when you edit a dimension on a part, the assembly reacts as predicted."
+        },
+        {
+          "type": "paragraph",
+          "text": "When you create a constraint, its references are highlighted on the models and the Constraint Type displays. You must select two references for most constraints, a component reference on the component being placed, and an assembly reference from an item in the assembly. When the first reference has been selected, a green dashed line connects the first selected reference to your cursor until you select the second reference, as shown in the left figure."
+        },
+        {
+          "type": "paragraph",
+          "text": "When multiple constraints are created, a box surrounding the active constraint highlights. For example, in the middle figure, the Oriented constraint is the active constraint."
+        },
+        {
+          "type": "paragraph",
+          "text": "To activate a different constraint, select the displayed name or select it in the Placement tab from the dashboard. You can then right-click to perform the desired action."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can also double-click a constraint's tag in the graphics window to edit the constraint, as shown in the right figure."
+        },
+        {
+          "type": "paragraph",
+          "text": "Editing options include switching the constraint type, changing the constraint orientation, and viewing and deleting the constraint's placement references."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can switch between Constraints To Connections from the dashboard to convert existing connections to constraints within an assembly."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "No constraint"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can assemble a component into an assembly by using placement constraints. Constraints determine how a part is located within an assembly. As constraints are added, a component becomes further and further constrained and progresses through a range of constraint statuses displayed in the dashboard. The constraint status range includes:\n•\tNo Constraints – No constraints have been added to the component being assembled, as indicated by the purple preview color, as well as by the status indicator in the dashboard.\n•\tPartially Constrained – At least one constraint has been applied to the component being assembled, but not enough constraints have been added to render the component fully constrained. That is, the orientation of the component can still be changed, so its position is open to interpretation. The preview color of partially constrained components is purple.\n•\tFully Constrained – Enough constraints have been applied to the component being assembled that it cannot move. Ideally, when you complete the component placement, the component should be fully constrained. The preview color of fully constrained components changes to orange.\n•\tAllowing Assumptions – The Allow Assumptions option can become available when placing a component in an assembly. When this option is selected, the system makes additional constraint assumptions to help fully constrain the component. If you clear this checkbox, the system returns the status to Partially Constrained. If you properly further constrain a component that is fully constrained with Allow Assumptions turned on, the Allow Assumptions option disappears and appears as Fully Constrained, as there is no longer a need for the system to make assumptions. The lower-left figure is Fully Constrained if the Allow Assumptions option is turned on. If the Allow Assumptions checkbox is cleared, the component is no longer Fully Constrained because it can rotate. Either an additional constraint would be needed, or the Allow Assumptions checkbox would need to be selected.\n•\tConstraints Invalid – Two constraints conflict with how they are trying to place the component in the assembly. If this condition arises, you must edit or delete one or more constraints to eliminate the conflict."
+        },
+        {
+          "type": "paragraph",
+          "text": "If you complete the component placement when the status reads Partially Constrained, the Message Log alerts you that the system leaves the component packaged only. An open square symbol is also displayed next to the packaged component in the Model Tree. You can drag components that are packaged based on their partial constraints."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "New assembly created using template"
+        },
+        {
+          "type": "paragraph",
+          "text": "Assemblies are composed of parts and other subassemblies that you combine. You can create new assembly models within Creo Parametric by clicking File > New or New. You can type the name of the assembly and select whether you want to use a default template. Unless you select the Empty template, the new assembly displays in the graphics window with the default datum features associated with the selected template."
+        },
+        {
+          "type": "paragraph",
+          "text": "New assemblies should be created using a template. Assembly templates are similar to part templates in that you can use them to create a new assembly with predefined general information. Your company has most likely created customized templates to use that contain your company's standards. Using a template to create a new assembly is beneficial because it ensures that regardless of who created it, the assembly contains the same consistent set of information, including:\n•\tDatums – Most templates contain a set of default datum planes and a default coordinate system, all named appropriately.\n•\tUnits – Most companies have a company standard for units in their assemblies. Creating every assembly with the same set of units ensures that mistakes are not made.\n•\tParameters – Every assembly can contain the same standard metadata information.\n•\tLayers – When every assembly contains the same layers, it is easier to manage both the layers and items on them.\n•\tView Orientations – Ensuring that every assembly contains the same standard view orientations aids the modeling process."
+        },
+        {
+          "type": "paragraph",
+          "text": "Parameters are metadata information that can be included in an assembly template or created by a user in their own part or assembly. Parameters are important because you can use them to add additional information to part and assembly models. Parameters can have several uses.\n•\tParameters can drive dimension values through relations or be driven by relations.\n•\tParameters can be used as a column in a family table. For example, the parameter Cost might have a different value for each instance.\n•\tParameter values can be reported in Drawings or viewed with data management tools such as Pro/INTRALINK or Windchill solutions.\n•\tUser parameters can be added at the model level (part, assembly, or component) or to a feature or pattern."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can view an assembly’s parameters and create new ones by clicking Parameters from the Model Intent group in the Model ribbon tab."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can create parameters that accept the following types of values:\n•\tReal Number – Any numerical value. For example, 25.5, 1.666667, 10.5E3, and PI.\n•\tInteger – Any whole number. For example, 1, 5, and 257.\n•\tString – Any consecutive sequence of alphanumeric characters (letters or numbers).\n•\tYes/No – Accepts either the YES or NO value."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Subassembly added with Default constraint"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use the Default constraint to align the internal system-created coordinate system of the component to the internal system-created coordinate system of the assembly. The system places the component at the assembly origin. Because the internal system coordinate system is used, no references are specified, or no parent-child references are created. It is a standard practice to assemble the initial assembly component using a Default constraint, as shown in the middle figure."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can also assemble subassemblies by using the Default constraint. Similar to individual components, assembling a subassembly using the Default constraint creates no parent-child references."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Assembly Orientation: Keyboard Shortcuts"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use various combinations of keyboard and mouse controls to perform different operations."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What are some benefits of using a template for creating an assembly?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Benefits:\n•\tUnits\n•\tStandard view orientations\n•\tStandard company layers\n•\tStandard datum entities that are consistent across all models\n•\tStandard layers\n•\tCompany parameters"
+        },
+        {
+          "type": "paragraph",
+          "text": "You will utilize coincident and distance constraints by referencing datum planes and planar and cylindrical surfaces. The selected references are a critical part of your design intent."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Assemble TENSIONER_ARM.PRT using a Coincident constraint"
+        },
+        {
+          "type": "paragraph",
+          "text": "Task 2: Create a Coincident constraint using datum planes\n1.\tUse the Placement tab to add a New Constraint.\n2.\tChange the constraint type to Coincident and constrain the RIGHT datum plane of TENSIONER_ARM.PRT to the TENSIONER datum plane. Note: You can select the TENSIONER datum plane from either the Model Tree or the graphics window."
+        },
+        {
+          "type": "paragraph",
+          "text": "Additional information\nYou can select the Allow Assumptions checkbox so that the system makes additional constraint assumptions to help fully constrain the component. If you clear this checkbox, the system returns the status to Partially Constrained."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Complete the placement definition with a Distance constraint"
+        },
+        {
+          "type": "paragraph",
+          "text": "Task 3: Complete the placement definition with a Distance constraint\n1.\tUse the Placement tab to add a New Constraint. Note: If you completed the component placement prior to this task, you can select the TENSIONER_ARM.PRT from the Model Tree and select Edit Definition from the mini toolbar. In Assembly mode, Edit Definition of a component refers to editing the definition of the component placement, not feature definition like in part mode.\n2.\tChange the constraint type to Distance and constrain the TENSIONER_ARM.PRT bottom surface a distance of 1 mm to the outer HOUSING.PRT surface.\n3.\tIf necessary, select the Allow Assumptions checkbox to turn on assumptions."
+        },
+        {
+          "type": "paragraph",
+          "text": "Task 4: Assemble MOTOR_ASSY.ASM using Coincident constraints\n1.\tStart assembling the MOTOR_ASSY.ASM. Note: You may need to reorient the component to make reference selections easier.\n2.\tConstrain the top two cylindrical hole surfaces using a Coincident constraint. Note: From the Graphics toolbar, turn on the datum axis display so that you can also select them as assembly references.\n3.\tConstrain another set of cylindrical hole surfaces using a Coincident constraint to orient the part.\n4.\tAdd another Coincident constraint and select the flat surfaces on MOTOR.PRT and HOUSING.PRT."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Component positioned to align with hole"
+        },
+        {
+          "type": "paragraph",
+          "text": "When assembling a component, you can reorient it with respect to the assembly. Reorienting the component closer to its assembly location aids in the component’s assembly; you can select references more easily. When you select the Automatic option, the system can determine the correct placement constraints to use."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can reorient the component according to the applied constraints. As constraints are applied, the degrees of freedom are reduced, further limiting the movement of the component."
+        },
+        {
+          "type": "paragraph",
+          "text": "The 3D Dragger is the primary method you can use to orient components. The 3D Dragger is a dynamically changing graphical interface that displays over any component being assembled."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can use the 3D Dragger to orient new components as follows:\n•\tRotate components about the three axes – Click and drag around the shaded arcs to rotate the component about that specific axis.\n•\tTranslate components along the three axes – Click and drag along the shaded arrows to translate the component along that specific axis.\n•\tMove components in a 2D plane – Click and drag in the translucent shaded quadrant to move the component within that 2D plane.\n•\tFree move the components – Click and drag on the small central sphere at the origin of the axes."
+        },
+        {
+          "type": "paragraph",
+          "text": "As you create constraints, portions of the 3D Dragger are grayed out as the degrees of freedom are reduced. For example, if a constraint is applied that prohibits component movement along a certain axis, that 3D Dragger axis becomes grayed out because the component cannot move in that degree of freedom. Given there are six degrees of freedom (three translational and three rotational), you can constrain movement in six directions."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can also drag components along specified geometry by right-clicking the 3D Dragger and selecting the Drag along geometry checkbox. You can then select geometry; the 3D Dragger appears over the selected geometry with the available degrees of freedom based on the geometry selection. These degrees of freedom change based on if you select a cylinder, plane, or other geometry shapes. This functionality is similar to the Move tab in the dashboard."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Select cylindrical surfaces – axes to be Coincident"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use the Coincident constraint to insert one cylindrical or conical surface into another cylindrical or conical surface, making their respective axes coaxial. For example, you can create a Coincident constraint to match a shaft to a hole, as shown in the left figure. This constraint is especially useful when axes are unavailable or inconvenient for selection. Remember that the Coincident constraint only constrains the rounded surfaces coaxially and does not slide one component into another. Because the two specified surfaces are constrained coaxial, they do not need to be the same diameter."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can also use the Coincident constraint to position two specified planar surfaces to lie in the same plane (coplanar) and face each other or face in the same direction. You can select the Change Constraint Orientation option from the dashboard to rotate the surfaces so that their normals switch from facing each other to facing the same direction and vice versa."
+        },
+        {
+          "type": "paragraph",
+          "text": "When planar surfaces of components are assembled coincident to one another, it is the same as assigning an offset value of zero, except that an offset value is not created for editing. The components can be positioned in any location if the two specified surface normals face each other or face the same direction."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Select datum planes to be Coincident"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can use the Coincident constraint to position two specified datum planes to lie in the same plane (coplanar) and either face each other or face in the same direction. Datum planes have positive and negative sides designated by color. If you rotate a model with datum planes displayed, you see that the colors are brown and gray. If the datum planes face each other, their positive (brown) sides face each other. If the datum planes face in the same direction, their positive sides face in the same direction. By default, the system aligns the positive sides in the same direction. You can use the Change Constraint Orientation option in the dashboard to rotate the datum planes so that their positive sides face each other."
+        },
+        {
+          "type": "paragraph",
+          "text": "When the datum planes of components are assembled coincident to one another, it is the same as assigning an offset value of zero, except that an offset value is not created for editing. The components can be positioned in any location if the two specified datum plane normals face each other or face the same direction."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can use the Coincident constraint to align datum axes coaxial. Like datum planes, datum axes also have a positive direction, which is the side on which the datum tag displays. By default, the system aligns the positive sides in the same direction. Again, you can use the Change Constraint Orientation option from the dashboard to rotate the datum axes so that their positive sides face each other."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can use a Distance constraint to specify an offset value between the selected geometry types. For example, you could select two points, two planes, and so on, or you can select geometry combinations such as a point and a plane, or a point and an edge or axis. Distance constraint is the same as the Coincident constraint, except that the selected references can be offset from one another at a specified distance. The distance value becomes a dimension that can be edited."
+        },
+        {
+          "type": "paragraph",
+          "text": "When using the Distance constraint, the system sets the current offset direction as a positive offset direction. To offset in the opposite direction, either drag the location handle to the other side of the selected assembly reference or edit the offset to a negative value. The component moves to the opposite side, and this offset direction is now set as the positive offset direction."
+        },
+        {
+          "type": "paragraph",
+          "text": "If components are assembled with one another with a Distance constraint offset value set to zero, it is the same as assembling them with a Coincident constraint, except that a distance value is available for editing. You can double-click the Distance constraint tag in the graphics window, edit the constraint type to a Coincident constraint, and vice versa."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can also use the Change Constraint Orientation option from the dashboard to flip the component orientation for the Distance constraint. For example, the component orientation was flipped between the middle figure and the right figure."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "_TODO: Add an interactive element (interactive-match or interactive-sort) to reinforce this topic's concepts."
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this topic."
+      ]
+    }
+  ]
+}

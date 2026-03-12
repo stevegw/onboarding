@@ -1,0 +1,56 @@
+{
+  "id": "m7",
+  "title": "Use the Accessory Window",
+  "description": "_TODO: Add description for Use the Accessory Window.",
+  "topics": [
+    {
+      "id": "m7t1",
+      "title": "Use the accessory window while assembling a small part",
+      "estimatedMinutes": 18,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Use the Accessory Window"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use the accessory window to manipulate the incoming component to facilitate reference selection."
+        },
+        {
+          "type": "paragraph",
+          "text": "When working with small components in larger assemblies, the accessory window is a powerful tool that you can use to easily select references on entities that might otherwise be hard to locate within the graphics window."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Use the accessory window while assembling a small part"
+        },
+        {
+          "type": "paragraph",
+          "text": "Task 1: Use the accessory window while assembling a small part\n1.\tNavigate to and set the working directory to Assembly\\Exercise 4 and then open BELT_SANDER.ASM.\n2.\tStart the assembly of M8_SET.PRT.\n3.\tDisplay the component in a separate window. Note: To display the component in a separate window, click Separate Window from the dashboard.\n4.\tSelect the cylindrical surfaces, as shown in the figure, to create a Coincident constraint.\n5.\tWithin the accessory window, rotate the model as necessary.\n6.\tSelect the surfaces as shown to create the Coincident constraint.\n7.\tIf necessary, use the Allow Assumptions checkbox to turn on assumptions."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Docked accessory window Model Tree"
+        },
+        {
+          "type": "paragraph",
+          "text": "When assembling components, you can use the accessory window. The accessory window displays only the incoming model so that you can manipulate the component individually to facilitate reference selection. You can turn the accessory window on or off by clicking the Show In Separate Window icon."
+        },
+        {
+          "type": "paragraph",
+          "text": "The accessory window can be used in the following instances:\n•\tComponent placement – The accessory window can be particularly beneficial if you assemble a very small component into a very large assembly.\n•\tData sharing\n•\tSheetmetal forms"
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "_TODO: Add an interactive element (interactive-match or interactive-sort) to reinforce this topic's concepts."
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this topic."
+      ]
+    }
+  ]
+}

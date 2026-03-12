@@ -1,0 +1,31 @@
+{
+  "id": "m12",
+  "title": "Assembly features",
+  "description": "_TODO: Add description for Assembly features.",
+  "topics": [
+    {
+      "id": "m12t1",
+      "title": "Show/hide features",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Show/hide features"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can hide or unhide components from your graphical display, providing easier control over visibility and selection. This helps you focus on the parts you are working on. Hiding a component makes it disappear from the graphics area and appear gray in the Model Tree. Hiding items does not affect parent/child relationships with other components or features. By saving the status of the objects, you can keep items hidden the next time the file is opened (once it has been erased from the session). \nIn addition to hide and show, you can use the Show Only command to show only selected objects, and all the other objects of the same type will be hidden. By comparison, the Show All Except does not show the related objects, and all the other objects of the same type will appear.\n You can delete components from your model when they are no longer needed. You can also suppress a component, such as a part, from your model when you want to try other alternatives in your model but do not want to remove the item’s design history. You must be cautious when deleting items from your model. When you delete an item from a model and save it, that item is permanently removed from the graphical display and regeneration cycle of the model. Alternatively, suppressing an item removes it from the graphical display and regeneration cycle but you can restore a suppressed item by resuming it. Also, if you attempt to suppress or delete an item with children, the system highlights these child items. Resuming a suppressed item returns it to the graphical display and regeneration cycle. A general best practice is to ensure there are no suppressed features when saving a file.  When suppressing a component with child relationships, you can choose to suppress or suspend the children.  Suppressing with children will suppress the selected children the same as the selected component, while suspend will suspend action on the selected child, but the component is retained until the part is regenerated."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "_TODO: Add an interactive element (interactive-match or interactive-sort) to reinforce this topic's concepts."
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this topic."
+      ]
+    }
+  ]
+}

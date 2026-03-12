@@ -1,0 +1,107 @@
+{
+  "id": "m6",
+  "title": "Constraints: Parallel, Normal, Angle Offset, Automatic",
+  "description": "_TODO: Add description for Constraints: Parallel, Normal, Angle Offset, Automatic.",
+  "topics": [
+    {
+      "id": "m6t1",
+      "title": "Automatic Considerations",
+      "estimatedMinutes": 44,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Constraints: Parallel, Normal, Angle Offset, Automatic"
+        },
+        {
+          "type": "paragraph",
+          "text": "Many constraints capture assembly design intent.\rAutomatic is the most efficient method of assembling components."
+        },
+        {
+          "type": "paragraph",
+          "text": "The table knob is important for securing the table in position. Within Creo Parametric, you may choose to define different positions as the “tightened” or “locked” position and you can easily define them with the different constraints utilized in the following exercise. The automatic constraint will be used to assemble a small shaft into the housing."
+        },
+        {
+          "type": "paragraph",
+          "text": "Task 2: Utilize a Normal constraint \n1.\tIn the Placement tab, edit the Constraint Type to Normal.\n2.\tNotice the two references are normal to each other."
+        },
+        {
+          "type": "paragraph",
+          "text": "Task 4: Utilize the Automatic constraint\n1.\tClick Assemble from the Component group and open SMALL_SHAFT.PRT.\n2.\tUse the 3D Dragger to move the component and then select the smaller cylindrical surface of the shaft and the small inner cylindrical surface of the pulley. Note: You may need to move the component in space to better view the surfaces when making the selections. Also notice the Automatic constraint type updates to Coincident after selecting both references.\n3.\tAdd a New Constraint and select the shaft head surface and the outside surface of the housing part and, if necessary, edit the constraint type to Coincident.\n4.\tUse Fix Constraint and complete the assembly. Note: Add a new constraint and change the Constraint type to Fix."
+        },
+        {
+          "type": "paragraph",
+          "text": "Additional information\n•\tWhen using Automatic, the system looks at component position and orientation with respect to the assembly to determine the constraint.\n•\tYou can edit the Constraint type if the system creates the incorrect constraint.\n•\tYou can orient components using the 3D Dragger or keyboard and mouse combinations."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can use the Parallel constraint to force a selected datum plane or surface into a particular orientation without an offset value. The Parallel constraint forces selected surfaces or datum planes to become parallel with each other. The Parallel constraint is similar to the Coincident constraint, except that the selected references do not have to be coplanar."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can use the Change Constraint Orientation option in the dashboard to switch between the specified references from facing each other to facing the same direction and vice-versa. You can also double-click the Parallel constraint tag in the graphics window and edit the constraint type to a Distance, Angle Offset, Coincident, or Normal constraint."
+        },
+        {
+          "type": "paragraph",
+          "text": "Similar to the Parallel constraint, you can use the Normal constraint to force a selected datum plane or surface into a particular orientation without regard to an offset value. The Normal constraint forces selected surfaces or datum planes to become normal with each other. You can use the Change Constraint Orientation option in the dashboard to rotate the specified references 180 degrees. You can also double-click the Normal constraint tag in the graphics window and edit the constraint type to a Distance, Angle Offset, Parallel, or Coincident constraint."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can use the Angle Offset constraint to specify a rotation angle between planar references. The component reorients to the Angle Offset value that you specify. Typically, the Angle Offset constraint is used after the component has been partially constrained with a Coincident constraint."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can use the Change Constraint Orientation option in the dashboard to rotate the angle offset 180 degrees to the other side of the assembly reference. You can also double-click the Angle Offset constraint tag in the graphics window and edit the constraint type to a Distance, Parallel, Coincident, or Normal constraint."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Automatic Considerations"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you assemble a component, the default Constraint Type is Automatic. With the Automatic option, the system automatically determines the constraint type created when you select a reference pair. The following items influence the constraint type that is created:\n•\tThe references selected – The references you select can automatically eliminate a particular constraint type that can be created.\n•\tThe component's location – In the figure, the shaft is located above the body part, and surface reference of the shaft is above the surface reference of body; therefore, a Distance constraint is created. The system creates a Coincident constraint if the component is located along the side at approximately the same height as its desired final placement location when references are selected.\n•\tThe component's orientation"
+        },
+        {
+          "type": "paragraph",
+          "text": "In between creating constraints, you can further reorient the component to refine its position. This can help the system more accurately determine the next constraint type and offset, or it may help you easily select the next set of references. Of course, the created constraints dictate how the component moves."
+        },
+        {
+          "type": "paragraph",
+          "text": "When you select a reference pair, the system automatically creates a constraint. At this point, the system usually waits for you to select a second reference pair to create a second constraint. The system automatically keeps creating new constraints until the component is Fully Constrained."
+        },
+        {
+          "type": "paragraph",
+          "text": "When assembling components, there are various right-click menu options available to increase your speed and efficiency, including the following:\n•\tNew Constraint – Useful when you need to create additional constraints above what the system minimally requires.\n•\tClear – Clears the references specified for the currently active constraint."
+        },
+        {
+          "type": "paragraph",
+          "text": "Assemble components using Automatic. The system typically generates a Coincident constraint from the specified references. You can then switch between or create the constraint types of Offset, Angle Offset, Coincident, Centered, and so on. The Centered constraint lines up spheres, cones, tori, or cylinders with no Flip option."
+        },
+        {
+          "type": "paragraph",
+          "text": "What is the bicycle fork constraint status?\rWhat constraints were probably used?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Constraints: Parallel, Normal, Angle Offset, Automatic"
+        },
+        {
+          "type": "paragraph",
+          "text": "Knowledge check 1 answer"
+        },
+        {
+          "type": "paragraph",
+          "text": "1.\tThe bicycle fork is Fully Constrained.\n2.\tMost likely, the three constraints are Coincident, Coincident, and Angle Offset, although one of the constraints could be a Distance constraint. It is also possible that instead of an Angle Offset constraint, a Fix constraint was used to fix the fork position."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "_TODO: Add an interactive element (interactive-match or interactive-sort) to reinforce this topic's concepts."
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this topic."
+      ]
+    }
+  ]
+}

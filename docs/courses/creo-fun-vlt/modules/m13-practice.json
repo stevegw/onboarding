@@ -1,0 +1,133 @@
+{
+  "id": "m13",
+  "title": "Practice",
+  "description": "_TODO: Add description for Practice.",
+  "topics": [
+    {
+      "id": "m13t1",
+      "title": "Create the Air Blower assembly",
+      "estimatedMinutes": 54,
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Create the Air Blower assembly"
+        },
+        {
+          "type": "paragraph",
+          "text": "You create the Air Blower assembly, its components, its subassemblies, and drawings throughout the five Fundamentals courses as you learn the skills to do so. Consequently, there is an order for how the air blower can be created. Detailed drawings of the components can be found here."
+        },
+        {
+          "type": "paragraph",
+          "text": "The following are prerequisites to complete the air blower:\n•\tYou must complete the modeling of components from Fundamentals of Solid Modeling 1 and Fundamentals of Solid Modeling 2 before:\n\t•\tYou can assemble those components in Fundamentals of Assembly.\n\t•\tYou can document those components in Fundamentals of 2D Drawing.\n•\tYou must complete the assembly of the air blower in Fundamentals of Assembly before:\n\t•\tYou can document the BOM in Fundamentals of 2D Drawing.\n\t•\tYou can check for interferences and calculate mass properties in Fundamentals of Analysis."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Create the assemblies"
+        },
+        {
+          "type": "paragraph",
+          "text": "Create the assemblies"
+        },
+        {
+          "type": "paragraph",
+          "text": "Create and assemble the piston subassembly, blower subassembly, and engine subassembly.\rCreate and assemble the Top Level Air Blower assembly.\rFinally, create an exploded view of the Air Blower assembly."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Create the Piston subassembly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Create the Piston subassembly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Create and assemble the piston subassembly using metric units.\rDesign intent: The connecting rod must be assembled such that it is only partially constrained.\rThe rotational degree of freedom about the pin must remain unconstrained so that it can rotate.\rDesign challenge: Use the Drag Components functionality to select the connecting rod and verify the connecting rod rotates about the piston pin."
+        },
+        {
+          "type": "paragraph",
+          "text": "Assemble – Piston Subassembly"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Create the blower assembly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Create the blower assembly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Create and assemble the blower subassembly using metric units.\rDesign intent: The bolt holes in the flange and impeller housing must properly align."
+        },
+        {
+          "type": "paragraph",
+          "text": "Assemble – blower subassembly"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Create the engine assembly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Create the engine assembly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Create and assemble the engine subassembly using metric units.\rDesign intent: The crankshaft should be assembled such that it is partially constrained. The rotational degree of freedom about its center axis must remain unconstrained so that it can rotate.\rThe piston subassembly should be assembled such that the piston is coincident in the bore and the free connecting rod end is coincident to the crankshaft journal.\rDesign challenge: Use Drag Components to select the crankshaft and verify the engine operates correctly when rotated."
+        },
+        {
+          "type": "paragraph",
+          "text": "Assemble – Engine subassembly"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Completed assembly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Completed assembly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Create and assemble the Air Blower assembly using metric units.\rDesign intent: The flat surface the impeller bore should be coincident to the flat surface of the crankshaft.\rThere should be a 1 mm gap between the back of the impeller and its housing.\rUse 5 mm bolts for the flange and impeller housing.\rUse 8 mm bolts for the blower subassembly.\rUse 12 mm bolts for the engine subassembly.\rDesign challenge: Use Drag Components to select the impeller and verify the assembly operates correctly."
+        },
+        {
+          "type": "paragraph",
+          "text": "Assemble – Air Blower Top Level assembly"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Exploded assembly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Exploded assembly"
+        },
+        {
+          "type": "paragraph",
+          "text": "Create an exploded view of the entire Air Blower assembly.\rDesign intent: Create explode lines for each component as part of the explode state."
+        },
+        {
+          "type": "paragraph",
+          "text": "Assemble – Air Blower Exploded View"
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "_TODO: Add an interactive element (interactive-match or interactive-sort) to reinforce this topic's concepts."
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this topic."
+      ]
+    }
+  ]
+}

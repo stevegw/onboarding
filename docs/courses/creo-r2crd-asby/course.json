@@ -1,0 +1,54 @@
+{
+  "id": "creo-r2crd-asby",
+  "title": "Creo: Interactive_iSpring_R2_CRFD-ASBY",
+  "description": "_TODO: Add course description.",
+  "prerequisite": null,
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Creo: Fundamentals of Assembly (iSpring Interactive)",
+      "description": "_TODO: Add description for Creo: Fundamentals of Assembly (iSpring Interactive).",
+      "estimatedMinutes": 5,
+      "topicCount": 1,
+      "contentFile": "modules/m1-creo-fundamentals-of-assembly-ispring-interactive.json",
+      "quizFile": "quizzes/q1-creo-fundamentals-of-assembly-ispring-interactive.json"
+    },
+    {
+      "id": "m2",
+      "title": "Assembly theory",
+      "description": "_TODO: Add description for Assembly theory.",
+      "estimatedMinutes": 14,
+      "topicCount": 1,
+      "contentFile": "modules/m2-assembly-theory.json",
+      "quizFile": "quizzes/q2-assembly-theory.json"
+    },
+    {
+      "id": "m3",
+      "title": "Creo: Fundamentals of Assembly",
+      "description": "_TODO: Add description for Creo: Fundamentals of Assembly.",
+      "estimatedMinutes": 14,
+      "topicCount": 1,
+      "contentFile": "modules/m3-creo-fundamentals-of-assembly.json",
+      "quizFile": "quizzes/q3-creo-fundamentals-of-assembly.json"
+    },
+    {
+      "id": "m4",
+      "title": "Constraints: Parallel, Normal, Angle Offset, Automatic",
+      "description": "_TODO: Add description for Constraints: Parallel, Normal, Angle Offset, Automatic.",
+      "estimatedMinutes": 86,
+      "topicCount": 6,
+      "contentFile": "modules/m4-constraints-parallel-normal-angle-offset-automatic.json",
+      "quizFile": "quizzes/q4-constraints-parallel-normal-angle-offset-automatic.json",
+      "exerciseTopicStart": 3
+    },
+    {
+      "id": "m5",
+      "title": "Einschränkungen: Parallel, Normal, Winkelversatz, Automatisch",
+      "description": "_TODO: Add description for Einschränkungen: Parallel, Normal, Winkelversatz, Automatisch.",
+      "estimatedMinutes": 14,
+      "topicCount": 1,
+      "contentFile": "modules/m5-einschr-nkungen-parallel-normal-winkelversatz-automatisch.json",
+      "quizFile": "quizzes/q5-einschr-nkungen-parallel-normal-winkelversatz-automatisch.json"
+    }
+  ]
+}

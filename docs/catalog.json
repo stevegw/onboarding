@@ -314,6 +314,39 @@
       "en"
      ],
      "comingSoon": true
+    },
+    {
+     "id": "creo-fdasby",
+     "title": "Interactive_iSpring_R2_CRFD-ASBY",
+     "description": "Interactive_iSpring_R2_CRFD-ASBY",
+     "modules": 5,
+     "estimatedHours": 3,
+     "locales": [
+      "en"
+     ],
+     "comingSoon": false
+    },
+    {
+     "id": "creo-r2crd-asby",
+     "title": "Interactive_iSpring_R2_CRFD-ASBY",
+     "description": "Interactive_iSpring_R2_CRFD-ASBY",
+     "modules": 5,
+     "estimatedHours": 3,
+     "locales": [
+      "en"
+     ],
+     "comingSoon": false
+    },
+    {
+     "id": "creo-fun-vlt",
+     "title": "VILT Direct to SCORM_CRFD-ASBY-Slides",
+     "description": "VILT Direct to SCORM_CRFD-ASBY-Slides",
+     "modules": 13,
+     "estimatedHours": 9,
+     "locales": [
+      "en"
+     ],
+     "comingSoon": false
     }
    ]
   }

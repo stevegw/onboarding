@@ -1,0 +1,26 @@
+{
+  "id": "m9",
+  "title": "Explode states",
+  "description": "_TODO: Add description for Explode states.",
+  "topics": [
+    {
+      "id": "m9t1",
+      "title": "Explode states are a great way to visualize how components a...",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Explode states are a great way to visualize how components are assembled. The animation can also be modified to follow an explode sequence."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "_TODO: Add an interactive element (interactive-match or interactive-sort) to reinforce this topic's concepts."
+        }
+      ],
+      "keyTakeaways": [
+        "_TODO: Add 3-4 key takeaways for this topic."
+      ]
+    }
+  ]
+}
