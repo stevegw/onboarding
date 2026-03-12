@@ -456,17 +456,6 @@
       "en"
      ],
      "comingSoon": false
-    },
-    {
-     "id": "creo-fun-vlt",
-     "title": "VILT Direct to SCORM_CRFD-ASBY-Slides",
-     "description": "VILT Direct to SCORM_CRFD-ASBY-Slides",
-     "modules": 13,
-     "estimatedHours": 9,
-     "locales": [
-      "en"
-     ],
-     "comingSoon": false
     }
    ]
   }

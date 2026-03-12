@@ -205,6 +205,9 @@
     getAllTopicIds: getAllTopicIds,
     loadAllModules: loadAllModules,
     loadCatalog: loadCatalog,
+    clearCatalogCache: function () {
+      catalogData = null;
+    },
     clearCache: function () {
       cache = {};
       courseData = null;

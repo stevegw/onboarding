@@ -556,14 +556,16 @@
   opacity: 0.7; transition: opacity 0.15s;
 }
 .catalog-export-link:hover { opacity: 1; }
-.catalog-import-link {
+.catalog-import-link,
+.catalog-manage-link {
   display: inline-flex; align-items: center; gap: 4px;
   font-size: 11px; font-weight: 600;
   color: var(--c-accent); background: none; border: none;
   cursor: pointer; padding: 0; font-family: inherit;
   opacity: 0.7; transition: opacity 0.15s;
 }
-.catalog-import-link:hover { opacity: 1; }
+.catalog-import-link:hover,
+.catalog-manage-link:hover { opacity: 1; }
 
 /* ============================================================
    Sidebar Search
@@ -705,6 +707,114 @@ a.sb-search-result {
 /* Sidebar catalog mode */
 .sidebar.catalog-mode .sb-progress,
 .sidebar.catalog-mode .sb-actions { display: none; }
+
+/* ============================================================
+   Catalog Manager Panel
+   ============================================================ */
+.catmgr-panel {
+  margin-bottom: 16px; padding: 12px 16px;
+  background: var(--c-bg-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 8px;
+  animation: fadeIn 0.15s ease;
+}
+.catmgr-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 10px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--c-border);
+}
+.catmgr-title { font-size: 13px; font-weight: 700; color: var(--c-text-primary); }
+.catmgr-close {
+  background: none; border: none; cursor: pointer;
+  font-size: 18px; color: var(--c-text-dim); padding: 0 4px;
+  line-height: 1; transition: color 0.15s;
+}
+.catmgr-close:hover { color: var(--c-text); }
+
+.catmgr-list { margin-bottom: 10px; }
+.catmgr-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 8px; border-radius: 6px;
+  transition: background 0.1s;
+}
+.catmgr-item:hover { background: var(--c-bg-surface-hover); }
+
+.catmgr-reorder { display: flex; flex-direction: column; gap: 1px; }
+.catmgr-up, .catmgr-down {
+  background: none; border: none; cursor: pointer;
+  font-size: 10px; color: var(--c-text-dim); padding: 0 3px;
+  line-height: 1; transition: color 0.15s;
+}
+.catmgr-up:hover, .catmgr-down:hover { color: var(--c-accent); }
+.catmgr-up:disabled, .catmgr-down:disabled {
+  opacity: 0.25; cursor: default;
+}
+
+.catmgr-course-title {
+  flex: 1; font-size: 13px; color: var(--c-text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.catmgr-course-id {
+  font-size: 10px; color: var(--c-text-dim); flex-shrink: 0;
+}
+.catmgr-rename-input {
+  flex: 1; font-size: 13px; font-family: inherit;
+  padding: 3px 6px; border: 1px solid var(--c-accent);
+  border-radius: 4px; background: var(--c-bg);
+  color: var(--c-text); outline: none;
+}
+
+.catmgr-item-actions { display: flex; gap: 4px; flex-shrink: 0; }
+.catmgr-rename, .catmgr-delete {
+  background: none; border: none; cursor: pointer;
+  font-size: 14px; color: var(--c-text-dim); padding: 2px 4px;
+  transition: color 0.15s;
+}
+.catmgr-rename:hover { color: var(--c-accent); }
+.catmgr-delete:hover { color: var(--c-danger); }
+
+.catmgr-confirm {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; font-size: 12px; color: var(--c-text-secondary);
+}
+.catmgr-confirm-yes {
+  background: var(--c-danger); color: #fff;
+  border: none; border-radius: 4px;
+  padding: 3px 10px; font-size: 11px; font-weight: 600;
+  cursor: pointer; font-family: inherit;
+}
+.catmgr-confirm-no {
+  background: none; border: 1px solid var(--c-border);
+  border-radius: 4px; padding: 3px 10px;
+  font-size: 11px; color: var(--c-text-muted);
+  cursor: pointer; font-family: inherit;
+}
+.catmgr-confirm-no:hover { border-color: var(--c-border-hover); }
+
+.catmgr-empty {
+  font-size: 12px; color: var(--c-text-dim);
+  text-align: center; padding: 12px;
+}
+
+.catmgr-actions {
+  display: flex; gap: 8px; padding-top: 8px;
+  border-top: 1px solid var(--c-border);
+}
+.catmgr-save {
+  background: var(--c-accent); color: var(--c-on-accent);
+  border: none; border-radius: 6px;
+  padding: 6px 14px; font-size: 12px; font-weight: 600;
+  cursor: pointer; font-family: inherit;
+  transition: opacity 0.15s;
+}
+.catmgr-save:hover { opacity: 0.9; }
+.catmgr-cancel {
+  background: none; border: 1px solid var(--c-border);
+  border-radius: 6px; padding: 6px 14px;
+  font-size: 12px; color: var(--c-text-muted);
+  cursor: pointer; font-family: inherit;
+}
+.catmgr-cancel:hover { border-color: var(--c-border-hover); }
 
 @media (max-width: 640px) {
   .catalog-grid { grid-template-columns: 1fr; }

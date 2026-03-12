@@ -32,6 +32,7 @@
       html += '<h2>' + esc(family.name) + '</h2>';
       html += '<span class="catalog-family-count">' + t("catalog.courses", { count: family.courses.length }) + '</span>';
       html += '<button class="catalog-import-link" data-import-family="' + family.id + '" title="Import SCORM package">&#128229; Import</button>';
+      html += '<button class="catalog-manage-link" data-manage-family="' + family.id + '" title="Manage courses">&#9881; Manage</button>';
       html += '</div>';
 
       html += '<div class="catalog-grid">';
@@ -118,6 +119,14 @@
       btn.addEventListener("click", function () {
         var familyId = btn.getAttribute("data-import-family");
         if (OB["import"]) OB["import"].openModal({ familyId: familyId });
+      });
+    });
+
+    // Manage link click → open catalog manager
+    document.querySelectorAll(".catalog-manage-link").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var familyId = btn.getAttribute("data-manage-family");
+        if (OB.catalogManager) OB.catalogManager.open(familyId);
       });
     });
 
