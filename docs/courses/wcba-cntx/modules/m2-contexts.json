@@ -3,534 +3,666 @@
  "title": "Contexts",
  "description": "Compare context types and their hierarchy. Create organizations, products, libraries, and folders. Assign context creators and manage objects within application contexts.",
  "topics": [
- {
- "id": "m2t1",
- "title": "Context Hierarchy and Data Strategy",
- "estimatedMinutes": 7,
- "content": [
- {
- "type": "paragraph",
- "text": "A well-designed data strategy is the foundation of an effective Windchill deployment. By organizing information into defined containers, organizations benefit from efficient search and retrieval, automatic workflow procedures, increased collaboration, reduced administrative load, and lower onboarding and training costs. In Windchill, these containers are called <strong>contexts</strong>."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "What Is a Context?"
- },
- {
- "type": "paragraph",
- "text": "A context is a generic name for a defined container where users work. Contexts provide structure for user actions and serve as the organizational backbone of Windchill. Every Windchill object must reside in a context - think of a context like a file cabinet drawer that holds folders and documents. Each object is contained in exactly one context, though objects can be <em>related</em> across contexts. Your context strategy must balance administrative requirements with logical information storage."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "The Three-Level Hierarchy"
- },
- {
- "type": "comparison-table",
- "headers": [
- "Level",
- "Context Type",
- "Purpose",
- "Key Characteristics"
- ],
- "rows": [
- [
- "1 (Root)",
- "Site",
- "Top-level administrative container",
- "Unique per installation. Contains out-of-box configuration: life cycles, workflows, templates, preferences, profiles, and team templates. Hosts one or more Organizations. Administrative only - users do not store business objects here."
- ],
- [
- "2",
- "Organization",
- "Represents a major business unit or division",
- "Always associated with an organization participant (a separate object that defines user membership). The Org context defines admin info: business rules, preferences, templates, and context creators. Inherits Site-level policies."
- ],
- [
- "3",
- "Application Contexts",
- "Where users actually work and store business objects",
- "Includes Products, Libraries, Projects, and Programs. Inherits from both Organization and Site levels. This is where day-to-day engineering work happens."
- ]
- ]
- },
- {
- "type": "callout",
- "variant": "insight",
- "text": "Rules set at higher levels in the hierarchy become defaults for lower levels. Lower-level contexts can override inherited settings unless those settings are <strong>locked</strong> at a higher level. This inheritance model allows centralized governance while permitting flexibility where needed."
- },
- {
- "type": "callout",
- "variant": "warning",
- "text": "Do not confuse the Organization context with the organization participant. The <strong>participant</strong> defines which users belong to the organization. The <strong>context</strong> defines administrative configuration such as business rules, preferences, templates, and who can create sub-contexts."
- },
- {
- "type": "interactive-sort",
- "prompt": "Arrange the context hierarchy levels from the highest (root) to the lowest (where users work):",
- "items": [
- "Site",
- "Organization",
- "Application Contexts (Products, Libraries, Projects, Programs)"
- ]
- }
- ],
- "keyTakeaways": [
- "Every Windchill object must reside in exactly one context, though objects can be related across contexts",
- "The context hierarchy has three levels: Site (root), Organization (business unit), and Application Contexts (where users work)",
- "Higher-level settings are inherited by lower levels and can be overridden unless locked",
- "The Organization participant defines user membership while the Organization context defines administrative configuration"
- ]
- },
- {
- "id": "m2t2",
- "title": "Application Contexts",
- "estimatedMinutes": 6,
- "content": [
- {
- "type": "paragraph",
- "text": "Application contexts are the third level of the Windchill hierarchy - the containers where users perform their daily work and store business objects. There are four application context types, each designed for a specific category of data and work. All four inherit templates, roles, user-defined groups, and policies from their parent Organization."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Four Application Context Types"
- },
- {
- "type": "reveal-cards",
- "cards": [
- {
- "front": "Product",
- "back": "Stores product-specific design data, product structures, and supporting data. Includes domain policies for governing how product data is managed. Best suited for product family or platform data organized in product structures."
- },
- {
- "front": "Library",
- "back": "Almost identical in composition to a Product context. Stores common and reusable objects such as standards, commodity parts, and fasteners that are shared across products. <strong>Once created, a Library cannot be deleted.</strong>"
- },
- {
- "front": "Project",
- "back": "Tracks project plans, tasks, milestones, and deliverables. Less formal than Product or Library - regular users can create and manage Projects. Available only with ProjectLink."
- },
- {
- "front": "Program",
- "back": "Groups interrelated projects under an umbrella plan. Stores program-related documents and networks of plans. Not intended for design data. Available only with ProjectLink."
- }
- ]
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Storage Strategy Comparison"
- },
- {
- "type": "comparison-table",
- "headers": [
- "Context Type",
- "What to Store",
- "Key Distinction"
- ],
- "rows": [
- [
- "Product",
- "Product family/platform data in product structures",
- "Design data specific to a product or product line"
- ],
- [
- "Library",
- "References and general business info not specific to one product",
- "Shared, reusable objects (standards, commodity parts, fasteners)"
- ],
- [
- "Project",
- "Single execution plans with structures, deliverables, parts, documents",
- "Managed by regular users; less formal governance"
- ],
- [
- "Program",
- "Large multi-project plans, networks of plans",
- "No design data; umbrella coordination across projects"
- ]
- ]
- },
- {
- "type": "callout",
- "variant": "tip",
- "text": "When deciding where to store data, ask: Is it specific to one product? Use a Product context. Is it shared across products? Use a Library. Is it a time-bound deliverable plan? Use a Project. Is it coordinating multiple projects? Use a Program."
- },
- {
- "type": "interactive-match",
- "prompt": "Match each data scenario to the most appropriate application context type:",
- "pairs": [
- {
- "left": "Standard fastener catalog shared by all teams",
- "right": "Library"
- },
- {
- "left": "CAD models and BOM for a new product line",
- "right": "Product"
- },
- {
- "left": "Task list and milestones for a release cycle",
- "right": "Project"
- },
- {
- "left": "Umbrella plan coordinating three related launches",
- "right": "Program"
- }
- ]
- }
- ],
- "keyTakeaways": [
- "The four application context types are Product, Library, Project, and Program - each serves a distinct storage purpose",
- "Libraries cannot be deleted once created and are designed for shared, reusable objects like standards and commodity parts",
- "Project and Program contexts require ProjectLink and are suited for execution plans rather than design data",
- "All application contexts inherit templates, roles, user-defined groups, and policies from their parent Organization"
- ]
- },
- {
- "id": "m2t3",
- "title": "Context Creators and Object Management",
- "estimatedMinutes": 6,
- "content": [
- {
- "type": "paragraph",
- "text": "Creating and managing application contexts requires specific roles and permissions. A <strong>context creator</strong> is a user assigned the right to create new application contexts of a particular type - Product Creator, Library Creator, Project Creator, or Program Creator. Only organization members can be assigned as context creators, and once a context is created, the creator becomes its initial manager."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Context Creator Responsibilities"
- },
- {
- "type": "paragraph",
- "text": "After creating a context, the context manager (initially the creator, but reassignable) is responsible for a broad set of configuration tasks. These include team role assignments, folder management, document and CAD templates, team templates, access control policies, Object Initialization Rules (OIRs), lifecycle and workflow templates, report templates, and Creo View settings."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "The context creator role can be reassigned after creation. The initial creator automatically becomes the context manager, but this responsibility can be transferred to another qualified user at any time."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Windchill Object Fundamentals"
- },
- {
- "type": "paragraph",
- "text": "Windchill uses Java object-oriented concepts including classes, objects, and inheritance. The parent class of all types is <code>WTObject</code>. Three key object classes form the backbone of Windchill data management: <code>WTPart</code> (Parts), <code>EPMDocument</code> (CAD Documents), and <code>WTDocument</code> (Documents). Administrators use the <strong>Type and Attribute Management</strong> utility to create and manage out-of-the-box types, custom subtypes, and attributes. All objects are stored and organized within contexts with metadata (attributes) that describe them."
- },
- {
- "type": "comparison-table",
- "headers": [
- "Object Class",
- "Common Name",
- "Purpose"
- ],
- "rows": [
- [
- "WTPart",
- "Parts",
- "Represents physical or logical components in product structures and BOMs"
- ],
- [
- "EPMDocument",
- "CAD Documents",
- "Stores CAD files from tools like Creo, linked to parts via associations"
- ],
- [
- "WTDocument",
- "Documents",
- "Stores specifications, procedures, reports, and other business documents"
- ],
- [
- "WTObject",
- "Base Class",
- "Parent class from which all Windchill types inherit common behavior"
- ]
- ]
- },
- {
- "type": "interactive-match",
- "prompt": "Match each context creator type to what they can create:",
- "pairs": [
- {
- "left": "Product Creator",
- "right": "New Product contexts for design data and product structures"
- },
- {
- "left": "Library Creator",
- "right": "New Library contexts for shared, reusable objects"
- },
- {
- "left": "Project Creator",
- "right": "New Project contexts for plans, tasks, and deliverables"
- },
- {
- "left": "Program Creator",
- "right": "New Program contexts for coordinating related projects"
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Context creators are organization members assigned the right to create specific application context types (Product, Library, Project, or Program)",
- "The context creator automatically becomes the initial context manager, responsible for teams, folders, templates, and access control",
- "Windchill objects are based on Java classes - WTPart, EPMDocument, and WTDocument are the three key object classes",
- "The Type and Attribute Management utility allows administrators to create custom subtypes and attributes beyond the out-of-the-box types"
- ]
- },
- {
- "id": "m2t4",
- "title": "Creating Contexts and Managing Folders",
- "estimatedMinutes": 7,
- "content": [
- {
- "type": "paragraph",
- "text": "With an understanding of context types and creator roles, you are ready to learn how to create Product and Library contexts, organize data with folders, and move objects between contexts. Each context type has specific creation workflows, templates, and sizing considerations that affect long-term maintainability."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Creating Products and Libraries"
- },
- {
- "type": "comparison-table",
- "headers": [
- "Aspect",
- "Product Context",
- "Library Context"
- ],
- "rows": [
- [
- "Purpose",
- "Storage for a specific product or deliverable, including design data and product structures",
- "Storage for supporting data such as commodity parts, standards, and training materials shared across products"
- ],
- [
- "Templates",
- "General Product and other product templates set initial folders, team structure, OIRs, and access policies",
- "General Library, Part Library, and Document Library templates provide starting configurations"
- ],
- [
- "Access",
- "Private Access option applies more restrictive rules, requiring the product manager to explicitly define access control",
- "Managed by library managers or parts librarians"
- ],
- [
- "Deletion",
- "Can be deleted if no longer needed",
- "Cannot be deleted once created - plan carefully before creating"
- ]
- ]
- },
- {
- "type": "callout",
- "variant": "warning",
- "text": "Libraries cannot be deleted after creation. Always verify the library name, template, and purpose before finalizing. If a library is created in error, it will remain in the system permanently."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Folders, Sizing, and Moving Data"
- },
- {
- "type": "paragraph",
- "text": "Folders provide logical storage structures within contexts. Without folders, data resides at the root level, making it difficult to manage. Folders also enable unique domain policies per folder. By default, only product or library managers can create folders. Follow these sizing guidelines: fewer than 5,000 objects per folder, fewer than 50 folders or subfolders, and a maximum of 3 folder levels deep. The <strong>Move</strong> action (in the Actions menu) lets you move objects between organizations, move folders with their contents, move dependent objects, move templates between hierarchy levels, and move associated objects such as teams, lifecycles, workflows, and access rules."
- },
- {
- "type": "interactive-sort",
- "prompt": "Arrange the steps for creating a new Product context in the correct order:",
- "items": [
- "Navigate to the Organization and select New Product",
- "Enter the product name and description",
- "Select a product template for initial configuration",
- "Choose whether to enable Private Access",
- "Create folders to organize product data"
- ]
- }
- ],
- "keyTakeaways": [
- "Product templates set initial configuration including folders, team structure, OIRs, and access policies during context creation",
- "Libraries cannot be deleted once created - plan carefully and verify settings before finalizing",
- "Folders provide logical structure and enable per-folder domain policies, with recommended limits of 5,000 objects per folder and 3 levels deep",
- "The Move action allows transferring objects, folders, and associated configuration between contexts and hierarchy levels"
- ]
- },
- {
- "id": "m2t5",
- "title": "Exercise 2 - Review Contexts and Assign Creators",
- "estimatedMinutes": 10,
- "isExercise": true,
- "content": [
- {
- "type": "paragraph",
- "text": "In this exercise, you will review the existing PTC Publications contexts to understand the current context structure, then create a new user and assign context creator roles. This simulates preparing a new employee for administrative duties within an organization."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "You will sign in as <strong>bpatterson/ptc</strong> for this exercise. Ensure you have access to the Windchill training server before proceeding."
- },
- {
- "type": "exercise",
- "exerciseId": "ex2",
- "title": "Review Contexts and Assign Creators",
- "objective": "Navigate existing contexts to understand the current structure, create a new user, and assign Product and Library Creator roles to prepare the user for administrative duties.",
- "tasks": [
- {
- "id": "ex2-t1",
- "title": "Navigate Windchill Contexts",
- "steps": [
- {
- "action": "Sign in to Windchill as bpatterson with password ptc.",
- "detail": "The bpatterson account has organization administrator privileges for PTC Publications, which is needed to review contexts and manage users.",
- "hint": "Use the Windchill URL provided by your instructor."
- },
- {
- "action": "Navigate to Recent Products and select PTC New Publication Template.",
- "detail": "Recent Products shows the product contexts you have recently accessed. PTC New Publication Template is a product context within the PTC Publications organization.",
- "hint": "If it does not appear in Recent Products, use Browse > Products to find it."
- },
- {
- "action": "View the All Products table to see all available product contexts.",
- "detail": "The All Products view lists every product context in the organization. Review the list to understand how many products exist and how they are named.",
- "hint": null
- },
- {
- "action": "Check Recent Libraries and note that no libraries are currently available.",
- "detail": "The absence of libraries indicates that shared reusable objects have not yet been organized into library contexts. You will create one in the next exercise.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex2-t2",
- "title": "Create User and Assign Context Creator Roles",
- "steps": [
- {
- "action": "Navigate to PTC Publications > Utilities > Participant Administration.",
- "detail": "Participant Administration is where you manage users, groups, and organizations. Only organization administrators can access this utility.",
- "hint": "Look under the Utilities section in the Organization context navigation."
- },
- {
- "action": "Create a new user with username jachebe, last name Achebe, first name Junior, and password ptc.",
- "detail": "This creates a new organization member who can be assigned context creator roles. The user must exist as an organization participant before they can be granted creator privileges.",
- "hint": "Use the New User action in Participant Administration."
- },
- {
- "action": "Navigate to PTC Publications > Creators to view the context creator role assignments.",
- "detail": "The Creators page shows all four creator role categories: Product Creators, Library Creators, Project Creators, and Program Creators.",
- "hint": null
- },
- {
- "action": "View Product Creators and add jachebe to the list.",
- "detail": "Adding jachebe as a Product Creator grants this user the ability to create new Product contexts within the PTC Publications organization.",
- "hint": "Use the Add or Edit action on the Product Creators list."
- },
- {
- "action": "Switch to Library Creators and add jachebe to the list.",
- "detail": "Adding jachebe as a Library Creator grants the ability to create Library contexts. A user can hold multiple creator roles simultaneously.",
- "hint": null
- },
- {
- "action": "View Project Creators and observe that the organization is set as the default for all members.",
- "detail": "When the organization is the default project creator, all organization members can create Project contexts without being individually assigned. This is the less formal governance model typical of Projects.",
- "hint": null
- }
- ]
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Context creator roles are managed at the Organization level under the Creators section",
- "A user must be an organization participant before they can be assigned context creator roles",
- "Users can hold multiple creator roles simultaneously (e.g., both Product Creator and Library Creator)",
- "Project Creator can be set as a default for all organization members, reflecting the less formal governance of Projects"
- ]
- },
- {
- "id": "m2t6",
- "title": "Exercise 3 - Create Product and Library Contexts",
- "estimatedMinutes": 8,
- "isExercise": true,
- "content": [
- {
- "type": "paragraph",
- "text": "In this exercise, you will create a new Product context and a new Library context, then organize each with folder structures. This hands-on practice reinforces the concepts of context creation, template selection, and folder management covered in earlier topics."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "Continue using the same Windchill training session. You should be signed in as a user with Product Creator and Library Creator roles in the PTC Publications organization."
- },
- {
- "type": "exercise",
- "exerciseId": "ex3",
- "title": "Create Product and Library Contexts",
- "objective": "Create a new Product context and a new Library context with appropriate templates and folder structures to practice context creation and data organization.",
- "tasks": [
- {
- "id": "ex3-t1",
- "title": "Create a New Product",
- "steps": [
- {
- "action": "Navigate to Recent Products > View All, then click New Product.",
- "detail": "The New Product action is available to users with the Product Creator role. It opens a creation wizard that walks through template selection and configuration.",
- "hint": "The New Product button is typically in the toolbar above the products table."
- },
- {
- "action": "Enter the product name as PTC Magazine Template, select the General Product template, and add the description: Magazine template for all markets.",
- "detail": "The General Product template provides a standard starting configuration with default folders, team roles, and access policies. The name and description help other users identify the purpose of this product context.",
- "hint": null
- },
- {
- "action": "Complete the product creation wizard and verify the new product appears in the products list.",
- "detail": "After creation, you become the product manager. The product inherits its initial configuration from the selected template.",
- "hint": "If the product does not appear, refresh the page or navigate back to View All Products."
- },
- {
- "action": "Open the new PTC Magazine Template product and create a folder named Team Information.",
- "detail": "Folders organize data within the product context. Team Information will store team-related documents and references for this product.",
- "hint": "Use the New Folder action from the Folder Contents view within the product."
- }
- ]
- },
- {
- "id": "ex3-t2",
- "title": "Create a Library",
- "steps": [
- {
- "action": "Navigate to Recent Libraries > View All, then click New Library.",
- "detail": "The New Library action is available to users with the Library Creator role. Remember that libraries cannot be deleted once created.",
- "hint": null
- },
- {
- "action": "Enter the library name as Translation Standards and select the Document Library template.",
- "detail": "The Document Library template is appropriate because this library will store standards documents rather than parts. The template provides an initial folder structure suited for document management.",
- "hint": null
- },
- {
- "action": "Complete the library creation and review the existing template folders that were created automatically.",
- "detail": "The Document Library template creates default folders as part of its configuration. Review these folders to understand what the template provides out of the box before adding custom folders.",
- "hint": null
- },
- {
- "action": "Create a new folder named EN 15038 within the Translation Standards library.",
- "detail": "EN 15038 is a European standard for translation services. This folder will store documents related to that standard, organizing them separately from other translation reference materials.",
- "hint": "Use the New Folder action from the library's Folder Contents view."
- }
- ]
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Product creation uses templates (such as General Product) that set the initial folder structure, team roles, and access policies",
- "Library creation requires careful planning because libraries cannot be deleted - verify the name, template, and purpose before finalizing",
- "Templates automatically create default folders that provide a starting organizational structure for the context",
- "Custom folders should be added to further organize data according to your team's specific needs"
- ]
- }
+  {
+   "id": "m2t1",
+   "title": "Context Hierarchy and Data Strategy",
+   "estimatedMinutes": 7,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "A well-designed data strategy is the foundation of an effective Windchill deployment. By organizing information into defined containers, organizations benefit from efficient search and retrieval, automatic workflow procedures, increased collaboration, reduced administrative load, and lower onboarding and training costs. In Windchill, these containers are called <strong>contexts</strong>."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "What Is a Context?"
+    },
+    {
+     "type": "paragraph",
+     "text": "A context is a generic name for a defined container where users work. Contexts provide structure for user actions and serve as the organizational backbone of Windchill. Every Windchill object must reside in a context - think of a context like a file cabinet drawer that holds folders and documents. Each object is contained in exactly one context, though objects can be <em>related</em> across contexts. Your context strategy must balance administrative requirements with logical information storage."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "The Three-Level Hierarchy"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Level",
+      "Context Type",
+      "Purpose",
+      "Key Characteristics"
+     ],
+     "rows": [
+      [
+       "1 (Root)",
+       "Site",
+       "Top-level administrative container",
+       "Unique per installation. Contains out-of-box configuration: life cycles, workflows, templates, preferences, profiles, and team templates. Hosts one or more Organizations. Administrative only - users do not store business objects here."
+      ],
+      [
+       "2",
+       "Organization",
+       "Represents a major business unit or division",
+       "Always associated with an organization participant (a separate object that defines user membership). The Org context defines admin info: business rules, preferences, templates, and context creators. Inherits Site-level policies."
+      ],
+      [
+       "3",
+       "Application Contexts",
+       "Where users actually work and store business objects",
+       "Includes Products, Libraries, Projects, and Programs. Inherits from both Organization and Site levels. This is where day-to-day engineering work happens."
+      ]
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "insight",
+     "text": "Rules set at higher levels in the hierarchy become defaults for lower levels. Lower-level contexts can override inherited settings unless those settings are <strong>locked</strong> at a higher level. This inheritance model allows centralized governance while permitting flexibility where needed."
+    },
+    {
+     "type": "callout",
+     "variant": "warning",
+     "text": "Do not confuse the Organization context with the organization participant. The <strong>participant</strong> defines which users belong to the organization. The <strong>context</strong> defines administrative configuration such as business rules, preferences, templates, and who can create sub-contexts."
+    },
+    {
+     "type": "interactive-sort",
+     "prompt": "Arrange the context hierarchy levels from the highest (root) to the lowest (where users work):",
+     "items": [
+      "Site",
+      "Organization",
+      "Application Contexts (Products, Libraries, Projects, Programs)"
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Every Windchill object must reside in exactly one context, though objects can be related across contexts",
+    "The context hierarchy has three levels: Site (root), Organization (business unit), and Application Contexts (where users work)",
+    "Higher-level settings are inherited by lower levels and can be overridden unless locked",
+    "The Organization participant defines user membership while the Organization context defines administrative configuration"
+   ]
+  },
+  {
+   "id": "m2t2",
+   "title": "Application Contexts",
+   "estimatedMinutes": 6,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Application contexts are the third level of the Windchill hierarchy - the containers where users perform their daily work and store business objects. There are four application context types, each designed for a specific category of data and work. All four inherit templates, roles, user-defined groups, and policies from their parent Organization."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Four Application Context Types"
+    },
+    {
+     "type": "reveal-cards",
+     "cards": [
+      {
+       "front": "Product",
+       "back": "Stores product-specific design data, product structures, and supporting data. Includes domain policies for governing how product data is managed. Best suited for product family or platform data organized in product structures."
+      },
+      {
+       "front": "Library",
+       "back": "Almost identical in composition to a Product context. Stores common and reusable objects such as standards, commodity parts, and fasteners that are shared across products. <strong>Once created, a Library cannot be deleted.</strong>"
+      },
+      {
+       "front": "Project",
+       "back": "Tracks project plans, tasks, milestones, and deliverables. Less formal than Product or Library - regular users can create and manage Projects. Available only with ProjectLink."
+      },
+      {
+       "front": "Program",
+       "back": "Groups interrelated projects under an umbrella plan. Stores program-related documents and networks of plans. Not intended for design data. Available only with ProjectLink."
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Storage Strategy Comparison"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Context Type",
+      "What to Store",
+      "Key Distinction"
+     ],
+     "rows": [
+      [
+       "Product",
+       "Product family/platform data in product structures",
+       "Design data specific to a product or product line"
+      ],
+      [
+       "Library",
+       "References and general business info not specific to one product",
+       "Shared, reusable objects (standards, commodity parts, fasteners)"
+      ],
+      [
+       "Project",
+       "Single execution plans with structures, deliverables, parts, documents",
+       "Managed by regular users; less formal governance"
+      ],
+      [
+       "Program",
+       "Large multi-project plans, networks of plans",
+       "No design data; umbrella coordination across projects"
+      ]
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "tip",
+     "text": "When deciding where to store data, ask: Is it specific to one product? Use a Product context. Is it shared across products? Use a Library. Is it a time-bound deliverable plan? Use a Project. Is it coordinating multiple projects? Use a Program."
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each data scenario to the most appropriate application context type:",
+     "pairs": [
+      {
+       "left": "Standard fastener catalog shared by all teams",
+       "right": "Library"
+      },
+      {
+       "left": "CAD models and BOM for a new product line",
+       "right": "Product"
+      },
+      {
+       "left": "Task list and milestones for a release cycle",
+       "right": "Project"
+      },
+      {
+       "left": "Umbrella plan coordinating three related launches",
+       "right": "Program"
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "The four application context types are Product, Library, Project, and Program - each serves a distinct storage purpose",
+    "Libraries cannot be deleted once created and are designed for shared, reusable objects like standards and commodity parts",
+    "Project and Program contexts require ProjectLink and are suited for execution plans rather than design data",
+    "All application contexts inherit templates, roles, user-defined groups, and policies from their parent Organization"
+   ]
+  },
+  {
+   "id": "m2t3",
+   "title": "Context Creators and Object Management",
+   "estimatedMinutes": 6,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Creating and managing application contexts requires specific roles and permissions. A <strong>context creator</strong> is a user assigned the right to create new application contexts of a particular type - Product Creator, Library Creator, Project Creator, or Program Creator. Only organization members can be assigned as context creators, and once a context is created, the creator becomes its initial manager."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Context Creator Responsibilities"
+    },
+    {
+     "type": "paragraph",
+     "text": "After creating a context, the context manager (initially the creator, but reassignable) is responsible for a broad set of configuration tasks. These include team role assignments, folder management, document and CAD templates, team templates, access control policies, Object Initialization Rules (OIRs), lifecycle and workflow templates, report templates, and Creo View settings."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "The context creator role can be reassigned after creation. The initial creator automatically becomes the context manager, but this responsibility can be transferred to another qualified user at any time."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Windchill Object Fundamentals"
+    },
+    {
+     "type": "paragraph",
+     "text": "Windchill uses Java object-oriented concepts including classes, objects, and inheritance. The parent class of all types is <code>WTObject</code>. Three key object classes form the backbone of Windchill data management: <code>WTPart</code> (Parts), <code>EPMDocument</code> (CAD Documents), and <code>WTDocument</code> (Documents). Administrators use the <strong>Type and Attribute Management</strong> utility to create and manage out-of-the-box types, custom subtypes, and attributes. All objects are stored and organized within contexts with metadata (attributes) that describe them."
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Object Class",
+      "Common Name",
+      "Purpose"
+     ],
+     "rows": [
+      [
+       "WTPart",
+       "Parts",
+       "Represents physical or logical components in product structures and BOMs"
+      ],
+      [
+       "EPMDocument",
+       "CAD Documents",
+       "Stores CAD files from tools like Creo, linked to parts via associations"
+      ],
+      [
+       "WTDocument",
+       "Documents",
+       "Stores specifications, procedures, reports, and other business documents"
+      ],
+      [
+       "WTObject",
+       "Base Class",
+       "Parent class from which all Windchill types inherit common behavior"
+      ]
+     ]
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each context creator type to what they can create:",
+     "pairs": [
+      {
+       "left": "Product Creator",
+       "right": "New Product contexts for design data and product structures"
+      },
+      {
+       "left": "Library Creator",
+       "right": "New Library contexts for shared, reusable objects"
+      },
+      {
+       "left": "Project Creator",
+       "right": "New Project contexts for plans, tasks, and deliverables"
+      },
+      {
+       "left": "Program Creator",
+       "right": "New Program contexts for coordinating related projects"
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Context creators are organization members assigned the right to create specific application context types (Product, Library, Project, or Program)",
+    "The context creator automatically becomes the initial context manager, responsible for teams, folders, templates, and access control",
+    "Windchill objects are based on Java classes - WTPart, EPMDocument, and WTDocument are the three key object classes",
+    "The Type and Attribute Management utility allows administrators to create custom subtypes and attributes beyond the out-of-the-box types"
+   ]
+  },
+  {
+   "id": "m2t4",
+   "title": "Creating Contexts and Managing Folders",
+   "estimatedMinutes": 7,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "With an understanding of context types and creator roles, you are ready to learn how to create Product and Library contexts, organize data with folders, and move objects between contexts. Each context type has specific creation workflows, templates, and sizing considerations that affect long-term maintainability."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Creating Products and Libraries"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Aspect",
+      "Product Context",
+      "Library Context"
+     ],
+     "rows": [
+      [
+       "Purpose",
+       "Storage for a specific product or deliverable, including design data and product structures",
+       "Storage for supporting data such as commodity parts, standards, and training materials shared across products"
+      ],
+      [
+       "Templates",
+       "General Product and other product templates set initial folders, team structure, OIRs, and access policies",
+       "General Library, Part Library, and Document Library templates provide starting configurations"
+      ],
+      [
+       "Access",
+       "Private Access option applies more restrictive rules, requiring the product manager to explicitly define access control",
+       "Managed by library managers or parts librarians"
+      ],
+      [
+       "Deletion",
+       "Can be deleted if no longer needed",
+       "Cannot be deleted once created - plan carefully before creating"
+      ]
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "warning",
+     "text": "Libraries cannot be deleted after creation. Always verify the library name, template, and purpose before finalizing. If a library is created in error, it will remain in the system permanently."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Folders, Sizing, and Moving Data"
+    },
+    {
+     "type": "paragraph",
+     "text": "Folders provide logical storage structures within contexts. Without folders, data resides at the root level, making it difficult to manage. Folders also enable unique domain policies per folder. By default, only product or library managers can create folders. Follow these sizing guidelines: fewer than 5,000 objects per folder, fewer than 50 folders or subfolders, and a maximum of 3 folder levels deep. The <strong>Move</strong> action (in the Actions menu) lets you move objects between organizations, move folders with their contents, move dependent objects, move templates between hierarchy levels, and move associated objects such as teams, lifecycles, workflows, and access rules."
+    },
+    {
+     "type": "interactive-sort",
+     "prompt": "Arrange the steps for creating a new Product context in the correct order:",
+     "items": [
+      "Navigate to the Organization and select New Product",
+      "Enter the product name and description",
+      "Select a product template for initial configuration",
+      "Choose whether to enable Private Access",
+      "Create folders to organize product data"
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Product templates set initial configuration including folders, team structure, OIRs, and access policies during context creation",
+    "Libraries cannot be deleted once created - plan carefully and verify settings before finalizing",
+    "Folders provide logical structure and enable per-folder domain policies, with recommended limits of 5,000 objects per folder and 3 levels deep",
+    "The Move action allows transferring objects, folders, and associated configuration between contexts and hierarchy levels"
+   ]
+  },
+  {
+   "id": "m2t5",
+   "title": "Exercise 2 - Review Contexts and Assign Creators",
+   "estimatedMinutes": 10,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "In this exercise, you will review the existing PTC Publications contexts to understand the current context structure, then create a new user and assign context creator roles. This simulates preparing a new employee for administrative duties within an organization."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "You will sign in as <strong>bpatterson/ptc</strong> for this exercise. Ensure you have access to the Windchill training server before proceeding."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex2",
+     "title": "Review Contexts and Assign Creators",
+     "objective": "Navigate existing contexts to understand the current structure, create a new user, and assign Product and Library Creator roles to prepare the user for administrative duties.",
+     "tasks": [
+      {
+       "id": "ex2-t1",
+       "title": "Navigate Windchill Contexts",
+       "steps": [
+        {
+         "action": "Launch a web browser and click the Windchill bookmark.",
+         "detail": "Open the Windchill sign-in page using the bookmark configured for your training environment.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Sign In</strong>.",
+         "detail": "The Sign In button opens the authentication dialog.",
+         "hint": null
+        },
+        {
+         "action": "Sign in to Windchill as a business administrator: Username <code>bpatterson</code>, Password <code>ptc</code>.",
+         "detail": "The bpatterson account has organization administrator privileges for PTC Publications, which is needed to review contexts and manage users.",
+         "hint": null
+        },
+        {
+         "action": "Expand the Navigator.",
+         "detail": "The Navigator is the left-side panel that provides access to all Windchill contexts and navigation links.",
+         "hint": "Click the arrow icon or hamburger menu to expand the Navigator if it is collapsed."
+        },
+        {
+         "action": "Click the <strong>pin icon</strong> to keep the Navigator open.",
+         "detail": "Pinning the Navigator prevents it from collapsing when you click elsewhere, making it easier to navigate between contexts during the exercise.",
+         "hint": null
+        },
+        {
+         "action": "From the Browse tab, click the <strong>Recent Products</strong> icon to display Product contexts.",
+         "detail": "Recent Products shows the product contexts you have recently accessed. This is a quick way to find frequently used products.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>PTC New Publication Template</strong> to expand the related links.",
+         "detail": "Expanding a product in the Navigator reveals links to its folders, team, details, and other management pages.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>View All</strong> link and review the Products table in the right pane.",
+         "detail": "The View All link displays every product context in the organization. Review the list to understand how many products exist and how they are named.",
+         "hint": null
+        },
+        {
+         "action": "In the Navigator, select the <strong>Recent Libraries</strong> icon to review Library contexts. Note that there are currently no libraries available.",
+         "detail": "The absence of libraries indicates that shared reusable objects have not yet been organized into library contexts. You will create one in a later exercise.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex2-t2",
+       "title": "Create a User and Assign Product Creator Role",
+       "steps": [
+        {
+         "action": "In the Browse tab, select the <strong>Organizations</strong> icon.",
+         "detail": "The Organizations icon displays the organization contexts available in the system. You need to navigate to PTC Publications to manage its participants.",
+         "hint": "You should still be signed in as bpatterson/ptc."
+        },
+        {
+         "action": "Select <strong>PTC Publications</strong> to expand the links.",
+         "detail": "Expanding the PTC Publications organization reveals its management links including Utilities, Creators, and Templates.",
+         "hint": null
+        },
+        {
+         "action": "Browse to <strong>Utilities > Participant Administration</strong>.",
+         "detail": "Participant Administration is where you manage users, groups, and organizations within the PTC Publications organization.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Create new user</strong> icon.",
+         "detail": "The Create New User wizard allows you to create a new organization member who can be assigned context creator roles.",
+         "hint": null
+        },
+        {
+         "action": "Type the account information for Junior Achebe: Name <code>jachebe</code>, Full Name <code>Achebe, Junior</code>, Last Name <code>Achebe</code>, Email <code>wc-mail@ptc-training.ptc.com</code>, Password <code>ptc</code>.",
+         "detail": "All fields are required to create a valid user account. The username (jachebe) is used for sign-in, while the Full Name and Last Name identify the user in the interface.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Finish</strong>.",
+         "detail": "The new user account is created and added to the PTC Publications organization as a participant.",
+         "hint": null
+        },
+        {
+         "action": "In the Navigator, browse to <strong>PTC Publications > Creators</strong>.",
+         "detail": "The Creators page shows all four context creator role categories: Product Creators, Library Creators, Project Creators, and Program Creators.",
+         "hint": null
+        },
+        {
+         "action": "From the view menu, select <strong>Product Creators</strong>.",
+         "detail": "The Product Creators view displays the list of users who are authorized to create new product contexts within the PTC Publications organization.",
+         "hint": null
+        },
+        {
+         "action": "Click the icon to <strong>add a user</strong> to the Product Creators group.",
+         "detail": "This opens a dialog where you can search for and add users to the Product Creator role.",
+         "hint": null
+        },
+        {
+         "action": "In the <strong>User Name</strong> field, type <code>jachebe</code> and press <strong>Enter</strong>.",
+         "detail": "Typing the username and pressing Enter searches for and selects the user to be added to the Product Creators group.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong>.",
+         "detail": "Confirms the addition of jachebe to the Product Creators group.",
+         "hint": null
+        },
+        {
+         "action": "Notice that users <strong>bpatterson</strong> and <strong>jachebe</strong> are listed in the Product Creators table.",
+         "detail": "Both users now have the Product Creator role and can create new product contexts within the PTC Publications organization.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex2-t3",
+       "title": "Assign Library Creator and Review Project Creators",
+       "steps": [
+        {
+         "action": "From the view menu, select <strong>Library Creators</strong>.",
+         "detail": "Switch to the Library Creators view to manage which users can create library contexts.",
+         "hint": null
+        },
+        {
+         "action": "Add <strong>Junior Achebe</strong> as a Library Creator.",
+         "detail": "Use the same process as for Product Creators: click the add icon, type jachebe, and confirm. A user can hold multiple creator roles simultaneously.",
+         "hint": null
+        },
+        {
+         "action": "From the view menu, select <strong>Project Creators</strong>.",
+         "detail": "Review the Project Creators list to understand how project creation permissions are configured.",
+         "hint": null
+        },
+        {
+         "action": "Notice that the PTC Publications organization is assigned to each user by default.",
+         "detail": "The organization is configured to allow all organization members to create projects. This option is available in the New Organization dialog and reflects the less formal governance model typical of ProjectLink projects.",
+         "hint": "Note: The organization is configured by the organization creator to allow all organization members to create projects."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Context creator roles are managed at the Organization level under the Creators section",
+    "A user must be an organization participant before they can be assigned context creator roles",
+    "Users can hold multiple creator roles simultaneously (e.g., both Product Creator and Library Creator)",
+    "Project Creator can be set as a default for all organization members, reflecting the less formal governance of Projects"
+   ]
+  },
+  {
+   "id": "m2t6",
+   "title": "Exercise 3 - Create Product and Library Contexts",
+   "estimatedMinutes": 8,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "In this exercise, you will create a new Product context and a new Library context, then organize each with folder structures. This hands-on practice reinforces the concepts of context creation, template selection, and folder management covered in earlier topics."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "Continue using the same Windchill training session. You should be signed in as a user with Product Creator and Library Creator roles in the PTC Publications organization."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex3",
+     "title": "Create Product and Library Contexts",
+     "objective": "Create a new Product context and a new Library context with appropriate templates and folder structures to practice context creation and data organization.",
+     "tasks": [
+      {
+       "id": "ex3-t1",
+       "title": "Create a New Product and Folder",
+       "steps": [
+        {
+         "action": "In the Navigator, click the <strong>Recent Products</strong> icon.",
+         "detail": "Recent Products provides quick access to product contexts you have recently visited.",
+         "hint": "You should still be signed in to Windchill as bpatterson/ptc."
+        },
+        {
+         "action": "Click <strong>View All</strong> and select the <strong>New Product</strong> icon.",
+         "detail": "View All displays all product contexts in the organization. The New Product icon opens the creation dialog for a new product context.",
+         "hint": "The New Product button is typically in the toolbar above the products table."
+        },
+        {
+         "action": "In the dialog, type or select the following values: Name <code>PTC Magazine Template</code>, Template <code>General Product</code>, Description <code>Magazine template for all markets.</code>",
+         "detail": "The General Product template provides a standard starting configuration with default folders, team roles, and access policies. The name and description help other users identify the purpose of this product context.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong>.",
+         "detail": "Windchill creates the new product context and applies all settings from the General Product template. You become the product manager automatically.",
+         "hint": null
+        },
+        {
+         "action": "In the Navigator, expand the <strong>PTC Magazine Template</strong> product and select <strong>Folders</strong>.",
+         "detail": "The Folders view shows the folder structure within the product context. The template may have created some default folders.",
+         "hint": null
+        },
+        {
+         "action": "In the Folder Contents table, create a <strong>new folder</strong>.",
+         "detail": "Folders organize data within the product context. Use the New Folder action in the Folder Contents toolbar.",
+         "hint": null
+        },
+        {
+         "action": "Type <code>Team Information</code> and click <strong>Finish</strong>.",
+         "detail": "The Team Information folder will store team-related documents and references for this product.",
+         "hint": null
+        },
+        {
+         "action": "Verify that the new folder appears in the Folder Contents table and the folders structure in the left pane.",
+         "detail": "The folder should be visible in both the table view and the navigation tree, confirming it was created successfully.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex3-t2",
+       "title": "Create a New Library",
+       "steps": [
+        {
+         "action": "In the Navigator, click the <strong>Recent Libraries</strong> icon.",
+         "detail": "Recent Libraries provides quick access to library contexts. There may not be any libraries listed yet.",
+         "hint": "You should still be signed in to Windchill as bpatterson/ptc."
+        },
+        {
+         "action": "Click <strong>View All</strong> and select the <strong>New Library</strong> icon.",
+         "detail": "The New Library action is available to users with the Library Creator role. Remember that libraries cannot be deleted once created, so verify the settings carefully.",
+         "hint": null
+        },
+        {
+         "action": "In the dialog, type or select the following values: Name <code>Translation Standards</code>, Template <code>Document Library</code>.",
+         "detail": "The Document Library template is appropriate because this library will store standards documents for translation services rather than parts. The template provides an initial folder structure suited for document management.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong>.",
+         "detail": "Windchill creates the new library context and applies the Document Library template configuration.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex3-t3",
+       "title": "Review Folders and Create a New Folder",
+       "steps": [
+        {
+         "action": "In the Navigator, expand the <strong>Translation Standards</strong> and select <strong>Folders</strong>.",
+         "detail": "Navigate to the Folders view within the newly created library to see the folder structure.",
+         "hint": null
+        },
+        {
+         "action": "Review the existing folders that appear with the system template.",
+         "detail": "The Document Library template creates default folders as part of its configuration. Review these folders to understand what the template provides out of the box before adding custom folders.",
+         "hint": null
+        },
+        {
+         "action": "In the Folder Contents table, create a <strong>new folder</strong>.",
+         "detail": "You will add a custom folder to organize translation standard documents separately from the template-provided folders.",
+         "hint": null
+        },
+        {
+         "action": "Type <code>EN 15038</code> as the name and click <strong>Finish</strong>.",
+         "detail": "EN 15038 is a European standard for translation services. This folder will store documents related to that standard, organizing them separately from other translation reference materials.",
+         "hint": null
+        },
+        {
+         "action": "Verify that the new folder appears in the Folder Contents table and the folders structure in the left pane.",
+         "detail": "The EN 15038 folder should be visible in both the table view and the navigation tree, confirming it was created successfully.",
+         "hint": null
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Product creation uses templates (such as General Product) that set the initial folder structure, team roles, and access policies",
+    "Library creation requires careful planning because libraries cannot be deleted - verify the name, template, and purpose before finalizing",
+    "Templates automatically create default folders that provide a starting organizational structure for the context",
+    "Custom folders should be added to further organize data according to your team's specific needs"
+   ]
+  }
  ]
 }

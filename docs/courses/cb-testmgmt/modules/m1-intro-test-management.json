@@ -1,0 +1,398 @@
+{
+  "id": "m1",
+  "title": "Introduction to Test Management",
+  "description": "Understand why test management matters, learn the key roles and workflow, explore the course project scenario, and set up your Codebeamer environment.",
+  "topics": [
+    {
+      "id": "m1t1",
+      "title": "What is Test Management",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Test management is a critical discipline that can mean the difference between a successful product launch and a costly recall. Consider the case of a company racing to release a new portable device powered by lithium batteries. Under pressure to beat competitors to market, the team skipped key testing protocols. The result: batteries that caught fire in customers' hands, a massive recall, and lasting damage to the company's reputation. This scenario underscores why structured test management is essential for every product development effort."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Why Test Management Matters"
+        },
+        {
+          "type": "paragraph",
+          "text": "Before a product is released, you must test that it meets agreed-upon requirements covering functional, performance, safety, and regulatory aspects. Testing spans multiple levels: individual software unit code, software integrations, system-level code, hardware components, and system-to-system tests. Each level targets different kinds of defects, and all must be coordinated to ensure comprehensive coverage."
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Test management is the practice of coordinating, creating, and executing all tests needed to verify product requirements are met. Without proper management, critical test protocols can be missed — leading to defects that reach customers."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Types of Testing"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Testing Type", "What It Tests", "Example"],
+          "rows": [
+            ["Unit Testing", "Individual software code modules or hardware components", "Verify a single sensor reads values within expected range"],
+            ["Integration Testing", "Interactions between code blocks or components", "Verify sensor data is correctly passed to the ECU"],
+            ["System Testing", "Complete system behavior end-to-end", "Verify the headlight system responds correctly to all sensor inputs"],
+            ["Hardware Testing", "Physical hardware component functionality", "Verify LED bulb meets brightness and durability specifications"]
+          ]
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the testing levels from smallest scope to largest:",
+          "items": ["Unit Testing", "Integration Testing", "System Testing"]
+        }
+      ],
+      "keyTakeaways": [
+        "Test management coordinates all testing activities needed to verify product requirements are met",
+        "Skipping or mismanaging testing protocols can lead to product recalls and safety issues",
+        "Testing occurs across multiple levels: unit, integration, system, and hardware",
+        "Requirements drive what needs to be tested — functional, performance, safety, and regulatory"
+      ]
+    },
+    {
+      "id": "m1t2",
+      "title": "Test Management Roles and Workflow",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Some common roles in test management include project manager, test lead, test engineer, and tester. For this course, we focus on three main roles that form the backbone of most test management organizations. Understanding who does what — and when — is essential for keeping testing on track."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Key Test Management Roles"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Test Lead",
+              "back": "Manages the testing team, creates project plans, and coordinates standards and practices. Responsible for the test management project and overall workflow."
+            },
+            {
+              "front": "Test Engineer",
+              "back": "Writes tests for specific product components, units, and systems. Monitors test execution and assesses product design or test defects."
+            },
+            {
+              "front": "Tester",
+              "back": "Executes the tests, documents results, and reports bugs. Follows pre-actions and post-actions defined in test cases."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Test Management Workflow"
+        },
+        {
+          "type": "paragraph",
+          "text": "The general process follows five steps, from planning through results review. The workflow may follow Agile, V-model, ASPICE, or a hybrid approach depending on your company."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Step", "Activity", "Typical Role"],
+          "rows": [
+            ["1. Write Test Plan", "Outline testing strategies and requirements to validate", "Test Lead"],
+            ["2. Design Test Cases", "Create procedures with steps that prove requirements are met", "Test Engineer"],
+            ["3. Set Up Tests", "Initiate test runs and include configuration details", "Test Engineer"],
+            ["4. Execute Tests", "Run the tests and report results", "Tester"],
+            ["5. Review Results", "Track test progress and address bugs and issues", "Test Lead / Test Engineer"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Roles and responsibilities are company-dependent. In smaller teams, one person may fill multiple roles. The key is ensuring every step in the workflow has a clear owner."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each role to its primary responsibility:",
+          "pairs": [
+            {
+              "left": "Test Lead",
+              "right": "Manages the testing team and writes test plans"
+            },
+            {
+              "left": "Test Engineer",
+              "right": "Designs test cases and sets up test runs"
+            },
+            {
+              "left": "Tester",
+              "right": "Executes tests and reports bugs"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Three core roles: Test Lead (plans), Test Engineer (designs), Tester (executes)",
+        "The workflow follows five steps: plan, design, set up, execute, and review",
+        "Roles and workflow details are company-dependent and may follow Agile, V-model, or ASPICE",
+        "Every step in the workflow should have a clear owner to prevent gaps"
+      ]
+    },
+    {
+      "id": "m1t3",
+      "title": "Course Project Introduction",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "The course project revolves around a vehicle's advanced headlight system. A vehicle's headlight system consists of LED bulbs at the front of the vehicle that light the road for drivers. Throughout the course exercises, you will apply test management practices to this real-world scenario."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Advanced Headlight System Features"
+        },
+        {
+          "type": "paragraph",
+          "text": "The advanced features of the headlight system have the following automatic (without user control) capabilities: turning on and off, adjusting brightness level, and changing beam and beam pattern. You are not expected to know the inner workings of vehicle headlight systems — the focus is on applying test management practices to verify that the system meets its requirements."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Your Project Goals"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Evaluate the Test Plan",
+              "back": "Review the test lead's blueprint that outlines which requirements to test, when to test them, and who is responsible."
+            },
+            {
+              "front": "Write Test Cases",
+              "back": "As a test engineer, create procedures with steps that verify the headlight system meets its requirements."
+            },
+            {
+              "front": "Set Up and Execute Tests",
+              "back": "Configure test runs with test configurations and execute them as a tester, recording pass/fail results."
+            },
+            {
+              "front": "Report Results",
+              "back": "Document test outcomes, report bugs for failures, and examine overall test progress."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "The project's customer, system, hardware, and software requirements have already been defined, refined, and linked within the Codebeamer project. Your focus is on the test management workflow."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the course project activities in the order you will perform them:",
+          "items": ["Evaluate the test plan", "Write test cases", "Set up and execute tests", "Report and examine results"]
+        }
+      ],
+      "keyTakeaways": [
+        "The course project is based on a vehicle advanced headlight system with automatic capabilities",
+        "Requirements are already defined — you focus on test management activities",
+        "You will practice all phases: planning, design, setup, execution, and reporting",
+        "You will assume different user roles (Test Lead, Test Engineer, Tester) throughout the exercises"
+      ]
+    },
+    {
+      "id": "m1t4",
+      "title": "Exercise - Set Up Course Project",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will sign in to Codebeamer as a test lead persona, set up the project, and explore the predefined structure including test cases, test runs, and the project configuration."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "You will need access to the Codebeamer training environment. Sign in as the system administrator first to configure user permissions."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex1",
+          "title": "Set Up Course Project",
+          "objective": "Sign in to Codebeamer, configure user roles, import the course project, and explore its predefined structure.",
+          "tasks": [
+            {
+              "id": "ex1-t1",
+              "title": "Sign In to Codebeamer",
+              "steps": [
+                {
+                  "action": "Open Codebeamer from the Windows task bar.",
+                  "detail": "This launches the Codebeamer web application in your browser.",
+                  "hint": null
+                },
+                {
+                  "action": "Sign in with the username <code>admin</code> and the password <code>ptc</code>.",
+                  "detail": "The admin account has system-level privileges needed for initial setup.",
+                  "hint": "Click Never if prompted to save the password."
+                },
+                {
+                  "action": "Verify you are signed in as the system administrator.",
+                  "detail": "The System Admin tab should be visible in the navigation.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex1-t2",
+              "title": "Update a User to System Admin",
+              "steps": [
+                {
+                  "action": "Click the <strong>System Admin</strong> tab, then click <strong>User Accounts</strong>.",
+                  "detail": "The user Alani will fulfill the test lead role and needs additional permissions.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <code>alani</code> account and click <strong>Edit Account</strong> from the toolbar.",
+                  "detail": "You are granting this user system administrator privileges for project management.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>System Administrator</strong> option in the User Group Memberships section.",
+                  "detail": "This gives Alani the permissions needed to create and manage the test management project.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Save</strong>.",
+                  "detail": "Alani now has system administrator privileges.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex1-t3",
+              "title": "Create a New Project",
+              "steps": [
+                {
+                  "action": "Sign out of the admin user.",
+                  "detail": "You will now work as the test lead (Alani) for the remainder of the project setup.",
+                  "hint": null
+                },
+                {
+                  "action": "Sign in with the username <code>alani</code> and the password <code>ptc</code>.",
+                  "detail": "Alani is the test lead persona for this course.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Projects</strong> tab and click <strong>New Project</strong> (plus icon).",
+                  "detail": "The test lead sets up and manages the Codebeamer project.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Attach a file</strong> and select the project zip file.",
+                  "detail": "This zipped project contains requirements and tasks already defined as your starting point for test management.",
+                  "hint": "Select the PTCU_Ecar_TEST.zip file from the course files."
+                },
+                {
+                  "action": "Click <strong>Next</strong> and verify the project Name is <code>PTCU Electric Car TEST</code>.",
+                  "detail": "The project name identifies this as the test management implementation project.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the Category field to <strong>CBFD-TEST Fundamentals of Test Management</strong>.",
+                  "detail": "Categories help organize projects within Codebeamer.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Finish</strong> to create the project.",
+                  "detail": "The project is now created with predefined requirements and structure.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex1-t4",
+              "title": "Examine the Preloaded Test Case and Test Run",
+              "steps": [
+                {
+                  "action": "Click the <strong>Trackers</strong> tab and observe the project structure folders.",
+                  "detail": "The project contains Customer Specifications, System Specifications, Hardware Specifications, and Software Specifications folders.",
+                  "hint": null
+                },
+                {
+                  "action": "Locate the System Specifications folder and observe its contents.",
+                  "detail": "This folder holds tracker items for System Requirements and System Test Cases.",
+                  "hint": "Note the icons and abbreviations next to each tracker."
+                },
+                {
+                  "action": "Right-click <strong>System Test Cases</strong> and select <strong>Open</strong>.",
+                  "detail": "A test case has been predefined for the project.",
+                  "hint": "You can also double-click a tracker item to open it."
+                },
+                {
+                  "action": "Double-click the <strong>Manual Headlight Switch Integration</strong> test case to open it.",
+                  "detail": "This opens the test case details in a new browser tab.",
+                  "hint": null
+                },
+                {
+                  "action": "Scroll to the Details section and observe the Test Steps tab.",
+                  "detail": "Test steps are the specific actions a tester must take to verify a feature or function of the product.",
+                  "hint": "Expand the Details section if necessary."
+                },
+                {
+                  "action": "Click the <strong>Test Runs</strong> tab to observe any existing test runs.",
+                  "detail": "A test run is the execution of a test case and is its own tracker type.",
+                  "hint": null
+                },
+                {
+                  "action": "Scroll to and expand the <strong>Traceability</strong> section.",
+                  "detail": "Observe the requirement the test case verifies. This traceability link connects tests to requirements.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the test case browser tab.",
+                  "detail": "You have examined the predefined test case structure.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex1-t5",
+              "title": "Examine the Predefined Project Configuration",
+              "steps": [
+                {
+                  "action": "Navigate to the Trackers tab and click <strong>Configuration Diagram</strong> from the toolbar.",
+                  "detail": "The configuration diagram shows relationships between tracker types.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the relevant trackers: Customer Requirements, System Test Cases, System Requirements, Hardware Test Cases, Hardware Requirements, Software Requirements, Test Runs, Test Sets, and Test Configurations.",
+                  "detail": "These trackers form the test management structure for the project.",
+                  "hint": "Click the top node item to quickly select all items within a group."
+                },
+                {
+                  "action": "Observe the upstream/downstream relationships between trackers.",
+                  "detail": "System Test Cases are downstream to System Requirements. System Requirements are downstream to Customer Requirements.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the Configuration Diagram and navigate to the <strong>Admin</strong> tab.",
+                  "detail": "You will verify the user roles configured for the project.",
+                  "hint": "Click the vertical ellipsis then select Members."
+                },
+                {
+                  "action": "Observe the users designated for roles of Test Lead, Test Engineer, and Tester.",
+                  "detail": "You will assume each role throughout this course's exercises.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The course project uses a predefined Codebeamer project with requirements already defined and linked",
+        "The project structure includes Customer, System, Hardware, and Software specification folders",
+        "Test cases are downstream to the requirements they verify, establishing traceability",
+        "Three user roles (Test Lead, Test Engineer, Tester) are configured for the project"
+      ]
+    }
+  ]
+}

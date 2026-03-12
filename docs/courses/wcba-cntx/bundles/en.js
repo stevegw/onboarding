@@ -529,58 +529,97 @@
               "title": "Create an Organization",
               "steps": [
                 {
-                  "action": "Sign in to Windchill as wcadmin/wcadmin (the site administrator account).",
+                  "action": "Launch a web browser and click the Windchill bookmark.",
+                  "detail": "Open the Windchill sign-in page using the bookmark configured for your training environment.",
+                  "hint": "Use the Windchill URL provided by your instructor if no bookmark is available."
+                },
+                {
+                  "action": "Click <strong>Sign In</strong>.",
+                  "detail": "The Sign In button opens the authentication dialog where you enter your credentials.",
+                  "hint": null
+                },
+                {
+                  "action": "Sign in to Windchill as a site administrator: Username <code>wcadmin</code>, Password <code>wcadmin</code>.",
                   "detail": "The site administrator has full privileges to create and manage organizations, which are top-level contexts in the Windchill hierarchy.",
-                  "hint": "Use the Windchill URL provided by your instructor. If prompted for a domain, use the default."
+                  "hint": "Note: Do not save the password."
                 },
                 {
-                  "action": "Navigate to Organizations by clicking Browse > Organizations, then click View All to see the list of existing organizations.",
-                  "detail": "The Organizations list shows all organization contexts currently defined in the system. You will add a new organization to this list.",
-                  "hint": "The Browse menu is in the top navigation bar. If you do not see Organizations, check under the Site context."
+                  "action": "Expand the Navigator and select the <strong>Browse</strong> tab.",
+                  "detail": "The Navigator is the left-side panel that provides access to all Windchill contexts. The Browse tab shows context categories like Organizations, Products, and Libraries.",
+                  "hint": "Click the arrow icon or hamburger menu to expand the Navigator if it is collapsed."
                 },
                 {
-                  "action": "Click the Create new organization action to open the organization creation form.",
-                  "detail": "The creation form allows you to specify the organization name, description, and optionally select a context template to pre-populate the organization with default settings.",
-                  "hint": "Look for a 'New Organization' or 'Create' button in the toolbar above the organizations table."
-                },
-                {
-                  "action": "Enter 'Example PTC Publications' as the organization name and 'Enterprise publications context' as the description.",
-                  "detail": "The organization name must be unique across the system. The description helps other administrators understand the purpose of this organization context.",
+                  "action": "Select the <strong>Organizations</strong> icon.",
+                  "detail": "The Organizations icon displays the organization contexts available in the system.",
                   "hint": null
                 },
                 {
-                  "action": "Note the available templates in the template dropdown, but leave the defaults unchanged. Click OK to create the organization.",
-                  "detail": "Context templates can pre-configure an organization with folders, life cycles, workflows, and access policies. For this exercise, you will use the default settings and configure the organization manually in later exercises.",
-                  "hint": "If a template is pre-selected, you may leave it or select 'None' depending on your Windchill version."
-                },
-                {
-                  "action": "Verify that 'Example PTC Publications' now appears in the Organizations table.",
-                  "detail": "The organization should appear in the list with the name and description you entered. If it does not appear, refresh the page or check for any error messages.",
-                  "hint": null
-                }
-              ]
-            },
-            {
-              "id": "ex1-t2",
-              "title": "Verify Organization Participant",
-              "steps": [
-                {
-                  "action": "Navigate to Site > Utilities > Participant Administration.",
-                  "detail": "Participant Administration allows you to search for and manage all participant types in Windchill, including users, groups, and organizations. When you create an organization context, Windchill automatically creates a corresponding organization participant.",
-                  "hint": "The Utilities section is accessible from the Site context. You may need to switch to the Site context first."
-                },
-                {
-                  "action": "Click Find Participant, select Organization as the participant type, and click Search.",
-                  "detail": "This search returns all organization participants registered in the system. Your newly created organization should appear in the results.",
-                  "hint": "If the search returns many results, use the name filter to search for 'Example PTC Publications'."
-                },
-                {
-                  "action": "Verify that the 'Example PTC Publications' organization principal is listed in the search results.",
-                  "detail": "The organization participant is automatically created when the organization context is created. This participant can be used in access control policies, team assignments, and notification rules.",
+                  "action": "Select the <strong>View All</strong> link.",
+                  "detail": "View All displays the complete Organizations table listing every organization context currently defined in the system.",
                   "hint": null
                 },
                 {
-                  "action": "Close your browser to end the session.",
+                  "action": "From the Organizations table, click the <strong>Create new organization</strong> icon.",
+                  "detail": "The creation icon opens the New Organization dialog where you specify the organization name, description, template, and other settings.",
+                  "hint": "Look for a 'New Organization' or 'Create' icon in the toolbar above the organizations table."
+                },
+                {
+                  "action": "In the <strong>Organization Name</strong> field, type <code>Example PTC Publications</code>.",
+                  "detail": "The organization name must be unique across the system. If you type a name that is not an existing organization participant, an organization participant is automatically created with the same name.",
+                  "hint": null
+                },
+                {
+                  "action": "In the <strong>Description</strong> field, type <code>Enterprise publications context</code>.",
+                  "detail": "The description helps other administrators understand the purpose of this organization context.",
+                  "hint": null
+                },
+                {
+                  "action": "Expand the <strong>Template</strong> menu and note the available templates.",
+                  "detail": "Context templates can pre-configure an organization with folders, life cycles, workflows, and access policies. Review the available options to understand what templates are provided out of the box.",
+                  "hint": null
+                },
+                {
+                  "action": "Leave all the other settings with the default values and click <strong>OK</strong>.",
+                  "detail": "Additional settings include Subscriber, Allow all members to create projects, Restricted directory search, Conferencing ID, and Conferencing URL. For this exercise, the defaults are sufficient.",
+                  "hint": "If a template is pre-selected, you may leave it as the default."
+                },
+                {
+                  "action": "In the Organizations table, notice that <strong>Example PTC Publications</strong> is listed.",
+                  "detail": "The organization should now appear in the table with the name and description you entered, confirming successful creation.",
+                  "hint": "If it does not appear, refresh the page or scroll through the table."
+                },
+                {
+                  "action": "From the Navigator, select the <strong>Site</strong> context.",
+                  "detail": "Navigating to the Site context allows you to access site-level administration utilities, including Participant Administration.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Utilities</strong> link, then click the <strong>Participant Administration</strong> link in the Business Administration section.",
+                  "detail": "Participant Administration allows you to search for and manage all participant types in Windchill, including users, groups, and organizations.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Add participants to the table</strong> icon.",
+                  "detail": "This opens the Find Participant dialog where you can search for different participant types to verify they exist in the system.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Find Participant dialog, select <strong>Organization</strong> from the <strong>Search for</strong> menu and click <strong>Search</strong>.",
+                  "detail": "Searching for Organization participants returns all organization principals registered in the system. Your newly created organization should appear in the results.",
+                  "hint": "If the search returns many results, use the name filter to narrow results."
+                },
+                {
+                  "action": "In the Search Results field, notice that an <strong>Example PTC Publications</strong> organization is listed.",
+                  "detail": "The organization participant was automatically created when you created the organization context. This participant can be used in access control policies, team assignments, and notification rules.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Cancel</strong> to close the Find Participant dialog.",
+                  "detail": "You do not need to add the organization to any table — this step was to verify the participant exists.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the web browser.",
                   "detail": "You have successfully created an organization context and verified its participant registration. In later exercises, you will add products and libraries within this organization.",
                   "hint": null
                 }
@@ -981,60 +1020,141 @@
               "title": "Navigate Windchill Contexts",
               "steps": [
                 {
-                  "action": "Sign in to Windchill as bpatterson with password ptc.",
-                  "detail": "The bpatterson account has organization administrator privileges for PTC Publications, which is needed to review contexts and manage users.",
-                  "hint": "Use the Windchill URL provided by your instructor."
-                },
-                {
-                  "action": "Navigate to Recent Products and select PTC New Publication Template.",
-                  "detail": "Recent Products shows the product contexts you have recently accessed. PTC New Publication Template is a product context within the PTC Publications organization.",
-                  "hint": "If it does not appear in Recent Products, use Browse > Products to find it."
-                },
-                {
-                  "action": "View the All Products table to see all available product contexts.",
-                  "detail": "The All Products view lists every product context in the organization. Review the list to understand how many products exist and how they are named.",
+                  "action": "Launch a web browser and click the Windchill bookmark.",
+                  "detail": "Open the Windchill sign-in page using the bookmark configured for your training environment.",
                   "hint": null
                 },
                 {
-                  "action": "Check Recent Libraries and note that no libraries are currently available.",
-                  "detail": "The absence of libraries indicates that shared reusable objects have not yet been organized into library contexts. You will create one in the next exercise.",
+                  "action": "Click <strong>Sign In</strong>.",
+                  "detail": "The Sign In button opens the authentication dialog.",
+                  "hint": null
+                },
+                {
+                  "action": "Sign in to Windchill as a business administrator: Username <code>bpatterson</code>, Password <code>ptc</code>.",
+                  "detail": "The bpatterson account has organization administrator privileges for PTC Publications, which is needed to review contexts and manage users.",
+                  "hint": null
+                },
+                {
+                  "action": "Expand the Navigator.",
+                  "detail": "The Navigator is the left-side panel that provides access to all Windchill contexts and navigation links.",
+                  "hint": "Click the arrow icon or hamburger menu to expand the Navigator if it is collapsed."
+                },
+                {
+                  "action": "Click the <strong>pin icon</strong> to keep the Navigator open.",
+                  "detail": "Pinning the Navigator prevents it from collapsing when you click elsewhere, making it easier to navigate between contexts during the exercise.",
+                  "hint": null
+                },
+                {
+                  "action": "From the Browse tab, click the <strong>Recent Products</strong> icon to display Product contexts.",
+                  "detail": "Recent Products shows the product contexts you have recently accessed. This is a quick way to find frequently used products.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>PTC New Publication Template</strong> to expand the related links.",
+                  "detail": "Expanding a product in the Navigator reveals links to its folders, team, details, and other management pages.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>View All</strong> link and review the Products table in the right pane.",
+                  "detail": "The View All link displays every product context in the organization. Review the list to understand how many products exist and how they are named.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Navigator, select the <strong>Recent Libraries</strong> icon to review Library contexts. Note that there are currently no libraries available.",
+                  "detail": "The absence of libraries indicates that shared reusable objects have not yet been organized into library contexts. You will create one in a later exercise.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex2-t2",
-              "title": "Create User and Assign Context Creator Roles",
+              "title": "Create a User and Assign Product Creator Role",
               "steps": [
                 {
-                  "action": "Navigate to PTC Publications > Utilities > Participant Administration.",
-                  "detail": "Participant Administration is where you manage users, groups, and organizations. Only organization administrators can access this utility.",
-                  "hint": "Look under the Utilities section in the Organization context navigation."
+                  "action": "In the Browse tab, select the <strong>Organizations</strong> icon.",
+                  "detail": "The Organizations icon displays the organization contexts available in the system. You need to navigate to PTC Publications to manage its participants.",
+                  "hint": "You should still be signed in as bpatterson/ptc."
                 },
                 {
-                  "action": "Create a new user with username jachebe, last name Achebe, first name Junior, and password ptc.",
-                  "detail": "This creates a new organization member who can be assigned context creator roles. The user must exist as an organization participant before they can be granted creator privileges.",
-                  "hint": "Use the New User action in Participant Administration."
-                },
-                {
-                  "action": "Navigate to PTC Publications > Creators to view the context creator role assignments.",
-                  "detail": "The Creators page shows all four creator role categories: Product Creators, Library Creators, Project Creators, and Program Creators.",
+                  "action": "Select <strong>PTC Publications</strong> to expand the links.",
+                  "detail": "Expanding the PTC Publications organization reveals its management links including Utilities, Creators, and Templates.",
                   "hint": null
                 },
                 {
-                  "action": "View Product Creators and add jachebe to the list.",
-                  "detail": "Adding jachebe as a Product Creator grants this user the ability to create new Product contexts within the PTC Publications organization.",
-                  "hint": "Use the Add or Edit action on the Product Creators list."
-                },
-                {
-                  "action": "Switch to Library Creators and add jachebe to the list.",
-                  "detail": "Adding jachebe as a Library Creator grants the ability to create Library contexts. A user can hold multiple creator roles simultaneously.",
+                  "action": "Browse to <strong>Utilities > Participant Administration</strong>.",
+                  "detail": "Participant Administration is where you manage users, groups, and organizations within the PTC Publications organization.",
                   "hint": null
                 },
                 {
-                  "action": "View Project Creators and observe that the organization is set as the default for all members.",
-                  "detail": "When the organization is the default project creator, all organization members can create Project contexts without being individually assigned. This is the less formal governance model typical of Projects.",
+                  "action": "Click the <strong>Create new user</strong> icon.",
+                  "detail": "The Create New User wizard allows you to create a new organization member who can be assigned context creator roles.",
                   "hint": null
+                },
+                {
+                  "action": "Type the account information for Junior Achebe: Name <code>jachebe</code>, Full Name <code>Achebe, Junior</code>, Last Name <code>Achebe</code>, Email <code>wc-mail@ptc-training.ptc.com</code>, Password <code>ptc</code>.",
+                  "detail": "All fields are required to create a valid user account. The username (jachebe) is used for sign-in, while the Full Name and Last Name identify the user in the interface.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Finish</strong>.",
+                  "detail": "The new user account is created and added to the PTC Publications organization as a participant.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Navigator, browse to <strong>PTC Publications > Creators</strong>.",
+                  "detail": "The Creators page shows all four context creator role categories: Product Creators, Library Creators, Project Creators, and Program Creators.",
+                  "hint": null
+                },
+                {
+                  "action": "From the view menu, select <strong>Product Creators</strong>.",
+                  "detail": "The Product Creators view displays the list of users who are authorized to create new product contexts within the PTC Publications organization.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the icon to <strong>add a user</strong> to the Product Creators group.",
+                  "detail": "This opens a dialog where you can search for and add users to the Product Creator role.",
+                  "hint": null
+                },
+                {
+                  "action": "In the <strong>User Name</strong> field, type <code>jachebe</code> and press <strong>Enter</strong>.",
+                  "detail": "Typing the username and pressing Enter searches for and selects the user to be added to the Product Creators group.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "Confirms the addition of jachebe to the Product Creators group.",
+                  "hint": null
+                },
+                {
+                  "action": "Notice that users <strong>bpatterson</strong> and <strong>jachebe</strong> are listed in the Product Creators table.",
+                  "detail": "Both users now have the Product Creator role and can create new product contexts within the PTC Publications organization.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex2-t3",
+              "title": "Assign Library Creator and Review Project Creators",
+              "steps": [
+                {
+                  "action": "From the view menu, select <strong>Library Creators</strong>.",
+                  "detail": "Switch to the Library Creators view to manage which users can create library contexts.",
+                  "hint": null
+                },
+                {
+                  "action": "Add <strong>Junior Achebe</strong> as a Library Creator.",
+                  "detail": "Use the same process as for Product Creators: click the add icon, type jachebe, and confirm. A user can hold multiple creator roles simultaneously.",
+                  "hint": null
+                },
+                {
+                  "action": "From the view menu, select <strong>Project Creators</strong>.",
+                  "detail": "Review the Project Creators list to understand how project creation permissions are configured.",
+                  "hint": null
+                },
+                {
+                  "action": "Notice that the PTC Publications organization is assigned to each user by default.",
+                  "detail": "The organization is configured to allow all organization members to create projects. This option is available in the New Organization dialog and reflects the less formal governance model typical of ProjectLink projects.",
+                  "hint": "Note: The organization is configured by the organization creator to allow all organization members to create projects."
                 }
               ]
             }
@@ -1071,53 +1191,104 @@
           "tasks": [
             {
               "id": "ex3-t1",
-              "title": "Create a New Product",
+              "title": "Create a New Product and Folder",
               "steps": [
                 {
-                  "action": "Navigate to Recent Products > View All, then click New Product.",
-                  "detail": "The New Product action is available to users with the Product Creator role. It opens a creation wizard that walks through template selection and configuration.",
+                  "action": "In the Navigator, click the <strong>Recent Products</strong> icon.",
+                  "detail": "Recent Products provides quick access to product contexts you have recently visited.",
+                  "hint": "You should still be signed in to Windchill as bpatterson/ptc."
+                },
+                {
+                  "action": "Click <strong>View All</strong> and select the <strong>New Product</strong> icon.",
+                  "detail": "View All displays all product contexts in the organization. The New Product icon opens the creation dialog for a new product context.",
                   "hint": "The New Product button is typically in the toolbar above the products table."
                 },
                 {
-                  "action": "Enter the product name as PTC Magazine Template, select the General Product template, and add the description: Magazine template for all markets.",
+                  "action": "In the dialog, type or select the following values: Name <code>PTC Magazine Template</code>, Template <code>General Product</code>, Description <code>Magazine template for all markets.</code>",
                   "detail": "The General Product template provides a standard starting configuration with default folders, team roles, and access policies. The name and description help other users identify the purpose of this product context.",
                   "hint": null
                 },
                 {
-                  "action": "Complete the product creation wizard and verify the new product appears in the products list.",
-                  "detail": "After creation, you become the product manager. The product inherits its initial configuration from the selected template.",
-                  "hint": "If the product does not appear, refresh the page or navigate back to View All Products."
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "Windchill creates the new product context and applies all settings from the General Product template. You become the product manager automatically.",
+                  "hint": null
                 },
                 {
-                  "action": "Open the new PTC Magazine Template product and create a folder named Team Information.",
-                  "detail": "Folders organize data within the product context. Team Information will store team-related documents and references for this product.",
-                  "hint": "Use the New Folder action from the Folder Contents view within the product."
+                  "action": "In the Navigator, expand the <strong>PTC Magazine Template</strong> product and select <strong>Folders</strong>.",
+                  "detail": "The Folders view shows the folder structure within the product context. The template may have created some default folders.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Folder Contents table, create a <strong>new folder</strong>.",
+                  "detail": "Folders organize data within the product context. Use the New Folder action in the Folder Contents toolbar.",
+                  "hint": null
+                },
+                {
+                  "action": "Type <code>Team Information</code> and click <strong>Finish</strong>.",
+                  "detail": "The Team Information folder will store team-related documents and references for this product.",
+                  "hint": null
+                },
+                {
+                  "action": "Verify that the new folder appears in the Folder Contents table and the folders structure in the left pane.",
+                  "detail": "The folder should be visible in both the table view and the navigation tree, confirming it was created successfully.",
+                  "hint": null
                 }
               ]
             },
             {
               "id": "ex3-t2",
-              "title": "Create a Library",
+              "title": "Create a New Library",
               "steps": [
                 {
-                  "action": "Navigate to Recent Libraries > View All, then click New Library.",
-                  "detail": "The New Library action is available to users with the Library Creator role. Remember that libraries cannot be deleted once created.",
+                  "action": "In the Navigator, click the <strong>Recent Libraries</strong> icon.",
+                  "detail": "Recent Libraries provides quick access to library contexts. There may not be any libraries listed yet.",
+                  "hint": "You should still be signed in to Windchill as bpatterson/ptc."
+                },
+                {
+                  "action": "Click <strong>View All</strong> and select the <strong>New Library</strong> icon.",
+                  "detail": "The New Library action is available to users with the Library Creator role. Remember that libraries cannot be deleted once created, so verify the settings carefully.",
                   "hint": null
                 },
                 {
-                  "action": "Enter the library name as Translation Standards and select the Document Library template.",
-                  "detail": "The Document Library template is appropriate because this library will store standards documents rather than parts. The template provides an initial folder structure suited for document management.",
+                  "action": "In the dialog, type or select the following values: Name <code>Translation Standards</code>, Template <code>Document Library</code>.",
+                  "detail": "The Document Library template is appropriate because this library will store standards documents for translation services rather than parts. The template provides an initial folder structure suited for document management.",
                   "hint": null
                 },
                 {
-                  "action": "Complete the library creation and review the existing template folders that were created automatically.",
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "Windchill creates the new library context and applies the Document Library template configuration.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex3-t3",
+              "title": "Review Folders and Create a New Folder",
+              "steps": [
+                {
+                  "action": "In the Navigator, expand the <strong>Translation Standards</strong> and select <strong>Folders</strong>.",
+                  "detail": "Navigate to the Folders view within the newly created library to see the folder structure.",
+                  "hint": null
+                },
+                {
+                  "action": "Review the existing folders that appear with the system template.",
                   "detail": "The Document Library template creates default folders as part of its configuration. Review these folders to understand what the template provides out of the box before adding custom folders.",
                   "hint": null
                 },
                 {
-                  "action": "Create a new folder named EN 15038 within the Translation Standards library.",
+                  "action": "In the Folder Contents table, create a <strong>new folder</strong>.",
+                  "detail": "You will add a custom folder to organize translation standard documents separately from the template-provided folders.",
+                  "hint": null
+                },
+                {
+                  "action": "Type <code>EN 15038</code> as the name and click <strong>Finish</strong>.",
                   "detail": "EN 15038 is a European standard for translation services. This folder will store documents related to that standard, organizing them separately from other translation reference materials.",
-                  "hint": "Use the New Folder action from the library's Folder Contents view."
+                  "hint": null
+                },
+                {
+                  "action": "Verify that the new folder appears in the Folder Contents table and the folders structure in the left pane.",
+                  "detail": "The EN 15038 folder should be visible in both the table view and the navigation tree, confirming it was created successfully.",
+                  "hint": null
                 }
               ]
             }
@@ -1436,65 +1607,90 @@
               "title": "Create a Product Context Template",
               "steps": [
                 {
-                  "action": "Sign in to Windchill as bpatterson with the password ptc.",
-                  "detail": "This user has the necessary organization administrator privileges to create and manage context templates.",
+                  "action": "From the Navigator, click the <strong>Recently Visited</strong> icon on the Browse tab.",
+                  "detail": "Recently Visited shows all contexts you have recently accessed, making it easy to find the product you want to save as a template.",
+                  "hint": "You should be signed in to Windchill as bpatterson/ptc."
+                },
+                {
+                  "action": "Expand <strong>PTC New Publication Template</strong> and click the <strong>Details</strong> link.",
+                  "detail": "The Details page shows the product's metadata and provides access to the Actions menu where you can save the product as a template.",
                   "hint": null
                 },
                 {
-                  "action": "Navigate to PTC New Publication Template and open the Details page.",
-                  "detail": "You will save this existing product as a template so it can be reused for future product contexts.",
-                  "hint": "Use the Quick Links or Recent Products to find the PTC New Publication Template product."
-                },
-                {
-                  "action": "Select Actions > Save as Template.",
-                  "detail": "The Save as Template action captures the product's configuration - including folder structure, roles, access control policies, and business rules - into a reusable template.",
+                  "action": "Select <strong>Actions > Save as Template</strong>.",
+                  "detail": "The Save as Template action captures the product's configuration — including folder structure, roles, access control policies, and business rules — into a reusable template.",
                   "hint": null
                 },
                 {
-                  "action": "Set the Template Name to PTC New Publication and add the description: Template for the new PTC Publications.",
-                  "detail": "Remove the duplicate word 'Template' from the default name. A clear, concise name helps other administrators identify the template's purpose.",
-                  "hint": "The default name may include 'Template' twice - remove the extra occurrence."
+                  "action": "In the <strong>Template Name</strong> field, delete one instance of the word <strong>Template</strong>.",
+                  "detail": "The default name may include 'Template' twice. Remove the duplicate to produce a clean name: <code>PTC New Publication</code>.",
+                  "hint": "The resulting template name should be <code>PTC New Publication</code>."
                 },
                 {
-                  "action": "Clear the Team Members checkbox and click OK.",
+                  "action": "In the <strong>Description</strong> field, type <code>Template for the new PTC Publications</code>.",
+                  "detail": "A clear description helps other administrators identify the template's purpose when selecting templates during context creation.",
+                  "hint": null
+                },
+                {
+                  "action": "Clear the <strong>Team Members</strong> checkbox and click <strong>OK</strong>.",
                   "detail": "Clearing the Team Members checkbox prevents specific user assignments from being copied into the template. The template will retain the roles and groups but not individual user memberships.",
                   "hint": null
                 },
                 {
-                  "action": "Navigate to PTC Publications > Templates > Product Templates.",
-                  "detail": "This is where all product templates for the PTC Publications organization are listed.",
+                  "action": "In the Navigator, select the <strong>Organizations</strong> icon.",
+                  "detail": "Navigate to the Organizations list to access the PTC Publications organization and its template management.",
                   "hint": null
                 },
                 {
-                  "action": "Verify that the PTC New Publication Template is listed.",
-                  "detail": "Confirming the template appears in the Product Templates list ensures it was saved correctly and is available for use.",
+                  "action": "Select <strong>PTC Publications > Templates</strong>.",
+                  "detail": "The Templates section under the organization lists all context templates organized by type.",
+                  "hint": null
+                },
+                {
+                  "action": "From the View menu, select <strong>Product Templates</strong>. Notice that the <strong>PTC New Publication Template</strong> is listed in the table.",
+                  "detail": "Confirming the template appears in the Product Templates list ensures it was saved correctly and is available for use when creating new product contexts.",
                   "hint": "If the template does not appear, check that you saved it from the correct product and refresh the page."
                 }
               ]
             },
             {
               "id": "ex4-t2",
-              "title": "Create a Product Using the Template",
+              "title": "Create a Product Using the Product Template",
               "steps": [
                 {
-                  "action": "Navigate to Recent Products > View All > New Product.",
-                  "detail": "This begins the process of creating a new product context that will inherit its configuration from the template.",
+                  "action": "Expand the Navigator, click the <strong>Recent Products</strong> icon, then click the <strong>View All</strong> link to display the list of products.",
+                  "detail": "This begins the process of creating a new product context that will inherit its configuration from the template you just created.",
                   "hint": null
                 },
                 {
-                  "action": "Set the Name to Greek Cookbook and select PTC New Publication Template as the Template.",
-                  "detail": "Selecting the template ensures the new product inherits the folder structure, access control policies, and other configuration from the original product.",
-                  "hint": "Use the Template dropdown or browse to find PTC New Publication Template."
+                  "action": "Click the <strong>New Product</strong> icon.",
+                  "detail": "The New Product icon opens the product creation dialog where you can select a template.",
+                  "hint": null
                 },
                 {
-                  "action": "Click OK to create the product.",
+                  "action": "In the <strong>Name</strong> field, type <code>Greek Cookbook</code>.",
+                  "detail": "Enter a name for the new product that will be created from the template.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>PTC New Publication Template</strong> in the <strong>Template</strong> menu.",
+                  "detail": "Selecting the template ensures the new product inherits the folder structure, access control policies, and other configuration from the original product.",
+                  "hint": "Use the Template dropdown to find and select PTC New Publication Template."
+                },
+                {
+                  "action": "Click <strong>OK</strong> to complete the product context creation.",
                   "detail": "Windchill creates the new product context and applies all settings from the selected template.",
                   "hint": null
                 },
                 {
-                  "action": "Navigate to Greek Cookbook > Folder Contents and verify that the Team Information folder already exists.",
+                  "action": "Locate the new product in the Navigator.",
+                  "detail": "The Greek Cookbook product should appear in the Navigator under Recent Products or in the View All products list.",
+                  "hint": "If the product does not appear, refresh the page or navigate back to View All Products."
+                },
+                {
+                  "action": "Display the <strong>Folder Contents</strong> view in the Greek Cookbook product and notice that a <strong>Team Information</strong> folder already exists.",
                   "detail": "The presence of the Team Information folder confirms that the folder structure was inherited from the template. This demonstrates how templates standardize new context creation.",
-                  "hint": "If the folder does not appear, verify the correct template was selected during product creation."
+                  "hint": null
                 }
               ]
             }
@@ -1534,28 +1730,43 @@
               "title": "Create a Document Template",
               "steps": [
                 {
-                  "action": "Navigate to PTC Publications > Templates > Document Templates.",
-                  "detail": "Document templates are managed at the organization or context level. This location stores all document templates available to contexts within PTC Publications.",
+                  "action": "From the Navigator, select the <strong>PTC Publications</strong> organization context, and click the <strong>Templates</strong> link.",
+                  "detail": "Document templates are managed at the organization level. Navigate to the PTC Publications organization's Templates section.",
+                  "hint": "You should be signed in to Windchill as bpatterson/ptc."
+                },
+                {
+                  "action": "From the View menu, select <strong>Document Templates</strong>.",
+                  "detail": "The Document Templates view shows all document templates available within the PTC Publications organization.",
                   "hint": null
                 },
                 {
-                  "action": "Click to create a new document template.",
+                  "action": "Create a <strong>new document template</strong>.",
                   "detail": "A new document template requires a type, a content file, and descriptive metadata.",
-                  "hint": "Look for a 'New Document Template' or similar action in the Document Templates area."
+                  "hint": "Look for a 'New Document Template' or similar action in the Document Templates toolbar."
                 },
                 {
-                  "action": "Set the Type to Outline and browse to upload UnitTemplate.docx as the content file.",
-                  "detail": "The Outline type is appropriate for structured documents that include a table of contents, sections, and index. The uploaded file becomes the starting point for all documents created from this template.",
-                  "hint": "Use the Browse button to locate UnitTemplate.docx on your local system."
-                },
-                {
-                  "action": "Set the Name to Unit Template and the Description to Standard Template with TOC and Index.",
-                  "detail": "A descriptive name and description help users identify the right template when creating new documents.",
+                  "action": "From the <strong>Type</strong> menu, select <strong>Outline</strong> and click <strong>Next</strong>.",
+                  "detail": "The Outline type is appropriate for structured documents that include a table of contents, sections, and index.",
                   "hint": null
                 },
                 {
-                  "action": "Click Finish to save the document template.",
-                  "detail": "The template is now available for use when creating new Outline-type documents within this organization.",
+                  "action": "Click <strong>Browse</strong>, select <code>W:\\WCBA-CNTX-Lab-Files\\UnitTemplate.docx</code>, and click <strong>Open</strong>.",
+                  "detail": "The uploaded file becomes the starting point for all documents created from this template. UnitTemplate.docx contains the standard table of contents and index layout required by PTC Publications.",
+                  "hint": null
+                },
+                {
+                  "action": "Change the <strong>Name</strong> to <code>Unit Template</code>.",
+                  "detail": "A descriptive name helps users identify the right template when creating new documents.",
+                  "hint": null
+                },
+                {
+                  "action": "In the <strong>Description</strong> field, type <code>Standard Template with TOC and Index</code>.",
+                  "detail": "The description clarifies that this template includes both a table of contents and an index, which are mandatory for PTC Publications documents.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Finish</strong>.",
+                  "detail": "The template is now saved and available for use when creating new Outline-type documents within the PTC Publications organization.",
                   "hint": null
                 }
               ]
@@ -1565,24 +1776,44 @@
               "title": "Test the Document Template",
               "steps": [
                 {
-                  "action": "Navigate to PTC New Publication Template and create a new document.",
-                  "detail": "You will test the template by creating a document within an existing product context.",
-                  "hint": "Look for a Create New Document action in the product context."
+                  "action": "From the Navigator, click <strong>Recent Products</strong>, and click the <strong>View All</strong> link to display the list of products.",
+                  "detail": "Navigate to the products list to find a product context where you can test the new document template.",
+                  "hint": null
                 },
                 {
-                  "action": "Set the Type to Outline, select Unit Template as the template, and set Primary Content Source to No Content.",
+                  "action": "Select the <strong>PTC New Publication Template</strong>.",
+                  "detail": "This existing product context will be used to create a test document from the template you just created.",
+                  "hint": null
+                },
+                {
+                  "action": "Create a <strong>New Document</strong> with the following settings: Type <code>Outline</code>, Template <code>Unit Template</code>, Primary Content Source <code>No Content</code>, Name <code>Doc Template Test</code>.",
                   "detail": "Selecting 'No Content' for the primary content source means the document will use the template's content file as its starting point rather than uploading a new file.",
                   "hint": null
                 },
                 {
-                  "action": "Set the Name to Doc Template Test and click OK.",
-                  "detail": "The document is created and checked out to you automatically, allowing immediate editing.",
+                  "action": "Click <strong>Finish</strong>.",
+                  "detail": "The document is created using the template and is automatically checked out to you.",
                   "hint": null
                 },
                 {
-                  "action": "Download and view the file to verify that the template content (TOC, index, standard layout) is present.",
-                  "detail": "Confirming the template content appears in the new document verifies that the template is working correctly. The document should contain the table of contents and index structure from UnitTemplate.docx.",
-                  "hint": "Right-click the document or use the Download action to save the file locally and open it."
+                  "action": "In the Folder Contents table, notice that the new document is <strong>checked out to you</strong>.",
+                  "detail": "Documents created from templates are automatically checked out to the creator, allowing immediate editing of the content.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Download Microsoft Office Word document</strong> icon to download it, then open and view the file from the browser's download actions.",
+                  "detail": "Downloading and opening the file lets you verify that the template content (TOC, index, standard layout) is present in the new document.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the OpenOffice Writer program.",
+                  "detail": "After reviewing the document content, close the viewer application.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the web browser.",
+                  "detail": "You have successfully created and tested a document template. All future Outline-type documents can use this template for a consistent starting layout.",
+                  "hint": null
                 }
               ]
             }
@@ -1881,32 +2112,42 @@
               "title": "Modify the Default Home Page Display",
               "steps": [
                 {
-                  "action": "Sign in to Windchill as wcadmin/wcadmin.",
+                  "action": "Launch a web browser and click the Windchill bookmark.",
+                  "detail": "Open the Windchill sign-in page using the bookmark configured for your training environment.",
+                  "hint": null
+                },
+                {
+                  "action": "Sign in to Windchill: Username <code>wcadmin</code>, Password <code>wcadmin</code>.",
                   "detail": "The site administrator account has access to the Public tab on the Home page, which controls the standard layout for all users.",
                   "hint": null
                 },
                 {
-                  "action": "Click the Home icon and then click the Public tab.",
-                  "detail": "The Public tab shows the current standard Home page layout that is deployed to all users who have not customized their own Home pages.",
-                  "hint": "The Public tab is only visible to administrators. If you do not see it, verify you are signed in as wcadmin."
-                },
-                {
-                  "action": "Click the Customize menu in the upper-right corner of the Public tab.",
-                  "detail": "The Customize menu allows you to add or remove tables from the Home page layout and rearrange their display order.",
+                  "action": "Click the <strong>Home</strong> icon to display the Home page.",
+                  "detail": "The Home page is the first screen users see after signing in. It contains tables showing tasks, updates, and other information.",
                   "hint": null
                 },
                 {
-                  "action": "Select the Workspaces and Discussions checkboxes to add these tables to the Home page.",
+                  "action": "Select the <strong>Public</strong> tab and click the <strong>Customize</strong> menu to view all available tables.",
+                  "detail": "The Public tab shows the current standard Home page layout that is deployed to all users who have not customized their own Home pages. The Customize menu lets you add or remove tables.",
+                  "hint": "The Public tab is only visible to administrators. If you do not see it, verify you are signed in as wcadmin."
+                },
+                {
+                  "action": "Select the <strong>Workspaces</strong> and <strong>Discussions</strong> checkboxes.",
                   "detail": "Adding Workspaces gives users quick access to their active workspaces. Adding Discussions surfaces collaboration threads on the Home page.",
                   "hint": "If these tables are already present, choose other available tables to add."
                 },
                 {
-                  "action": "Reorder the tables: drag the Tasks hyperlink to the far left position and the Workspaces hyperlink to the end.",
+                  "action": "Change the table order: at the top of the Public tab, drag the <strong>Tasks</strong> hyperlink all the way to the left.",
                   "detail": "Table order determines the visual priority on the Home page. Placing Tasks first ensures users immediately see their pending work items.",
-                  "hint": "Click and drag the table name hyperlinks to rearrange their order."
+                  "hint": "Note: You cannot drag the tables themselves, only the hyperlinks at the top of the tab."
                 },
                 {
-                  "action": "Close the browser to end the administrator session.",
+                  "action": "Drag <strong>Workspaces</strong> to the end of the hyperlinks list.",
+                  "detail": "Moving Workspaces to the last position keeps it accessible but gives priority to Tasks, Updates, and other tables.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the web browser.",
                   "detail": "The Home page changes are saved automatically and will be deployed to all users who have not already customized their own Home page.",
                   "hint": null
                 }
@@ -1914,20 +2155,25 @@
             },
             {
               "id": "ex6-t2",
-              "title": "Verify Home Page Changes for a User",
+              "title": "Verify the Home Page Changes for a User",
               "steps": [
                 {
-                  "action": "Launch the browser and sign in as a regular user (Arden Reed).",
+                  "action": "Launch a web browser and click the Windchill bookmark.",
+                  "detail": "Open a new browser session to sign in as a different user and verify the Home page changes.",
+                  "hint": null
+                },
+                {
+                  "action": "On the Profiles page, select <strong>Arden Reed</strong>.",
                   "detail": "Signing in as a non-administrator account lets you verify that the Public tab changes have propagated to a standard user's Home page.",
                   "hint": "Use the credentials provided by your instructor for the Arden Reed account."
                 },
                 {
-                  "action": "Click the Home icon and verify that the Discussions and Workspaces tables are now present on the Home page.",
+                  "action": "Click the <strong>Home</strong> icon and notice that the default table display includes the <strong>Discussions</strong> and <strong>Workspaces</strong> tables.",
                   "detail": "If the user had not previously customized their Home page, your Public tab changes should be reflected. The Tasks table should appear first in the display order.",
                   "hint": "If the tables are not visible, the user may have previously customized their Home page, which overrides the Public tab settings."
                 },
                 {
-                  "action": "Close the browser to end the session.",
+                  "action": "Close the web browser.",
                   "detail": "You have successfully configured a standard Home page layout and verified it appears for end users.",
                   "hint": null
                 }
@@ -1968,33 +2214,53 @@
               "title": "Delegate Your Tasks",
               "steps": [
                 {
-                  "action": "Sign in to Windchill as jedwards/ptc.",
+                  "action": "Launch a web browser and select the Windchill bookmark.",
+                  "detail": "Open the Windchill sign-in page using the bookmark configured for your training environment.",
+                  "hint": null
+                },
+                {
+                  "action": "Sign in to Windchill: Username <code>jedwards</code>, Password <code>ptc</code>.",
                   "detail": "Juan Edwards is the user who needs to delegate tasks. Delegation is configured from the user's own account via the Calendar settings.",
                   "hint": null
                 },
                 {
-                  "action": "Navigate to Quick Links > My Settings > Calendar.",
+                  "action": "Select <strong>Quick Links > My Settings > Calendar</strong>.",
                   "detail": "The Calendar settings page shows the user's working and non-working days and provides the delegation configuration options.",
                   "hint": "Quick Links is typically accessible from the top navigation or the user menu."
                 },
                 {
-                  "action": "Select next Monday through Friday two weeks later by clicking the dates on the calendar. Use Shift-click to select a range and Ctrl-click to extend the selection across month boundaries.",
-                  "detail": "Selecting the specific dates defines the delegation period. Only working days need to be selected since non-working days (weekends) are already excluded from task deadlines.",
-                  "hint": "If the two-week period spans two calendar months, use Ctrl-click to select dates in the second month without losing the first month's selections."
+                  "action": "In the Calendar dialog, select the <strong>next Monday</strong>, press <strong>Shift</strong>, and select <strong>Friday two weeks later</strong>.",
+                  "detail": "Selecting the specific date range defines the delegation period. Only working days need to be selected since non-working days (weekends) are already excluded from task deadlines.",
+                  "hint": "If the weeks span a month, press Shift to select the days in the current month and then press Ctrl to select the remaining days."
                 },
                 {
-                  "action": "Click Delegate > Delegate Selected Days to open the delegation dialog.",
+                  "action": "Select <strong>Delegate > Delegate Selected Days</strong>.",
                   "detail": "The Delegate action assigns all workflow tasks for the selected days to another user. This ensures that pending work items are routed to the delegate instead of remaining with the unavailable user.",
                   "hint": null
                 },
                 {
-                  "action": "In the Find Participant dialog, search for User Name kperez and select Kathleen Perez.",
-                  "detail": "The delegate must be a valid Windchill user. Kathleen Perez will receive Juan's workflow tasks for the selected period.",
+                  "action": "In the Find Participants dialog, search for the User Name <code>kperez</code>.",
+                  "detail": "Search for the user who will receive the delegated tasks. Kathleen Perez is Juan's colleague who will handle his workflow tasks during the absence.",
                   "hint": "Type 'kperez' in the user name search field and click Search."
                 },
                 {
-                  "action": "Verify that the delegated tasks are shown for the selected days on the calendar, then close the calendar and browser.",
+                  "action": "In the Search Results, select the radio button for <strong>Kathleen Perez</strong> and click <strong>OK</strong>.",
+                  "detail": "Selecting the user and clicking OK confirms the delegation. Kathleen Perez will receive Juan's workflow tasks for the selected period.",
+                  "hint": null
+                },
+                {
+                  "action": "Notice that <strong>Kathleen Perez</strong> now has delegated tasks from Juan Edwards for the selected days.",
                   "detail": "The calendar should display delegation indicators on the selected dates. During this period, any workflow tasks assigned to Juan Edwards will be automatically routed to Kathleen Perez.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the calendar.",
+                  "detail": "The delegation settings are saved and will take effect on the selected dates.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the web browser.",
+                  "detail": "You have successfully configured task delegation from Juan Edwards to Kathleen Perez for a two-week period.",
                   "hint": null
                 }
               ]
@@ -2031,46 +2297,86 @@
           "tasks": [
             {
               "id": "ex8-t1",
-              "title": "Set Revision Override Preference for Organization",
+              "title": "Set the Revision Override Preference for an Organization",
               "steps": [
                 {
-                  "action": "Sign in to Windchill as wcadmin/wcadmin.",
+                  "action": "Launch a web browser and click the Windchill bookmark.",
+                  "detail": "Open the Windchill sign-in page using the bookmark configured for your training environment.",
+                  "hint": null
+                },
+                {
+                  "action": "Sign in to Windchill: Username <code>wcadmin</code>, Password <code>wcadmin</code>.",
                   "detail": "The site administrator has access to the Preference Management utility across all contexts.",
                   "hint": null
                 },
                 {
-                  "action": "Navigate to PTC Publications > Utilities > Preference Management.",
-                  "detail": "Preference Management is the administration tool for viewing and setting preferences at any context level. Navigating to the PTC Publications organization sets the scope for the preference change.",
+                  "action": "Expand the Navigator and select <strong>Organizations > PTC Publications</strong>.",
+                  "detail": "Navigate to the PTC Publications organization to set preferences at the organization level. This scopes the preference change to this organization and its child contexts.",
                   "hint": "If PTC Publications is not visible, navigate to Organizations first and then open the PTC Publications context."
                 },
                 {
-                  "action": "Expand the Revise node in the preference tree and set 'Allow Override on Revise' to Yes.",
-                  "detail": "This preference controls whether users can override the default revision label when revising a document. Setting it to Yes gives technical editors flexibility to choose the appropriate revision label.",
+                  "action": "Click <strong>Utilities</strong>.",
+                  "detail": "The Utilities section provides access to administrative tools for the current context.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Business Administration section, click <strong>Preference Management</strong>.",
+                  "detail": "Preference Management is the administration tool for viewing and setting preferences at any context level.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Preference Management table, expand the <strong>Revise</strong> node.",
+                  "detail": "The Revise node contains preferences related to revision behavior, including override settings and display options.",
                   "hint": "Look for the Revise category in the preference tree on the left side of the Preference Management page."
                 },
                 {
-                  "action": "Select the Locked checkbox to apply this preference to all application contexts within the organization.",
-                  "detail": "Locking a preference prevents any child context (products, libraries) from overriding the value. This ensures consistent revision behavior across the entire PTC Publications organization.",
+                  "action": "Right-click the <strong>Allow Override on Revise</strong> preference and select the <strong>Set Preference</strong> action.",
+                  "detail": "The Set Preference action opens a dialog where you can change the preference value and optionally lock it.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Set Preference dialog, set the value to <strong>Yes</strong>, select the <strong>Locked</strong> checkbox to apply this preference to all the application contexts belonging to the organization, then click <strong>OK</strong>.",
+                  "detail": "Setting the value to Yes allows technical editors to override the default revision label when revising documents. Locking the preference prevents any child context (products, libraries) from changing this value, ensuring consistent revision behavior across the entire PTC Publications organization.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex8-t2",
-              "title": "Set Revision Picker List Size",
+              "title": "Set the Revision Picker List Size",
               "steps": [
                 {
-                  "action": "Navigate to Site > Utilities > Preference Management.",
+                  "action": "From the Navigator, select the <strong>Site</strong> context.",
                   "detail": "Switching to the Site context allows you to set a preference that applies across the entire Windchill installation, not just one organization.",
                   "hint": "Use the context breadcrumb or Browse menu to navigate to the Site level."
                 },
                 {
-                  "action": "Expand the Revise node and set 'Revision Label Picker Display Count' to 15.",
-                  "detail": "This preference controls how many revision options appear in the revision picker dropdown. Increasing it from the default ensures that editors see enough revision choices to select the appropriate label.",
+                  "action": "Click <strong>Utilities</strong>.",
+                  "detail": "Access the Utilities section to open Preference Management at the Site level.",
                   "hint": null
                 },
                 {
-                  "action": "Select the Locked checkbox to prevent overrides at any lower context level.",
+                  "action": "In the Business Administration section, click <strong>Preference Management</strong>.",
+                  "detail": "Opening Preference Management from the Site context means any preferences you set here will apply system-wide.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Preference Management table, expand the <strong>Revise</strong> node.",
+                  "detail": "Navigate to the same Revise category to find the revision picker display count preference.",
+                  "hint": null
+                },
+                {
+                  "action": "Right-click the <strong>Revision Label Picker Display Count</strong> preference and select the <strong>Set Preference</strong> action.",
+                  "detail": "This preference controls how many revision options appear in the revision picker dropdown when users revise a document.",
+                  "hint": null
+                },
+                {
+                  "action": "In the <strong>Value</strong> field, delete the existing value and type <code>15</code>.",
+                  "detail": "Increasing the count from the default value ensures that editors see enough revision choices to select the appropriate label. A value of 15 provides a wider range of revision options.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Locked</strong> checkbox to apply this preference to all contexts below the Site level. Click <strong>OK</strong>.",
                   "detail": "Locking at the Site level ensures no organization or application context can change this value. All users across the system will see up to 15 revision options in the picker.",
                   "hint": null
                 }
@@ -2081,27 +2387,57 @@
               "title": "Test the Preferences",
               "steps": [
                 {
-                  "action": "Sign in to Windchill as bpatterson/ptc.",
+                  "action": "Close the web browser.",
+                  "detail": "End the site administrator session before signing in as a different user to test the preferences.",
+                  "hint": null
+                },
+                {
+                  "action": "Launch a web browser and click the Windchill bookmark.",
+                  "detail": "Open a new browser session to sign in as a regular user.",
+                  "hint": null
+                },
+                {
+                  "action": "Sign in to Windchill: Username <code>bpatterson</code>, Password <code>ptc</code>.",
                   "detail": "Signing in as a regular user lets you verify that the preference changes are visible and effective from an end-user perspective.",
                   "hint": null
                 },
                 {
-                  "action": "Navigate to PTC New Publication Template > Folders > Team Information.",
-                  "detail": "This folder contains documents that can be used to test the revision behavior. You will attempt to revise a document and verify the picker settings.",
-                  "hint": "If the folder path differs in your environment, navigate to any document that supports revision."
-                },
-                {
-                  "action": "Right-click SPECIFICATION 2 and select Revise.",
-                  "detail": "The Revise action opens the revision dialog, which should now reflect the preferences you configured - allowing override and showing up to 15 revision options.",
+                  "action": "From the Navigator, browse to <strong>Recent Products > PTC New Publication Template</strong>.",
+                  "detail": "Navigate to an existing product that belongs to the PTC Publications organization where the revision override preference was set.",
                   "hint": null
                 },
                 {
-                  "action": "Click the Select Revision glyph and verify that up to 15 revision options are displayed in the picker.",
+                  "action": "Select the <strong>Folders</strong> link.",
+                  "detail": "Navigate to the Folders view to access documents stored in the product context.",
+                  "hint": null
+                },
+                {
+                  "action": "Open the <strong>Team Information</strong> folder.",
+                  "detail": "This folder contains documents that can be used to test the revision behavior.",
+                  "hint": "If the folder path differs in your environment, navigate to any document that supports revision."
+                },
+                {
+                  "action": "Right-click <strong>SPECIFICATION 2</strong> and select <strong>Revise</strong>.",
+                  "detail": "The Revise action opens the revision dialog, which should now reflect the preferences you configured — allowing override and showing up to 15 revision options.",
+                  "hint": null
+                },
+                {
+                  "action": "In the New Revision column, click the <strong>Select Revision</strong> glyph.",
+                  "detail": "The revision glyph opens the picker dropdown showing available revision labels.",
+                  "hint": null
+                },
+                {
+                  "action": "Expand the revision list and notice that you can select up to <strong>15 revision options</strong>.",
                   "detail": "The revision picker should show more options than the default. This confirms that both the Site-level display count preference and the Organization-level override preference are active.",
                   "hint": "If fewer than 15 options appear, the total available revisions may be less than 15, which is expected. The key is that the limit has been raised."
                 },
                 {
-                  "action": "Cancel the revision and close the browser.",
+                  "action": "Click <strong>Cancel</strong>.",
+                  "detail": "Cancel the revision dialog without making changes to the document.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the web browser.",
                   "detail": "You have verified that locked preferences propagate correctly and affect end-user behavior without requiring a server restart.",
                   "hint": null
                 }
@@ -2417,7 +2753,7 @@
   "topic.stepsProgress": "{done}/{total} steps",
   "topic.doThis": "Do This",
   "topic.whyItMatters": "Why It Matters",
-  "topic.doneNextStep": "Done - Next Step",
+  "topic.doneNextStep": "Done",
   "topic.topicsComplete": "{done}/{total} topics complete",
   "topic.moduleBadge": "Module {num}",
   "topic.topics": "Topics",

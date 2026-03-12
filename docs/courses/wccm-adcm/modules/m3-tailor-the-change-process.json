@@ -3,592 +3,1116 @@
  "title": "Tailor the Change Process",
  "description": "Modify existing workflows and life cycles to support a custom change process. Create object initialization rules to connect workflows with life cycles.",
  "topics": [
- {
- "id": "m3t1",
- "title": "Workflow Design and Modification",
- "estimatedMinutes": 7,
- "content": [
- {
- "type": "paragraph",
- "text": "Workflows are the engine that drives change objects through their process. Before you can tailor a workflow, you need to understand the anatomy of the out-of-the-box Design Review Workflow and the two types of nodes that control its behavior. <strong>Always copy an existing workflow before modifying it</strong> - never customize the original OOTB template, because doing so removes your fallback reference and can conflict with future Windchill upgrades."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Anatomy of the Design Review Workflow"
- },
- {
- "type": "paragraph",
- "text": "The OOTB Design Review Workflow follows a structured sequence of automated and manual steps: (1) A robot assigns the Submitter role, (2) the submitter can choose <em>Submit Later</em> (creating a manual task) or <em>Submit Now</em> (advancing to Review state), (3) participants are assigned to the Review Task, (4) a robot sets the submission date, (5) the Perform Review activity spans the entire review process, (6) a robot locks associated annotations, (7) the Design Review is set to the Approval state and tasks are sent to Approvers, (8) an optional auxiliary review is available, (9) the review results in approval or rejection, and (10) a robot sets the resolution date."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Activity Nodes vs. Robot Nodes"
- },
- {
- "type": "comparison-table",
- "headers": ["Characteristic", "Activity Node", "Robot Node"],
- "rows": [
- ["Purpose", "Manual tasks completed by assigned roles", "Automated actions executed by the system"],
- ["Visibility", "Appears in My Tasks for the assigned user", "Does NOT appear in any user's task list"],
- ["Configuration", "Responsible role, template, instructions, participants", "Action type, target state, notification settings"],
- ["Examples", "Perform Review, Approve, Decision Required", "Set State, Assign Role, Lock Annotations, Set Date"],
- ["User Interaction", "Requires a person to act and complete the task", "Runs automatically when the workflow reaches the node"]
- ]
- },
- {
- "type": "callout",
- "variant": "warning",
- "text": "<strong>Never modify the original OOTB workflow template.</strong> Always right-click the existing template and use <em>Save As</em> to create a copy first. Modifying the original removes your reference baseline and can cause conflicts during Windchill upgrades."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Modifying the Delta Workflow"
- },
- {
- "type": "paragraph",
- "text": "When creating the Delta Regulation Review Workflow, you modify four key areas of the copied Design Review Workflow: <strong>Set State robots</strong> are renamed to match your custom life cycle states (e.g., Set State In Analysis, Set State Pending Approval). <strong>Activity nodes</strong> are updated with new names, responsible roles, templates, and instructions (e.g., the Approve activity becomes \"Decision Required\" with Yes/No routing instead of Approve/Reject). <strong>Routing events</strong> are changed to reflect the new decision options. <strong>Messages</strong> are updated to reference the correct process names and roles."
- },
- {
- "type": "interactive-match",
- "prompt": "Match each workflow modification task to what it accomplishes:",
- "pairs": [
- {
- "left": "Rename Set State robots",
- "right": "Align automated state changes with custom life cycle states"
- },
- {
- "left": "Change Activity node responsible role",
- "right": "Assign the correct person to manual workflow tasks"
- },
- {
- "left": "Update routing events from Approve/Reject to Yes/No",
- "right": "Match decision options to the Delta review process"
- },
- {
- "left": "Modify activity template and instructions",
- "right": "Provide context-specific guidance to task assignees"
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Always copy an existing workflow before modifying it - never edit the original OOTB template directly",
- "Activity nodes represent manual tasks completed by assigned roles and appear in My Tasks; robot nodes are automated actions that run without user interaction",
- "Workflow modifications include renaming Set State robots, updating Activity node roles and instructions, changing routing events, and updating messages",
- "The Delta Regulation Review Workflow changes Approve/Reject routing to Yes/No and assigns the Delta Regulation Manager role"
- ]
- },
- {
- "id": "m3t2",
- "title": "Life Cycle Templates",
- "estimatedMinutes": 6,
- "content": [
- {
- "type": "paragraph",
- "text": "Life cycle templates define the states and phases that a change object passes through from creation to completion. While workflows control <em>how</em> work gets done at each stage, the life cycle controls <em>what states exist</em>, who can act in each state, and what level of access they have. Together with workflows and team templates, life cycles form the three pillars of the change management system - connected by Object Initialization Rules."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "OOTB Design Review Life Cycle"
- },
- {
- "type": "paragraph",
- "text": "The out-of-the-box Design Review Life Cycle defines six phases: <strong>Open</strong>, <strong>Review</strong>, <strong>Approval</strong>, <strong>Approved</strong>, <strong>Rejected</strong>, and <strong>Canceled</strong>. Each phase represents a distinct state of the review object. The Delta Regulation Review LC modifies this template by changing the Review state to <em>In Analysis</em>, the Approval state to <em>Pending Approval</em>, and adding a new <em>Resolved</em> phase - resulting in seven phases total."
- },
- {
- "type": "reveal-cards",
- "cards": [
- {
- "front": "Open",
- "back": "The initial phase when the Delta Regulation Review is created. The workflow is launched from this phase via the Phase Process setting. The review object is available for the submitter to complete and submit."
- },
- {
- "front": "In Analysis",
- "back": "Replaces the OOTB Review phase. The Delta Regulation Manager analyzes the new regulation to determine if it impacts the company's products or processes. Full Control access is granted to the Delta Regulation Manager role."
- },
- {
- "front": "Pending Approval",
- "back": "Replaces the OOTB Approval phase. The review awaits a formal Yes/No decision from the Delta Regulation Manager. Access is restricted to Read and Download only during this phase."
- },
- {
- "front": "Resolved",
- "back": "A new phase added to the Delta life cycle. Indicates that the regulation review has been completed and any required changes have been initiated. The Delta Regulation Manager has Full Control access."
- }
- ]
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Phase Configuration"
- },
- {
- "type": "paragraph",
- "text": "Each life cycle phase can define several properties: the <strong>State name</strong> that appears on the object, the <strong>Phase Process</strong> (which workflow to trigger when an object enters this state), the <strong>authorized Roles</strong> who can act during the phase, and <strong>Access Control</strong> settings that determine read, download, modify, and full control permissions. Advanced life cycles can automatically trigger workflows when objects reach specific states, enabling process automation without manual intervention."
- },
- {
- "type": "callout",
- "variant": "tip",
- "text": "Life cycles can automatically trigger workflows when objects reach specific states by setting the Phase Process property. This means a single object creation can kick off an entire automated review process - no manual workflow launch required."
- },
- {
- "type": "interactive-sort",
- "prompt": "Arrange the Delta Regulation Review life cycle phases in the correct order:",
- "items": [
- "Open",
- "In Analysis",
- "Pending Approval",
- "Approved",
- "Resolved"
- ]
- }
- ],
- "keyTakeaways": [
- "Life cycle templates define the states, authorized roles, and access control settings for each phase a change object passes through",
- "The Delta Regulation Review LC modifies the OOTB Design Review LC by renaming Review to In Analysis, Approval to Pending Approval, and adding a Resolved phase",
- "Each phase can specify a Phase Process (workflow), authorized roles, and access control permissions (read, download, modify, full control)",
- "Life cycles, workflows, and team templates are the three pillars of change management, connected by Object Initialization Rules"
- ]
- },
- {
- "id": "m3t3",
- "title": "Object Initialization Rules",
- "estimatedMinutes": 6,
- "content": [
- {
- "type": "paragraph",
- "text": "Object Initialization Rules (OIRs) are the glue that connects workflows to life cycles. When a user creates a change object, the OIR determines which life cycle template, workflow template, team template, and versioning scheme are automatically assigned. Without OIRs, you would have to manually associate every new object with the correct templates - a process that would be error-prone and inconsistent."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "What OIRs Control"
- },
- {
- "type": "comparison-table",
- "headers": ["OIR Setting", "What It Does", "Example"],
- "rows": [
- ["Life Cycle Assignment", "Determines which life cycle template is applied when the object is created", "Delta Review objects get the Delta Regulation Review LC"],
- ["Workflow Association", "Specifies which workflow template is launched at the initial life cycle phase", "Delta Regulation Review Workflow is triggered at the Open phase"],
- ["Team Template", "Assigns a team template that defines roles and membership for the object", "Delta Review Team with Delta Regulation Manager role"],
- ["Versioning Scheme", "Controls how the object is versioned (e.g., revision labels, iteration scheme)", "Standard versioning with numeric iterations"]
- ]
- },
- {
- "type": "heading",
- "level": 2,
- "text": "OIR Configuration Details"
- },
- {
- "type": "paragraph",
- "text": "OIRs are written in XML and assigned to a specific object class. They establish default values and display constraints for object attributes upon creation. Rules can be defined at three context levels: <strong>Site</strong> (global), <strong>Organization</strong>, and <strong>Application</strong> (product or library). PTC recommends turning off the OOTB rules and defining custom rules that match your tailored change process. The OIR Manager is accessed from the <em>Utilities</em> page of any context."
- },
- {
- "type": "callout",
- "variant": "insight",
- "text": "PTC recommends creating and managing OIRs at the <strong>organization level</strong> rather than at the site or application level. Organization-level rules provide a consistent baseline across all products and libraries within that organization, while still allowing application-level overrides when a specific product needs different behavior."
- },
- {
- "type": "paragraph",
- "text": "To create a custom OIR, the typical approach is: (1) download an existing composite rule XML from the OIR Manager, (2) modify the life cycle name and other settings in the XML, and (3) upload it as a new OIR assigned to your custom object type. For the Delta Review process, the OIR connects the Delta Regulation Review Workflow to the Delta Regulation Review LC, ensuring that every new Delta Review object automatically receives the correct workflow and life cycle."
- },
- {
- "type": "interactive-match",
- "prompt": "Match each OIR concept to its description:",
- "pairs": [
- {
- "left": "Object Initialization Rule",
- "right": "Establishes default values and template assignments when an object is created"
- },
- {
- "left": "Composite Rule XML",
- "right": "The file format used to define OIR settings that can be downloaded and modified"
- },
- {
- "left": "Organization-level OIR",
- "right": "Recommended context level that provides consistency across all products and libraries"
- },
- {
- "left": "OIR Manager",
- "right": "Administration tool accessed from the Utilities page of any context"
- }
- ]
- }
- ],
- "keyTakeaways": [
- "OIRs connect workflows to life cycles by automatically assigning the correct templates when a change object is created",
- "OIRs control four key settings: life cycle assignment, workflow association, team template, and versioning scheme",
- "OIR rules are written in XML, assigned to a specific object class, and can be defined at Site, Organization, or Application level",
- "PTC recommends managing OIRs at the organization level for consistency, and turning off OOTB rules in favor of custom rules"
- ]
- },
- {
- "id": "m3t4",
- "title": "Create Delta Workflow",
- "estimatedMinutes": 12,
- "isExercise": true,
- "content": [
- {
- "type": "paragraph",
- "text": "In this exercise, you will copy the OOTB Design Review Workflow and modify it to create the Delta Regulation Review Workflow. You will rename activities, change routing events from Approve/Reject to Yes/No, update responsible roles, and configure Set State robots to align with the custom life cycle states."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "Ensure you are logged in to the Windchill training environment and have navigated to Organizations > PTC Power Equipment. You will need the Delta Regulation Manager role created in a previous module."
- },
- {
- "type": "exercise",
- "exerciseId": "ex4",
- "title": "Create Delta Workflow",
- "objective": "Copy and modify the Design Review Workflow to create the Delta Regulation Review Workflow with custom activities, routing, and a Change Notice segment.",
- "tasks": [
- {
- "id": "ex4-t1",
- "title": "Save Copy of Workflow",
- "steps": [
- {
- "action": "Open the Navigator and go to Organizations > PTC Power Equipment > Templates.",
- "detail": "This is where workflow templates are stored at the organization level.",
- "hint": null
- },
- {
- "action": "Select Workflow Templates from the Pick a View menu.",
- "detail": "Filters the templates table to show only workflow templates.",
- "hint": null
- },
- {
- "action": "Right-click the Design Review Workflow and select Save As.",
- "detail": "Always copy an existing workflow rather than modifying the original OOTB template.",
- "hint": null
- },
- {
- "action": "In the Save As dialog, type \"Delta Reg Review WF\" in the Name field.",
- "detail": "The name should reflect the Delta Drills regulation review process.",
- "hint": null
- },
- {
- "action": "Click OK and note the new template appears in the table, checked out to you.",
- "detail": "The template is checked out for editing after being copied.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex4-t2",
- "title": "Modify Approve Activity Node",
- "steps": [
- {
- "action": "Right-click Delta Reg Review WF and click Edit, then maximize the window.",
- "detail": "Opens the visual workflow editor.",
- "hint": null
- },
- {
- "action": "Click the word \"Approve\" below the Activity icon on the far right of the workflow.",
- "detail": "This opens the activity properties for the approval step.",
- "hint": null
- },
- {
- "action": "Change the Name field to \"Decision Required\".",
- "detail": "The Delta process uses a Yes/No decision rather than Approve/Reject.",
- "hint": null
- },
- {
- "action": "In the Responsible Role field, select \"Delta Regulation Manager\".",
- "detail": "Assigns the decision to the custom role you created earlier.",
- "hint": null
- },
- {
- "action": "Select the Activity tab and set Template Name to \"Delta Regulation - Review\".",
- "detail": "Associates the activity with the correct task form template.",
- "hint": null
- },
- {
- "action": "In the Instructions field, type \"Does the new regulation require a change to our product or process? Yes/No.\"",
- "detail": "Clear instructions help the assigned user understand what decision is needed.",
- "hint": null
- },
- {
- "action": "Clear the Signing Required checkbox.",
- "detail": "Signing required forces credential re-entry which is not needed for this review.",
- "hint": null
- },
- {
- "action": "Select the Participants tab, remove \"Approver\", click Roles, select \"Delta Regulation Manager\", and click Add.",
- "detail": "Ensures the correct role receives the task.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex4-t3",
- "title": "Modify Routing and Set State Robots",
- "steps": [
- {
- "action": "Select the Routing tab and delete the routing events Approve and Reject.",
- "detail": "The Delta process uses Yes/No instead of Approve/Reject.",
- "hint": null
- },
- {
- "action": "Type \"Yes\" and press Enter, then type \"No\" to create new routing events.",
- "detail": "These match the decision options in the activity instructions.",
- "hint": null
- },
- {
- "action": "In the Routing/Tallying Expression, change \"Approve\" to \"Yes\" and \"Reject\" to \"No\" (two occurrences each).",
- "detail": "Updates the tallying logic to use the new routing event names.",
- "hint": null
- },
- {
- "action": "Click Check Syntax to verify, then click OK to close the dialog.",
- "detail": "Always verify routing expressions before saving.",
- "hint": null
- },
- {
- "action": "Update the Set State Review robot: change Name to \"Set State In Analysis\" and set Specific State to \"In Analysis\".",
- "detail": "Matches the life cycle states you will create later.",
- "hint": null
- },
- {
- "action": "Update the Set State Approval robot: change Name to \"Set State Pending Approval\" and set Specific State to \"Pending Approval\".",
- "detail": "Aligns the workflow states with the custom life cycle.",
- "hint": null
- },
- {
- "action": "Add an End icon below the Set State Rejected robot and connect the arrow from Set State Rejected to it.",
- "detail": "Ends the workflow if the regulation review is rejected.",
- "hint": null
- },
- {
- "action": "Save the workflow and close the editor, then check in the template.",
- "detail": "Check-in makes the template available for use.",
- "hint": null
- }
- ]
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Always copy an OOTB workflow using Save As before making any modifications",
- "Activity node modifications include changing the name, responsible role, template, instructions, and participants",
- "Routing events and tallying expressions must be updated together to keep workflow logic consistent",
- "Set State robots must be renamed and reconfigured to match the states defined in your custom life cycle"
- ]
- },
- {
- "id": "m3t5",
- "title": "Modify Change Notice Segment",
- "estimatedMinutes": 8,
- "isExercise": true,
- "content": [
- {
- "type": "paragraph",
- "text": "In this exercise, you will import a workflow that includes a Change Notice segment and modify it to work with the Delta Regulation Review process. The Change Notice segment extends the review workflow by enabling the creation of a Delta Change Notice when a regulation requires product or process changes."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "You will need the Partial Delta Regulation Review.zip file provided with the training materials. Ensure you are in the Workflow Templates view under Organizations > PTC Power Equipment > Templates."
- },
- {
- "type": "exercise",
- "exerciseId": "ex5",
- "title": "Modify Change Notice Segment",
- "objective": "Import a workflow with a Change Notice segment and modify it to work with the Delta Regulation Review process.",
- "tasks": [
- {
- "id": "ex5-t1",
- "title": "Import Workflow with Change Notice Section",
- "steps": [
- {
- "action": "In the Templates table, ensure Workflow Templates is selected in the Pick a View list.",
- "detail": "You need to be viewing workflow templates to import one.",
- "hint": null
- },
- {
- "action": "Click the Actions menu and select Import.",
- "detail": "Import allows loading a pre-configured workflow template from a file.",
- "hint": null
- },
- {
- "action": "Click Choose File, select the Partial Delta Regulation Review.zip file, and click Open.",
- "detail": "This file contains the workflow with the Change Notice segment already attached.",
- "hint": null
- },
- {
- "action": "Click OK to import the Delta Regulation Review Workflow.",
- "detail": "The imported workflow includes both the review portion and the Change Notice segment.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex5-t2",
- "title": "Modify the Change Notice Section",
- "steps": [
- {
- "action": "Right-click Delta Regulation Review Workflow and click Edit, then maximize the window.",
- "detail": "Opens the complete workflow with the CN segment for editing.",
- "hint": null
- },
- {
- "action": "Click \"Create Delta Change Notice\" text and select the Activity tab.",
- "detail": "Configures which template is used for creating the change notice.",
- "hint": null
- },
- {
- "action": "Select \"Create Delta Change Notice\" in the Template Name field and click OK.",
- "detail": "Associates the activity with the correct template.",
- "hint": null
- },
- {
- "action": "Click the \"Change Request Resolved Notify By E-mail\" robot text.",
- "detail": "This notification robot needs to reference the Delta process instead of generic change request.",
- "hint": null
- },
- {
- "action": "Change the name to \"Delta Regulation Review Resolved\" and set Responsible Role to \"Delta Regulation Manager\".",
- "detail": "Updates the notification to use the correct role and naming.",
- "hint": null
- },
- {
- "action": "Update the Description and Message tab to replace \"Change Request\" with \"Delta Regulation Review\".",
- "detail": "Ensures notification content correctly identifies the process.",
- "hint": null
- },
- {
- "action": "Save the workflow, close the editor, and check in the template.",
- "detail": "Check-in makes the modified workflow available for use.",
- "hint": null
- }
- ]
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Workflow templates can be imported from ZIP files to add pre-configured segments like Change Notice creation",
- "The Change Notice segment extends the review workflow to enable downstream change implementation",
- "Notification robots must be updated to reference the correct process name and responsible role",
- "Always check in workflow templates after editing to make them available for use"
- ]
- },
- {
- "id": "m3t6",
- "title": "Create Life Cycle and OIR",
- "estimatedMinutes": 8,
- "isExercise": true,
- "content": [
- {
- "type": "paragraph",
- "text": "In this exercise, you will create the Delta Regulation Review life cycle by copying and modifying the OOTB Design Review Life Cycle, then create an Object Initialization Rule to connect the custom workflow and life cycle. Once complete, every new Delta Review object will automatically receive the correct workflow, life cycle, and team configuration."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "Ensure you are in the Templates section under Organizations > PTC Power Equipment. You will need the Delta Regulation Review Workflow created in the previous exercises."
- },
- {
- "type": "exercise",
- "exerciseId": "ex6",
- "title": "Create Life Cycle and OIR",
- "objective": "Create the Delta Regulation Review life cycle and an Object Initialization Rule to connect the workflow and life cycle.",
- "tasks": [
- {
- "id": "ex6-t1",
- "title": "Create Delta Regulation Review Life Cycle",
- "steps": [
- {
- "action": "In the Templates table, select Life Cycle Templates from the Pick a View menu.",
- "detail": "Switches to viewing life cycle templates.",
- "hint": null
- },
- {
- "action": "Right-click Design Review Life Cycle, select Save As, and name it \"Delta Regulation Review LC\".",
- "detail": "Copies the OOTB life cycle as a starting point.",
- "hint": null
- },
- {
- "action": "Right-click the new life cycle and select Edit.",
- "detail": "Opens the life cycle editor.",
- "hint": null
- },
- {
- "action": "Select the Open phase, go to the Workflow tab, and set Phase Process to \"Delta Regulation Review Workflow\".",
- "detail": "Associates your custom workflow with the initial phase.",
- "hint": null
- },
- {
- "action": "Select the Review phase, change State to \"In Analysis\", update Roles to \"Delta Regulation Manager\", and set Full Control access.",
- "detail": "Configures who can act during the analysis phase.",
- "hint": null
- },
- {
- "action": "Select the Approval phase, change State to \"Pending Approval\", update Roles to \"Delta Regulation Manager\" with Read and Download access.",
- "detail": "Restricts modifications during the approval phase.",
- "hint": null
- },
- {
- "action": "Click New Phase, set State to \"Resolved\", add \"Delta Regulation Manager\" role with Full Control access.",
- "detail": "Adds the final state for completed reviews.",
- "hint": null
- },
- {
- "action": "Click Save & Close, then check in the life cycle.",
- "detail": "Makes the life cycle available for use.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex6-t2",
- "title": "Create Delta Review Object Initialization Rule",
- "steps": [
- {
- "action": "Navigate to Organizations > PTC Power Equipment > Utilities and select Object Initialization Rules Administration.",
- "detail": "OIRs are managed from the Utilities page.",
- "hint": null
- },
- {
- "action": "Click the Download Composite Rule icon, find and select \"Delta Review\", and click OK.",
- "detail": "Downloads the existing OIR XML as a starting point.",
- "hint": null
- },
- {
- "action": "Open the downloaded rule.xml file in a text editor.",
- "detail": "The XML file contains the life cycle assignment that needs to be updated.",
- "hint": null
- },
- {
- "action": "In line 16, replace \"Basic\" with \"Delta Regulation Review LC\" and save as \"Delta OIR\".",
- "detail": "This tells the OIR to use your custom life cycle instead of the default.",
- "hint": null
- },
- {
- "action": "Click New Object Initialization Rule, name it \"Delta Review OIR\", and select \"Delta Review\" as the object type.",
- "detail": "Creates a new OIR for your custom change object.",
- "hint": null
- },
- {
- "action": "Choose the modified Delta OIR.xml file and click OK.",
- "detail": "Uploads the XML that connects the Delta workflow to the Delta life cycle.",
- "hint": null
- }
- ]
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Life cycles are created by copying an OOTB template and modifying the phases, roles, and access control settings",
- "Each life cycle phase can specify a Phase Process workflow, authorized roles, and granular access permissions",
- "OIRs are created by downloading an existing composite rule XML, modifying the life cycle reference, and uploading it as a new rule",
- "The OIR connects the Delta Regulation Review Workflow to the Delta Regulation Review LC, automating template assignment for new objects"
- ]
- }
+  {
+   "id": "m3t1",
+   "title": "Workflow Design and Modification",
+   "estimatedMinutes": 7,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Workflows are the engine that drives change objects through their process. Before you can tailor a workflow, you need to understand the anatomy of the out-of-the-box Design Review Workflow and the two types of nodes that control its behavior. <strong>Always copy an existing workflow before modifying it</strong> - never customize the original OOTB template, because doing so removes your fallback reference and can conflict with future Windchill upgrades."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Anatomy of the Design Review Workflow"
+    },
+    {
+     "type": "paragraph",
+     "text": "The OOTB Design Review Workflow follows a structured sequence of automated and manual steps: (1) A robot assigns the Submitter role, (2) the submitter can choose <em>Submit Later</em> (creating a manual task) or <em>Submit Now</em> (advancing to Review state), (3) participants are assigned to the Review Task, (4) a robot sets the submission date, (5) the Perform Review activity spans the entire review process, (6) a robot locks associated annotations, (7) the Design Review is set to the Approval state and tasks are sent to Approvers, (8) an optional auxiliary review is available, (9) the review results in approval or rejection, and (10) a robot sets the resolution date."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Activity Nodes vs. Robot Nodes"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Characteristic",
+      "Activity Node",
+      "Robot Node"
+     ],
+     "rows": [
+      [
+       "Purpose",
+       "Manual tasks completed by assigned roles",
+       "Automated actions executed by the system"
+      ],
+      [
+       "Visibility",
+       "Appears in My Tasks for the assigned user",
+       "Does NOT appear in any user's task list"
+      ],
+      [
+       "Configuration",
+       "Responsible role, template, instructions, participants",
+       "Action type, target state, notification settings"
+      ],
+      [
+       "Examples",
+       "Perform Review, Approve, Decision Required",
+       "Set State, Assign Role, Lock Annotations, Set Date"
+      ],
+      [
+       "User Interaction",
+       "Requires a person to act and complete the task",
+       "Runs automatically when the workflow reaches the node"
+      ]
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "warning",
+     "text": "<strong>Never modify the original OOTB workflow template.</strong> Always right-click the existing template and use <em>Save As</em> to create a copy first. Modifying the original removes your reference baseline and can cause conflicts during Windchill upgrades."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Modifying the Delta Workflow"
+    },
+    {
+     "type": "paragraph",
+     "text": "When creating the Delta Regulation Review Workflow, you modify four key areas of the copied Design Review Workflow: <strong>Set State robots</strong> are renamed to match your custom life cycle states (e.g., Set State In Analysis, Set State Pending Approval). <strong>Activity nodes</strong> are updated with new names, responsible roles, templates, and instructions (e.g., the Approve activity becomes \"Decision Required\" with Yes/No routing instead of Approve/Reject). <strong>Routing events</strong> are changed to reflect the new decision options. <strong>Messages</strong> are updated to reference the correct process names and roles."
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each workflow modification task to what it accomplishes:",
+     "pairs": [
+      {
+       "left": "Rename Set State robots",
+       "right": "Align automated state changes with custom life cycle states"
+      },
+      {
+       "left": "Change Activity node responsible role",
+       "right": "Assign the correct person to manual workflow tasks"
+      },
+      {
+       "left": "Update routing events from Approve/Reject to Yes/No",
+       "right": "Match decision options to the Delta review process"
+      },
+      {
+       "left": "Modify activity template and instructions",
+       "right": "Provide context-specific guidance to task assignees"
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Always copy an existing workflow before modifying it - never edit the original OOTB template directly",
+    "Activity nodes represent manual tasks completed by assigned roles and appear in My Tasks; robot nodes are automated actions that run without user interaction",
+    "Workflow modifications include renaming Set State robots, updating Activity node roles and instructions, changing routing events, and updating messages",
+    "The Delta Regulation Review Workflow changes Approve/Reject routing to Yes/No and assigns the Delta Regulation Manager role"
+   ]
+  },
+  {
+   "id": "m3t2",
+   "title": "Life Cycle Templates",
+   "estimatedMinutes": 6,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Life cycle templates define the states and phases that a change object passes through from creation to completion. While workflows control <em>how</em> work gets done at each stage, the life cycle controls <em>what states exist</em>, who can act in each state, and what level of access they have. Together with workflows and team templates, life cycles form the three pillars of the change management system - connected by Object Initialization Rules."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "OOTB Design Review Life Cycle"
+    },
+    {
+     "type": "paragraph",
+     "text": "The out-of-the-box Design Review Life Cycle defines six phases: <strong>Open</strong>, <strong>Review</strong>, <strong>Approval</strong>, <strong>Approved</strong>, <strong>Rejected</strong>, and <strong>Canceled</strong>. Each phase represents a distinct state of the review object. The Delta Regulation Review LC modifies this template by changing the Review state to <em>In Analysis</em>, the Approval state to <em>Pending Approval</em>, and adding a new <em>Resolved</em> phase - resulting in seven phases total."
+    },
+    {
+     "type": "reveal-cards",
+     "cards": [
+      {
+       "front": "Open",
+       "back": "The initial phase when the Delta Regulation Review is created. The workflow is launched from this phase via the Phase Process setting. The review object is available for the submitter to complete and submit."
+      },
+      {
+       "front": "In Analysis",
+       "back": "Replaces the OOTB Review phase. The Delta Regulation Manager analyzes the new regulation to determine if it impacts the company's products or processes. Full Control access is granted to the Delta Regulation Manager role."
+      },
+      {
+       "front": "Pending Approval",
+       "back": "Replaces the OOTB Approval phase. The review awaits a formal Yes/No decision from the Delta Regulation Manager. Access is restricted to Read and Download only during this phase."
+      },
+      {
+       "front": "Resolved",
+       "back": "A new phase added to the Delta life cycle. Indicates that the regulation review has been completed and any required changes have been initiated. The Delta Regulation Manager has Full Control access."
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Phase Configuration"
+    },
+    {
+     "type": "paragraph",
+     "text": "Each life cycle phase can define several properties: the <strong>State name</strong> that appears on the object, the <strong>Phase Process</strong> (which workflow to trigger when an object enters this state), the <strong>authorized Roles</strong> who can act during the phase, and <strong>Access Control</strong> settings that determine read, download, modify, and full control permissions. Advanced life cycles can automatically trigger workflows when objects reach specific states, enabling process automation without manual intervention."
+    },
+    {
+     "type": "callout",
+     "variant": "tip",
+     "text": "Life cycles can automatically trigger workflows when objects reach specific states by setting the Phase Process property. This means a single object creation can kick off an entire automated review process - no manual workflow launch required."
+    },
+    {
+     "type": "interactive-sort",
+     "prompt": "Arrange the Delta Regulation Review life cycle phases in the correct order:",
+     "items": [
+      "Open",
+      "In Analysis",
+      "Pending Approval",
+      "Approved",
+      "Resolved"
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Life cycle templates define the states, authorized roles, and access control settings for each phase a change object passes through",
+    "The Delta Regulation Review LC modifies the OOTB Design Review LC by renaming Review to In Analysis, Approval to Pending Approval, and adding a Resolved phase",
+    "Each phase can specify a Phase Process (workflow), authorized roles, and access control permissions (read, download, modify, full control)",
+    "Life cycles, workflows, and team templates are the three pillars of change management, connected by Object Initialization Rules"
+   ]
+  },
+  {
+   "id": "m3t3",
+   "title": "Object Initialization Rules",
+   "estimatedMinutes": 6,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Object Initialization Rules (OIRs) are the glue that connects workflows to life cycles. When a user creates a change object, the OIR determines which life cycle template, workflow template, team template, and versioning scheme are automatically assigned. Without OIRs, you would have to manually associate every new object with the correct templates - a process that would be error-prone and inconsistent."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "What OIRs Control"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "OIR Setting",
+      "What It Does",
+      "Example"
+     ],
+     "rows": [
+      [
+       "Life Cycle Assignment",
+       "Determines which life cycle template is applied when the object is created",
+       "Delta Review objects get the Delta Regulation Review LC"
+      ],
+      [
+       "Workflow Association",
+       "Specifies which workflow template is launched at the initial life cycle phase",
+       "Delta Regulation Review Workflow is triggered at the Open phase"
+      ],
+      [
+       "Team Template",
+       "Assigns a team template that defines roles and membership for the object",
+       "Delta Review Team with Delta Regulation Manager role"
+      ],
+      [
+       "Versioning Scheme",
+       "Controls how the object is versioned (e.g., revision labels, iteration scheme)",
+       "Standard versioning with numeric iterations"
+      ]
+     ]
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "OIR Configuration Details"
+    },
+    {
+     "type": "paragraph",
+     "text": "OIRs are written in XML and assigned to a specific object class. They establish default values and display constraints for object attributes upon creation. Rules can be defined at three context levels: <strong>Site</strong> (global), <strong>Organization</strong>, and <strong>Application</strong> (product or library). PTC recommends turning off the OOTB rules and defining custom rules that match your tailored change process. The OIR Manager is accessed from the <em>Utilities</em> page of any context."
+    },
+    {
+     "type": "callout",
+     "variant": "insight",
+     "text": "PTC recommends creating and managing OIRs at the <strong>organization level</strong> rather than at the site or application level. Organization-level rules provide a consistent baseline across all products and libraries within that organization, while still allowing application-level overrides when a specific product needs different behavior."
+    },
+    {
+     "type": "paragraph",
+     "text": "To create a custom OIR, the typical approach is: (1) download an existing composite rule XML from the OIR Manager, (2) modify the life cycle name and other settings in the XML, and (3) upload it as a new OIR assigned to your custom object type. For the Delta Review process, the OIR connects the Delta Regulation Review Workflow to the Delta Regulation Review LC, ensuring that every new Delta Review object automatically receives the correct workflow and life cycle."
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each OIR concept to its description:",
+     "pairs": [
+      {
+       "left": "Object Initialization Rule",
+       "right": "Establishes default values and template assignments when an object is created"
+      },
+      {
+       "left": "Composite Rule XML",
+       "right": "The file format used to define OIR settings that can be downloaded and modified"
+      },
+      {
+       "left": "Organization-level OIR",
+       "right": "Recommended context level that provides consistency across all products and libraries"
+      },
+      {
+       "left": "OIR Manager",
+       "right": "Administration tool accessed from the Utilities page of any context"
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "OIRs connect workflows to life cycles by automatically assigning the correct templates when a change object is created",
+    "OIRs control four key settings: life cycle assignment, workflow association, team template, and versioning scheme",
+    "OIR rules are written in XML, assigned to a specific object class, and can be defined at Site, Organization, or Application level",
+    "PTC recommends managing OIRs at the organization level for consistency, and turning off OOTB rules in favor of custom rules"
+   ]
+  },
+  {
+   "id": "m3t4",
+   "title": "Create Delta Workflow",
+   "estimatedMinutes": 12,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "In this exercise, you will copy the OOTB Design Review Workflow and modify it to create the Delta Regulation Review Workflow. You will rename activities, change routing events from Approve/Reject to Yes/No, update responsible roles, and configure Set State robots to align with the custom life cycle states."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "Ensure you are logged in to the Windchill training environment and have navigated to Organizations > PTC Power Equipment. You will need the Delta Regulation Manager role created in a previous module."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex4",
+     "title": "Create Delta Workflow",
+     "objective": "Copy and modify the Design Review Workflow to create the Delta Regulation Review Workflow with custom activities, routing, and a Change Notice segment.",
+     "tasks": [
+      {
+       "id": "ex4-t1",
+       "title": "Save Copy of Workflow",
+       "steps": [
+        {
+         "action": "Open the Navigator and go to <strong>Organizations > PTC Power Equipment > Templates</strong>.",
+         "detail": "This is where workflow templates are stored at the organization level.",
+         "hint": "You should be signed in to Windchill as <code>mjones/ptc</code>."
+        },
+        {
+         "action": "Select <strong>Workflow Templates</strong> from the <strong>Pick a View</strong> menu.",
+         "detail": "Filters the Templates table to show only workflow templates.",
+         "hint": null
+        },
+        {
+         "action": "Right-click the <strong>Design Review Workflow</strong> and select <strong>Save As</strong>.",
+         "detail": "Creates a copy of the existing workflow template. Always copy a workflow template before changing it; avoid customizing an original OOTB workflow template.",
+         "hint": null
+        },
+        {
+         "action": "In the Save As dialog, select the text in the <strong>Name</strong> field, and type <code>Delta Reg Review WF</code>.",
+         "detail": "The name should reflect the Delta Drills regulation review process.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong>.",
+         "detail": "The new Delta Reg Review WF template is now in the Templates table with a context of PTC Power Equipment, and it is checked out to you.",
+         "hint": "Always copy a workflow template before changing it; avoid customizing an original OOTB workflow template."
+        }
+       ]
+      },
+      {
+       "id": "ex4-t2",
+       "title": "Modify Approve Activity Node",
+       "steps": [
+        {
+         "action": "Right-click <strong>Delta Reg Review WF</strong> and click <strong>Edit</strong>.",
+         "detail": "Opens the visual workflow editor for the copied template.",
+         "hint": null
+        },
+        {
+         "action": "Maximize the window.",
+         "detail": "Maximizing the workflow editor window makes it easier to see and edit all nodes.",
+         "hint": null
+        },
+        {
+         "action": "On the far right of the workflow diagram, below the Activity icon, click the word <strong>Approve</strong>.",
+         "detail": "Opens the activity properties dialog for the approval step.",
+         "hint": null
+        },
+        {
+         "action": "Change the <strong>Name</strong> field to <code>Decision Required</code>.",
+         "detail": "The Delta process uses a Yes/No decision rather than Approve/Reject.",
+         "hint": null
+        },
+        {
+         "action": "In the <strong>Responsible Role</strong> field, select <strong>Delta Regulation Manager</strong>.",
+         "detail": "Assigns the decision to the custom role created earlier for the Delta regulation review process.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Activity</strong> tab.",
+         "detail": "Switches to the Activity configuration tab within the activity properties dialog.",
+         "hint": null
+        },
+        {
+         "action": "In the <strong>Template Name</strong> field, select <strong>Delta Regulation - Review</strong>.",
+         "detail": "Associates the activity with the correct task form template imported in the previous exercise.",
+         "hint": null
+        },
+        {
+         "action": "In the <strong>Instructions</strong> field, type <code>Does the new regulation require a change to our product or process? Yes/No.</code>",
+         "detail": "Clear instructions help the assigned user understand what decision is needed.",
+         "hint": null
+        },
+        {
+         "action": "Clear the <strong>Signing Required</strong> checkbox.",
+         "detail": "Signing required forces credential re-entry to complete the task. This is a security option that is not needed for this review.",
+         "hint": "If this box is checked, the user will be required to enter their credentials to complete the task."
+        },
+        {
+         "action": "Select the <strong>Participants</strong> tab.",
+         "detail": "Switches to the Participants configuration where you define who receives the task.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Approver</strong> in the right field.",
+         "detail": "Selects the existing Approver role to be removed.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Remove (<<)</strong>.",
+         "detail": "Removes the Approver role from the participants list.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Roles</strong>.",
+         "detail": "Switches to the Roles list for adding a new role as a participant.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>Delta Regulation Manager</strong>.",
+         "detail": "Selects the custom role to receive the task.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Add (>>)</strong>.",
+         "detail": "Adds the Delta Regulation Manager role as a participant for this activity.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex4-t3",
+       "title": "Modify Routing of Approve Activity Node",
+       "steps": [
+        {
+         "action": "Select the <strong>Routing</strong> tab.",
+         "detail": "Switches to the Routing configuration where you define decision paths.",
+         "hint": null
+        },
+        {
+         "action": "Delete the Routing Events: <strong>Approve</strong> and <strong>Reject</strong>.",
+         "detail": "Removes the OOTB routing events that do not match the Delta review process.",
+         "hint": null
+        },
+        {
+         "action": "Type <code>Yes</code> and press <strong>Enter</strong>.",
+         "detail": "Creates a new routing event for the affirmative decision path.",
+         "hint": null
+        },
+        {
+         "action": "Type <code>No</code>.",
+         "detail": "Creates a new routing event for the negative decision path.",
+         "hint": null
+        },
+        {
+         "action": "In the <strong>Routing/Tallying Expression</strong> field, change two occurrences of the word <code>Approve</code> to the word <code>Yes</code>.",
+         "detail": "Updates the tallying logic to use the new Yes routing event name.",
+         "hint": null
+        },
+        {
+         "action": "In the <strong>Routing/Tallying Expression</strong> field, change two occurrences of the word <code>Reject</code> to the word <code>No</code>.",
+         "detail": "The complete expression should read: <code>result = WfTally.all(self, \"Yes\", \"No\");</code>",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Check Syntax</strong> to verify your changes.",
+         "detail": "Compiles and validates the routing/tallying expression to ensure it has no errors.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong> to close the Compile Progress window.",
+         "detail": "Confirms the syntax check completed successfully.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong> in the Decision Required dialog.",
+         "detail": "Saves all changes to the activity node and closes the properties dialog.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>?</strong> in the link to the <strong>Set State Approved</strong> robot.",
+         "detail": "Opens the link properties dialog to configure which routing event triggers this path.",
+         "hint": null
+        },
+        {
+         "action": "Click in the <strong>Yes</strong> field and select <strong>Start</strong>.",
+         "detail": "Maps the Yes routing event to the approved state path.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong>.",
+         "detail": "Saves the link configuration for the Yes path.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>?</strong> in the link to the <strong>Set State Rejected</strong> robot.",
+         "detail": "Opens the link properties dialog for the rejection path.",
+         "hint": null
+        },
+        {
+         "action": "Click in the <strong>No</strong> field and select <strong>Start</strong>.",
+         "detail": "Maps the No routing event to the rejected state path.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong>.",
+         "detail": "Saves the link configuration for the No path.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex4-t4",
+       "title": "Modify Set State Robots",
+       "steps": [
+        {
+         "action": "In the workspace, click the <strong>Set State Review</strong> robot text.",
+         "detail": "Opens the robot properties dialog for the Review state transition.",
+         "hint": null
+        },
+        {
+         "action": "Change the <strong>Name</strong> field to <code>Set State In Analysis</code>.",
+         "detail": "Renames the robot to match the custom life cycle state.",
+         "hint": null
+        },
+        {
+         "action": "Click in the <strong>Specific State</strong> field and select <strong>In Analysis</strong>.",
+         "detail": "Configures the robot to set the object to the In Analysis state instead of Review.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong>.",
+         "detail": "Saves the Set State In Analysis robot configuration.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Set State Approval</strong> robot text.",
+         "detail": "Opens the robot properties dialog for the Approval state transition.",
+         "hint": null
+        },
+        {
+         "action": "Change the <strong>Name</strong> to <code>Set State Pending Approval</code>.",
+         "detail": "Renames the robot to match the custom life cycle state.",
+         "hint": null
+        },
+        {
+         "action": "Click in the <strong>Specific State</strong> field and select <strong>Pending Approval</strong>.",
+         "detail": "Configures the robot to set the object to the Pending Approval state instead of Approval.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong>.",
+         "detail": "Saves the Set State Pending Approval robot configuration.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex4-t5",
+       "title": "End Workflow If Set State Is Rejected",
+       "steps": [
+        {
+         "action": "From the left toolbar, select the <strong>End</strong> icon to make it active.",
+         "detail": "Activates the End node tool so you can place it on the workflow canvas.",
+         "hint": null
+        },
+        {
+         "action": "Click the workspace below the <strong>Set Resolution Date</strong> robot to insert the End icon.",
+         "detail": "Places a new End node in the workflow diagram.",
+         "hint": null
+        },
+        {
+         "action": "Click the end of the arrow coming from the <strong>Set State Rejected</strong> robot and drag the arrowhead over the <strong>End</strong> icon.",
+         "detail": "Connects the rejected path to the new End node, so the workflow terminates when the review is rejected.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>File</strong> from the toolbar and click <strong>Save</strong>.",
+         "detail": "Saves all changes to the workflow template.",
+         "hint": null
+        },
+        {
+         "action": "Close the window.",
+         "detail": "Closes the workflow editor.",
+         "hint": null
+        },
+        {
+         "action": "Check in the <strong>Delta Reg Review WF</strong>.",
+         "detail": "Checking in the template makes it available for use by other processes. Right-click the template and select Check In.",
+         "hint": null
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Always copy an OOTB workflow using Save As before making any modifications",
+    "Activity node modifications include changing the name, responsible role, template, instructions, and participants",
+    "Routing events and tallying expressions must be updated together to keep workflow logic consistent",
+    "Set State robots must be renamed and reconfigured to match the states defined in your custom life cycle"
+   ]
+  },
+  {
+   "id": "m3t5",
+   "title": "Modify Change Notice Segment",
+   "estimatedMinutes": 8,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "In this exercise, you will import a workflow that includes a Change Notice segment and modify it to work with the Delta Regulation Review process. The Change Notice segment extends the review workflow by enabling the creation of a Delta Change Notice when a regulation requires product or process changes."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "You will need the Partial Delta Regulation Review.zip file provided with the training materials. Ensure you are in the Workflow Templates view under Organizations > PTC Power Equipment > Templates."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex5",
+     "title": "Modify Change Notice Segment",
+     "objective": "Import a workflow with a Change Notice segment and modify it to work with the Delta Regulation Review process.",
+     "tasks": [
+      {
+       "id": "ex5-t1",
+       "title": "Import Workflow with Change Notice Section",
+       "steps": [
+        {
+         "action": "In the Templates table, ensure the <strong>Pick a View</strong> list has <strong>Workflow Templates</strong> selected.",
+         "detail": "You need to be viewing workflow templates to import one.",
+         "hint": "You should be signed in to Windchill as <code>mjones/ptc</code>."
+        },
+        {
+         "action": "Click the <strong>Actions</strong> menu.",
+         "detail": "Opens the Actions dropdown with import/export options.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Import</strong>.",
+         "detail": "Opens the import dialog for loading a workflow template from a file.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Choose File</strong>.",
+         "detail": "Opens the file browser to select the template file.",
+         "hint": null
+        },
+        {
+         "action": "Select <code>New Volume (W:)\\WCBA-ADCH-Lab-Files\\Partial Delta Regulation Review.zip</code>.",
+         "detail": "This file contains the Delta Regulation Review Workflow with the Change Notice segment already attached.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Open</strong>.",
+         "detail": "Loads the selected file into the import dialog.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong>.",
+         "detail": "Imports the Delta Regulations Review Workflow into the Templates table.",
+         "hint": "This workflow is the sum of the tasks performed in the previous exercise. A segment copied from the Change Request Workflow has been attached for you to continue to edit. In the interest of time, many modifications to the Change Notice segment have been completed for you."
+        }
+       ]
+      },
+      {
+       "id": "ex5-t2",
+       "title": "Modify the Change Notice Section",
+       "steps": [
+        {
+         "action": "Right-click <strong>Delta Regulation Review Workflow</strong> and click <strong>Edit</strong>.",
+         "detail": "Opens the workflow editor for the imported template.",
+         "hint": null
+        },
+        {
+         "action": "Maximize the window.",
+         "detail": "Maximizing the window makes it easier to see the entire workflow including the new Change Notice segment.",
+         "hint": null
+        },
+        {
+         "action": "At the far right of the workflow, click the <strong>Create Delta Change Notice</strong> text.",
+         "detail": "Opens the activity properties dialog for the Change Notice creation step.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Activity</strong> tab.",
+         "detail": "Switches to the Activity configuration tab.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>Create Delta Change Notice</strong> in the <strong>Template Name</strong> field.",
+         "detail": "Associates the activity with the task form template you created earlier.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong>.",
+         "detail": "Saves the template assignment for the Create Delta Change Notice activity.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Change Request Resolved Notify By E-mail</strong> robot text.",
+         "detail": "Opens the properties for the notification robot that needs to be updated for the Delta process.",
+         "hint": null
+        },
+        {
+         "action": "Change the name to <code>Delta Regulation Review Resolved</code>.",
+         "detail": "Updates the robot name to reflect the Delta process instead of the generic change request.",
+         "hint": null
+        },
+        {
+         "action": "In the <strong>Responsible Role</strong> field, select <strong>Delta Regulation Manager</strong>.",
+         "detail": "Assigns the notification to the correct role for the Delta process.",
+         "hint": null
+        },
+        {
+         "action": "In the <strong>Description</strong> field, type <code>Delta</code> before the term <strong>Change Notice</strong>.",
+         "detail": "Updates the description to reference the Delta Change Notice.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>Change Request</strong> in the text and type <code>Delta Regulation Review</code>.",
+         "detail": "Replaces the generic Change Request reference with the Delta process name.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Message</strong> tab.",
+         "detail": "Switches to the Message tab to update the email notification content.",
+         "hint": null
+        },
+        {
+         "action": "Delete the text in the <strong>Subject</strong> field and type <code>Delta Regulation Review Resolved</code>.",
+         "detail": "Updates the email subject line to reflect the Delta process.",
+         "hint": null
+        },
+        {
+         "action": "In the text field, replace <strong>Change Request</strong> with <code>Delta Regulation Review</code>.",
+         "detail": "Updates the email body to correctly identify the Delta process.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong>.",
+         "detail": "Saves all changes to the notification robot.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>File</strong> and click <strong>Save</strong>.",
+         "detail": "Saves all changes to the workflow template.",
+         "hint": null
+        },
+        {
+         "action": "Close the <strong>Delta Regulation Review Workflow</strong> window.",
+         "detail": "Closes the workflow editor.",
+         "hint": null
+        },
+        {
+         "action": "Right-click <strong>Delta Regulation Review Workflow</strong> and select <strong>Check In</strong>.",
+         "detail": "Makes the modified workflow template available for use.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong>.",
+         "detail": "Confirms the check-in. The Delta Regulation Review Workflow is now ready for use.",
+         "hint": "Most activities and robots in the copied Change Notice segment were changed using the same methods before the segment was inserted. The roles of Change Admin I, II, and III are left as is in the workflow because you designated the Delta Change Group for each of those roles in a previous exercise."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Workflow templates can be imported from ZIP files to add pre-configured segments like Change Notice creation",
+    "The Change Notice segment extends the review workflow to enable downstream change implementation",
+    "Notification robots must be updated to reference the correct process name and responsible role",
+    "Always check in workflow templates after editing to make them available for use"
+   ]
+  },
+  {
+   "id": "m3t6",
+   "title": "Create Life Cycle and OIR",
+   "estimatedMinutes": 15,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "In this exercise, you will create the Delta Regulation Review life cycle by copying and modifying the OOTB Design Review Life Cycle, then create an Object Initialization Rule to connect the custom workflow and life cycle. Once complete, every new Delta Review object will automatically receive the correct workflow, life cycle, and team configuration."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "Ensure you are in the Templates section under Organizations > PTC Power Equipment. You will need the Delta Regulation Review Workflow created in the previous exercises."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex6",
+     "title": "Create Life Cycle and OIR",
+     "objective": "Create the Delta Regulation Review life cycle and an Object Initialization Rule to connect the workflow and life cycle.",
+     "tasks": [
+      {
+       "id": "ex6-t1",
+       "title": "Save Copy of Design Review Life Cycle",
+       "steps": [
+        {
+         "action": "In the Templates table, select <strong>Life Cycle Templates</strong> from the <strong>Pick a View</strong> menu.",
+         "detail": "Switches to viewing life cycle templates.",
+         "hint": "You should be signed in to Windchill as <code>mjones/ptc</code>."
+        },
+        {
+         "action": "Right-click <strong>Design Review Life Cycle</strong> and select <strong>Save As</strong>.",
+         "detail": "Creates a copy of the OOTB life cycle template to use as a starting point.",
+         "hint": null
+        },
+        {
+         "action": "Type <code>Delta Regulation Review LC</code> in the <strong>Name</strong> field.",
+         "detail": "Names the new life cycle to reflect the Delta regulation review process.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong>.",
+         "detail": "Creates the copy. The new life cycle template appears in the Templates table.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex6-t2",
+       "title": "Modify Life Cycle",
+       "steps": [
+        {
+         "action": "Right-click <strong>Delta Regulation Review LC</strong> and select <strong>Edit</strong>.",
+         "detail": "Opens the life cycle editor for the copied template.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Open</strong> phase.",
+         "detail": "Selects the initial phase of the life cycle for configuration.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Workflow</strong> tab.",
+         "detail": "Switches to the Workflow configuration for the Open phase.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Browse</strong> next to the <strong>Phase Process</strong> field.",
+         "detail": "Opens the workflow selection dialog.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>Delta Regulation Review Workflow</strong>.",
+         "detail": "Associates your custom workflow with the initial Open phase.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong>.",
+         "detail": "Saves the workflow assignment for the Open phase.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Review</strong> phase.",
+         "detail": "Selects the Review phase that needs to be modified for the Delta process.",
+         "hint": null
+        },
+        {
+         "action": "In the <strong>State</strong> field, select <strong>In Analysis</strong>.",
+         "detail": "Changes the phase state from Review to In Analysis to match the Delta life cycle.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Roles</strong> tab.",
+         "detail": "Switches to the Roles configuration for the In Analysis phase.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Remove All</strong>.",
+         "detail": "Removes all existing role assignments from this phase.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>Delta Regulation Manager</strong> in the <strong>Available Roles</strong> table.",
+         "detail": "Selects the custom role to be added to this phase.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Add</strong>.",
+         "detail": "Adds the Delta Regulation Manager as an authorized role for the In Analysis phase.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Access Control</strong> tab.",
+         "detail": "Switches to the Access Control configuration for the In Analysis phase.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Full Control (All)</strong> checkbox.",
+         "detail": "Grants Full Control access to the Delta Regulation Manager during the In Analysis phase.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Approval</strong> phase.",
+         "detail": "Selects the Approval phase that needs to be modified for the Delta process.",
+         "hint": null
+        },
+        {
+         "action": "In the <strong>State</strong> field, select <strong>Pending Approval</strong>.",
+         "detail": "Changes the phase state from Approval to Pending Approval to match the Delta life cycle.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Roles</strong> tab.",
+         "detail": "Switches to the Roles configuration for the Pending Approval phase.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Remove All</strong>.",
+         "detail": "Removes all existing role assignments from this phase.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>Delta Regulation Manager</strong> in the <strong>Available Roles</strong> table.",
+         "detail": "Selects the custom role for this phase.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Add</strong>.",
+         "detail": "Adds the Delta Regulation Manager as an authorized role for the Pending Approval phase.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Access Control</strong> tab.",
+         "detail": "Switches to the Access Control configuration for the Pending Approval phase.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>Delta Regulation Manager</strong> in the <strong>Selected Roles</strong> table.",
+         "detail": "Selects the role to configure its access permissions.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Read</strong> and <strong>Download</strong> checkboxes.",
+         "detail": "Restricts the Delta Regulation Manager to Read and Download access during the Pending Approval phase - modifications are not permitted while awaiting approval.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex6-t3",
+       "title": "Add a New Phase to Life Cycle",
+       "steps": [
+        {
+         "action": "Click the <strong>New Phase</strong> icon.",
+         "detail": "Adds a new phase to the life cycle.",
+         "hint": null
+        },
+        {
+         "action": "Select the new phase.",
+         "detail": "Selects the newly created phase for configuration.",
+         "hint": null
+        },
+        {
+         "action": "In the <strong>State</strong> field, select <strong>Resolved</strong>.",
+         "detail": "Sets the state for the new phase, which represents completed regulation reviews.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Roles</strong> tab.",
+         "detail": "Switches to the Roles configuration for the Resolved phase.",
+         "hint": null
+        },
+        {
+         "action": "In the <strong>Available Roles</strong> table, select <strong>Delta Regulation Manager</strong>.",
+         "detail": "Selects the custom role for the Resolved phase.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Add</strong>.",
+         "detail": "Adds the Delta Regulation Manager as an authorized role for the Resolved phase.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Access Control</strong> tab.",
+         "detail": "Switches to the Access Control configuration for the Resolved phase.",
+         "hint": null
+        },
+        {
+         "action": "In the <strong>Selected Roles</strong> table, select <strong>Delta Regulation Manager</strong>.",
+         "detail": "Selects the role to configure its access permissions for the Resolved phase.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Full Control (All)</strong> checkbox.",
+         "detail": "Grants Full Control access to the Delta Regulation Manager during the Resolved phase.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Save & Close</strong>.",
+         "detail": "Saves the life cycle configuration and closes the editor.",
+         "hint": null
+        },
+        {
+         "action": "Right-click <strong>Delta Regulation Review LC</strong>.",
+         "detail": "Opens the context menu for the new life cycle template.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>Check In</strong> and click <strong>OK</strong>.",
+         "detail": "Checks in the life cycle template, making it available for use. In case of a problem, a ZIP file <code>Final Delta LC.zip</code> is provided in the WCBA-ADCH-Lab-Files as a backup.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex6-t4",
+       "title": "Download and Modify Composite Rule",
+       "steps": [
+        {
+         "action": "Open the Navigator and go to <strong>Organizations > PTC Power Equipment > Utilities</strong>.",
+         "detail": "Navigates to the organization-level Utilities page.",
+         "hint": "You should be signed in to Windchill as <code>mjones/ptc</code>."
+        },
+        {
+         "action": "Select <strong>Object Initialization Rules Administration</strong>.",
+         "detail": "Opens the OIR Manager where you create and manage object initialization rules.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Download Composite Rule</strong> icon from the toolbar.",
+         "detail": "Opens the dialog to download an existing OIR as an XML file for modification.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Find</strong> and type <code>Delta Review</code> in the <strong>Find in tree</strong> field.",
+         "detail": "Searches for the Delta Review object type in the type hierarchy.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Delta Review</strong> radio button.",
+         "detail": "Selects the Delta Review type for the composite rule download.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong> and click <strong>OK</strong> again.",
+         "detail": "Initiates the download of the composite rule XML file.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Downloads</strong> next to the address bar.",
+         "detail": "Opens the browser's downloads panel to access the downloaded file.",
+         "hint": "You may need to click <strong>Keep</strong> before continuing."
+        },
+        {
+         "action": "Click the <strong>Show in folder</strong> icon next to <code>rule.xml</code> in Downloads.",
+         "detail": "Opens the file location in Windows Explorer.",
+         "hint": null
+        },
+        {
+         "action": "Right-click <code>rule.xml</code> and select <strong>Edit with Notepad++</strong>.",
+         "detail": "Opens the XML file in a text editor for modification.",
+         "hint": "If a Notepad++ update dialog opens, click No."
+        },
+        {
+         "action": "In line 16, delete the word <code>Basic</code> and replace it with <code>Delta Regulation Review LC</code>.",
+         "detail": "This tells the OIR to use your custom life cycle instead of the default Basic life cycle.",
+         "hint": null
+        },
+        {
+         "action": "From the toolbar, click <strong>File</strong>, select <strong>Save As</strong>, and type <code>Delta OIR</code> for the File name.",
+         "detail": "Saves the modified XML with a new name to avoid overwriting the original.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Save</strong>.",
+         "detail": "Saves the modified OIR XML file.",
+         "hint": null
+        },
+        {
+         "action": "Close Notepad++ and close the Downloads windows.",
+         "detail": "Returns to the Windchill browser window.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex6-t5",
+       "title": "Create Delta Review OIR",
+       "steps": [
+        {
+         "action": "Click the <strong>New Object Initialization Rule</strong> icon in the Object Initialization Rules table.",
+         "detail": "Opens the dialog to create a new OIR.",
+         "hint": null
+        },
+        {
+         "action": "Type <code>Delta Review OIR</code> in the <strong>Name</strong> field.",
+         "detail": "Names the OIR to identify it in the rules table.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Find</strong> and type <code>Delta Review</code> in the <strong>Find in tree</strong> field.",
+         "detail": "Searches for the Delta Review type to associate with this OIR.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Delta Review</strong> radio button.",
+         "detail": "Selects the Delta Review type for the new OIR.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong>.",
+         "detail": "Confirms the type selection and returns to the New OIR dialog.",
+         "hint": null
+        },
+        {
+         "action": "In the New Object Initialization Rule dialog, click <strong>Choose File</strong>.",
+         "detail": "Opens the file browser to select the modified XML file.",
+         "hint": null
+        },
+        {
+         "action": "Select <code>New Volume (W:)\\WCBA-ADCH-Lab-Files\\Delta OIR.xml</code>.",
+         "detail": "Selects the XML file you saved from Notepad++ with the Delta Regulation Review LC reference.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Open</strong>.",
+         "detail": "Loads the XML file into the OIR creation dialog.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong> to create the <strong>Delta Review OIR</strong> in the Object Initialization Rules table.",
+         "detail": "Creates the OIR that connects the Delta Regulation Review Workflow to the Delta Regulation Review LC. Every new Delta Review object will now automatically receive the correct workflow and life cycle.",
+         "hint": null
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Life cycles are created by copying an OOTB template and modifying the phases, roles, and access control settings",
+    "Each life cycle phase can specify a Phase Process workflow, authorized roles, and granular access permissions",
+    "OIRs are created by downloading an existing composite rule XML, modifying the life cycle reference, and uploading it as a new rule",
+    "The OIR connects the Delta Regulation Review Workflow to the Delta Regulation Review LC, automating template assignment for new objects"
+   ]
+  }
  ]
 }

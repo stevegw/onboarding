@@ -389,28 +389,73 @@
               "title": "Create User Accounts",
               "steps": [
                 {
-                  "action": "Sign in to Windchill as administrator",
-                  "detail": "Use wcadmin credentials to access the system with full administrative privileges.",
+                  "action": "Launch a browser and click the Windchill bookmark.",
+                  "detail": "Open a web browser and navigate to the Windchill server using the bookmark.",
                   "hint": null
                 },
                 {
-                  "action": "Navigate to Participant Administration",
-                  "detail": "Browse to Organizations > PTC Publications > Utilities and select Participant Administration.",
-                  "hint": "Use the Navigator panel to browse the organization hierarchy."
+                  "action": "Click <strong>Sign In</strong>.",
+                  "detail": "The Windchill sign-in page appears.",
+                  "hint": null
                 },
                 {
-                  "action": "Create the first user account",
-                  "detail": "Click the Create new user icon and enter Ali Mansor's account information including name, email, and password.",
-                  "hint": "Set the Organization field to PTC Publications."
+                  "action": "Sign in to Windchill as an administrator.",
+                  "detail": "Use the site administrator credentials to access full administrative privileges.",
+                  "hint": "Username: <code>wcadmin</code> / Password: <code>wcadmin</code>"
                 },
                 {
-                  "action": "Assign Ali Mansor to the Organization Administrator group",
-                  "detail": "On the groups page, search for *org* and add the Organization Administrator group to the participant list.",
-                  "hint": "Click Add group to table to search for available groups."
+                  "action": "From the Navigator, browse to <strong>Organizations &gt; PTC Publications &gt; Utilities</strong>.",
+                  "detail": "Navigate through the organization hierarchy to reach the administration utilities.",
+                  "hint": null
                 },
                 {
-                  "action": "Create the second user account",
-                  "detail": "Click Apply to save the first user, then enter Ash Santhosh's account information and click Finish.",
+                  "action": "Select the <strong>Participant Administration</strong> link.",
+                  "detail": "The Participant Administration table displays the current list of users and groups.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Participant Administration table, click the <strong>Create new user</strong> icon.",
+                  "detail": "This opens the New User dialog where you will enter account information.",
+                  "hint": null
+                },
+                {
+                  "action": "Type the account information for Ali Mansor.",
+                  "detail": "Enter the following details:<br><strong>Name:</strong> <code>amansor</code><br><strong>Full Name:</strong> Mansor, Ali<br><strong>Last Name:</strong> Mansor<br><strong>Email:</strong> <code>wc-mail@ptc-training.ptc.com</code><br><strong>Password:</strong> <code>ptc</code><br><strong>Organization:</strong> PTC Publications",
+                  "hint": "The system requires a username, full name, and last name at minimum. Always set the Organization to avoid placing the user in the Unaffiliated domain."
+                },
+                {
+                  "action": "Click <strong>Next</strong>.",
+                  "detail": "This advances to the groups assignment page of the New User dialog.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Add group to table</strong>.",
+                  "detail": "This opens the group search dialog so you can assign groups to the new user.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Group Name field, type <code>*org*</code>.",
+                  "detail": "This wildcard search will find the Organization Administrator group for PTC Publications.",
+                  "hint": null
+                },
+                {
+                  "action": "Add the <strong>Organization Administrator (PTC Publications)</strong> result to the Participant List and click <strong>OK</strong>.",
+                  "detail": "This assigns Ali Mansor to the Organization Administrator group, granting elevated privileges for managing participants within the organization.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Apply</strong>.",
+                  "detail": "This saves the first user account and keeps the New User dialog open for the next user.",
+                  "hint": null
+                },
+                {
+                  "action": "Type the account information for Ash Santhosh.",
+                  "detail": "Enter the following details:<br><strong>Name:</strong> <code>asanthosh</code><br><strong>Full Name:</strong> Santhosh, Ash<br><strong>Last Name:</strong> Santhosh<br><strong>Email:</strong> <code>wc-mail@ptc-training.ptc.com</code><br><strong>Password:</strong> <code>ptc</code>",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Finish</strong>.",
+                  "detail": "This creates the second user account and closes the New User dialog. Both users are now listed in the Participant Administration table.",
                   "hint": null
                 }
               ]
@@ -752,37 +797,52 @@
           "tasks": [
             {
               "id": "ex2-t1",
-              "title": "Assign Users to a License Group",
+              "title": "Assign the Users to a License Group",
               "steps": [
                 {
-                  "action": "Navigate to License Profiles",
-                  "detail": "Browse to PTC Publications > Profiles in the Navigator.",
+                  "action": "From the Navigator, browse to <strong>PTC Publications &gt; Profiles</strong>.",
+                  "detail": "You should still be signed in to Windchill as <code>wcadmin</code>/<code>wcadmin</code>. Navigate to the Profiles section of the PTC Publications organization.",
                   "hint": null
                 },
                 {
-                  "action": "Open the PTC PDMLink Module License profile",
-                  "detail": "Locate the PTC PDMLink Module License profile in the License Profiles table and click the View information icon.",
+                  "action": "In the Licenses Profiles table, locate the <strong>PTC PDMLink Module License</strong> profile. Then, click the <strong>View information</strong> icon.",
+                  "detail": "This opens the details page for the PTC PDMLink Module License profile, showing its associated features and members.",
                   "hint": null
                 },
                 {
-                  "action": "Access the license group",
-                  "detail": "Scroll to the Profile Members table and click the PTC PDMLink Module License group link.",
+                  "action": "Scroll to view the Profile Members table and click the <strong>PTC PDMLink Module License</strong> group link to add the users to it.",
+                  "detail": "Clicking the group link opens the group details page where you can manage membership.",
                   "hint": null
                 },
                 {
-                  "action": "Edit the group membership",
-                  "detail": "Click Actions > Edit Group and browse to Step 2 to add members.",
+                  "action": "Click <strong>Actions &gt; Edit Group</strong>.",
+                  "detail": "This opens the Edit Group dialog where you can modify group membership.",
                   "hint": null
                 },
                 {
-                  "action": "Add the new users to the group",
-                  "detail": "Click the Add members to group icon, search for amansor and asanthosh, and add them to the group.",
-                  "hint": "You can search for multiple users and add them in a single operation."
+                  "action": "Browse to <strong>Step 2</strong> to add members.",
+                  "detail": "Step 2 of the Edit Group dialog is where you add or remove group members.",
+                  "hint": null
                 },
                 {
-                  "action": "Save the changes",
-                  "detail": "Click OK and then Finish to complete the license group assignment.",
+                  "action": "Click the <strong>Add members to group</strong> icon.",
+                  "detail": "This opens a search dialog where you can find and add users to the license group.",
                   "hint": null
+                },
+                {
+                  "action": "Search for <code>amansor</code> and <code>asanthosh</code> to add them to the group.",
+                  "detail": "Find both users created in Exercise 1 and add them to the PTC PDMLink Module License group.",
+                  "hint": "You can search for and add multiple users in a single operation."
+                },
+                {
+                  "action": "Click <strong>OK</strong> and <strong>Finish</strong>.",
+                  "detail": "This saves the group membership changes. Both users now have a PDMLink license assigned.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the browser.",
+                  "detail": "The exercise is complete. Both user accounts are now assigned to the PTC PDMLink Module License group and can access Windchill.",
+                  "hint": "If you want to give the organization administrator the ability to assign license groups to users, you can create a group as a site administrator at the organization level and assign this group the proper license group."
                 }
               ]
             }
@@ -1143,42 +1203,138 @@
           "tasks": [
             {
               "id": "ex3-t1",
-              "title": "Add an Organization Role",
+              "title": "Add Roles to the PTC Publications Organization Context",
               "steps": [
                 {
-                  "action": "Navigate to PTC Publications Roles",
-                  "detail": "Browse to the PTC Publications organization and select the Roles link.",
+                  "action": "Launch a web browser and select the Windchill bookmark.",
+                  "detail": "Open a browser to access the Windchill server.",
                   "hint": null
                 },
                 {
-                  "action": "Add the Editor role",
-                  "detail": "Click the New roles to organization icon, type Editor, and click OK.",
-                  "hint": "Verify the new role appears in the Roles table with Visible status."
+                  "action": "Select <strong>Sign In</strong>.",
+                  "detail": "The Windchill sign-in page appears.",
+                  "hint": null
+                },
+                {
+                  "action": "Sign in to Windchill as a business administrator.",
+                  "detail": "Use the business administrator credentials to access administrative functions.",
+                  "hint": "Username: <code>bpatterson</code> / Password: <code>ptc</code>"
+                },
+                {
+                  "action": "Browse to the <strong>PTC Publications</strong> organization and select the <strong>Roles</strong> link.",
+                  "detail": "Navigate to the Roles management page for the PTC Publications organization.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>New roles to organization</strong> icon.",
+                  "detail": "This opens the Add Roles to Organization dialog where you can create new context roles.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Add roles to organization dialog, type <code>Editor</code>.",
+                  "detail": "This creates a new custom role named Editor for the PTC Publications organization.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong>. Verify the new role is listed in the Roles table.",
+                  "detail": "Upon creation, the roles have Visible status to make them selectable in the contexts located inside the organization: products, libraries, projects, and programs.",
+                  "hint": null
                 }
               ]
             },
             {
               "id": "ex3-t2",
-              "title": "Configure the Product Context Team",
+              "title": "Add Member to Context Team",
               "steps": [
                 {
-                  "action": "Open the product team page",
-                  "detail": "Navigate to Recent Products, expand the PTC New Publication Template product, and click the Team link.",
+                  "action": "In the Navigator, select <strong>Recent Products</strong>.",
+                  "detail": "You should still be signed in to Windchill as <code>bpatterson</code>/<code>ptc</code>.",
                   "hint": null
                 },
                 {
-                  "action": "Add the Editor role to the context team",
-                  "detail": "Select Actions > Add Roles, select Editor from the role list, and click OK.",
+                  "action": "Expand the <strong>PTC New Publication Template</strong> product and click the <strong>Team</strong> link.",
+                  "detail": "This opens the context team page for the product, showing current roles and members.",
                   "hint": null
                 },
                 {
-                  "action": "Remove unnecessary roles",
-                  "detail": "Select Change Admin I, II, III, Change Review Board, Option Manager, Package Creator, and Variance Approver, then click the Remove roles or participants icon.",
-                  "hint": "Removing unnecessary roles is best practice for product templates."
+                  "action": "Select <strong>Actions &gt; Add Roles</strong>.",
+                  "detail": "This opens the Add Roles dialog where you can add organization-level or resource bundle roles to the context team.",
+                  "hint": null
                 },
                 {
-                  "action": "Add a participant to the Editor role",
-                  "detail": "Click the Add participants icon in the Editor row, search for David Griffin (dgriffin), and add him.",
+                  "action": "Select <strong>Editor</strong> from the role list and click <strong>OK</strong>.",
+                  "detail": "The Editor role you created in the previous task is now added to the product context team.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Members table, select the <strong>Roles/Members</strong> column header to sort by ascending order.",
+                  "detail": "Sorting the table makes it easier to find and select the roles you want to remove.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the checkboxes to remove: <strong>Change Admin I</strong>, <strong>Change Admin II</strong>, <strong>Change Admin III</strong>, <strong>Change Review Board</strong>, <strong>Option Manager</strong>, <strong>Package Creator</strong>, and <strong>Variance Approver</strong>.",
+                  "detail": "These roles are not needed for the PTC Publications context and should be removed to keep the template clean.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Remove roles or participants</strong> icon.",
+                  "detail": "The selected roles are removed from the context team.",
+                  "hint": "It is a best practice to remove all unnecessary roles in a product context that will generate a product template. Any new contexts created with this template will have, by default, only the roles defined in the template."
+                },
+                {
+                  "action": "In the <strong>Editor</strong> row, click the <strong>Add participants to team</strong> icon.",
+                  "detail": "This opens a search dialog where you can find and assign participants to the Editor role.",
+                  "hint": null
+                },
+                {
+                  "action": "Search for <strong>David Griffin</strong> (<code>dgriffin</code>: PTC Publications).",
+                  "detail": "Find the David Griffin user account in the PTC Publications organization.",
+                  "hint": null
+                },
+                {
+                  "action": "Add the user to the Participant List and click <strong>OK</strong>.",
+                  "detail": "David Griffin is now assigned to the Editor role in the product context team.",
+                  "hint": null
+                },
+                {
+                  "action": "From the <strong>View</strong> menu, select <strong>Members</strong>.",
+                  "detail": "This switches the table view to show all named members and their role assignments.",
+                  "hint": null
+                },
+                {
+                  "action": "Notice the two named user accounts and one group with assigned roles.",
+                  "detail": "The Members view confirms that the context team now includes the correct participants.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex3-t3",
+              "title": "Add Existing and Custom Roles to Context Team",
+              "steps": [
+                {
+                  "action": "From the <strong>View</strong> menu, select <strong>Local Team Roles and Members</strong>.",
+                  "detail": "This view shows only the roles and members defined locally for this product context team.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Actions &gt; Add Roles</strong>.",
+                  "detail": "This opens the Add Roles dialog to add additional roles to the team.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Add Roles to Team dialog, press <strong>Ctrl</strong> and select <strong>Change Manager</strong>, <strong>Consultant</strong>, and <strong>Design Team Leader</strong> from the list.",
+                  "detail": "Hold Ctrl to select multiple resource bundle roles at once.",
+                  "hint": null
+                },
+                {
+                  "action": "In the text field, type <code>Managing Editor,Visual Designer</code>.",
+                  "detail": "These two custom roles are typed directly because they are ad hoc roles that don't exist in the resource bundle yet.",
+                  "hint": "Custom roles created ad hoc for a specific team are not available for use in workflows. Only roles created using the Enumerated Customized Type Utility can be used in workflows."
+                },
+                {
+                  "action": "Click <strong>OK</strong> to add the new roles to the product Context Team.",
+                  "detail": "The context team now includes both the selected resource bundle roles and the custom typed roles.",
                   "hint": null
                 }
               ]
@@ -1218,45 +1374,106 @@
               "title": "Create a Shared Team",
               "steps": [
                 {
-                  "action": "Navigate to Shared Teams",
-                  "detail": "Browse to Organizations > PTC Publications > Teams.",
+                  "action": "From the Navigator, browse to <strong>Organizations &gt; PTC Publications &gt; Teams</strong>.",
+                  "detail": "You should still be signed in to Windchill as <code>bpatterson</code>/<code>ptc</code>. Navigate to the Teams page at the organization level.",
                   "hint": null
                 },
                 {
-                  "action": "Create the PTC Publication Manuals shared team",
-                  "detail": "Click New shared team, type PTC Publication Manuals, and select the checkbox for Allow team to be extended locally.",
+                  "action": "From the Shared Teams toolbar, select the <strong>New shared team</strong> icon.",
+                  "detail": "This opens the New Shared Team dialog where you define the team name and settings.",
                   "hint": null
                 },
                 {
-                  "action": "Add a member to the shared team",
-                  "detail": "Open the shared team details and add David Griffin to the Members role.",
+                  "action": "In the Team Name field, type <code>PTC Publication Manuals</code>.",
+                  "detail": "This names the shared team that will be used across multiple PTC Publications products.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the checkbox for <strong>Allow team to be extended locally in associated application contexts</strong> and click <strong>OK</strong>.",
+                  "detail": "This enables product or project managers to add roles and members locally while preserving the shared team's core membership.",
+                  "hint": null
+                },
+                {
+                  "action": "From the Shared Teams list, select the <strong>View information</strong> icon for the <strong>PTC Publication Manuals</strong> shared team.",
+                  "detail": "This opens the shared team details page where you can manage roles and members.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Members table, add <strong>David Griffin</strong> to the <strong>Members</strong> role.",
+                  "detail": "David Griffin is now a member of the shared team and will be included in any context that uses this team.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex4-t2",
-              "title": "Create a Product Using the Shared Team",
+              "title": "Create a Product Using a Shared Team",
               "steps": [
                 {
-                  "action": "Create a new product",
-                  "detail": "Navigate to Recent Products > View All and click New Product.",
+                  "action": "From the Navigator, click <strong>Recent Products</strong> and select <strong>View All</strong>.",
+                  "detail": "This opens the full product list where you can create new products.",
                   "hint": null
                 },
                 {
-                  "action": "Associate the shared team",
-                  "detail": "Click Find to search for shared teams, select PTC Publication Manuals, and enable local extensions.",
-                  "hint": "Select the Allow roles and/or members to be added locally checkbox."
-                },
-                {
-                  "action": "Complete the product creation",
-                  "detail": "Name the product Maintenance Manuals, select the General Product template, and click OK.",
+                  "action": "From the Products toolbar, click <strong>New Product</strong>.",
+                  "detail": "This opens the New Product dialog where you configure the product name, template, and team.",
                   "hint": null
                 },
                 {
-                  "action": "Verify shared team usage",
-                  "detail": "Browse to PTC Publications > Teams, right-click PTC Publication Manuals, and select Show Team Uses.",
-                  "hint": "The Maintenance Manuals product should appear in the report."
+                  "action": "In the New Product dialog, click <strong>Find</strong>. Then, in the Find Shared Team dialog, click <strong>Search</strong>.",
+                  "detail": "This searches for available shared teams that can be associated with the new product.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>PTC Publication Manuals</strong> and click <strong>OK</strong>.",
+                  "detail": "The shared team is now associated with the new product.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong> on the warning message related to the product Private access option deactivation.",
+                  "detail": "Using a shared team requires deactivating the Private access option so that shared team members can access the product.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the checkbox for <strong>Allow roles and/or members to be added locally in this context</strong>.",
+                  "detail": "This enables the product manager to extend the shared team with local roles and members specific to this product.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Name field, type <code>Maintenance Manuals</code>.",
+                  "detail": "This sets the product name for the new product that will use the shared team.",
+                  "hint": null
+                },
+                {
+                  "action": "From the Template menu, select <strong>General Product</strong> and click <strong>OK</strong>.",
+                  "detail": "The General Product template provides a standard set of context roles and access control rules for the new product.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex4-t3",
+              "title": "Verify the Shared Team Usage",
+              "steps": [
+                {
+                  "action": "From the Navigator, browse to <strong>PTC Publications &gt; Teams</strong>.",
+                  "detail": "Navigate back to the organization-level Teams page to verify the shared team association.",
+                  "hint": null
+                },
+                {
+                  "action": "From the Shared Team list, right-click <strong>PTC Publication Manuals</strong> and select <strong>Show Team Uses</strong>.",
+                  "detail": "This runs a Where Used query to display all contexts that use this shared team.",
+                  "hint": null
+                },
+                {
+                  "action": "Notice that the <strong>Maintenance Manuals</strong> product is listed in the Shared Team Uses Report.",
+                  "detail": "This confirms the shared team was successfully associated with the new product.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the browser.",
+                  "detail": "The exercise is complete.",
+                  "hint": null
                 }
               ]
             }
@@ -1295,45 +1512,141 @@
               "title": "Create an Agenda Team Template",
               "steps": [
                 {
-                  "action": "Open Team Administration",
-                  "detail": "Navigate to PTC New Publication Template > Utilities and select Team Administration.",
+                  "action": "From the Navigator, browse to <strong>Recent Products &gt; PTC New Publication Template &gt; Utilities</strong>.",
+                  "detail": "You should still be signed in to Windchill as <code>bpatterson</code>/<code>ptc</code>. Navigate to the product utilities page.",
                   "hint": null
                 },
                 {
-                  "action": "Create the team template",
-                  "detail": "Click the New Team template icon, type Agenda Team in the Name field.",
+                  "action": "Select <strong>Team Administration</strong>.",
+                  "detail": "This opens the Team Administration page where you can create and manage team templates.",
                   "hint": null
                 },
                 {
-                  "action": "Add roles to the template",
-                  "detail": "Click Add Role, search for Manag* to add Managing Editor, then search for proj* to add Project Engineer.",
-                  "hint": "Confirm both roles appear in the table before clicking OK."
+                  "action": "Click the <strong>New Team template</strong> icon and expand the dialog.",
+                  "detail": "This opens the New Team Template dialog where you define the template name and roles.",
+                  "hint": null
+                },
+                {
+                  "action": "Type <code>Agenda Team</code> in the Name field.",
+                  "detail": "This names the team template that will be assigned to the Agenda document type.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Add Role</strong> icon.",
+                  "detail": "This opens the Find Participants dialog where you can search for and add roles to the template.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Find Participants dialog, type <code>Manag*</code> in the search field, and click <strong>Search</strong>.",
+                  "detail": "This searches for roles matching the wildcard pattern to find Managing Editor.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Managing Editor</strong> checkbox and click <strong>Apply</strong>.",
+                  "detail": "The Managing Editor role is added to the team template. Click Apply to keep the dialog open for the next role.",
+                  "hint": null
+                },
+                {
+                  "action": "Type <code>proj*</code> in the search field, then click <strong>Search</strong>.",
+                  "detail": "This searches for the Project Engineer role.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Project Engineer</strong> checkbox and click <strong>OK</strong>.",
+                  "detail": "The Project Engineer role is added to the team template and the dialog closes.",
+                  "hint": null
+                },
+                {
+                  "action": "Confirm the two roles/participants are listed in the table.",
+                  "detail": "Both Managing Editor and Project Engineer should appear in the roles list.",
+                  "hint": "As a best practice, do not add participants in the team template. Assign users or groups to roles within the context team."
+                },
+                {
+                  "action": "Click <strong>OK</strong> to close the New Team Template dialog.",
+                  "detail": "The Agenda Team template is now created and available for assignment.",
+                  "hint": null
                 }
               ]
             },
             {
               "id": "ex5-t2",
-              "title": "Assign the Template to a Document Type",
+              "title": "Assign Team Template to the Agenda Document Type",
               "steps": [
                 {
-                  "action": "Open Object Initialization Rules",
-                  "detail": "Browse to PTC New Publication Template > Utilities and select Object Initialization Rules Administration.",
+                  "action": "Browse to the <strong>PTC New Publication Template</strong> product and select the <strong>Utilities</strong> link.",
+                  "detail": "Navigate back to the product utilities page to access Object Initialization Rules.",
+                  "hint": "If you want to automatically apply the same object initialization rule for all products and libraries, you can store the Agenda Object initialization rule and the Agenda Team template in the organization context."
+                },
+                {
+                  "action": "Select the <strong>Object Initialization Rules Administration</strong> link in the Business Administration section.",
+                  "detail": "This opens the Object Initialization Rules table where you can create rules that automatically assign templates to object types.",
                   "hint": null
                 },
                 {
-                  "action": "Create the initialization rule",
-                  "detail": "Click New Object Initialization Rule, name it Agenda Rule, and set the Type to Agenda (under Document).",
+                  "action": "Click the <strong>New Object Initialization Rule</strong> icon.",
+                  "detail": "This opens the New Object Initialization Rule dialog.",
                   "hint": null
                 },
                 {
-                  "action": "Load the rule definition file",
-                  "detail": "Click Choose File and browse to the Agenda_Default_TeamOIR.xml file.",
-                  "hint": "This file defines the lifecycle and team template for new Agenda documents."
+                  "action": "Type <code>Agenda Rule</code> in the Name field.",
+                  "detail": "This names the initialization rule that will link the Agenda document type to the team template.",
+                  "hint": null
                 },
                 {
-                  "action": "Test the configuration",
-                  "detail": "Create a new Agenda document named Agenda Team Test and verify the Team Template is set to Agenda Team.",
-                  "hint": "Check the Information page to confirm the team template assignment."
+                  "action": "In the Type field, select <strong>Find</strong>.",
+                  "detail": "This opens the Object Type browser where you can select the document type.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Object Type dialog, expand the <strong>Document</strong> node, select the <strong>Agenda</strong> radio button, and click <strong>OK</strong>.",
+                  "detail": "This sets the rule to apply specifically to Agenda-type documents.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Choose File</strong> and click <strong>This PC</strong>. Browse to <code>W:\\WCBA-TEAM-Lab-Files\\Agenda_Default_TeamOIR.xml</code> and click <strong>Open</strong> to load the initialization rule.",
+                  "detail": "This XML file defines the lifecycle and team template to be used for any new Agenda document type.",
+                  "hint": "The <code>Agenda_Default_Team.xml</code> defines the life cycle and team template to be used for any new agenda document type. The team template is only used with an advanced life cycle."
+                },
+                {
+                  "action": "Click <strong>OK</strong> to complete the Agenda Rule initialization rule definition.",
+                  "detail": "The initialization rule is now active and will automatically assign the Agenda Team template to new Agenda documents.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex5-t3",
+              "title": "Test the New Agenda Document",
+              "steps": [
+                {
+                  "action": "From the Navigator, browse to the <strong>PTC New Publication Template</strong> product and click the <strong>Folders</strong> link.",
+                  "detail": "Navigate to the product's folder structure to create a test document.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>New Document</strong> icon.",
+                  "detail": "This opens the New Document dialog where you can select the document type and enter details.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Agenda</strong> type, set the Primary Content Source to <strong>No Content</strong>, and type <code>Agenda Team Test</code> in the Name field.",
+                  "detail": "Creating an Agenda-type document will trigger the initialization rule you just configured.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Finish</strong>.",
+                  "detail": "The Agenda document is created with the initialization rule applied.",
+                  "hint": null
+                },
+                {
+                  "action": "View the Information page for the <strong>Agenda Team Test</strong>.",
+                  "detail": "The created document has a state of <strong>In Work</strong>, the first state of the created lifecycle. Notice that the Team Template is <strong>Agenda Team</strong> and the Life Cycle Template is set to <strong>Default</strong>.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the web browser session.",
+                  "detail": "The exercise is complete. The Agenda Team template is properly assigned to the Agenda document type through the initialization rule.",
+                  "hint": null
                 }
               ]
             }
@@ -1702,47 +2015,82 @@
           "tasks": [
             {
               "id": "ex6-t1",
-              "title": "Delete the User Account",
+              "title": "Delete a User Account",
               "steps": [
                 {
-                  "action": "Sign in as site administrator",
-                  "detail": "Launch Windchill and sign in with wcadmin credentials.",
+                  "action": "Launch a browser and sign in to Windchill.",
+                  "detail": "Open a web browser and navigate to the Windchill server.",
+                  "hint": "Username: <code>wcadmin</code> / Password: <code>wcadmin</code>"
+                },
+                {
+                  "action": "From the Navigator, browse to <strong>Organizations &gt; PTC Publications &gt; Utilities</strong>.",
+                  "detail": "Navigate to the organization utilities page where participant administration tools are available.",
                   "hint": null
                 },
                 {
-                  "action": "Open Participant Administration",
-                  "detail": "Browse to Organizations > PTC Publications > Utilities and click Participant Administration.",
+                  "action": "In the Business Administration section, click the <strong>Participant Administration</strong> link.",
+                  "detail": "This opens the Participant Administration table for managing users and groups.",
                   "hint": null
                 },
                 {
-                  "action": "Find the user to delete",
-                  "detail": "Click Add participants to table, search for hlloyd, and add Lloyd Harold to the table.",
+                  "action": "Click the <strong>Add participants to the table</strong> icon.",
+                  "detail": "You need to add the user to the Participant Administration table before you can perform actions on them.",
                   "hint": null
                 },
                 {
-                  "action": "Delete the user completely",
-                  "detail": "Right-click the user and select Delete from Windchill and Windchill Directory Server. Confirm the action.",
-                  "hint": "Verify the user no longer appears in the Participant Administration table."
+                  "action": "In the Search for field, ensure that <strong>All Participants</strong> is selected.",
+                  "detail": "This ensures the search includes all participant types (users, groups, organizations).",
+                  "hint": null
+                },
+                {
+                  "action": "In the Participant Name field, type <code>hlloyd</code> and click <strong>Search</strong>.",
+                  "detail": "This searches for Harold Lloyd's user account.",
+                  "hint": null
+                },
+                {
+                  "action": "Add <strong>Lloyd Harold</strong> (<code>hlloyd</code>: Site) to the Participant List table and click <strong>OK</strong>.",
+                  "detail": "Harold Lloyd's account is now displayed in the Participant Administration table where you can manage it.",
+                  "hint": null
+                },
+                {
+                  "action": "Right-click the user and select the <strong>Delete from Windchill and Windchill Directory Server</strong> action.",
+                  "detail": "This option removes the user object from Windchill and the user entry from the directory server, providing a complete deletion.",
+                  "hint": null
+                },
+                {
+                  "action": "Confirm the action and notice that the user is no longer displayed in the table.",
+                  "detail": "The user has been completely removed from both the Windchill database and the directory server.",
+                  "hint": null
                 }
               ]
             },
             {
               "id": "ex6-t2",
-              "title": "Delete the Personal Cabinet",
+              "title": "Delete a User Personal Cabinet",
               "steps": [
                 {
-                  "action": "Navigate to Personal Cabinets Administration",
-                  "detail": "Browse to Site > Utilities and click Personal Cabinets Administration in the System Administration section.",
+                  "action": "From the Navigator, browse to <strong>Site &gt; Utilities</strong>.",
+                  "detail": "Navigate to the site-level utilities page for system administration tools.",
                   "hint": null
                 },
                 {
-                  "action": "Check for outstanding work",
-                  "detail": "Click the Checked Out Work icon for hlloyd to verify no objects are checked out.",
-                  "hint": "If objects are checked out, they must be checked in or undone before the cabinet can be deleted."
+                  "action": "In the System Administration section, click <strong>Personal Cabinets Administration</strong>.",
+                  "detail": "This opens the Personal Cabinets Administration table listing all user personal cabinets.",
+                  "hint": null
                 },
                 {
-                  "action": "Delete the Personal Cabinet",
-                  "detail": "Select the checkbox for hlloyd and click Delete. Confirm the action.",
+                  "action": "Click the <strong>Checked Out Work</strong> icon for the <code>hlloyd</code> user to determine if they have checked out objects.",
+                  "detail": "The Personal Cabinets Administration table provides a link to display all objects checked out by the deleted user and the object's Information page. The personal cabinet deletion will cancel any edits pending for a check-in. It is good to review details about the checked-out objects beforehand.",
+                  "hint": "If there are no checked out objects, close the Checked Out Work dialog."
+                },
+                {
+                  "action": "Select the checkbox for the <code>hlloyd</code> user and click <strong>Delete</strong>.",
+                  "detail": "This deletes the user's personal cabinet and all server-side workspaces.",
+                  "hint": null
+                },
+                {
+                  "action": "Confirm the action and close the Personal Cabinets Administration dialog.",
+                  "detail": "Harold Lloyd's personal cabinet has been removed. All server-side workspaces and any uploaded but unchecked-in work are permanently deleted.",
                   "hint": null
                 }
               ]
@@ -1779,22 +2127,27 @@
           "tasks": [
             {
               "id": "ex7-t1",
-              "title": "Create a Security Audit Report",
+              "title": "Create an Audit Report Query",
               "steps": [
                 {
-                  "action": "Open Security Audit Reporting",
-                  "detail": "From the Site Utilities page, select Security Audit Reporting in the Auditing Administration section.",
+                  "action": "From the Site Utilities page, select <strong>Security Audit Reporting</strong> in the Auditing Administration section.",
+                  "detail": "This opens the Security Audit Reporting tool where you can create a new auditing query.",
                   "hint": null
                 },
                 {
-                  "action": "Configure the report parameters",
-                  "detail": "Set Duration to Current Year and set Only events of type to Login.",
-                  "hint": "You can also filter by context, objects, and user for more targeted reports."
+                  "action": "Select the report parameters: set <strong>Duration</strong> to <strong>Current Year</strong> and set <strong>Only events of type</strong> to <strong>Login</strong>.",
+                  "detail": "These parameters filter the audit report to show only login events for the current year.",
+                  "hint": "You can also refine the report criteria by setting the context, objects, and user. For this exercise, retain the default parameters."
                 },
                 {
-                  "action": "Preview the report",
-                  "detail": "Click Preview to generate an HTML report showing sign-in actions from today's exercises.",
-                  "hint": "Use Generate for full CSV or XML reports."
+                  "action": "Select <strong>Preview</strong> and generate an HTML report.",
+                  "detail": "Note the sign-in actions from today's exercises in the preview report.",
+                  "hint": "You can select <strong>Generate</strong> to create a full report in CSV or XML format."
+                },
+                {
+                  "action": "Close the report.",
+                  "detail": "The security audit query is complete. The report shows all login events for the current year.",
+                  "hint": null
                 }
               ]
             },
@@ -1803,24 +2156,44 @@
               "title": "Generate a License Usage Report",
               "steps": [
                 {
-                  "action": "Navigate to License Management",
-                  "detail": "Click Site in the breadcrumb links and select License Management.",
+                  "action": "Click <strong>Site</strong> in the breadcrumb links at the top of the Security Audit Reporting page.",
+                  "detail": "You should be signed in to Windchill as <code>wcadmin</code>/<code>wcadmin</code>. This navigates back to the Site context.",
                   "hint": null
                 },
                 {
-                  "action": "Review license information",
-                  "detail": "Select the License Information tab to view licenses with their types, quantities, and expiration dates.",
-                  "hint": "Click the View information icon on any license to see profile details and members."
-                },
-                {
-                  "action": "Check license notifications",
-                  "detail": "Select the License Notifications tab to verify any pending notifications.",
+                  "action": "Select <strong>License Management</strong>.",
+                  "detail": "This opens the License Management page with tabs for License Information, License Notifications, and Reports.",
                   "hint": null
                 },
                 {
-                  "action": "Generate the license usage report",
-                  "detail": "Select the Report tab and generate the license report for the last three months. Open and review the downloaded report.",
-                  "hint": "Note the active license groups, user counts, and the Deleted Users number."
+                  "action": "Select the <strong>License Information</strong> tab.",
+                  "detail": "Note the list of licenses with their type, quantities, and expiration date.",
+                  "hint": "From the License Information, you can access the license profiles and members by clicking the View information icon for each license."
+                },
+                {
+                  "action": "Select the <strong>License Notifications</strong> tab to verify any pending notifications.",
+                  "detail": "There are no pending notifications. This tab is used to monitor license threshold alerts.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Report</strong> tab and generate the license report for the last three months.",
+                  "detail": "This generates a downloadable license usage report covering the specified time period.",
+                  "hint": null
+                },
+                {
+                  "action": "Open the licensing report that downloads.",
+                  "detail": "The report opens in a viewer or application associated with the report format.",
+                  "hint": null
+                },
+                {
+                  "action": "Notice the general information list and the Deleted Users number that appeared in the Personal Cabinet Administration utility.",
+                  "detail": "The report includes metadata about the system, including counts of deleted users.",
+                  "hint": null
+                },
+                {
+                  "action": "Notice that the report lists the active license groups, number of users in each license group, total licenses, and the number of licenses used.",
+                  "detail": "This information helps PTC Publications managers optimize the license mix and ensure compliance with purchased license counts.",
+                  "hint": null
                 }
               ]
             }
@@ -2146,7 +2519,7 @@
   "topic.stepsProgress": "{done}/{total} steps",
   "topic.doThis": "Do This",
   "topic.whyItMatters": "Why It Matters",
-  "topic.doneNextStep": "Done - Next Step",
+  "topic.doneNextStep": "Done",
   "topic.topicsComplete": "{done}/{total} topics complete",
   "topic.moduleBadge": "Module {num}",
   "topic.topics": "Topics",

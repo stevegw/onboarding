@@ -1,0 +1,116 @@
+{
+  "terms": [
+    {
+      "term": "Application Lifecycle Management (ALM)",
+      "definition": "A continuous process of managing a product from initial planning through requirements, design, development, testing, and deployment. The ALM framework in this course covers four stages: Requirements Definition, Design, Development, and Testing."
+    },
+    {
+      "term": "Association",
+      "definition": "A less formal relationship between tracker items. Any user can create an association on any item in any state, linking to any tracker item or document in any project. Descriptors include depends on, subordinate to, related to, derived from, violates, excludes, invalidates, and copy of."
+    },
+    {
+      "term": "Association Descriptor",
+      "definition": "A phrase that defines the nature of an association relationship. Available descriptors include 'depends on', 'subordinate to', 'related to', 'derived from', 'violates', 'excludes', 'invalidates', and 'copy of'. Each descriptor has a reverse phrase for the linked item."
+    },
+    {
+      "term": "Baseline",
+      "definition": "A frozen snapshot of tracker items at a specific point in time. Baselines lock requirements for review and approval before development begins. All suspected badges should be cleared before creating a baseline."
+    },
+    {
+      "term": "Customer Requirement",
+      "definition": "A high-level requirement describing what the customer needs from the product. Customer requirements are upstream items stored in the Customer Requirement Specification (CRS) tracker and decomposed into downstream system requirements."
+    },
+    {
+      "term": "Document Number",
+      "definition": "A position-based label assigned to tracker items within a view. Document numbers change depending on which tracker view is being used, so they should not be used to identify items in discussions. Use the tracker item ID instead."
+    },
+    {
+      "term": "Document View",
+      "definition": "A tracker view that displays items in a document-like hierarchy with indentation and numbering. Supports rich text editing and is ideal for reading requirements in a structured format."
+    },
+    {
+      "term": "Downstream Reference",
+      "definition": "A traceability link from a higher-level item to a more detailed item. For example, a customer requirement references downstream system requirements that specify how the customer need will be met. Changes to upstream items cause downstream items to become suspected."
+    },
+    {
+      "term": "Excel Round-Trip",
+      "definition": "A workflow for bulk editing tracker items by exporting them to Microsoft Excel, making changes in the spreadsheet, and importing the modified file back into Codebeamer. Best practice is to match items by ID during re-import."
+    },
+    {
+      "term": "Inspect All Changes",
+      "definition": "A bulk tool for clearing suspected badges across multiple tracker items. Allows filtering by upstream reference field, comparing upstream and downstream values, applying upstream values to downstream items, and clearing all suspected badges at once."
+    },
+    {
+      "term": "Kanban View",
+      "definition": "A visual board view where columns represent workflow states and tracker items appear as cards. Items can be moved between states by dragging and dropping cards between columns."
+    },
+    {
+      "term": "Lead Engineer",
+      "definition": "A user role responsible for translating high-level customer requirements into technical system requirements, evaluating feasibility and workload, and ensuring the technical solution satisfies defined requirements."
+    },
+    {
+      "term": "Library",
+      "definition": "A repository of reusable tracker items that can be copied into project trackers. When an item is copied from the Library, Codebeamer automatically creates an association with the descriptor 'was copied from' linking the new item to the original."
+    },
+    {
+      "term": "Mass Edit",
+      "definition": "A feature for changing field values on multiple tracker items simultaneously. Available in Table View by selecting multiple items and editing shared fields in bulk."
+    },
+    {
+      "term": "Parent-Child Relationship",
+      "definition": "An organizational relationship within a single tracker that creates hierarchy between items. Parent-child relationships do not drive traceability and do not trigger suspected badges when parent items change."
+    },
+    {
+      "term": "Project Manager",
+      "definition": "A user role responsible for collecting high-level customer requirements, prioritizing requirements, managing project scope, and coordinating between stakeholders and the engineering team."
+    },
+    {
+      "term": "Reference Relationship",
+      "definition": "The primary relationship type that drives traceability in Codebeamer. References link upstream and downstream items across trackers and are governed by project configuration rules. Changes to upstream references trigger suspected badges on downstream items."
+    },
+    {
+      "term": "Requirements Management Framework",
+      "definition": "A four-phase iterative process: Gather (collect stakeholder inputs), Record/Formalize (enter into Codebeamer), Trace (verify coverage and relationships), and Baseline (freeze for review). This loop ensures requirements are complete and properly linked before development."
+    },
+    {
+      "term": "Suspected Badge",
+      "definition": "A visual indicator on a downstream tracker item showing that an upstream reference has changed. A red badge means the upstream item was modified and the downstream item needs review. Clicking the badge shows which fields changed."
+    },
+    {
+      "term": "System Requirement",
+      "definition": "A technical specification that describes how a customer need will be met. System requirements are downstream of customer requirements and stored in the System Requirement Specification (SRS) tracker. They may be divided into hardware and software subcategories."
+    },
+    {
+      "term": "Table View",
+      "definition": "A spreadsheet-like grid view of tracker items with sortable and filterable columns. Supports inline editing and bulk operations including mass edit and Excel export/import."
+    },
+    {
+      "term": "Traceability",
+      "definition": "The ability to follow relationships between items across the product lifecycle. In requirements management, traceability ensures every customer requirement has downstream system requirements and no system requirement exists without upstream justification."
+    },
+    {
+      "term": "Traceability Report",
+      "definition": "A report that displays reference relationships between tracker items across multiple levels. Used to verify that every upstream requirement has sufficient downstream coverage and to identify orphan items without upstream references."
+    },
+    {
+      "term": "Tracker",
+      "definition": "A configurable container in Codebeamer that holds related items with defined fields, workflows, and permissions. In the course project, the Customer Requirement Specification (CRS) and System Requirement Specification (SRS) are the primary trackers."
+    },
+    {
+      "term": "Tracker Item",
+      "definition": "A single entry within a tracker, identified by a unique permanent ID with a tracker-specific prefix (e.g., CRS-1, SRS-5). Each item has configurable fields, a workflow state, relationships to other items, and a complete change history."
+    },
+    {
+      "term": "Upstream Reference",
+      "definition": "A traceability link from a detailed item back to the higher-level item it derives from. For example, a system requirement references the upstream customer requirement that justifies its existence."
+    },
+    {
+      "term": "User Story",
+      "definition": "A tracker item that captures a requirement from the user's perspective, typically in the format 'As a [role], I want [feature] so that [benefit]'. In the course project, user stories illustrate customer requirements but do not require upstream references."
+    },
+    {
+      "term": "Workflow",
+      "definition": "A defined set of states and transitions that control a tracker item's lifecycle. Items progress through states such as Draft, In Review, Approved, and Rejected. Status can be changed via the details panel, Kanban drag-and-drop, or mass edit."
+    }
+  ]
+}

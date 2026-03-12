@@ -54,7 +54,7 @@
   "topic.stepsProgress": "{done}/{total} étapes",
   "topic.doThis": "À faire",
   "topic.whyItMatters": "Pourquoi c'est important",
-  "topic.doneNextStep": "Terminé - Étape suivante",
+  "topic.doneNextStep": "Terminé",
   "topic.topicsComplete": "{done}/{total} sujets terminés",
   "topic.moduleBadge": "Module {num}",
   "topic.topics": "Sujets",

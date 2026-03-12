@@ -1,0 +1,591 @@
+{
+  "id": "m3",
+  "title": "Refine and Prioritize Requirements",
+  "description": "Copy tracker items using the library, edit items with Excel round-trip, define associations, and add upstream references.",
+  "topics": [
+    {
+      "id": "m3t1",
+      "title": "Association Relationships",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Associations are a flexible relationship type in Codebeamer that connect tracker items with a descriptor phrase rather than a formal reference link. Unlike references, which enforce structure and validation rules, associations provide a lightweight way to express how items relate to each other. Any user can create an association on any item in any state, making them useful for capturing informal dependencies and connections across projects."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Association Descriptor Phrases"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "depends on",
+              "back": "Indicates that one item relies on another to be completed or fulfilled. Use this when work on one requirement cannot proceed until another item is resolved or delivered."
+            },
+            {
+              "front": "subordinate to",
+              "back": "Expresses a hierarchical relationship where one item is below another in importance or scope. Use this to indicate that an item supports or is contained within a higher-level requirement."
+            },
+            {
+              "front": "derived from",
+              "back": "Shows that one item was created based on another, often when a system requirement is derived from a customer requirement. The source item provides the rationale for the derived item's existence."
+            },
+            {
+              "front": "copy of",
+              "back": "Automatically created when you copy a tracker item using the Codebeamer Library. This descriptor links the copied item back to its original source, preserving provenance across projects."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Associations vs. References"
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Aspect",
+            "Association",
+            "Reference"
+          ],
+          "rows": [
+            [
+              "Formality",
+              "Less formal — uses descriptor phrases",
+              "More formal — uses upstream/downstream direction"
+            ],
+            [
+              "Scope",
+              "Can link to any tracker item in any project",
+              "Can link to any tracker item in any project"
+            ],
+            [
+              "Who can create",
+              "Any user on any item in any state",
+              "Controlled by permissions and item state"
+            ],
+            [
+              "Suspected badges",
+              "May cause suspected badges when the linked item changes",
+              "Always causes suspected badges when the referenced item changes"
+            ],
+            [
+              "Traceability",
+              "May be traced but not always included in traceability reports",
+              "Always included in traceability reports and coverage analysis"
+            ],
+            [
+              "Validation",
+              "No formal validation rules enforced",
+              "Subject to workflow and validation constraints"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "There is no <strong>validates</strong> descriptor for associations. If one item validates another, use a formal reference relationship instead. Reference relationships provide the traceability needed to demonstrate validation coverage in compliance scenarios."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each characteristic to the correct relationship type:",
+          "pairs": [
+            {
+              "left": "Uses descriptor phrases like 'depends on' or 'derived from'",
+              "right": "Association"
+            },
+            {
+              "left": "Always included in traceability reports",
+              "right": "Reference"
+            },
+            {
+              "left": "Any user can create on any item in any state",
+              "right": "Association"
+            },
+            {
+              "left": "Subject to workflow and validation constraints",
+              "right": "Reference"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Associations are less formal relationships that use descriptor phrases such as depends on, subordinate to, derived from, and copy of",
+        "Any user can create an association on any item in any state, unlike references which are controlled by permissions",
+        "Associations may cause suspected badges and may be traced, but are not always included in traceability reports",
+        "There is no validates descriptor for associations — use formal reference relationships for validation traceability"
+      ]
+    },
+    {
+      "id": "m3t2",
+      "title": "Comments with Links",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Comments with links are the least formal relationship type in Codebeamer. By adding a comment to a tracker item, you can include a link to any other Codebeamer entity or an external internet address. While this provides a quick way to connect related information, it is important to understand that comments with links are not true relationships and are not managed by Codebeamer's relationship engine."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "How Comments with Links Work"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can add a comment to any tracker item you have access to and include a link to another Codebeamer entity (such as a tracker item, wiki page, or document) or to an external URL. The comment is stored as part of the item's history and is visible to anyone who views the item's comments. This makes it useful for capturing informal notes, referencing background material, or pointing to external resources."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Limitations"
+        },
+        {
+          "type": "paragraph",
+          "text": "Comment links are not maintained by Codebeamer's relationship engine. They do not appear in traceability reports, do not trigger suspected badges, and are not validated or updated when the target item changes. If the target of a comment link is deleted or moved, the link will break silently — Codebeamer does not notify you or clean up the broken link."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Comment links are <strong>not true relationships</strong> and can break if the target item is deleted or moved. Never rely on comment links for traceability or compliance evidence. Use references or associations for any relationship that must be maintained and traceable."
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Aspect",
+            "Reference",
+            "Association",
+            "Comment with Link"
+          ],
+          "rows": [
+            [
+              "Formality",
+              "Most formal",
+              "Less formal",
+              "Least formal"
+            ],
+            [
+              "Traceability",
+              "Full traceability and coverage analysis",
+              "May be traced",
+              "Not traced"
+            ],
+            [
+              "Suspected badges",
+              "Yes — always triggered",
+              "May be triggered",
+              "Never triggered"
+            ],
+            [
+              "Scope",
+              "Codebeamer items only",
+              "Codebeamer items only",
+              "Codebeamer items or external URLs"
+            ]
+          ]
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the relationship types from most formal to least formal:",
+          "items": [
+            "Reference",
+            "Association",
+            "Comment with Link"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Comments with links are the least formal relationship type and are not maintained by Codebeamer's relationship engine",
+        "Comment links do not appear in traceability reports and do not trigger suspected badges",
+        "If the target of a comment link is deleted, the link breaks silently with no notification",
+        "Use references or associations instead of comment links whenever traceability or reliability matters"
+      ]
+    },
+    {
+      "id": "m3t3",
+      "title": "Excel Round-Trip Editing",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Codebeamer supports a round-trip editing workflow with Microsoft Excel that allows you to export tracker items to a spreadsheet, make bulk changes offline, and re-import the updated file. This is especially useful when you need to update many items at once — changing statuses, reassigning ownership, editing descriptions, or even adding entirely new items."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Round-Trip Process"
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the Excel round-trip steps in the correct order:",
+          "items": [
+            "Export items to Excel",
+            "Edit fields in spreadsheet",
+            "Re-import into Codebeamer",
+            "Verify changes applied"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What You Can Change"
+        },
+        {
+          "type": "paragraph",
+          "text": "The Excel round-trip supports a wide range of edits. You can change field values such as <strong>Status</strong>, <strong>Assigned To</strong>, and <strong>Description</strong> for existing items. You can also add entirely new rows to create new tracker items on import. When re-importing, Codebeamer matches rows to existing items by their <strong>ID</strong> field. If an ID is present, the corresponding item is updated; if the ID column is empty, a new item is created."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Always match existing items by <strong>ID</strong> for reliable updates. Matching by Summary is available as a workaround but can produce incorrect matches if multiple items share similar names."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "<strong>LibreOffice cannot save files in a format Codebeamer can reimport.</strong> You must use Microsoft Office (Excel) for the round-trip workflow. If you open an exported file in LibreOffice and save it, the formatting will be lost and the reimport will fail."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each Excel round-trip capability to its description:",
+          "pairs": [
+            {
+              "left": "Change item status",
+              "right": "Update the Status column value for existing tracker items"
+            },
+            {
+              "left": "Add new items",
+              "right": "Insert new rows with an empty ID column to create items on import"
+            },
+            {
+              "left": "Match by ID",
+              "right": "The recommended method for linking spreadsheet rows to existing tracker items"
+            },
+            {
+              "left": "Match by Summary",
+              "right": "A workaround matching method that can produce incorrect results with similar names"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Excel round-trip workflow is export, edit, re-import, and verify — enabling bulk changes to tracker items",
+        "You can change statuses, assignments, descriptions, and add new items through the spreadsheet",
+        "Always match existing items by ID rather than Summary for reliable updates",
+        "Microsoft Office is required — LibreOffice cannot save files in a format Codebeamer can reimport"
+      ]
+    },
+    {
+      "id": "m3t4",
+      "title": "Copy Tracker Items Using the Library",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will use the Codebeamer Library to copy tracker items from another project into your working project. The library provides a drag-and-drop interface for reusing items across projects, and automatically creates a <strong>copy of</strong> association linking the new item back to its original source."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "The library feature works with any tracker type, not just user stories. You can copy requirements, test cases, tasks, or any other tracker item type between projects."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex5",
+          "title": "Copy Tracker Items Using the Library",
+          "objective": "Use the Codebeamer Library to copy user stories from another project and examine the automatically created copy-of association.",
+          "tasks": [
+            {
+              "id": "ex5-t1",
+              "title": "Add a Project to the Library",
+              "steps": [
+                {
+                  "action": "Open the Library panel from the sidebar or navigation menu.",
+                  "detail": "The Library panel provides access to tracker items from other projects. You must first add a project to the library before you can browse and copy its items.",
+                  "hint": "Look for a Library icon or link in the left sidebar."
+                },
+                {
+                  "action": "Click Add Project and select the ICCar project from the available projects list.",
+                  "detail": "Adding a project to the library makes its tracker items available for browsing and copying. You can add multiple projects to the library.",
+                  "hint": "Use the search field to find 'ICCar' if the project list is long."
+                },
+                {
+                  "action": "Expand the ICCar project in the library to browse its trackers and items.",
+                  "detail": "The library displays the project's tracker structure, allowing you to navigate to specific trackers and view their items before copying.",
+                  "hint": null
+                },
+                {
+                  "action": "Navigate to the User Stories tracker within the ICCar project in the library.",
+                  "detail": "You will copy user stories from this tracker into your current project in the next task.",
+                  "hint": "Expand the tracker list under the ICCar project to find User Stories."
+                }
+              ]
+            },
+            {
+              "id": "ex5-t2",
+              "title": "Copy User Stories from the Library",
+              "steps": [
+                {
+                  "action": "Select two or three user stories from the ICCar project's User Stories tracker in the library.",
+                  "detail": "You can select multiple items to copy at once. Choose items that are relevant to your project's requirements.",
+                  "hint": "Hold Ctrl and click to select multiple items."
+                },
+                {
+                  "action": "Drag the selected user stories from the library panel and drop them into your project's User Stories tracker.",
+                  "detail": "The drag-and-drop action copies the items into your project. Codebeamer creates new tracker items with the same field values as the originals.",
+                  "hint": "Make sure your project's tracker view is visible alongside the library panel."
+                },
+                {
+                  "action": "Confirm the copy operation when prompted and verify that the new items appear in your tracker.",
+                  "detail": "The copied items are independent from the originals — changes to the copy do not affect the source item, and vice versa.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex5-t3",
+              "title": "Examine the Copy-of Association",
+              "steps": [
+                {
+                  "action": "Open one of the copied user stories and navigate to its Associations section.",
+                  "detail": "When you copy an item using the library, Codebeamer automatically creates a copy of association linking the new item to the original source item.",
+                  "hint": "Scroll down on the item detail page to find the Associations section."
+                },
+                {
+                  "action": "Verify that a copy of association exists pointing to the original item in the ICCar project.",
+                  "detail": "The association preserves the provenance of the copied item, making it clear where the item originated. This is useful for tracking reuse across projects.",
+                  "hint": null
+                },
+                {
+                  "action": "Click on the association link to navigate to the original item in the ICCar project.",
+                  "detail": "You can follow the association in either direction — from the copy to the original, or from the original to the copy. This bidirectional navigation helps maintain awareness of item reuse.",
+                  "hint": null
+                },
+                {
+                  "action": "Optionally, edit the association's Propagate Suspects setting to control whether changes to the original item will flag your copy as suspected.",
+                  "detail": "When Propagate Suspects is enabled, changes to the original item cause a suspected badge on your copy. This is useful when you want to stay aware of changes to the source material.",
+                  "hint": "Click the edit icon on the association to access the Propagate Suspects toggle."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Codebeamer Library allows you to browse and copy tracker items from other projects using drag-and-drop",
+        "Copied items automatically receive a copy of association linking back to the original source",
+        "The library works with any tracker type, not just user stories",
+        "The Propagate Suspects setting on the association controls whether changes to the original flag the copy as suspected"
+      ]
+    },
+    {
+      "id": "m3t5",
+      "title": "Use Excel Round-Trip to Refine Items",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will use the Excel round-trip workflow to make multiple changes to tracker items at once. You will export items, examine a pre-modified Excel file with various changes, and reimport it to apply those changes in Codebeamer."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Do <strong>not</strong> alter Microsoft Office files in the VM. Use the pre-modified Excel file provided for this exercise to avoid formatting issues that could prevent reimport."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex6",
+          "title": "Use Excel Round-Trip to Refine Items",
+          "objective": "Export tracker items to Excel, examine a modified spreadsheet, and reimport it to apply bulk changes.",
+          "tasks": [
+            {
+              "id": "ex6-t1",
+              "title": "Export User Stories to Excel",
+              "steps": [
+                {
+                  "action": "Navigate to the User Stories tracker in your project.",
+                  "detail": "You will export the current tracker items to an Excel file that can be edited offline and reimported.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the round-trip export option from the tracker's export menu.",
+                  "detail": "The round-trip export creates an Excel file formatted specifically for reimport. This format includes item IDs and field mappings that Codebeamer uses to match rows back to existing items.",
+                  "hint": "Look for an Export option in the tracker toolbar or context menu. Choose the round-trip format."
+                },
+                {
+                  "action": "Save the exported Excel file to your local machine.",
+                  "detail": "This file serves as the baseline. In a real workflow, you would edit this file in Microsoft Excel before reimporting. For this exercise, you will use a pre-modified version.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex6-t2",
+              "title": "Examine the Modified Excel File",
+              "steps": [
+                {
+                  "action": "Open the pre-modified Excel file provided for this exercise.",
+                  "detail": "This file contains several types of changes that demonstrate the range of edits possible through the round-trip workflow.",
+                  "hint": null
+                },
+                {
+                  "action": "Identify the rows where the Status column has been changed.",
+                  "detail": "Changing the Status column value updates the item's workflow state on import. This is one of the most common bulk edits performed through the round-trip.",
+                  "hint": "Look for rows where the Status value differs from the original export."
+                },
+                {
+                  "action": "Identify the rows where the Assigned To column has been changed.",
+                  "detail": "Reassigning items in bulk is efficient through Excel, especially when distributing work across team members at the start of a sprint.",
+                  "hint": null
+                },
+                {
+                  "action": "Identify any new rows that have been added with an empty ID column.",
+                  "detail": "Rows with an empty ID column are treated as new items on import. The description and other fields will be used to create the new tracker item.",
+                  "hint": "New rows are typically added at the bottom of the spreadsheet."
+                }
+              ]
+            },
+            {
+              "id": "ex6-t3",
+              "title": "Import the Excel File",
+              "steps": [
+                {
+                  "action": "Navigate back to the User Stories tracker and select the import option.",
+                  "detail": "The import function reads the Excel file and matches rows to existing items by their ID. Changed fields are updated, and new rows create new items.",
+                  "hint": "Look for an Import option in the tracker toolbar."
+                },
+                {
+                  "action": "Select the pre-modified Excel file as the import source.",
+                  "detail": "Codebeamer will parse the file and prepare a preview of the changes before applying them.",
+                  "hint": null
+                },
+                {
+                  "action": "Configure the import to match existing items by Summary.",
+                  "detail": "Matching by Summary is used when the ID column is not available or has been removed. In this exercise, the pre-modified file uses Summary matching as a demonstration.",
+                  "hint": "Select Summary as the matching field in the import configuration dialog."
+                },
+                {
+                  "action": "Preview the changes and verify that status updates, reassignments, and new items are correctly identified.",
+                  "detail": "The preview screen shows what will change for each matched item and which rows will create new items. Always review this screen before confirming the import.",
+                  "hint": "Look for color-coded indicators showing modified fields and new items."
+                },
+                {
+                  "action": "Confirm the import and verify that the changes have been applied in the tracker.",
+                  "detail": "After import, browse the tracker to confirm that statuses are updated, assignments are changed, and new items have been created as expected.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The round-trip export creates an Excel file formatted specifically for reimport with item IDs and field mappings",
+        "You can change statuses, reassign items, edit descriptions, and add new items in a single import operation",
+        "Always preview changes before confirming the import to catch errors before they are applied",
+        "Matching by Summary is a workaround when IDs are unavailable but can produce incorrect matches with similar names"
+      ]
+    },
+    {
+      "id": "m3t6",
+      "title": "Add Upstream References",
+      "estimatedMinutes": 8,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create upstream references using three different methods: the traceability view, the table view, and the library. Each method is suited to different situations, and knowing all three gives you flexibility when managing requirement relationships."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex7",
+          "title": "Add Upstream References",
+          "objective": "Create upstream reference relationships using the traceability view, table view, and library drag-and-drop.",
+          "tasks": [
+            {
+              "id": "ex7-t1",
+              "title": "Use Traceability View with Upstream References",
+              "steps": [
+                {
+                  "action": "Navigate to the User Stories tracker and switch to the Traceability view.",
+                  "detail": "The traceability view displays items alongside their upstream and downstream references, making it easy to see which items lack references.",
+                  "hint": "Look for a View selector or dropdown in the tracker toolbar and choose Traceability."
+                },
+                {
+                  "action": "Identify items that do not have upstream references.",
+                  "detail": "Items without upstream references appear with an empty upstream column. These are the items you need to link to higher-level requirements.",
+                  "hint": "Look for blank cells in the upstream reference column."
+                },
+                {
+                  "action": "Add an upstream reference by clicking the reference cell and selecting the appropriate higher-level requirement.",
+                  "detail": "Adding an upstream reference from the traceability view is the fastest method when you can see both the item and its potential upstream targets in the same view.",
+                  "hint": "Click the empty upstream cell and use the search dialog to find and select the target requirement."
+                }
+              ]
+            },
+            {
+              "id": "ex7-t2",
+              "title": "Set Upstream Requirements Using Table View",
+              "steps": [
+                {
+                  "action": "Switch from the Traceability view to the Table view in the User Stories tracker.",
+                  "detail": "The table view provides a spreadsheet-like interface where you can filter, sort, and edit items in bulk, including their reference fields.",
+                  "hint": "Select Table from the View selector dropdown."
+                },
+                {
+                  "action": "Add the Upstream References column to the table view if it is not already visible.",
+                  "detail": "You may need to customize the visible columns to include the upstream reference field. This column shows existing references and allows you to add new ones.",
+                  "hint": "Use the column configuration or field chooser to add the Upstream References column."
+                },
+                {
+                  "action": "Filter the table to show only items that need upstream references.",
+                  "detail": "Filtering reduces the list to just the items you need to work on, making bulk reference assignment more efficient.",
+                  "hint": "Apply a filter on the Upstream References column to show items where the field is empty."
+                },
+                {
+                  "action": "Select the items and add upstream references to the appropriate higher-level requirements.",
+                  "detail": "In table view, you can edit the upstream reference field directly in the cell, similar to editing a spreadsheet. Select the target requirement from the search dialog.",
+                  "hint": "Click the upstream reference cell for each item and search for the target requirement."
+                }
+              ]
+            },
+            {
+              "id": "ex7-t3",
+              "title": "Set Upstream Requirements Using the Library",
+              "steps": [
+                {
+                  "action": "Open the Library panel and navigate to the project containing the upstream requirements.",
+                  "detail": "The library allows you to browse requirements from other projects and create references by dragging items from the library onto your tracker items.",
+                  "hint": "If you have not added the project to the library yet, use Add Project to include it."
+                },
+                {
+                  "action": "Locate the upstream requirements in the library that should be linked to your user stories.",
+                  "detail": "Browse the requirement trackers in the library project to find the items that serve as upstream sources for your user stories.",
+                  "hint": "Expand the project's tracker list to find the relevant requirements tracker."
+                },
+                {
+                  "action": "Drag an upstream requirement from the library and drop it onto the appropriate user story in your tracker.",
+                  "detail": "The drag-and-drop action creates a reference relationship. Unlike copying, this method links items rather than duplicating them.",
+                  "hint": "Make sure your tracker view is visible alongside the library panel for the drag-and-drop to work."
+                },
+                {
+                  "action": "Verify the upstream reference was created by checking the item's references section.",
+                  "detail": "Open the user story and confirm that the upstream reference appears in the References section. The reference should point to the requirement you dragged from the library.",
+                  "hint": "Scroll to the References section on the item detail page."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The traceability view is the fastest way to add upstream references when you can see items and targets in the same view",
+        "The table view supports bulk reference assignment with filtering and spreadsheet-like editing",
+        "The library drag-and-drop creates reference relationships rather than copies, linking items across projects",
+        "Using multiple methods for adding references gives you flexibility depending on the number and location of target items"
+      ]
+    }
+  ]
+}

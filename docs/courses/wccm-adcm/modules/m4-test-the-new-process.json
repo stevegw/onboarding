@@ -3,398 +3,608 @@
  "title": "Test the New Process",
  "description": "Verify that a custom change process functions correctly. Create change objects, follow the workflow, and validate that life cycle states progress as expected.",
  "topics": [
- {
- "id": "m4t1",
- "title": "Verifying a Custom Change Process",
- "estimatedMinutes": 6,
- "content": [
- {
- "type": "paragraph",
- "text": "After configuring a custom change process - including custom subtypes, workflows, life cycles, and object initialization rules - systematic testing is critical before deploying to production. Testing verifies that every piece of the puzzle connects correctly: the right workflow launches, tasks route to the right people, and the change object progresses through all life cycle states to completion."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Verification Checklist"
- },
- {
- "type": "comparison-table",
- "headers": [
- "Verification Item",
- "What It Validates"
- ],
- "rows": [
- [
- "Can you create the custom change object (e.g., Delta Review)?",
- "The custom subtype was created correctly in Type and Attribute Management and is available in the UI."
- ],
- [
- "Are workflow tasks assigned to the proper roles?",
- "The workflow template routes activities to the correct team roles defined in the team template."
- ],
- [
- "Do tasks appear in the correct user's My Tasks table?",
- "Group membership and role assignments are configured correctly so users see their assigned work."
- ],
- [
- "Does the correct Change Notice template appear when creating a Change Notice?",
- "Template preferences and association rules are set up properly for the custom change type."
- ],
- [
- "Does the correct task form template appear by default?",
- "Task form template preferences are configured at the appropriate context level."
- ],
- [
- "Does the workflow progress through all activities to completion?",
- "The workflow routing logic, approval gates, and conditional branches function as designed."
- ],
- [
- "Does the change object move into the final state (e.g., Resolved)?",
- "The life cycle template, OIR, and workflow are properly connected to drive the object to its terminal state."
- ]
- ]
- },
- {
- "type": "callout",
- "variant": "tip",
- "text": "For easier testing, place a single test user into all required groups and roles. In the Delta Drills scenario, Mike Jones was added to every group so that one person could walk through the entire workflow. In production, multiple team members in different roles would handle different tasks."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "The Delta Review Test Process"
- },
- {
- "type": "paragraph",
- "text": "Testing the Delta Review process means creating a real change object and following it through every workflow step. The complete test sequence is: Create a Delta Review, submit it, assign reviewers, perform the review, handle the decision gate (Yes/No routing), create a Delta Change Notice, complete the change tasks in sequence, audit the change notice, and verify both the Change Notice and Delta Review reach the <strong>Resolved</strong> state. Only when every step executes as expected is the custom process ready for deployment."
- },
- {
- "type": "interactive-sort",
- "prompt": "Arrange the steps for testing the Delta Review process in the correct order:",
- "items": [
- "Create and submit a Delta Review",
- "Assign Reviewers",
- "Perform Review",
- "Decision Required (Yes/No routing)",
- "Create Delta Change Notice",
- "Complete Change Tasks",
- "Audit Change Notice",
- "Verify Delta Review reaches Resolved state"
- ]
- }
- ],
- "keyTakeaways": [
- "Systematic testing after configuration verifies that custom subtypes, workflows, life cycles, and OIRs are all connected correctly",
- "A verification checklist should confirm object creation, task routing, template availability, workflow progression, and final state transitions",
- "Using a single test user in all roles simplifies testing by allowing one person to walk through the entire workflow",
- "The process is not ready for deployment until every step executes as expected and the change object reaches its terminal state"
- ]
- },
- {
- "id": "m4t2",
- "title": "Course Summary and Best Practices",
- "estimatedMinutes": 5,
- "content": [
- {
- "type": "paragraph",
- "text": "This course guided you through the complete journey of tailoring Windchill change management - from understanding the building blocks to planning, implementing, and testing a custom change process. The Delta Drills scenario demonstrated every major step using a real-world regulatory review requirement. As you apply these techniques in your own organization, the best practices below will help you avoid common pitfalls and build processes that scale."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Course Sections Recap"
- },
- {
- "type": "reveal-cards",
- "cards": [
- {
- "front": "Module 1: Pieces of the Puzzle",
- "back": "Identified the six change objects and six administrative elements that form the foundation of Windchill change management. Explored the OOTB five-step change process, the Fast Track vs. Full Track options, and the three Change Administrator roles."
- },
- {
- "front": "Module 2: Plan for Change",
- "back": "Created custom change objects and user-defined groups using Type and Attribute Management. Configured change management preferences, task form templates, association rules, mapping rules, and change intent to support the Delta Drills scenario."
- },
- {
- "front": "Module 3: Tailor the Change Process",
- "back": "Assessed, modified, and created workflow templates and life cycle templates. Built Object Initialization Rules to connect workflows with life cycles, ensuring the custom process launches automatically when a Delta Review is created."
- },
- {
- "front": "Module 4: Test the New Process",
- "back": "Verified the complete Delta Review process by creating a change object, following the workflow through every step, and confirming the object reaches the Resolved state. Validated that all configuration pieces work together as designed."
- }
- ]
- },
- {
- "type": "callout",
- "variant": "insight",
- "text": "The three pillars of change process configuration are <strong>Workflow</strong>, <strong>Life Cycle</strong>, and <strong>Object Initialization Rule (OIR)</strong>. The workflow defines <em>what happens</em>, the life cycle defines <em>what states the object passes through</em>, and the OIR connects them by specifying <em>which workflow launches at which state</em>. Master these three elements and you can tailor any change process."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Best Practices for Tailoring Change Management"
- },
- {
- "type": "interactive-match",
- "prompt": "Match each best practice to the rationale behind it:",
- "pairs": [
- {
- "left": "Always copy templates before modifying them",
- "right": "Preserves the original as a reference and prevents upgrade conflicts"
- },
- {
- "left": "Create and manage OIRs at the organization level",
- "right": "Ensures rules apply consistently across all contexts and products"
- },
- {
- "left": "Use the 9-step planning process before making changes",
- "right": "Prevents over-engineering by starting from actual business requirements"
- },
- {
- "left": "Test with a single user in all roles before deploying",
- "right": "Allows one person to walk through the complete workflow and catch issues early"
- }
- ]
- },
- {
- "type": "paragraph",
- "text": "Additional best practices to keep in mind: never modify original OOTB templates directly, consider turning off OOTB rules and defining custom rules when the defaults do not match your needs, and always plan for future scalability when designing custom processes. A well-planned process is far easier to maintain and extend than one built incrementally without a strategy."
- }
- ],
- "keyTakeaways": [
- "The course covered four areas: understanding building blocks, planning the change strategy, tailoring workflows and life cycles, and testing the complete process",
- "Workflow, Life Cycle, and OIR are the three pillars of change process configuration - mastering them enables you to tailor any change process",
- "Key best practices include copying templates before modifying, managing OIRs at the organization level, following the 9-step planning process, and testing thoroughly before deployment",
- "Always plan for future scalability and avoid modifying OOTB templates directly to ensure smooth upgrades"
- ]
- },
- {
- "id": "m4t3",
- "title": "Start the Delta Review Process",
- "estimatedMinutes": 8,
- "isExercise": true,
- "content": [
- {
- "type": "paragraph",
- "text": "In this exercise, you will create a Delta Review object, submit it into the workflow, and navigate through the initial tasks - from reviewer assignment through the decision gate - to reach the Change Notice creation step. This validates that the custom subtype, workflow, and task routing you configured in previous modules all function correctly."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "This exercise assumes you have completed all configuration from Modules 2 and 3, including creating the Delta Review subtype, custom groups, workflow template, life cycle template, and Object Initialization Rules. Your test user (Mike Jones) should be a member of all required groups."
- },
- {
- "type": "exercise",
- "exerciseId": "ex7",
- "title": "Start the Delta Review Process",
- "objective": "Create a Delta Review object, submit it, and navigate through the initial workflow tasks to the Change Notice creation step.",
- "tasks": [
- {
- "id": "ex7-t1",
- "title": "Create and Submit a Delta Review",
- "steps": [
- {
- "action": "Search for the \"HANDLE_SIDE_1000\" Windchill Part and access its Information page.",
- "detail": "This is the part that needs regulatory review in the Delta Drills scenario.",
- "hint": null
- },
- {
- "action": "Create a Delta Review Object from the Actions menu.",
- "detail": "The Delta Review subtype should be available because of the custom type you created in Module 2.",
- "hint": null
- },
- {
- "action": "In the Name field, type \"Testing the Delta Review Process\" and select \"Other\" in the Category field.",
- "detail": "Naming the review clearly helps with tracking during testing.",
- "hint": null
- },
- {
- "action": "Click Finish and then click Submit Now.",
- "detail": "Submit Now immediately starts the workflow rather than saving as a draft.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex7-t2",
- "title": "Complete Initial Workflow Tasks",
- "steps": [
- {
- "action": "Click the Home icon to return to the home page.",
- "detail": "Workflow tasks appear in the My Tasks table on the home page.",
- "hint": null
- },
- {
- "action": "Click \"Assign Reviewers\" in the My Tasks table and click Complete Task.",
- "detail": "This completes the reviewer assignment step of the workflow.",
- "hint": "If the link does not appear, wait a few seconds and refresh the screen."
- },
- {
- "action": "Press Ctrl+R to refresh, then click \"Perform Review\" and click Complete Task.",
- "detail": "The Perform Review activity represents the entire review process.",
- "hint": null
- },
- {
- "action": "Press Ctrl+R to refresh, then click \"Decision Required\".",
- "detail": "This is the modified approval activity where you choose Yes or No.",
- "hint": null
- },
- {
- "action": "Select the Actions/Processes tab and click Task Completion, then click Complete Task.",
- "detail": "Completing this task with the default routing moves the workflow forward.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex7-t3",
- "title": "Create Delta Change Notice",
- "steps": [
- {
- "action": "Press Ctrl+R to refresh the home screen and click \"Create Delta Change Notice\".",
- "detail": "This task appears because the workflow routing sent it to the Change Notice creation step.",
- "hint": null
- },
- {
- "action": "Click the Delta Regulation Review Workflow link next to the Process attribute.",
- "detail": "Opens the Process Manager where you can visually see the workflow progress.",
- "hint": null
- },
- {
- "action": "Verify the Create Delta Change Notice activity is green (Running) and prior activities show as Executed.",
- "detail": "Confirms the workflow has progressed correctly through all prior steps.",
- "hint": null
- },
- {
- "action": "Return to the Task tab, select Actions/Processes tab, click Actions on Subject, and select New > New Change Notice.",
- "detail": "This creates the change notice associated with the Delta Review - possible because of the association rule.",
- "hint": null
- },
- {
- "action": "Select the Propagate information checkbox and choose \"Delta Change Notice\" in the Template field, then click Next.",
- "detail": "Propagate information carries forward relevant data from the Delta Review.",
- "hint": null
- },
- {
- "action": "Click the Edit icon for the Delta Change Task, clear Review Required, set Assignee to \"Jones, Mike\", and click Finish.",
- "detail": "Configures the first change task assignment.",
- "hint": null
- },
- {
- "action": "Click the Edit icon for the Delta Regulatory Task, clear Review Required, set Assignee to \"Jones, Mike\", and click Finish.",
- "detail": "Configures the second change task assignment.",
- "hint": "You can specify task order because of the Sequenced Plan preference."
- },
- {
- "action": "Click Finish, then Submit Now, then complete the Create Delta Change Notice task.",
- "detail": "Submitting the Change Notice starts its workflow process.",
- "hint": null
- }
- ]
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Creating a real change object and submitting it is the most effective way to validate your custom configuration",
- "Workflow tasks appear in the My Tasks table and must be completed in sequence to advance the process",
- "The Process Manager provides a visual representation of workflow progress, showing which activities are running or completed",
- "Association rules and template preferences control which Change Notice templates and task configurations are available during the process"
- ]
- },
- {
- "id": "m4t4",
- "title": "Complete and Verify the Process",
- "estimatedMinutes": 6,
- "isExercise": true,
- "content": [
- {
- "type": "paragraph",
- "text": "In this exercise, you will complete the remaining change tasks, finish the audit step, and verify that both the Delta Change Notice and Delta Review reach the <strong>Resolved</strong> state. This confirms that the entire custom change process - from creation to completion - functions as designed."
- },
- {
- "type": "exercise",
- "exerciseId": "ex8",
- "title": "Complete and Verify the Process",
- "objective": "Complete the remaining change tasks, finish the workflow, and verify the Delta Review reaches the Resolved state.",
- "tasks": [
- {
- "id": "ex8-t1",
- "title": "Complete Change Tasks",
- "steps": [
- {
- "action": "Click \"Complete Change Notice Task\" next to the Delta Regulatory Task in My Tasks.",
- "detail": "The regulatory task appears first because of the sequenced plan.",
- "hint": null
- },
- {
- "action": "Click the Task Completion link and click Complete Task.",
- "detail": "Marks the regulatory task as done.",
- "hint": null
- },
- {
- "action": "Press Ctrl+R to refresh, then click \"Complete Change Notice Task\" next to the Delta Change Task.",
- "detail": "The change task becomes available after the regulatory task is completed.",
- "hint": null
- },
- {
- "action": "Click the Task Completion link and click Complete Task.",
- "detail": "Both change tasks are now complete.",
- "hint": null
- },
- {
- "action": "Press Ctrl+R to refresh, then click \"Audit Change Notice\".",
- "detail": "The audit step is the final review before the change process completes.",
- "hint": null
- },
- {
- "action": "Click the Task Completion link, ensure the \"Complete\" radio button is selected, and click Complete Task.",
- "detail": "Completing the audit with \"Complete\" selected allows the workflow to finish.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex8-t2",
- "title": "Verify the Delta Review Is Resolved",
- "steps": [
- {
- "action": "Press Ctrl+R to refresh the home screen and verify there are no new tasks.",
- "detail": "No remaining tasks indicates the workflow has completed all steps.",
- "hint": null
- },
- {
- "action": "Click the Updates link on the Home page and press Ctrl+R to refresh.",
- "detail": "The Updates section shows recently changed objects.",
- "hint": null
- },
- {
- "action": "Verify that \"Change Notice: Testing the Delta Review Process\" is listed as Resolved.",
- "detail": "The Change Notice reaching Resolved state confirms the CN workflow completed.",
- "hint": null
- },
- {
- "action": "Verify that \"Delta Review: Testing the Delta Review Process\" is listed as Resolved.",
- "detail": "The Delta Review reaching Resolved state confirms the entire process completed successfully.",
- "hint": null
- },
- {
- "action": "Open the Process Manager tab and click Refresh to verify all workflow steps show as Executed.",
- "detail": "The visual workflow view confirms every step in the process was completed in the correct order.",
- "hint": null
- }
- ]
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Change tasks execute in sequence when the Sequenced Plan preference is enabled, ensuring tasks are completed in the correct order",
- "The audit step is the final gate before the change process completes - selecting \"Complete\" allows the workflow to finish",
- "Both the Change Notice and Delta Review must reach the Resolved state to confirm the entire process completed successfully",
- "The Process Manager provides visual confirmation that every workflow step executed in the correct order"
- ]
- }
+  {
+   "id": "m4t1",
+   "title": "Verifying a Custom Change Process",
+   "estimatedMinutes": 6,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "After configuring a custom change process - including custom subtypes, workflows, life cycles, and object initialization rules - systematic testing is critical before deploying to production. Testing verifies that every piece of the puzzle connects correctly: the right workflow launches, tasks route to the right people, and the change object progresses through all life cycle states to completion."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Verification Checklist"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Verification Item",
+      "What It Validates"
+     ],
+     "rows": [
+      [
+       "Can you create the custom change object (e.g., Delta Review)?",
+       "The custom subtype was created correctly in Type and Attribute Management and is available in the UI."
+      ],
+      [
+       "Are workflow tasks assigned to the proper roles?",
+       "The workflow template routes activities to the correct team roles defined in the team template."
+      ],
+      [
+       "Do tasks appear in the correct user's My Tasks table?",
+       "Group membership and role assignments are configured correctly so users see their assigned work."
+      ],
+      [
+       "Does the correct Change Notice template appear when creating a Change Notice?",
+       "Template preferences and association rules are set up properly for the custom change type."
+      ],
+      [
+       "Does the correct task form template appear by default?",
+       "Task form template preferences are configured at the appropriate context level."
+      ],
+      [
+       "Does the workflow progress through all activities to completion?",
+       "The workflow routing logic, approval gates, and conditional branches function as designed."
+      ],
+      [
+       "Does the change object move into the final state (e.g., Resolved)?",
+       "The life cycle template, OIR, and workflow are properly connected to drive the object to its terminal state."
+      ]
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "tip",
+     "text": "For easier testing, place a single test user into all required groups and roles. In the Delta Drills scenario, Mike Jones was added to every group so that one person could walk through the entire workflow. In production, multiple team members in different roles would handle different tasks."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "The Delta Review Test Process"
+    },
+    {
+     "type": "paragraph",
+     "text": "Testing the Delta Review process means creating a real change object and following it through every workflow step. The complete test sequence is: Create a Delta Review, submit it, assign reviewers, perform the review, handle the decision gate (Yes/No routing), create a Delta Change Notice, complete the change tasks in sequence, audit the change notice, and verify both the Change Notice and Delta Review reach the <strong>Resolved</strong> state. Only when every step executes as expected is the custom process ready for deployment."
+    },
+    {
+     "type": "interactive-sort",
+     "prompt": "Arrange the steps for testing the Delta Review process in the correct order:",
+     "items": [
+      "Create and submit a Delta Review",
+      "Assign Reviewers",
+      "Perform Review",
+      "Decision Required (Yes/No routing)",
+      "Create Delta Change Notice",
+      "Complete Change Tasks",
+      "Audit Change Notice",
+      "Verify Delta Review reaches Resolved state"
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Systematic testing after configuration verifies that custom subtypes, workflows, life cycles, and OIRs are all connected correctly",
+    "A verification checklist should confirm object creation, task routing, template availability, workflow progression, and final state transitions",
+    "Using a single test user in all roles simplifies testing by allowing one person to walk through the entire workflow",
+    "The process is not ready for deployment until every step executes as expected and the change object reaches its terminal state"
+   ]
+  },
+  {
+   "id": "m4t2",
+   "title": "Course Summary and Best Practices",
+   "estimatedMinutes": 5,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "This course guided you through the complete journey of tailoring Windchill change management - from understanding the building blocks to planning, implementing, and testing a custom change process. The Delta Drills scenario demonstrated every major step using a real-world regulatory review requirement. As you apply these techniques in your own organization, the best practices below will help you avoid common pitfalls and build processes that scale."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Course Sections Recap"
+    },
+    {
+     "type": "reveal-cards",
+     "cards": [
+      {
+       "front": "Module 1: Pieces of the Puzzle",
+       "back": "Identified the six change objects and six administrative elements that form the foundation of Windchill change management. Explored the OOTB five-step change process, the Fast Track vs. Full Track options, and the three Change Administrator roles."
+      },
+      {
+       "front": "Module 2: Plan for Change",
+       "back": "Created custom change objects and user-defined groups using Type and Attribute Management. Configured change management preferences, task form templates, association rules, mapping rules, and change intent to support the Delta Drills scenario."
+      },
+      {
+       "front": "Module 3: Tailor the Change Process",
+       "back": "Assessed, modified, and created workflow templates and life cycle templates. Built Object Initialization Rules to connect workflows with life cycles, ensuring the custom process launches automatically when a Delta Review is created."
+      },
+      {
+       "front": "Module 4: Test the New Process",
+       "back": "Verified the complete Delta Review process by creating a change object, following the workflow through every step, and confirming the object reaches the Resolved state. Validated that all configuration pieces work together as designed."
+      }
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "insight",
+     "text": "The three pillars of change process configuration are <strong>Workflow</strong>, <strong>Life Cycle</strong>, and <strong>Object Initialization Rule (OIR)</strong>. The workflow defines <em>what happens</em>, the life cycle defines <em>what states the object passes through</em>, and the OIR connects them by specifying <em>which workflow launches at which state</em>. Master these three elements and you can tailor any change process."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Best Practices for Tailoring Change Management"
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each best practice to the rationale behind it:",
+     "pairs": [
+      {
+       "left": "Always copy templates before modifying them",
+       "right": "Preserves the original as a reference and prevents upgrade conflicts"
+      },
+      {
+       "left": "Create and manage OIRs at the organization level",
+       "right": "Ensures rules apply consistently across all contexts and products"
+      },
+      {
+       "left": "Use the 9-step planning process before making changes",
+       "right": "Prevents over-engineering by starting from actual business requirements"
+      },
+      {
+       "left": "Test with a single user in all roles before deploying",
+       "right": "Allows one person to walk through the complete workflow and catch issues early"
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "Additional best practices to keep in mind: never modify original OOTB templates directly, consider turning off OOTB rules and defining custom rules when the defaults do not match your needs, and always plan for future scalability when designing custom processes. A well-planned process is far easier to maintain and extend than one built incrementally without a strategy."
+    }
+   ],
+   "keyTakeaways": [
+    "The course covered four areas: understanding building blocks, planning the change strategy, tailoring workflows and life cycles, and testing the complete process",
+    "Workflow, Life Cycle, and OIR are the three pillars of change process configuration - mastering them enables you to tailor any change process",
+    "Key best practices include copying templates before modifying, managing OIRs at the organization level, following the 9-step planning process, and testing thoroughly before deployment",
+    "Always plan for future scalability and avoid modifying OOTB templates directly to ensure smooth upgrades"
+   ]
+  },
+  {
+   "id": "m4t3",
+   "title": "Start the Delta Review Process",
+   "estimatedMinutes": 12,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "In this exercise, you will create a Delta Review object, submit it into the workflow, and navigate through the initial tasks - from reviewer assignment through the decision gate - to reach the Change Notice creation step. This validates that the custom subtype, workflow, and task routing you configured in previous modules all function correctly."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "This exercise assumes you have completed all configuration from Modules 2 and 3, including creating the Delta Review subtype, custom groups, workflow template, life cycle template, and Object Initialization Rules. Your test user (Mike Jones) should be a member of all required groups."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex7",
+     "title": "Start the Delta Review Process",
+     "objective": "Create a Delta Review object, submit it, and navigate through the initial workflow tasks to the Change Notice creation step.",
+     "tasks": [
+      {
+       "id": "ex7-t1",
+       "title": "Start the Delta Review Process",
+       "steps": [
+        {
+         "action": "Search for <strong>HANDLE_SIDE_1000</strong> Windchill Part and access the Information page.",
+         "detail": "This is the part that needs regulatory review in the Delta Drills scenario.",
+         "hint": "You should be signed in to Windchill as <code>mjones/ptc</code>."
+        },
+        {
+         "action": "Create a <strong>Delta Review Object</strong>.",
+         "detail": "The Delta Review subtype should be available because of the custom type you created in Module 2.",
+         "hint": "Use the Actions menu or the New action to create the Delta Review."
+        },
+        {
+         "action": "In the <strong>Name</strong> field, type <code>Testing the Delta Review Process</code>.",
+         "detail": "A descriptive name helps identify this test instance during the verification process.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>Other</strong> in the <strong>Category</strong> field.",
+         "detail": "Categorizes the review object.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Finish</strong>.",
+         "detail": "Creates the Delta Review object with the specified name and category.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Submit Now</strong>.",
+         "detail": "Immediately submits the Delta Review into the workflow rather than saving as a draft. The Delta Regulation Review Workflow begins.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex7-t2",
+       "title": "Complete Workflow Tasks",
+       "steps": [
+        {
+         "action": "Click the <strong>Home</strong> icon.",
+         "detail": "Returns to the home page where workflow tasks appear in the My Tasks table.",
+         "hint": "You included Mike Jones in all Delta groups to make this demonstration easier. In a real-life change process, these tasks would be completed by several people."
+        },
+        {
+         "action": "Click <strong>Assign Reviewers</strong>.",
+         "detail": "Opens the Assign Reviewers task in the workflow.",
+         "hint": "If a link does not appear in the My Tasks table, wait a few seconds and refresh the screen. If a <code>ptc-training.ptc.com:8181</code> Attention dialog appears, click OK and continue."
+        },
+        {
+         "action": "Click <strong>Complete Task</strong>.",
+         "detail": "Completes the reviewer assignment step of the workflow.",
+         "hint": null
+        },
+        {
+         "action": "Press <strong>Ctrl+R</strong> to refresh the home screen.",
+         "detail": "Refreshes the My Tasks table to show the next available task.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Perform Review</strong>.",
+         "detail": "Opens the Perform Review task, which represents the entire review process.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Complete Task</strong>.",
+         "detail": "Completes the review step of the workflow.",
+         "hint": null
+        },
+        {
+         "action": "Press <strong>Ctrl+R</strong> to refresh the home screen.",
+         "detail": "Refreshes the My Tasks table to show the next available task.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Decision Required</strong>.",
+         "detail": "Opens the modified approval activity where you choose Yes or No on whether the regulation requires a change.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Actions/Processes</strong> tab.",
+         "detail": "Switches to the tab that contains workflow process actions.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Task Completion</strong>.",
+         "detail": "Opens the task completion controls.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Complete Task</strong>.",
+         "detail": "Completes the Decision Required task with the default (Yes) routing, advancing the workflow to the Change Notice creation step.",
+         "hint": null
+        },
+        {
+         "action": "Press <strong>Ctrl+R</strong> to refresh the home screen.",
+         "detail": "Refreshes the My Tasks table to show the Create Delta Change Notice task.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Create Delta Change Notice</strong>.",
+         "detail": "Opens the Create Delta Change Notice task from the My Tasks table.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Delta Regulation Review Workflow</strong> link next to the <strong>Process</strong> attribute to open the Process Manager in a new tab.",
+         "detail": "The Process Manager shows a visual representation of the workflow progress.",
+         "hint": null
+        },
+        {
+         "action": "Enlarge the upper field to see the entire workflow.",
+         "detail": "Expanding the view lets you see all workflow nodes and their status.",
+         "hint": null
+        },
+        {
+         "action": "Verify the <strong>Create Delta Change Notice</strong> activity icon is green and states that it is <strong>Running</strong>. Note that prior activities are marked as <strong>Executed</strong>.",
+         "detail": "Confirms the workflow has progressed correctly through all prior steps to the Change Notice creation point.",
+         "hint": null
+        },
+        {
+         "action": "Return to the <strong>Task</strong> web browser tab.",
+         "detail": "Switches back to the task page to continue with the workflow.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex7-t3",
+       "title": "Create Delta Change Notice",
+       "steps": [
+        {
+         "action": "Select the <strong>Actions/Processes</strong> tab.",
+         "detail": "Switches to the tab containing workflow actions.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Actions on Subject</strong>.",
+         "detail": "Opens the list of actions available for the subject object.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>New > New Change Notice</strong>.",
+         "detail": "Initiates creating a Change Notice associated with the Delta Review. This is possible because of the association rule you created in Exercise 5.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Propagate information</strong> checkbox.",
+         "detail": "Carries forward relevant data from the Delta Review to the new Change Notice.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>Delta Change Notice</strong> in the <strong>Template</strong> field.",
+         "detail": "Uses the Delta Change Notice template for creating the change notice.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Next</strong>.",
+         "detail": "Advances to the task configuration step where you assign tasks.",
+         "hint": null
+        },
+        {
+         "action": "Note that the Assignee and Reviewer have not been designated for either task.",
+         "detail": "The task assignments need to be configured manually at this point.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Edit change task</strong> icon for the <strong>Delta Change Task</strong>.",
+         "detail": "Opens the task editor for the first change task.",
+         "hint": null
+        },
+        {
+         "action": "Clear the <strong>Review Required</strong> checkbox.",
+         "detail": "Disables the review requirement for this task during testing.",
+         "hint": null
+        },
+        {
+         "action": "Type <code>Jones</code> in the <strong>Assignee</strong> field.",
+         "detail": "Begins searching for the user to assign to this task.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>Jones, Mike</strong> from the pop-up line.",
+         "detail": "Assigns Mike Jones as the task assignee.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Finish</strong>.",
+         "detail": "Saves the Delta Change Task configuration.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Edit change task</strong> icon for the <strong>Delta Regulatory Task</strong>.",
+         "detail": "Opens the task editor for the second change task.",
+         "hint": null
+        },
+        {
+         "action": "Clear the <strong>Review Required</strong> checkbox.",
+         "detail": "Disables the review requirement for this task during testing.",
+         "hint": null
+        },
+        {
+         "action": "Type <code>Jones</code> in the <strong>Assignee</strong> field.",
+         "detail": "Begins searching for the user to assign to this task.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>Jones, Mike</strong> from the pop-up line.",
+         "detail": "Assigns Mike Jones as the task assignee.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Finish</strong>.",
+         "detail": "Saves the Delta Regulatory Task configuration.",
+         "hint": "You can specify the order in which the tasks will be completed because of the preference set in Exercise 3."
+        },
+        {
+         "action": "Click <strong>Finish</strong>.",
+         "detail": "Completes the Change Notice creation wizard.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Submit Now</strong>.",
+         "detail": "Submits the Delta Change Notice into its workflow.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>Task Completion</strong> on the Delta Regulation Review Workflow – Create Delta Change Notice Task page.",
+         "detail": "Opens the task completion controls for the Create Delta Change Notice task.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Complete Task</strong>.",
+         "detail": "Completes the Create Delta Change Notice task, advancing the Delta Review workflow.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Process Manager</strong> web browser tab.",
+         "detail": "Switches to the Process Manager to verify workflow progress.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Refresh</strong>.",
+         "detail": "Refreshes the Process Manager view to show the latest workflow state.",
+         "hint": null
+        },
+        {
+         "action": "Verify the <strong>Synch on Delta Change Notice Completion</strong> robot is now green.",
+         "detail": "Confirms that the workflow has progressed past the Change Notice creation step.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Windchill – Home</strong> web browser tab.",
+         "detail": "Returns to the home page to continue with the remaining tasks.",
+         "hint": null
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Creating a real change object and submitting it is the most effective way to validate your custom configuration",
+    "Workflow tasks appear in the My Tasks table and must be completed in sequence to advance the process",
+    "The Process Manager provides a visual representation of workflow progress, showing which activities are running or completed",
+    "Association rules and template preferences control which Change Notice templates and task configurations are available during the process"
+   ]
+  },
+  {
+   "id": "m4t4",
+   "title": "Complete and Verify the Process",
+   "estimatedMinutes": 8,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "In this exercise, you will complete the remaining change tasks, finish the audit step, and verify that both the Delta Change Notice and Delta Review reach the <strong>Resolved</strong> state. This confirms that the entire custom change process - from creation to completion - functions as designed."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex8",
+     "title": "Complete and Verify the Process",
+     "objective": "Complete the remaining change tasks, finish the workflow, and verify the Delta Review reaches the Resolved state.",
+     "tasks": [
+      {
+       "id": "ex8-t1",
+       "title": "Finish Delta Review Workflow",
+       "steps": [
+        {
+         "action": "Click the <strong>Complete Change Notice Task</strong> text next to the <strong>Delta Regulatory Task</strong>.",
+         "detail": "Opens the first Change Notice task. The regulatory task appears first because of the sequenced plan.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Task Completion</strong> link.",
+         "detail": "Opens the task completion controls.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Complete Task</strong>.",
+         "detail": "Marks the Delta Regulatory Task as done.",
+         "hint": null
+        },
+        {
+         "action": "Press <strong>Ctrl+R</strong> to refresh the home screen.",
+         "detail": "Refreshes the My Tasks table to show the next available task.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Complete Change Notice Task</strong> text next to the <strong>Delta Change Task</strong>.",
+         "detail": "Opens the second Change Notice task. The change task becomes available after the regulatory task is completed.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Task Completion</strong> link.",
+         "detail": "Opens the task completion controls.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Complete Task</strong>.",
+         "detail": "Marks the Delta Change Task as done. Both change tasks are now complete.",
+         "hint": null
+        },
+        {
+         "action": "Press <strong>Ctrl+R</strong> to refresh the home screen.",
+         "detail": "Refreshes the My Tasks table to show the audit task.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Audit Change Notice</strong>.",
+         "detail": "Opens the Audit Change Notice task, which is the final review step before the change process completes.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Task Completion</strong> link.",
+         "detail": "Opens the task completion controls for the audit task.",
+         "hint": null
+        },
+        {
+         "action": "Ensure the radio button for <strong>Complete</strong> is selected.",
+         "detail": "Selecting Complete allows the workflow to finish successfully. Selecting Rework would send the process back.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Complete Task</strong>.",
+         "detail": "Completes the audit, allowing the workflow to proceed to its final state.",
+         "hint": null
+        },
+        {
+         "action": "Press <strong>Ctrl+R</strong> to refresh the home screen.",
+         "detail": "Refreshes the My Tasks table.",
+         "hint": null
+        },
+        {
+         "action": "Verify there are no new tasks.",
+         "detail": "No remaining tasks indicates the workflow has completed all steps.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex8-t2",
+       "title": "Check That Delta Review Is Resolved",
+       "steps": [
+        {
+         "action": "Click the <strong>Updates</strong> link on Mike Jones' Home page.",
+         "detail": "The Updates section shows recently changed objects and their current status.",
+         "hint": null
+        },
+        {
+         "action": "Press <strong>Ctrl+R</strong>.",
+         "detail": "Refreshes the Updates list to show the latest status of all objects.",
+         "hint": null
+        },
+        {
+         "action": "Verify that <strong>Change Notice: Testing the Delta Review Process</strong> is listed as <strong>Resolved</strong>.",
+         "detail": "The Change Notice reaching Resolved state confirms the CN workflow completed successfully.",
+         "hint": null
+        },
+        {
+         "action": "Verify that <strong>Delta Review: Testing the Delta Review Process</strong> is listed as <strong>Resolved</strong>.",
+         "detail": "The Delta Review reaching Resolved state confirms the entire custom process completed successfully.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Process Manager</strong> web browser tab.",
+         "detail": "Switches to the Process Manager for a visual verification of the workflow.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Refresh</strong>.",
+         "detail": "Refreshes the Process Manager to show the final workflow state.",
+         "hint": null
+        },
+        {
+         "action": "Note that all steps in the upper Resolve branch after the <strong>Synch on Delta Change Notice Completion</strong> robot have been executed.",
+         "detail": "Confirms that every step in the workflow was completed in the correct order.",
+         "hint": null
+        },
+        {
+         "action": "Close the <strong>Process Manager</strong> tab.",
+         "detail": "Closes the Process Manager. The verification is complete – the Delta Drills custom change process is functioning as designed.",
+         "hint": null
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Change tasks execute in sequence when the Sequenced Plan preference is enabled, ensuring tasks are completed in the correct order",
+    "The audit step is the final gate before the change process completes - selecting \"Complete\" allows the workflow to finish",
+    "Both the Change Notice and Delta Review must reach the Resolved state to confirm the entire process completed successfully",
+    "The Process Manager provides visual confirmation that every workflow step executed in the correct order"
+   ]
+  }
  ]
 }

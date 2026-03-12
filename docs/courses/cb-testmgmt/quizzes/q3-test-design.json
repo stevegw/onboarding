@@ -1,0 +1,71 @@
+{
+  "moduleId": "m3",
+  "title": "Test Design Knowledge Check",
+  "questions": [
+    {
+      "id": "m3-kc-001",
+      "question": "What is the benefit of creating a test case directly from a requirement?",
+      "options": [
+        "It automatically generates test steps from the requirement text",
+        "It automatically populates the Verifies field with the traceability link",
+        "It skips the approval workflow for the test case",
+        "It creates a test run at the same time as the test case"
+      ],
+      "answerIndex": 1,
+      "rationale": "Creating a test case as a downstream reference from a requirement automatically populates the Verifies field, establishing the traceability link without manual configuration. It does not generate steps, skip approval, or create test runs automatically.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-002",
+      "question": "What happens when a test step uses the ${paramName} syntax?",
+      "options": [
+        "The step is skipped during execution",
+        "Codebeamer creates separate test case instances for each parameter value during execution",
+        "The parameter value is permanently hardcoded into the step",
+        "The test case is automatically marked as critical"
+      ],
+      "answerIndex": 1,
+      "rationale": "Parameters with ${paramName} syntax reference values from the test case's parameter table. During a test run, Codebeamer creates separate test case instances for each parameter row, allowing multiple input/output combinations to be tested from a single test case definition.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-003",
+      "question": "What does a suspected badge indicate in Codebeamer?",
+      "options": [
+        "The item has a bug reported against it",
+        "The item's upstream reference has changed and it may need review",
+        "The item has not been approved by the test lead",
+        "The item is scheduled for deletion"
+      ],
+      "answerIndex": 1,
+      "rationale": "A suspected badge appears when an upstream reference changes, indicating the downstream item may be outdated and needs review. For example, if a requirement changes after a test case was written for it, the test case becomes suspect because it may no longer accurately validate the updated requirement.",
+      "topic": "m3t2"
+    },
+    {
+      "id": "m3-kc-004",
+      "question": "Which of the following is NOT a method for creating test cases in Codebeamer?",
+      "options": [
+        "Create from the test case tracker page",
+        "Create as a downstream reference from a requirement",
+        "Import from an Excel file",
+        "Automatically generate from test run results"
+      ],
+      "answerIndex": 3,
+      "rationale": "Test cases can be created from the tracker page, from requirements (downstream reference), by importing from Excel, or by reusing templates from a library. Test cases cannot be automatically generated from test run results — test runs execute existing test cases, they don't create new ones.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-005",
+      "question": "What is the role of the Critical flag on a test step?",
+      "options": [
+        "It highlights the step in red for visual emphasis",
+        "It requires two testers to verify the step",
+        "It stops the entire test if that step fails",
+        "It sends an email notification when the step is executed"
+      ],
+      "answerIndex": 2,
+      "rationale": "The Critical flag on a test step means that if the step fails during execution, the entire test stops at that step. This prevents further steps from executing when a critical validation has already failed, ensuring that critical failures are immediately addressed.",
+      "topic": "m3t1"
+    }
+  ]
+}

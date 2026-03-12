@@ -512,23 +512,33 @@
                   "hint": null
                 },
                 {
-                  "action": "Navigate to the CAD Document Management $metadata URL",
+                  "action": "Navigate to <code>http://ptc-training.ptc.com:8181/Windchill/servlet/odata/CADDocumentMgmt/$metadata</code>",
                   "detail": "The URL follows the OData pattern: <code>/Windchill/servlet/odata/&lt;domain&gt;/$metadata</code>. For CAD documents, the domain identifier is <code>CADDocumentMgmt</code>.",
-                  "hint": "The full URL is <code>/Windchill/servlet/odata/CADDocumentMgmt/$metadata</code> - prepend your server's host and port."
+                  "hint": "You can paste this URL from <code>W:\\WCEC-REST-Lab-Files\\WCEC-REST-Copy-Text.txt</code>."
                 },
                 {
-                  "action": "Sign in to Windchill when prompted",
-                  "detail": "Authentication is required to access WRS endpoints, even for metadata requests. Enter your Windchill credentials when the login dialog appears.",
-                  "hint": null
+                  "action": "Sign in to Windchill",
+                  "detail": "Authentication is required to access WRS endpoints, even for metadata requests.",
+                  "hint": "Username: <strong>isaha</strong>, Password: <strong>ptc</strong>"
                 },
                 {
-                  "action": "Locate the EntityType Name='CADStructure' definition",
+                  "action": "Locate the <code>&lt;EntityType Name=\"CADStructure\"&gt;</code> definition",
                   "detail": "The metadata XML lists all entity types in the domain. Each <code>EntityType</code> element defines the structural and navigation properties available for that entity type.",
                   "hint": "Use your browser's find function (Ctrl+F or Cmd+F) and search for <strong>CADStructure</strong> to jump directly to the definition."
                 },
                 {
-                  "action": "Review the Property Name and NavigationProperty Name values",
-                  "detail": "Structural <code>Property</code> elements define data fields such as Name and Number. <code>NavigationProperty</code> elements define relationships to other entities such as CAD Documents and Components.",
+                  "action": "Notice the listed Property Name values in the definition",
+                  "detail": "This is just one example of the structural properties for CAD Structures in Windchill that you could request using the REST API.",
+                  "hint": null
+                },
+                {
+                  "action": "Notice the NavigationProperty Name values in the CADStructure definition",
+                  "detail": "These listed values define the relationships to other domain entities like CAD Documents and Component collections.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the browser",
+                  "detail": "You have completed the metadata review for this exercise.",
                   "hint": null
                 }
               ]
@@ -938,7 +948,7 @@
     {
       "id": "m2t5",
       "title": "Exercise - Expose the API Catalog and Query Parts",
-      "estimatedMinutes": 10,
+      "estimatedMinutes": 15,
       "isExercise": true,
       "content": [
         {
@@ -961,39 +971,94 @@
               "title": "Set the Client Customization Preference",
               "steps": [
                 {
-                  "action": "Sign in to Windchill as a site administrator.",
-                  "detail": "Only site administrators can modify site-level preferences that control API Catalog visibility.",
+                  "action": "Open a web browser and select the Windchill bookmark",
+                  "detail": "You will need site administrator access to set the preference.",
                   "hint": null
                 },
                 {
-                  "action": "Navigate to Site > Utilities > Preference Management.",
-                  "detail": "The Client Customization preference controls whether the API Catalog link appears in the Windchill Navigator.",
-                  "hint": "Use the Browse link to navigate the site utilities."
+                  "action": "Click Sign In",
+                  "detail": "The Sign In link is on the Windchill home page.",
+                  "hint": null
                 },
                 {
-                  "action": "Set the Client Customization preference value to Yes.",
+                  "action": "Sign in to Windchill as a site administrator",
+                  "detail": "Only site administrators can modify site-level preferences that control API Catalog visibility.",
+                  "hint": "Username: <strong>wcadmin</strong>, Password: <strong>wcadmin</strong>"
+                },
+                {
+                  "action": "Click the Browse link",
+                  "detail": "The Browse link opens the site navigation tree.",
+                  "hint": null
+                },
+                {
+                  "action": "Browse to Site > Utilities > Preference Management",
+                  "detail": "The Client Customization preference is located under the Preference Management utility.",
+                  "hint": null
+                },
+                {
+                  "action": "Expand the Client Customization category",
+                  "detail": "This category contains the preference that controls whether the API Catalog link appears in the Windchill Navigator.",
+                  "hint": null
+                },
+                {
+                  "action": "Right-click the Client Customization preference and set the preference value to <strong>Yes</strong>",
                   "detail": "This makes the API Catalog and documentation visible to all Windchill users. There is no additional access control for the catalog.",
-                  "hint": "Right-click the preference to change its value."
+                  "hint": null
+                },
+                {
+                  "action": "Click OK and close the web browser",
+                  "detail": "The preference change takes effect immediately.",
+                  "hint": null
                 }
               ]
             },
             {
               "id": "ex2-t2",
-              "title": "Access the API Catalog",
+              "title": "Access the Documentation and API Catalog",
               "steps": [
                 {
-                  "action": "Sign in to Windchill as a non-administrative user.",
-                  "detail": "The API Catalog should now be visible to any user since the preference was enabled.",
+                  "action": "Open a browser and select the Windchill bookmark",
+                  "detail": "You will now sign in as a non-administrative user to verify the API Catalog is visible.",
                   "hint": null
                 },
                 {
-                  "action": "Click the Customization icon and select the OData REST APIs link.",
-                  "detail": "The Customization icon appears in the Navigator after the preference is set. You may need to refresh the browser.",
-                  "hint": "Look for the Documentation link first, then the OData REST APIs link in the API section."
+                  "action": "Sign in to Windchill",
+                  "detail": "The API Catalog should now be visible to any user since the preference was enabled.",
+                  "hint": "Username: <strong>achen</strong>, Password: <strong>ptc</strong>"
                 },
                 {
-                  "action": "Select a domain, choose the latest API Version, and execute a GET endpoint.",
-                  "detail": "Expanding a service endpoint shows the method, parameters, and a Try it out button. The response body returns JSON data matching your request.",
+                  "action": "Click the Browse link",
+                  "detail": "The Browse link opens the site navigation tree.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the Customization icon",
+                  "detail": "The Customization icon appears in the Navigator after the preference is set.",
+                  "hint": "You may need to refresh the browser to see this icon."
+                },
+                {
+                  "action": "Select the Documentation link",
+                  "detail": "The Documentation section provides access to WRS reference material and API documentation.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the OData REST APIs link in the API section",
+                  "detail": "This opens the WRS API Catalog showing all available domains and service endpoints.",
+                  "hint": null
+                },
+                {
+                  "action": "In the WRS tab, notice the list of available Windchill domains on the left side",
+                  "detail": "The left pane displays all available WRS domains, such as PTC Product Management and PTC Document Management.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the PTC Supplier Management Domain and notice the documentation in the right pane",
+                  "detail": "Each domain includes documentation describing its available entity sets and service endpoints.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the latest API Version of the PTC Supplier Management Domain and notice the list of available service endpoints",
+                  "detail": "WRS supports API versioning. The version selector lets you choose which API version to browse.",
                   "hint": null
                 }
               ]
@@ -1003,18 +1068,59 @@
               "title": "Get Parts with Query Options",
               "steps": [
                 {
-                  "action": "Browse to PTC Product Management Domain and select the latest API Version.",
+                  "action": "In the WRS browser tab, browse to PTC Product Management Domain > API Version 7",
                   "detail": "The Product Management domain contains entity sets for Parts, BOMs, and related product data.",
                   "hint": null
                 },
                 {
-                  "action": "Expand the GET /Parts endpoint and enter query parameters: <code>$select=Name,Number</code>, <code>$filter=startswith(Name,'engine')</code>, <code>$top=10</code>, <code>$orderby=Number</code>, <code>$expand=UsedBy</code>.",
-                  "detail": "These parameters filter parts whose names start with 'engine', return only Name and Number properties, limit results to 10 sorted by Number, and expand the UsedBy navigation property to include related data.",
+                  "action": "Scroll to the GET /Parts (Get Parts) service endpoint and expand it",
+                  "detail": "The endpoint appears immediately after the /ManufacturerParts endpoints.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Try it out</strong>",
+                  "detail": "The Try it out button enables the input fields for the endpoint parameters.",
+                  "hint": null
+                },
+                {
+                  "action": "Type the parameters: <code>$select: Name,Number</code>, <code>$filter: startswith(Name,'engine')</code>, <code>$top: 10</code>, <code>$skip: 5</code>, <code>$orderby: Number</code>, <code>$expand: UsedBy</code>",
+                  "detail": "These parameters filter parts whose names start with 'engine', return only Name and Number, limit results to 10, skip the first 5, sort by Number, and expand the UsedBy navigation property.",
                   "hint": "Type parameters exactly as shown - query parameters are case-sensitive."
                 },
                 {
-                  "action": "Execute the request and review the response body, status code, and headers.",
-                  "detail": "A 200 status code confirms success. The response body contains JSON with matching parts. The Curl request and Request URL can be copied for use in other clients.",
+                  "action": "Execute the request",
+                  "detail": "The catalog sends the request to the WRS server and displays the response.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex2-t4",
+              "title": "Review the Response",
+              "steps": [
+                {
+                  "action": "Review the responses and request information",
+                  "detail": "The Curl request can be copied and pasted in the cURL command line interface. The Request URL can be copied and used in another client or in a web interface. The Response body contains all the information in your system that meets the request. The code <strong>200</strong> is the status code meaning the request was successful. Response headers contain the parameters of how to interpret the request.",
+                  "hint": null
+                },
+                {
+                  "action": "Review the Response body and name:value pairs of the object ID, Name, and Number for each WTPart",
+                  "detail": "Each part in the response includes its object identifier, Name, and Number properties as specified by the <code>$select</code> parameter.",
+                  "hint": null
+                },
+                {
+                  "action": "Scroll to the Code/Description area and notice the media type is <code>application/json</code>",
+                  "detail": "WRS responses use JSON as the data format.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Responses Description, click Schema and expand the <code>PTC.ProdMgmt.Part</code> entity properties",
+                  "detail": "The Schema section documents all available properties for the Part entity type.",
+                  "hint": null
+                },
+                {
+                  "action": "Expand any <code>PTC.EnumType</code> schema description in the list",
+                  "detail": "Enum types define the valid values for enumerated properties such as State and Source.",
                   "hint": null
                 }
               ]
@@ -1031,7 +1137,7 @@
     {
       "id": "m2t6",
       "title": "Exercise - Read and Review Responses in Postman",
-      "estimatedMinutes": 8,
+      "estimatedMinutes": 12,
       "isExercise": true,
       "content": [
         {
@@ -1046,37 +1152,104 @@
           "tasks": [
             {
               "id": "ex3-t1",
-              "title": "Set Up the Request in Postman",
+              "title": "Copy the URL from the API Catalog",
               "steps": [
                 {
-                  "action": "Copy the Request URL from the previous API Catalog exercise.",
-                  "detail": "The API Catalog generates the complete URL including all query parameters. You can reuse this URL in any REST client without retyping the parameters.",
+                  "action": "Return to the WRS API Catalog browser tab and the Get Parts service endpoint",
+                  "detail": "The API Catalog generates a complete URL including all query parameters from the previous exercise.",
                   "hint": null
                 },
                 {
-                  "action": "Create a new request in Postman, set the method to GET, and paste the URL.",
-                  "detail": "Postman automatically populates the Params tab with query options extracted from the URL. Notice the encoding syntax in the URL, keys, and values.",
+                  "action": "Copy the Request URL listed in the endpoint from the previous exercise",
+                  "detail": "You can reuse this URL in any REST client without retyping the parameters.",
                   "hint": null
-                },
-                {
-                  "action": "Set Basic Auth credentials and add a Content-Type header of <code>application/json</code>.",
-                  "detail": "Authorization is required for all WRS requests. The Content-Type header tells the server to expect and return JSON data.",
-                  "hint": "In the Authorization tab, select Basic Auth as the Type, then enter your Windchill username and password."
                 }
               ]
             },
             {
               "id": "ex3-t2",
-              "title": "Execute and Compare",
+              "title": "Set the URL in Postman",
               "steps": [
                 {
-                  "action": "Send the request and verify the 200 status code.",
-                  "detail": "The response in Postman should be identical to the response generated in the API Catalog for the same request.",
+                  "action": "Launch Postman from the desktop",
+                  "detail": "Postman provides full control over HTTP method, URL, headers, authorization, and body.",
                   "hint": null
                 },
                 {
-                  "action": "Review the response in the Body pane and compare it to the API Catalog response.",
-                  "detail": "Postman provides additional options for formatting, searching, and saving responses that are not available in the API Catalog. Saved requests can be organized into collections for repeatable testing workflows.",
+                  "action": "In the Untitled Request tab, ensure the method is set to <strong>GET</strong>",
+                  "detail": "GET is the correct method for reading data from WRS.",
+                  "hint": null
+                },
+                {
+                  "action": "Paste the URL from the previous task in the address bar and remove any trailing spaces",
+                  "detail": "Postman automatically populates the Params tab with query options extracted from the URL.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Params tab, notice the query options are automatically populated",
+                  "detail": "The URL, keys, and values contain encoding syntax. Postman decodes these for display in the Params tab.",
+                  "hint": null
+                },
+                {
+                  "action": "Notice that the URL, keys, and values contain encoding syntax",
+                  "detail": "Percent-encoding is used for special characters: <code>%24</code> = <code>$</code>, <code>%27</code> = apostrophe, <code>%20</code> = space.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex3-t3",
+              "title": "Set the Headers",
+              "steps": [
+                {
+                  "action": "Select the Authorization tab",
+                  "detail": "Authorization is required for all WRS requests.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Basic Auth</strong> as the Type",
+                  "detail": "Basic Auth sends the username and password encoded in the Authorization header.",
+                  "hint": null
+                },
+                {
+                  "action": "Authorize the following user",
+                  "detail": "Use the credentials for Anna Chen.",
+                  "hint": "Username: <strong>achen</strong>, Password: <strong>ptc</strong>"
+                },
+                {
+                  "action": "Select the Headers tab",
+                  "detail": "Headers carry metadata about the request format and authorization.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Key column, type <code>Content-Type</code>",
+                  "detail": "The Content-Type header tells the server to expect and return JSON data.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Value column, type <code>json</code> and select <code>application/json</code> from the list",
+                  "detail": "Postman provides autocomplete for common header values.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex3-t4",
+              "title": "Execute the Request",
+              "steps": [
+                {
+                  "action": "Send the request",
+                  "detail": "Postman sends the GET request to the WRS server with the specified headers and authorization.",
+                  "hint": null
+                },
+                {
+                  "action": "Verify the 200 status code in the response",
+                  "detail": "A 200 status code confirms the request was processed successfully.",
+                  "hint": null
+                },
+                {
+                  "action": "Review the response in the Body pane and compare it to the API Catalog response",
+                  "detail": "The response should be identical to the one returned by the API Catalog. Postman provides additional options for formatting, searching, and saving responses.",
                   "hint": null
                 }
               ]
@@ -1397,7 +1570,7 @@
     {
       "id": "m3t5",
       "title": "Exercise - Fetch a Nonce Token and Get Object IDs",
-      "estimatedMinutes": 10,
+      "estimatedMinutes": 12,
       "isExercise": true,
       "content": [
         {
@@ -1417,43 +1590,109 @@
           "tasks": [
             {
               "id": "ex4-t1",
-              "title": "Fetch a Nonce Token",
+              "title": "Set the URL and Authorization in Postman",
               "steps": [
                 {
-                  "action": "In Postman, create a new request with method GET and URL for GetCSRFToken()",
-                  "detail": "The GetCSRFToken() function is in the PTC Common domain. The URL follows the pattern <code>/servlet/odata/PTC/GetCSRFToken()</code>.",
+                  "action": "In Postman, click the <strong>+</strong> icon to create an Untitled Request",
+                  "detail": "Each request in Postman is created in a new tab.",
                   "hint": null
                 },
                 {
-                  "action": "Set Basic Auth credentials in the Authorization tab",
-                  "detail": "The nonce token is bound to the authenticated user. Different users may have different permissions for subsequent write requests.",
+                  "action": "Set the HTTP method to <strong>GET</strong>",
+                  "detail": "The GetCSRFToken() function is a read operation that returns a nonce value.",
                   "hint": null
                 },
                 {
-                  "action": "Send the request, verify a 200 status, and copy the NonceValue from the response body",
-                  "detail": "Save the nonce value in a text file or environment variable - you will need it for POST, PATCH, and DELETE requests in the exercises that follow. The nonce expires after 24 hours.",
-                  "hint": "Copy only the value between the quotation marks, not the quotes themselves"
+                  "action": "Set the URL to <code>http://ptc-training.ptc.com:8181/Windchill/servlet/odata/PTC/GetCSRFToken()</code>",
+                  "detail": "The GetCSRFToken() function is in the PTC Common domain.",
+                  "hint": "You can paste this URL from <code>W:\\WCEC-REST-Lab-Files\\WCEC-REST-Copy-Text.txt</code>."
+                },
+                {
+                  "action": "In the Authorization tab, set the Type to <strong>Basic Auth</strong>",
+                  "detail": "The nonce token is bound to the authenticated user.",
+                  "hint": null
+                },
+                {
+                  "action": "Authorize the following user",
+                  "detail": "Different users may have different permissions for subsequent write requests.",
+                  "hint": "Username: <strong>isaha</strong>, Password: <strong>ptc</strong>"
                 }
               ]
             },
             {
               "id": "ex4-t2",
-              "title": "Get a Part Object ID",
+              "title": "Execute the Request and Save the Value",
               "steps": [
                 {
-                  "action": "Create a new GET request with query parameters to filter and select specific parts",
-                  "detail": "Use <code>$select</code> to return only Name and View, and <code>$filter</code> with <code>startswith</code> to narrow results. Include a View filter to get the correct object reference for your use case.",
+                  "action": "Send the request",
+                  "detail": "Postman sends the GET request to fetch the CSRF nonce token.",
                   "hint": null
                 },
                 {
-                  "action": "Set Basic Auth credentials and send the request",
-                  "detail": "The response returns matching parts with their object identifiers (OIDs) in the ID property.",
+                  "action": "Verify the return status is <strong>200</strong>",
+                  "detail": "A 200 status code confirms the nonce was successfully generated.",
                   "hint": null
                 },
                 {
-                  "action": "In the response, locate the object ID value in the ID field",
+                  "action": "In the response body, copy the NonceValue that appears between the quotation marks into a Notepad file",
+                  "detail": "You will need this value for later exercises. The nonce expires after 24 hours.",
+                  "hint": "Copy only the value between the quotation marks, not the quotes themselves."
+                },
+                {
+                  "action": "Do not close the Postman tab",
+                  "detail": "You will return to Postman for the next task.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex4-t3",
+              "title": "Get Parts in Postman",
+              "steps": [
+                {
+                  "action": "In Postman, click the <strong>+</strong> icon to create a new Untitled Request",
+                  "detail": "You will query the Product Management domain for a specific part.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the method to <strong>GET</strong>",
+                  "detail": "GET is the correct method for reading data from WRS.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the URL to <code>http://ptc-training.ptc.com:8181/Windchill/servlet/odata/ProdMgmt/Parts?%24select=Name,View&amp;%24filter=startswith(Name%2C'Grandma') and View eq 'Manufacturing'&amp;%24count=false</code>",
+                  "detail": "This URL filters for the Grandma Pie part in the Manufacturing view and returns only the Name and View properties.",
+                  "hint": "You can paste this URL from <code>W:\\WCEC-REST-Lab-Files\\WCEC-REST-Copy-Text.txt</code>."
+                },
+                {
+                  "action": "Select the Params tab and notice the query parameters for <code>$select</code>, <code>$filter</code>, <code>$count</code>, and their respective values",
+                  "detail": "Postman decodes the percent-encoded URL and displays the parameters in a readable format.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Authorization tab, set the Type to <strong>Basic Auth</strong>",
+                  "detail": "Authorization is required for all WRS requests.",
+                  "hint": null
+                },
+                {
+                  "action": "Authorize the user",
+                  "detail": "Use the same credentials as the nonce request.",
+                  "hint": "Username: <strong>isaha</strong>, Password: <strong>ptc</strong>"
+                },
+                {
+                  "action": "Send the request",
+                  "detail": "The request retrieves parts matching the filter criteria.",
+                  "hint": null
+                },
+                {
+                  "action": "Examine the request for a <strong>200</strong> status code",
+                  "detail": "A 200 status confirms the query was successful.",
+                  "hint": null
+                },
+                {
+                  "action": "In the response, locate the object ID value",
                   "detail": "The ID value follows the <code>OR:&lt;class&gt;:&lt;key&gt;</code> format. You will use this OID in subsequent requests to identify the specific part.",
-                  "hint": "Look for the ID property in the response JSON - it starts with <code>OR:wt.part.WTPart:</code>"
+                  "hint": "You do not need to copy this value - you will use it from the lab files in later exercises."
                 }
               ]
             }
@@ -1470,7 +1709,7 @@
     {
       "id": "m3t6",
       "title": "Exercise - Retrieve a Part Structure and Visualize",
-      "estimatedMinutes": 12,
+      "estimatedMinutes": 15,
       "isExercise": true,
       "content": [
         {
@@ -1490,37 +1729,110 @@
           "tasks": [
             {
               "id": "ex5-t1",
-              "title": "Retrieve the Part Structure",
+              "title": "Set the URL in Postman",
               "steps": [
                 {
-                  "action": "Create a new POST request targeting the GetPartStructure function on a specific part",
-                  "detail": "The URL includes the part OID and the GetPartStructure function with <code>$expand</code> to include Components, Part details, and PartUse data at all levels.",
-                  "hint": "The URL pattern is <code>/ProdMgmt/Parts('&lt;OID&gt;')/PTC.ProdMgmt.GetPartStructure?$expand=Components($expand=Part($select=Name,Number),PartUse;$levels=max)</code>"
-                },
-                {
-                  "action": "Set Basic Auth, add CSRF_NONCE header with your saved nonce value, and set Content-Type to application/json",
-                  "detail": "POST requests require both the CSRF_NONCE header and Content-Type header in addition to authorization. Add these in the Headers tab.",
+                  "action": "In Postman, create a new request tab",
+                  "detail": "You will build a POST request to retrieve the part structure.",
                   "hint": null
                 },
                 {
-                  "action": "Send the request and examine the Components hierarchy in the response body",
-                  "detail": "The response contains a nested hierarchy of child parts with their properties, including PartUse quantities and units. Each level of Components may contain further nested Components.",
+                  "action": "Set the method to <strong>POST</strong>",
+                  "detail": "GetPartStructure is a function that performs a server-side operation and requires a POST method.",
                   "hint": null
+                },
+                {
+                  "action": "Set the URL to <code>http://ptc-training.ptc.com:8181/Windchill/servlet/odata/ProdMgmt/Parts('OR:wt.part.WTPart:1519303')/PTC.ProdMgmt.GetPartStructure?$expand=Components($expand=Part($select=Name,Number),PartUse;$levels=max)</code>",
+                  "detail": "The URL targets the specific part by OID and appends the GetPartStructure function. The <code>$expand</code> parameter retrieves Components, Part details, and PartUse data at all levels.",
+                  "hint": "You can paste this URL from <code>W:\\WCEC-REST-Lab-Files\\WCEC-REST-Copy-Text.txt</code>."
                 }
               ]
             },
             {
               "id": "ex5-t2",
-              "title": "Add a Postman Visualizer Test",
+              "title": "Set the Headers",
               "steps": [
                 {
-                  "action": "In the Tests tab, add a Handlebars template script to visualize the response as an HTML table",
-                  "detail": "The template uses <code>{{#each response.Components}}</code> to iterate over parts and <code>{{PartUse.Quantity}}</code> to extract values. Use <code>pm.visualizer.set()</code> to render the template.",
-                  "hint": "Use <code>pm.response.json()</code> to pass the parsed response to the template as the data object"
+                  "action": "In the Authorization tab, set the Type to <strong>Basic Auth</strong>",
+                  "detail": "Authorization is required for all WRS requests.",
+                  "hint": null
                 },
                 {
-                  "action": "Send the request again and click the Visualize tab in the response pane",
-                  "detail": "The Visualizer renders the Handlebars template as an HTML table showing part names, numbers, quantities, and units in a human-readable format.",
+                  "action": "Authorize the following user",
+                  "detail": "Use the same credentials as previous exercises.",
+                  "hint": "Username: <strong>isaha</strong>, Password: <strong>ptc</strong>"
+                },
+                {
+                  "action": "Select the Headers tab",
+                  "detail": "POST requests require both the CSRF_NONCE and Content-Type headers in addition to authorization.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the following keys and values: <code>CSRF_NONCE</code> = [the nonce value you copied and stored earlier], <code>Content-Type</code> = <code>application/json</code>",
+                  "detail": "The CSRF_NONCE header prevents cross-site request forgery attacks. The Content-Type header tells the server to expect JSON.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex5-t3",
+              "title": "Execute the Request",
+              "steps": [
+                {
+                  "action": "Send the request",
+                  "detail": "Postman sends the POST request to retrieve the part structure.",
+                  "hint": null
+                },
+                {
+                  "action": "Verify the return status is successful",
+                  "detail": "A 200 status code confirms the part structure was retrieved.",
+                  "hint": null
+                },
+                {
+                  "action": "Examine the response body and locate the Components hierarchy",
+                  "detail": "Notice the child parts and properties. Each level of Components may contain further nested Components with their Part details and PartUse quantities.",
+                  "hint": null
+                },
+                {
+                  "action": "Do not close the request tab in Postman",
+                  "detail": "You will add a Visualizer test to this request in the next task.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex5-t4",
+              "title": "Add a Test in Postman",
+              "steps": [
+                {
+                  "action": "In the GetPartStructure request, select the <strong>Tests</strong> tab",
+                  "detail": "The Tests tab allows you to add scripts that run after a response is received.",
+                  "hint": null
+                },
+                {
+                  "action": "Paste the Handlebars template code in line 1 of the script field",
+                  "detail": "The template uses HTML table styling and Handlebars syntax (<code>{{#each response.Components}}</code>) to iterate over components and display PartName, PartNumber, Quantity, and Unit values.",
+                  "hint": "You can paste this code from <code>W:\\WCEC-REST-Lab-Files\\WCEC-REST-Copy-Text.txt</code>. The template uses <code>pm.visualizer.set(template, { response: pm.response.json() })</code> to render the data."
+                }
+              ]
+            },
+            {
+              "id": "ex5-t5",
+              "title": "Validate Response",
+              "steps": [
+                {
+                  "action": "Send the request",
+                  "detail": "Post-response tests must be executed again to apply the Visualizer template.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Response pane, click <strong>Visualize</strong>",
+                  "detail": "The Visualize tab renders the Handlebars template as formatted HTML.",
+                  "hint": null
+                },
+                {
+                  "action": "Notice the table layout of the Grandma Pie product, including the Name, Number, Quantity in ounces, and the Unit Value",
+                  "detail": "The Visualizer renders the JSON response as a human-readable table showing each ingredient and its quantity.",
                   "hint": null
                 }
               ]
@@ -1538,7 +1850,7 @@
     {
       "id": "m3t7",
       "title": "Exercise - Retrieve a Process Plan and Change Life Cycle State",
-      "estimatedMinutes": 12,
+      "estimatedMinutes": 20,
       "isExercise": true,
       "content": [
         {
@@ -1558,47 +1870,274 @@
           "tasks": [
             {
               "id": "ex6-t1",
-              "title": "Retrieve a Process Plan",
+              "title": "Set the URL for the Process Plan in Postman",
               "steps": [
                 {
-                  "action": "Create a GET request targeting ProcessPlans with OperationUsageLinks expanded and ordered by OperationLabel",
-                  "detail": "The Manufacturing Process Management domain provides process plan entities. The URL expands Operation navigation properties and orders results by their label.",
+                  "action": "In Postman, create a new Untitled Request",
+                  "detail": "You will retrieve a process plan from the Manufacturing Process Management domain.",
                   "hint": null
                 },
                 {
-                  "action": "Set Basic Auth credentials and send the request",
-                  "detail": "If you receive a 403 error, the authenticated user does not have the necessary access permissions. Try authenticating as a different user with the required permissions.",
-                  "hint": "Access control rules from the Policy Administrator apply to WRS requests just as they do in the Windchill UI"
+                  "action": "Set the HTTP method to <strong>GET</strong>",
+                  "detail": "Retrieving process plan data is a read operation.",
+                  "hint": null
                 },
                 {
-                  "action": "Examine the response body and note the operation sequence",
-                  "detail": "The operations are listed in order by their OperationLabel. Each operation includes properties from the Manufacturing Process Management domain, such as type and sequence number.",
-                  "hint": null
+                  "action": "Set the URL to <code>http://ptc-training.ptc.com:8181/Windchill/servlet/odata/MfgProcMgmt/ProcessPlans('OR:com.ptc.windchill.mpml.processplan.MPMProcessPlan:1519760')/OperationUsageLinks?$expand=Operation&amp;$orderby=OperationLabel</code>",
+                  "detail": "The URL targets a specific process plan by OID and expands the Operation navigation property, ordered by OperationLabel.",
+                  "hint": "You can paste this URL from W:\\WCEC-REST-Lab-Files\\WCEC-REST-Copy-Text.txt."
                 }
               ]
             },
             {
               "id": "ex6-t2",
-              "title": "Change a Life Cycle State",
+              "title": "Set the Headers and Execute",
               "steps": [
                 {
-                  "action": "In a browser, navigate to the part's Information page and observe the current and available life cycle states",
-                  "detail": "Life cycle states must already exist in Windchill. The SetState action can only transition to valid target states defined in the object's lifecycle template.",
+                  "action": "In the Authorization tab, set the Type to <strong>Basic Auth</strong>",
+                  "detail": "Authorization is required for all WRS requests.",
                   "hint": null
                 },
                 {
-                  "action": "Create a POST request targeting the SetState function on the part, with CSRF_NONCE and Content-Type headers",
-                  "detail": "The URL pattern is <code>/ProdMgmt/Parts('&lt;OID&gt;')/PTC.ProdMgmt.SetState</code>. This is a POST action that modifies the object's state.",
+                  "action": "Authorize the following user",
+                  "detail": "Use Irene Saha's credentials.",
+                  "hint": "Username: <strong>isaha</strong>, Password: <strong>ptc</strong>"
+                },
+                {
+                  "action": "Send the request",
+                  "detail": "The request retrieves the process plan operations.",
                   "hint": null
                 },
                 {
-                  "action": "In the Body tab, select raw and enter the JSON for the target state",
-                  "detail": "The body must contain the State property with both Display and Value keys, such as <code>{\"State\": {\"Display\": \"Released\", \"Value\": \"RELEASED\"}}</code>.",
-                  "hint": "Select the raw radio button and ensure the format dropdown is set to JSON"
+                  "action": "Verify the return status code",
+                  "detail": "Check whether the request returned a success or error status.",
+                  "hint": null
                 },
                 {
-                  "action": "Send the request, verify 200 OK status, and check the State property in the response",
-                  "detail": "A successful state change returns the updated object with the new life cycle state. Refresh the Windchill browser to confirm the change is reflected in the UI.",
+                  "action": "Examine the message in the Body pane",
+                  "detail": "If you receive a 403 Forbidden error, the user does not have the necessary authorization. WRS enforces the same access control rules as the Windchill UI.",
+                  "hint": null
+                },
+                {
+                  "action": "Do not close the request tab",
+                  "detail": "You will modify this request in the next task.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex6-t3",
+              "title": "Request the Process Plan as an Authorized User",
+              "steps": [
+                {
+                  "action": "Return to the request tab with the secured action error",
+                  "detail": "If you closed the tab, create a new untitled request and set the method to GET with the same URL.",
+                  "hint": "You can paste the URL from W:\\WCEC-REST-Lab-Files\\WCEC-REST-Copy-Text.txt."
+                },
+                {
+                  "action": "In the Authorization tab, change the username to <strong>cprentiss</strong>",
+                  "detail": "Chris Prentiss has the required permissions to access the process plan.",
+                  "hint": "Password remains: <strong>ptc</strong>"
+                },
+                {
+                  "action": "Send the request",
+                  "detail": "The request should now succeed with the authorized user.",
+                  "hint": null
+                },
+                {
+                  "action": "Verify the return status code",
+                  "detail": "A 200 status confirms the process plan was retrieved successfully.",
+                  "hint": null
+                },
+                {
+                  "action": "Examine the response and note that the operations are listed in order",
+                  "detail": "The operations are sorted by OperationLabel as specified in the $orderby parameter.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex6-t4",
+              "title": "Observe the Life Cycle States of the Grandma Pie",
+              "steps": [
+                {
+                  "action": "Launch a browser and click the Windchill bookmark",
+                  "detail": "You will verify the current life cycle state before making a change via REST.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Sign In",
+                  "detail": "Sign in to the Windchill UI.",
+                  "hint": null
+                },
+                {
+                  "action": "Sign in to Windchill",
+                  "detail": "Use Chris Prentiss's credentials since this user has the required permissions.",
+                  "hint": "Username: <strong>cprentiss</strong>, Password: <strong>ptc</strong>"
+                },
+                {
+                  "action": "Navigate to the Information page for the PZ-004, GRANDMA PIE part",
+                  "detail": "You need to observe the current state before changing it via REST.",
+                  "hint": null
+                },
+                {
+                  "action": "Observe the current and available states in the life cycle",
+                  "detail": "Note which state the part is currently in and which target states are available for transition.",
+                  "hint": null
+                },
+                {
+                  "action": "Do not close the browser",
+                  "detail": "You will return to the browser to verify the state change after the REST request.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex6-t5",
+              "title": "Fetch a Nonce Value for the User (Optional)",
+              "steps": [
+                {
+                  "action": "In Postman, click the + icon to create an untitled request or go to the tab with the GET request from a previous exercise",
+                  "detail": "You need a fresh nonce for the cprentiss user to perform the SetState action.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the method to <strong>GET</strong>",
+                  "detail": "GetCSRFToken() is a read operation.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the URL to <code>http://ptc-training.ptc.com:8181/Windchill/servlet/odata/PTC/GetCSRFToken()</code>",
+                  "detail": "The GetCSRFToken() function returns a nonce bound to the authenticated user.",
+                  "hint": "You can paste this URL from W:\\WCEC-REST-Lab-Files\\WCEC-REST-Copy-Text.txt."
+                },
+                {
+                  "action": "In the Authorization tab, set the Type to <strong>Basic Auth</strong>",
+                  "detail": "The nonce must be fetched for the user who will perform the write operation.",
+                  "hint": null
+                },
+                {
+                  "action": "Type <strong>cprentiss/ptc</strong> to authorize the user",
+                  "detail": "The nonce is bound to this user's session.",
+                  "hint": null
+                },
+                {
+                  "action": "Send the request",
+                  "detail": "Fetch the nonce token.",
+                  "hint": null
+                },
+                {
+                  "action": "Verify the return status is <strong>200</strong>",
+                  "detail": "A 200 status confirms the nonce was generated.",
+                  "hint": null
+                },
+                {
+                  "action": "Examine the response body",
+                  "detail": "The response contains the NonceKey and NonceValue.",
+                  "hint": null
+                },
+                {
+                  "action": "Copy the Nonce Value that appears between the quotation marks",
+                  "detail": "Save this value for the SetState request in the next task.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex6-t6",
+              "title": "Set the URL in Postman for SetState",
+              "steps": [
+                {
+                  "action": "Create a new request",
+                  "detail": "You will build a POST request to change the life cycle state.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the method to <strong>POST</strong>",
+                  "detail": "SetState is an action that modifies the object's state and requires POST.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the URL to <code>http://ptc-training.ptc.com:8181/Windchill/servlet/odata/ProdMgmt/Parts('OR:wt.part.WTPart:1519303')/PTC.ProdMgmt.SetState</code>",
+                  "detail": "The URL targets the specific part by OID and appends the SetState action.",
+                  "hint": "You can paste this URL from W:\\WCEC-REST-Lab-Files\\WCEC-REST-Copy-Text.txt."
+                }
+              ]
+            },
+            {
+              "id": "ex6-t7",
+              "title": "Set the Headers for SetState",
+              "steps": [
+                {
+                  "action": "In the Authorization tab, set the Type to <strong>Basic Auth</strong>",
+                  "detail": "Authorize as the user with permission to change life cycle states.",
+                  "hint": null
+                },
+                {
+                  "action": "Type <strong>cprentiss/ptc</strong> to authorize the user",
+                  "detail": "Chris Prentiss has the required permissions for this action.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the Headers tab",
+                  "detail": "POST requests require additional headers.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the following keys and values: <code>CSRF_NONCE</code> = [the nonce value you copied earlier], <code>Content-Type</code> = <code>application/json</code>",
+                  "detail": "The CSRF_NONCE header validates the write operation. Content-Type tells the server to expect JSON.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex6-t8",
+              "title": "Set the Request Body",
+              "steps": [
+                {
+                  "action": "Select the Body tab",
+                  "detail": "The SetState action requires a JSON body specifying the target state.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>raw</strong> radio button",
+                  "detail": "Raw input allows you to type the JSON body directly.",
+                  "hint": null
+                },
+                {
+                  "action": "Type the following code: <code>{\"State\": {\"Display\": \"Released\", \"Value\": \"RELEASED\"}}</code>",
+                  "detail": "The body specifies the target life cycle state using both the Display name and the internal Value.",
+                  "hint": "You can paste this body code from W:\\WCEC-REST-Lab-Files\\WCEC-REST-Copy-Text.txt."
+                },
+                {
+                  "action": "Send the request",
+                  "detail": "The POST request executes the SetState action on the part.",
+                  "hint": null
+                },
+                {
+                  "action": "Verify the return status is <strong>200 OK</strong>",
+                  "detail": "A 200 status confirms the life cycle state was changed successfully.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex6-t9",
+              "title": "Observe the Data Change",
+              "steps": [
+                {
+                  "action": "In the response body, locate the State property and observe the value",
+                  "detail": "The updated object shows the new life cycle state in the response.",
+                  "hint": null
+                },
+                {
+                  "action": "Return to the browser",
+                  "detail": "You will verify the state change in the Windchill UI.",
+                  "hint": null
+                },
+                {
+                  "action": "Refresh the Information page for the PZ-004, GRANDMA PIE part and notice the life cycle change",
+                  "detail": "The part should now show the Released state, confirming the REST request successfully modified the object.",
                   "hint": null
                 }
               ]
@@ -1932,7 +2471,7 @@
     {
       "id": "m4t5",
       "title": "Exercise - Create Multiple Parts",
-      "estimatedMinutes": 8,
+      "estimatedMinutes": 12,
       "isExercise": true,
       "content": [
         {
@@ -1952,42 +2491,105 @@
           "tasks": [
             {
               "id": "ex7-t1",
-              "title": "Set Up the Multi-Object Request",
+              "title": "Set the URL in Postman",
               "steps": [
                 {
-                  "action": "In Postman, create a new request with method POST targeting the CreateParts endpoint.",
-                  "detail": "The CreateParts multi-object endpoint is in the Product Management domain. The URL is <code>/servlet/odata/ProdMgmt/CreateParts</code>.",
+                  "action": "In Postman, create a new request",
+                  "detail": "You will use the CreateParts multi-object endpoint to create two parts in a single request.",
                   "hint": null
                 },
                 {
-                  "action": "Set Basic Auth credentials, add a <code>CSRF_NONCE</code> header with a valid nonce value, and set <code>Content-Type</code> to <code>application/json</code>.",
-                  "detail": "Multi-object endpoints modify data and therefore require both the <code>CSRF_NONCE</code> header and the <code>Content-Type</code> header in addition to authentication.",
-                  "hint": "If your nonce has expired, fetch a new one using the GetCSRFToken() function endpoint before proceeding."
+                  "action": "Set the method to <strong>POST</strong>",
+                  "detail": "CreateParts is a write operation that creates new Windchill objects.",
+                  "hint": null
                 },
                 {
-                  "action": "In the Body tab, select raw and enter the JSON array containing attributes for both new parts.",
-                  "detail": "The body includes properties for each part: Name, Number, context/container, folder location, and any required attributes. All values are specified as JSON key/value pairs within a JSON array - one object per part.",
-                  "hint": "Ensure the JSON body is valid - use a JSON validator if the syntax is unclear."
+                  "action": "Set the URL to <code>http://ptc-training.ptc.com:8181/Windchill/servlet/odata/ProdMgmt/CreateParts</code>",
+                  "detail": "The CreateParts endpoint is in the Product Management domain.",
+                  "hint": "You can paste this URL from W:\\WCEC-REST-Lab-Files\\WCEC-REST-Copy-Text.txt."
                 }
               ]
             },
             {
               "id": "ex7-t2",
-              "title": "Execute and Verify",
+              "title": "Set the Headers",
               "steps": [
                 {
-                  "action": "Send the request and confirm a successful status code.",
-                  "detail": "A <code>201 Created</code> or <code>200 OK</code> status confirms the parts were created. The response body contains the full attribute details of both newly created objects.",
+                  "action": "In the Authorization tab, set the Type to <strong>Basic Auth</strong>",
+                  "detail": "Authorization is required for all WRS requests.",
                   "hint": null
                 },
                 {
-                  "action": "In the response JSON, locate the <code>FolderLocation</code> property to verify the product context and subfolder.",
-                  "detail": "The FolderLocation value confirms that the parts were created in the correct product context and folder, matching the values provided in the request body.",
+                  "action": "Type <strong>cprentiss/ptc</strong> to authorize the user",
+                  "detail": "Chris Prentiss has the required permissions to create parts.",
                   "hint": null
                 },
                 {
-                  "action": "In a browser, navigate to the product in Windchill and locate the two new parts in the appropriate folder.",
-                  "detail": "The parts should appear in the same folder specified in the request body. This confirms that the REST request successfully created the objects in Windchill and that the data is consistent with the API response.",
+                  "action": "Select the Headers tab",
+                  "detail": "POST requests require additional headers.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the following keys and values: <code>CSRF_NONCE</code> = [the nonce value you copied earlier, or fetch a new nonce], <code>Content-Type</code> = <code>application/json</code>",
+                  "detail": "The CSRF_NONCE header validates the write operation. If your nonce has expired, fetch a new one using GetCSRFToken().",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex7-t3",
+              "title": "Set the Request Body",
+              "steps": [
+                {
+                  "action": "Click the Body tab",
+                  "detail": "The CreateParts endpoint requires a JSON body containing the attributes for both new parts.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>raw</strong> radio button",
+                  "detail": "Raw input allows you to paste the JSON body directly.",
+                  "hint": null
+                },
+                {
+                  "action": "Paste the request body for this exercise from <code>W:\\WCEC-REST-Lab-Files\\WCEC-REST-Copy-Text.txt</code> into Line 1 of the Body field in Postman",
+                  "detail": "The body includes a JSON array with properties for each part: Name, Number, context/container, folder location, and any required attributes. All values are specified as JSON key/value pairs.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex7-t4",
+              "title": "Execute the Request",
+              "steps": [
+                {
+                  "action": "Send the request and confirm the status code",
+                  "detail": "A 201 Created or 200 OK status confirms the parts were created. The response body contains the full attribute details of both newly created objects.",
+                  "hint": null
+                },
+                {
+                  "action": "Parse the JSON for FolderLocation and notice the product/subfolder name",
+                  "detail": "The FolderLocation value confirms that the parts were created in the correct product context and folder.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex7-t5",
+              "title": "View Results in Windchill",
+              "steps": [
+                {
+                  "action": "In a browser, navigate to the Pizza product",
+                  "detail": "You should still be signed in to Windchill as cprentiss/ptc.",
+                  "hint": null
+                },
+                {
+                  "action": "Locate the two new Windchill parts in the Engineering folder",
+                  "detail": "The parts should appear in the same folder specified in the request body, confirming the REST request successfully created the objects.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the web browser",
+                  "detail": "You have completed the exercise.",
                   "hint": null
                 }
               ]
@@ -2314,7 +2916,7 @@
   "topic.stepsProgress": "{done}/{total} steps",
   "topic.doThis": "Do This",
   "topic.whyItMatters": "Why It Matters",
-  "topic.doneNextStep": "Done - Next Step",
+  "topic.doneNextStep": "Done",
   "topic.topicsComplete": "{done}/{total} topics complete",
   "topic.moduleBadge": "Module {num}",
   "topic.topics": "Topics",

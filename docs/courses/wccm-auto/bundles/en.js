@@ -572,23 +572,58 @@
               "title": "Import the Life Cycle",
               "steps": [
                 {
-                  "action": "Sign in to Windchill as bpatterson with password ptc.",
-                  "detail": "You need the bpatterson account because it has the necessary permissions to administer life cycle templates in the PTC Publications context.",
+                  "action": "Open a browser and click the Windchill bookmark.",
+                  "detail": "This launches the Windchill web client where you will configure life cycle templates.",
                   "hint": null
                 },
                 {
-                  "action": "Navigate to PTC Publications > Utilities > Life Cycle Template Administration.",
-                  "detail": "The Life Cycle Template Administration utility is the central tool for creating, importing, exporting, and managing life cycle templates.",
-                  "hint": "Use the product context navigation to find the Utilities section."
+                  "action": "Click <strong>Sign In</strong>.",
+                  "detail": "You must authenticate before accessing administrative utilities.",
+                  "hint": null
                 },
                 {
-                  "action": "Import the Plan Development Life Cycle template.",
+                  "action": "Sign in to Windchill with username <strong>bpatterson</strong> and password <strong>ptc</strong>.",
+                  "detail": "The bpatterson account has the necessary permissions to administer life cycle templates in the PTC Publications context.",
+                  "hint": "Do not save the password when prompted."
+                },
+                {
+                  "action": "Browse to <strong>Organizations > PTC Publications > Utilities</strong>.",
+                  "detail": "The Utilities section contains administrative tools for configuring templates and rules within this organization.",
+                  "hint": "You can also browse to the Templates link and select the Life Cycle Templates view."
+                },
+                {
+                  "action": "Select the <strong>Life Cycle Template Administration</strong> link.",
+                  "detail": "The Life Cycle Template Administration utility is the central tool for creating, importing, exporting, and managing life cycle templates.",
+                  "hint": null
+                },
+                {
+                  "action": "Import <code>W:\\WCCM-AUTO-Lab-Files\\Plan Development Life Cycle - INITIAL.zip</code>.",
                   "detail": "Importing a predefined template gives you a starting point that you will customize with additional states and transitions.",
                   "hint": "Look for an Import button or action in the administration toolbar."
                 },
                 {
-                  "action": "Open the imported life cycle in the editor and review its existing states and properties. Confirm the Type is set to Basic.",
-                  "detail": "Before making changes, verify that the template was imported correctly and understand the baseline configuration - including which states and transitions already exist.",
+                  "action": "Locate the <strong>Plan Development Life Cycle</strong> in the Life Cycle Templates table.",
+                  "detail": "Verify the template appears in the table after import, confirming the import was successful.",
+                  "hint": null
+                },
+                {
+                  "action": "Hover over the Plan Development Life Cycle <strong>Type icon</strong> and identify the type of life cycle.",
+                  "detail": "The icon tooltip reveals whether the life cycle is Basic or Advanced. This template should be a Basic life cycle.",
+                  "hint": null
+                },
+                {
+                  "action": "Right-click the <strong>Plan Development Life Cycle</strong> and select <strong>Edit</strong> to open the life cycle editor.",
+                  "detail": "Editing a life cycle automatically checks it out. Windchill keeps the history of life cycle editions by creating iterations.",
+                  "hint": null
+                },
+                {
+                  "action": "In the phase diagram, review the defined states.",
+                  "detail": "Before making changes, understand the baseline configuration — note which states and transitions already exist.",
+                  "hint": null
+                },
+                {
+                  "action": "Review the life cycle properties: <strong>Type</strong> (Basic), <strong>Description</strong>, and <strong>Class</strong>.",
+                  "detail": "The Object Class enables the association of a life cycle with an object type. The object initialization rules override this setup, so it is recommended to keep the default value <code>wt.fc.WTObject</code>.",
                   "hint": null
                 }
               ]
@@ -598,12 +633,17 @@
               "title": "Add Two Phases",
               "steps": [
                 {
-                  "action": "Click the New Phase icon and select the Rework state.",
-                  "detail": "The Rework state will allow objects to cycle back for revision when issues are found during review.",
-                  "hint": "The New Phase icon is typically in the life cycle editor toolbar."
+                  "action": "Click the <strong>New Phase</strong> icon.",
+                  "detail": "The New Phase icon is in the life cycle editor toolbar and inserts a new phase in the diagram area.",
+                  "hint": null
                 },
                 {
-                  "action": "Click the New Phase icon again and select the Under Review state.",
+                  "action": "From the State menu, select the <strong>Rework</strong> state from the list of predefined states.",
+                  "detail": "The Rework state will allow objects to cycle back for revision when issues are found during review.",
+                  "hint": "Once the menu is expanded, start typing the state name to avoid scrolling."
+                },
+                {
+                  "action": "Add a second new phase and select the <strong>Under Review</strong> state.",
                   "detail": "Under Review serves as a gate where objects are locked from modification while stakeholders evaluate them.",
                   "hint": null
                 }
@@ -611,32 +651,73 @@
             },
             {
               "id": "ex1-t3",
-              "title": "Reorder States and Define Transitions",
+              "title": "Reorder Life Cycle States and Define Transitions for the Creation State",
               "steps": [
                 {
-                  "action": "Drag the Rework state to position it after Creation in the state sequence.",
+                  "action": "Drag the <strong>Rework</strong> state to follow the <strong>Creation</strong> state.",
                   "detail": "State order in the editor reflects the expected flow of the business process. Rework logically follows Creation because objects may need rework before advancing further.",
-                  "hint": "Click and drag the state box in the graphical editor."
+                  "hint": "If you encounter an issue, cancel the changes and edit the life cycle again."
                 },
                 {
-                  "action": "Drag the Under Review state to position it after Rework.",
+                  "action": "Drag the <strong>Under Review</strong> state to follow the <strong>Rework</strong> state.",
                   "detail": "Under Review is an interim evaluation state before Release, so it belongs between Rework and Released.",
                   "hint": null
                 },
                 {
-                  "action": "Define transitions for the Creation state: Set State to Rework, Lock to Under Review. Verify the existing Promote to Released transition.",
-                  "detail": "These transitions allow objects in Creation to be sent back for rework, moved into review, or promoted directly to Released.",
-                  "hint": "Select the Creation state and use the transition configuration panel to add each transition type."
-                },
-                {
-                  "action": "Define transitions for the Rework state: Revise and Set State to Creation, Lock to Under Review, and Promote to Released.",
-                  "detail": "Rework objects can return to Creation for a fresh start (via Revise or Set State), move to Under Review for evaluation, or advance directly to Released if rework is complete.",
+                  "action": "In the phase diagram, select <strong>Creation</strong>.",
+                  "detail": "Selecting a state displays its transition configuration in the Transitions tab below.",
                   "hint": null
                 },
                 {
-                  "action": "Click Save & Close, then check in the life cycle template.",
-                  "detail": "Saving and checking in makes the template available for use. The completed life cycle should have five states: Creation, Rework, Under Review, Released, and Obsolete.",
+                  "action": "In the Transitions tab, select the <strong>Rework</strong> checkbox in the <strong>Set State</strong> row.",
+                  "detail": "This enables a Set State transition from Creation to Rework, allowing objects to be sent back for rework.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Lock</strong> checkbox in the <strong>Under Review</strong> row.",
+                  "detail": "This enables a Lock transition from Creation to Under Review, moving objects into a locked review state.",
+                  "hint": null
+                },
+                {
+                  "action": "Note the <strong>Released</strong> checkbox in the <strong>Promote</strong> row is already selected.",
+                  "detail": "This existing Promote transition allows objects in Creation to be promoted directly to Released.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex1-t4",
+              "title": "Define Transitions for the Rework State",
+              "steps": [
+                {
+                  "action": "In the phase diagram, select <strong>Rework</strong>.",
+                  "detail": "Selecting the Rework state displays its transition configuration options.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Creation</strong> checkbox in the <strong>Revise</strong> and <strong>Set State</strong> rows.",
+                  "detail": "Rework objects can return to Creation for a fresh start via Revise (creating a new version) or Set State (directly changing state).",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Under Review</strong> checkbox in the <strong>Lock</strong> row.",
+                  "detail": "This allows objects in Rework to be locked and moved into Under Review for evaluation.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Released</strong> checkbox in the <strong>Promote</strong> row.",
+                  "detail": "This allows reworked objects to be promoted directly to Released if rework is complete.",
+                  "hint": "Refer to the exercise introduction graphic for additional help."
+                },
+                {
+                  "action": "Click <strong>Save & Close</strong>.",
+                  "detail": "Saving preserves all the state and transition changes you made to the life cycle template.",
                   "hint": "Review the state diagram one final time before saving to confirm all transitions are correct."
+                },
+                {
+                  "action": "Check in the life cycle template to make it available for use.",
+                  "detail": "Checking in makes the template available. The completed life cycle should have five states: Creation, Rework, Under Review, Released, and Obsolete.",
+                  "hint": null
                 }
               ]
             }
@@ -984,34 +1065,54 @@
               "title": "Import an Object Initialization Rule",
               "steps": [
                 {
-                  "action": "Open the PlanDevelopmentOIR.xml file in a text editor such as Notepad++.",
+                  "action": "In Notepad++, open <code>W:\\WCCM-AUTO-Lab-Files\\PlanDevelopmentOIR.xml</code>.",
                   "detail": "Review the XML structure to identify the object type (Plan subtype) and the life cycle and team template names specified in the rule.",
-                  "hint": "Look for the type attribute and the life cycle template name in the XML elements."
+                  "hint": "Note the Plan subtype listed on the first line."
                 },
                 {
-                  "action": "In Windchill, navigate to the PTC Publications organization.",
+                  "action": "Close Notepad++.",
+                  "detail": "You have confirmed the OIR content and are ready to import it into Windchill.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Windchill breadcrumb navigation, select <strong>PTC Publications</strong>.",
                   "detail": "OIRs are configured at the organization level so they apply to all products and libraries within that organization.",
                   "hint": null
                 },
                 {
-                  "action": "Open the Object Initialization Rules Administration utility.",
+                  "action": "Select <strong>Object Initialization Rules Administration</strong>.",
                   "detail": "This utility allows you to create, import, and manage OIRs that control how new objects are initialized with life cycle and team templates.",
-                  "hint": "Access the utility from the organization's administration tools or utilities menu."
+                  "hint": null
                 },
                 {
-                  "action": "Create a new OIR named 'Development Plan'.",
+                  "action": "Click the <strong>New Object Initialization Rule</strong> icon.",
+                  "detail": "This creates a new OIR entry where you will specify the object type and import the XML configuration.",
+                  "hint": null
+                },
+                {
+                  "action": "Type <strong>Development Plan</strong> in the Name field.",
                   "detail": "The name should clearly describe the purpose of the rule so administrators can identify it later.",
                   "hint": null
                 },
                 {
-                  "action": "Set the Type to Plan using the Find dialog to locate the correct subtype.",
-                  "detail": "The Type field specifies which object type or subtype this OIR applies to. Using the Find dialog ensures you select the exact Plan subtype.",
-                  "hint": "Click the search icon next to the Type field and search for 'Plan' in the type hierarchy."
+                  "action": "In the Type field, click <strong>Find</strong>.",
+                  "detail": "The Find dialog lets you search the object type hierarchy to select the exact type or subtype this OIR applies to.",
+                  "hint": null
                 },
                 {
-                  "action": "Import the PlanDevelopmentOIR.xml file into the OIR.",
+                  "action": "In the Object Type list, select the <strong>Plan</strong> radio button and click <strong>OK</strong>.",
+                  "detail": "Selecting Plan ensures this OIR applies specifically to Plan document subtypes.",
+                  "hint": null
+                },
+                {
+                  "action": "In the XML File field, click <strong>Choose File</strong>.",
+                  "detail": "You will browse to the OIR XML file that contains the life cycle and team template assignments.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <code>W:\\WCCM-AUTO-Lab-Files\\PlanDevelopmentOIR.xml</code> in the file dialog and click <strong>Open</strong>, then <strong>OK</strong>.",
                   "detail": "Importing the XML file populates the life cycle template and team template assignments defined in the file.",
-                  "hint": "Use the Import button or action and browse to the location of the XML file."
+                  "hint": null
                 }
               ]
             },
@@ -1020,32 +1121,32 @@
               "title": "Validate the Combined Life Cycle and OIR",
               "steps": [
                 {
-                  "action": "Navigate to the PTC New Publication Template product and open the Folders view.",
+                  "action": "From the Navigator, browse to <strong>Recent Products > PTC New Publication Template > Folders</strong>.",
                   "detail": "You will create a test document in this product context to verify that the OIR correctly assigns the Plan Development Life Cycle.",
                   "hint": null
                 },
                 {
-                  "action": "Create a new document with Type set to Plan, Primary Content Source set to No Content, and Name set to 'Test Plan Doc'.",
+                  "action": "Create a new document with Type set to <strong>Plan</strong>, Primary Content Source set to <strong>No Content</strong>, and Name set to <strong>Test Plan Doc</strong>.",
                   "detail": "By creating a Plan document in this context, the OIR should automatically assign the Plan Development Life Cycle to the new object.",
                   "hint": "Use the New Document action from the Folders toolbar or right-click menu."
                 },
                 {
-                  "action": "Click Finish to complete document creation.",
+                  "action": "Click <strong>Finish</strong>.",
                   "detail": "Windchill applies the OIR during object creation, assigning the life cycle template and team template specified in the rule.",
                   "hint": null
                 },
                 {
-                  "action": "Open the Information page for the new document and select the Details tab.",
-                  "detail": "The Details tab displays the object's current life cycle state, life cycle template name, and other metadata.",
+                  "action": "Go to the <strong>Information page</strong> of Test Plan Doc.",
+                  "detail": "The Information page displays the object's metadata including its life cycle assignment.",
                   "hint": null
                 },
                 {
-                  "action": "Verify that the document is in the Creation state, which is the first state of the Plan Development Life Cycle.",
+                  "action": "In the <strong>Details</strong> tab, notice that the new document is in <strong>Creation</strong> state, which is the first state of the Plan Development life cycle.",
                   "detail": "If the document shows the Creation state, the OIR is correctly assigning the Plan Development Life Cycle to Plan documents.",
                   "hint": "If the state does not match, verify the OIR is enabled and the Type field matches the Plan subtype exactly."
                 },
                 {
-                  "action": "(Optional) Disable the OIR and attempt to create another Plan document to observe the difference.",
+                  "action": "(Optional) Disable the Object Initialization Rule and test a second Plan document creation.",
                   "detail": "Disabling the OIR removes its effect, so the system will fall back to the next level in the resolution hierarchy or prevent creation if no other OIR matches.",
                   "hint": null
                 }
@@ -1541,17 +1642,17 @@
               "title": "Open Workflow Template Editor",
               "steps": [
                 {
-                  "action": "Navigate to PTC Publications > Utilities > Workflow Template Administration.",
-                  "detail": "The Workflow Template Administration utility lists all workflow templates available in the current context. You can create, edit, and manage workflow templates from here.",
-                  "hint": "Use the site navigator or context menu to access Utilities."
+                  "action": "From the Navigator, browse to <strong>PTC Publications > Utilities > Workflow Template Administration</strong>.",
+                  "detail": "The Workflow Template Administration utility lists all workflow templates available in the current context.",
+                  "hint": "You are still signed in to Windchill as bpatterson/ptc."
                 },
                 {
-                  "action": "Right-click the Plan Development Workflow and select Edit.",
-                  "detail": "Opening the workflow for editing launches the graphical Workflow Template Editor. This editor displays the process flow as a visual diagram with nodes and links.",
-                  "hint": "The workflow must be checked out before editing. If prompted, check out the workflow first."
+                  "action": "Right-click the <strong>Plan Development Workflow</strong> and select <strong>Edit</strong>.",
+                  "detail": "Opening the workflow for editing launches the graphical Workflow Template Editor. This editor displays the process flow as a visual diagram with nodes and links. The workflow is automatically checked out.",
+                  "hint": null
                 },
                 {
-                  "action": "Review the existing workflow properties, nodes, and tasks to understand the current process flow.",
+                  "action": "Review the Workflow properties and the workflow task.",
                   "detail": "Before making changes, familiarize yourself with the existing structure. Note which activities, robots, and connectors are already in place and how they are connected.",
                   "hint": null
                 }
@@ -1559,35 +1660,65 @@
             },
             {
               "id": "ex3-t2",
-              "title": "Edit Activity and Method Robot",
+              "title": "Edit Activity 2 and the Method Robot",
               "steps": [
                 {
-                  "action": "Click Activity 2 in the workflow editor and rename it to 'Review Document'.",
-                  "detail": "Renaming the activity clarifies its purpose in the process flow. Activity names appear in users' task lists, so a descriptive name helps users understand what they need to do.",
-                  "hint": "Double-click the activity or right-click and select Properties to edit the name."
-                },
-                {
-                  "action": "Set the Responsible Role to Product Manager.",
-                  "detail": "The responsible role determines who receives the task and who is notified of deadlines. Setting it to Product Manager ensures the review is assigned to the correct team member.",
+                  "action": "Click the <strong>Activity 2</strong> text in the workspace area.",
+                  "detail": "Selecting the activity opens its property tabs for editing.",
                   "hint": null
                 },
                 {
-                  "action": "In the Activity tab, set the instructions to guide the reviewer to choose Release or Rework.",
-                  "detail": "Clear instructions help reviewers understand what is expected. Specify the criteria for choosing Release (approved) versus Rework (needs changes).",
+                  "action": "In the General tab, replace the default text in the Name field with <strong>Review Document</strong>.",
+                  "detail": "Renaming the activity clarifies its purpose in the process flow. Activity names appear in users' task lists, so a descriptive name helps users understand what they need to do.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the <strong>Responsible Role</strong> to <strong>Product Manager</strong>.",
+                  "detail": "The responsible role determines who receives the task and who is notified of deadlines.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Activity</strong> tab.",
+                  "detail": "The Activity tab contains instructions, form configuration, and digital signature settings.",
+                  "hint": null
+                },
+                {
+                  "action": "Check that the Instructions text is \"Review the document\" and choose to <strong>Release</strong> or <strong>Rework</strong> the document.",
+                  "detail": "Clear instructions help reviewers understand what is expected. The instructions specify the criteria for choosing Release (approved) versus Rework (needs changes).",
                   "hint": "Activity instructions appear on the task form when the user opens the task."
                 },
                 {
-                  "action": "In the Participants tab, remove the Creator role and add the Product Manager role.",
-                  "detail": "Participants define who receives the activity task. Removing Creator and adding Product Manager ensures the review goes to the appropriate role rather than the document creator.",
+                  "action": "Select the <strong>Participants</strong> tab.",
+                  "detail": "Participants define who receives the activity task.",
                   "hint": null
                 },
                 {
-                  "action": "In the Routing tab, set Manual Exclusive routing type with Release and Rework events.",
-                  "detail": "Manual Exclusive routing requires the user to choose one routing event (Release or Rework) when completing the task. This replaces the default Complete event with the two routing options.",
-                  "hint": "Select 'Manual Exclusive' from the routing type dropdown, then add Release and Rework as routing events."
+                  "action": "Edit the Assignee table: remove the <strong>Creator</strong> role and add the <strong>Product Manager</strong> role.",
+                  "detail": "Removing Creator and adding Product Manager ensures the review goes to the appropriate role rather than the document creator.",
+                  "hint": "The list of roles is available when you click Roles."
                 },
                 {
-                  "action": "Review the Set State method robot properties, noting the Robot Type and Specific State settings.",
+                  "action": "Select the <strong>Routing</strong> tab.",
+                  "detail": "The Routing tab configures how the activity exits — either through a default Complete event or through specific routing events.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the Routing Type to <strong>Manual Exclusive</strong>.",
+                  "detail": "Manual Exclusive routing requires the user to choose one routing event when completing the task. This replaces the default Complete event with the routing options.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Routing Events table, type <strong>Release</strong> in the first line and <strong>Rework</strong> in the second line.",
+                  "detail": "These routing events define the two possible outcomes when the reviewer completes the task.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong> to close Activity 2 and notice the activity name change in the workspace area.",
+                  "detail": "The workflow canvas now displays 'Review Document' instead of 'Activity 2', reflecting your changes.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Set State</strong> text under the method robot, review the <strong>Robot Type</strong> and the <strong>Specific State</strong> values, and click <strong>Cancel</strong>.",
                   "detail": "The Set State robot automatically changes the object's life cycle state when triggered. Verify that it is configured to transition the document to the correct target state upon release.",
                   "hint": null
                 }
@@ -1598,29 +1729,54 @@
               "title": "Create and Configure Review Document Routing",
               "steps": [
                 {
-                  "action": "Place an Or connector below the Submit Document activity.",
-                  "detail": "The Or connector will serve as a junction point for the rework loop. When a Rework event fires, the process routes through this connector back to the Submit Document activity.",
-                  "hint": "Drag an Or connector from the node palette onto the workflow canvas."
+                  "action": "Select the <strong>Or connector</strong> icon from the left toolbar.",
+                  "detail": "The Or connector will serve as a junction point for the rework loop.",
+                  "hint": null
                 },
                 {
-                  "action": "Create a link from the Review Document activity to the Or connector.",
+                  "action": "Click in the workspace area below the <strong>Submit Document</strong> activity to place the connector.",
+                  "detail": "Positioning the Or connector below Submit Document creates a clear visual flow for the rework loop path.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Action arrow</strong> icon from the toolbar to the left of the workspace area.",
+                  "detail": "The Action arrow tool allows you to draw links between nodes in the workflow.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Review Document</strong> activity icon and drag the link on top of the <strong>Or connector</strong> node icon.",
                   "detail": "This link carries the Rework event from the review activity to the Or connector, which will then route back to the submission step.",
                   "hint": null
                 },
                 {
-                  "action": "Create a link from the Or connector to the Submit Document activity.",
+                  "action": "Select the <strong>Or connector</strong> node icon and drag the link on top of the <strong>Submit Document</strong> activity icon.",
                   "detail": "This link completes the rework loop, sending the process back to Submit Document so the author can revise and resubmit the document.",
                   "hint": null
                 },
                 {
-                  "action": "Configure the link from Review Document to the Set State robot: set the event to Release and the action to Start.",
-                  "detail": "This link means: when the reviewer chooses Release, start the Set State robot to transition the document to the Released state.",
-                  "hint": "Select the link and set Event = Release, Action = Start."
+                  "action": "Double-click the <strong>?</strong> link between the Review Document Activity node and the Set State Method Robot icon to open the Link Properties dialog.",
+                  "detail": "This link defines what happens when the reviewer approves the document.",
+                  "hint": null
                 },
                 {
-                  "action": "Configure the link from Review Document to the Or connector: set the event to Rework, the action to Fire, and enable the Loop Link checkbox.",
-                  "detail": "The Loop Link checkbox is critical here. Without it, the Submit Document activity (which has already completed) cannot be re-enabled. The loop link re-activates previously completed nodes.",
-                  "hint": "Select the link, set Event = Rework, Action = Fire, and check the Loop Link checkbox."
+                  "action": "Click the menu to the right of the <strong>Release</strong> event and select the <strong>Start</strong> transition from the menu. Click <strong>OK</strong> to close the Link Properties dialog.",
+                  "detail": "This means: when the reviewer chooses Release, start the Set State robot to transition the document to the Released state.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>?</strong> link between the Review Document Activity node and the Or connector icon to open the Link Properties window.",
+                  "detail": "This link defines what happens when the reviewer sends the document back for rework.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Loop Link</strong> checkbox.",
+                  "detail": "The Loop Link checkbox is critical. Without it, the Submit Document activity (which has already completed) cannot be re-enabled. The loop link re-activates previously completed nodes.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the menu to the right of the <strong>Rework</strong> event, select the <strong>Fire</strong> transition from the menu, and click <strong>OK</strong> to close the dialog.",
+                  "detail": "The Fire action sends an event to the Or connector, which then starts the Submit Document activity through the rework loop.",
+                  "hint": null
                 }
               ]
             },
@@ -1629,12 +1785,17 @@
               "title": "Save and Check In",
               "steps": [
                 {
-                  "action": "Select File > Save to save the workflow template.",
+                  "action": "In the Workflow Process Editor, select <strong>File > Save</strong>.",
                   "detail": "Saving preserves your changes to the workflow template. The template is still checked out at this point.",
                   "hint": null
                 },
                 {
-                  "action": "Close the Workflow Template Editor and check in the workflow template.",
+                  "action": "Close the Workflow Process Editor.",
+                  "detail": "Closing the editor returns you to the Workflow Template Administration view.",
+                  "hint": null
+                },
+                {
+                  "action": "Check in the <strong>Plan Development Workflow</strong>.",
                   "detail": "Checking in the workflow makes it available for use. Until checked in, other users cannot see your changes and the workflow cannot be used by life cycle transitions.",
                   "hint": "Right-click the workflow in the administration list and select Check In."
                 }
@@ -1676,27 +1837,42 @@
               "title": "Connect Life Cycle to Workflow",
               "steps": [
                 {
-                  "action": "Navigate to Life Cycle Template Administration and edit the Plan Development Life Cycle.",
-                  "detail": "The Life Cycle Template Administration utility lets you modify existing life cycle templates. You will convert this life cycle from basic to advanced so it can use workflow templates.",
-                  "hint": "Access through Utilities > Life Cycle Template Administration."
-                },
-                {
-                  "action": "Change the life cycle type from Basic to Advanced.",
-                  "detail": "Advanced life cycles support workflow association, meaning state transitions can be driven by workflow processes rather than manual Set State actions. This is required for enforcing formal review and approval processes.",
-                  "hint": "Look for a Type dropdown or setting in the life cycle properties."
-                },
-                {
-                  "action": "In the Creation state Transitions tab, clear the Promote to Released transition and the Lock to Under Review transition.",
-                  "detail": "These manual transitions are being replaced by workflow-driven transitions. Removing them ensures that state changes can only occur through the workflow process, providing full traceability.",
+                  "action": "From the Navigator, browse to <strong>PTC Publications > Utilities > Life Cycle Template Administration</strong>.",
+                  "detail": "The Life Cycle Template Administration utility lets you modify existing life cycle templates.",
                   "hint": null
                 },
                 {
-                  "action": "In the Workflow tab of the Creation state, browse for the Phase Process and select the Plan Development Workflow.",
-                  "detail": "Associating the workflow with the Creation state means that when an object enters this state, the Plan Development Workflow will automatically start. The workflow then controls all subsequent state transitions.",
-                  "hint": "Click Browse next to Phase Process and select the workflow from the list."
+                  "action": "Right-click the <strong>Plan Development Life Cycle</strong> and select the <strong>Edit</strong> action.",
+                  "detail": "Editing the life cycle checks it out and opens the life cycle editor.",
+                  "hint": null
                 },
                 {
-                  "action": "Verify that no other states have phase or gate processes configured.",
+                  "action": "To change the life cycle type, select the <strong>Advanced</strong> radio button.",
+                  "detail": "Advanced life cycles support workflow association, meaning state transitions can be driven by workflow processes rather than manual actions. This is required for enforcing formal review and approval processes.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Creation</strong> state and select the <strong>Transitions</strong> tab.",
+                  "detail": "You will remove manual transitions that are being replaced by workflow-driven transitions.",
+                  "hint": null
+                },
+                {
+                  "action": "Clear the checkboxes for the <strong>Promote to Released</strong> and the <strong>Lock to Under Review</strong> transitions.",
+                  "detail": "Removing these manual transitions ensures that state changes can only occur through the workflow process, providing full traceability.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Workflow</strong> tab and click <strong>Browse</strong> next to the Phase Process field.",
+                  "detail": "Associating a workflow with the Creation state means that when an object enters this state, the workflow will automatically start.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Plan Development Workflow</strong> process template and click <strong>OK</strong>.",
+                  "detail": "The Plan Development Workflow you edited in the previous exercise will now control state transitions from the Creation state.",
+                  "hint": null
+                },
+                {
+                  "action": "Verify that the other states are not triggering other phase or gate processes.",
                   "detail": "For this life cycle, only the Creation state should have an associated workflow. Other states should remain without workflow associations to keep the process simple.",
                   "hint": null
                 }
@@ -1704,25 +1880,35 @@
             },
             {
               "id": "ex4-t2",
-              "title": "Provide Read Access for Organization Members",
+              "title": "Provide Read Access for All Organization Members",
               "steps": [
                 {
-                  "action": "Click the Released state and navigate to the Roles tab.",
-                  "detail": "The Roles tab defines which roles are active in a given life cycle state. Adding a Viewer role to the Released state allows you to grant read access to organization members for released documents.",
+                  "action": "Click the <strong>Released</strong> state and select the <strong>Roles</strong> tab.",
+                  "detail": "The Roles tab defines which roles are active in a given life cycle state.",
                   "hint": null
                 },
                 {
-                  "action": "Add a Viewer role and add the PTC Publications organization as a participant.",
-                  "detail": "Adding the entire organization as a participant means all members of PTC Publications will be assigned the Viewer role when a document reaches the Released state.",
-                  "hint": "Click Add Role, select Viewer, then add the organization as a participant."
+                  "action": "Select the <strong>Viewer</strong> role and add it to the Selected Roles table.",
+                  "detail": "Adding a Viewer role to the Released state allows you to grant read access to organization members for released documents.",
+                  "hint": null
                 },
                 {
-                  "action": "In the Access Control tab, check the Read permission for the Viewer role.",
+                  "action": "Select the <strong>Viewer</strong> in the Selected Roles table and click <strong>Participants</strong>.",
+                  "detail": "You need to define who will be assigned the Viewer role when a document reaches the Released state.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Organizations</strong> tab and click <strong>Find</strong>. Add <strong>PTC Publications</strong> to the Participants list and click <strong>OK</strong>.",
+                  "detail": "Adding the entire organization as a participant means all members of PTC Publications will be assigned the Viewer role when a document reaches the Released state.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Access Control</strong> tab and check the <strong>Read</strong> permission for the Viewer role.",
                   "detail": "This grants read-only access to organization members for released documents. They can view the document but cannot edit, delete, or change its state.",
                   "hint": null
                 },
                 {
-                  "action": "Save and close the life cycle editor, then check in the life cycle template.",
+                  "action": "To complete the life cycle edition, click <strong>Save & Close</strong> and check in the updated life cycle.",
                   "detail": "Checking in makes the updated life cycle available for use. New objects assigned this life cycle will now follow the advanced workflow-driven process.",
                   "hint": null
                 }
@@ -1733,23 +1919,48 @@
               "title": "Create Test Plan Document and Release It",
               "steps": [
                 {
-                  "action": "Create a new Plan document with the name 'Test Plan Document Validation'.",
-                  "detail": "This document will use the Plan Development Life Cycle you just configured. Upon creation, the Plan Development Workflow should start automatically.",
-                  "hint": "Create the document in the PTC Publications context where the life cycle is assigned."
-                },
-                {
-                  "action": "Complete the Submit Document task that appears in your task list.",
-                  "detail": "The workflow's first activity (Submit Document) should appear in your Tasks table. Completing this task triggers the next step in the workflow - the Review Document activity.",
+                  "action": "From the Navigator, select <strong>PTC New Publication Template > Folders</strong>.",
+                  "detail": "You will create a test document in this product context to validate the end-to-end workflow process.",
                   "hint": null
                 },
                 {
-                  "action": "Complete the Review Document task by selecting the Release routing event.",
-                  "detail": "Choosing Release sends the document through the approval path. The Set State robot will automatically transition the document to the Released state.",
-                  "hint": "Select Release from the routing options on the task form."
+                  "action": "Create a new document with Type set to <strong>Plan</strong>, Primary Content Source set to <strong>No Content</strong>, and Name set to <strong>Test Plan Document Validation</strong>.",
+                  "detail": "This document will use the Plan Development Life Cycle you just configured. Upon creation, the Plan Development Workflow should start automatically.",
+                  "hint": null
                 },
                 {
-                  "action": "Verify that the document has reached the Released state.",
-                  "detail": "Check the document's properties or life cycle history to confirm it is now in the Released state. This validates that the workflow and life cycle are working together correctly.",
+                  "action": "Click <strong>Finish</strong>; the created document uses the first state of the created life cycle.",
+                  "detail": "Windchill applies the OIR during creation, assigning the Plan Development Life Cycle and starting the associated workflow.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Home</strong> icon and notice the <strong>Submit Document</strong> task associated to the created Test Plan Document Validation.",
+                  "detail": "The workflow's first activity (Submit Document) should appear in your Tasks table or Updates section.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Submit Document</strong> task name and select <strong>Complete Task</strong>.",
+                  "detail": "Completing this task triggers the next step in the workflow — the Review Document activity.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Home</strong> icon and notice the <strong>Review Document</strong> task is assigned to you as Product Manager.",
+                  "detail": "The routing from Submit Document triggered the Review Document activity, which is assigned to the Product Manager role.",
+                  "hint": null
+                },
+                {
+                  "action": "Click any of the <strong>Review Document</strong> task names, observe the routing choice (<strong>Release</strong> or <strong>Rework</strong>), and keep the default choice.",
+                  "detail": "The Manual Exclusive routing you configured presents Release and Rework as options on the task form.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Complete Task</strong>.",
+                  "detail": "Choosing Release sends the document through the approval path. The Set State robot will automatically transition the document to the Released state.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Home</strong> icon and notice that the Test Plan Document Validation document is now in the <strong>Released</strong> state in the Updates table.",
+                  "detail": "This validates that the workflow and life cycle are working together correctly — the document moved from Creation through the workflow to Released.",
                   "hint": null
                 }
               ]
@@ -1759,14 +1970,29 @@
               "title": "Check Organization Member Access",
               "steps": [
                 {
-                  "action": "Sign in as dgriffin/ptc in an incognito browser window.",
-                  "detail": "Signing in as a different user (who is a member of the PTC Publications organization but not an administrator) lets you verify that the Viewer role and Read permission are working correctly.",
-                  "hint": "Use a private/incognito browser window to avoid session conflicts."
+                  "action": "Open an <strong>incognito</strong> browser session.",
+                  "detail": "Using an incognito window avoids session conflicts with the bpatterson login.",
+                  "hint": null
                 },
                 {
-                  "action": "Search for 'Test Plan Document Validation' and verify it is visible but with limited access.",
-                  "detail": "The document should appear in search results (confirming Read access), but the user should not be able to edit or change its state. This confirms the Viewer role is granting read-only access as intended.",
-                  "hint": "Try to edit the document - you should receive an access denied message."
+                  "action": "Sign in as <strong>dgriffin/ptc</strong>.",
+                  "detail": "dgriffin is a member of the PTC Publications organization but not a member of the product content team.",
+                  "hint": null
+                },
+                {
+                  "action": "Type <strong>Test Plan Document*</strong> in the search field.",
+                  "detail": "dgriffin is not a member of the product content team, but they can see any released document stored in contexts belonging to the PTC Publications organization.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>View information</strong> icon of the Test Plan Document Validation document and notice that dgriffin does not have access to the context and location information.",
+                  "detail": "The document is visible (confirming Read access via the Viewer role), but the user has limited access — they cannot see context details or edit the document.",
+                  "hint": "Try to edit the document — you should receive an access denied message."
+                },
+                {
+                  "action": "Close all browser sessions.",
+                  "detail": "You have confirmed that the Viewer role grants read-only access to organization members for released documents.",
+                  "hint": null
                 }
               ]
             }
@@ -2083,34 +2309,84 @@
               "title": "Initiate the Workflow Process",
               "steps": [
                 {
-                  "action": "Sign in to Windchill as wcadmin with password wcadmin.",
+                  "action": "Open a browser and click the Windchill bookmark.",
+                  "detail": "This launches the Windchill web client.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Sign In</strong>.",
+                  "detail": "You must authenticate before accessing site-level administrative utilities.",
+                  "hint": null
+                },
+                {
+                  "action": "Sign in as a Windchill site administrator with username <strong>wcadmin</strong> and password <strong>wcadmin</strong>.",
                   "detail": "The wcadmin account has full administrative access to site utilities and workflow template administration.",
                   "hint": null
                 },
                 {
-                  "action": "Browse to Site > Utilities > Workflow Template Administration.",
+                  "action": "Browse to <strong>Site > Utilities > Workflow Template Administration</strong>.",
                   "detail": "This utility lists all workflow templates available at the site level, including the Long Running Workflow template you will use.",
                   "hint": null
                 },
                 {
-                  "action": "Right-click Long Running Workflow and select View in Workflow Definer.",
-                  "detail": "The Workflow Definer displays the template's graphical structure so you can inspect the expression robot and understand why the workflow runs for an extended period.",
+                  "action": "Right-click the <strong>Long Running Workflow</strong> template.",
+                  "detail": "You will first inspect the template to understand its structure before initiating it.",
                   "hint": null
                 },
                 {
-                  "action": "Select the Long Running Expression robot and view its Expression tab to see the Java code that pauses execution for 30 minutes.",
-                  "detail": "This robot uses a Thread.sleep call to keep the workflow active in the queue long enough for you to observe the entry. In a real scenario, long-running entries might indicate a complex computation or an integration call.",
+                  "action": "Select <strong>View in Workflow Definer</strong>.",
+                  "detail": "The Workflow Definer displays the template's graphical structure so you can inspect the expression robot.",
                   "hint": null
                 },
                 {
-                  "action": "Close the Workflow Definer windows.",
+                  "action": "Click the <strong>Long Running Expression</strong> link to view the expression robot details.",
+                  "detail": "This opens the robot's property dialog where you can see its configuration.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Expression</strong> tab to view the Java code used in the expression robot.",
+                  "detail": "The Expression tab shows the actual Java code that the robot executes when the workflow runs.",
+                  "hint": null
+                },
+                {
+                  "action": "Observe the Java code. This expression pauses the workflow for thirty minutes, which will keep it in the queue.",
+                  "detail": "The robot uses a Thread.sleep call to keep the workflow active in the queue long enough for you to observe the entry. In a real scenario, long-running entries might indicate a complex computation or an integration call.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the robot properties window, then close the workflow definer window.",
                   "detail": "You have confirmed the template structure and are now ready to initiate processes.",
                   "hint": null
                 },
                 {
-                  "action": "Initiate the Long Running Workflow process twice, naming them Workflow-1 and Workflow-2.",
-                  "detail": "Creating two instances lets you verify that both expression robots appear simultaneously in the queue, demonstrating parallel processing.",
-                  "hint": "Use the Initiate action from the workflow template context menu."
+                  "action": "Right-click the <strong>Long Running Workflow</strong> template and select <strong>Initiate workflow process</strong>.",
+                  "detail": "This starts a new instance of the workflow from the template.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Process Name field, type <strong>Workflow-1</strong>.",
+                  "detail": "Naming each process instance lets you distinguish them when viewing queue entries.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Start Process</strong>.",
+                  "detail": "The workflow begins executing and its expression robot will join the WfUserWorkQueue.",
+                  "hint": null
+                },
+                {
+                  "action": "Right-click <strong>Long Running Workflow</strong> and select <strong>Initiate workflow process</strong>.",
+                  "detail": "You will create a second instance to verify that both expression robots appear simultaneously in the queue.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Process Name field, type <strong>Workflow-2</strong>.",
+                  "detail": "The second process will also have its expression robot join the WfUserWorkQueue.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Start Process</strong>.",
+                  "detail": "Both workflow instances are now running, each with an expression robot in the queue.",
+                  "hint": null
                 }
               ]
             },
@@ -2119,18 +2395,28 @@
               "title": "View the Queue Entries",
               "steps": [
                 {
-                  "action": "Browse to Site > Utilities > Queue Management.",
+                  "action": "Browse to <strong>Site > Utilities > Queue Management</strong>.",
                   "detail": "The Queue Management utility displays all background queues and their current entries.",
                   "hint": null
                 },
                 {
-                  "action": "View the WfPropagationQueue and confirm it has no waiting entries.",
-                  "detail": "Propagation entries process very quickly (state changes and routing expressions), so they are typically completed before you can observe them.",
+                  "action": "Click the <strong>View information</strong> icon for the <strong>WfPropagationQueue</strong>.",
+                  "detail": "You will check whether any propagation entries are still being processed.",
                   "hint": null
                 },
                 {
-                  "action": "View the WfUserWorkQueue and confirm it shows two entries - one for each workflow's expression robot.",
-                  "detail": "Both expression robots from Workflow-1 and Workflow-2 are executing simultaneously in the same queue, each occupying a separate worker thread.",
+                  "action": "Confirm there are no more entries to process in the WfPropagationQueue.",
+                  "detail": "Propagation entries process very quickly (start connectors, assigned activities, and link entries are queued here), so they are typically completed before you can observe them.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Back</strong> in the browser to view all queues, then click the <strong>View information</strong> icon to the right of <strong>WfUserWorkQueue</strong> to view the queue entries.",
+                  "detail": "You will verify that both expression robots are executing simultaneously in this queue.",
+                  "hint": null
+                },
+                {
+                  "action": "Confirm there are <strong>two entries</strong> present in the queue — one for each workflow's expression robot.",
+                  "detail": "Both expression robots from Workflow-1 and Workflow-2 are executing simultaneously in the same queue, each occupying a separate worker thread. All expression robots use the WfUserWorkQueue.",
                   "hint": "If you see fewer than two entries, the expression robot from one workflow may have completed. Re-initiate as needed."
                 },
                 {
@@ -2175,22 +2461,32 @@
               "title": "Modify the Properties",
               "steps": [
                 {
-                  "action": "Open the Windchill Shell.",
+                  "action": "From the desktop, open the <strong>Windchill Shell</strong>.",
                   "detail": "The Windchill Shell provides command-line access to Windchill utilities including xconfmanager for property management.",
                   "hint": null
                 },
                 {
-                  "action": "Stop Windchill by running: windchill stop",
+                  "action": "Type <code>windchill stop</code> and press Enter.",
                   "detail": "Windchill must be stopped before modifying wt.properties to ensure the changes are applied cleanly on startup.",
                   "hint": null
                 },
                 {
-                  "action": "Set the queue pooling property by running: xconfmanager -t codebase/wt.properties -s wt.workflow.engine.userWorkPoolSize=2 -p",
+                  "action": "To set the two shared UserWork queues, type:<br><code>xconfmanager -t codebase/wt.properties -s wt.workflow.engine.userWorkPoolSize=2 -p</code>",
                   "detail": "This creates two WfUserWorkQueue instances (WfSharedUserWorkQueue0 and WfSharedUserWorkQueue1) that will share the workflow robot processing load.",
                   "hint": null
                 },
                 {
-                  "action": "Start Windchill by running: windchill start - then wait approximately 5 minutes for full startup.",
+                  "action": "Press <strong>Enter</strong> to execute the command.",
+                  "detail": "The xconfmanager utility updates the wt.properties file with the new pool size setting.",
+                  "hint": null
+                },
+                {
+                  "action": "Type <code>windchill start</code>.",
+                  "detail": "Starting Windchill initializes all services and creates the new queue instances.",
+                  "hint": null
+                },
+                {
+                  "action": "Wait about five minutes for Windchill services to start.",
                   "detail": "The server needs time to initialize all services and create the new queue instances. Queue Management will not show the new queues until startup is complete.",
                   "hint": "Monitor the method server log to confirm startup is complete."
                 }
@@ -2201,13 +2497,58 @@
               "title": "Instantiate the Process",
               "steps": [
                 {
-                  "action": "Sign in to Windchill as wcadmin with password wcadmin.",
-                  "detail": "You need administrative access to initiate workflow processes.",
+                  "action": "Open a browser and select the Windchill bookmark.",
+                  "detail": "This launches the Windchill web client.",
                   "hint": null
                 },
                 {
-                  "action": "Initiate the Long Running Workflow twice, naming the instances Process-1 and Process-2.",
-                  "detail": "Two processes are needed to verify round-robin distribution across the pooled queues.",
+                  "action": "Click <strong>Sign In</strong>.",
+                  "detail": "You must authenticate to access administrative utilities.",
+                  "hint": null
+                },
+                {
+                  "action": "Sign in as a site administrator with username <strong>wcadmin</strong> and password <strong>wcadmin</strong>.",
+                  "detail": "You need administrative access to initiate workflow processes and view queue management.",
+                  "hint": null
+                },
+                {
+                  "action": "Browse to the <strong>Site > Utilities</strong> page.",
+                  "detail": "The Utilities page provides access to Workflow Template Administration and Queue Management.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Workflow Template Administration</strong>.",
+                  "detail": "This opens the list of available workflow templates.",
+                  "hint": null
+                },
+                {
+                  "action": "Right-click the <strong>Long Running Workflow</strong> template and select <strong>Initiate workflow process</strong>.",
+                  "detail": "You will start the first instance of a workflow process to test the new queue pooling configuration.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Process Name field, type <strong>Process-1</strong>.",
+                  "detail": "Naming each process lets you identify which queue it lands in.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Start Process</strong>.",
+                  "detail": "The first workflow instance begins executing.",
+                  "hint": null
+                },
+                {
+                  "action": "Right-click the <strong>Long Running Workflow</strong> template and select <strong>Initiate workflow process</strong>.",
+                  "detail": "You will start the second instance to verify round-robin distribution across the pooled queues.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Process Name field, type <strong>Process-2</strong>.",
+                  "detail": "The second process should be assigned to the other shared queue due to round-robin distribution.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Start Process</strong>.",
+                  "detail": "Both workflow instances are now running and should be distributed across the two shared queues.",
                   "hint": null
                 }
               ]
@@ -2217,18 +2558,33 @@
               "title": "Verify the Queues",
               "steps": [
                 {
-                  "action": "Browse to Site > Utilities > Queue Management.",
-                  "detail": "You should now see two shared UserWork queues instead of the single WfUserWorkQueue.",
+                  "action": "Browse to the <strong>Site > Utilities</strong> page.",
+                  "detail": "You will verify the additional queues and entries created by the newly configured queue pooling.",
                   "hint": null
                 },
                 {
-                  "action": "View WfSharedUserWorkQueue0 and confirm it contains the expression robot entry from Process-1.",
-                  "detail": "The first process initiated is assigned to the first queue in the round-robin sequence.",
+                  "action": "Click <strong>Queue Management</strong>.",
+                  "detail": "Queue Management displays all background queues including the newly created shared queues.",
                   "hint": null
                 },
                 {
-                  "action": "View WfSharedUserWorkQueue1 and confirm it contains the expression robot entry from Process-2.",
-                  "detail": "The second process is assigned to the next queue, demonstrating the circular distribution pattern. Each queue processes its entries independently.",
+                  "action": "Scroll down and view the newly created <strong>WfSharedUserWork</strong> queues.",
+                  "detail": "Two new shared queues, WfSharedUserWorkQueue0 and WfSharedUserWorkQueue1, have been created.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>View information</strong> icon to the right of <strong>WfSharedUserWorkQueue0</strong> to view its queue entries.",
+                  "detail": "This queue is executing one expression robot from Process-1.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Back</strong> in the browser to view all queues.",
+                  "detail": "You need to return to the queue list to check the second shared queue.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>View information</strong> icon to the right of <strong>WfSharedUserWorkQueue1</strong> to view its queue entries.",
+                  "detail": "This separate UserWork queue is executing the expression robot from Process-2, demonstrating the circular distribution pattern. Each queue processes its entries independently.",
                   "hint": "If both entries appear in the same queue, verify that the userWorkPoolSize property was set correctly and the server was fully restarted."
                 }
               ]
@@ -2268,12 +2624,12 @@
               "title": "Modify wt.properties",
               "steps": [
                 {
-                  "action": "Open the Windchill Shell.",
+                  "action": "Open the <strong>Windchill Shell</strong>.",
                   "detail": "You will use xconfmanager to set the dedicated queue mode property.",
                   "hint": null
                 },
                 {
-                  "action": "Set the dedicated queue mode by running: xconfmanager -t codebase/wt.properties -s wt.workflow.engine.dedicatedQueueMode=userWork -p",
+                  "action": "To set the dedicated queue mode for the userWork queues, type:<br><code>xconfmanager -t codebase/wt.properties -s wt.workflow.engine.dedicatedQueueMode=userWork -p</code>",
                   "detail": "This enables dedicated queue support for UserWork queues. Templates that are tagged will get their own queue instead of using the shared WfUserWorkQueue.",
                   "hint": null
                 },
@@ -2289,23 +2645,63 @@
               "title": "Tag the Workflow Template",
               "steps": [
                 {
-                  "action": "As wcadmin, browse to Site > Utilities > Workflow Template Administration.",
-                  "detail": "You need to locate the Long Running Workflow 2 template and modify its properties.",
+                  "action": "Browse to the <strong>Site > Utilities</strong> page as the Windchill administrator user (<strong>wcadmin/wcadmin</strong>).",
+                  "detail": "You need administrative access to modify workflow template properties.",
                   "hint": null
                 },
                 {
-                  "action": "Right-click Long Running Workflow 2 and select Edit to check it out.",
+                  "action": "Click the <strong>Workflow Template Administration</strong> link.",
+                  "detail": "This opens the list of available workflow templates at the site level.",
+                  "hint": null
+                },
+                {
+                  "action": "Right-click the <strong>Long Running Workflow 2</strong> template and select <strong>Edit</strong>.",
                   "detail": "The template must be checked out before you can modify its properties.",
                   "hint": null
                 },
                 {
-                  "action": "Open Properties > Properties tab and select the \"Set dedicated queue\" checkbox.",
+                  "action": "Click the <strong>Properties</strong> link to open the workflow properties.",
+                  "detail": "The Properties dialog contains the template's configuration settings, including the dedicated queue flag.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Properties</strong> tab to view the workflow properties.",
+                  "detail": "The Properties tab contains execution options including the dedicated queue checkbox.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Set dedicated queue</strong> checkbox to tag the workflow to use a dedicated queue.",
                   "detail": "This tags the template so that any workflow process created from it will use a dedicated queue rather than the shared WfUserWorkQueue.",
                   "hint": null
                 },
                 {
-                  "action": "Save the changes, close the properties dialog, and check in the template.",
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "This saves the property change and closes the Properties dialog.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Workflow Editor, select <strong>File > Save</strong>.",
+                  "detail": "Saving preserves the dedicated queue tag change to the template.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the Long Running Workflow window.",
+                  "detail": "You return to the Workflow Template Administration view.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Long Running Workflow 2</strong> checkbox.",
+                  "detail": "You need to select the template to check it in from the administration view.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Check in selected templates</strong> icon.",
                   "detail": "Checking in the template makes the dedicated queue tag active for all future process instances.",
+                  "hint": null
+                },
+                {
+                  "action": "You can type comments during check-in. Skip this step and click <strong>OK</strong>.",
+                  "detail": "Check-in comments are optional. Clicking OK completes the check-in process.",
                   "hint": null
                 }
               ]
@@ -2315,25 +2711,65 @@
               "title": "Instantiate Workflow Processes",
               "steps": [
                 {
-                  "action": "Initiate the Long Running Workflow 2 template twice, naming the instances Dedicated Process-1 and Dedicated Process-2.",
-                  "detail": "Both processes will use the tagged template's dedicated queue, keeping the shared queue free from their long-running expression robots.",
+                  "action": "Right-click the <strong>Long Running Workflow 2</strong> template and select <strong>Initiate workflow process</strong>.",
+                  "detail": "You will start two workflow process instances to test the dedicated queue configuration.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Process Name field, type <strong>Dedicated Process-1</strong>.",
+                  "detail": "Naming the process helps you identify it when viewing queue entries.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Start Process</strong> to start the process.",
+                  "detail": "The first workflow instance begins executing using the tagged template's dedicated queue.",
+                  "hint": null
+                },
+                {
+                  "action": "Right-click the <strong>Long Running Workflow 2</strong> template to start the second instance.",
+                  "detail": "You will create a second instance to verify both processes share the same dedicated queue.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Initiate workflow process</strong>.",
+                  "detail": "This opens the process initiation dialog for the second instance.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Process Name field, type <strong>Dedicated Process-2</strong>.",
+                  "detail": "The second process will also use the dedicated queue assigned to this tagged template.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Start Process</strong>.",
+                  "detail": "Both dedicated processes are now running, keeping the shared queues free from their long-running expression robots.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex7-t4",
-              "title": "Verify Dedicated Queue",
+              "title": "Verify the Dedicated Queue Entries",
               "steps": [
                 {
-                  "action": "Browse to Site > Utilities > Queue Management.",
-                  "detail": "You should see a new WfUserWorkQueue with a 6-digit identifier - this is the dedicated queue created for the tagged template.",
+                  "action": "Browse to <strong>Site > Utilities</strong> page.",
+                  "detail": "You will verify that a new dedicated queue was created for the tagged template.",
                   "hint": null
                 },
                 {
-                  "action": "Open the new dedicated WfUserWorkQueue and confirm that both expression robots (from Dedicated Process-1 and Dedicated Process-2) are executing in it.",
-                  "detail": "Both processes from the tagged template share the same dedicated queue, which is separate from the shared WfUserWorkQueue used by non-tagged templates.",
+                  "action": "Click the <strong>Queue Management</strong> link.",
+                  "detail": "Queue Management displays all background queues, including the newly created dedicated queue.",
+                  "hint": null
+                },
+                {
+                  "action": "Scroll and view the dedicated workflow queue.",
+                  "detail": "The new dedicated queue, WfUserWorkQueue, has a six-digit ID. Expression robots from both processes, Dedicated Process-1 and Dedicated Process-2, are running in this queue.",
                   "hint": "If you do not see the new queue, verify that the dedicatedQueueMode property was set to 'userWork' and the template's \"Set dedicated queue\" checkbox is enabled."
+                },
+                {
+                  "action": "Click the <strong>View information</strong> icon to the right of <strong>WfUserWorkQueue_&lt;id&gt;</strong> to view the queue entries.",
+                  "detail": "Both expression robots from Dedicated Process-1 and Dedicated Process-2 should be visible, confirming they share the same dedicated queue, separate from the shared WfUserWorkQueue used by non-tagged templates.",
+                  "hint": null
                 }
               ]
             }
@@ -2673,7 +3109,7 @@
   "topic.stepsProgress": "{done}/{total} steps",
   "topic.doThis": "Do This",
   "topic.whyItMatters": "Why It Matters",
-  "topic.doneNextStep": "Done - Next Step",
+  "topic.doneNextStep": "Done",
   "topic.topicsComplete": "{done}/{total} topics complete",
   "topic.moduleBadge": "Module {num}",
   "topic.topics": "Topics",

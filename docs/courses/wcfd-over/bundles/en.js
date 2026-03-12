@@ -489,83 +489,120 @@
           "tasks": [
             {
               "id": "ex1-t1",
-              "title": "Sign In and Access UI Overview",
+              "title": "Sign In to Windchill",
               "steps": [
                 {
-                  "action": "Select Windchill Client when prompted for the application.",
-                  "detail": "The Windchill Client command window will open while the server starts up.",
-                  "hint": "Wait a few minutes for Windchill to fully initialize before proceeding."
+                  "action": "When asked to choose your application, select <strong>WindchillClient</strong>.",
+                  "detail": "The Windchill Client command window will open. Please wait while Windchill starts.",
+                  "hint": "After a few minutes, the Windchill Client command window will open. Wait for Windchill to fully initialize before proceeding."
                 },
                 {
-                  "action": "Select Casey Johnson from the sign-in options.",
-                  "detail": "This training environment provides preset user accounts for practice.",
+                  "action": "A Google Chrome browser will open with several sign-in options.",
+                  "detail": "This sign-in page is unique to PTC training. It provides preset user accounts for practice.",
                   "hint": null
                 },
                 {
-                  "action": "Click the Quick Links menu, then select Help > Welcome to Windchill.",
-                  "detail": "The Welcome window provides an overview of key UI component locations.",
-                  "hint": null
-                },
-                {
-                  "action": "Review the UI overview and close the Welcome to Windchill window.",
-                  "detail": "Familiarize yourself with the location of the Navigator, Global Search, and Quick Links.",
+                  "action": "Select <strong>Casey Johnson</strong>.",
+                  "detail": "You will be signed in as Casey Johnson (cjohnson/ptc) for all exercises in this course.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex1-t2",
-              "title": "Explore the Navigator and Products",
+              "title": "Access UI Overview",
               "steps": [
                 {
-                  "action": "Expand the Navigator panel by clicking the Navigator bar.",
-                  "detail": "The Navigator lets you find and browse for files and information stored in Windchill.",
+                  "action": "Click the <strong>Quick Links</strong> menu.",
+                  "detail": "The Quick Links menu is found in the header of the Windchill UI. It is where you can access commonly used tools, preferences, and information.",
                   "hint": null
                 },
                 {
-                  "action": "Resize the Navigator panel by dragging the green line on the right edge.",
-                  "detail": "Adjust the panel width to your preference for comfortable browsing.",
-                  "hint": null
+                  "action": "Click <strong>Help > Welcome to Windchill</strong> to access a quick reminder of where all the key components are located.",
+                  "detail": "The Welcome window provides an overview of key UI component locations including the Navigator, Global Search, and Quick Links.",
+                  "hint": "Simple search is also referred to as global search."
                 },
                 {
-                  "action": "Pin the Navigator panel by clicking the Pin Navigator icon.",
-                  "detail": "Pinning keeps the Navigator expanded so it does not collapse when you click elsewhere.",
-                  "hint": null
-                },
-                {
-                  "action": "Select the Browse tab and click the Recent Products icon, then View All.",
-                  "detail": "This shows all products you have access to as Casey Johnson.",
-                  "hint": null
-                },
-                {
-                  "action": "Click Belt Sander to open the product context.",
-                  "detail": "This is the product you are assigned to work with in the training environment.",
+                  "action": "Close the <strong>Welcome to Windchill</strong> window.",
+                  "detail": "You now have an overview of the key Windchill UI components and their locations.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex1-t3",
-              "title": "View Your Team",
+              "title": "Pin the Navigator",
               "steps": [
                 {
-                  "action": "In the Navigator Browse pane, expand the Belt Sander product.",
-                  "detail": "Expanding reveals navigation options like Team, Folders, and Details.",
+                  "action": "Expand the Navigator panel.",
+                  "detail": "The Navigator lets you find and browse for files and other information stored in Windchill. Click the Navigator bar to expand or collapse the pane.",
+                  "hint": "Once you click outside the Navigator panel, it will collapse; however, you have the option to pin it to keep it expanded for convenient access."
+                },
+                {
+                  "action": "Resize the Navigator panel to your liking by dragging the green line on the right edge of the panel in either direction.",
+                  "detail": "Adjust the panel width to your preference for comfortable browsing.",
                   "hint": null
                 },
                 {
-                  "action": "Click the Team link to view the Belt Sander team members.",
-                  "detail": "The Team page shows all members and their roles within this product context.",
+                  "action": "Pin the Navigator panel in place by clicking the <strong>Pin Navigator</strong> icon.",
+                  "detail": "Pinning keeps the Navigator expanded so it does not collapse when you click elsewhere.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex1-t4",
+              "title": "View All Products",
+              "steps": [
+                {
+                  "action": "Select the <strong>Browse</strong> tab.",
+                  "detail": "The Browse tab in the Navigator provides access to products, libraries, and other contexts.",
                   "hint": null
                 },
                 {
-                  "action": "Click the Home icon to return to the Home page.",
+                  "action": "Click the <strong>Recent Products</strong> icon.",
+                  "detail": "Recent Products shows products you have recently accessed for quick navigation.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>View All</strong> link.",
+                  "detail": "Listed are all the products you have access to as Casey Johnson.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Belt Sander</strong>.",
+                  "detail": "This is the product you are assigned to work with in the training environment.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex1-t5",
+              "title": "View the Members of Your Team",
+              "steps": [
+                {
+                  "action": "In the Recent Products pane, expand the <strong>Belt Sander</strong> product to expose the available navigation options.",
+                  "detail": "When you expand the name of a context, you can click the nodes below it to access pages that display detailed information related to the context.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Team</strong> link in the Browse pane.",
+                  "detail": "Here you can view the other members of the Belt Sander team.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Home</strong> icon to return to the Home page.",
                   "detail": "The Home icon is always available in the header for quick navigation back to your starting point.",
                   "hint": null
                 },
                 {
                   "action": "Unpin the Navigator panel.",
                   "detail": "Keep the Navigator unpinned when not actively browsing to maximize your workspace area.",
+                  "hint": null
+                },
+                {
+                  "action": "Keep the Home page open for the next exercise.",
+                  "detail": "You will continue working from the Home page in the next exercise.",
                   "hint": null
                 }
               ]
@@ -598,22 +635,22 @@
           "tasks": [
             {
               "id": "ex2-t1",
-              "title": "Add Tables to the Home Page",
+              "title": "Add Tables to Your Home Page",
               "steps": [
                 {
-                  "action": "Click the Home icon to display your Home page.",
+                  "action": "Click the <strong>Home</strong> icon to display your Home page.",
                   "detail": "The Home page is your starting point in Windchill and the hub for your daily workflow.",
-                  "hint": null
+                  "hint": "You should be signed in to Windchill as cjohnson/ptc."
                 },
                 {
-                  "action": "Click Customize to open the table selection list.",
+                  "action": "Click <strong>Customize</strong>.",
                   "detail": "The Customize menu controls which tables are visible on your Home page.",
                   "hint": null
                 },
                 {
-                  "action": "Select the following tables: Tasks, Updates, Checked-Out Work, Packages, Discussions.",
-                  "detail": "These tables provide quick access to your most frequently used information.",
-                  "hint": "Some tables may already be selected by default."
+                  "action": "To add tables to the Home page, select the following choices from the list: <strong>Tasks</strong>, <strong>Updates</strong>, <strong>Checked-Out Work</strong>, <strong>Packages</strong>, <strong>Discussions</strong>.",
+                  "detail": "A description of the tables is provided at the end of this exercise.",
+                  "hint": "Some of these tables may already be selected."
                 },
                 {
                   "action": "Click outside the list to close it.",
@@ -627,17 +664,17 @@
               "title": "Rearrange the Tables",
               "steps": [
                 {
-                  "action": "Drag the Checked-Out Work link from the far-right side to the far-left side of the list at the top.",
+                  "action": "To move the Checked-Out Work table to the top of the Home page, drag the <strong>Checked-Out Work</strong> link at the top of the pane from the far-right side to the far-left side of the list.",
                   "detail": "Moving Checked-Out Work to the top gives you immediate visibility of items you are actively editing.",
                   "hint": null
                 },
                 {
-                  "action": "Drag the Updates link to place it after Checked-Out Work.",
+                  "action": "Drag the <strong>Updates</strong> link from its current position to place it after the Checked-Out Work link.",
                   "detail": "This places your most time-sensitive information at the top of the page.",
                   "hint": null
                 },
                 {
-                  "action": "Click the Tasks link at the top of the page to scroll down and display the My Tasks table.",
+                  "action": "Click the <strong>Tasks</strong> link at the top of the page to automatically scroll down and display the My Tasks table.",
                   "detail": "Clicking a table name in the header scrolls directly to that table on the page.",
                   "hint": null
                 }
@@ -1074,85 +1111,138 @@
               "title": "Navigate to a Product",
               "steps": [
                 {
-                  "action": "Click the Browse link in the Navigator and expand the Belt Sander product.",
-                  "detail": "The Navigator Browse tab shows available contexts organized by type. Expanding a product reveals its navigation pages.",
-                  "hint": null
+                  "action": "Click the <strong>Browse</strong> link in the Navigator panel and then expand the <strong>Belt Sander</strong> product to expose the available navigation options.",
+                  "detail": "When you expand the name of a context, you can click the nodes below it to access pages that display detailed information related to the context. In this case, you are accessing the OOTB detailed information related to a product context.",
+                  "hint": "You should be signed in to Windchill as cjohnson/ptc."
                 },
                 {
-                  "action": "Click the Details link to view the product information.",
+                  "action": "Use the <strong>Details</strong> link to view the product information.",
                   "detail": "The Details page shows metadata about the product context, including its name, description, and team information.",
                   "hint": null
                 },
                 {
-                  "action": "Pin the Navigator using the Pin Navigator icon.",
+                  "action": "Expand the Navigator and pin it by selecting the <strong>Pin Navigator</strong> icon.",
                   "detail": "Pinning keeps the Navigator expanded while you work, so it does not collapse when you click elsewhere.",
                   "hint": null
                 },
                 {
-                  "action": "Click Folders in the Browse pane and select the Windchill Parts folder.",
-                  "detail": "Folders organize product data within a context. The Windchill Parts folder contains all part objects for this product.",
+                  "action": "Click the <strong>Folders</strong> link in the Browse pane.",
+                  "detail": "Folders organize product data within a context, providing a logical storage structure.",
                   "hint": null
                 },
                 {
-                  "action": "Click the Name column header to sort objects alphabetically.",
-                  "detail": "Sorting helps locate specific objects in large folders by arranging them in a predictable order.",
-                  "hint": null
-                },
-                {
-                  "action": "Type \"belt\" in the Search in table field.",
-                  "detail": "This filters the table to show only objects matching the text in any column, helping you find items quickly.",
+                  "action": "Select the <strong>Windchill Parts</strong> folder.",
+                  "detail": "The Windchill Parts folder contains all part objects for this product.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex3-t2",
-              "title": "View Object Information",
+              "title": "Sort and Search Within Folders",
               "steps": [
                 {
-                  "action": "Hover over the belt_sander thumbnail to view the mini information page.",
-                  "detail": "The mini information page shows basic attributes and relationships without navigating away from the current view.",
-                  "hint": "Look under the \"Uses\" heading to see related objects."
+                  "action": "At the top of the Folder Contents table, click the column header <strong>Name</strong>.",
+                  "detail": "All objects within the folder are now sorted alphabetically by name.",
+                  "hint": "Hover over the column headers to see the name of each column."
                 },
                 {
-                  "action": "Close the mini information page and click the View Information icon next to the belt_sander end item.",
-                  "detail": "The Information page is a central location for all data about this object, providing more detail than the mini information page.",
-                  "hint": null
-                },
-                {
-                  "action": "Note who last modified the file on the Information page.",
-                  "detail": "The Information page shows complete modification history, including who made changes and when.",
-                  "hint": null
-                },
-                {
-                  "action": "Browse the listed links: Packages, Team, Tasks, Change Monitor, Discussions, Reports.",
-                  "detail": "These links provide access to different aspects of the product data, showing how much information is associated with a single object.",
+                  "action": "In the <strong>Search in table</strong> field, type <code>belt</code>.",
+                  "detail": "Only objects matching this text string in any of the columns are displayed. This filters the table to help you find items quickly.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex3-t3",
-              "title": "Browse a Library",
+              "title": "View the Mini Information Page",
               "steps": [
                 {
-                  "action": "Click the Recent Libraries icon in the Navigator panel.",
-                  "detail": "Libraries store parts shared across multiple products, such as standard fasteners and common components.",
+                  "action": "Hover over the <strong>belt_sander</strong> thumbnail and notice a mini information page appears.",
+                  "detail": "The mini information page shows basic attributes and key relationships without navigating away from the current view.",
+                  "hint": "On the right side of the page, under the Uses heading, 21 objects are listed. Hover over each object to view the part name."
+                },
+                {
+                  "action": "Review the information available from the mini information page.",
+                  "detail": "The mini information page provides a quick preview of the object's attributes, relationships, and associated data.",
                   "hint": null
                 },
                 {
-                  "action": "Click View All and select the Fundamentals Library.",
-                  "detail": "This library contains standard components available to all products in the system.",
+                  "action": "Close the mini information page.",
+                  "detail": "You can return to it at any time by hovering over the object thumbnail again.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex3-t4",
+              "title": "Locate Detailed Product Information",
+              "steps": [
+                {
+                  "action": "Click the <strong>View information</strong> icon next to the <strong>belt_sander</strong> end item to open the Information page.",
+                  "detail": "An end item is a type of Windchill object. The Information page is a central location for accessing information about and performing actions on a particular object.",
+                  "hint": null
+                },
+                {
+                  "action": "View the Information page and note who last modified the file.",
+                  "detail": "While you can see a subset of this information in tables throughout Windchill, the Information page can display all the information available for the object in one location. You will be returning to this page often.",
+                  "hint": null
+                },
+                {
+                  "action": "Return to the <strong>Browse</strong> pane on the left.",
+                  "detail": "The Browse pane provides continued access to the Navigator for further exploration.",
+                  "hint": null
+                },
+                {
+                  "action": "Browse through the listed links to become familiar with the available information: <strong>Packages</strong>, <strong>Team</strong>, <strong>Tasks</strong>, <strong>Change Monitor</strong>, <strong>Discussions</strong>, and <strong>Reports</strong>.",
+                  "detail": "These links provide access to different aspects of the product data, showing how much information is associated with a single object.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex3-t5",
+              "title": "Browse a Library",
+              "steps": [
+                {
+                  "action": "Click the <strong>Recent Libraries</strong> icon in the Navigator panel.",
+                  "detail": "Libraries store shared data that can be used across multiple products, such as standard components and fasteners.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>View All</strong> link.",
+                  "detail": "This shows all library contexts you have access to.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Fundamentals Library</strong>.",
+                  "detail": "It will open in the Folders section. This library contains standard components available to all products in the system.",
                   "hint": null
                 },
                 {
                   "action": "Observe what Windchill parts are available in this library.",
                   "detail": "Standard components like screws are stored here rather than in individual product contexts, preventing duplication.",
                   "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex3-t6",
+              "title": "View Recently Visited",
+              "steps": [
+                {
+                  "action": "Click <strong>Recently Accessed</strong> in the upper-right corner and notice the links to previously accessed objects in Windchill.",
+                  "detail": "Navigating to an object's mini information page will update the Recently Accessed list.",
+                  "hint": null
                 },
                 {
-                  "action": "Click Recently Accessed in the upper-right corner to view previously accessed objects.",
-                  "detail": "This provides quick navigation back to recently visited items without re-browsing through the Navigator.",
+                  "action": "Click the <strong>Recently Visited</strong> icon in the Navigator panel.",
+                  "detail": "The recently accessed Belt Sander product and the Fundamentals Library are displayed in the Browse tab.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the Navigator by clicking the <strong>Unpin Navigator</strong> icon.",
+                  "detail": "Unpinning the Navigator collapses it to maximize your workspace area.",
                   "hint": null
                 }
               ]
@@ -1190,88 +1280,147 @@
           "tasks": [
             {
               "id": "ex4-t1",
-              "title": "Perform a Global Search",
+              "title": "Visit the Help Center",
               "steps": [
                 {
-                  "action": "Click the Quick Links menu, hover over Help, and select Windchill Help Center.",
+                  "action": "Click the <strong>Quick Links</strong> menu, hover over <strong>Help</strong>, and select <strong>Windchill Help Center</strong> to open the Windchill Help Center window.",
                   "detail": "The Help Center provides documentation on Windchill features including search wildcards and syntax.",
+                  "hint": "The Help options, which access ptc.com, require you to have a PTC account and internet access."
+                },
+                {
+                  "action": "In the search box, type <code>wildcard</code>.",
+                  "detail": "This searches the Help Center documentation for information about wildcard characters.",
                   "hint": null
                 },
                 {
-                  "action": "Search for \"wildcard\" in the Help Center and review the Search Wildcards topic.",
+                  "action": "Press <strong>Enter</strong>.",
+                  "detail": "You will see a list of related topics with wildcard highlighted in yellow.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the topic that says <strong>Search Wildcards</strong>.",
+                  "detail": "You are directed to a details page that will give you information on wildcard characters and provide you with links to related topics.",
+                  "hint": "On the left side of the page is a menu with topics that can be expanded. You can use this menu to browse to any topic."
+                },
+                {
+                  "action": "Review the information on wildcard characters.",
                   "detail": "Understanding wildcards helps you create more effective searches and locate objects even when you do not know the exact name.",
                   "hint": null
                 },
                 {
-                  "action": "Close the Help Center browser tab.",
+                  "action": "Close the browser tab.",
                   "detail": "Return to the main Windchill window to perform your searches.",
-                  "hint": null
-                },
-                {
-                  "action": "Type \"*belt*\" in the global search field and press Enter.",
-                  "detail": "The asterisk wildcards match any characters before and after \"belt\", returning all objects with \"belt\" anywhere in their name or number.",
-                  "hint": null
-                },
-                {
-                  "action": "Review the search results and note the variety of object types returned.",
-                  "detail": "Global search returns results from all contexts you have access to, which may include parts, documents, and CAD files.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex4-t2",
-              "title": "Perform an Advanced Search",
+              "title": "Perform a Global Search",
               "steps": [
                 {
-                  "action": "Click Edit Search Criteria in the Search tab of the Navigator.",
-                  "detail": "Advanced search provides more filtering options than global search, letting you narrow results precisely.",
+                  "action": "Type <code>*belt*</code> in the global search field.",
+                  "detail": "The asterisk wildcards match any characters before and after \"belt\", returning all objects with \"belt\" anywhere in their name or number.",
                   "hint": null
                 },
                 {
-                  "action": "Clear the My Favorite Types checkbox and select only the Document checkbox.",
-                  "detail": "Filtering by object type narrows results to documents only, excluding parts and CAD files from the results.",
-                  "hint": null
-                },
-                {
-                  "action": "Remove the Number criteria by clicking in the Number field and clicking the red X.",
-                  "detail": "Removing unnecessary criteria broadens the search within your selected type filter.",
-                  "hint": null
-                },
-                {
-                  "action": "Select State from the criteria list, set the value to \"In Work\", and click Search.",
-                  "detail": "Filtering by life cycle state finds only documents currently being worked on, excluding released or cancelled items.",
-                  "hint": null
-                },
-                {
-                  "action": "In the results, hover over the object type icon for Belt Sander User Manual to confirm it is a Document.",
-                  "detail": "Verifying the type ensures you found the correct object and that your search criteria filtered as expected.",
-                  "hint": null
-                },
-                {
-                  "action": "Click the View Information icon of the Belt Sander User Manual.",
-                  "detail": "Opens the full Information page for this document, where you can review all attributes, relationships, and content.",
+                  "action": "Press <strong>Enter</strong> to get the search results.",
+                  "detail": "Global search returns results from all contexts you have access to, which may include parts, documents, and CAD files.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex4-t3",
+              "title": "Filter Object Type",
+              "steps": [
+                {
+                  "action": "Click the <strong>Edit Search Criteria</strong> link in the Search tab of the Navigator.",
+                  "detail": "Advanced search provides more filtering options than global search, letting you narrow results precisely.",
+                  "hint": "You should be signed in to Windchill as cjohnson/ptc."
+                },
+                {
+                  "action": "In the Type section, clear the <strong>My Favorite Types</strong> checkbox to deselect the object types.",
+                  "detail": "This clears all pre-selected types so you can choose only the specific type you need.",
+                  "hint": null
+                },
+                {
+                  "action": "Check the <strong>Document</strong> checkbox.",
+                  "detail": "Filtering by object type narrows results to documents only, excluding parts and CAD files from the results.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex4-t4",
+              "title": "Add State Criteria",
+              "steps": [
+                {
+                  "action": "In the Criteria section, remove the Number criteria first by clicking in the <strong>Number</strong> field and clicking the red X that appears to the right.",
+                  "detail": "Removing unnecessary criteria broadens the search within your selected type filter.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the life cycle state criteria by clicking in the <strong>Name</strong> field and selecting <strong>State</strong> from the list.",
+                  "detail": "Adding state as a criterion lets you filter by the object's current life cycle state.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the life cycle state value to <strong>In Work</strong> from the list in the next field and click <strong>Search</strong>.",
+                  "detail": "This finds only documents currently being worked on, excluding released or cancelled items.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex4-t5",
+              "title": "View Search Results",
+              "steps": [
+                {
+                  "action": "In the search results table, hover over the object type icon to the right of the <strong>Belt Sander User Manual</strong> to confirm it is a Document.",
+                  "detail": "Verifying the type ensures you found the correct object and that your search criteria filtered as expected.",
+                  "hint": null
+                },
+                {
+                  "action": "Scroll to the right to view the <strong>State</strong> column to confirm the manual is <strong>In Work</strong>.",
+                  "detail": "This confirms that the life cycle state filter worked correctly.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>View information</strong> icon of the Belt Sander User Manual to navigate to the Information page.",
+                  "detail": "Opens the full Information page for this document, where you can review all attributes, relationships, and content.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex4-t6",
               "title": "Save the Search",
               "steps": [
                 {
-                  "action": "In the search panel of the Navigator, click Save This Search.",
+                  "action": "In the search panel of the Navigator, save the search by clicking the <strong>Save This Search</strong> link.",
                   "detail": "Saving a search lets you reuse the criteria without re-entering them, which is valuable for frequently used queries.",
                   "hint": null
                 },
                 {
-                  "action": "Type \"Belt Sander In Work Documents\" in the Save This Search dialog and click Save.",
+                  "action": "In the Save This Search dialog, type <code>Belt Sander In Work Documents</code> and click <strong>Save</strong>.",
                   "detail": "Choose a descriptive name so you can easily identify the search later among your saved searches.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex4-t7",
+              "title": "View the Saved Search",
+              "steps": [
+                {
+                  "action": "Click the <strong>Search History and Saved Searches</strong> link and look at the Saved Searches list.",
+                  "detail": "The Belt Sander In Work Documents saved search appears with the Edit Criteria and Delete actions.",
                   "hint": null
                 },
                 {
-                  "action": "Click Search History and Saved Searches to verify your saved search appears in the list.",
-                  "detail": "The saved search is available with Edit Criteria and Delete actions, confirming it was stored successfully.",
+                  "action": "Notice that the Search History list displays all the recent searches for reuse.",
+                  "detail": "Search history provides quick access to repeat any previous search without re-entering criteria.",
                   "hint": null
                 }
               ]
@@ -1568,79 +1717,80 @@
               "title": "Navigate to a Folder",
               "steps": [
                 {
-                  "action": "Click the Browse link in the Navigator and expand the Belt Sander product.",
+                  "action": "Click the <strong>Browse</strong> link in the Navigator panel and then expand the <strong>Belt Sander</strong> product to expose the available navigation options.",
                   "detail": "Access the product context to view its data.",
+                  "hint": "You should be signed in to Windchill as cjohnson/ptc."
+                },
+                {
+                  "action": "Click the <strong>Folders</strong> link in the Browse pane.",
+                  "detail": "Folders organize product data within a context.",
                   "hint": null
                 },
                 {
-                  "action": "Click Folders in the Browse pane and select the Windchill Parts folder.",
+                  "action": "Select the <strong>Windchill Parts</strong> folder.",
                   "detail": "This folder contains the parts for the belt sander product.",
-                  "hint": null
-                },
-                {
-                  "action": "Click the red X next to the Search in table field to clear any existing filter.",
-                  "detail": "Start with the full unfiltered table view.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex5-t2",
-              "title": "Change Column Order and Lock",
+              "title": "Change Column Order",
               "steps": [
                 {
-                  "action": "Drag the Name column header from the right side to the left side of the Number column.",
+                  "action": "Click the red X next to the <strong>Search in table</strong> field to clear the table filter.",
+                  "detail": "Start with the full unfiltered table view.",
+                  "hint": null
+                },
+                {
+                  "action": "To move the Name column to the left of the Number column, drag the <strong>Name</strong> column header from the right side to the left side of the <strong>Number</strong> column header.",
                   "detail": "Reordering columns puts the most useful information where you need it.",
                   "hint": null
-                },
-                {
-                  "action": "Hover over the Name column header and click the dropdown arrow that appears.",
-                  "detail": "The column dropdown provides table manipulation options.",
-                  "hint": null
-                },
-                {
-                  "action": "Click Lock to lock the Name column in place.",
-                  "detail": "Locked columns remain visible when you scroll horizontally through wide tables.",
-                  "hint": null
-                },
-                {
-                  "action": "Scroll right to verify the Name column stays visible, then scroll back.",
-                  "detail": "This confirms the lock is working correctly.",
-                  "hint": null
-                },
-                {
-                  "action": "Hover over the Name column header dropdown and click Unlock.",
-                  "detail": "You need to unlock the column before you can perform Group By operations.",
-                  "hint": "Cannot Group By while a column is locked."
                 }
               ]
             },
             {
               "id": "ex5-t3",
-              "title": "Group Information by Column",
+              "title": "Lock Columns",
               "steps": [
                 {
-                  "action": "Hover over the Version column header and click the dropdown arrow.",
-                  "detail": "Grouping helps organize related objects together.",
+                  "action": "Hover over the <strong>Name</strong> column header and click the dropdown arrow that appears to the right.",
+                  "detail": "The column dropdown provides table manipulation options.",
                   "hint": null
                 },
                 {
-                  "action": "Click \"Group By This Field\" to sort the table based on object versions.",
-                  "detail": "Objects are now organized by their version number.",
+                  "action": "Click <strong>Lock</strong> to lock the column in place.",
+                  "detail": "When you scroll to the right, this column will remain in your view.",
                   "hint": null
                 },
                 {
-                  "action": "Review how the table is now grouped by version.",
-                  "detail": "This helps identify which objects are at the same version level.",
+                  "action": "Click <strong>Unlock</strong> to remove the lock on the column.",
+                  "detail": "You cannot complete the Group By This Field action while a column is locked.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex5-t4",
+              "title": "Group Information Based on a Column",
+              "steps": [
+                {
+                  "action": "Hover over the <strong>Version</strong> column header and click the dropdown arrow that appears to the right.",
+                  "detail": "The column dropdown provides options for grouping and sorting.",
                   "hint": null
                 },
                 {
-                  "action": "Hover over the Version column header dropdown again.",
+                  "action": "Click <strong>Group By This Field</strong> to sort the table based on the version of the objects.",
+                  "detail": "Objects are now organized by their version number, making it easy to identify which objects are at the same version level.",
+                  "hint": null
+                },
+                {
+                  "action": "Hover over the <strong>Version</strong> column header and click the dropdown arrow that appears to the right.",
                   "detail": "You can toggle grouping off to return to the normal view.",
                   "hint": null
                 },
                 {
-                  "action": "Clear the \"Show in Groups\" checkbox to remove the grouping.",
+                  "action": "Clear the <strong>Show in Groups</strong> checkbox to clear the filter.",
                   "detail": "Returns the table to its standard flat view.",
                   "hint": null
                 }
@@ -1674,21 +1824,21 @@
           "tasks": [
             {
               "id": "ex6-t1",
-              "title": "Access the Customize Dialog",
+              "title": "Customize a View",
               "steps": [
                 {
-                  "action": "In the Navigator Browse pane, navigate to Belt Sander > Folders > Windchill Parts.",
-                  "detail": "Start from the folder containing the parts you want to view.",
+                  "action": "Click <strong>Browse</strong> to expand and access Navigator.",
+                  "detail": "Access the Navigator to browse to the Belt Sander product.",
+                  "hint": "You should be signed in to Windchill as cjohnson/ptc."
+                },
+                {
+                  "action": "In the Belt Sander product, go to the <strong>Windchill Parts</strong> folder.",
+                  "detail": "Navigate to the folder containing the parts you want to create a view for.",
                   "hint": null
                 },
                 {
-                  "action": "Click the dropdown arrow to the right of the Folder Contents view name.",
-                  "detail": "This opens the Pick a View list.",
-                  "hint": null
-                },
-                {
-                  "action": "Select Customize from the Pick a View list.",
-                  "detail": "Customize opens the view configuration dialog.",
+                  "action": "Click the dropdown arrow to the right of the <strong>Folder Contents</strong> selection and from the Pick a View list, select the <strong>Customize</strong> action.",
+                  "detail": "Customize opens the view configuration dialog where you can manage existing views or create new ones.",
                   "hint": "You may need to scroll down in the Pick a View list."
                 }
               ]
@@ -1698,38 +1848,88 @@
               "title": "Create a New View",
               "steps": [
                 {
-                  "action": "Click the New View icon and type \"All Working Windchill Parts\" in the Name field.",
+                  "action": "Click the <strong>New View</strong> icon.",
+                  "detail": "This opens the wizard to create a new custom view.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Name field, type <code>All Working Windchill Parts</code>.",
                   "detail": "Choose a descriptive name that reflects the filter criteria.",
                   "hint": null
                 },
                 {
-                  "action": "In the Description field, type \"Windchill parts currently in the In Work state\" and click Next.",
+                  "action": "In the Description field, type <code>Windchill parts currently in the In Work state</code>.",
                   "detail": "A description helps others understand what the view shows.",
                   "hint": null
                 },
                 {
-                  "action": "Clear the \"Select all rows\" checkbox and select only the Part checkbox, then click Next.",
+                  "action": "Click <strong>Next</strong>.",
+                  "detail": "Proceed to the object type selection step.",
+                  "hint": null
+                },
+                {
+                  "action": "Clear the <strong>Select all rows</strong> checkbox.",
+                  "detail": "This deselects all object types so you can choose only the types you need.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Part</strong> checkbox.",
                   "detail": "This filters the view to show only part objects.",
                   "hint": null
                 },
                 {
-                  "action": "Select State in the Criteria field, click Add, set the Value to \"In Work\", and click Next.",
-                  "detail": "Adding state criteria limits results to parts currently being worked on.",
+                  "action": "Click <strong>Next</strong>.",
+                  "detail": "Proceed to the criteria step.",
                   "hint": null
                 },
                 {
-                  "action": "Hold Ctrl and select Last Modified, Modified by, State, and Version, then click the Add arrow to move them to Selected Columns.",
+                  "action": "In the Criteria field, select <strong>State</strong> and click <strong>Add</strong>.",
+                  "detail": "Adding state as a criterion lets you filter parts by their life cycle state.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Value field, select <strong>In Work</strong>.",
+                  "detail": "This limits results to parts currently being worked on.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Next</strong>.",
+                  "detail": "Proceed to the column selection step.",
+                  "hint": null
+                },
+                {
+                  "action": "Press <strong>Ctrl</strong> and select <strong>Last Modified</strong>, <strong>Modified by</strong>, <strong>State</strong>, and <strong>Version</strong>.",
                   "detail": "These columns provide the most useful information for tracking work in progress.",
                   "hint": null
                 },
                 {
-                  "action": "Click Next, set the First Sort column to Name, and click Finish.",
+                  "action": "Click the <strong>Add</strong> arrow to move the items to the Selected Columns list.",
+                  "detail": "The selected columns will be displayed in your custom view.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Next</strong>.",
+                  "detail": "Proceed to the sort order step.",
+                  "hint": null
+                },
+                {
+                  "action": "For the First Sort, select <strong>Name</strong> in the Column field.",
                   "detail": "Sorting by name makes it easy to locate specific parts alphabetically.",
                   "hint": null
                 },
                 {
-                  "action": "Click OK to confirm the refresh, then select \"All Working Windchill Parts\" from the Pick a View list.",
-                  "detail": "Your custom view is now available for reuse whenever you return to this table.",
+                  "action": "Click <strong>Finish</strong> to close the Customize window and click <strong>OK</strong>.",
+                  "detail": "The custom view is now saved and available for use.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong> to confirm the window's refresh.",
+                  "detail": "The table refreshes to apply the new view settings.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Pick a View field, select the <strong>All Working Windchill Parts</strong> view from the list and observe the changes in the folder table view.",
+                  "detail": "Your custom view is now available for reuse whenever you return to this table. Only In Work parts are displayed with the columns you selected.",
                   "hint": null
                 }
               ]
@@ -2103,69 +2303,79 @@
               "title": "Check Out the Document",
               "steps": [
                 {
-                  "action": "In the Navigator search panel, click Search History and Saved Searches.",
+                  "action": "In the search panel of the Navigator, click the <strong>Search History and Saved Searches</strong> link to access your saved search.",
                   "detail": "Use your previously saved search to quickly find the document without re-entering search criteria.",
-                  "hint": null
+                  "hint": "You should be signed in to Windchill as cjohnson/ptc."
                 },
                 {
-                  "action": "Click \"Belt Sander In Work Documents\" to perform the saved search.",
+                  "action": "Click on <strong>Belt Sander In Work Documents</strong> to perform the advanced search.",
                   "detail": "The saved search automatically applies your Document type and In Work state criteria, returning matching results.",
                   "hint": null
                 },
                 {
-                  "action": "Click the View information icon of the Belt Sander User Manual.",
+                  "action": "In the search results table, click the <strong>View information</strong> icon of the Belt Sander User Manual.",
                   "detail": "Opens the Information page where you can view details and perform actions on the document.",
                   "hint": null
                 },
                 {
-                  "action": "Click the Actions menu and select Check Out.",
+                  "action": "On the Information page, click the <strong>Actions</strong> menu and select <strong>Check Out</strong>.",
                   "detail": "Checking out creates a working copy and locks the object from modification by others. This signals your intent to modify the document.",
-                  "hint": "A yellow icon will appear next to the object name after checkout, indicating it is checked out."
+                  "hint": "The page will refresh, and a yellow icon will appear next to the object name."
                 }
               ]
             },
             {
               "id": "ex7-t2",
-              "title": "Modify and Check In",
+              "title": "Modify the Document",
               "steps": [
                 {
-                  "action": "Click the Actions menu and select Edit.",
+                  "action": "Click the <strong>Actions</strong> menu and select <strong>Edit</strong>.",
                   "detail": "Edit allows you to replace the document content with an updated file while the document is checked out.",
                   "hint": null
                 },
                 {
-                  "action": "Click Browse, select This PC, navigate to the updated Belt Sander User Manual file, and click Open.",
+                  "action": "Click <strong>Browse</strong> and select <strong>This PC</strong>.",
+                  "detail": "This opens a file browser to locate the updated document on your local machine.",
+                  "hint": null
+                },
+                {
+                  "action": "Browse to <code>W:\\WCFD-OVER-Lab-Files\\Belt Sander User Manual.pdf</code> and click <strong>Open</strong>.",
                   "detail": "You are replacing the document content with the modified version. The original version is preserved in the version history.",
                   "hint": null
                 },
                 {
-                  "action": "Click Check In to check the document back in.",
+                  "action": "Click <strong>Check In</strong> to check the document back in to the system.",
                   "detail": "Check In removes the lock and stores a new iteration, making the updated document available to other users.",
-                  "hint": null
-                },
-                {
-                  "action": "In the Check In dialog, type \"Updated to account for part change\" and click OK.",
-                  "detail": "The check-in comment provides a record of what was changed, helping team members understand the modification history.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex7-t3",
-              "title": "Verify the Version Change",
+              "title": "Check In the Document and Observe Version Change",
               "steps": [
                 {
-                  "action": "Observe the document name line and note the version is now A.3.",
+                  "action": "In the Check In dialog, type <code>Updated to account for part change</code>.",
+                  "detail": "The check-in comment provides a record of what was changed, helping team members understand the modification history.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "The document is checked in and the lock is released.",
+                  "hint": null
+                },
+                {
+                  "action": "Observe the document name line. The version is shown as <strong>A.3</strong>.",
                   "detail": "The iteration number incremented from A.2 to A.3, reflecting the new modification you just checked in.",
                   "hint": null
                 },
                 {
-                  "action": "Select the History tab and explore the Version History table.",
-                  "detail": "The change you made is listed at the top of the version history, including the check-in comment you entered.",
+                  "action": "Select the <strong>History</strong> tab and explore the information on that page.",
+                  "detail": "The change you made is listed at the top of the Version History table, including the check-in comment you entered.",
                   "hint": null
                 },
                 {
-                  "action": "Click the Home icon and note the Belt Sander User Manual appears in the Updates table.",
+                  "action": "Click the <strong>Home</strong> icon to display your Home page. Note that the Belt Sander User Manual is now listed in the <strong>Updates</strong> table.",
                   "detail": "The Updates table on your Home page shows recently modified objects, confirming your change is reflected across Windchill.",
                   "hint": null
                 }
@@ -2481,7 +2691,7 @@
   "topic.stepsProgress": "{done}/{total} steps",
   "topic.doThis": "Do This",
   "topic.whyItMatters": "Why It Matters",
-  "topic.doneNextStep": "Done - Next Step",
+  "topic.doneNextStep": "Done",
   "topic.topicsComplete": "{done}/{total} topics complete",
   "topic.moduleBadge": "Module {num}",
   "topic.topics": "Topics",

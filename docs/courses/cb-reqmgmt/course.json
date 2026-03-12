@@ -1,0 +1,48 @@
+{
+  "id": "cb-reqmgmt",
+  "title": "Codebeamer: Fundamentals of Requirements Management",
+  "description": "Gain proficiency in Codebeamer to record, refine, trace, and link requirements using techniques including mass edit, Microsoft Office integration, views, reports, and filters.",
+  "prerequisite": "cb-overview",
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Introduction to Requirements Management",
+      "description": "Explore the Codebeamer requirements management framework, examine common categories and user roles, and understand the gather-record-trace-develop lifecycle.",
+      "estimatedMinutes": 30,
+      "topicCount": 5,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m1-intro-reqmgmt.json",
+      "quizFile": "quizzes/q1-intro-reqmgmt.json"
+    },
+    {
+      "id": "m2",
+      "title": "Record Requirements",
+      "description": "Input requirements from various sources, understand Codebeamer relationships, assign requirements, and manage tracker status transitions.",
+      "estimatedMinutes": 45,
+      "topicCount": 7,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m2-record-requirements.json",
+      "quizFile": "quizzes/q2-record-requirements.json"
+    },
+    {
+      "id": "m3",
+      "title": "Refine and Prioritize Requirements",
+      "description": "Copy tracker items using the library, edit items with Excel round-trip, define associations, and add upstream references.",
+      "estimatedMinutes": 40,
+      "topicCount": 6,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m3-refine-prioritize.json",
+      "quizFile": "quizzes/q3-refine-prioritize.json"
+    },
+    {
+      "id": "m4",
+      "title": "Trace Requirements",
+      "description": "Use traceability reports to verify requirement coverage, examine suspected items, and clear suspected badges manually and in bulk.",
+      "estimatedMinutes": 35,
+      "topicCount": 5,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m4-trace-requirements.json",
+      "quizFile": "quizzes/q4-trace-requirements.json"
+    }
+  ]
+}

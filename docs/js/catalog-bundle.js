@@ -295,23 +295,25 @@
  },
  {
  "id": "cb-reqmgmt",
- "title": "Requirements Management",
- "description": "Manage requirements lifecycle, traceability, and baselines in Codebeamer.",
+ "title": "Fundamentals of Requirements Management",
+ "description": "Gain proficiency in Codebeamer to record, refine, trace, and link requirements using techniques including mass edit, Microsoft Office integration, views, reports, and filters.",
  "pdfFile": "CBFD-REQM-Training-Guide.pdf",
- "modules": 0,
+ "prerequisite": "cb-overview",
+ "modules": 4,
  "estimatedHours": 3,
  "locales": ["en"],
- "comingSoon": true
+ "comingSoon": false
  },
  {
  "id": "cb-testmgmt",
  "title": "Test Management",
  "description": "Plan, execute, and track testing activities and test cases.",
  "pdfFile": "CBFD-TEST-Training-Guide.pdf",
- "modules": 0,
+ "prerequisite": "cb-overview",
+ "modules": 4,
  "estimatedHours": 3,
  "locales": ["en"],
- "comingSoon": true
+ "comingSoon": false
  },
  {
  "id": "cb-projrptg",

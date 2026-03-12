@@ -3,631 +3,743 @@
  "title": "Navigate Data",
  "description": "Browse product contexts, understand business objects and their relationships, and use global and advanced search methods to locate product data efficiently.",
  "topics": [
- {
- "id": "m2t1",
- "title": "The Windchill Environment and Contexts",
- "estimatedMinutes": 6,
- "content": [
- {
- "type": "paragraph",
- "text": "Windchill is built around four key requirements that drive how organizations manage product data throughout the life cycle. Understanding these requirements - and how Windchill organizes data into <strong>contexts</strong> - is the foundation for navigating the system effectively."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Four Key Windchill Requirements"
- },
- {
- "type": "comparison-table",
- "headers": [
- "Requirement",
- "What It Provides"
- ],
- "rows": [
- [
- "Information Storage",
- "Control, access, and share product data safely in a centralized repository"
- ],
- [
- "Information Evolution Control",
- "Manage complex intellectual capital as products evolve through revisions and iterations"
- ],
- [
- "Access Control",
- "Enforce policies based on domains, life cycle states, and user roles to protect sensitive data"
- ],
- [
- "Collaboration",
- "Provide a common mechanism for sharing information across teams, departments, and organizations"
- ]
- ]
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Contexts Organize the Database"
- },
- {
- "type": "paragraph",
- "text": "Contexts organize the Windchill database in alignment with how a company operates. Every context has three critical components: <strong>data</strong> unique to a product or project, a <strong>team</strong> of users with assigned roles, and <strong>policies and processes</strong> that govern how work is performed. Context types form a hierarchy: the <strong>Site</strong> context sits at the top level, followed by <strong>Organization</strong> contexts, and then <strong>Application</strong> contexts where day-to-day work happens."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Application Context Types"
- },
- {
- "type": "reveal-cards",
- "cards": [
- {
- "front": "Products",
- "back": "Store and manage data specific to a particular product. Product contexts contain part structures, CAD documents, and associated metadata. Each product has its own team and policies."
- },
- {
- "front": "Libraries",
- "back": "Store shared data that can be used across multiple products - such as standard components, fasteners, and reference materials. Libraries prevent duplication by providing a single source for common parts."
- },
- {
- "front": "Projects",
- "back": "Organize project plans, collaboration activities, and deliverables. Projects are used for managing timelines, tasks, and team coordination around specific initiatives."
- },
- {
- "front": "Programs",
- "back": "Group interrelated projects together under a single umbrella. Programs provide visibility across multiple projects and help manage dependencies between them."
- }
- ]
- },
- {
- "type": "callout",
- "variant": "insight",
- "text": "The distinction between Products and Libraries is fundamental: product contexts hold data unique to one product, while library contexts hold shared data (like standard screws or bolts) available to many products. This separation prevents duplication and ensures consistency across products."
- },
- {
- "type": "interactive-match",
- "prompt": "Match each context type to its primary purpose:",
- "pairs": [
- {
- "left": "Product",
- "right": "Store and manage data specific to a single product"
- },
- {
- "left": "Library",
- "right": "Store shared components used across multiple products"
- },
- {
- "left": "Project",
- "right": "Organize plans, tasks, and collaboration activities"
- },
- {
- "left": "Program",
- "right": "Group interrelated projects under one umbrella"
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Windchill addresses four key requirements: information storage, evolution control, access control, and collaboration",
- "Contexts organize the database in alignment with company operations, each with data, a team, and policies",
- "Application contexts include Products, Libraries, Projects, and Programs - each serving a distinct purpose",
- "Libraries store shared cross-product data while Product contexts hold product-specific data"
- ]
- },
- {
- "id": "m2t2",
- "title": "Business Objects and Relationships",
- "estimatedMinutes": 7,
- "content": [
- {
- "type": "paragraph",
- "text": "Everything managed in Windchill is a <strong>business object</strong> - any kind of business data that the system tracks and controls. Business objects serve three fundamental purposes: storing <strong>attributes</strong> (metadata like name, number, and state), storing <strong>content</strong> (files and documents), and managing <strong>relationships</strong> between objects."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Major Business Object Types"
- },
- {
- "type": "comparison-table",
- "headers": [
- "Business Object",
- "Purpose",
- "Key Characteristics"
- ],
- "rows": [
- [
- "Windchill Parts (WTParts)",
- "Build product structures and form the BOM hierarchy",
- "Parts and end items reference other objects and can be organized into parent-child structures representing the bill of materials"
- ],
- [
- "CAD Documents",
- "Store CAD design files such as models and drawings",
- "Form a CAD structure hierarchy that is linked to the product structure, keeping design data synchronized with part definitions"
- ],
- [
- "Documents",
- "Store and manage any electronic content",
- "Can form document structures and hold files such as specifications, user manuals, and reports"
- ]
- ]
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Object Relationships"
- },
- {
- "type": "paragraph",
- "text": "Object relationships create two-way connections between database objects. An object can have multiple relationships with multiple other objects, forming a rich web of connections that defines your complete digital product. There are three types of relationships, each serving a different purpose."
- },
- {
- "type": "interactive-match",
- "prompt": "Match each relationship type to its definition and example:",
- "pairs": [
- {
- "left": "Description",
- "right": "Connects a specific version to a specific version (e.g., the drill drawing describes the drill part)"
- },
- {
- "left": "Reference",
- "right": "Connects an object to the latest version of another (e.g., the user manual references the belt sander)"
- },
- {
- "left": "Usage",
- "right": "Connects a parent to a child in a structure (e.g., the belt sander uses the motor and handle)"
- }
- ]
- },
- {
- "type": "callout",
- "variant": "insight",
- "text": "Together, business objects and their relationships form a <strong>complete digital product definition</strong>. Parts define what the product is made of, CAD documents define how it looks and functions, documents provide supporting information, and relationships tie everything together into a coherent whole."
- }
- ],
- "keyTakeaways": [
- "Business objects store attributes, content, and relationships - the three pillars of data management in Windchill",
- "The three major business object types are Windchill Parts (WTParts), CAD Documents, and Documents",
- "Three relationship types connect objects: Description (version-to-version), Reference (to latest version), and Usage (parent-to-child)",
- "An object can have multiple relationships with multiple objects, forming a complete digital product definition"
- ]
- },
- {
- "id": "m2t3",
- "title": "Browsing and the Breadcrumb Trail",
- "estimatedMinutes": 5,
- "content": [
- {
- "type": "paragraph",
- "text": "Windchill provides several navigation tools that make it easy to browse product data, inspect objects, and retrace your steps. The <strong>Navigator Browse tab</strong>, <strong>folders</strong>, <strong>information pages</strong>, and the <strong>breadcrumb trail</strong> work together to help you find and understand product data efficiently."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Browsing with the Navigator"
- },
- {
- "type": "paragraph",
- "text": "The Navigator Browse tab lets you expand product contexts and access their pages - such as Details, Folders, and Team. Within a context, <strong>folders</strong> provide a logical storage structure. Select a folder to view its contents in the Folder Contents table. You can sort objects by clicking column headers and filter with the <em>Search in table</em> field to quickly locate specific items."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Mini Information Page vs. Information Page"
- },
- {
- "type": "comparison-table",
- "headers": [
- "Feature",
- "Mini Information Page",
- "Information Page"
- ],
- "rows": [
- [
- "How to access",
- "Hover over an object's thumbnail",
- "Click the View Information icon next to an object"
- ],
- [
- "Detail level",
- "Basic attributes and key relationships",
- "All available information in one central location"
- ],
- [
- "Navigation impact",
- "Appears as an overlay - no page change",
- "Opens a dedicated page for the object"
- ],
- [
- "Best for",
- "Quick preview of an object without leaving your current view",
- "Comprehensive review of all object details, history, and relationships"
- ]
- ]
- },
- {
- "type": "callout",
- "variant": "tip",
- "text": "Use the <strong>breadcrumb trail</strong> at the top of the page to quickly navigate through folder structures. Each element in the breadcrumb (e.g., Products > Belt Sander > Windchill Parts) is a clickable link that takes you directly to that page - saving time compared to re-browsing from the Navigator."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Recently Accessed Objects"
- },
- {
- "type": "paragraph",
- "text": "Windchill tracks your navigation history. The <strong>Recently Accessed</strong> link in the upper-right corner shows objects you have recently visited, and the <strong>Recently Visited</strong> icon in the Navigator shows recent products and libraries. These shortcuts let you quickly return to items without re-browsing or re-searching."
- },
- {
- "type": "interactive-sort",
- "prompt": "Arrange these navigation steps in the correct order to view object information:",
- "items": [
- "Expand the Navigator Browse tab to see available contexts",
- "Browse into a product context",
- "Select a folder to view its contents",
- "Click the View Information icon to see full object details"
- ]
- }
- ],
- "keyTakeaways": [
- "The Navigator Browse tab and folders provide structured access to product data within contexts",
- "The mini information page gives a quick preview on hover, while the full Information page shows all object details",
- "The breadcrumb trail provides clickable navigation through folder hierarchies for faster browsing",
- "Recently Accessed and Recently Visited shortcuts let you quickly return to previously viewed objects"
- ]
- },
- {
- "id": "m2t4",
- "title": "Search Methods",
- "estimatedMinutes": 7,
- "content": [
- {
- "type": "paragraph",
- "text": "Browsing is effective when you know where data lives, but <strong>search</strong> is essential when you need to find objects quickly across contexts. Windchill provides two default search methods - <strong>global search</strong> and <strong>advanced search</strong> - along with wildcard characters and saved searches to make finding data efficient."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Global Search vs. Advanced Search"
- },
- {
- "type": "comparison-table",
- "headers": [
- "Feature",
- "Global Search",
- "Advanced Search"
- ],
- "rows": [
- [
- "Location",
- "Search field in the Windchill header",
- "Edit Search Criteria in the Navigator Search tab"
- ],
- [
- "Input",
- "Object type dropdown + keyword field",
- "Object type checkboxes + multiple criteria fields"
- ],
- [
- "Scope",
- "Searches across all contexts the user has access to",
- "Can be narrowed by specific criteria such as State, Type, or Number"
- ],
- [
- "Modes",
- "Standard search (names/numbers only) and Index search (attributes and content)",
- "Single focused search with configurable filter criteria"
- ],
- [
- "Best for",
- "Quick keyword lookups when you know part of a name or number",
- "Precise filtering when you need to narrow results by multiple attributes"
- ]
- ]
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Wildcards and Special Characters"
- },
- {
- "type": "reveal-cards",
- "cards": [
- {
- "front": "Asterisk (*)",
- "back": "Replaces <strong>zero or more</strong> characters. For example, <code>*belt*</code> matches any object with \"belt\" anywhere in the name, such as \"belt_sander\" or \"fan_belt_assembly\"."
- },
- {
- "front": "Question Mark (?)",
- "back": "Replaces <strong>exactly one</strong> character. For example, <code>belt_sander_?</code> matches \"belt_sander_A\" and \"belt_sander_B\" but not \"belt_sander_12\"."
- },
- {
- "front": "Special Characters",
- "back": "Period (.), dash (-), and underscore (_) are interpreted <strong>literally</strong> in search terms. All other special characters are ignored and replaced with spaces."
- }
- ]
- },
- {
- "type": "callout",
- "variant": "tip",
- "text": "Use wildcards like <code>*belt*</code> to expand your search results when you are unsure of the exact name or number. The asterisk before and after your keyword ensures matches regardless of what characters surround it."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Saved Searches and Other Methods"
- },
- {
- "type": "paragraph",
- "text": "Frequently used search criteria can be saved for quick re-access via the <strong>Search History and Saved Searches</strong> link. This is especially useful for advanced searches with multiple criteria. Beyond the two default methods, Windchill can also support <em>faceted search</em> (narrow results by object attributes) and <em>classification search</em> (find objects based on defined classification hierarchies), though these are not available out of the box."
- },
- {
- "type": "interactive-match",
- "prompt": "Match each search feature to its description:",
- "pairs": [
- {
- "left": "Global Search",
- "right": "Quick keyword search from the Windchill header across all accessible contexts"
- },
- {
- "left": "Advanced Search",
- "right": "Multi-criteria search using the Navigator with filters like State and Type"
- },
- {
- "left": "Saved Searches",
- "right": "Stored search criteria for quick re-access to frequently used queries"
- },
- {
- "left": "Index Search",
- "right": "Expanded search mode that searches attributes and file content, not just names"
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Global search provides quick keyword lookups from the header; advanced search enables precise multi-criteria filtering",
- "The asterisk (*) replaces zero or more characters and the question mark (?) replaces exactly one character in search terms",
- "Periods, dashes, and underscores are literal in searches; all other special characters are ignored",
- "Save frequently used search criteria to avoid re-entering complex advanced search filters"
- ]
- },
- {
- "id": "m2t5",
- "title": "Exercise: Browse Data and Libraries",
- "estimatedMinutes": 8,
- "isExercise": true,
- "content": [
- {
- "type": "paragraph",
- "text": "In this exercise, you will navigate to product data using the Navigator, explore folders, view object information using both the mini and full information pages, and browse a library context to see shared components."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "This exercise uses the Belt Sander product context and the Fundamentals Library. Ensure you are logged in to Windchill with access to both contexts."
- },
- {
- "type": "exercise",
- "exerciseId": "ex3",
- "title": "Browse Data and Libraries",
- "objective": "Navigate to product data using the Navigator, explore folders, view object information, and browse a library context.",
- "tasks": [
- {
- "id": "ex3-t1",
- "title": "Navigate to a Product",
- "steps": [
- {
- "action": "Click the Browse link in the Navigator and expand the Belt Sander product.",
- "detail": "The Navigator Browse tab shows available contexts organized by type. Expanding a product reveals its navigation pages.",
- "hint": null
- },
- {
- "action": "Click the Details link to view the product information.",
- "detail": "The Details page shows metadata about the product context, including its name, description, and team information.",
- "hint": null
- },
- {
- "action": "Pin the Navigator using the Pin Navigator icon.",
- "detail": "Pinning keeps the Navigator expanded while you work, so it does not collapse when you click elsewhere.",
- "hint": null
- },
- {
- "action": "Click Folders in the Browse pane and select the Windchill Parts folder.",
- "detail": "Folders organize product data within a context. The Windchill Parts folder contains all part objects for this product.",
- "hint": null
- },
- {
- "action": "Click the Name column header to sort objects alphabetically.",
- "detail": "Sorting helps locate specific objects in large folders by arranging them in a predictable order.",
- "hint": null
- },
- {
- "action": "Type \"belt\" in the Search in table field.",
- "detail": "This filters the table to show only objects matching the text in any column, helping you find items quickly.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex3-t2",
- "title": "View Object Information",
- "steps": [
- {
- "action": "Hover over the belt_sander thumbnail to view the mini information page.",
- "detail": "The mini information page shows basic attributes and relationships without navigating away from the current view.",
- "hint": "Look under the \"Uses\" heading to see related objects."
- },
- {
- "action": "Close the mini information page and click the View Information icon next to the belt_sander end item.",
- "detail": "The Information page is a central location for all data about this object, providing more detail than the mini information page.",
- "hint": null
- },
- {
- "action": "Note who last modified the file on the Information page.",
- "detail": "The Information page shows complete modification history, including who made changes and when.",
- "hint": null
- },
- {
- "action": "Browse the listed links: Packages, Team, Tasks, Change Monitor, Discussions, Reports.",
- "detail": "These links provide access to different aspects of the product data, showing how much information is associated with a single object.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex3-t3",
- "title": "Browse a Library",
- "steps": [
- {
- "action": "Click the Recent Libraries icon in the Navigator panel.",
- "detail": "Libraries store parts shared across multiple products, such as standard fasteners and common components.",
- "hint": null
- },
- {
- "action": "Click View All and select the Fundamentals Library.",
- "detail": "This library contains standard components available to all products in the system.",
- "hint": null
- },
- {
- "action": "Observe what Windchill parts are available in this library.",
- "detail": "Standard components like screws are stored here rather than in individual product contexts, preventing duplication.",
- "hint": null
- },
- {
- "action": "Click Recently Accessed in the upper-right corner to view previously accessed objects.",
- "detail": "This provides quick navigation back to recently visited items without re-browsing through the Navigator.",
- "hint": null
- }
- ]
- }
- ]
- }
- ],
- "keyTakeaways": [
- "The Navigator Browse tab and Folders provide structured access to product data within contexts",
- "The mini information page offers a quick preview, while the full Information page provides comprehensive object details",
- "Libraries store shared components used across multiple products to prevent data duplication",
- "Recently Accessed and Recently Visited shortcuts enable quick navigation to previously viewed objects"
- ]
- },
- {
- "id": "m2t6",
- "title": "Exercise: Search for Data",
- "estimatedMinutes": 7,
- "isExercise": true,
- "content": [
- {
- "type": "paragraph",
- "text": "In this exercise, you will use global search with wildcards, perform an advanced search with multiple criteria, and save a search for quick future access."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "This exercise builds on the previous exercise. Ensure you are still logged in to Windchill with access to the Belt Sander product context."
- },
- {
- "type": "exercise",
- "exerciseId": "ex4",
- "title": "Search for Data",
- "objective": "Use global search, advanced search, and save a search for quick future access.",
- "tasks": [
- {
- "id": "ex4-t1",
- "title": "Perform a Global Search",
- "steps": [
- {
- "action": "Click the Quick Links menu, hover over Help, and select Windchill Help Center.",
- "detail": "The Help Center provides documentation on Windchill features including search wildcards and syntax.",
- "hint": null
- },
- {
- "action": "Search for \"wildcard\" in the Help Center and review the Search Wildcards topic.",
- "detail": "Understanding wildcards helps you create more effective searches and locate objects even when you do not know the exact name.",
- "hint": null
- },
- {
- "action": "Close the Help Center browser tab.",
- "detail": "Return to the main Windchill window to perform your searches.",
- "hint": null
- },
- {
- "action": "Type \"*belt*\" in the global search field and press Enter.",
- "detail": "The asterisk wildcards match any characters before and after \"belt\", returning all objects with \"belt\" anywhere in their name or number.",
- "hint": null
- },
- {
- "action": "Review the search results and note the variety of object types returned.",
- "detail": "Global search returns results from all contexts you have access to, which may include parts, documents, and CAD files.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex4-t2",
- "title": "Perform an Advanced Search",
- "steps": [
- {
- "action": "Click Edit Search Criteria in the Search tab of the Navigator.",
- "detail": "Advanced search provides more filtering options than global search, letting you narrow results precisely.",
- "hint": null
- },
- {
- "action": "Clear the My Favorite Types checkbox and select only the Document checkbox.",
- "detail": "Filtering by object type narrows results to documents only, excluding parts and CAD files from the results.",
- "hint": null
- },
- {
- "action": "Remove the Number criteria by clicking in the Number field and clicking the red X.",
- "detail": "Removing unnecessary criteria broadens the search within your selected type filter.",
- "hint": null
- },
- {
- "action": "Select State from the criteria list, set the value to \"In Work\", and click Search.",
- "detail": "Filtering by life cycle state finds only documents currently being worked on, excluding released or cancelled items.",
- "hint": null
- },
- {
- "action": "In the results, hover over the object type icon for Belt Sander User Manual to confirm it is a Document.",
- "detail": "Verifying the type ensures you found the correct object and that your search criteria filtered as expected.",
- "hint": null
- },
- {
- "action": "Click the View Information icon of the Belt Sander User Manual.",
- "detail": "Opens the full Information page for this document, where you can review all attributes, relationships, and content.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex4-t3",
- "title": "Save the Search",
- "steps": [
- {
- "action": "In the search panel of the Navigator, click Save This Search.",
- "detail": "Saving a search lets you reuse the criteria without re-entering them, which is valuable for frequently used queries.",
- "hint": null
- },
- {
- "action": "Type \"Belt Sander In Work Documents\" in the Save This Search dialog and click Save.",
- "detail": "Choose a descriptive name so you can easily identify the search later among your saved searches.",
- "hint": null
- },
- {
- "action": "Click Search History and Saved Searches to verify your saved search appears in the list.",
- "detail": "The saved search is available with Edit Criteria and Delete actions, confirming it was stored successfully.",
- "hint": null
- }
- ]
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Global search with wildcards like *belt* finds objects across all accessible contexts quickly",
- "Advanced search lets you combine object type, state, and other criteria for precise results",
- "Saving a search preserves complex criteria for quick re-access without re-entering filters",
- "The Windchill Help Center is a valuable resource for learning search syntax and features"
- ]
- }
+  {
+   "id": "m2t1",
+   "title": "The Windchill Environment and Contexts",
+   "estimatedMinutes": 6,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Windchill is built around four key requirements that drive how organizations manage product data throughout the life cycle. Understanding these requirements - and how Windchill organizes data into <strong>contexts</strong> - is the foundation for navigating the system effectively."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Four Key Windchill Requirements"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Requirement",
+      "What It Provides"
+     ],
+     "rows": [
+      [
+       "Information Storage",
+       "Control, access, and share product data safely in a centralized repository"
+      ],
+      [
+       "Information Evolution Control",
+       "Manage complex intellectual capital as products evolve through revisions and iterations"
+      ],
+      [
+       "Access Control",
+       "Enforce policies based on domains, life cycle states, and user roles to protect sensitive data"
+      ],
+      [
+       "Collaboration",
+       "Provide a common mechanism for sharing information across teams, departments, and organizations"
+      ]
+     ]
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Contexts Organize the Database"
+    },
+    {
+     "type": "paragraph",
+     "text": "Contexts organize the Windchill database in alignment with how a company operates. Every context has three critical components: <strong>data</strong> unique to a product or project, a <strong>team</strong> of users with assigned roles, and <strong>policies and processes</strong> that govern how work is performed. Context types form a hierarchy: the <strong>Site</strong> context sits at the top level, followed by <strong>Organization</strong> contexts, and then <strong>Application</strong> contexts where day-to-day work happens."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Application Context Types"
+    },
+    {
+     "type": "reveal-cards",
+     "cards": [
+      {
+       "front": "Products",
+       "back": "Store and manage data specific to a particular product. Product contexts contain part structures, CAD documents, and associated metadata. Each product has its own team and policies."
+      },
+      {
+       "front": "Libraries",
+       "back": "Store shared data that can be used across multiple products - such as standard components, fasteners, and reference materials. Libraries prevent duplication by providing a single source for common parts."
+      },
+      {
+       "front": "Projects",
+       "back": "Organize project plans, collaboration activities, and deliverables. Projects are used for managing timelines, tasks, and team coordination around specific initiatives."
+      },
+      {
+       "front": "Programs",
+       "back": "Group interrelated projects together under a single umbrella. Programs provide visibility across multiple projects and help manage dependencies between them."
+      }
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "insight",
+     "text": "The distinction between Products and Libraries is fundamental: product contexts hold data unique to one product, while library contexts hold shared data (like standard screws or bolts) available to many products. This separation prevents duplication and ensures consistency across products."
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each context type to its primary purpose:",
+     "pairs": [
+      {
+       "left": "Product",
+       "right": "Store and manage data specific to a single product"
+      },
+      {
+       "left": "Library",
+       "right": "Store shared components used across multiple products"
+      },
+      {
+       "left": "Project",
+       "right": "Organize plans, tasks, and collaboration activities"
+      },
+      {
+       "left": "Program",
+       "right": "Group interrelated projects under one umbrella"
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Windchill addresses four key requirements: information storage, evolution control, access control, and collaboration",
+    "Contexts organize the database in alignment with company operations, each with data, a team, and policies",
+    "Application contexts include Products, Libraries, Projects, and Programs - each serving a distinct purpose",
+    "Libraries store shared cross-product data while Product contexts hold product-specific data"
+   ]
+  },
+  {
+   "id": "m2t2",
+   "title": "Business Objects and Relationships",
+   "estimatedMinutes": 7,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Everything managed in Windchill is a <strong>business object</strong> - any kind of business data that the system tracks and controls. Business objects serve three fundamental purposes: storing <strong>attributes</strong> (metadata like name, number, and state), storing <strong>content</strong> (files and documents), and managing <strong>relationships</strong> between objects."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Major Business Object Types"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Business Object",
+      "Purpose",
+      "Key Characteristics"
+     ],
+     "rows": [
+      [
+       "Windchill Parts (WTParts)",
+       "Build product structures and form the BOM hierarchy",
+       "Parts and end items reference other objects and can be organized into parent-child structures representing the bill of materials"
+      ],
+      [
+       "CAD Documents",
+       "Store CAD design files such as models and drawings",
+       "Form a CAD structure hierarchy that is linked to the product structure, keeping design data synchronized with part definitions"
+      ],
+      [
+       "Documents",
+       "Store and manage any electronic content",
+       "Can form document structures and hold files such as specifications, user manuals, and reports"
+      ]
+     ]
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Object Relationships"
+    },
+    {
+     "type": "paragraph",
+     "text": "Object relationships create two-way connections between database objects. An object can have multiple relationships with multiple other objects, forming a rich web of connections that defines your complete digital product. There are three types of relationships, each serving a different purpose."
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each relationship type to its definition and example:",
+     "pairs": [
+      {
+       "left": "Description",
+       "right": "Connects a specific version to a specific version (e.g., the drill drawing describes the drill part)"
+      },
+      {
+       "left": "Reference",
+       "right": "Connects an object to the latest version of another (e.g., the user manual references the belt sander)"
+      },
+      {
+       "left": "Usage",
+       "right": "Connects a parent to a child in a structure (e.g., the belt sander uses the motor and handle)"
+      }
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "insight",
+     "text": "Together, business objects and their relationships form a <strong>complete digital product definition</strong>. Parts define what the product is made of, CAD documents define how it looks and functions, documents provide supporting information, and relationships tie everything together into a coherent whole."
+    }
+   ],
+   "keyTakeaways": [
+    "Business objects store attributes, content, and relationships - the three pillars of data management in Windchill",
+    "The three major business object types are Windchill Parts (WTParts), CAD Documents, and Documents",
+    "Three relationship types connect objects: Description (version-to-version), Reference (to latest version), and Usage (parent-to-child)",
+    "An object can have multiple relationships with multiple objects, forming a complete digital product definition"
+   ]
+  },
+  {
+   "id": "m2t3",
+   "title": "Browsing and the Breadcrumb Trail",
+   "estimatedMinutes": 5,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Windchill provides several navigation tools that make it easy to browse product data, inspect objects, and retrace your steps. The <strong>Navigator Browse tab</strong>, <strong>folders</strong>, <strong>information pages</strong>, and the <strong>breadcrumb trail</strong> work together to help you find and understand product data efficiently."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Browsing with the Navigator"
+    },
+    {
+     "type": "paragraph",
+     "text": "The Navigator Browse tab lets you expand product contexts and access their pages - such as Details, Folders, and Team. Within a context, <strong>folders</strong> provide a logical storage structure. Select a folder to view its contents in the Folder Contents table. You can sort objects by clicking column headers and filter with the <em>Search in table</em> field to quickly locate specific items."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Mini Information Page vs. Information Page"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Feature",
+      "Mini Information Page",
+      "Information Page"
+     ],
+     "rows": [
+      [
+       "How to access",
+       "Hover over an object's thumbnail",
+       "Click the View Information icon next to an object"
+      ],
+      [
+       "Detail level",
+       "Basic attributes and key relationships",
+       "All available information in one central location"
+      ],
+      [
+       "Navigation impact",
+       "Appears as an overlay - no page change",
+       "Opens a dedicated page for the object"
+      ],
+      [
+       "Best for",
+       "Quick preview of an object without leaving your current view",
+       "Comprehensive review of all object details, history, and relationships"
+      ]
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "tip",
+     "text": "Use the <strong>breadcrumb trail</strong> at the top of the page to quickly navigate through folder structures. Each element in the breadcrumb (e.g., Products > Belt Sander > Windchill Parts) is a clickable link that takes you directly to that page - saving time compared to re-browsing from the Navigator."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Recently Accessed Objects"
+    },
+    {
+     "type": "paragraph",
+     "text": "Windchill tracks your navigation history. The <strong>Recently Accessed</strong> link in the upper-right corner shows objects you have recently visited, and the <strong>Recently Visited</strong> icon in the Navigator shows recent products and libraries. These shortcuts let you quickly return to items without re-browsing or re-searching."
+    },
+    {
+     "type": "interactive-sort",
+     "prompt": "Arrange these navigation steps in the correct order to view object information:",
+     "items": [
+      "Expand the Navigator Browse tab to see available contexts",
+      "Browse into a product context",
+      "Select a folder to view its contents",
+      "Click the View Information icon to see full object details"
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "The Navigator Browse tab and folders provide structured access to product data within contexts",
+    "The mini information page gives a quick preview on hover, while the full Information page shows all object details",
+    "The breadcrumb trail provides clickable navigation through folder hierarchies for faster browsing",
+    "Recently Accessed and Recently Visited shortcuts let you quickly return to previously viewed objects"
+   ]
+  },
+  {
+   "id": "m2t4",
+   "title": "Search Methods",
+   "estimatedMinutes": 7,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Browsing is effective when you know where data lives, but <strong>search</strong> is essential when you need to find objects quickly across contexts. Windchill provides two default search methods - <strong>global search</strong> and <strong>advanced search</strong> - along with wildcard characters and saved searches to make finding data efficient."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Global Search vs. Advanced Search"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Feature",
+      "Global Search",
+      "Advanced Search"
+     ],
+     "rows": [
+      [
+       "Location",
+       "Search field in the Windchill header",
+       "Edit Search Criteria in the Navigator Search tab"
+      ],
+      [
+       "Input",
+       "Object type dropdown + keyword field",
+       "Object type checkboxes + multiple criteria fields"
+      ],
+      [
+       "Scope",
+       "Searches across all contexts the user has access to",
+       "Can be narrowed by specific criteria such as State, Type, or Number"
+      ],
+      [
+       "Modes",
+       "Standard search (names/numbers only) and Index search (attributes and content)",
+       "Single focused search with configurable filter criteria"
+      ],
+      [
+       "Best for",
+       "Quick keyword lookups when you know part of a name or number",
+       "Precise filtering when you need to narrow results by multiple attributes"
+      ]
+     ]
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Wildcards and Special Characters"
+    },
+    {
+     "type": "reveal-cards",
+     "cards": [
+      {
+       "front": "Asterisk (*)",
+       "back": "Replaces <strong>zero or more</strong> characters. For example, <code>*belt*</code> matches any object with \"belt\" anywhere in the name, such as \"belt_sander\" or \"fan_belt_assembly\"."
+      },
+      {
+       "front": "Question Mark (?)",
+       "back": "Replaces <strong>exactly one</strong> character. For example, <code>belt_sander_?</code> matches \"belt_sander_A\" and \"belt_sander_B\" but not \"belt_sander_12\"."
+      },
+      {
+       "front": "Special Characters",
+       "back": "Period (.), dash (-), and underscore (_) are interpreted <strong>literally</strong> in search terms. All other special characters are ignored and replaced with spaces."
+      }
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "tip",
+     "text": "Use wildcards like <code>*belt*</code> to expand your search results when you are unsure of the exact name or number. The asterisk before and after your keyword ensures matches regardless of what characters surround it."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Saved Searches and Other Methods"
+    },
+    {
+     "type": "paragraph",
+     "text": "Frequently used search criteria can be saved for quick re-access via the <strong>Search History and Saved Searches</strong> link. This is especially useful for advanced searches with multiple criteria. Beyond the two default methods, Windchill can also support <em>faceted search</em> (narrow results by object attributes) and <em>classification search</em> (find objects based on defined classification hierarchies), though these are not available out of the box."
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each search feature to its description:",
+     "pairs": [
+      {
+       "left": "Global Search",
+       "right": "Quick keyword search from the Windchill header across all accessible contexts"
+      },
+      {
+       "left": "Advanced Search",
+       "right": "Multi-criteria search using the Navigator with filters like State and Type"
+      },
+      {
+       "left": "Saved Searches",
+       "right": "Stored search criteria for quick re-access to frequently used queries"
+      },
+      {
+       "left": "Index Search",
+       "right": "Expanded search mode that searches attributes and file content, not just names"
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Global search provides quick keyword lookups from the header; advanced search enables precise multi-criteria filtering",
+    "The asterisk (*) replaces zero or more characters and the question mark (?) replaces exactly one character in search terms",
+    "Periods, dashes, and underscores are literal in searches; all other special characters are ignored",
+    "Save frequently used search criteria to avoid re-entering complex advanced search filters"
+   ]
+  },
+  {
+   "id": "m2t5",
+   "title": "Exercise: Browse Data and Libraries",
+   "estimatedMinutes": 8,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "In this exercise, you will navigate to product data using the Navigator, explore folders, view object information using both the mini and full information pages, and browse a library context to see shared components."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "This exercise uses the Belt Sander product context and the Fundamentals Library. Ensure you are logged in to Windchill with access to both contexts."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex3",
+     "title": "Browse Data and Libraries",
+     "objective": "Navigate to product data using the Navigator, explore folders, view object information, and browse a library context.",
+     "tasks": [
+      {
+       "id": "ex3-t1",
+       "title": "Navigate to a Product",
+       "steps": [
+        {
+         "action": "Click the <strong>Browse</strong> link in the Navigator panel and then expand the <strong>Belt Sander</strong> product to expose the available navigation options.",
+         "detail": "When you expand the name of a context, you can click the nodes below it to access pages that display detailed information related to the context. In this case, you are accessing the OOTB detailed information related to a product context.",
+         "hint": "You should be signed in to Windchill as cjohnson/ptc."
+        },
+        {
+         "action": "Use the <strong>Details</strong> link to view the product information.",
+         "detail": "The Details page shows metadata about the product context, including its name, description, and team information.",
+         "hint": null
+        },
+        {
+         "action": "Expand the Navigator and pin it by selecting the <strong>Pin Navigator</strong> icon.",
+         "detail": "Pinning keeps the Navigator expanded while you work, so it does not collapse when you click elsewhere.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Folders</strong> link in the Browse pane.",
+         "detail": "Folders organize product data within a context, providing a logical storage structure.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Windchill Parts</strong> folder.",
+         "detail": "The Windchill Parts folder contains all part objects for this product.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex3-t2",
+       "title": "Sort and Search Within Folders",
+       "steps": [
+        {
+         "action": "At the top of the Folder Contents table, click the column header <strong>Name</strong>.",
+         "detail": "All objects within the folder are now sorted alphabetically by name.",
+         "hint": "Hover over the column headers to see the name of each column."
+        },
+        {
+         "action": "In the <strong>Search in table</strong> field, type <code>belt</code>.",
+         "detail": "Only objects matching this text string in any of the columns are displayed. This filters the table to help you find items quickly.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex3-t3",
+       "title": "View the Mini Information Page",
+       "steps": [
+        {
+         "action": "Hover over the <strong>belt_sander</strong> thumbnail and notice a mini information page appears.",
+         "detail": "The mini information page shows basic attributes and key relationships without navigating away from the current view.",
+         "hint": "On the right side of the page, under the Uses heading, 21 objects are listed. Hover over each object to view the part name."
+        },
+        {
+         "action": "Review the information available from the mini information page.",
+         "detail": "The mini information page provides a quick preview of the object's attributes, relationships, and associated data.",
+         "hint": null
+        },
+        {
+         "action": "Close the mini information page.",
+         "detail": "You can return to it at any time by hovering over the object thumbnail again.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex3-t4",
+       "title": "Locate Detailed Product Information",
+       "steps": [
+        {
+         "action": "Click the <strong>View information</strong> icon next to the <strong>belt_sander</strong> end item to open the Information page.",
+         "detail": "An end item is a type of Windchill object. The Information page is a central location for accessing information about and performing actions on a particular object.",
+         "hint": null
+        },
+        {
+         "action": "View the Information page and note who last modified the file.",
+         "detail": "While you can see a subset of this information in tables throughout Windchill, the Information page can display all the information available for the object in one location. You will be returning to this page often.",
+         "hint": null
+        },
+        {
+         "action": "Return to the <strong>Browse</strong> pane on the left.",
+         "detail": "The Browse pane provides continued access to the Navigator for further exploration.",
+         "hint": null
+        },
+        {
+         "action": "Browse through the listed links to become familiar with the available information: <strong>Packages</strong>, <strong>Team</strong>, <strong>Tasks</strong>, <strong>Change Monitor</strong>, <strong>Discussions</strong>, and <strong>Reports</strong>.",
+         "detail": "These links provide access to different aspects of the product data, showing how much information is associated with a single object.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex3-t5",
+       "title": "Browse a Library",
+       "steps": [
+        {
+         "action": "Click the <strong>Recent Libraries</strong> icon in the Navigator panel.",
+         "detail": "Libraries store shared data that can be used across multiple products, such as standard components and fasteners.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>View All</strong> link.",
+         "detail": "This shows all library contexts you have access to.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Fundamentals Library</strong>.",
+         "detail": "It will open in the Folders section. This library contains standard components available to all products in the system.",
+         "hint": null
+        },
+        {
+         "action": "Observe what Windchill parts are available in this library.",
+         "detail": "Standard components like screws are stored here rather than in individual product contexts, preventing duplication.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex3-t6",
+       "title": "View Recently Visited",
+       "steps": [
+        {
+         "action": "Click <strong>Recently Accessed</strong> in the upper-right corner and notice the links to previously accessed objects in Windchill.",
+         "detail": "Navigating to an object's mini information page will update the Recently Accessed list.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Recently Visited</strong> icon in the Navigator panel.",
+         "detail": "The recently accessed Belt Sander product and the Fundamentals Library are displayed in the Browse tab.",
+         "hint": null
+        },
+        {
+         "action": "Close the Navigator by clicking the <strong>Unpin Navigator</strong> icon.",
+         "detail": "Unpinning the Navigator collapses it to maximize your workspace area.",
+         "hint": null
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "The Navigator Browse tab and Folders provide structured access to product data within contexts",
+    "The mini information page offers a quick preview, while the full Information page provides comprehensive object details",
+    "Libraries store shared components used across multiple products to prevent data duplication",
+    "Recently Accessed and Recently Visited shortcuts enable quick navigation to previously viewed objects"
+   ]
+  },
+  {
+   "id": "m2t6",
+   "title": "Exercise: Search for Data",
+   "estimatedMinutes": 7,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "In this exercise, you will use global search with wildcards, perform an advanced search with multiple criteria, and save a search for quick future access."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "This exercise builds on the previous exercise. Ensure you are still logged in to Windchill with access to the Belt Sander product context."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex4",
+     "title": "Search for Data",
+     "objective": "Use global search, advanced search, and save a search for quick future access.",
+     "tasks": [
+      {
+       "id": "ex4-t1",
+       "title": "Visit the Help Center",
+       "steps": [
+        {
+         "action": "Click the <strong>Quick Links</strong> menu, hover over <strong>Help</strong>, and select <strong>Windchill Help Center</strong> to open the Windchill Help Center window.",
+         "detail": "The Help Center provides documentation on Windchill features including search wildcards and syntax.",
+         "hint": "The Help options, which access ptc.com, require you to have a PTC account and internet access."
+        },
+        {
+         "action": "In the search box, type <code>wildcard</code>.",
+         "detail": "This searches the Help Center documentation for information about wildcard characters.",
+         "hint": null
+        },
+        {
+         "action": "Press <strong>Enter</strong>.",
+         "detail": "You will see a list of related topics with wildcard highlighted in yellow.",
+         "hint": null
+        },
+        {
+         "action": "Select the topic that says <strong>Search Wildcards</strong>.",
+         "detail": "You are directed to a details page that will give you information on wildcard characters and provide you with links to related topics.",
+         "hint": "On the left side of the page is a menu with topics that can be expanded. You can use this menu to browse to any topic."
+        },
+        {
+         "action": "Review the information on wildcard characters.",
+         "detail": "Understanding wildcards helps you create more effective searches and locate objects even when you do not know the exact name.",
+         "hint": null
+        },
+        {
+         "action": "Close the browser tab.",
+         "detail": "Return to the main Windchill window to perform your searches.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex4-t2",
+       "title": "Perform a Global Search",
+       "steps": [
+        {
+         "action": "Type <code>*belt*</code> in the global search field.",
+         "detail": "The asterisk wildcards match any characters before and after \"belt\", returning all objects with \"belt\" anywhere in their name or number.",
+         "hint": null
+        },
+        {
+         "action": "Press <strong>Enter</strong> to get the search results.",
+         "detail": "Global search returns results from all contexts you have access to, which may include parts, documents, and CAD files.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex4-t3",
+       "title": "Filter Object Type",
+       "steps": [
+        {
+         "action": "Click the <strong>Edit Search Criteria</strong> link in the Search tab of the Navigator.",
+         "detail": "Advanced search provides more filtering options than global search, letting you narrow results precisely.",
+         "hint": "You should be signed in to Windchill as cjohnson/ptc."
+        },
+        {
+         "action": "In the Type section, clear the <strong>My Favorite Types</strong> checkbox to deselect the object types.",
+         "detail": "This clears all pre-selected types so you can choose only the specific type you need.",
+         "hint": null
+        },
+        {
+         "action": "Check the <strong>Document</strong> checkbox.",
+         "detail": "Filtering by object type narrows results to documents only, excluding parts and CAD files from the results.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex4-t4",
+       "title": "Add State Criteria",
+       "steps": [
+        {
+         "action": "In the Criteria section, remove the Number criteria first by clicking in the <strong>Number</strong> field and clicking the red X that appears to the right.",
+         "detail": "Removing unnecessary criteria broadens the search within your selected type filter.",
+         "hint": null
+        },
+        {
+         "action": "Select the life cycle state criteria by clicking in the <strong>Name</strong> field and selecting <strong>State</strong> from the list.",
+         "detail": "Adding state as a criterion lets you filter by the object's current life cycle state.",
+         "hint": null
+        },
+        {
+         "action": "Set the life cycle state value to <strong>In Work</strong> from the list in the next field and click <strong>Search</strong>.",
+         "detail": "This finds only documents currently being worked on, excluding released or cancelled items.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex4-t5",
+       "title": "View Search Results",
+       "steps": [
+        {
+         "action": "In the search results table, hover over the object type icon to the right of the <strong>Belt Sander User Manual</strong> to confirm it is a Document.",
+         "detail": "Verifying the type ensures you found the correct object and that your search criteria filtered as expected.",
+         "hint": null
+        },
+        {
+         "action": "Scroll to the right to view the <strong>State</strong> column to confirm the manual is <strong>In Work</strong>.",
+         "detail": "This confirms that the life cycle state filter worked correctly.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>View information</strong> icon of the Belt Sander User Manual to navigate to the Information page.",
+         "detail": "Opens the full Information page for this document, where you can review all attributes, relationships, and content.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex4-t6",
+       "title": "Save the Search",
+       "steps": [
+        {
+         "action": "In the search panel of the Navigator, save the search by clicking the <strong>Save This Search</strong> link.",
+         "detail": "Saving a search lets you reuse the criteria without re-entering them, which is valuable for frequently used queries.",
+         "hint": null
+        },
+        {
+         "action": "In the Save This Search dialog, type <code>Belt Sander In Work Documents</code> and click <strong>Save</strong>.",
+         "detail": "Choose a descriptive name so you can easily identify the search later among your saved searches.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex4-t7",
+       "title": "View the Saved Search",
+       "steps": [
+        {
+         "action": "Click the <strong>Search History and Saved Searches</strong> link and look at the Saved Searches list.",
+         "detail": "The Belt Sander In Work Documents saved search appears with the Edit Criteria and Delete actions.",
+         "hint": null
+        },
+        {
+         "action": "Notice that the Search History list displays all the recent searches for reuse.",
+         "detail": "Search history provides quick access to repeat any previous search without re-entering criteria.",
+         "hint": null
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Global search with wildcards like *belt* finds objects across all accessible contexts quickly",
+    "Advanced search lets you combine object type, state, and other criteria for precise results",
+    "Saving a search preserves complex criteria for quick re-access without re-entering filters",
+    "The Windchill Help Center is a valuable resource for learning search syntax and features"
+   ]
+  }
  ]
 }

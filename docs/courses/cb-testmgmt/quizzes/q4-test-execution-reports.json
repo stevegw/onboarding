@@ -1,0 +1,71 @@
+{
+  "moduleId": "m4",
+  "title": "Test Execution and Reports Knowledge Check",
+  "questions": [
+    {
+      "id": "m4-kc-001",
+      "question": "Why can you not execute a test case directly in Codebeamer?",
+      "options": [
+        "Test cases are read-only documents",
+        "You must first create a test run, which is the actual execution instance of test cases",
+        "Test cases can only be executed by system administrators",
+        "Test cases are automatically executed when they are approved"
+      ],
+      "answerIndex": 1,
+      "rationale": "In Codebeamer, test cases define what to test but are not directly executable. A test run must be created as a downstream reference to the test case. Test runs are their own tracker type and record the actual execution results, configurations, and pass/fail outcomes.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-002",
+      "question": "What happens when you apply two test configurations to a single test case when generating a test run?",
+      "options": [
+        "The test case is executed twice within a single test run",
+        "Two separate test runs are created — one for each configuration",
+        "The second configuration is ignored",
+        "An error occurs because only one configuration is allowed"
+      ],
+      "answerIndex": 1,
+      "rationale": "When multiple test configurations are applied during test run generation, Codebeamer creates separate test runs for each configuration. This allows the same test case to be executed under different environments or conditions independently.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-003",
+      "question": "Which of the following is NOT a function of test setup?",
+      "options": [
+        "Create a test set",
+        "Apply a test configuration",
+        "Add parameters to test steps",
+        "Assign test runs to testers"
+      ],
+      "answerIndex": 2,
+      "rationale": "Adding parameters to test steps is part of test design (creating test cases), not test setup. Test setup involves creating test runs, applying configurations, creating test sets, and assigning test runs to testers for execution.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-004",
+      "question": "What is the primary purpose of executing a test run?",
+      "options": [
+        "To create new test cases for untested requirements",
+        "To validate the product works as expected and report any bugs or issues",
+        "To approve test cases for the test lead",
+        "To generate the test plan documentation"
+      ],
+      "answerIndex": 1,
+      "rationale": "The primary purpose of executing a test run is to validate that the product meets its requirements by running through test steps and recording pass/fail results. When steps fail, bugs are reported and linked to the test case and requirement for traceability.",
+      "topic": "m4t2"
+    },
+    {
+      "id": "m4-kc-005",
+      "question": "What traceability chain is established when a bug is created from a failed test step?",
+      "options": [
+        "Bug → Test Run → Test Set → Test Configuration",
+        "Requirement → Test Case → Test Run → Bug",
+        "Bug → Requirement → Test Plan → Test Lead",
+        "Test Configuration → Test Run → Test Case → Bug"
+      ],
+      "answerIndex": 1,
+      "rationale": "When a bug is created from a failed test step, the full traceability chain is: Requirement → Test Case → Test Run → Bug. This chain makes it clear which requirement is impacted by the defect and enables impact analysis across the entire product lifecycle.",
+      "topic": "m4t2"
+    }
+  ]
+}

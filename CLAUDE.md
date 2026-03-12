@@ -211,6 +211,7 @@ Exercise topics follow a simpler structure:
 1. Opening paragraph     — what the learner will practice
 2. Callout (info/warning) — prerequisites or cautions (optional)
 3. Exercise block         — tasks with steps
+4. Exercise steps must match the values provided
 ```
 
 Typical block count: **2–4 blocks**. Some exercise topics include an `image` block before the exercise.

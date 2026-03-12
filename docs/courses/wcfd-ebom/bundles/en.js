@@ -567,79 +567,134 @@
           "tasks": [
             {
               "id": "ex1-t1",
-              "title": "Sign In and Search for the Drill 720",
+              "title": "Sign in to Windchill",
               "steps": [
                 {
-                  "action": "Sign in to Windchill as Mike Jones.",
-                  "detail": "When asked to choose your application, select WindchillClient. Wait for the Windchill Client command window to open.",
-                  "hint": "Select Mike Jones from the sign-in options in the browser."
-                },
-                {
-                  "action": "Type <code>DRILL_720*</code> in the search bar.",
-                  "detail": "The wildcard character (*) finds all objects starting with DRILL_720.",
+                  "action": "When asked to choose your application, select <strong>WindchillClient</strong>.",
+                  "detail": "After a few minutes, the Windchill Client command window will open. Please wait while Windchill starts.",
                   "hint": null
                 },
                 {
-                  "action": "Click the View information icon of the DRILL_720 end item in the Search Results table.",
-                  "detail": "This opens the Part Information page, which is the central hub for viewing and managing part data.",
+                  "action": "A Google Chrome browser will open with several sign-in options.",
+                  "detail": "The browser displays the Windchill sign-in page with user profiles.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Mike Jones</strong>.",
+                  "detail": "You will sign in as Mike Jones (mjones/ptc) to examine the Drill 720 product.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex1-t2",
-              "title": "Explore the Information Page Tabs",
+              "title": "Examine Part Information Page Tabs",
               "steps": [
                 {
-                  "action": "Select the <strong>Details</strong> tab to view part attributes and visualization image.",
-                  "detail": "The Details tab lists the part attributes and contains a thumbnail visualization image generated from CAD models.",
-                  "hint": "Click the thumbnail to open a detailed image for inspection and measurement."
+                  "action": "Type <code>DRILL_720*</code> in the search bar.",
+                  "detail": "The wildcard character (*) finds all objects starting with DRILL_720.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Search Results table, click the <strong>View information</strong> icon of the DRILL_720 end item.",
+                  "detail": "This opens the Part Information page, the central hub for viewing and managing part data.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Details</strong> tab to view the part attributes, details, and visualization image.",
+                  "detail": "The Details tab lists part attributes and contains a thumbnail visualization image. A thumbnail is automatically generated when you save parts using the Windchill visualization services.",
+                  "hint": "Click the thumbnail to open a more detailed image for inspection and measurement."
                 },
                 {
                   "action": "Select the <strong>Structure</strong> tab to view the part structure.",
-                  "detail": "The Structure tab displays the hierarchical product structure and is also known as the Product Structure Browser (PSB).",
+                  "detail": "The Structure tab displays the part structure in a two- or three-pane display. You can add, remove, or modify parts within the structure.",
                   "hint": null
                 },
                 {
                   "action": "Select the <strong>Related Objects</strong> tab.",
                   "detail": "Contains tables showing product definition data related to the part, such as associated CAD documents and reference documents.",
-                  "hint": "Notice the association made to a CAD document."
-                },
-                {
-                  "action": "Select the <strong>Changes</strong> tab, then the <strong>History</strong> tab.",
-                  "detail": "Changes shows change-related objects. History contains a dynamic timeline of events such as new versions and lifecycle state changes.",
                   "hint": null
                 },
                 {
-                  "action": "Select the <strong>Where Used</strong> tab, then review the Actions menu.",
-                  "detail": "Where Used shows where this part is used from the immediate parent assembly up to the highest-level assembly.",
-                  "hint": "Note the available actions in the Actions menu for future reference."
+                  "action": "Notice that there is an association made to a CAD document.",
+                  "detail": "Associations link CAD documents to Windchill parts, enabling the exchange of structure, attribute, and visualization information.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Changes</strong> tab to view historical changes and changes currently in progress.",
+                  "detail": "Contains tables showing change-related objects related to the part, such as Change Requests and Change Notices.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>History</strong> tab to view the events that have occurred in part development.",
+                  "detail": "Contains a dynamic timeline displaying events such as new versions and changes in the lifecycle state.",
+                  "hint": "You can review events in the Version History table and Timeline History graph."
+                },
+                {
+                  "action": "Select the <strong>Where Used</strong> tab to see where this part is used in the product design.",
+                  "detail": "Contains a table displaying where the part is used from the immediate parent assembly up to the highest-level assembly.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Actions</strong> menu and note the available actions.",
+                  "detail": "The Actions menu provides access to all actions you can perform on this part, including check-out, revise, and lifecycle state changes.",
+                  "hint": null
                 }
               ]
             },
             {
               "id": "ex1-t3",
-              "title": "Explore the Product Structure Browser",
+              "title": "Examine Part Structure Tabs",
               "steps": [
                 {
-                  "action": "Select the <strong>Structure</strong> tab, then select the <strong>Attributes</strong> tab in the lower-right pane.",
+                  "action": "Select the <strong>Structure</strong> tab.",
+                  "detail": "The Structure tab is also called the Product Structure Browser (PSB). It displays a hierarchical representation of the product.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Attributes</strong> tab in the lower-right pane to view attribute information of the drill part.",
                   "detail": "The Attributes tab displays important attribute information about the selected Windchill part.",
                   "hint": null
                 },
                 {
                   "action": "Select the <strong>Visualization</strong> tab to view the 3D image of the drill.",
-                  "detail": "Visualization displays graphic images generated from CAD models. You can rotate, zoom, and pan the view.",
+                  "detail": "Displays graphic images of the selected Windchill part with published geometry generated from CAD models.",
                   "hint": null
                 },
                 {
-                  "action": "Click the <strong>Automatically Select from Visualization to Structure</strong> option, then click parts on the 3D model.",
-                  "detail": "This enables bi-directional selection between the 3D visualization and the structure tree.",
-                  "hint": "Click random parts on the drill model and see the corresponding part highlighted in the structure pane."
+                  "action": "Click the <strong>Toggle the automatic selection preference</strong> icon and select <strong>Automatically Select from Structure to Visualization</strong>.",
+                  "detail": "This links the structure tree selection to the 3D visualization so that clicking a part in the tree highlights it in the model.",
+                  "hint": null
                 },
                 {
-                  "action": "Select the <strong>Uses</strong> tab, then the <strong>Occurrences</strong> tab, and finally the <strong>Documents</strong> tab.",
-                  "detail": "Uses shows child parts and attributes. Occurrences shows each instance of a part in the structure. Documents shows related CAD documents.",
-                  "hint": "From the Uses tab, you can add, remove, or edit the attributes of a child part."
+                  "action": "Repeat the previous step and select <strong>Automatically Select from Visualization to Structure</strong>.",
+                  "detail": "This enables the reverse direction — clicking a part in the 3D model highlights it in the structure tree.",
+                  "hint": null
+                },
+                {
+                  "action": "Click random parts on the drill model and see the corresponding part highlighted in the structure pane.",
+                  "detail": "The bi-directional selection synchronizes the 3D visualization with the structure tree for easy navigation.",
+                  "hint": null
+                },
+                {
+                  "action": "Click random lines on the structure pane and see the corresponding parts highlighted on the model.",
+                  "detail": "This confirms the bi-directional selection is working in both directions.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Uses</strong> tab to view information about child parts.",
+                  "detail": "All the child parts and attributes information is displayed. From this location, you can add, remove, or edit the attributes of a child part.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Occurrences</strong> tab to view each occurrence of a part in the structure.",
+                  "detail": "Occurrences show each specific named use of a component within an assembly, identified by Reference Designators.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Documents</strong> tab to view the related CAD documents of the selected part.",
+                  "detail": "The Documents tab lists all CAD documents associated with the selected Windchill part.",
+                  "hint": null
                 }
               ]
             }
@@ -959,18 +1014,33 @@
               "title": "Create an eBOM Using Save As",
               "steps": [
                 {
-                  "action": "Browse to the Drill 720 Series product Engineering folder.",
-                  "detail": "The Auto Drill 720 Series product does not yet have an Engineering folder. You will copy the contents from the existing Drill 720 Series.",
+                  "action": "Browse to the <strong>Auto Drill – 720 Series</strong> product folders.",
+                  "detail": "Notice that it does not have an Engineering folder. You will copy contents from the existing Drill 720 Series.",
                   "hint": null
                 },
                 {
-                  "action": "Search for <code>Drill*asm</code> and open the DRILL_720.ASM CAD document Information page.",
-                  "detail": "Use the Search in table field to locate the CAD assembly document, then click the View information icon.",
+                  "action": "Go to the <strong>Drill – 720 Series</strong> product Engineering folder.",
+                  "detail": "The remaining steps in this task will copy the contents of an existing assembly into the new Auto Drill – 720 Series.",
                   "hint": null
                 },
                 {
-                  "action": "Click the <strong>Actions</strong> menu and select <strong>Save As</strong>.",
-                  "detail": "Save As allows you to duplicate the assembly and all its dependent objects.",
+                  "action": "In the <strong>Search in table</strong> field, type <code>Drill*asm</code>.",
+                  "detail": "This filters the folder contents to show only the CAD assembly documents.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>View information</strong> icon for the <strong>DRILL_720.ASM</strong> CAD document.",
+                  "detail": "This opens the Information page for the CAD assembly document.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Actions</strong> menu.",
+                  "detail": "The Actions menu contains the Save As option for duplicating the assembly.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Save As</strong> option.",
+                  "detail": "Save As allows you to duplicate the assembly and all its dependent objects into a new location.",
                   "hint": null
                 },
                 {
@@ -979,17 +1049,57 @@
                   "hint": null
                 },
                 {
-                  "action": "Select all rows and click <strong>Collect related parts</strong>, then <strong>Collect related drawings</strong>, then <strong>Collect related CAD/Dynamic documents</strong>.",
-                  "detail": "You must collect all three types of related objects to create a complete copy of the product structure.",
-                  "hint": "Select the Select all rows checkbox before each collect action."
-                },
-                {
-                  "action": "Click <strong>Set Location</strong>, select the Auto Drill 720 Series product, and create a new Engineering folder.",
-                  "detail": "The new objects will be stored in the Engineering folder of the Auto Drill 720 Series product.",
+                  "action": "Select the <strong>Select all rows</strong> checkbox and click the <strong>Collect related parts</strong> icon.",
+                  "detail": "This collects all the related Windchill parts for the assembly.",
                   "hint": null
                 },
                 {
-                  "action": "Click <strong>OK</strong> to execute the Save As operation.",
+                  "action": "Select the <strong>Select all rows</strong> checkbox and click the <strong>Collect related drawings</strong> icon.",
+                  "detail": "This collects all related drawings for the assembly.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Select all rows</strong> checkbox, if not already selected, and click the <strong>Collect related CAD/Dynamic documents</strong> icon.",
+                  "detail": "This collects all the CAD and Dynamic documents related to the assembly.",
+                  "hint": null
+                },
+                {
+                  "action": "Keep the default names for the new assembly.",
+                  "detail": "Windchill will append '_New' to the names of all duplicated objects by default.",
+                  "hint": "You could rename them during the Save As process if desired."
+                },
+                {
+                  "action": "Click the <strong>Set Location</strong> icon from the toolbar.",
+                  "detail": "You need to specify where the new objects will be stored.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Set Location dialog, click the <strong>Context</strong> menu and select the <strong>Auto Drill – 720 Series</strong> product option.",
+                  "detail": "This sets the target product context for the new assembly.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Create New Folder</strong> icon to create a new folder for the assembly and its related parts.",
+                  "detail": "The Auto Drill – 720 Series product needs an Engineering folder to store the new objects.",
+                  "hint": null
+                },
+                {
+                  "action": "In the New Folder dialog, type <code>Engineering</code> in the Name field.",
+                  "detail": "This creates the Engineering folder in the Auto Drill – 720 Series product.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong> to create the new folder.",
+                  "detail": "The Engineering folder is now created in the Auto Drill – 720 Series product.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong> to set the location.",
+                  "detail": "The location is now set to the Engineering folder in the Auto Drill – 720 Series product.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong> to create the new assembly structure in the Save As dialog.",
                   "detail": "Windchill creates copies of all selected objects with '_New' appended to their names.",
                   "hint": null
                 }
@@ -997,21 +1107,26 @@
             },
             {
               "id": "ex2-t2",
-              "title": "Verify the Product Structure",
+              "title": "Verify Product Structure",
               "steps": [
                 {
-                  "action": "Go to the Auto Drill 720 Series product Engineering folder.",
-                  "detail": "All the parts have _New appended to their names to distinguish them from the original Drill 720 parts.",
-                  "hint": "You could have renamed them during the Save As process."
+                  "action": "Go to the <strong>Auto Drill – 720 Series</strong> product Engineering folder.",
+                  "detail": "All the parts have _New appended at the end of their names to distinguish them from the original Drill_720 parts.",
+                  "hint": "You could have renamed them something else during the Save As process, if desired."
                 },
                 {
-                  "action": "Search for the DRILL_720_NEW End Item part and open its Information page.",
-                  "detail": "Use the Search in table field to find the new end item part.",
+                  "action": "Use the <strong>Search in table</strong> field to find the <strong>DRILL_720_NEW</strong> End Item part.",
+                  "detail": "The search filters the folder contents to locate the new end item.",
+                  "hint": null
+                },
+                {
+                  "action": "Go to the <strong>DRILL_720_NEW</strong> End Item part Information page.",
+                  "detail": "Click the part name or View information icon to open the Information page.",
                   "hint": null
                 },
                 {
                   "action": "Click the <strong>Structure</strong> tab and observe the product structure.",
-                  "detail": "Verify that the complete product structure has been duplicated from the original Drill 720.",
+                  "detail": "Verify that the complete product structure has been duplicated from the original Drill 720, including all child parts and CAD documents.",
                   "hint": null
                 }
               ]
@@ -1326,33 +1441,73 @@
               "title": "Create and Add Parts to the Baseline",
               "steps": [
                 {
-                  "action": "Search for the DRILL_720_NEW End Item part and open its Information page.",
-                  "detail": "Navigate to the Part Information page to access the Add to Baseline action.",
+                  "action": "Search for the <strong>DRILL_720_NEW</strong> End Item part.",
+                  "detail": "Use the Windchill search bar to locate the end item part.",
                   "hint": null
                 },
                 {
-                  "action": "Click <strong>Actions > Add To > Add to Baseline</strong>.",
+                  "action": "Select the <strong>View information</strong> icon.",
+                  "detail": "This opens the Part Information page for the DRILL_720_NEW end item.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Actions</strong> menu in the upper-left corner of the Information page.",
+                  "detail": "The Actions menu provides access to the Add to Baseline action.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Add To > Add to Baseline</strong>.",
                   "detail": "The Add To option is at the bottom of the Actions menu.",
                   "hint": null
                 },
                 {
-                  "action": "Click <strong>New Baseline</strong> and provide name <code>Manual_Drill_720</code> with description <code>Manual Drill prototype</code>.",
-                  "detail": "Leave the remaining fields with default values. Click OK to create the baseline.",
+                  "action": "In the Add to Baseline dialog, click <strong>New Baseline</strong>.",
+                  "detail": "This opens the New Baseline dialog where you can provide a name and description.",
                   "hint": null
                 },
                 {
-                  "action": "Select the DRILL_720_NEW checkbox and click <strong>Collect Related Objects</strong>.",
-                  "detail": "This gathers all child parts related to the end item.",
+                  "action": "In the New Baseline dialog, enter the name <code>Manual_Drill_720</code> and description <code>Manual Drill prototype</code>.",
+                  "detail": "Leave the remaining fields populated with the default values.",
                   "hint": null
                 },
                 {
-                  "action": "Select all rows and click <strong>Collect related CAD/Dynamic documents</strong>.",
-                  "detail": "All Windchill parts and corresponding CAD documents are now added to the baseline.",
+                  "action": "Click <strong>OK</strong> to create the baseline and return to the Add to Baseline dialog.",
+                  "detail": "The baseline is created but currently contains no objects.",
                   "hint": null
                 },
                 {
-                  "action": "Click <strong>OK</strong> in the Add to Baseline dialog to finalize.",
-                  "detail": "All drill parts and CAD documents are added to the Manual_Drill_720 baseline.",
+                  "action": "Note that currently only one part is selected to add to the baseline. You must add all the child parts and their corresponding CAD documents.",
+                  "detail": "The DRILL_720_NEW part is the only item currently listed in the dialog.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Add to Baseline dialog, select the <strong>DRILL_720_NEW</strong> checkbox.",
+                  "detail": "Selecting the part enables the Collect Related Objects action.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Collect Related Objects</strong> icon.",
+                  "detail": "This gathers all child parts related to the DRILL_720_NEW end item.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Select all rows</strong> checkbox.",
+                  "detail": "This selects all the collected child parts so you can collect their related CAD documents.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Collect related CAD/Dynamic documents</strong> icon.",
+                  "detail": "All Windchill parts and corresponding CAD documents have been added to the baseline.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong> to return to the Add to Baseline dialog.",
+                  "detail": "The collected objects are confirmed and ready to be added.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Add to Baseline dialog, click <strong>OK</strong> to add all drill parts and CAD documents to the baseline.",
+                  "detail": "All drill parts and CAD documents are now members of the Manual_Drill_720 baseline.",
                   "hint": null
                 }
               ]
@@ -1362,24 +1517,34 @@
               "title": "Verify and Lock the Baseline",
               "steps": [
                 {
-                  "action": "Navigate to the Auto Drill 720 Series product and locate the baseline in the Folder Contents table.",
-                  "detail": "Clear the Search in table field to view all contents. The new baseline should appear in the table.",
+                  "action": "Click the <strong>Engineering</strong> breadcrumb link on top of the page to return to the Engineering folder.",
+                  "detail": "This navigates back to the folder contents view to verify the baseline was created.",
                   "hint": null
                 },
                 {
-                  "action": "Click the View information icon to open the baseline Information page.",
+                  "action": "Clear the <strong>Search in table</strong> field by clicking the red x.",
+                  "detail": "The new baseline appears in the Folder Contents table once the search filter is cleared.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>View information</strong> icon to access the Information page of the baseline.",
                   "detail": "The Baseline Information page shows all baseline properties and related objects.",
                   "hint": null
                 },
                 {
-                  "action": "Select the <strong>Related Objects</strong> tab to verify baseline contents.",
-                  "detail": "All drill parts and CAD documents should be listed as components of the baseline.",
+                  "action": "Select the <strong>Related Objects</strong> tab to view baseline contents.",
+                  "detail": "All drill parts and CAD documents are listed as components of the baseline.",
                   "hint": null
                 },
                 {
-                  "action": "Click <strong>Actions > Lock</strong> to prevent modifications.",
-                  "detail": "A lock icon will appear next to the baseline name confirming it is locked.",
+                  "action": "Click the <strong>Actions</strong> menu and select <strong>Lock</strong> to prevent the baseline from being modified by another user.",
+                  "detail": "The lock icon will appear to the right of the baseline name confirming it is locked.",
                   "hint": "Locking prevents other users from modifying the baseline contents."
+                },
+                {
+                  "action": "Close the browser window.",
+                  "detail": "The baseline is now locked and preserved for future reference.",
+                  "hint": "If you encounter issues, you can use the Drill – 720 Series instead and remove '_New' from part names."
                 }
               ]
             }
@@ -1416,35 +1581,90 @@
           "tasks": [
             {
               "id": "ex4-t1",
-              "title": "Add New Components to the Part Structure",
+              "title": "Add New Components to the Auto Drill_720 Part Structure",
               "steps": [
                 {
-                  "action": "Sign in as Anna Chen and search for the DRILL_720_NEW End Item part.",
-                  "detail": "Open a new browser window, click the Windchill bookmark, and select Anna Chen (achen/ptc).",
+                  "action": "Open a new browser window and click the <strong>Windchill</strong> bookmark.",
+                  "detail": "You need to sign in as a different user for this exercise.",
                   "hint": null
                 },
                 {
-                  "action": "Open the Information page and select the <strong>Structure</strong> tab.",
-                  "detail": "Select the Uses tab in the right pane to view and edit child parts.",
+                  "action": "Select <strong>Anna Chen</strong> (achen/ptc).",
+                  "detail": "Anna Chen is a designer on the Auto Drill – 720 team.",
                   "hint": null
                 },
                 {
-                  "action": "Click <strong>Insert New</strong> and create a part: Type = Part, Create as End Item = Yes, Number = <code>Auto Unit</code>, Name = <code>Auto Unit</code>.",
-                  "detail": "This creates a new end item part as a child of the DRILL_720_NEW structure.",
-                  "hint": "Leave all other fields with default values and click Finish."
-                },
-                {
-                  "action": "Select the AUTO UNIT End Item in the left structure pane.",
-                  "detail": "You will now add child parts to the Auto Unit subassembly.",
+                  "action": "Search for the <strong>DRILL_720_NEW</strong> End Item part.",
+                  "detail": "Use the search bar to locate the end item in Windchill.",
                   "hint": null
                 },
                 {
-                  "action": "Click <strong>Insert Multiple New</strong> and add four parts: Screen, Keypad, CPU, and USB Connector.",
-                  "detail": "Set Type = Part, Create as End Item = No, then enter the name and number for each part.",
-                  "hint": "Click Next after setting the type, then enter all four parts before clicking Finish."
+                  "action": "Select the <strong>View information</strong> icon.",
+                  "detail": "This opens the Part Information page for the DRILL_720_NEW end item.",
+                  "hint": null
                 },
                 {
-                  "action": "Select AUTO UNIT and DRILL_720_NEW, then click <strong>Check In</strong> and Apply to All.",
+                  "action": "On the Information page, select the <strong>Structure</strong> tab.",
+                  "detail": "The Structure tab displays the current product structure in the PSB.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Uses</strong> tab in the right pane to update the part structure with new components.",
+                  "detail": "The Uses tab shows child parts and provides actions to insert new parts.",
+                  "hint": null
+                },
+                {
+                  "action": "From the Uses table, click the <strong>Insert New</strong> icon.",
+                  "detail": "This opens the New Part dialog to create a single new part.",
+                  "hint": null
+                },
+                {
+                  "action": "In the New Part dialog, provide the following: Type = <strong>Part</strong>, Create as End Item = <strong>Yes</strong>, Number = <code>Auto Unit</code>, Name = <code>Auto Unit</code>.",
+                  "detail": "Leave all other fields with the default value.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Finish</strong>.",
+                  "detail": "The Auto Unit end item part is created as a child of DRILL_720_NEW.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>AUTO UNIT</strong> End Item part in the left structure pane.",
+                  "detail": "You will now add child parts under the Auto Unit subassembly.",
+                  "hint": null
+                },
+                {
+                  "action": "From the Uses table, click the <strong>Insert multiple new</strong> icon.",
+                  "detail": "This opens the New Multiple Parts dialog to create several parts at once.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Type field of the New Multiple Parts dialog, select <strong>Part</strong>.",
+                  "detail": "All four new parts will be standard parts, not end items.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Create as End Item field, select <strong>No</strong>.",
+                  "detail": "These child parts are components, not deliverable end items.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Next</strong> and enter the following information for four parts: <strong>Screen</strong> / <code>Screen</code>, <strong>Keypad</strong> / <code>Keypad</code>, <strong>CPU</strong> / <code>CPU</code>, <strong>USB Connector</strong> / <code>USB Connector</code>.",
+                  "detail": "Enter the Name and Number for each part. Leave all other fields at the default value.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Finish</strong>.",
+                  "detail": "The four child parts are created under the AUTO UNIT subassembly.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>AUTO UNIT</strong> and <strong>DRILL_720_NEW</strong>.",
+                  "detail": "Both the parent and child assemblies must be checked in to save the structure changes.",
+                  "hint": null
+                },
+                {
+                  "action": "From the toolbar, click <strong>Check In</strong> and click <strong>Apply to All</strong>.",
                   "detail": "Checking in saves the structure changes and makes them visible to other users.",
                   "hint": null
                 }
@@ -1881,67 +2101,133 @@
           "tasks": [
             {
               "id": "ex5-t1",
-              "title": "Associate Documents to the End Item",
+              "title": "Associate a Described By Document",
               "steps": [
                 {
-                  "action": "Navigate to the DRILL_720_NEW End Item Information page and select the <strong>Related Objects</strong> tab.",
-                  "detail": "The Related Objects tab shows product definition data related to the part, including document associations.",
+                  "action": "Confirm you are on the <strong>DRILL_720_NEW</strong> End Item Information page.",
+                  "detail": "You should still be signed in to Windchill as Anna Chen (achen/ptc).",
                   "hint": null
                 },
                 {
-                  "action": "Under Described By Documents, click the <strong>Add Existing Document</strong> icon.",
-                  "detail": "The system prompts you to check out the object. Click OK to check out the end item.",
+                  "action": "Select the <strong>Related Objects</strong> tab to associate a document with this end item part.",
+                  "detail": "The Related Objects tab displays sections for different document association types.",
                   "hint": null
                 },
                 {
-                  "action": "Search for <code>New Product Launch</code>, select it, and click OK to associate.",
-                  "detail": "This creates a Described By association linking the specific document version to this part version.",
+                  "action": "Under the <strong>Described By Documents</strong> section, click the <strong>Add Existing Document</strong> icon.",
+                  "detail": "This initiates the process of associating an existing document to the part.",
                   "hint": null
                 },
                 {
-                  "action": "In the Reference Documents table, click <strong>Add Existing Document</strong>.",
-                  "detail": "Reference documents are linked differently - they always point to the latest released version.",
+                  "action": "The system prompts you to check out the object. Click <strong>OK</strong> to check out the end item.",
+                  "detail": "You must check out the part before modifying its associations.",
                   "hint": null
                 },
                 {
-                  "action": "Search for <code>drill 720*</code>, select <strong>Drill 720 Owner's Manual</strong>, and click OK.",
-                  "detail": "This creates a Reference association to the owner's manual.",
+                  "action": "In the Described By Documents dialog, type <code>New Product Launch</code> in the Name field.",
+                  "detail": "This searches for the document you want to associate with the end item.",
                   "hint": null
                 },
                 {
-                  "action": "Click <strong>Actions > Check In</strong> with comment <code>Associated documents</code>.",
-                  "detail": "Check in the part to save the document associations.",
+                  "action": "Click <strong>Search</strong> to launch the search.",
+                  "detail": "Windchill searches for documents matching the name you entered.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Search Results table, select the <strong>New Product Launch</strong> checkbox.",
+                  "detail": "This selects the document to be associated with the end item.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong> to associate the document with the end item.",
+                  "detail": "A Described By association is created, linking this specific document version to the part version.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex5-t2",
+              "title": "Associate a Reference Document",
+              "steps": [
+                {
+                  "action": "Click the <strong>Add Existing Document</strong> icon in the <strong>Reference Documents</strong> table.",
+                  "detail": "Reference documents use a different association type that always points to the latest released version.",
+                  "hint": null
+                },
+                {
+                  "action": "Type <code>drill 720*</code> in the Name field and click <strong>Search</strong> to launch the search.",
+                  "detail": "The wildcard finds all documents with names starting with 'drill 720'.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Search Results table, select the <strong>Drill 720 Owner's Manual</strong> checkbox.",
+                  "detail": "This selects the owner's manual to be associated as a reference document.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong> to associate the document with the end item.",
+                  "detail": "A Reference association is created. The link will always point to the latest released version of the manual.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Actions</strong> menu and select <strong>Check In</strong>.",
+                  "detail": "You need to check in the part to save the document associations.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Comments field, type <code>Associated documents</code>.",
+                  "detail": "Adding a comment helps track what was changed in this check-in.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong> to complete the check-in process.",
+                  "detail": "The part is checked in with both the Described By and Reference document associations saved.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex5-t3",
               "title": "Apply a Baseline Filter to View the Structure",
               "steps": [
                 {
-                  "action": "Go to the DRILL_720_NEW End Item and click the <strong>Structure</strong> tab.",
-                  "detail": "Verify the most recent structure is displayed with the default Latest Design filter.",
+                  "action": "Go to the <strong>DRILL_720_NEW</strong> End Item Information page and click the <strong>Structure</strong> tab.",
+                  "detail": "The Structure tab displays the product structure with the current filter applied.",
                   "hint": null
                 },
                 {
-                  "action": "Click the <strong>Edit Filter</strong> icon in the command ribbon.",
-                  "detail": "The Edit Filter dialog shows the current configuration specification filter criteria.",
-                  "hint": "You can also click the Latest link from the Current Filter toolbar."
+                  "action": "Click the <strong>Edit Filter</strong> icon to verify the most recent structure is displayed.",
+                  "detail": "The configuration specification filter criteria are set to Latest Design view in the In-Work state.",
+                  "hint": "You can use the Current Filter toolbar links to quickly view and update filter details instead of launching the Edit Filter dialogs."
                 },
                 {
-                  "action": "Select <strong>Baseline</strong> from the Choose a Type menu and select <code>Manual_Drill_720</code>.",
-                  "detail": "Click Add to add it to the To Be Applied table.",
+                  "action": "Select the <strong>Baseline</strong> option from the <strong>Choose a Type</strong> menu.",
+                  "detail": "This allows you to view the baselined manual drill structure.",
                   "hint": null
                 },
                 {
-                  "action": "Remove the latest configuration specification and select <strong>Hide unresolved dependents</strong>.",
+                  "action": "Select the <strong>Manual_Drill_720</strong> baseline and click <strong>Add</strong> to add it to the To Be Applied table.",
+                  "detail": "The baseline configuration specification is added to the filter criteria.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the latest configuration specification filter from the <strong>To Be Applied</strong> table and click <strong>Remove</strong>.",
+                  "detail": "Removing the Latest filter ensures only the baseline configuration is applied.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Hide unresolved dependents</strong> checkbox beneath the To Be Applied table.",
                   "detail": "This hides parts that do not have resolved versions in the baseline.",
                   "hint": null
                 },
                 {
-                  "action": "Click <strong>OK</strong> to apply the filter and observe the baselined structure.",
-                  "detail": "The product structure is updated to show only the parts captured in the Manual_Drill_720 baseline.",
+                  "action": "Click <strong>OK</strong> to apply the filter criteria.",
+                  "detail": "The product structure is updated to the current filter criteria.",
+                  "hint": null
+                },
+                {
+                  "action": "Observe the baselined Manual Drill structure now displayed.",
+                  "detail": "The structure shows only the parts captured in the Manual_Drill_720 baseline, without any parts added after the baseline was created.",
                   "hint": null
                 }
               ]
@@ -1979,25 +2265,30 @@
           "tasks": [
             {
               "id": "ex6-t1",
-              "title": "Generate a Multi-Level BOM Report",
+              "title": "Generate Product Structure Reports",
               "steps": [
                 {
-                  "action": "Go to the DRILL_720_NEW Windchill part Information page and select the <strong>Structure</strong> tab.",
+                  "action": "Go to the <strong>DRILL_720_NEW</strong> Windchill part Information page.",
+                  "detail": "You should be signed in to Windchill as Anna Chen (achen/ptc).",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Structure</strong> tab to generate a multi-level BOM report for the product structure.",
                   "detail": "The Structure tab provides access to the Reports group in the command ribbon.",
                   "hint": null
                 },
                 {
-                  "action": "Ensure the <strong>Reports</strong> group is visible in the command ribbon.",
-                  "detail": "If necessary, click the arrow to the right of the Tools command group to reveal the Reports group.",
-                  "hint": "The Reports group may be hidden if the ribbon is collapsed."
+                  "action": "Ensure the <strong>Reports</strong> group is visible in the command ribbon. If necessary, click the arrow to the right of the <strong>Tools</strong> command group to view the Reports group, and select the <strong>Reports</strong> menu.",
+                  "detail": "The Reports group may be hidden if the command ribbon is collapsed or if the window is narrow.",
+                  "hint": null
                 },
                 {
-                  "action": "Select the <strong>Reports</strong> menu, then select <strong>Multi-Level BOM</strong>.",
-                  "detail": "This generates a multi-level BOM report showing all levels of the product structure.",
-                  "hint": "You may need to disable pop-up blockers to view the report."
+                  "action": "Select <strong>Multi-Level BOM</strong> to generate a multi-level BOM report.",
+                  "detail": "This generates a report showing all levels of the product structure in an indented format.",
+                  "hint": "Depending on your browser, you may need to disable pop-up blockers to view the report."
                 },
                 {
-                  "action": "Observe the Multi-Level BOM report and review the indented structure.",
+                  "action": "Observe the Multi-Level BOM report.",
                   "detail": "The report displays an indented list of single-level BOMs for all levels, showing part numbers, names, quantities, and other attributes.",
                   "hint": null
                 }
@@ -2339,7 +2630,7 @@
   "topic.stepsProgress": "{done}/{total} steps",
   "topic.doThis": "Do This",
   "topic.whyItMatters": "Why It Matters",
-  "topic.doneNextStep": "Done - Next Step",
+  "topic.doneNextStep": "Done",
   "topic.topicsComplete": "{done}/{total} topics complete",
   "topic.moduleBadge": "Module {num}",
   "topic.topics": "Topics",

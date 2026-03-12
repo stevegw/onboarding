@@ -3,463 +3,523 @@
  "title": "Context Templates",
  "description": "Understand template types and their benefits. Create product context templates, document templates, and CAD document templates to standardize configuration.",
  "topics": [
- {
- "id": "m3t1",
- "title": "Windchill Templates Overview",
- "estimatedMinutes": 6,
- "content": [
- {
- "type": "paragraph",
- "text": "Object templates are a foundational mechanism in Windchill that drive many day-to-day activities. Whether a user is creating a document, starting a new product, defining a workflow, or establishing a life cycle, templates provide the starting point. Each template type offers a unique set of features, and users only see and interact with the templates that administrators have enabled for their context."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "User-Facing Template Types"
- },
- {
- "type": "comparison-table",
- "headers": [
- "Template Type",
- "Purpose",
- "Example"
- ],
- "rows": [
- [
- "Document Templates",
- "Provide desired style, structure, and layout for documentation",
- "A contract template with a corporate logo, boilerplate legal text, and standard formatting"
- ],
- [
- "CAD Document Templates",
- "Provide initial settings for CAD authoring files",
- "A Creo part template with predefined units, material defaults, and layer settings"
- ],
- [
- "Note Templates",
- "Provide standard boilerplate text for notes used to mark up designs or structures",
- "A design review note template with required comment fields and approval sections"
- ]
- ]
- },
- {
- "type": "callout",
- "variant": "insight",
- "text": "Templates deliver two categories of benefit. For <strong>users</strong>, they provide consistent style, structure, layout, and standard starting points that reduce repetitive work. For <strong>administrators</strong>, they enforce corporate standards and provide a single point to update and roll out changes across the organization."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Template Access and Visibility"
- },
- {
- "type": "paragraph",
- "text": "Template availability depends on where the template is created and the user's context. Project, program, product, and library templates are restricted to their respective creators and context participants. Document templates, by contrast, are available to a wider group of users because they serve general authoring needs across multiple contexts."
- },
- {
- "type": "interactive-match",
- "prompt": "Match each template type to the benefit it provides:",
- "pairs": [
- {
- "left": "Document Templates",
- "right": "Consistent style, structure, and layout for documentation"
- },
- {
- "left": "CAD Document Templates",
- "right": "Predefined initial settings for CAD authoring files"
- },
- {
- "left": "Note Templates",
- "right": "Standard boilerplate text for marking up designs and structures"
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Object templates drive key Windchill activities including document creation, product setup, workflow definition, and life cycle establishment",
- "The three user-facing template types are Document Templates, CAD Document Templates, and Note Templates",
- "Templates benefit users with consistent starting points and benefit administrators with centralized standards enforcement",
- "Template visibility depends on where it was created; document templates are broadly available while context templates are restricted to their creators"
- ]
- },
- {
- "id": "m3t2",
- "title": "Context Templates",
- "estimatedMinutes": 7,
- "content": [
- {
- "type": "paragraph",
- "text": "Context templates define the initial business environment settings that are applied when creating new products, libraries, organizations, projects, or programs. Unlike user-facing templates that help with individual documents or CAD files, context templates set up the entire administrative framework for a new context. Only organization administrators have access to create and manage context templates."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Context Template Types"
- },
- {
- "type": "comparison-table",
- "headers": [
- "Template Category",
- "Out-of-the-Box Options"
- ],
- "rows": [
- [
- "Product Templates",
- "General Product, Product Design"
- ],
- [
- "Library Templates",
- "General Library, Part Library, Document Library"
- ],
- [
- "Organization Templates",
- "General, General (PDM)"
- ],
- [
- "Project Templates",
- "Available for project contexts"
- ],
- [
- "Program Templates",
- "Available for program contexts"
- ]
- ]
- },
- {
- "type": "heading",
- "level": 2,
- "text": "What Context Templates Establish"
- },
- {
- "type": "reveal-cards",
- "cards": [
- {
- "front": "Structure and Navigation",
- "back": "Context structure (folders and domains), default forum topics, reference notebook folders, and user notebook folders are all defined by the template."
- },
- {
- "front": "Participation and Access",
- "back": "Context participation settings including roles, teams, and groups are established. Access control policies are written to context team roles - this is the most significant administrative element of a context template."
- },
- {
- "front": "Data and Rules",
- "back": "Data types, object templates, and business rules available within the context are configured. Default life cycle and workflow templates are also set."
- },
- {
- "front": "Project Planning",
- "back": "For project and program contexts, templates can include project plans and deliverables that provide a structured starting point for project execution."
- }
- ]
- },
- {
- "type": "callout",
- "variant": "warning",
- "text": "The most significant administrative element in a context template is the series of <strong>access control rules</strong> written to context team roles. These rules determine who can view, create, modify, and delete objects in the new context. Getting these rules right in the template prevents security and access issues in every context created from it."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Benefits of Context Templates"
- },
- {
- "type": "paragraph",
- "text": "Context templates ease the administrative burden of creating new contexts by providing a complete, pre-configured starting point. They also simplify migration and upgrade processes because the template captures the full business environment configuration. Administrators can use templates to transfer proven business environments between Windchill installations, ensuring consistency across departments or sites."
- },
- {
- "type": "interactive-sort",
- "prompt": "Arrange these context template benefits from most immediate to most long-term impact:",
- "items": [
- "Ease the administrative burden of new context creation",
- "Enforce consistent business environment settings across contexts",
- "Ease migration and upgrade burdens",
- "Transfer business environments between Windchill installations"
- ]
- }
- ],
- "keyTakeaways": [
- "Context templates define the initial business environment for new products, libraries, organizations, projects, and programs",
- "Only organization administrators can create and manage context templates",
- "The most significant element in a context template is the access control rules written to context team roles",
- "Context templates ease creation, migration, and upgrade burdens while enabling business environment transfer between installations"
- ]
- },
- {
- "id": "m3t3",
- "title": "Document and CAD Templates",
- "estimatedMinutes": 6,
- "content": [
- {
- "type": "paragraph",
- "text": "Document and CAD document templates provide standardized starting points for content creation. While they serve similar goals of consistency and efficiency, they differ in how they are created, scoped, and managed. Understanding these differences helps administrators deploy the right templates at the right organizational level."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "CAD Document Templates"
- },
- {
- "type": "comparison-table",
- "headers": [
- "CAD Template Type",
- "Used For"
- ],
- "rows": [
- [
- "CAD Part",
- "Individual part models with predefined parameters and settings"
- ],
- [
- "Assembly",
- "Assembly structures with predefined component relationships"
- ],
- [
- "Drawing",
- "Engineering drawings with standard borders, title blocks, and views"
- ],
- [
- "Diagram",
- "Schematic and wiring diagrams with standard symbols and layouts"
- ],
- [
- "Manufacturing",
- "Manufacturing process models and toolpath definitions"
- ],
- [
- "Other",
- "Additional CAD document types not covered by the standard categories"
- ]
- ]
- },
- {
- "type": "heading",
- "level": 3,
- "text": "CAD Template Scoping"
- },
- {
- "type": "paragraph",
- "text": "CAD document templates follow a hierarchical scoping model that controls their availability. A template created at the <strong>site level</strong> is available to all organizations and their sub-contexts. A template created at the <strong>organization level</strong> is available to all contexts within that organization. A template created at a <strong>sub-organization level</strong> is available only within that specific context. This scoping hierarchy allows administrators to provide enterprise-wide standards while permitting local customization where needed."
- },
- {
- "type": "callout",
- "variant": "tip",
- "text": "CAD Part and Assembly templates are particularly useful for a <strong>top-down design approach</strong> because they allow users to create a WTPart and its associated CAD document in a single action, linking the product structure and design data from the start."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Document Templates"
- },
- {
- "type": "paragraph",
- "text": "Document templates are available by document type and provide a content file as the starting point for new documents. They can be created at the organization level or at the context level. Unlike CAD templates, document templates do not require an external authoring application to create the initial template file - any supported content file can serve as the template."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "Templates maintain an iteration history that tracks changes related to upgrades. This means administrators can update a template over time and retain a record of how it has evolved, which is valuable during system upgrades and audits."
- },
- {
- "type": "interactive-sort",
- "prompt": "Arrange these CAD template scoping levels from broadest to narrowest availability:",
- "items": [
- "Site level - available to all organizations and sub-contexts",
- "Organization level - available to all contexts in that organization",
- "Sub-organization level - available only within that specific context"
- ]
- }
- ],
- "keyTakeaways": [
- "CAD document templates come in six types: Part, Assembly, Drawing, Diagram, Manufacturing, and Other",
- "CAD template scoping follows a hierarchy: site level (broadest), organization level, sub-organization level (narrowest)",
- "CAD Part and Assembly templates support top-down design by creating a WTPart and CAD document in a single action",
- "Document templates provide content files as starting points and track iteration history related to upgrades"
- ]
- },
- {
- "id": "m3t4",
- "title": "Exercise 4 - Create a Product Context Template",
- "estimatedMinutes": 8,
- "isExercise": true,
- "content": [
- {
- "type": "paragraph",
- "text": "PTC Publications needs to ensure that every new product context starts with the same configuration. In this exercise, you will create a product context template from an existing product and then verify it works by creating a new product from that template."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "You will sign in as <strong>bpatterson/ptc</strong> for this exercise. Make sure the PTC New Publication Template product exists before proceeding."
- },
- {
- "type": "exercise",
- "exerciseId": "ex4",
- "title": "Create a Product Context Template",
- "objective": "Save an existing product as a template and create a new product from that template to verify it works.",
- "tasks": [
- {
- "id": "ex4-t1",
- "title": "Create a Product Context Template",
- "steps": [
- {
- "action": "Sign in to Windchill as bpatterson with the password ptc.",
- "detail": "This user has the necessary organization administrator privileges to create and manage context templates.",
- "hint": null
- },
- {
- "action": "Navigate to PTC New Publication Template and open the Details page.",
- "detail": "You will save this existing product as a template so it can be reused for future product contexts.",
- "hint": "Use the Quick Links or Recent Products to find the PTC New Publication Template product."
- },
- {
- "action": "Select Actions > Save as Template.",
- "detail": "The Save as Template action captures the product's configuration - including folder structure, roles, access control policies, and business rules - into a reusable template.",
- "hint": null
- },
- {
- "action": "Set the Template Name to PTC New Publication and add the description: Template for the new PTC Publications.",
- "detail": "Remove the duplicate word 'Template' from the default name. A clear, concise name helps other administrators identify the template's purpose.",
- "hint": "The default name may include 'Template' twice - remove the extra occurrence."
- },
- {
- "action": "Clear the Team Members checkbox and click OK.",
- "detail": "Clearing the Team Members checkbox prevents specific user assignments from being copied into the template. The template will retain the roles and groups but not individual user memberships.",
- "hint": null
- },
- {
- "action": "Navigate to PTC Publications > Templates > Product Templates.",
- "detail": "This is where all product templates for the PTC Publications organization are listed.",
- "hint": null
- },
- {
- "action": "Verify that the PTC New Publication Template is listed.",
- "detail": "Confirming the template appears in the Product Templates list ensures it was saved correctly and is available for use.",
- "hint": "If the template does not appear, check that you saved it from the correct product and refresh the page."
- }
- ]
- },
- {
- "id": "ex4-t2",
- "title": "Create a Product Using the Template",
- "steps": [
- {
- "action": "Navigate to Recent Products > View All > New Product.",
- "detail": "This begins the process of creating a new product context that will inherit its configuration from the template.",
- "hint": null
- },
- {
- "action": "Set the Name to Greek Cookbook and select PTC New Publication Template as the Template.",
- "detail": "Selecting the template ensures the new product inherits the folder structure, access control policies, and other configuration from the original product.",
- "hint": "Use the Template dropdown or browse to find PTC New Publication Template."
- },
- {
- "action": "Click OK to create the product.",
- "detail": "Windchill creates the new product context and applies all settings from the selected template.",
- "hint": null
- },
- {
- "action": "Navigate to Greek Cookbook > Folder Contents and verify that the Team Information folder already exists.",
- "detail": "The presence of the Team Information folder confirms that the folder structure was inherited from the template. This demonstrates how templates standardize new context creation.",
- "hint": "If the folder does not appear, verify the correct template was selected during product creation."
- }
- ]
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Product context templates are created using Actions > Save as Template from an existing product",
- "Clearing the Team Members checkbox prevents individual user assignments from being copied into the template while retaining roles and groups",
- "New products created from a template inherit the folder structure, access control policies, and other configuration settings",
- "Templates are managed under the organization's Templates > Product Templates section"
- ]
- },
- {
- "id": "m3t5",
- "title": "Exercise 5 - Create a Document Template",
- "estimatedMinutes": 8,
- "isExercise": true,
- "content": [
- {
- "type": "paragraph",
- "text": "Technical writers at PTC Publications need to use the same document format that includes mandatory information such as a description, bibliography, and standard layout. In this exercise, you will create a document template and then test it by creating a new document from the template."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "The content file <strong>UnitTemplate.docx</strong> should be available on your system for upload. This file contains the standard table of contents and index layout required by PTC Publications."
- },
- {
- "type": "exercise",
- "exerciseId": "ex5",
- "title": "Create a Document Template",
- "objective": "Create a document template from an uploaded content file and verify it works by creating a new document from the template.",
- "tasks": [
- {
- "id": "ex5-t1",
- "title": "Create a Document Template",
- "steps": [
- {
- "action": "Navigate to PTC Publications > Templates > Document Templates.",
- "detail": "Document templates are managed at the organization or context level. This location stores all document templates available to contexts within PTC Publications.",
- "hint": null
- },
- {
- "action": "Click to create a new document template.",
- "detail": "A new document template requires a type, a content file, and descriptive metadata.",
- "hint": "Look for a 'New Document Template' or similar action in the Document Templates area."
- },
- {
- "action": "Set the Type to Outline and browse to upload UnitTemplate.docx as the content file.",
- "detail": "The Outline type is appropriate for structured documents that include a table of contents, sections, and index. The uploaded file becomes the starting point for all documents created from this template.",
- "hint": "Use the Browse button to locate UnitTemplate.docx on your local system."
- },
- {
- "action": "Set the Name to Unit Template and the Description to Standard Template with TOC and Index.",
- "detail": "A descriptive name and description help users identify the right template when creating new documents.",
- "hint": null
- },
- {
- "action": "Click Finish to save the document template.",
- "detail": "The template is now available for use when creating new Outline-type documents within this organization.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex5-t2",
- "title": "Test the Document Template",
- "steps": [
- {
- "action": "Navigate to PTC New Publication Template and create a new document.",
- "detail": "You will test the template by creating a document within an existing product context.",
- "hint": "Look for a Create New Document action in the product context."
- },
- {
- "action": "Set the Type to Outline, select Unit Template as the template, and set Primary Content Source to No Content.",
- "detail": "Selecting 'No Content' for the primary content source means the document will use the template's content file as its starting point rather than uploading a new file.",
- "hint": null
- },
- {
- "action": "Set the Name to Doc Template Test and click OK.",
- "detail": "The document is created and checked out to you automatically, allowing immediate editing.",
- "hint": null
- },
- {
- "action": "Download and view the file to verify that the template content (TOC, index, standard layout) is present.",
- "detail": "Confirming the template content appears in the new document verifies that the template is working correctly. The document should contain the table of contents and index structure from UnitTemplate.docx.",
- "hint": "Right-click the document or use the Download action to save the file locally and open it."
- }
- ]
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Document templates are created by specifying a type, uploading a content file, and providing descriptive metadata",
- "The uploaded content file becomes the starting point for all documents created from the template",
- "Documents created from a template are automatically checked out to the creator for immediate editing",
- "Testing a template by creating a document from it verifies that the content and structure are applied correctly"
- ]
- }
+  {
+   "id": "m3t1",
+   "title": "Windchill Templates Overview",
+   "estimatedMinutes": 6,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Object templates are a foundational mechanism in Windchill that drive many day-to-day activities. Whether a user is creating a document, starting a new product, defining a workflow, or establishing a life cycle, templates provide the starting point. Each template type offers a unique set of features, and users only see and interact with the templates that administrators have enabled for their context."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "User-Facing Template Types"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Template Type",
+      "Purpose",
+      "Example"
+     ],
+     "rows": [
+      [
+       "Document Templates",
+       "Provide desired style, structure, and layout for documentation",
+       "A contract template with a corporate logo, boilerplate legal text, and standard formatting"
+      ],
+      [
+       "CAD Document Templates",
+       "Provide initial settings for CAD authoring files",
+       "A Creo part template with predefined units, material defaults, and layer settings"
+      ],
+      [
+       "Note Templates",
+       "Provide standard boilerplate text for notes used to mark up designs or structures",
+       "A design review note template with required comment fields and approval sections"
+      ]
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "insight",
+     "text": "Templates deliver two categories of benefit. For <strong>users</strong>, they provide consistent style, structure, layout, and standard starting points that reduce repetitive work. For <strong>administrators</strong>, they enforce corporate standards and provide a single point to update and roll out changes across the organization."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Template Access and Visibility"
+    },
+    {
+     "type": "paragraph",
+     "text": "Template availability depends on where the template is created and the user's context. Project, program, product, and library templates are restricted to their respective creators and context participants. Document templates, by contrast, are available to a wider group of users because they serve general authoring needs across multiple contexts."
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each template type to the benefit it provides:",
+     "pairs": [
+      {
+       "left": "Document Templates",
+       "right": "Consistent style, structure, and layout for documentation"
+      },
+      {
+       "left": "CAD Document Templates",
+       "right": "Predefined initial settings for CAD authoring files"
+      },
+      {
+       "left": "Note Templates",
+       "right": "Standard boilerplate text for marking up designs and structures"
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Object templates drive key Windchill activities including document creation, product setup, workflow definition, and life cycle establishment",
+    "The three user-facing template types are Document Templates, CAD Document Templates, and Note Templates",
+    "Templates benefit users with consistent starting points and benefit administrators with centralized standards enforcement",
+    "Template visibility depends on where it was created; document templates are broadly available while context templates are restricted to their creators"
+   ]
+  },
+  {
+   "id": "m3t2",
+   "title": "Context Templates",
+   "estimatedMinutes": 7,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Context templates define the initial business environment settings that are applied when creating new products, libraries, organizations, projects, or programs. Unlike user-facing templates that help with individual documents or CAD files, context templates set up the entire administrative framework for a new context. Only organization administrators have access to create and manage context templates."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Context Template Types"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Template Category",
+      "Out-of-the-Box Options"
+     ],
+     "rows": [
+      [
+       "Product Templates",
+       "General Product, Product Design"
+      ],
+      [
+       "Library Templates",
+       "General Library, Part Library, Document Library"
+      ],
+      [
+       "Organization Templates",
+       "General, General (PDM)"
+      ],
+      [
+       "Project Templates",
+       "Available for project contexts"
+      ],
+      [
+       "Program Templates",
+       "Available for program contexts"
+      ]
+     ]
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "What Context Templates Establish"
+    },
+    {
+     "type": "reveal-cards",
+     "cards": [
+      {
+       "front": "Structure and Navigation",
+       "back": "Context structure (folders and domains), default forum topics, reference notebook folders, and user notebook folders are all defined by the template."
+      },
+      {
+       "front": "Participation and Access",
+       "back": "Context participation settings including roles, teams, and groups are established. Access control policies are written to context team roles - this is the most significant administrative element of a context template."
+      },
+      {
+       "front": "Data and Rules",
+       "back": "Data types, object templates, and business rules available within the context are configured. Default life cycle and workflow templates are also set."
+      },
+      {
+       "front": "Project Planning",
+       "back": "For project and program contexts, templates can include project plans and deliverables that provide a structured starting point for project execution."
+      }
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "warning",
+     "text": "The most significant administrative element in a context template is the series of <strong>access control rules</strong> written to context team roles. These rules determine who can view, create, modify, and delete objects in the new context. Getting these rules right in the template prevents security and access issues in every context created from it."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Benefits of Context Templates"
+    },
+    {
+     "type": "paragraph",
+     "text": "Context templates ease the administrative burden of creating new contexts by providing a complete, pre-configured starting point. They also simplify migration and upgrade processes because the template captures the full business environment configuration. Administrators can use templates to transfer proven business environments between Windchill installations, ensuring consistency across departments or sites."
+    },
+    {
+     "type": "interactive-sort",
+     "prompt": "Arrange these context template benefits from most immediate to most long-term impact:",
+     "items": [
+      "Ease the administrative burden of new context creation",
+      "Enforce consistent business environment settings across contexts",
+      "Ease migration and upgrade burdens",
+      "Transfer business environments between Windchill installations"
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Context templates define the initial business environment for new products, libraries, organizations, projects, and programs",
+    "Only organization administrators can create and manage context templates",
+    "The most significant element in a context template is the access control rules written to context team roles",
+    "Context templates ease creation, migration, and upgrade burdens while enabling business environment transfer between installations"
+   ]
+  },
+  {
+   "id": "m3t3",
+   "title": "Document and CAD Templates",
+   "estimatedMinutes": 6,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Document and CAD document templates provide standardized starting points for content creation. While they serve similar goals of consistency and efficiency, they differ in how they are created, scoped, and managed. Understanding these differences helps administrators deploy the right templates at the right organizational level."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "CAD Document Templates"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "CAD Template Type",
+      "Used For"
+     ],
+     "rows": [
+      [
+       "CAD Part",
+       "Individual part models with predefined parameters and settings"
+      ],
+      [
+       "Assembly",
+       "Assembly structures with predefined component relationships"
+      ],
+      [
+       "Drawing",
+       "Engineering drawings with standard borders, title blocks, and views"
+      ],
+      [
+       "Diagram",
+       "Schematic and wiring diagrams with standard symbols and layouts"
+      ],
+      [
+       "Manufacturing",
+       "Manufacturing process models and toolpath definitions"
+      ],
+      [
+       "Other",
+       "Additional CAD document types not covered by the standard categories"
+      ]
+     ]
+    },
+    {
+     "type": "heading",
+     "level": 3,
+     "text": "CAD Template Scoping"
+    },
+    {
+     "type": "paragraph",
+     "text": "CAD document templates follow a hierarchical scoping model that controls their availability. A template created at the <strong>site level</strong> is available to all organizations and their sub-contexts. A template created at the <strong>organization level</strong> is available to all contexts within that organization. A template created at a <strong>sub-organization level</strong> is available only within that specific context. This scoping hierarchy allows administrators to provide enterprise-wide standards while permitting local customization where needed."
+    },
+    {
+     "type": "callout",
+     "variant": "tip",
+     "text": "CAD Part and Assembly templates are particularly useful for a <strong>top-down design approach</strong> because they allow users to create a WTPart and its associated CAD document in a single action, linking the product structure and design data from the start."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Document Templates"
+    },
+    {
+     "type": "paragraph",
+     "text": "Document templates are available by document type and provide a content file as the starting point for new documents. They can be created at the organization level or at the context level. Unlike CAD templates, document templates do not require an external authoring application to create the initial template file - any supported content file can serve as the template."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "Templates maintain an iteration history that tracks changes related to upgrades. This means administrators can update a template over time and retain a record of how it has evolved, which is valuable during system upgrades and audits."
+    },
+    {
+     "type": "interactive-sort",
+     "prompt": "Arrange these CAD template scoping levels from broadest to narrowest availability:",
+     "items": [
+      "Site level - available to all organizations and sub-contexts",
+      "Organization level - available to all contexts in that organization",
+      "Sub-organization level - available only within that specific context"
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "CAD document templates come in six types: Part, Assembly, Drawing, Diagram, Manufacturing, and Other",
+    "CAD template scoping follows a hierarchy: site level (broadest), organization level, sub-organization level (narrowest)",
+    "CAD Part and Assembly templates support top-down design by creating a WTPart and CAD document in a single action",
+    "Document templates provide content files as starting points and track iteration history related to upgrades"
+   ]
+  },
+  {
+   "id": "m3t4",
+   "title": "Exercise 4 - Create a Product Context Template",
+   "estimatedMinutes": 8,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "PTC Publications needs to ensure that every new product context starts with the same configuration. In this exercise, you will create a product context template from an existing product and then verify it works by creating a new product from that template."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "You will sign in as <strong>bpatterson/ptc</strong> for this exercise. Make sure the PTC New Publication Template product exists before proceeding."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex4",
+     "title": "Create a Product Context Template",
+     "objective": "Save an existing product as a template and create a new product from that template to verify it works.",
+     "tasks": [
+      {
+       "id": "ex4-t1",
+       "title": "Create a Product Context Template",
+       "steps": [
+        {
+         "action": "From the Navigator, click the <strong>Recently Visited</strong> icon on the Browse tab.",
+         "detail": "Recently Visited shows all contexts you have recently accessed, making it easy to find the product you want to save as a template.",
+         "hint": "You should be signed in to Windchill as bpatterson/ptc."
+        },
+        {
+         "action": "Expand <strong>PTC New Publication Template</strong> and click the <strong>Details</strong> link.",
+         "detail": "The Details page shows the product's metadata and provides access to the Actions menu where you can save the product as a template.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>Actions > Save as Template</strong>.",
+         "detail": "The Save as Template action captures the product's configuration — including folder structure, roles, access control policies, and business rules — into a reusable template.",
+         "hint": null
+        },
+        {
+         "action": "In the <strong>Template Name</strong> field, delete one instance of the word <strong>Template</strong>.",
+         "detail": "The default name may include 'Template' twice. Remove the duplicate to produce a clean name: <code>PTC New Publication</code>.",
+         "hint": "The resulting template name should be <code>PTC New Publication</code>."
+        },
+        {
+         "action": "In the <strong>Description</strong> field, type <code>Template for the new PTC Publications</code>.",
+         "detail": "A clear description helps other administrators identify the template's purpose when selecting templates during context creation.",
+         "hint": null
+        },
+        {
+         "action": "Clear the <strong>Team Members</strong> checkbox and click <strong>OK</strong>.",
+         "detail": "Clearing the Team Members checkbox prevents specific user assignments from being copied into the template. The template will retain the roles and groups but not individual user memberships.",
+         "hint": null
+        },
+        {
+         "action": "In the Navigator, select the <strong>Organizations</strong> icon.",
+         "detail": "Navigate to the Organizations list to access the PTC Publications organization and its template management.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>PTC Publications > Templates</strong>.",
+         "detail": "The Templates section under the organization lists all context templates organized by type.",
+         "hint": null
+        },
+        {
+         "action": "From the View menu, select <strong>Product Templates</strong>. Notice that the <strong>PTC New Publication Template</strong> is listed in the table.",
+         "detail": "Confirming the template appears in the Product Templates list ensures it was saved correctly and is available for use when creating new product contexts.",
+         "hint": "If the template does not appear, check that you saved it from the correct product and refresh the page."
+        }
+       ]
+      },
+      {
+       "id": "ex4-t2",
+       "title": "Create a Product Using the Product Template",
+       "steps": [
+        {
+         "action": "Expand the Navigator, click the <strong>Recent Products</strong> icon, then click the <strong>View All</strong> link to display the list of products.",
+         "detail": "This begins the process of creating a new product context that will inherit its configuration from the template you just created.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>New Product</strong> icon.",
+         "detail": "The New Product icon opens the product creation dialog where you can select a template.",
+         "hint": null
+        },
+        {
+         "action": "In the <strong>Name</strong> field, type <code>Greek Cookbook</code>.",
+         "detail": "Enter a name for the new product that will be created from the template.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>PTC New Publication Template</strong> in the <strong>Template</strong> menu.",
+         "detail": "Selecting the template ensures the new product inherits the folder structure, access control policies, and other configuration from the original product.",
+         "hint": "Use the Template dropdown to find and select PTC New Publication Template."
+        },
+        {
+         "action": "Click <strong>OK</strong> to complete the product context creation.",
+         "detail": "Windchill creates the new product context and applies all settings from the selected template.",
+         "hint": null
+        },
+        {
+         "action": "Locate the new product in the Navigator.",
+         "detail": "The Greek Cookbook product should appear in the Navigator under Recent Products or in the View All products list.",
+         "hint": "If the product does not appear, refresh the page or navigate back to View All Products."
+        },
+        {
+         "action": "Display the <strong>Folder Contents</strong> view in the Greek Cookbook product and notice that a <strong>Team Information</strong> folder already exists.",
+         "detail": "The presence of the Team Information folder confirms that the folder structure was inherited from the template. This demonstrates how templates standardize new context creation.",
+         "hint": null
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Product context templates are created using Actions > Save as Template from an existing product",
+    "Clearing the Team Members checkbox prevents individual user assignments from being copied into the template while retaining roles and groups",
+    "New products created from a template inherit the folder structure, access control policies, and other configuration settings",
+    "Templates are managed under the organization's Templates > Product Templates section"
+   ]
+  },
+  {
+   "id": "m3t5",
+   "title": "Exercise 5 - Create a Document Template",
+   "estimatedMinutes": 8,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Technical writers at PTC Publications need to use the same document format that includes mandatory information such as a description, bibliography, and standard layout. In this exercise, you will create a document template and then test it by creating a new document from the template."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "The content file <strong>UnitTemplate.docx</strong> should be available on your system for upload. This file contains the standard table of contents and index layout required by PTC Publications."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex5",
+     "title": "Create a Document Template",
+     "objective": "Create a document template from an uploaded content file and verify it works by creating a new document from the template.",
+     "tasks": [
+      {
+       "id": "ex5-t1",
+       "title": "Create a Document Template",
+       "steps": [
+        {
+         "action": "From the Navigator, select the <strong>PTC Publications</strong> organization context, and click the <strong>Templates</strong> link.",
+         "detail": "Document templates are managed at the organization level. Navigate to the PTC Publications organization's Templates section.",
+         "hint": "You should be signed in to Windchill as bpatterson/ptc."
+        },
+        {
+         "action": "From the View menu, select <strong>Document Templates</strong>.",
+         "detail": "The Document Templates view shows all document templates available within the PTC Publications organization.",
+         "hint": null
+        },
+        {
+         "action": "Create a <strong>new document template</strong>.",
+         "detail": "A new document template requires a type, a content file, and descriptive metadata.",
+         "hint": "Look for a 'New Document Template' or similar action in the Document Templates toolbar."
+        },
+        {
+         "action": "From the <strong>Type</strong> menu, select <strong>Outline</strong> and click <strong>Next</strong>.",
+         "detail": "The Outline type is appropriate for structured documents that include a table of contents, sections, and index.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Browse</strong>, select <code>W:\\WCBA-CNTX-Lab-Files\\UnitTemplate.docx</code>, and click <strong>Open</strong>.",
+         "detail": "The uploaded file becomes the starting point for all documents created from this template. UnitTemplate.docx contains the standard table of contents and index layout required by PTC Publications.",
+         "hint": null
+        },
+        {
+         "action": "Change the <strong>Name</strong> to <code>Unit Template</code>.",
+         "detail": "A descriptive name helps users identify the right template when creating new documents.",
+         "hint": null
+        },
+        {
+         "action": "In the <strong>Description</strong> field, type <code>Standard Template with TOC and Index</code>.",
+         "detail": "The description clarifies that this template includes both a table of contents and an index, which are mandatory for PTC Publications documents.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Finish</strong>.",
+         "detail": "The template is now saved and available for use when creating new Outline-type documents within the PTC Publications organization.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex5-t2",
+       "title": "Test the Document Template",
+       "steps": [
+        {
+         "action": "From the Navigator, click <strong>Recent Products</strong>, and click the <strong>View All</strong> link to display the list of products.",
+         "detail": "Navigate to the products list to find a product context where you can test the new document template.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>PTC New Publication Template</strong>.",
+         "detail": "This existing product context will be used to create a test document from the template you just created.",
+         "hint": null
+        },
+        {
+         "action": "Create a <strong>New Document</strong> with the following settings: Type <code>Outline</code>, Template <code>Unit Template</code>, Primary Content Source <code>No Content</code>, Name <code>Doc Template Test</code>.",
+         "detail": "Selecting 'No Content' for the primary content source means the document will use the template's content file as its starting point rather than uploading a new file.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Finish</strong>.",
+         "detail": "The document is created using the template and is automatically checked out to you.",
+         "hint": null
+        },
+        {
+         "action": "In the Folder Contents table, notice that the new document is <strong>checked out to you</strong>.",
+         "detail": "Documents created from templates are automatically checked out to the creator, allowing immediate editing of the content.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Download Microsoft Office Word document</strong> icon to download it, then open and view the file from the browser's download actions.",
+         "detail": "Downloading and opening the file lets you verify that the template content (TOC, index, standard layout) is present in the new document.",
+         "hint": null
+        },
+        {
+         "action": "Close the OpenOffice Writer program.",
+         "detail": "After reviewing the document content, close the viewer application.",
+         "hint": null
+        },
+        {
+         "action": "Close the web browser.",
+         "detail": "You have successfully created and tested a document template. All future Outline-type documents can use this template for a consistent starting layout.",
+         "hint": null
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Document templates are created by specifying a type, uploading a content file, and providing descriptive metadata",
+    "The uploaded content file becomes the starting point for all documents created from the template",
+    "Documents created from a template are automatically checked out to the creator for immediate editing",
+    "Testing a template by creating a document from it verifies that the content and structure are applied correctly"
+   ]
+  }
  ]
 }

@@ -287,10 +287,6 @@
 
         // Detail area (shown when active or expanded)
         html += '<div class="exercise-step-detail">';
-        html += '<div class="exercise-step-box action-box">';
-        html += '<div class="exercise-step-box-label">' + t("topic.doThis") + '</div>';
-        html += '<p>' + safeHtml(step.action) + '</p>';
-        html += '</div>';
 
         if (step.detail) {
           html += '<div class="exercise-step-box detail-box">';
@@ -306,7 +302,7 @@
 
         if (!isDone) {
           html += '<div class="exercise-step-actions">';
-          html += '<button class="btn btn-primary btn-sm exercise-step-done" data-ex="' + exId + '" data-task="' + task.id + '" data-step="' + si + '">' + t("topic.doneNextStep") + ' &#8594;</button>';
+          html += '<button class="btn btn-primary btn-sm exercise-step-done" data-ex="' + exId + '" data-task="' + task.id + '" data-step="' + si + '">' + t("topic.doneNextStep") + '</button>';
           html += '</div>';
         }
 
@@ -391,8 +387,52 @@
         var taskId = btn.getAttribute("data-task");
         var stepIdx = parseInt(btn.getAttribute("data-step"), 10);
         OB.state.completeStep(exId, taskId, stepIdx);
-        // Re-render topic to update UI
-        OB.router.navigate();
+
+        // Surgical DOM update on THIS specific step
+        var stepEl = btn.closest(".exercise-step");
+        var wasActive = stepEl && stepEl.classList.contains("active");
+        if (stepEl) {
+          stepEl.classList.remove("active", "expanded", "upcoming");
+          stepEl.classList.add("done");
+          var indicator = stepEl.querySelector(".exercise-step-indicator");
+          if (indicator) indicator.innerHTML = "&#10003;";
+          var actions = stepEl.querySelector(".exercise-step-actions");
+          if (actions) actions.remove();
+        }
+
+        // Only auto-open the next step if the completed step was the active one
+        var exerciseBlock = document.querySelector('.exercise-block[data-exercise="' + exId + '"]');
+        if (exerciseBlock && wasActive) {
+          var allSteps = exerciseBlock.querySelectorAll(".exercise-step");
+          var activated = false;
+          allSteps.forEach(function (s) {
+            if (!activated && s.classList.contains("upcoming")) {
+              s.classList.remove("upcoming");
+              s.classList.add("active");
+              activated = true;
+            }
+          });
+        }
+
+        // Update progress bar and task progress counters
+        if (exerciseBlock) {
+          var tasks = exerciseBlock.querySelectorAll(".exercise-task");
+          var totalDone = 0, totalSteps = 0;
+          tasks.forEach(function (taskEl) {
+            var doneInTask = taskEl.querySelectorAll(".exercise-step.done").length;
+            var stepsInTask = taskEl.querySelectorAll(".exercise-step").length;
+            totalDone += doneInTask;
+            totalSteps += stepsInTask;
+            var progLabel = taskEl.querySelector(".exercise-task-progress");
+            if (progLabel) progLabel.textContent = OB.i18n.t("topic.stepsProgress", { done: doneInTask, total: stepsInTask });
+          });
+
+          var pct = totalSteps > 0 ? Math.round((totalDone / totalSteps) * 100) : 0;
+          var fill = exerciseBlock.querySelector(".exercise-progress-fill");
+          if (fill) fill.style.width = pct + "%";
+          var label = exerciseBlock.querySelector(".exercise-progress-label");
+          if (label) label.textContent = OB.i18n.t("topic.stepsCompleted", { done: totalDone, total: totalSteps });
+        }
       });
     });
 

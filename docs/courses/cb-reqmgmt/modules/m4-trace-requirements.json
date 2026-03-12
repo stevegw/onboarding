@@ -1,0 +1,431 @@
+{
+  "id": "m4",
+  "title": "Trace Requirements",
+  "description": "Use traceability reports to verify requirement coverage, examine suspected items, and clear suspected badges manually and in bulk.",
+  "topics": [
+    {
+      "id": "m4t1",
+      "title": "Traceability Review",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Traceability is the backbone of requirements management — it ensures that every stakeholder need is addressed by the engineering team and that every engineering artifact can be justified by a stakeholder need. Without traceability, teams risk delivering products that miss critical requirements or contain unnecessary features that no one asked for."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Reference Relationships Drive Traceability"
+        },
+        {
+          "type": "paragraph",
+          "text": "In Codebeamer, traceability is established through <strong>reference relationships</strong> between tracker items. Upstream items (such as customer requirements) are linked to downstream items (such as system requirements) using associations. Downstream items <strong>validate</strong> upstream items — a system requirement proves that a customer need is being addressed, and a test case proves that a system requirement is being verified. When an upstream item changes, the downstream items that reference it become <strong>suspect</strong>, signaling that the change may affect them."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What to Verify"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Downstream Coverage",
+              "back": "Every customer requirement has at least one downstream system requirement supporting it. If a customer requirement has no downstream links, it means no engineering work is being done to satisfy that need."
+            },
+            {
+              "front": "Upstream Justification",
+              "back": "No system requirement lacks an upstream customer requirement — orphan items should be rejected. A system requirement without an upstream link may represent unnecessary work or a missing customer need that should be formally captured."
+            },
+            {
+              "front": "No Suspects",
+              "back": "All suspected badges have been reviewed and cleared before baselining. Unresolved suspects indicate that downstream items may not reflect the latest upstream changes, which could lead to incorrect implementations or test gaps."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Traceability extends beyond requirements — test plans, test runs, and releases can all be traced to requirements. A complete traceability chain runs from customer need through system specification, implementation, and verification, providing a full audit trail for compliance and quality assurance."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each traceability concept to its definition:",
+          "pairs": [
+            {
+              "left": "Upstream reference",
+              "right": "A link from a downstream item back to the higher-level item it supports"
+            },
+            {
+              "left": "Downstream reference",
+              "right": "A link from a higher-level item forward to the items that implement or verify it"
+            },
+            {
+              "left": "Suspected badge",
+              "right": "An indicator that an upstream item has changed and the downstream item may need updating"
+            },
+            {
+              "left": "Traceability report",
+              "right": "A view that displays the chain of linked items across trackers to verify coverage"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Reference relationships between tracker items are the foundation of traceability in Codebeamer",
+        "Downstream items validate upstream items — every customer requirement should have downstream coverage, and no system requirement should be an orphan",
+        "All suspected badges must be reviewed and cleared before baselining to ensure downstream items reflect the latest upstream changes"
+      ]
+    },
+    {
+      "id": "m4t2",
+      "title": "Understanding Suspected Items",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "When requirements change during development, the impact must be visible to everyone who depends on those requirements. Codebeamer uses <strong>suspected badges</strong> to automatically flag downstream items that may be affected by upstream changes. These badges are a critical part of change impact analysis and help teams maintain traceability integrity throughout the development lifecycle."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "How Suspected Badges Work"
+        },
+        {
+          "type": "paragraph",
+          "text": "When an upstream item changes — for example, when the text or priority of a customer requirement is modified — Codebeamer automatically marks all downstream items that reference it with a <strong>suspected badge</strong>. The badge indicates that a field changed in the upstream item that may affect the downstream item. This automatic flagging ensures that no downstream impact is overlooked, even in projects with hundreds of interconnected requirements."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Analyzing Suspected Items"
+        },
+        {
+          "type": "paragraph",
+          "text": "To analyze a suspected item, click the suspected badge on the downstream item. Codebeamer displays which fields changed in the upstream item, allowing you to compare the old and new values. Based on this comparison, you can determine whether the downstream item needs to be updated to reflect the upstream change, or whether the change has no impact and the badge can simply be cleared."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Badge State", "Meaning", "Action Required"],
+          "rows": [
+            ["No badge", "Items are in sync — the downstream item reflects the current upstream state", "No action needed"],
+            ["Gray suspected", "The association configuration may cause suspect flagging — review the association settings", "Review association settings to confirm correct behavior"],
+            ["Red suspected", "An upstream reference has changed — one or more fields differ from what the downstream item was last reviewed against", "Review the changed fields and either update the downstream item or clear the badge"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Always review suspected items before baselining. Unresolved suspects indicate that downstream requirements may be out of date with respect to their upstream sources. Baselining with unresolved suspects undermines traceability integrity and may violate compliance requirements."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the steps for resolving a suspected item in the correct order:",
+          "items": [
+            "Identify the suspected item by its red suspected badge",
+            "Click the suspected badge to view changed fields",
+            "Review the upstream changes and compare old and new values",
+            "Update the downstream item if the change requires it",
+            "Clear the suspected badge"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "When an upstream item changes, Codebeamer automatically marks downstream items with a suspected badge",
+        "Clicking the suspected badge reveals which fields changed, enabling comparison of old and new values",
+        "Red suspected badges require review — either update the downstream item or clear the badge after confirming no impact",
+        "Suspected items must be resolved before baselining to maintain traceability integrity"
+      ]
+    },
+    {
+      "id": "m4t3",
+      "title": "Methods for Clearing Suspected Badges",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Once you have identified suspected items, you need to clear their badges to restore traceability integrity. Codebeamer provides two approaches for clearing suspected badges: <strong>manual clearing</strong> for careful one-at-a-time review, and <strong>bulk clearing</strong> using the Inspect All Changes feature for efficient handling of many suspects at once."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Manual Clearing"
+        },
+        {
+          "type": "paragraph",
+          "text": "Manual clearing involves clicking the suspected badge on each downstream item, reviewing the upstream changes, deciding whether the downstream item needs updating, and then clearing the badge. This approach is best when you need to carefully evaluate each change and its impact. It ensures that every suspected relationship receives individual attention, but it can be time-consuming when many items are affected by the same upstream change."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Bulk Clearing with Inspect All Changes"
+        },
+        {
+          "type": "paragraph",
+          "text": "The <strong>Inspect All Changes</strong> feature lets you handle multiple suspected items at once. You can filter suspected items by the upstream reference field that triggered the suspicion, compare upstream and downstream values side by side, apply the upstream values to the downstream items in bulk, and clear all suspected badges at once. This approach is ideal when a single upstream change has caused many downstream items to become suspect."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Use Inspect All Changes when many items are suspect from the same upstream change — it shows only differing fields and lets you apply values in bulk. This can reduce hours of manual review to minutes, especially in large projects with hundreds of downstream references."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Aspect", "Manual Clearing", "Bulk Clearing (Inspect All Changes)"],
+          "rows": [
+            ["Best for", "Small number of suspects requiring careful evaluation", "Many suspects from the same upstream change"],
+            ["Speed", "Slow — one item at a time", "Fast — all items at once"],
+            ["Review depth", "Thorough — each item reviewed individually", "Efficient — focus on differing fields only"],
+            ["Risk of missing issues", "Low — detailed review catches nuances", "Moderate — bulk operations may overlook edge cases"]
+          ]
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each clearing method to the scenario where it is most appropriate:",
+          "pairs": [
+            {
+              "left": "Manual clearing",
+              "right": "Three downstream items are suspect and each references a different upstream requirement"
+            },
+            {
+              "left": "Inspect All Changes",
+              "right": "A single customer requirement was updated and 20 system requirements became suspect"
+            },
+            {
+              "left": "Manual clearing",
+              "right": "A safety-critical requirement changed and downstream items need careful individual review"
+            },
+            {
+              "left": "Inspect All Changes",
+              "right": "The priority field was changed on an upstream item and all downstream items need the same update"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Manual clearing provides thorough one-at-a-time review but is time-consuming for many suspects",
+        "Inspect All Changes enables bulk clearing by filtering, comparing, and applying upstream values across many items at once",
+        "Choose manual clearing for small numbers of suspects or safety-critical changes requiring careful evaluation",
+        "Choose bulk clearing when many items are suspect from the same upstream change"
+      ]
+    },
+    {
+      "id": "m4t4",
+      "title": "Trace Downstream Items",
+      "estimatedMinutes": 12,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will use traceability reports to verify that every customer requirement has downstream system requirement coverage. You will identify coverage gaps, examine upstream traceability from the system requirements perspective, and import additional system requirements to fill the gaps."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Do not alter Microsoft Office files in the VM. Use the provided Excel file as-is when importing system requirements."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex8",
+          "title": "Trace Downstream Items",
+          "objective": "Use traceability reports to verify downstream coverage of customer requirements and resolve coverage gaps by importing system requirements.",
+          "tasks": [
+            {
+              "id": "ex8-t1",
+              "title": "Examine Customer Requirements and Downstream Items",
+              "steps": [
+                {
+                  "action": "Open the Customer Requirements tracker and switch to the traceability report view showing downstream references.",
+                  "detail": "The downstream traceability report displays each customer requirement alongside the system requirements that support it. Gaps in downstream coverage are immediately visible as customer requirements with no linked items.",
+                  "hint": "Look for a Traceability or Relations view option in the tracker view selector."
+                },
+                {
+                  "action": "Observe which customer requirements have no downstream system requirement references.",
+                  "detail": "Customer requirements without downstream links represent coverage gaps — stakeholder needs that are not yet being addressed by any system-level specification. These gaps must be resolved before the requirements set can be considered complete.",
+                  "hint": "Items with empty downstream reference columns or missing child nodes in the traceability tree are the gaps."
+                },
+                {
+                  "action": "Note the customer requirements that are missing downstream coverage and record their names or IDs.",
+                  "detail": "You will use this information in a later task to import system requirements that fill these coverage gaps. Keeping a record ensures no gap is overlooked.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the priority of the identified gap items to <strong>High</strong> to flag them for immediate attention.",
+                  "detail": "Raising the priority of uncovered requirements ensures they are visible in filtered views and reports, helping the team prioritize the work needed to close the coverage gaps.",
+                  "hint": "Edit each item and change the Priority field, or use inline editing in Table View."
+                }
+              ]
+            },
+            {
+              "id": "ex8-t2",
+              "title": "Examine System Requirements and Upstream Items",
+              "steps": [
+                {
+                  "action": "Open the System Requirements tracker and switch to the traceability report view showing upstream references.",
+                  "detail": "The upstream traceability report shows which customer requirement each system requirement traces back to. System requirements with no upstream link are orphans — they have no justification from a customer need.",
+                  "hint": "Look for an upstream or parent reference column in the traceability view."
+                },
+                {
+                  "action": "Observe any system requirements that have no upstream customer requirement reference (orphan items).",
+                  "detail": "Orphan system requirements may indicate work being done that no stakeholder requested. These items should either be linked to an existing customer requirement or flagged for review to determine if a customer requirement is missing.",
+                  "hint": "Items with empty upstream reference columns or folders with no parent link are potential orphans."
+                },
+                {
+                  "action": "Note the orphan system requirements for follow-up action.",
+                  "detail": "Orphan items should be discussed with the project manager to determine whether they should be linked to an existing customer requirement, a new customer requirement should be created, or the system requirement should be removed.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex8-t3",
+              "title": "Import System Requirements from Excel",
+              "steps": [
+                {
+                  "action": "Locate the provided Excel spreadsheet containing system requirements for the headlights project.",
+                  "detail": "The spreadsheet contains pre-authored system requirements that address the coverage gaps you identified earlier. Importing from Excel is one of the fastest ways to add multiple requirements at once.",
+                  "hint": "The file should be available on the VM desktop or in the course materials folder."
+                },
+                {
+                  "action": "Open the System Requirements tracker and initiate the Excel import process.",
+                  "detail": "Codebeamer supports importing tracker items from Excel spreadsheets. The import wizard maps spreadsheet columns to tracker fields, allowing you to bring in structured data without manual re-entry.",
+                  "hint": "Look for an Import option in the tracker toolbar or actions menu."
+                },
+                {
+                  "action": "Map the spreadsheet columns to the appropriate tracker fields and complete the import.",
+                  "detail": "Ensure that the requirement text, priority, status, and any other relevant fields are correctly mapped. Incorrect mapping can result in data appearing in the wrong fields or being lost entirely.",
+                  "hint": "Review the column mapping preview carefully before confirming the import."
+                },
+                {
+                  "action": "Verify that the imported system requirements now appear in the downstream traceability view of the corresponding customer requirements.",
+                  "detail": "After import, the new system requirements should be linked to their upstream customer requirements. Switch back to the Customer Requirements traceability view to confirm that the previously identified coverage gaps are now filled.",
+                  "hint": null
+                },
+                {
+                  "action": "Fix the Advanced Headlights item by changing its type from <strong>Requirement</strong> to <strong>Folder</strong>.",
+                  "detail": "The Advanced Headlights item is a grouping container, not an actual requirement. Setting its type to Folder ensures it serves as an organizational element in the tracker hierarchy rather than being counted as a requirement in coverage calculations.",
+                  "hint": "Open the item properties and change the Type field from Requirement to Folder."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Downstream traceability reports reveal customer requirements that lack system requirement coverage",
+        "Upstream traceability reports identify orphan system requirements with no customer requirement justification",
+        "Excel import is an efficient method for adding multiple requirements at once to fill coverage gaps",
+        "Organizational items such as folders should not be typed as requirements to avoid skewing coverage metrics"
+      ]
+    },
+    {
+      "id": "m4t5",
+      "title": "Examine and Clear Suspected Items",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will find and resolve suspected items before a requirements review. You will clear suspected badges manually by reviewing individual changes, intentionally cause new suspected badges by modifying an upstream requirement, and then use the Inspect All Changes feature to clear multiple suspects in bulk."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex9",
+          "title": "Examine and Clear Suspected Items",
+          "objective": "Practice clearing suspected badges manually and in bulk using the Inspect All Changes feature.",
+          "tasks": [
+            {
+              "id": "ex9-t1",
+              "title": "Clear Suspected Badges Manually",
+              "steps": [
+                {
+                  "action": "Open the System Requirements tracker and identify items with red suspected badges.",
+                  "detail": "Red suspected badges indicate that an upstream customer requirement has changed since the system requirement was last reviewed. These items need attention before the requirements set can be considered current.",
+                  "hint": "Look for red icons or indicators next to items in the tracker list. You may need to add the suspected status column to your view."
+                },
+                {
+                  "action": "Click the red suspected badge on one of the flagged system requirements.",
+                  "detail": "Clicking the badge opens a comparison view showing which fields changed in the upstream customer requirement. This lets you evaluate whether the downstream system requirement needs to be updated.",
+                  "hint": null
+                },
+                {
+                  "action": "Review the changed fields — observe that the <strong>Assigned to</strong> field was changed in the upstream customer requirement.",
+                  "detail": "Not all upstream changes require downstream updates. A change to the Assigned to field is an administrative change that typically does not affect the technical content of downstream system requirements.",
+                  "hint": "Compare the old and new values shown in the suspected badge detail view."
+                },
+                {
+                  "action": "Determine that the downstream system requirement does not need updating based on the nature of the change.",
+                  "detail": "Since the Assigned to field change is administrative, the system requirement content remains valid. You can clear the badge without modifying the downstream item.",
+                  "hint": null
+                },
+                {
+                  "action": "Clear the suspected badge to mark the item as reviewed and current.",
+                  "detail": "Clearing the badge removes the red indicator and records that the relationship has been reviewed against the latest upstream version. The item is no longer flagged as suspect.",
+                  "hint": "Look for a Clear or Resolve button in the suspected badge detail view."
+                }
+              ]
+            },
+            {
+              "id": "ex9-t2",
+              "title": "Cause Suspected Badges",
+              "steps": [
+                {
+                  "action": "Open a customer requirement that has downstream system requirements linked to it and change the <strong>Business Value</strong> field to a different value.",
+                  "detail": "Changing a field on an upstream item triggers the suspected badge mechanism on all downstream items that reference it. This simulates a real-world scenario where a stakeholder updates a requirement attribute.",
+                  "hint": "Choose a customer requirement you know has downstream links from the earlier traceability exercise."
+                },
+                {
+                  "action": "Save the change and navigate to the System Requirements tracker.",
+                  "detail": "After saving the upstream change, Codebeamer automatically flags all downstream items with suspected badges. The flags may appear immediately or after a brief processing delay.",
+                  "hint": null
+                },
+                {
+                  "action": "Refresh the view and observe that the downstream system requirements now display red suspected badges.",
+                  "detail": "The suspected badges confirm that Codebeamer detected the upstream change and flagged the affected downstream items. This automatic detection is what makes traceability maintenance practical in large projects.",
+                  "hint": "If badges do not appear immediately, try refreshing the browser page."
+                }
+              ]
+            },
+            {
+              "id": "ex9-t3",
+              "title": "Clear Suspected Badges in Bulk",
+              "steps": [
+                {
+                  "action": "Open the Inspect All Changes feature from the System Requirements tracker.",
+                  "detail": "Inspect All Changes provides a consolidated view of all suspected items in the tracker, allowing you to review and resolve multiple suspects in a single workflow rather than clicking through items one at a time.",
+                  "hint": "Look for an Inspect All Changes option in the tracker toolbar, actions menu, or right-click context menu."
+                },
+                {
+                  "action": "Filter the suspected items by the <strong>Customer Requirement</strong> upstream reference field.",
+                  "detail": "Filtering by the upstream reference field narrows the list to only those suspects caused by changes to customer requirements. This focuses your review on a specific category of upstream changes.",
+                  "hint": "Use the filter or grouping options within the Inspect All Changes view."
+                },
+                {
+                  "action": "Review the differing field values between the upstream customer requirements and the downstream system requirements.",
+                  "detail": "The Inspect All Changes view highlights only the fields that differ between upstream and downstream items. This focused comparison makes it easy to decide whether downstream items need updating.",
+                  "hint": null
+                },
+                {
+                  "action": "Apply the upstream values to the downstream items where appropriate.",
+                  "detail": "When the upstream change should be reflected in the downstream items, you can apply the upstream values in bulk rather than editing each downstream item individually. This ensures consistency across the requirements hierarchy.",
+                  "hint": "Select the items you want to update and use the Apply or Accept changes option."
+                },
+                {
+                  "action": "Clear all suspected badges at once to mark the items as reviewed and current.",
+                  "detail": "After applying any necessary updates, clearing all badges at once completes the bulk review process. All affected items are now marked as current, and the traceability chain is restored to a clean state.",
+                  "hint": "Look for a Clear All or Resolve All button in the Inspect All Changes view."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Manual clearing is appropriate for reviewing individual suspects where the nature of each change must be carefully evaluated",
+        "Changing any field on an upstream item automatically triggers suspected badges on all linked downstream items",
+        "Inspect All Changes enables bulk review and clearing of multiple suspected items filtered by upstream reference field",
+        "After bulk clearing, the traceability chain is restored to a clean state ready for baselining"
+      ]
+    }
+  ]
+}

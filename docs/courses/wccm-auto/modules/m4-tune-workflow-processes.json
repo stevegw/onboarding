@@ -3,565 +3,775 @@
  "title": "Tune Workflow Processes",
  "description": "Monitor and tune workflow performance using background queues, pool queues, queue pooling, and dedicated queues. Troubleshoot workflow queue entries.",
  "topics": [
- {
- "id": "m4t1",
- "title": "Background Queues and Queue Management",
- "estimatedMinutes": 7,
- "content": [
- {
- "type": "paragraph",
- "text": "In computer science, a <strong>queue</strong> is a collection of entities stored to be processed later, following a first-in, first-out (FIFO) order. Windchill relies heavily on background queues to process many types of tasks - including email notifications, life cycle transitions, workflow activities, and indexing entries. These queues are created automatically during Windchill server startup and are configured through the <code>wt.properties</code> file."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Why Queue Tuning Matters"
- },
- {
- "type": "paragraph",
- "text": "Tuning is the process of adjusting the server to improve response time and maximize throughput. Occasionally, workflow processes hang or fail to complete, and understanding how queues operate is essential for diagnosing these issues. The <strong>Queue Management</strong> utility provides a centralized view of all background queues and their current status, making it the primary tool for monitoring and troubleshooting queue behavior."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "The Queue Management utility is accessed from <strong>Site > Utilities</strong>. It displays a table of all queues with columns for Name, Type, Status, Enabled/Disabled, Group, Total Entries, Waiting Entries, and Severe/Failed Entries."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Queue Management Actions"
- },
- {
- "type": "comparison-table",
- "headers": [
- "Action",
- "Purpose"
- ],
- "rows": [
- [
- "Start",
- "Starts a stopped queue so it begins processing entries"
- ],
- [
- "Stop",
- "Stops a running queue - entries remain but are not processed"
- ],
- [
- "Enable",
- "Enables a disabled queue so new entries can be added"
- ],
- [
- "Disable",
- "Prevents new entries from being added to the queue"
- ],
- [
- "Create Queue",
- "Creates a new custom queue for specialized processing"
- ]
- ]
- },
- {
- "type": "callout",
- "variant": "warning",
- "text": "Failed entries in a queue indicate that something went wrong during processing. When you see failed entries, analyze the <strong>method server log</strong> to determine the root cause before restarting or clearing the queue."
- },
- {
- "type": "interactive-match",
- "prompt": "Match each Queue Management column to what it tells you:",
- "pairs": [
- {
- "left": "Status",
- "right": "Whether the queue is currently running or stopped"
- },
- {
- "left": "Waiting Entries",
- "right": "Number of entries queued but not yet processed"
- },
- {
- "left": "Severe/Failed Entries",
- "right": "Number of entries that encountered processing errors"
- },
- {
- "left": "Total Entries",
- "right": "Cumulative count of all entries added to the queue"
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Windchill background queues process tasks such as email notifications, life cycle transitions, workflows, and indexing in FIFO order",
- "The Queue Management utility under Site > Utilities provides a centralized view of all queues and their status, including failed entries",
- "Queue tuning adjusts server parameters to improve response time and maximize throughput",
- "Failed entries should always be investigated via the method server log before taking corrective action"
- ]
- },
- {
- "id": "m4t2",
- "title": "Workflow Queues and Pool Queues",
- "estimatedMinutes": 7,
- "content": [
- {
- "type": "paragraph",
- "text": "Windchill uses three specialized background queues to manage different aspects of workflow execution. Understanding what each queue handles is essential for diagnosing why activities may not execute properly and for tuning workflow performance. All three workflow queues are <strong>pool queues</strong> by default, meaning they leverage multiple worker threads for parallel processing."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "The Three Workflow Queues"
- },
- {
- "type": "comparison-table",
- "headers": [
- "Queue",
- "Processes",
- "Examples"
- ],
- "rows": [
- [
- "WfPropagationQueue",
- "State change propagation for connectors, assigned activities, and links",
- "Routing expressions, transition expressions, connector state updates"
- ],
- [
- "WfUserWorkQueue",
- "Workflow robot instantiation and execution of robot actions",
- "Expression robots, custom robot logic"
- ],
- [
- "WfScheduleQueue",
- "Timed events, deadline checks, and schedule-based processing",
- "Deadline monitors, expression-based Synchronization Robots"
- ]
- ]
- },
- {
- "type": "callout",
- "variant": "tip",
- "text": "When workflow activities fail to execute properly, the first step is to examine these three queues in Queue Management. Failed entries in any of them point to the specific stage of workflow processing that broke down. Periodically clean old entries to keep the queues manageable."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "How Pool Queues Work"
- },
- {
- "type": "paragraph",
- "text": "A pool queue has one <strong>main thread</strong> that creates multiple <strong>worker threads</strong>, each of which processes one queue entry at a time. All worker threads exist in the same JVM as the main thread. By default, the <code>wt.queue.execEntriesCount</code> property sets the thread count to 6. You can also control individual queue thread pools using <code>wt.queue.PoolQueue.&lt;queue_name&gt;.ThreadPoolSize=N</code>. Idle worker threads (daemon threads) are automatically removed after <code>wt.queue.PoolQueue.threadKeepAlive</code> seconds (default: 5)."
- },
- {
- "type": "callout",
- "variant": "insight",
- "text": "Multiple workflows can execute simultaneously in the same queue. For example, if Workflow 1 and Workflow 2 both have expression robots, both robots join the WfUserWorkQueue and execute in parallel using separate worker threads - no additional configuration required."
- },
- {
- "type": "interactive-sort",
- "prompt": "Arrange the pool queue processing steps in the correct order:",
- "items": [
- "Main thread starts and monitors the queue for new entries",
- "Worker (daemon) threads are created as entries arrive",
- "Each worker thread picks up and processes one entry at a time",
- "Idle worker threads are removed after the keep-alive timeout"
- ]
- }
- ],
- "keyTakeaways": [
- "WfPropagationQueue handles state changes, WfUserWorkQueue handles robot execution, and WfScheduleQueue handles timed events and deadlines",
- "All workflow queues are pool queues by default, using one main thread and multiple worker threads for parallel processing",
- "The default thread pool size is 6, controlled by wt.queue.execEntriesCount or per-queue ThreadPoolSize properties",
- "Multiple workflows can execute simultaneously in the same queue without additional configuration"
- ]
- },
- {
- "id": "m4t3",
- "title": "Queue Pooling and Dedicated Queues",
- "estimatedMinutes": 8,
- "content": [
- {
- "type": "paragraph",
- "text": "While pool queues provide parallel processing through worker threads, Windchill offers two additional mechanisms for scaling workflow performance: <strong>queue pooling</strong> and <strong>dedicated queues</strong>. Queue pooling creates multiple instances of a queue for load distribution, while dedicated queues isolate specific workflow templates from the shared queue infrastructure."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Queue Pooling"
- },
- {
- "type": "paragraph",
- "text": "Queue pooling creates a pool of multiple WfUserWorkQueue and WfPropagationQueue instances. Jobs are distributed across these queues in a <strong>round-robin</strong> (circular) manner. Each queue in the pool still produces its own sub-threads as a pool queue, so queue pooling adds a second layer of parallelism. Configure it using <code>wt.workflow.engine.userWorkPoolSize=N</code> and <code>wt.workflow.engine.propagationPoolSize=N</code>."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "You do <strong>not</strong> need queue pooling just for parallel processing - pool queues already enable that by default. Use queue pooling for <strong>fault tolerance</strong> (if one queue fails, others continue) or <strong>multi-server load balancing</strong> (running queues on different background method servers)."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Dedicated Queues"
- },
- {
- "type": "paragraph",
- "text": "Dedicated queues are tied to specific workflow templates, which is helpful for frequently used or complex templates that produce long-running entries. When a template is tagged for a dedicated queue, its workflow nodes run only in that dedicated queue - keeping the shared queues free from heavy processing loads. Non-tagged workflows continue using shared queues unaffected."
- },
- {
- "type": "heading",
- "level": 3,
- "text": "Configuring Dedicated Queues"
- },
- {
- "type": "comparison-table",
- "headers": [
- "Property",
- "Values",
- "Effect"
- ],
- "rows": [
- [
- "wt.workflow.engine.dedicatedQueueMode",
- "none (default), userWork, Propagation, All",
- "Controls which queue types support dedicated queues"
- ],
- [
- "wt.workflow.engine.dedicatedQueue",
- "true / false",
- "Globally tags all newly created templates for dedicated queues"
- ],
- [
- "wt.workflow.engine.dedicatedQueuePerProcess",
- "true / false",
- "Creates a new dedicated queue per workflow instance"
- ],
- [
- "Template Properties checkbox",
- "Set dedicated queue",
- "Tags an individual template for dedicated queue processing"
- ]
- ]
- },
- {
- "type": "callout",
- "variant": "warning",
- "text": "After changing the <code>dedicatedQueueMode</code> property, you must <strong>restart method servers</strong> for the change to take effect. To tag an individual template, check it out, open Properties > Properties tab, select the \"Set dedicated queue\" checkbox, then check it back in."
- },
- {
- "type": "interactive-match",
- "prompt": "Match each scaling mechanism to when you should use it:",
- "pairs": [
- {
- "left": "Pool queue (default)",
- "right": "Parallel processing of entries within a single queue"
- },
- {
- "left": "Queue pooling",
- "right": "Fault tolerance or distributing load across multiple servers"
- },
- {
- "left": "Dedicated queue (per template)",
- "right": "Isolating a heavy or frequently used workflow template"
- },
- {
- "left": "Dedicated queue per process",
- "right": "Creating separate queue instances for each workflow run"
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Queue pooling creates multiple queue instances with round-robin distribution - use it for fault tolerance or multi-server load balancing, not just for parallelism",
- "Dedicated queues isolate specific workflow templates so their processing does not affect shared queues",
- "The dedicatedQueueMode property must be set and method servers restarted before dedicated queues can be used",
- "Individual templates are tagged for dedicated queues via the Properties tab checkbox; a global property can tag all new templates automatically"
- ]
- },
- {
- "id": "m4t4",
- "title": "Exercise 5 - Identify Workflow Queue Entries",
- "estimatedMinutes": 6,
- "isExercise": true,
- "content": [
- {
- "type": "paragraph",
- "text": "In this exercise, you will initiate workflow processes and observe how their jobs appear in the workflow queues. By examining the Queue Management utility, you will see how expression robots create entries in the WfUserWorkQueue while propagation entries are processed almost immediately."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "You must be signed in as <strong>wcadmin/wcadmin</strong>. The Long Running Workflow template must be available in Workflow Template Administration. This template contains an expression robot with Java code that pauses execution for 30 minutes, giving you time to observe queue entries."
- },
- {
- "type": "exercise",
- "exerciseId": "ex5",
- "title": "Identify Workflow Queue Entries",
- "objective": "Initiate two workflow processes and observe the resulting entries in the WfPropagationQueue and WfUserWorkQueue.",
- "tasks": [
- {
- "id": "ex5-t1",
- "title": "Initiate the Workflow Process",
- "steps": [
- {
- "action": "Sign in to Windchill as wcadmin with password wcadmin.",
- "detail": "The wcadmin account has full administrative access to site utilities and workflow template administration.",
- "hint": null
- },
- {
- "action": "Browse to Site > Utilities > Workflow Template Administration.",
- "detail": "This utility lists all workflow templates available at the site level, including the Long Running Workflow template you will use.",
- "hint": null
- },
- {
- "action": "Right-click Long Running Workflow and select View in Workflow Definer.",
- "detail": "The Workflow Definer displays the template's graphical structure so you can inspect the expression robot and understand why the workflow runs for an extended period.",
- "hint": null
- },
- {
- "action": "Select the Long Running Expression robot and view its Expression tab to see the Java code that pauses execution for 30 minutes.",
- "detail": "This robot uses a Thread.sleep call to keep the workflow active in the queue long enough for you to observe the entry. In a real scenario, long-running entries might indicate a complex computation or an integration call.",
- "hint": null
- },
- {
- "action": "Close the Workflow Definer windows.",
- "detail": "You have confirmed the template structure and are now ready to initiate processes.",
- "hint": null
- },
- {
- "action": "Initiate the Long Running Workflow process twice, naming them Workflow-1 and Workflow-2.",
- "detail": "Creating two instances lets you verify that both expression robots appear simultaneously in the queue, demonstrating parallel processing.",
- "hint": "Use the Initiate action from the workflow template context menu."
- }
- ]
- },
- {
- "id": "ex5-t2",
- "title": "View the Queue Entries",
- "steps": [
- {
- "action": "Browse to Site > Utilities > Queue Management.",
- "detail": "The Queue Management utility displays all background queues and their current entries.",
- "hint": null
- },
- {
- "action": "View the WfPropagationQueue and confirm it has no waiting entries.",
- "detail": "Propagation entries process very quickly (state changes and routing expressions), so they are typically completed before you can observe them.",
- "hint": null
- },
- {
- "action": "View the WfUserWorkQueue and confirm it shows two entries - one for each workflow's expression robot.",
- "detail": "Both expression robots from Workflow-1 and Workflow-2 are executing simultaneously in the same queue, each occupying a separate worker thread.",
- "hint": "If you see fewer than two entries, the expression robot from one workflow may have completed. Re-initiate as needed."
- },
- {
- "action": "Close the browser.",
- "detail": "You have confirmed that expression robots create long-lived entries in the WfUserWorkQueue while propagation entries process almost instantly.",
- "hint": null
- }
- ]
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Expression robots create entries in the WfUserWorkQueue that persist for the duration of robot execution",
- "WfPropagationQueue entries process very quickly and are rarely visible in Queue Management",
- "Multiple workflow instances execute simultaneously in the same queue using separate worker threads"
- ]
- },
- {
- "id": "m4t5",
- "title": "Exercise 6 - Configure Queue Pooling",
- "estimatedMinutes": 6,
- "isExercise": true,
- "content": [
- {
- "type": "paragraph",
- "text": "In this exercise, you will configure queue pooling to create two WfUserWorkQueue instances and verify that workflow processes are distributed across them. This demonstrates how queue pooling uses round-robin distribution to balance load."
- },
- {
- "type": "callout",
- "variant": "warning",
- "text": "This exercise requires stopping and restarting Windchill, which takes approximately 5 minutes. Ensure no other users are actively working on the system before proceeding."
- },
- {
- "type": "exercise",
- "exerciseId": "ex6",
- "title": "Configure Queue Pooling",
- "objective": "Set the userWorkPoolSize property to 2, restart Windchill, initiate two workflows, and verify that each process is assigned to a different shared queue.",
- "tasks": [
- {
- "id": "ex6-t1",
- "title": "Modify the Properties",
- "steps": [
- {
- "action": "Open the Windchill Shell.",
- "detail": "The Windchill Shell provides command-line access to Windchill utilities including xconfmanager for property management.",
- "hint": null
- },
- {
- "action": "Stop Windchill by running: windchill stop",
- "detail": "Windchill must be stopped before modifying wt.properties to ensure the changes are applied cleanly on startup.",
- "hint": null
- },
- {
- "action": "Set the queue pooling property by running: xconfmanager -t codebase/wt.properties -s wt.workflow.engine.userWorkPoolSize=2 -p",
- "detail": "This creates two WfUserWorkQueue instances (WfSharedUserWorkQueue0 and WfSharedUserWorkQueue1) that will share the workflow robot processing load.",
- "hint": null
- },
- {
- "action": "Start Windchill by running: windchill start - then wait approximately 5 minutes for full startup.",
- "detail": "The server needs time to initialize all services and create the new queue instances. Queue Management will not show the new queues until startup is complete.",
- "hint": "Monitor the method server log to confirm startup is complete."
- }
- ]
- },
- {
- "id": "ex6-t2",
- "title": "Instantiate the Process",
- "steps": [
- {
- "action": "Sign in to Windchill as wcadmin with password wcadmin.",
- "detail": "You need administrative access to initiate workflow processes.",
- "hint": null
- },
- {
- "action": "Initiate the Long Running Workflow twice, naming the instances Process-1 and Process-2.",
- "detail": "Two processes are needed to verify round-robin distribution across the pooled queues.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex6-t3",
- "title": "Verify the Queues",
- "steps": [
- {
- "action": "Browse to Site > Utilities > Queue Management.",
- "detail": "You should now see two shared UserWork queues instead of the single WfUserWorkQueue.",
- "hint": null
- },
- {
- "action": "View WfSharedUserWorkQueue0 and confirm it contains the expression robot entry from Process-1.",
- "detail": "The first process initiated is assigned to the first queue in the round-robin sequence.",
- "hint": null
- },
- {
- "action": "View WfSharedUserWorkQueue1 and confirm it contains the expression robot entry from Process-2.",
- "detail": "The second process is assigned to the next queue, demonstrating the circular distribution pattern. Each queue processes its entries independently.",
- "hint": "If both entries appear in the same queue, verify that the userWorkPoolSize property was set correctly and the server was fully restarted."
- }
- ]
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Queue pooling is configured by setting wt.workflow.engine.userWorkPoolSize in wt.properties and requires a full server restart",
- "Pooled queues are named WfSharedUserWorkQueue0, WfSharedUserWorkQueue1, etc.",
- "Workflow processes are distributed across pooled queues in a round-robin (circular) manner"
- ]
- },
- {
- "id": "m4t6",
- "title": "Exercise 7 - Configure Dedicated Queues",
- "estimatedMinutes": 6,
- "isExercise": true,
- "content": [
- {
- "type": "paragraph",
- "text": "In this exercise, you will enable dedicated queue mode for UserWork queues, tag a specific workflow template for dedicated queue processing, and verify that a new dedicated queue is created when the tagged template runs."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "You must be signed in as <strong>wcadmin/wcadmin</strong>. The Long Running Workflow 2 template must be available in Workflow Template Administration. After modifying the dedicated queue property, you do not need to restart Windchill for this exercise - the template tagging step handles queue creation at process initiation time."
- },
- {
- "type": "exercise",
- "exerciseId": "ex7",
- "title": "Configure Dedicated Queues",
- "objective": "Enable dedicated queue mode, tag the Long Running Workflow 2 template, initiate two processes, and verify that a new dedicated queue is created for the tagged template.",
- "tasks": [
- {
- "id": "ex7-t1",
- "title": "Modify wt.properties",
- "steps": [
- {
- "action": "Open the Windchill Shell.",
- "detail": "You will use xconfmanager to set the dedicated queue mode property.",
- "hint": null
- },
- {
- "action": "Set the dedicated queue mode by running: xconfmanager -t codebase/wt.properties -s wt.workflow.engine.dedicatedQueueMode=userWork -p",
- "detail": "This enables dedicated queue support for UserWork queues. Templates that are tagged will get their own queue instead of using the shared WfUserWorkQueue.",
- "hint": null
- },
- {
- "action": "Close the Windchill Shell.",
- "detail": "The property is now set. The next step is to tag a specific template.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex7-t2",
- "title": "Tag the Workflow Template",
- "steps": [
- {
- "action": "As wcadmin, browse to Site > Utilities > Workflow Template Administration.",
- "detail": "You need to locate the Long Running Workflow 2 template and modify its properties.",
- "hint": null
- },
- {
- "action": "Right-click Long Running Workflow 2 and select Edit to check it out.",
- "detail": "The template must be checked out before you can modify its properties.",
- "hint": null
- },
- {
- "action": "Open Properties > Properties tab and select the \"Set dedicated queue\" checkbox.",
- "detail": "This tags the template so that any workflow process created from it will use a dedicated queue rather than the shared WfUserWorkQueue.",
- "hint": null
- },
- {
- "action": "Save the changes, close the properties dialog, and check in the template.",
- "detail": "Checking in the template makes the dedicated queue tag active for all future process instances.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex7-t3",
- "title": "Instantiate Workflow Processes",
- "steps": [
- {
- "action": "Initiate the Long Running Workflow 2 template twice, naming the instances Dedicated Process-1 and Dedicated Process-2.",
- "detail": "Both processes will use the tagged template's dedicated queue, keeping the shared queue free from their long-running expression robots.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex7-t4",
- "title": "Verify Dedicated Queue",
- "steps": [
- {
- "action": "Browse to Site > Utilities > Queue Management.",
- "detail": "You should see a new WfUserWorkQueue with a 6-digit identifier - this is the dedicated queue created for the tagged template.",
- "hint": null
- },
- {
- "action": "Open the new dedicated WfUserWorkQueue and confirm that both expression robots (from Dedicated Process-1 and Dedicated Process-2) are executing in it.",
- "detail": "Both processes from the tagged template share the same dedicated queue, which is separate from the shared WfUserWorkQueue used by non-tagged templates.",
- "hint": "If you do not see the new queue, verify that the dedicatedQueueMode property was set to 'userWork' and the template's \"Set dedicated queue\" checkbox is enabled."
- }
- ]
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Dedicated queue mode is enabled by setting wt.workflow.engine.dedicatedQueueMode in wt.properties",
- "Individual templates are tagged for dedicated queues by selecting the \"Set dedicated queue\" checkbox in the template's Properties tab",
- "A dedicated queue appears in Queue Management with a unique 6-digit identifier, separate from the shared queues",
- "All processes from a tagged template share the same dedicated queue, isolating their workload from non-tagged workflows"
- ]
- }
+  {
+   "id": "m4t1",
+   "title": "Background Queues and Queue Management",
+   "estimatedMinutes": 7,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "In computer science, a <strong>queue</strong> is a collection of entities stored to be processed later, following a first-in, first-out (FIFO) order. Windchill relies heavily on background queues to process many types of tasks - including email notifications, life cycle transitions, workflow activities, and indexing entries. These queues are created automatically during Windchill server startup and are configured through the <code>wt.properties</code> file."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Why Queue Tuning Matters"
+    },
+    {
+     "type": "paragraph",
+     "text": "Tuning is the process of adjusting the server to improve response time and maximize throughput. Occasionally, workflow processes hang or fail to complete, and understanding how queues operate is essential for diagnosing these issues. The <strong>Queue Management</strong> utility provides a centralized view of all background queues and their current status, making it the primary tool for monitoring and troubleshooting queue behavior."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "The Queue Management utility is accessed from <strong>Site > Utilities</strong>. It displays a table of all queues with columns for Name, Type, Status, Enabled/Disabled, Group, Total Entries, Waiting Entries, and Severe/Failed Entries."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Queue Management Actions"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Action",
+      "Purpose"
+     ],
+     "rows": [
+      [
+       "Start",
+       "Starts a stopped queue so it begins processing entries"
+      ],
+      [
+       "Stop",
+       "Stops a running queue - entries remain but are not processed"
+      ],
+      [
+       "Enable",
+       "Enables a disabled queue so new entries can be added"
+      ],
+      [
+       "Disable",
+       "Prevents new entries from being added to the queue"
+      ],
+      [
+       "Create Queue",
+       "Creates a new custom queue for specialized processing"
+      ]
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "warning",
+     "text": "Failed entries in a queue indicate that something went wrong during processing. When you see failed entries, analyze the <strong>method server log</strong> to determine the root cause before restarting or clearing the queue."
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each Queue Management column to what it tells you:",
+     "pairs": [
+      {
+       "left": "Status",
+       "right": "Whether the queue is currently running or stopped"
+      },
+      {
+       "left": "Waiting Entries",
+       "right": "Number of entries queued but not yet processed"
+      },
+      {
+       "left": "Severe/Failed Entries",
+       "right": "Number of entries that encountered processing errors"
+      },
+      {
+       "left": "Total Entries",
+       "right": "Cumulative count of all entries added to the queue"
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Windchill background queues process tasks such as email notifications, life cycle transitions, workflows, and indexing in FIFO order",
+    "The Queue Management utility under Site > Utilities provides a centralized view of all queues and their status, including failed entries",
+    "Queue tuning adjusts server parameters to improve response time and maximize throughput",
+    "Failed entries should always be investigated via the method server log before taking corrective action"
+   ]
+  },
+  {
+   "id": "m4t2",
+   "title": "Workflow Queues and Pool Queues",
+   "estimatedMinutes": 7,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Windchill uses three specialized background queues to manage different aspects of workflow execution. Understanding what each queue handles is essential for diagnosing why activities may not execute properly and for tuning workflow performance. All three workflow queues are <strong>pool queues</strong> by default, meaning they leverage multiple worker threads for parallel processing."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "The Three Workflow Queues"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Queue",
+      "Processes",
+      "Examples"
+     ],
+     "rows": [
+      [
+       "WfPropagationQueue",
+       "State change propagation for connectors, assigned activities, and links",
+       "Routing expressions, transition expressions, connector state updates"
+      ],
+      [
+       "WfUserWorkQueue",
+       "Workflow robot instantiation and execution of robot actions",
+       "Expression robots, custom robot logic"
+      ],
+      [
+       "WfScheduleQueue",
+       "Timed events, deadline checks, and schedule-based processing",
+       "Deadline monitors, expression-based Synchronization Robots"
+      ]
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "tip",
+     "text": "When workflow activities fail to execute properly, the first step is to examine these three queues in Queue Management. Failed entries in any of them point to the specific stage of workflow processing that broke down. Periodically clean old entries to keep the queues manageable."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "How Pool Queues Work"
+    },
+    {
+     "type": "paragraph",
+     "text": "A pool queue has one <strong>main thread</strong> that creates multiple <strong>worker threads</strong>, each of which processes one queue entry at a time. All worker threads exist in the same JVM as the main thread. By default, the <code>wt.queue.execEntriesCount</code> property sets the thread count to 6. You can also control individual queue thread pools using <code>wt.queue.PoolQueue.&lt;queue_name&gt;.ThreadPoolSize=N</code>. Idle worker threads (daemon threads) are automatically removed after <code>wt.queue.PoolQueue.threadKeepAlive</code> seconds (default: 5)."
+    },
+    {
+     "type": "callout",
+     "variant": "insight",
+     "text": "Multiple workflows can execute simultaneously in the same queue. For example, if Workflow 1 and Workflow 2 both have expression robots, both robots join the WfUserWorkQueue and execute in parallel using separate worker threads - no additional configuration required."
+    },
+    {
+     "type": "interactive-sort",
+     "prompt": "Arrange the pool queue processing steps in the correct order:",
+     "items": [
+      "Main thread starts and monitors the queue for new entries",
+      "Worker (daemon) threads are created as entries arrive",
+      "Each worker thread picks up and processes one entry at a time",
+      "Idle worker threads are removed after the keep-alive timeout"
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "WfPropagationQueue handles state changes, WfUserWorkQueue handles robot execution, and WfScheduleQueue handles timed events and deadlines",
+    "All workflow queues are pool queues by default, using one main thread and multiple worker threads for parallel processing",
+    "The default thread pool size is 6, controlled by wt.queue.execEntriesCount or per-queue ThreadPoolSize properties",
+    "Multiple workflows can execute simultaneously in the same queue without additional configuration"
+   ]
+  },
+  {
+   "id": "m4t3",
+   "title": "Queue Pooling and Dedicated Queues",
+   "estimatedMinutes": 8,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "While pool queues provide parallel processing through worker threads, Windchill offers two additional mechanisms for scaling workflow performance: <strong>queue pooling</strong> and <strong>dedicated queues</strong>. Queue pooling creates multiple instances of a queue for load distribution, while dedicated queues isolate specific workflow templates from the shared queue infrastructure."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Queue Pooling"
+    },
+    {
+     "type": "paragraph",
+     "text": "Queue pooling creates a pool of multiple WfUserWorkQueue and WfPropagationQueue instances. Jobs are distributed across these queues in a <strong>round-robin</strong> (circular) manner. Each queue in the pool still produces its own sub-threads as a pool queue, so queue pooling adds a second layer of parallelism. Configure it using <code>wt.workflow.engine.userWorkPoolSize=N</code> and <code>wt.workflow.engine.propagationPoolSize=N</code>."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "You do <strong>not</strong> need queue pooling just for parallel processing - pool queues already enable that by default. Use queue pooling for <strong>fault tolerance</strong> (if one queue fails, others continue) or <strong>multi-server load balancing</strong> (running queues on different background method servers)."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Dedicated Queues"
+    },
+    {
+     "type": "paragraph",
+     "text": "Dedicated queues are tied to specific workflow templates, which is helpful for frequently used or complex templates that produce long-running entries. When a template is tagged for a dedicated queue, its workflow nodes run only in that dedicated queue - keeping the shared queues free from heavy processing loads. Non-tagged workflows continue using shared queues unaffected."
+    },
+    {
+     "type": "heading",
+     "level": 3,
+     "text": "Configuring Dedicated Queues"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Property",
+      "Values",
+      "Effect"
+     ],
+     "rows": [
+      [
+       "wt.workflow.engine.dedicatedQueueMode",
+       "none (default), userWork, Propagation, All",
+       "Controls which queue types support dedicated queues"
+      ],
+      [
+       "wt.workflow.engine.dedicatedQueue",
+       "true / false",
+       "Globally tags all newly created templates for dedicated queues"
+      ],
+      [
+       "wt.workflow.engine.dedicatedQueuePerProcess",
+       "true / false",
+       "Creates a new dedicated queue per workflow instance"
+      ],
+      [
+       "Template Properties checkbox",
+       "Set dedicated queue",
+       "Tags an individual template for dedicated queue processing"
+      ]
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "warning",
+     "text": "After changing the <code>dedicatedQueueMode</code> property, you must <strong>restart method servers</strong> for the change to take effect. To tag an individual template, check it out, open Properties > Properties tab, select the \"Set dedicated queue\" checkbox, then check it back in."
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each scaling mechanism to when you should use it:",
+     "pairs": [
+      {
+       "left": "Pool queue (default)",
+       "right": "Parallel processing of entries within a single queue"
+      },
+      {
+       "left": "Queue pooling",
+       "right": "Fault tolerance or distributing load across multiple servers"
+      },
+      {
+       "left": "Dedicated queue (per template)",
+       "right": "Isolating a heavy or frequently used workflow template"
+      },
+      {
+       "left": "Dedicated queue per process",
+       "right": "Creating separate queue instances for each workflow run"
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Queue pooling creates multiple queue instances with round-robin distribution - use it for fault tolerance or multi-server load balancing, not just for parallelism",
+    "Dedicated queues isolate specific workflow templates so their processing does not affect shared queues",
+    "The dedicatedQueueMode property must be set and method servers restarted before dedicated queues can be used",
+    "Individual templates are tagged for dedicated queues via the Properties tab checkbox; a global property can tag all new templates automatically"
+   ]
+  },
+  {
+   "id": "m4t4",
+   "title": "Exercise 5 - Identify Workflow Queue Entries",
+   "estimatedMinutes": 6,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "In this exercise, you will initiate workflow processes and observe how their jobs appear in the workflow queues. By examining the Queue Management utility, you will see how expression robots create entries in the WfUserWorkQueue while propagation entries are processed almost immediately."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "You must be signed in as <strong>wcadmin/wcadmin</strong>. The Long Running Workflow template must be available in Workflow Template Administration. This template contains an expression robot with Java code that pauses execution for 30 minutes, giving you time to observe queue entries."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex5",
+     "title": "Identify Workflow Queue Entries",
+     "objective": "Initiate two workflow processes and observe the resulting entries in the WfPropagationQueue and WfUserWorkQueue.",
+     "tasks": [
+      {
+       "id": "ex5-t1",
+       "title": "Initiate the Workflow Process",
+       "steps": [
+        {
+         "action": "Open a browser and click the Windchill bookmark.",
+         "detail": "This launches the Windchill web client.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Sign In</strong>.",
+         "detail": "You must authenticate before accessing site-level administrative utilities.",
+         "hint": null
+        },
+        {
+         "action": "Sign in as a Windchill site administrator with username <strong>wcadmin</strong> and password <strong>wcadmin</strong>.",
+         "detail": "The wcadmin account has full administrative access to site utilities and workflow template administration.",
+         "hint": null
+        },
+        {
+         "action": "Browse to <strong>Site > Utilities > Workflow Template Administration</strong>.",
+         "detail": "This utility lists all workflow templates available at the site level, including the Long Running Workflow template you will use.",
+         "hint": null
+        },
+        {
+         "action": "Right-click the <strong>Long Running Workflow</strong> template.",
+         "detail": "You will first inspect the template to understand its structure before initiating it.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>View in Workflow Definer</strong>.",
+         "detail": "The Workflow Definer displays the template's graphical structure so you can inspect the expression robot.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Long Running Expression</strong> link to view the expression robot details.",
+         "detail": "This opens the robot's property dialog where you can see its configuration.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Expression</strong> tab to view the Java code used in the expression robot.",
+         "detail": "The Expression tab shows the actual Java code that the robot executes when the workflow runs.",
+         "hint": null
+        },
+        {
+         "action": "Observe the Java code. This expression pauses the workflow for thirty minutes, which will keep it in the queue.",
+         "detail": "The robot uses a Thread.sleep call to keep the workflow active in the queue long enough for you to observe the entry. In a real scenario, long-running entries might indicate a complex computation or an integration call.",
+         "hint": null
+        },
+        {
+         "action": "Close the robot properties window, then close the workflow definer window.",
+         "detail": "You have confirmed the template structure and are now ready to initiate processes.",
+         "hint": null
+        },
+        {
+         "action": "Right-click the <strong>Long Running Workflow</strong> template and select <strong>Initiate workflow process</strong>.",
+         "detail": "This starts a new instance of the workflow from the template.",
+         "hint": null
+        },
+        {
+         "action": "In the Process Name field, type <strong>Workflow-1</strong>.",
+         "detail": "Naming each process instance lets you distinguish them when viewing queue entries.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Start Process</strong>.",
+         "detail": "The workflow begins executing and its expression robot will join the WfUserWorkQueue.",
+         "hint": null
+        },
+        {
+         "action": "Right-click <strong>Long Running Workflow</strong> and select <strong>Initiate workflow process</strong>.",
+         "detail": "You will create a second instance to verify that both expression robots appear simultaneously in the queue.",
+         "hint": null
+        },
+        {
+         "action": "In the Process Name field, type <strong>Workflow-2</strong>.",
+         "detail": "The second process will also have its expression robot join the WfUserWorkQueue.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Start Process</strong>.",
+         "detail": "Both workflow instances are now running, each with an expression robot in the queue.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex5-t2",
+       "title": "View the Queue Entries",
+       "steps": [
+        {
+         "action": "Browse to <strong>Site > Utilities > Queue Management</strong>.",
+         "detail": "The Queue Management utility displays all background queues and their current entries.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>View information</strong> icon for the <strong>WfPropagationQueue</strong>.",
+         "detail": "You will check whether any propagation entries are still being processed.",
+         "hint": null
+        },
+        {
+         "action": "Confirm there are no more entries to process in the WfPropagationQueue.",
+         "detail": "Propagation entries process very quickly (start connectors, assigned activities, and link entries are queued here), so they are typically completed before you can observe them.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Back</strong> in the browser to view all queues, then click the <strong>View information</strong> icon to the right of <strong>WfUserWorkQueue</strong> to view the queue entries.",
+         "detail": "You will verify that both expression robots are executing simultaneously in this queue.",
+         "hint": null
+        },
+        {
+         "action": "Confirm there are <strong>two entries</strong> present in the queue — one for each workflow's expression robot.",
+         "detail": "Both expression robots from Workflow-1 and Workflow-2 are executing simultaneously in the same queue, each occupying a separate worker thread. All expression robots use the WfUserWorkQueue.",
+         "hint": "If you see fewer than two entries, the expression robot from one workflow may have completed. Re-initiate as needed."
+        },
+        {
+         "action": "Close the browser.",
+         "detail": "You have confirmed that expression robots create long-lived entries in the WfUserWorkQueue while propagation entries process almost instantly.",
+         "hint": null
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Expression robots create entries in the WfUserWorkQueue that persist for the duration of robot execution",
+    "WfPropagationQueue entries process very quickly and are rarely visible in Queue Management",
+    "Multiple workflow instances execute simultaneously in the same queue using separate worker threads"
+   ]
+  },
+  {
+   "id": "m4t5",
+   "title": "Exercise 6 - Configure Queue Pooling",
+   "estimatedMinutes": 6,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "In this exercise, you will configure queue pooling to create two WfUserWorkQueue instances and verify that workflow processes are distributed across them. This demonstrates how queue pooling uses round-robin distribution to balance load."
+    },
+    {
+     "type": "callout",
+     "variant": "warning",
+     "text": "This exercise requires stopping and restarting Windchill, which takes approximately 5 minutes. Ensure no other users are actively working on the system before proceeding."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex6",
+     "title": "Configure Queue Pooling",
+     "objective": "Set the userWorkPoolSize property to 2, restart Windchill, initiate two workflows, and verify that each process is assigned to a different shared queue.",
+     "tasks": [
+      {
+       "id": "ex6-t1",
+       "title": "Modify the Properties",
+       "steps": [
+        {
+         "action": "From the desktop, open the <strong>Windchill Shell</strong>.",
+         "detail": "The Windchill Shell provides command-line access to Windchill utilities including xconfmanager for property management.",
+         "hint": null
+        },
+        {
+         "action": "Type <code>windchill stop</code> and press Enter.",
+         "detail": "Windchill must be stopped before modifying wt.properties to ensure the changes are applied cleanly on startup.",
+         "hint": null
+        },
+        {
+         "action": "To set the two shared UserWork queues, type:<br><code>xconfmanager -t codebase/wt.properties -s wt.workflow.engine.userWorkPoolSize=2 -p</code>",
+         "detail": "This creates two WfUserWorkQueue instances (WfSharedUserWorkQueue0 and WfSharedUserWorkQueue1) that will share the workflow robot processing load.",
+         "hint": null
+        },
+        {
+         "action": "Press <strong>Enter</strong> to execute the command.",
+         "detail": "The xconfmanager utility updates the wt.properties file with the new pool size setting.",
+         "hint": null
+        },
+        {
+         "action": "Type <code>windchill start</code>.",
+         "detail": "Starting Windchill initializes all services and creates the new queue instances.",
+         "hint": null
+        },
+        {
+         "action": "Wait about five minutes for Windchill services to start.",
+         "detail": "The server needs time to initialize all services and create the new queue instances. Queue Management will not show the new queues until startup is complete.",
+         "hint": "Monitor the method server log to confirm startup is complete."
+        }
+       ]
+      },
+      {
+       "id": "ex6-t2",
+       "title": "Instantiate the Process",
+       "steps": [
+        {
+         "action": "Open a browser and select the Windchill bookmark.",
+         "detail": "This launches the Windchill web client.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Sign In</strong>.",
+         "detail": "You must authenticate to access administrative utilities.",
+         "hint": null
+        },
+        {
+         "action": "Sign in as a site administrator with username <strong>wcadmin</strong> and password <strong>wcadmin</strong>.",
+         "detail": "You need administrative access to initiate workflow processes and view queue management.",
+         "hint": null
+        },
+        {
+         "action": "Browse to the <strong>Site > Utilities</strong> page.",
+         "detail": "The Utilities page provides access to Workflow Template Administration and Queue Management.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Workflow Template Administration</strong>.",
+         "detail": "This opens the list of available workflow templates.",
+         "hint": null
+        },
+        {
+         "action": "Right-click the <strong>Long Running Workflow</strong> template and select <strong>Initiate workflow process</strong>.",
+         "detail": "You will start the first instance of a workflow process to test the new queue pooling configuration.",
+         "hint": null
+        },
+        {
+         "action": "In the Process Name field, type <strong>Process-1</strong>.",
+         "detail": "Naming each process lets you identify which queue it lands in.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Start Process</strong>.",
+         "detail": "The first workflow instance begins executing.",
+         "hint": null
+        },
+        {
+         "action": "Right-click the <strong>Long Running Workflow</strong> template and select <strong>Initiate workflow process</strong>.",
+         "detail": "You will start the second instance to verify round-robin distribution across the pooled queues.",
+         "hint": null
+        },
+        {
+         "action": "In the Process Name field, type <strong>Process-2</strong>.",
+         "detail": "The second process should be assigned to the other shared queue due to round-robin distribution.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Start Process</strong>.",
+         "detail": "Both workflow instances are now running and should be distributed across the two shared queues.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex6-t3",
+       "title": "Verify the Queues",
+       "steps": [
+        {
+         "action": "Browse to the <strong>Site > Utilities</strong> page.",
+         "detail": "You will verify the additional queues and entries created by the newly configured queue pooling.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Queue Management</strong>.",
+         "detail": "Queue Management displays all background queues including the newly created shared queues.",
+         "hint": null
+        },
+        {
+         "action": "Scroll down and view the newly created <strong>WfSharedUserWork</strong> queues.",
+         "detail": "Two new shared queues, WfSharedUserWorkQueue0 and WfSharedUserWorkQueue1, have been created.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>View information</strong> icon to the right of <strong>WfSharedUserWorkQueue0</strong> to view its queue entries.",
+         "detail": "This queue is executing one expression robot from Process-1.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Back</strong> in the browser to view all queues.",
+         "detail": "You need to return to the queue list to check the second shared queue.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>View information</strong> icon to the right of <strong>WfSharedUserWorkQueue1</strong> to view its queue entries.",
+         "detail": "This separate UserWork queue is executing the expression robot from Process-2, demonstrating the circular distribution pattern. Each queue processes its entries independently.",
+         "hint": "If both entries appear in the same queue, verify that the userWorkPoolSize property was set correctly and the server was fully restarted."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Queue pooling is configured by setting wt.workflow.engine.userWorkPoolSize in wt.properties and requires a full server restart",
+    "Pooled queues are named WfSharedUserWorkQueue0, WfSharedUserWorkQueue1, etc.",
+    "Workflow processes are distributed across pooled queues in a round-robin (circular) manner"
+   ]
+  },
+  {
+   "id": "m4t6",
+   "title": "Exercise 7 - Configure Dedicated Queues",
+   "estimatedMinutes": 6,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "In this exercise, you will enable dedicated queue mode for UserWork queues, tag a specific workflow template for dedicated queue processing, and verify that a new dedicated queue is created when the tagged template runs."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "You must be signed in as <strong>wcadmin/wcadmin</strong>. The Long Running Workflow 2 template must be available in Workflow Template Administration. After modifying the dedicated queue property, you do not need to restart Windchill for this exercise - the template tagging step handles queue creation at process initiation time."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex7",
+     "title": "Configure Dedicated Queues",
+     "objective": "Enable dedicated queue mode, tag the Long Running Workflow 2 template, initiate two processes, and verify that a new dedicated queue is created for the tagged template.",
+     "tasks": [
+      {
+       "id": "ex7-t1",
+       "title": "Modify wt.properties",
+       "steps": [
+        {
+         "action": "Open the <strong>Windchill Shell</strong>.",
+         "detail": "You will use xconfmanager to set the dedicated queue mode property.",
+         "hint": null
+        },
+        {
+         "action": "To set the dedicated queue mode for the userWork queues, type:<br><code>xconfmanager -t codebase/wt.properties -s wt.workflow.engine.dedicatedQueueMode=userWork -p</code>",
+         "detail": "This enables dedicated queue support for UserWork queues. Templates that are tagged will get their own queue instead of using the shared WfUserWorkQueue.",
+         "hint": null
+        },
+        {
+         "action": "Close the Windchill Shell.",
+         "detail": "The property is now set. The next step is to tag a specific template.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex7-t2",
+       "title": "Tag the Workflow Template",
+       "steps": [
+        {
+         "action": "Browse to the <strong>Site > Utilities</strong> page as the Windchill administrator user (<strong>wcadmin/wcadmin</strong>).",
+         "detail": "You need administrative access to modify workflow template properties.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Workflow Template Administration</strong> link.",
+         "detail": "This opens the list of available workflow templates at the site level.",
+         "hint": null
+        },
+        {
+         "action": "Right-click the <strong>Long Running Workflow 2</strong> template and select <strong>Edit</strong>.",
+         "detail": "The template must be checked out before you can modify its properties.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Properties</strong> link to open the workflow properties.",
+         "detail": "The Properties dialog contains the template's configuration settings, including the dedicated queue flag.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Properties</strong> tab to view the workflow properties.",
+         "detail": "The Properties tab contains execution options including the dedicated queue checkbox.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Set dedicated queue</strong> checkbox to tag the workflow to use a dedicated queue.",
+         "detail": "This tags the template so that any workflow process created from it will use a dedicated queue rather than the shared WfUserWorkQueue.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong>.",
+         "detail": "This saves the property change and closes the Properties dialog.",
+         "hint": null
+        },
+        {
+         "action": "In the Workflow Editor, select <strong>File > Save</strong>.",
+         "detail": "Saving preserves the dedicated queue tag change to the template.",
+         "hint": null
+        },
+        {
+         "action": "Close the Long Running Workflow window.",
+         "detail": "You return to the Workflow Template Administration view.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Long Running Workflow 2</strong> checkbox.",
+         "detail": "You need to select the template to check it in from the administration view.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Check in selected templates</strong> icon.",
+         "detail": "Checking in the template makes the dedicated queue tag active for all future process instances.",
+         "hint": null
+        },
+        {
+         "action": "You can type comments during check-in. Skip this step and click <strong>OK</strong>.",
+         "detail": "Check-in comments are optional. Clicking OK completes the check-in process.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex7-t3",
+       "title": "Instantiate Workflow Processes",
+       "steps": [
+        {
+         "action": "Right-click the <strong>Long Running Workflow 2</strong> template and select <strong>Initiate workflow process</strong>.",
+         "detail": "You will start two workflow process instances to test the dedicated queue configuration.",
+         "hint": null
+        },
+        {
+         "action": "In the Process Name field, type <strong>Dedicated Process-1</strong>.",
+         "detail": "Naming the process helps you identify it when viewing queue entries.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Start Process</strong> to start the process.",
+         "detail": "The first workflow instance begins executing using the tagged template's dedicated queue.",
+         "hint": null
+        },
+        {
+         "action": "Right-click the <strong>Long Running Workflow 2</strong> template to start the second instance.",
+         "detail": "You will create a second instance to verify both processes share the same dedicated queue.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>Initiate workflow process</strong>.",
+         "detail": "This opens the process initiation dialog for the second instance.",
+         "hint": null
+        },
+        {
+         "action": "In the Process Name field, type <strong>Dedicated Process-2</strong>.",
+         "detail": "The second process will also use the dedicated queue assigned to this tagged template.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Start Process</strong>.",
+         "detail": "Both dedicated processes are now running, keeping the shared queues free from their long-running expression robots.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex7-t4",
+       "title": "Verify the Dedicated Queue Entries",
+       "steps": [
+        {
+         "action": "Browse to <strong>Site > Utilities</strong> page.",
+         "detail": "You will verify that a new dedicated queue was created for the tagged template.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Queue Management</strong> link.",
+         "detail": "Queue Management displays all background queues, including the newly created dedicated queue.",
+         "hint": null
+        },
+        {
+         "action": "Scroll and view the dedicated workflow queue.",
+         "detail": "The new dedicated queue, WfUserWorkQueue, has a six-digit ID. Expression robots from both processes, Dedicated Process-1 and Dedicated Process-2, are running in this queue.",
+         "hint": "If you do not see the new queue, verify that the dedicatedQueueMode property was set to 'userWork' and the template's \"Set dedicated queue\" checkbox is enabled."
+        },
+        {
+         "action": "Click the <strong>View information</strong> icon to the right of <strong>WfUserWorkQueue_&lt;id&gt;</strong> to view the queue entries.",
+         "detail": "Both expression robots from Dedicated Process-1 and Dedicated Process-2 should be visible, confirming they share the same dedicated queue, separate from the shared WfUserWorkQueue used by non-tagged templates.",
+         "hint": null
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Dedicated queue mode is enabled by setting wt.workflow.engine.dedicatedQueueMode in wt.properties",
+    "Individual templates are tagged for dedicated queues by selecting the \"Set dedicated queue\" checkbox in the template's Properties tab",
+    "A dedicated queue appears in Queue Management with a unique 6-digit identifier, separate from the shared queues",
+    "All processes from a tagged template share the same dedicated queue, isolating their workload from non-tagged workflows"
+   ]
+  }
  ]
 }

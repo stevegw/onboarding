@@ -1,0 +1,573 @@
+{
+  "id": "m4",
+  "title": "Test Execution and Reports",
+  "description": "Create test runs and test sets, execute tests as a tester, report bugs from failed steps, and examine test results as a test engineer.",
+  "topics": [
+    {
+      "id": "m4t1",
+      "title": "Test Runs, Sets, and Configuration",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "After you have written and approved test cases, you must create test runs to execute them. You cannot execute a test case directly — you must first create a test run for the test case. This is the test setup stage of the test management workflow, typically performed by the test engineer."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Test Runs"
+        },
+        {
+          "type": "paragraph",
+          "text": "Test runs are their own tracker type in Codebeamer. They are downstream references to test cases and are typically created by test engineers but executed by testers. You can configure a test run with different options including test configurations, priority, running time, build, and release."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Test Run Creation Options"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Option", "Description", "When to Use"],
+          "rows": [
+            ["Single Test Case", "A test run for one test case", "Testing a specific feature or requirement in isolation"],
+            ["Multiple Test Cases", "A test run containing several test cases", "Testing related features together or quickly creating runs for each case"],
+            ["Test Set", "A collection of test cases to execute together", "Regression testing, functional area testing, or ordered test sequences"],
+            ["Combinations", "A mix of test cases and test sets", "Comprehensive testing that combines different grouping strategies"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "When generating a test run for multiple test cases, you can choose to create one test run for all selected cases (an ad hoc test set) or create separate test runs for each test case. The default is a single combined test run."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Test Sets and Configurations"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Test Set",
+              "back": "A named collection of test cases to execute together. You can specify execution order (sequential) and group tests by functional area. Test sets are their own tracker type."
+            },
+            {
+              "front": "Test Configuration",
+              "back": "Defines the environment or conditions for test execution — such as vehicle models, operating systems, or hardware settings. Applied to test runs, not test cases. Multiple configurations create multiple test runs."
+            },
+            {
+              "front": "Sequential Execution",
+              "back": "When a test set's Sequential field is set to True, test cases must be executed in the specified order. Use this when the order of testing matters, such as unit tests before integration tests."
+            }
+          ]
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each test setup concept to its description:",
+          "pairs": [
+            {
+              "left": "Test Run",
+              "right": "The actual execution instance of one or more test cases"
+            },
+            {
+              "left": "Test Set",
+              "right": "A reusable collection of test cases grouped for a specific purpose"
+            },
+            {
+              "left": "Test Configuration",
+              "right": "Environment parameters applied to a test run"
+            },
+            {
+              "left": "Parameters",
+              "right": "Variable values in test steps that generate multiple test case instances"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Test runs are required to execute test cases — you cannot execute a test case directly",
+        "Test runs can be created for single cases, multiple cases, test sets, or combinations",
+        "Test configurations define the execution environment and are applied to test runs, not test cases",
+        "Test sets group related test cases and can enforce sequential execution order"
+      ]
+    },
+    {
+      "id": "m4t2",
+      "title": "Test Execution and Bug Reporting",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "After test runs have been created, the tester or test engineer executes them. During execution, the tester records results for each step, reports bugs, and writes conclusive remarks. After completion, test runs typically cannot be edited to maintain accuracy and traceability."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Tester's Execution Process"
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the test execution steps in the correct order:",
+          "items": [
+            "Review the test run details and configuration",
+            "Perform pre-action tasks",
+            "Record results for each step (pass, fail, or block)",
+            "Write a conclusive statement about the test run",
+            "Perform post-action tasks"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Bug Reporting During Testing"
+        },
+        {
+          "type": "paragraph",
+          "text": "During testing, bugs and issues may be reported. A bug discovered in a test run may relate to several root causes that the test engineer or test lead must evaluate."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Bug Source", "Description", "Resolution"],
+          "rows": [
+            ["Test run setup", "Unachievable test configurations or inaccurate pre-actions", "Revise the test run setup or configuration"],
+            ["Test case definition", "Inaccurate test step actions or parameters", "Update the test case steps or parameters"],
+            ["Product problem", "Failed product definition that does not meet the requirement", "Initiate a change request for the product"],
+            ["Tester error", "Incorrect execution by the tester", "Re-execute the test with proper procedures"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Bugs are their own tracker type in Codebeamer. You can create traceability relationships between bugs, tests, and product definitions, as well as with change requests used to address issues. This maintains a complete audit trail from requirement to defect resolution."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each step result to its meaning:",
+          "pairs": [
+            {
+              "left": "Pass",
+              "right": "The actual result matches the expected result"
+            },
+            {
+              "left": "Fail",
+              "right": "The actual result does not match the expected result"
+            },
+            {
+              "left": "Block",
+              "right": "The step cannot be executed due to external dependencies"
+            },
+            {
+              "left": "Report Bug",
+              "right": "Create a linked defect from a failed step"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The tester follows a structured process: review, pre-actions, execute steps, conclusion, post-actions",
+        "Each test step is recorded as pass, fail, or block during execution",
+        "Bugs can originate from test setup, test case definitions, product problems, or tester errors",
+        "Bugs created from test runs are automatically linked to the test case and requirement for traceability"
+      ]
+    },
+    {
+      "id": "m4t3",
+      "title": "Exercise - Create Test Runs",
+      "estimatedMinutes": 12,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "As a test engineer, you will create test runs for test cases using different methods: generating from a single test case, from a test case with parameters, from multiple test cases, and from a test set."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Sign in as the Test Engineer (<code>emma</code> / <code>ptc</code>). Make sure all test cases from Module 3 exercises have been created and approved."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex7",
+          "title": "Create Test Runs",
+          "objective": "Generate test runs for individual test cases, parameterized test cases, multiple test cases, and test sets.",
+          "tasks": [
+            {
+              "id": "ex7-t1",
+              "title": "Generate a Test Run from a Single Test Case",
+              "steps": [
+                {
+                  "action": "Sign out as the test lead and sign in as the test engineer with username <code>emma</code> and password <code>ptc</code>.",
+                  "detail": "Test engineers create test runs; testers execute them.",
+                  "hint": null
+                },
+                {
+                  "action": "Navigate to the <strong>System Test Cases</strong> tracker and select <strong>Manual Headlight Switch Integration</strong>.",
+                  "detail": "You will generate a test run for this predefined system test case.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>+</strong> (create new Downstream Reference) and select <strong>Generate Test Run > PTCU Electric Car TEST >> Test Runs</strong>.",
+                  "detail": "A test run is a downstream reference to the test case it executes.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the <strong>Assigned to</strong> field to the Tester role.",
+                  "detail": "The tester will execute the test run you are creating.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Test Configurations section, select both <strong>TL Model</strong> and <strong>TLX Model</strong> checkboxes.",
+                  "detail": "These two configurations represent different vehicle models. Selecting both creates two separate test runs — one for each configuration.",
+                  "hint": "Test configurations are applied to test runs, not test cases."
+                },
+                {
+                  "action": "Click <strong>Save</strong> and navigate to the new test runs.",
+                  "detail": "Two test runs have been created because of the two test configurations. Observe the Status and Test Configuration fields.",
+                  "hint": "Navigate via the notification or the Trackers tab."
+                }
+              ]
+            },
+            {
+              "id": "ex7-t2",
+              "title": "Generate a Test Run for a Parameterized Test Case",
+              "steps": [
+                {
+                  "action": "Navigate to <strong>Software Test Cases</strong> and select <strong>Test Light Sensor Communication with ECU</strong>.",
+                  "detail": "This test case has parameters defined in its test steps.",
+                  "hint": "Expand the Test Steps section to observe the input and output parameters."
+                },
+                {
+                  "action": "Click <strong>+</strong> (create new Downstream Reference) and select <strong>Generate Test Run</strong>.",
+                  "detail": "A test run for a parameterized test case will create separate executions for each parameter set.",
+                  "hint": null
+                },
+                {
+                  "action": "Assign the test run to the <strong>Tester</strong> role and click <strong>Save</strong>.",
+                  "detail": "The test run will have three test cases to execute — one for each input parameter row.",
+                  "hint": null
+                },
+                {
+                  "action": "Navigate to the new test run and expand the <strong>Test Results</strong> section.",
+                  "detail": "The Remaining Test Cases field should show three test cases, reflecting the three parameter rows.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex7-t3",
+              "title": "Generate a Test Run for Multiple Test Cases",
+              "steps": [
+                {
+                  "action": "Navigate to <strong>Software Test Cases</strong> and multi-select <strong>Test Light Sensor Communication with ECU</strong> and <strong>Light Sensor Unit Test</strong>.",
+                  "detail": "You can generate a combined test run from multiple selected test cases.",
+                  "hint": null
+                },
+                {
+                  "action": "Right-click and select <strong>Generate Test Run(s) from Selected > PTCU Electric Car TEST >> Test Runs</strong>.",
+                  "detail": "The default creates one test run containing all selected test cases.",
+                  "hint": "The 'Create one Test Run for each Test Cases' option defaults to No."
+                },
+                {
+                  "action": "Click <strong>Save</strong> and navigate to the new test run.",
+                  "detail": "The test run contains four test cases: three from the parameterized test case plus one for Light Sensor Unit Test.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex7-t4",
+              "title": "Create a Test Set and Generate a Test Run",
+              "steps": [
+                {
+                  "action": "In <strong>Software Test Cases</strong>, select all test cases except Light Sensor Component Test. Right-click and select <strong>Create Test Set from selected Test Cases</strong>.",
+                  "detail": "Test sets group test cases for functional area testing or regression testing.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the Name to <code>ECU and Light Sensor Unit to System</code> and the Sequential field to <strong>True</strong>.",
+                  "detail": "Sequential execution means test cases must run in the specified order.",
+                  "hint": null
+                },
+                {
+                  "action": "Reorder the test cases by dragging: 1) Light Sensor Unit Test, 2) Verify Unit Code for ECU Headlight Control, 3) Test Light Sensor Communication with ECU.",
+                  "detail": "The order progresses from unit tests to system-to-system testing.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Save</strong> then <strong>Close</strong>.",
+                  "detail": "The test set is created with the specified test case order.",
+                  "hint": null
+                },
+                {
+                  "action": "Navigate to <strong>Test Sets</strong>, open the new test set, and click <strong>New Test Run</strong> (play+ icon).",
+                  "detail": "You are creating a test run for the entire test set.",
+                  "hint": null
+                },
+                {
+                  "action": "Assign the test run to the <strong>Tester</strong> role and click <strong>Save</strong>.",
+                  "detail": "The test run should show 5 remaining test cases (unit tests + parameterized system test).",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Test runs can be generated from single test cases, multiple cases, or test sets",
+        "Applying multiple test configurations creates separate test runs for each configuration",
+        "Parameterized test cases generate multiple execution instances within a single test run",
+        "Test sets can enforce sequential execution order from unit tests to system tests"
+      ]
+    },
+    {
+      "id": "m4t4",
+      "title": "Exercise - Execute Test Runs",
+      "estimatedMinutes": 12,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "As the tester, you will execute different test runs — including runs with and without parameters — record pass/fail results, report a bug from a failed step, and optionally execute a test set run."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Sign in as the Tester (<code>yuta</code> / <code>ptc</code>). Make sure all test runs from the previous exercise have been created."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex8",
+          "title": "Execute Test Runs",
+          "objective": "Execute test runs with and without parameters, record results, report bugs, and optionally execute a test set.",
+          "tasks": [
+            {
+              "id": "ex8-t1",
+              "title": "Execute a Test Run Without Parameters",
+              "steps": [
+                {
+                  "action": "Sign in with username <code>yuta</code> and password <code>ptc</code>.",
+                  "detail": "Yuta has the Tester role for executing test runs.",
+                  "hint": null
+                },
+                {
+                  "action": "Navigate to the <strong>Test Runs</strong> tracker. Add a filter for <strong>Assigned to: Tester</strong> and click <strong>GO</strong>.",
+                  "detail": "Filtering shows only the test runs assigned to your role.",
+                  "hint": null
+                },
+                {
+                  "action": "Open one of the <strong>Quick Test Run for Manual Headlight Switch Integration</strong> test runs and note the Test Configuration.",
+                  "detail": "There are two test runs with the same name — one for each test configuration (TL Model and TLX Model).",
+                  "hint": "Prior to execution, the tester would set up the test configuration and perform any pre-actions."
+                },
+                {
+                  "action": "Click <strong>Run</strong> from the toolbar. Read the Description and Pre-Action fields.",
+                  "detail": "Understanding the pre-actions is essential before beginning test execution.",
+                  "hint": null
+                },
+                {
+                  "action": "For step 1, click <strong>Pass Step</strong>. For step 2, click <strong>Pass Step</strong>.",
+                  "detail": "The Actual Result field is automatically filled with the Expected result content when you pass a step.",
+                  "hint": null
+                },
+                {
+                  "action": "For step 3, click <strong>Fail Step</strong>.",
+                  "detail": "This simulates a test failure that needs to be reported as a bug.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Report Bug</strong>. Verify the Project is set to PTCU Electric Car TEST and Tracker is set to Bugs. Click <strong>Next</strong>.",
+                  "detail": "Creating a bug directly from a failed step automatically links the bug to the test case and requirement.",
+                  "hint": null
+                },
+                {
+                  "action": "Observe the Test Steps section results and click <strong>Save</strong>.",
+                  "detail": "The bug is created with the failed step details.",
+                  "hint": null
+                },
+                {
+                  "action": "For Conclusion, type <code>Headlights did not turn off in off position</code> and click <strong>Save</strong>.",
+                  "detail": "The conclusion summarizes the test run outcome.",
+                  "hint": null
+                },
+                {
+                  "action": "Observe the <strong>Result</strong> and <strong>Reported bug(s)</strong> fields, and the Test Results section.",
+                  "detail": "The test run is now complete with recorded results and a linked bug.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex8-t2",
+              "title": "Execute a Test Run with Parameters",
+              "steps": [
+                {
+                  "action": "Navigate to the Test Runs tracker and select <strong>Quick Test Run for Test Light Sensor Communication with ECU</strong>.",
+                  "detail": "This test run has parameterized test cases. The executed test run from above is no longer visible because of the filter.",
+                  "hint": null
+                },
+                {
+                  "action": "Observe the Test Results section showing three remaining test cases, then click <strong>Run</strong>.",
+                  "detail": "Three test cases correspond to the three parameter rows defined in the test case.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Select</strong> in the parameter box to view the parameters, then click <strong>Cancel</strong>.",
+                  "detail": "Each parameter set defines different input and output values for the test step.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Pass Step</strong> for the first parameter. Leave the Conclusion blank and click <strong>Save</strong>.",
+                  "detail": "The parameter box updates to the second parameter automatically.",
+                  "hint": null
+                },
+                {
+                  "action": "Observe the second parameter's values in the Action and Expected result fields. Click <strong>Pass Step</strong> and <strong>Save</strong>.",
+                  "detail": "Each parameter generates a separate test case execution with its own input/output values.",
+                  "hint": null
+                },
+                {
+                  "action": "Repeat for the third parameter: click <strong>Pass Step</strong> and <strong>Save</strong>.",
+                  "detail": "All three parameter-based test cases are now executed. Check the Test Results section for the Executed Test Cases value.",
+                  "hint": null
+                },
+                {
+                  "action": "Expand the test case in the <strong>Tests below were/will be executed</strong> section and the <strong>Details of Test Results</strong> section.",
+                  "detail": "The three parameter-based test cases appear as children of the parent test case.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex8-t3",
+              "title": "Execute a Test Set (Optional)",
+              "steps": [
+                {
+                  "action": "Navigate to the Test Runs tracker. Remove all filters except <strong>Assigned to</strong> and click <strong>GO</strong>.",
+                  "detail": "Previously executed test runs are no longer in the default view. Adjusting filters shows all assigned test runs.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Test Run for ECU and Light Sensor Unit to System</strong> and observe the five test cases in the Test Results section.",
+                  "detail": "The test set contains unit tests and a parameterized system test, totaling five test case executions.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Run</strong>. Pass all steps for the first test case and Save.",
+                  "detail": "Notice the counter (e.g., 1 of 5) in the upper-right corner tracking progress.",
+                  "hint": null
+                },
+                {
+                  "action": "For the second test case, click the dropdown in the Pass Steps block and select <strong>Pass Remaining Steps</strong>. Save.",
+                  "detail": "Pass Remaining Steps is a shortcut to quickly pass all steps in a test case.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Pause Run</strong> and type <code>need to setup</code> in the Comment field. Click <strong>Yes</strong>.",
+                  "detail": "You can pause a test execution and return to it later. Test execution data cannot be modified once a test case is completed.",
+                  "hint": null
+                },
+                {
+                  "action": "Observe the test run Status is set to <strong>In Progress</strong>.",
+                  "detail": "The paused test run retains its progress and can be resumed later.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Test execution records pass, fail, or block for each step and generates a conclusion",
+        "Bugs created from failed steps are automatically linked to the test case and requirement",
+        "Parameterized test cases execute once for each parameter row with different input/output values",
+        "Test runs can be paused and resumed — completed test cases cannot be modified after execution"
+      ]
+    },
+    {
+      "id": "m4t5",
+      "title": "Exercise - Examine Test Results",
+      "estimatedMinutes": 5,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "As the test engineer, you will monitor test run progress using the Test Run Browser, review statistics, and examine bugs reported during test execution."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex9",
+          "title": "Examine Test Results",
+          "objective": "Use the Test Run Browser to review test results and examine reported bugs.",
+          "tasks": [
+            {
+              "id": "ex9-t1",
+              "title": "View Test Results in the Test Run Browser",
+              "steps": [
+                {
+                  "action": "Sign in as the test engineer with username <code>emma</code> and password <code>ptc</code>.",
+                  "detail": "The test engineer or test lead examines test run progress and evaluates reported defects.",
+                  "hint": null
+                },
+                {
+                  "action": "Navigate to the <strong>Test Runs</strong> tracker and select <strong>Test Run Browser</strong> from the toolbar.",
+                  "detail": "The Test Run Browser provides a consolidated view of all test run results.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the <strong>Number of recent Test Runs shown</strong> field to <strong>10</strong> and click <strong>GO</strong>.",
+                  "detail": "This ensures all recent test runs are visible in the browser.",
+                  "hint": null
+                },
+                {
+                  "action": "Locate the <strong>TEST RUN BROWSER STATISTICS</strong> section and observe the results.",
+                  "detail": "The statistics show pass/fail rates across all test runs.",
+                  "hint": null
+                },
+                {
+                  "action": "Expand <strong>PTCU Electric Car TEST >> System Test Cases >> Manual Headlight Switch Integration</strong> and observe the Result column.",
+                  "detail": "You can see which test runs passed and which failed for each test case.",
+                  "hint": null
+                },
+                {
+                  "action": "Expand <strong>PTCU Electric Car TEST >> Test Sets >> ECU and Light Sensor Unit to System</strong> and observe the results.",
+                  "detail": "Test set results show the aggregate outcome of all test cases in the set.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex9-t2",
+              "title": "View Reported Bugs from Test Runs",
+              "steps": [
+                {
+                  "action": "Navigate to the <strong>Bugs</strong> tracker via the Trackers tab.",
+                  "detail": "Bugs reported during test execution appear in the Bugs tracker.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Bug for \"Manual Headlight Switch Integration\"</strong> and observe the failed step details.",
+                  "detail": "The bug includes the failed step information and traceability links back to the test case and requirement.",
+                  "hint": null
+                },
+                {
+                  "action": "Review the bug's associations to confirm traceability to the test case and requirement.",
+                  "detail": "The complete traceability chain connects: Requirement → Test Case → Test Run → Bug. This chain makes it clear which requirement is impacted by this defect.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Test Run Browser provides a consolidated view of test results with pass/fail statistics",
+        "Test engineers and test leads use results to evaluate defects and determine next steps",
+        "Bugs maintain traceability links back through the test case to the original requirement",
+        "The complete traceability chain (Requirement → Test Case → Test Run → Bug) enables impact analysis"
+      ]
+    }
+  ]
+}

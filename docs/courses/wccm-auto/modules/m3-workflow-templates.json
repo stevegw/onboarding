@@ -3,641 +3,842 @@
  "title": "Workflow Templates",
  "description": "Design and build workflow templates using activities, connectors, robots, terminal nodes, and links. Compare workflow design approaches and simplify complex processes with block and proxy processes.",
  "topics": [
- {
- "id": "m3t1",
- "title": "Workflow Template Concepts",
- "estimatedMinutes": 6,
- "content": [
- {
- "type": "paragraph",
- "text": "Workflow templates are a core component of advanced life cycles in Windchill. They establish the specific events and tasks that must occur within each life cycle state, enabling organizations to enforce company-specific and industry-specific business processes consistently."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Workflow Template Fundamentals"
- },
- {
- "type": "paragraph",
- "text": "Each workflow template manages a specific object type and is applied to that object type's life cycle. A workflow defines the sequence of actions, reviews, and approvals that must happen when an object enters a given state. You access workflow templates through <strong>Utilities > Workflow Template Administration</strong>."
- },
- {
- "type": "comparison-table",
- "headers": ["Node Type", "Purpose", "Example"],
- "rows": [
- ["Activity Node", "Assigns tasks to users for review, approval, or data entry", "Review Document activity assigned to a Product Manager"],
- ["Connector Node", "Controls process flow logic (And, Or, Conditional, Threshold)", "Or connector that routes based on first incoming link"],
- ["Robot Node", "Automates server-side tasks without user interaction", "Set State robot that changes an object's life cycle state"],
- ["Terminal Node", "Ends a process branch or the entire workflow", "End node that stops all active activities and completes the workflow"],
- ["Link", "Connects nodes and defines flow control (events and actions)", "Link from an activity to a robot triggered by a Release event"]
- ]
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Creating a Workflow Template"
- },
- {
- "type": "interactive-sort",
- "prompt": "Arrange the steps for creating a workflow template in the correct order:",
- "items": [
- "Define workflow properties (name, category, responsible role)",
- "Add process nodes (activities, connectors, robots, terminals)",
- "Link nodes together to define process flow",
- "Define individual node properties (participants, routing, deadlines)",
- "Validate, save, and check in the template",
- "Test by initiating a workflow instance"
- ]
- },
- {
- "type": "callout",
- "variant": "tip",
- "text": "The <strong>Responsible Role</strong> on a workflow template serves as the backup role for role resolution issues and receives deadline and error notifications. If no responsible role is set, these notifications default to the process initiator."
- }
- ],
- "keyTakeaways": [
- "Workflow templates define the events and tasks required within advanced life cycle states",
- "Workflows are composed of five building blocks: activity nodes, connector nodes, robot nodes, terminal nodes, and links",
- "Each workflow template manages a specific object type and is applied to its life cycle",
- "The Responsible Role acts as a backup for role resolution and receives error/deadline notifications"
- ]
- },
- {
- "id": "m3t2",
- "title": "Workflow Design Approaches",
- "estimatedMinutes": 7,
- "content": [
- {
- "type": "paragraph",
- "text": "Choosing the right workflow design approach is critical because it determines how life cycle state transitions are managed, how much server load is generated, and how maintainable your configuration will be over time. Windchill supports four distinct approaches for managing life cycle evolution."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Four Approaches to Life Cycle Evolution"
- },
- {
- "type": "reveal-cards",
- "cards": [
- {
- "front": "Modular Approach",
- "back": "Reuses workflow templates across multiple phases and gates. The same workflow is used in multiple states, reducing complexity. This approach is <strong>required</strong> when gates are used. Example: a Submit workflow used in 3 phases and a Review workflow used in 2 gates."
- },
- {
- "front": "Single Approach",
- "back": "One large workflow placed in the first state's phase handles all state transitions. Provides easier one-to-one life cycle/workflow mapping and better flexibility on event configuration. Used for change management objects and promotion requests. However, generates extra server load and is not suitable for large-quantity objects or long-running processes."
- },
- {
- "front": "Combined Approach",
- "back": "Mixes workflows with manual Set State actions. Reduces workflow complexity by only automating state transitions that require formal processes. Example: In Work to Design uses manual Set State, while Design to Released uses a formal workflow."
- },
- {
- "front": "With Change/Promotion Request",
- "back": "Object state is driven by another business object's workflow (e.g., a change notice). No workflow is needed on the object itself, and no advanced life cycle is required. Handles release of multiple objects in a single procedure and limits the number of running workflows."
- }
- ]
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Comparing Approaches"
- },
- {
- "type": "comparison-table",
- "headers": ["Approach", "Best For", "Key Limitation"],
- "rows": [
- ["Modular", "Reusable, gate-based life cycles", "Requires careful template design for reuse"],
- ["Single", "Change management objects, promotion requests", "Generates extra server load; not for high-volume objects"],
- ["Combined", "Partially formalized processes", "Manual Set State steps lack audit trail enforcement"],
- ["Change/Promotion Request", "Releasing multiple objects together", "State changes depend on external business object workflow"]
- ]
- },
- {
- "type": "callout",
- "variant": "warning",
- "text": "The Single approach generates extra server load because the workflow runs continuously from the first state to the last. Avoid it for object types that exist in high quantities or require long-running processes."
- },
- {
- "type": "interactive-match",
- "prompt": "Match each scenario to the best workflow design approach:",
- "pairs": [
- {
- "left": "Same review process used across multiple life cycle phases",
- "right": "Modular Approach"
- },
- {
- "left": "A change notice drives state changes for multiple parts",
- "right": "Change/Promotion Request Approach"
- },
- {
- "left": "Only some state transitions need formal workflow control",
- "right": "Combined Approach"
- },
- {
- "left": "An ECN requires one continuous workflow from creation to completion",
- "right": "Single Approach"
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Four workflow design approaches: Modular, Single, Combined, and Change/Promotion Request",
- "The Modular approach is required when gates are used and promotes template reuse across phases",
- "The Single approach suits change management objects but generates extra server load",
- "The Change/Promotion Request approach drives object states from an external workflow, limiting running workflows"
- ]
- },
- {
- "id": "m3t3",
- "title": "Workflow Nodes: Activities and Connectors",
- "estimatedMinutes": 7,
- "content": [
- {
- "type": "paragraph",
- "text": "Activity and connector nodes form the interactive and logical backbone of any workflow. Activities assign tasks to users, while connectors control how the process branches, converges, and routes based on events and conditions."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Activity Nodes"
- },
- {
- "type": "paragraph",
- "text": "An <strong>Assigned Activity</strong> is a user task such as reviewing, approving, completing a worksheet, or voting. When a workflow reaches an assigned activity, the designated users receive the task in their Tasks table. The task form includes instructions, a link to the primary business object, input fields, and a Complete Task button. An <strong>Ad Hoc Activity</strong> is a special activity where the recipient can create and assign additional activities at runtime. Activity properties are configured through tabs: General (name/category), Activity (form, instructions, digital signatures), Deadline, Participants (who receives the task), Routing (exit conditions like Approve/Reject), and Execution Options (error handling)."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Connector Node Types"
- },
- {
- "type": "reveal-cards",
- "cards": [
- {
- "front": "Start Connector",
- "back": "The entry point of every workflow. Each process has exactly one Start connector. It cannot be removed or duplicated."
- },
- {
- "front": "And Connector",
- "back": "Waits for <strong>all</strong> incoming links to fire before continuing. Use for synchronization points where multiple parallel branches must complete before proceeding."
- },
- {
- "front": "Or Connector",
- "back": "Continues when <strong>any</strong> incoming link fires. Terminates any incomplete predecessor activities on other branches. Use for exclusive routing where the first completed path wins."
- },
- {
- "front": "Conditional Connector",
- "back": "Continues based on custom Java criteria. Evaluates a programmatic condition to determine the next path. Requires development knowledge."
- },
- {
- "front": "Threshold Connector",
- "back": "Continues after a <strong>set number</strong> of incoming links fire. Useful for majority-vote scenarios where you need, for example, 3 out of 5 approvals to proceed."
- }
- ]
- },
- {
- "type": "callout",
- "variant": "insight",
- "text": "The Or connector not only continues when any incoming link fires but also <strong>terminates incomplete predecessor activities</strong> on the other branches. This is critical in exclusive routing scenarios where once one reviewer approves, other reviewers' tasks should be removed."
- },
- {
- "type": "interactive-match",
- "prompt": "Match each connector type to its behavior:",
- "pairs": [
- {
- "left": "And Connector",
- "right": "Waits for all incoming links before continuing"
- },
- {
- "left": "Or Connector",
- "right": "Continues when any incoming link fires"
- },
- {
- "left": "Threshold Connector",
- "right": "Continues after a set number of incoming links fire"
- },
- {
- "left": "Conditional Connector",
- "right": "Evaluates custom Java criteria to determine the path"
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Assigned Activities create user tasks for review, approval, or data entry; Ad Hoc Activities allow runtime task creation",
- "Activity properties include participants, routing events, deadlines, and digital signature requirements",
- "Five connector types control flow: Start, And, Or, Conditional, and Threshold",
- "The Or connector terminates incomplete predecessor activities when any incoming link fires"
- ]
- },
- {
- "id": "m3t4",
- "title": "Robots and Terminal Nodes",
- "estimatedMinutes": 6,
- "content": [
- {
- "type": "paragraph",
- "text": "Robot nodes automate tasks that would otherwise require manual user action, reducing human effort and enforcing consistency. Terminal nodes control how workflow branches and processes end. Together, they complete the set of building blocks needed to design fully automated workflows."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Basic Robot Types"
- },
- {
- "type": "comparison-table",
- "headers": ["Robot Type", "Function", "Use Case"],
- "rows": [
- ["Notification", "Sends email to users in a recipient list", "Notify stakeholders when a document reaches a review state"],
- ["Subscription Notification", "Sends email to users who have subscribed to the object", "Alert subscribers when an object changes state"],
- ["Checkpoint/Method", "Executes standard Windchill functions on the object", "Set life cycle state, check in an object, or update attributes"],
- ["Timer", "Introduces a time delay in the process", "Wait 24 hours before sending a reminder notification"]
- ]
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Advanced Robot Types"
- },
- {
- "type": "reveal-cards",
- "cards": [
- {
- "front": "Application Robot",
- "back": "Launches a server-side application. Requires knowledge of the server environment and application APIs. Used for integrations with external systems."
- },
- {
- "front": "Expression Robot",
- "back": "Executes a Java expression within the workflow context. Enables custom logic such as conditional attribute updates or complex calculations."
- },
- {
- "front": "Synchronization Robot",
- "back": "Synchronizes the workflow to a Windchill event or Java expression. Pauses the process until the specified event occurs, enabling event-driven workflows."
- },
- {
- "front": "URL Robot",
- "back": "Communicates with another server via URL. Used for cross-system integration such as triggering actions in an external ERP or PLM system."
- }
- ]
- },
- {
- "type": "callout",
- "variant": "warning",
- "text": "Advanced robots (Application, Expression, Synchronization, URL) require Java, Info*Engine, or API knowledge to configure. Involve your development team when configuring these robot types. Every workflow also needs <strong>terminal nodes</strong>: the <strong>End</strong> node stops the entire process (all active activities terminate), while the <strong>Ground</strong> node ends only the current branch, allowing parallel branches to continue."
- },
- {
- "type": "interactive-sort",
- "prompt": "Arrange these robot types from simplest (no coding required) to most complex (requires Java/API knowledge):",
- "items": [
- "Notification Robot",
- "Timer Robot",
- "Checkpoint/Method Robot",
- "Expression Robot"
- ]
- }
- ],
- "keyTakeaways": [
- "Basic robots (Notification, Subscription Notification, Checkpoint/Method, Timer) require no coding and handle common automation tasks",
- "Advanced robots (Application, Expression, Synchronization, URL) require Java or API knowledge for cross-system integrations",
- "The End terminal node stops the entire workflow; the Ground node ends only the current branch",
- "Every workflow must have at least one path leading to an End node"
- ]
- },
- {
- "id": "m3t5",
- "title": "Links and Process Simplification",
- "estimatedMinutes": 6,
- "content": [
- {
- "type": "paragraph",
- "text": "Links are the connections between workflow nodes that define flow control - which actions occur when predecessor nodes complete. Understanding link properties, loop links, and process simplification techniques is essential for building maintainable and effective workflows."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Link Properties: Events and Actions"
- },
- {
- "type": "paragraph",
- "text": "Every link has a source node, a target node, an event, and an action. Read a link as: <em>\"When [source] sends [event], do [action] to [target].\"</em> The most common action types are <strong>Start</strong> (starts the target activity) and <strong>Fire</strong> (sends an event to a connector, which may or may not start depending on its logic). Common events include <strong>Complete</strong> (the default when no routing is defined) and routing events like Release or Rework, which replace Complete when routing is configured."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "When an activity has routing configured (e.g., Release/Rework), the Complete event is replaced by the routing events. Each routing event can trigger a different link, sending the process down a different path. A <strong>Loop Link</strong> is a special link type that re-enables nodes that have already completed - essential for rework cycles, since finished nodes disable themselves and ordinary links cannot restart them."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Block and Proxy Processes"
- },
- {
- "type": "comparison-table",
- "headers": ["Process Type", "Definition", "Key Characteristic"],
- "rows": [
- ["Block Process", "A sub-process built inside a parent workflow", "Stored within the parent workflow; can only be referenced by the parent. Used to organize complex sections visually."],
- ["Proxy Process", "A reference to a standalone workflow template", "Built and managed independently by the Workflow Administrator. Reusable across multiple parent workflows."]
- ]
- },
- {
- "type": "callout",
- "variant": "tip",
- "text": "Use <strong>Proxy Processes</strong> when you want to reuse a sub-process across multiple parent workflows. Use <strong>Block Processes</strong> when the sub-process is unique to a single parent and you want to keep everything contained."
- },
- {
- "type": "interactive-match",
- "prompt": "Match each link or process concept to its description:",
- "pairs": [
- {
- "left": "Start Action",
- "right": "Begins execution of the target activity node"
- },
- {
- "left": "Fire Action",
- "right": "Sends an event to a connector node"
- },
- {
- "left": "Loop Link",
- "right": "Re-enables previously completed nodes for rework cycles"
- },
- {
- "left": "Proxy Process",
- "right": "Standalone sub-process reusable across multiple workflows"
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Links connect nodes using an event-action model: when the source sends an event, the action executes on the target",
- "Loop Links re-enable completed nodes, which is essential for rework cycles since ordinary links cannot restart disabled nodes",
- "Block Processes are sub-processes contained within a parent workflow; Proxy Processes are standalone and reusable",
- "Routing events (Release, Rework) replace the default Complete event when routing is configured on an activity"
- ]
- },
- {
- "id": "m3t6",
- "title": "Exercise: Edit Workflow Templates",
- "estimatedMinutes": 10,
- "isExercise": true,
- "content": [
- {
- "type": "paragraph",
- "text": "In this exercise, you will edit an existing workflow template to add a dedicated review process. You will modify activity properties, configure routing events, and create links with loop behavior for rework cycles."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "You must have access to the PTC Publications context and the Workflow Template Administration utility to complete this exercise."
- },
- {
- "type": "exercise",
- "exerciseId": "ex3",
- "title": "Edit Workflow Templates",
- "objective": "Modify the Plan Development Workflow by editing an activity, configuring routing, and creating links with loop behavior.",
- "tasks": [
- {
- "id": "ex3-t1",
- "title": "Open Workflow Template Editor",
- "steps": [
- {
- "action": "Navigate to PTC Publications > Utilities > Workflow Template Administration.",
- "detail": "The Workflow Template Administration utility lists all workflow templates available in the current context. You can create, edit, and manage workflow templates from here.",
- "hint": "Use the site navigator or context menu to access Utilities."
- },
- {
- "action": "Right-click the Plan Development Workflow and select Edit.",
- "detail": "Opening the workflow for editing launches the graphical Workflow Template Editor. This editor displays the process flow as a visual diagram with nodes and links.",
- "hint": "The workflow must be checked out before editing. If prompted, check out the workflow first."
- },
- {
- "action": "Review the existing workflow properties, nodes, and tasks to understand the current process flow.",
- "detail": "Before making changes, familiarize yourself with the existing structure. Note which activities, robots, and connectors are already in place and how they are connected.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex3-t2",
- "title": "Edit Activity and Method Robot",
- "steps": [
- {
- "action": "Click Activity 2 in the workflow editor and rename it to 'Review Document'.",
- "detail": "Renaming the activity clarifies its purpose in the process flow. Activity names appear in users' task lists, so a descriptive name helps users understand what they need to do.",
- "hint": "Double-click the activity or right-click and select Properties to edit the name."
- },
- {
- "action": "Set the Responsible Role to Product Manager.",
- "detail": "The responsible role determines who receives the task and who is notified of deadlines. Setting it to Product Manager ensures the review is assigned to the correct team member.",
- "hint": null
- },
- {
- "action": "In the Activity tab, set the instructions to guide the reviewer to choose Release or Rework.",
- "detail": "Clear instructions help reviewers understand what is expected. Specify the criteria for choosing Release (approved) versus Rework (needs changes).",
- "hint": "Activity instructions appear on the task form when the user opens the task."
- },
- {
- "action": "In the Participants tab, remove the Creator role and add the Product Manager role.",
- "detail": "Participants define who receives the activity task. Removing Creator and adding Product Manager ensures the review goes to the appropriate role rather than the document creator.",
- "hint": null
- },
- {
- "action": "In the Routing tab, set Manual Exclusive routing type with Release and Rework events.",
- "detail": "Manual Exclusive routing requires the user to choose one routing event (Release or Rework) when completing the task. This replaces the default Complete event with the two routing options.",
- "hint": "Select 'Manual Exclusive' from the routing type dropdown, then add Release and Rework as routing events."
- },
- {
- "action": "Review the Set State method robot properties, noting the Robot Type and Specific State settings.",
- "detail": "The Set State robot automatically changes the object's life cycle state when triggered. Verify that it is configured to transition the document to the correct target state upon release.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex3-t3",
- "title": "Create and Configure Review Document Routing",
- "steps": [
- {
- "action": "Place an Or connector below the Submit Document activity.",
- "detail": "The Or connector will serve as a junction point for the rework loop. When a Rework event fires, the process routes through this connector back to the Submit Document activity.",
- "hint": "Drag an Or connector from the node palette onto the workflow canvas."
- },
- {
- "action": "Create a link from the Review Document activity to the Or connector.",
- "detail": "This link carries the Rework event from the review activity to the Or connector, which will then route back to the submission step.",
- "hint": null
- },
- {
- "action": "Create a link from the Or connector to the Submit Document activity.",
- "detail": "This link completes the rework loop, sending the process back to Submit Document so the author can revise and resubmit the document.",
- "hint": null
- },
- {
- "action": "Configure the link from Review Document to the Set State robot: set the event to Release and the action to Start.",
- "detail": "This link means: when the reviewer chooses Release, start the Set State robot to transition the document to the Released state.",
- "hint": "Select the link and set Event = Release, Action = Start."
- },
- {
- "action": "Configure the link from Review Document to the Or connector: set the event to Rework, the action to Fire, and enable the Loop Link checkbox.",
- "detail": "The Loop Link checkbox is critical here. Without it, the Submit Document activity (which has already completed) cannot be re-enabled. The loop link re-activates previously completed nodes.",
- "hint": "Select the link, set Event = Rework, Action = Fire, and check the Loop Link checkbox."
- }
- ]
- },
- {
- "id": "ex3-t4",
- "title": "Save and Check In",
- "steps": [
- {
- "action": "Select File > Save to save the workflow template.",
- "detail": "Saving preserves your changes to the workflow template. The template is still checked out at this point.",
- "hint": null
- },
- {
- "action": "Close the Workflow Template Editor and check in the workflow template.",
- "detail": "Checking in the workflow makes it available for use. Until checked in, other users cannot see your changes and the workflow cannot be used by life cycle transitions.",
- "hint": "Right-click the workflow in the administration list and select Check In."
- }
- ]
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Activity routing replaces the default Complete event with specific routing events like Release and Rework",
- "Loop Links must be enabled when routing back to previously completed nodes in rework cycles",
- "The Or connector serves as a junction point for merging process paths",
- "Workflow templates must be checked in before they can be used by life cycle transitions"
- ]
- },
- {
- "id": "m3t7",
- "title": "Exercise: Use Advanced Life Cycle Templates",
- "estimatedMinutes": 8,
- "isExercise": true,
- "content": [
- {
- "type": "paragraph",
- "text": "In this exercise, you will convert a basic life cycle to advanced, connect it to the workflow template you edited in the previous exercise, configure role-based access, and verify the end-to-end process by creating and releasing a test document."
- },
- {
- "type": "callout",
- "variant": "warning",
- "text": "You must have completed Exercise 3 (Edit Workflow Templates) before starting this exercise. The Plan Development Workflow must be checked in and available."
- },
- {
- "type": "exercise",
- "exerciseId": "ex4",
- "title": "Use Advanced Life Cycle Templates",
- "objective": "Convert a basic life cycle to advanced, associate it with a workflow template, configure access control, and validate the complete process.",
- "tasks": [
- {
- "id": "ex4-t1",
- "title": "Connect Life Cycle to Workflow",
- "steps": [
- {
- "action": "Navigate to Life Cycle Template Administration and edit the Plan Development Life Cycle.",
- "detail": "The Life Cycle Template Administration utility lets you modify existing life cycle templates. You will convert this life cycle from basic to advanced so it can use workflow templates.",
- "hint": "Access through Utilities > Life Cycle Template Administration."
- },
- {
- "action": "Change the life cycle type from Basic to Advanced.",
- "detail": "Advanced life cycles support workflow association, meaning state transitions can be driven by workflow processes rather than manual Set State actions. This is required for enforcing formal review and approval processes.",
- "hint": "Look for a Type dropdown or setting in the life cycle properties."
- },
- {
- "action": "In the Creation state Transitions tab, clear the Promote to Released transition and the Lock to Under Review transition.",
- "detail": "These manual transitions are being replaced by workflow-driven transitions. Removing them ensures that state changes can only occur through the workflow process, providing full traceability.",
- "hint": null
- },
- {
- "action": "In the Workflow tab of the Creation state, browse for the Phase Process and select the Plan Development Workflow.",
- "detail": "Associating the workflow with the Creation state means that when an object enters this state, the Plan Development Workflow will automatically start. The workflow then controls all subsequent state transitions.",
- "hint": "Click Browse next to Phase Process and select the workflow from the list."
- },
- {
- "action": "Verify that no other states have phase or gate processes configured.",
- "detail": "For this life cycle, only the Creation state should have an associated workflow. Other states should remain without workflow associations to keep the process simple.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex4-t2",
- "title": "Provide Read Access for Organization Members",
- "steps": [
- {
- "action": "Click the Released state and navigate to the Roles tab.",
- "detail": "The Roles tab defines which roles are active in a given life cycle state. Adding a Viewer role to the Released state allows you to grant read access to organization members for released documents.",
- "hint": null
- },
- {
- "action": "Add a Viewer role and add the PTC Publications organization as a participant.",
- "detail": "Adding the entire organization as a participant means all members of PTC Publications will be assigned the Viewer role when a document reaches the Released state.",
- "hint": "Click Add Role, select Viewer, then add the organization as a participant."
- },
- {
- "action": "In the Access Control tab, check the Read permission for the Viewer role.",
- "detail": "This grants read-only access to organization members for released documents. They can view the document but cannot edit, delete, or change its state.",
- "hint": null
- },
- {
- "action": "Save and close the life cycle editor, then check in the life cycle template.",
- "detail": "Checking in makes the updated life cycle available for use. New objects assigned this life cycle will now follow the advanced workflow-driven process.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex4-t3",
- "title": "Create Test Plan Document and Release It",
- "steps": [
- {
- "action": "Create a new Plan document with the name 'Test Plan Document Validation'.",
- "detail": "This document will use the Plan Development Life Cycle you just configured. Upon creation, the Plan Development Workflow should start automatically.",
- "hint": "Create the document in the PTC Publications context where the life cycle is assigned."
- },
- {
- "action": "Complete the Submit Document task that appears in your task list.",
- "detail": "The workflow's first activity (Submit Document) should appear in your Tasks table. Completing this task triggers the next step in the workflow - the Review Document activity.",
- "hint": null
- },
- {
- "action": "Complete the Review Document task by selecting the Release routing event.",
- "detail": "Choosing Release sends the document through the approval path. The Set State robot will automatically transition the document to the Released state.",
- "hint": "Select Release from the routing options on the task form."
- },
- {
- "action": "Verify that the document has reached the Released state.",
- "detail": "Check the document's properties or life cycle history to confirm it is now in the Released state. This validates that the workflow and life cycle are working together correctly.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex4-t4",
- "title": "Check Organization Member Access",
- "steps": [
- {
- "action": "Sign in as dgriffin/ptc in an incognito browser window.",
- "detail": "Signing in as a different user (who is a member of the PTC Publications organization but not an administrator) lets you verify that the Viewer role and Read permission are working correctly.",
- "hint": "Use a private/incognito browser window to avoid session conflicts."
- },
- {
- "action": "Search for 'Test Plan Document Validation' and verify it is visible but with limited access.",
- "detail": "The document should appear in search results (confirming Read access), but the user should not be able to edit or change its state. This confirms the Viewer role is granting read-only access as intended.",
- "hint": "Try to edit the document - you should receive an access denied message."
- }
- ]
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Converting a life cycle from basic to advanced enables workflow-driven state transitions with full traceability",
- "Removing manual transitions ensures state changes can only occur through the workflow process",
- "Role-based access control in life cycle states allows granting specific permissions (like Read) to organization members",
- "Testing with a different user account validates that access control is working as intended"
- ]
- }
+  {
+   "id": "m3t1",
+   "title": "Workflow Template Concepts",
+   "estimatedMinutes": 6,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Workflow templates are a core component of advanced life cycles in Windchill. They establish the specific events and tasks that must occur within each life cycle state, enabling organizations to enforce company-specific and industry-specific business processes consistently."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Workflow Template Fundamentals"
+    },
+    {
+     "type": "paragraph",
+     "text": "Each workflow template manages a specific object type and is applied to that object type's life cycle. A workflow defines the sequence of actions, reviews, and approvals that must happen when an object enters a given state. You access workflow templates through <strong>Utilities > Workflow Template Administration</strong>."
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Node Type",
+      "Purpose",
+      "Example"
+     ],
+     "rows": [
+      [
+       "Activity Node",
+       "Assigns tasks to users for review, approval, or data entry",
+       "Review Document activity assigned to a Product Manager"
+      ],
+      [
+       "Connector Node",
+       "Controls process flow logic (And, Or, Conditional, Threshold)",
+       "Or connector that routes based on first incoming link"
+      ],
+      [
+       "Robot Node",
+       "Automates server-side tasks without user interaction",
+       "Set State robot that changes an object's life cycle state"
+      ],
+      [
+       "Terminal Node",
+       "Ends a process branch or the entire workflow",
+       "End node that stops all active activities and completes the workflow"
+      ],
+      [
+       "Link",
+       "Connects nodes and defines flow control (events and actions)",
+       "Link from an activity to a robot triggered by a Release event"
+      ]
+     ]
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Creating a Workflow Template"
+    },
+    {
+     "type": "interactive-sort",
+     "prompt": "Arrange the steps for creating a workflow template in the correct order:",
+     "items": [
+      "Define workflow properties (name, category, responsible role)",
+      "Add process nodes (activities, connectors, robots, terminals)",
+      "Link nodes together to define process flow",
+      "Define individual node properties (participants, routing, deadlines)",
+      "Validate, save, and check in the template",
+      "Test by initiating a workflow instance"
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "tip",
+     "text": "The <strong>Responsible Role</strong> on a workflow template serves as the backup role for role resolution issues and receives deadline and error notifications. If no responsible role is set, these notifications default to the process initiator."
+    }
+   ],
+   "keyTakeaways": [
+    "Workflow templates define the events and tasks required within advanced life cycle states",
+    "Workflows are composed of five building blocks: activity nodes, connector nodes, robot nodes, terminal nodes, and links",
+    "Each workflow template manages a specific object type and is applied to its life cycle",
+    "The Responsible Role acts as a backup for role resolution and receives error/deadline notifications"
+   ]
+  },
+  {
+   "id": "m3t2",
+   "title": "Workflow Design Approaches",
+   "estimatedMinutes": 7,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Choosing the right workflow design approach is critical because it determines how life cycle state transitions are managed, how much server load is generated, and how maintainable your configuration will be over time. Windchill supports four distinct approaches for managing life cycle evolution."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Four Approaches to Life Cycle Evolution"
+    },
+    {
+     "type": "reveal-cards",
+     "cards": [
+      {
+       "front": "Modular Approach",
+       "back": "Reuses workflow templates across multiple phases and gates. The same workflow is used in multiple states, reducing complexity. This approach is <strong>required</strong> when gates are used. Example: a Submit workflow used in 3 phases and a Review workflow used in 2 gates."
+      },
+      {
+       "front": "Single Approach",
+       "back": "One large workflow placed in the first state's phase handles all state transitions. Provides easier one-to-one life cycle/workflow mapping and better flexibility on event configuration. Used for change management objects and promotion requests. However, generates extra server load and is not suitable for large-quantity objects or long-running processes."
+      },
+      {
+       "front": "Combined Approach",
+       "back": "Mixes workflows with manual Set State actions. Reduces workflow complexity by only automating state transitions that require formal processes. Example: In Work to Design uses manual Set State, while Design to Released uses a formal workflow."
+      },
+      {
+       "front": "With Change/Promotion Request",
+       "back": "Object state is driven by another business object's workflow (e.g., a change notice). No workflow is needed on the object itself, and no advanced life cycle is required. Handles release of multiple objects in a single procedure and limits the number of running workflows."
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Comparing Approaches"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Approach",
+      "Best For",
+      "Key Limitation"
+     ],
+     "rows": [
+      [
+       "Modular",
+       "Reusable, gate-based life cycles",
+       "Requires careful template design for reuse"
+      ],
+      [
+       "Single",
+       "Change management objects, promotion requests",
+       "Generates extra server load; not for high-volume objects"
+      ],
+      [
+       "Combined",
+       "Partially formalized processes",
+       "Manual Set State steps lack audit trail enforcement"
+      ],
+      [
+       "Change/Promotion Request",
+       "Releasing multiple objects together",
+       "State changes depend on external business object workflow"
+      ]
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "warning",
+     "text": "The Single approach generates extra server load because the workflow runs continuously from the first state to the last. Avoid it for object types that exist in high quantities or require long-running processes."
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each scenario to the best workflow design approach:",
+     "pairs": [
+      {
+       "left": "Same review process used across multiple life cycle phases",
+       "right": "Modular Approach"
+      },
+      {
+       "left": "A change notice drives state changes for multiple parts",
+       "right": "Change/Promotion Request Approach"
+      },
+      {
+       "left": "Only some state transitions need formal workflow control",
+       "right": "Combined Approach"
+      },
+      {
+       "left": "An ECN requires one continuous workflow from creation to completion",
+       "right": "Single Approach"
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Four workflow design approaches: Modular, Single, Combined, and Change/Promotion Request",
+    "The Modular approach is required when gates are used and promotes template reuse across phases",
+    "The Single approach suits change management objects but generates extra server load",
+    "The Change/Promotion Request approach drives object states from an external workflow, limiting running workflows"
+   ]
+  },
+  {
+   "id": "m3t3",
+   "title": "Workflow Nodes: Activities and Connectors",
+   "estimatedMinutes": 7,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Activity and connector nodes form the interactive and logical backbone of any workflow. Activities assign tasks to users, while connectors control how the process branches, converges, and routes based on events and conditions."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Activity Nodes"
+    },
+    {
+     "type": "paragraph",
+     "text": "An <strong>Assigned Activity</strong> is a user task such as reviewing, approving, completing a worksheet, or voting. When a workflow reaches an assigned activity, the designated users receive the task in their Tasks table. The task form includes instructions, a link to the primary business object, input fields, and a Complete Task button. An <strong>Ad Hoc Activity</strong> is a special activity where the recipient can create and assign additional activities at runtime. Activity properties are configured through tabs: General (name/category), Activity (form, instructions, digital signatures), Deadline, Participants (who receives the task), Routing (exit conditions like Approve/Reject), and Execution Options (error handling)."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Connector Node Types"
+    },
+    {
+     "type": "reveal-cards",
+     "cards": [
+      {
+       "front": "Start Connector",
+       "back": "The entry point of every workflow. Each process has exactly one Start connector. It cannot be removed or duplicated."
+      },
+      {
+       "front": "And Connector",
+       "back": "Waits for <strong>all</strong> incoming links to fire before continuing. Use for synchronization points where multiple parallel branches must complete before proceeding."
+      },
+      {
+       "front": "Or Connector",
+       "back": "Continues when <strong>any</strong> incoming link fires. Terminates any incomplete predecessor activities on other branches. Use for exclusive routing where the first completed path wins."
+      },
+      {
+       "front": "Conditional Connector",
+       "back": "Continues based on custom Java criteria. Evaluates a programmatic condition to determine the next path. Requires development knowledge."
+      },
+      {
+       "front": "Threshold Connector",
+       "back": "Continues after a <strong>set number</strong> of incoming links fire. Useful for majority-vote scenarios where you need, for example, 3 out of 5 approvals to proceed."
+      }
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "insight",
+     "text": "The Or connector not only continues when any incoming link fires but also <strong>terminates incomplete predecessor activities</strong> on the other branches. This is critical in exclusive routing scenarios where once one reviewer approves, other reviewers' tasks should be removed."
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each connector type to its behavior:",
+     "pairs": [
+      {
+       "left": "And Connector",
+       "right": "Waits for all incoming links before continuing"
+      },
+      {
+       "left": "Or Connector",
+       "right": "Continues when any incoming link fires"
+      },
+      {
+       "left": "Threshold Connector",
+       "right": "Continues after a set number of incoming links fire"
+      },
+      {
+       "left": "Conditional Connector",
+       "right": "Evaluates custom Java criteria to determine the path"
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Assigned Activities create user tasks for review, approval, or data entry; Ad Hoc Activities allow runtime task creation",
+    "Activity properties include participants, routing events, deadlines, and digital signature requirements",
+    "Five connector types control flow: Start, And, Or, Conditional, and Threshold",
+    "The Or connector terminates incomplete predecessor activities when any incoming link fires"
+   ]
+  },
+  {
+   "id": "m3t4",
+   "title": "Robots and Terminal Nodes",
+   "estimatedMinutes": 6,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Robot nodes automate tasks that would otherwise require manual user action, reducing human effort and enforcing consistency. Terminal nodes control how workflow branches and processes end. Together, they complete the set of building blocks needed to design fully automated workflows."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Basic Robot Types"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Robot Type",
+      "Function",
+      "Use Case"
+     ],
+     "rows": [
+      [
+       "Notification",
+       "Sends email to users in a recipient list",
+       "Notify stakeholders when a document reaches a review state"
+      ],
+      [
+       "Subscription Notification",
+       "Sends email to users who have subscribed to the object",
+       "Alert subscribers when an object changes state"
+      ],
+      [
+       "Checkpoint/Method",
+       "Executes standard Windchill functions on the object",
+       "Set life cycle state, check in an object, or update attributes"
+      ],
+      [
+       "Timer",
+       "Introduces a time delay in the process",
+       "Wait 24 hours before sending a reminder notification"
+      ]
+     ]
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Advanced Robot Types"
+    },
+    {
+     "type": "reveal-cards",
+     "cards": [
+      {
+       "front": "Application Robot",
+       "back": "Launches a server-side application. Requires knowledge of the server environment and application APIs. Used for integrations with external systems."
+      },
+      {
+       "front": "Expression Robot",
+       "back": "Executes a Java expression within the workflow context. Enables custom logic such as conditional attribute updates or complex calculations."
+      },
+      {
+       "front": "Synchronization Robot",
+       "back": "Synchronizes the workflow to a Windchill event or Java expression. Pauses the process until the specified event occurs, enabling event-driven workflows."
+      },
+      {
+       "front": "URL Robot",
+       "back": "Communicates with another server via URL. Used for cross-system integration such as triggering actions in an external ERP or PLM system."
+      }
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "warning",
+     "text": "Advanced robots (Application, Expression, Synchronization, URL) require Java, Info*Engine, or API knowledge to configure. Involve your development team when configuring these robot types. Every workflow also needs <strong>terminal nodes</strong>: the <strong>End</strong> node stops the entire process (all active activities terminate), while the <strong>Ground</strong> node ends only the current branch, allowing parallel branches to continue."
+    },
+    {
+     "type": "interactive-sort",
+     "prompt": "Arrange these robot types from simplest (no coding required) to most complex (requires Java/API knowledge):",
+     "items": [
+      "Notification Robot",
+      "Timer Robot",
+      "Checkpoint/Method Robot",
+      "Expression Robot"
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Basic robots (Notification, Subscription Notification, Checkpoint/Method, Timer) require no coding and handle common automation tasks",
+    "Advanced robots (Application, Expression, Synchronization, URL) require Java or API knowledge for cross-system integrations",
+    "The End terminal node stops the entire workflow; the Ground node ends only the current branch",
+    "Every workflow must have at least one path leading to an End node"
+   ]
+  },
+  {
+   "id": "m3t5",
+   "title": "Links and Process Simplification",
+   "estimatedMinutes": 6,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Links are the connections between workflow nodes that define flow control - which actions occur when predecessor nodes complete. Understanding link properties, loop links, and process simplification techniques is essential for building maintainable and effective workflows."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Link Properties: Events and Actions"
+    },
+    {
+     "type": "paragraph",
+     "text": "Every link has a source node, a target node, an event, and an action. Read a link as: <em>\"When [source] sends [event], do [action] to [target].\"</em> The most common action types are <strong>Start</strong> (starts the target activity) and <strong>Fire</strong> (sends an event to a connector, which may or may not start depending on its logic). Common events include <strong>Complete</strong> (the default when no routing is defined) and routing events like Release or Rework, which replace Complete when routing is configured."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "When an activity has routing configured (e.g., Release/Rework), the Complete event is replaced by the routing events. Each routing event can trigger a different link, sending the process down a different path. A <strong>Loop Link</strong> is a special link type that re-enables nodes that have already completed - essential for rework cycles, since finished nodes disable themselves and ordinary links cannot restart them."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Block and Proxy Processes"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Process Type",
+      "Definition",
+      "Key Characteristic"
+     ],
+     "rows": [
+      [
+       "Block Process",
+       "A sub-process built inside a parent workflow",
+       "Stored within the parent workflow; can only be referenced by the parent. Used to organize complex sections visually."
+      ],
+      [
+       "Proxy Process",
+       "A reference to a standalone workflow template",
+       "Built and managed independently by the Workflow Administrator. Reusable across multiple parent workflows."
+      ]
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "tip",
+     "text": "Use <strong>Proxy Processes</strong> when you want to reuse a sub-process across multiple parent workflows. Use <strong>Block Processes</strong> when the sub-process is unique to a single parent and you want to keep everything contained."
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each link or process concept to its description:",
+     "pairs": [
+      {
+       "left": "Start Action",
+       "right": "Begins execution of the target activity node"
+      },
+      {
+       "left": "Fire Action",
+       "right": "Sends an event to a connector node"
+      },
+      {
+       "left": "Loop Link",
+       "right": "Re-enables previously completed nodes for rework cycles"
+      },
+      {
+       "left": "Proxy Process",
+       "right": "Standalone sub-process reusable across multiple workflows"
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Links connect nodes using an event-action model: when the source sends an event, the action executes on the target",
+    "Loop Links re-enable completed nodes, which is essential for rework cycles since ordinary links cannot restart disabled nodes",
+    "Block Processes are sub-processes contained within a parent workflow; Proxy Processes are standalone and reusable",
+    "Routing events (Release, Rework) replace the default Complete event when routing is configured on an activity"
+   ]
+  },
+  {
+   "id": "m3t6",
+   "title": "Exercise: Edit Workflow Templates",
+   "estimatedMinutes": 10,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "In this exercise, you will edit an existing workflow template to add a dedicated review process. You will modify activity properties, configure routing events, and create links with loop behavior for rework cycles."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "You must have access to the PTC Publications context and the Workflow Template Administration utility to complete this exercise."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex3",
+     "title": "Edit Workflow Templates",
+     "objective": "Modify the Plan Development Workflow by editing an activity, configuring routing, and creating links with loop behavior.",
+     "tasks": [
+      {
+       "id": "ex3-t1",
+       "title": "Open Workflow Template Editor",
+       "steps": [
+        {
+         "action": "From the Navigator, browse to <strong>PTC Publications > Utilities > Workflow Template Administration</strong>.",
+         "detail": "The Workflow Template Administration utility lists all workflow templates available in the current context.",
+         "hint": "You are still signed in to Windchill as bpatterson/ptc."
+        },
+        {
+         "action": "Right-click the <strong>Plan Development Workflow</strong> and select <strong>Edit</strong>.",
+         "detail": "Opening the workflow for editing launches the graphical Workflow Template Editor. This editor displays the process flow as a visual diagram with nodes and links. The workflow is automatically checked out.",
+         "hint": null
+        },
+        {
+         "action": "Review the Workflow properties and the workflow task.",
+         "detail": "Before making changes, familiarize yourself with the existing structure. Note which activities, robots, and connectors are already in place and how they are connected.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex3-t2",
+       "title": "Edit Activity 2 and the Method Robot",
+       "steps": [
+        {
+         "action": "Click the <strong>Activity 2</strong> text in the workspace area.",
+         "detail": "Selecting the activity opens its property tabs for editing.",
+         "hint": null
+        },
+        {
+         "action": "In the General tab, replace the default text in the Name field with <strong>Review Document</strong>.",
+         "detail": "Renaming the activity clarifies its purpose in the process flow. Activity names appear in users' task lists, so a descriptive name helps users understand what they need to do.",
+         "hint": null
+        },
+        {
+         "action": "Set the <strong>Responsible Role</strong> to <strong>Product Manager</strong>.",
+         "detail": "The responsible role determines who receives the task and who is notified of deadlines.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Activity</strong> tab.",
+         "detail": "The Activity tab contains instructions, form configuration, and digital signature settings.",
+         "hint": null
+        },
+        {
+         "action": "Check that the Instructions text is \"Review the document\" and choose to <strong>Release</strong> or <strong>Rework</strong> the document.",
+         "detail": "Clear instructions help reviewers understand what is expected. The instructions specify the criteria for choosing Release (approved) versus Rework (needs changes).",
+         "hint": "Activity instructions appear on the task form when the user opens the task."
+        },
+        {
+         "action": "Select the <strong>Participants</strong> tab.",
+         "detail": "Participants define who receives the activity task.",
+         "hint": null
+        },
+        {
+         "action": "Edit the Assignee table: remove the <strong>Creator</strong> role and add the <strong>Product Manager</strong> role.",
+         "detail": "Removing Creator and adding Product Manager ensures the review goes to the appropriate role rather than the document creator.",
+         "hint": "The list of roles is available when you click Roles."
+        },
+        {
+         "action": "Select the <strong>Routing</strong> tab.",
+         "detail": "The Routing tab configures how the activity exits — either through a default Complete event or through specific routing events.",
+         "hint": null
+        },
+        {
+         "action": "Set the Routing Type to <strong>Manual Exclusive</strong>.",
+         "detail": "Manual Exclusive routing requires the user to choose one routing event when completing the task. This replaces the default Complete event with the routing options.",
+         "hint": null
+        },
+        {
+         "action": "In the Routing Events table, type <strong>Release</strong> in the first line and <strong>Rework</strong> in the second line.",
+         "detail": "These routing events define the two possible outcomes when the reviewer completes the task.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong> to close Activity 2 and notice the activity name change in the workspace area.",
+         "detail": "The workflow canvas now displays 'Review Document' instead of 'Activity 2', reflecting your changes.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Set State</strong> text under the method robot, review the <strong>Robot Type</strong> and the <strong>Specific State</strong> values, and click <strong>Cancel</strong>.",
+         "detail": "The Set State robot automatically changes the object's life cycle state when triggered. Verify that it is configured to transition the document to the correct target state upon release.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex3-t3",
+       "title": "Create and Configure Review Document Routing",
+       "steps": [
+        {
+         "action": "Select the <strong>Or connector</strong> icon from the left toolbar.",
+         "detail": "The Or connector will serve as a junction point for the rework loop.",
+         "hint": null
+        },
+        {
+         "action": "Click in the workspace area below the <strong>Submit Document</strong> activity to place the connector.",
+         "detail": "Positioning the Or connector below Submit Document creates a clear visual flow for the rework loop path.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Action arrow</strong> icon from the toolbar to the left of the workspace area.",
+         "detail": "The Action arrow tool allows you to draw links between nodes in the workflow.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Review Document</strong> activity icon and drag the link on top of the <strong>Or connector</strong> node icon.",
+         "detail": "This link carries the Rework event from the review activity to the Or connector, which will then route back to the submission step.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Or connector</strong> node icon and drag the link on top of the <strong>Submit Document</strong> activity icon.",
+         "detail": "This link completes the rework loop, sending the process back to Submit Document so the author can revise and resubmit the document.",
+         "hint": null
+        },
+        {
+         "action": "Double-click the <strong>?</strong> link between the Review Document Activity node and the Set State Method Robot icon to open the Link Properties dialog.",
+         "detail": "This link defines what happens when the reviewer approves the document.",
+         "hint": null
+        },
+        {
+         "action": "Click the menu to the right of the <strong>Release</strong> event and select the <strong>Start</strong> transition from the menu. Click <strong>OK</strong> to close the Link Properties dialog.",
+         "detail": "This means: when the reviewer chooses Release, start the Set State robot to transition the document to the Released state.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>?</strong> link between the Review Document Activity node and the Or connector icon to open the Link Properties window.",
+         "detail": "This link defines what happens when the reviewer sends the document back for rework.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Loop Link</strong> checkbox.",
+         "detail": "The Loop Link checkbox is critical. Without it, the Submit Document activity (which has already completed) cannot be re-enabled. The loop link re-activates previously completed nodes.",
+         "hint": null
+        },
+        {
+         "action": "Click the menu to the right of the <strong>Rework</strong> event, select the <strong>Fire</strong> transition from the menu, and click <strong>OK</strong> to close the dialog.",
+         "detail": "The Fire action sends an event to the Or connector, which then starts the Submit Document activity through the rework loop.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex3-t4",
+       "title": "Save and Check In",
+       "steps": [
+        {
+         "action": "In the Workflow Process Editor, select <strong>File > Save</strong>.",
+         "detail": "Saving preserves your changes to the workflow template. The template is still checked out at this point.",
+         "hint": null
+        },
+        {
+         "action": "Close the Workflow Process Editor.",
+         "detail": "Closing the editor returns you to the Workflow Template Administration view.",
+         "hint": null
+        },
+        {
+         "action": "Check in the <strong>Plan Development Workflow</strong>.",
+         "detail": "Checking in the workflow makes it available for use. Until checked in, other users cannot see your changes and the workflow cannot be used by life cycle transitions.",
+         "hint": "Right-click the workflow in the administration list and select Check In."
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Activity routing replaces the default Complete event with specific routing events like Release and Rework",
+    "Loop Links must be enabled when routing back to previously completed nodes in rework cycles",
+    "The Or connector serves as a junction point for merging process paths",
+    "Workflow templates must be checked in before they can be used by life cycle transitions"
+   ]
+  },
+  {
+   "id": "m3t7",
+   "title": "Exercise: Use Advanced Life Cycle Templates",
+   "estimatedMinutes": 8,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "In this exercise, you will convert a basic life cycle to advanced, connect it to the workflow template you edited in the previous exercise, configure role-based access, and verify the end-to-end process by creating and releasing a test document."
+    },
+    {
+     "type": "callout",
+     "variant": "warning",
+     "text": "You must have completed Exercise 3 (Edit Workflow Templates) before starting this exercise. The Plan Development Workflow must be checked in and available."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex4",
+     "title": "Use Advanced Life Cycle Templates",
+     "objective": "Convert a basic life cycle to advanced, associate it with a workflow template, configure access control, and validate the complete process.",
+     "tasks": [
+      {
+       "id": "ex4-t1",
+       "title": "Connect Life Cycle to Workflow",
+       "steps": [
+        {
+         "action": "From the Navigator, browse to <strong>PTC Publications > Utilities > Life Cycle Template Administration</strong>.",
+         "detail": "The Life Cycle Template Administration utility lets you modify existing life cycle templates.",
+         "hint": null
+        },
+        {
+         "action": "Right-click the <strong>Plan Development Life Cycle</strong> and select the <strong>Edit</strong> action.",
+         "detail": "Editing the life cycle checks it out and opens the life cycle editor.",
+         "hint": null
+        },
+        {
+         "action": "To change the life cycle type, select the <strong>Advanced</strong> radio button.",
+         "detail": "Advanced life cycles support workflow association, meaning state transitions can be driven by workflow processes rather than manual actions. This is required for enforcing formal review and approval processes.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Creation</strong> state and select the <strong>Transitions</strong> tab.",
+         "detail": "You will remove manual transitions that are being replaced by workflow-driven transitions.",
+         "hint": null
+        },
+        {
+         "action": "Clear the checkboxes for the <strong>Promote to Released</strong> and the <strong>Lock to Under Review</strong> transitions.",
+         "detail": "Removing these manual transitions ensures that state changes can only occur through the workflow process, providing full traceability.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Workflow</strong> tab and click <strong>Browse</strong> next to the Phase Process field.",
+         "detail": "Associating a workflow with the Creation state means that when an object enters this state, the workflow will automatically start.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Plan Development Workflow</strong> process template and click <strong>OK</strong>.",
+         "detail": "The Plan Development Workflow you edited in the previous exercise will now control state transitions from the Creation state.",
+         "hint": null
+        },
+        {
+         "action": "Verify that the other states are not triggering other phase or gate processes.",
+         "detail": "For this life cycle, only the Creation state should have an associated workflow. Other states should remain without workflow associations to keep the process simple.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex4-t2",
+       "title": "Provide Read Access for All Organization Members",
+       "steps": [
+        {
+         "action": "Click the <strong>Released</strong> state and select the <strong>Roles</strong> tab.",
+         "detail": "The Roles tab defines which roles are active in a given life cycle state.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Viewer</strong> role and add it to the Selected Roles table.",
+         "detail": "Adding a Viewer role to the Released state allows you to grant read access to organization members for released documents.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Viewer</strong> in the Selected Roles table and click <strong>Participants</strong>.",
+         "detail": "You need to define who will be assigned the Viewer role when a document reaches the Released state.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Organizations</strong> tab and click <strong>Find</strong>. Add <strong>PTC Publications</strong> to the Participants list and click <strong>OK</strong>.",
+         "detail": "Adding the entire organization as a participant means all members of PTC Publications will be assigned the Viewer role when a document reaches the Released state.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Access Control</strong> tab and check the <strong>Read</strong> permission for the Viewer role.",
+         "detail": "This grants read-only access to organization members for released documents. They can view the document but cannot edit, delete, or change its state.",
+         "hint": null
+        },
+        {
+         "action": "To complete the life cycle edition, click <strong>Save & Close</strong> and check in the updated life cycle.",
+         "detail": "Checking in makes the updated life cycle available for use. New objects assigned this life cycle will now follow the advanced workflow-driven process.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex4-t3",
+       "title": "Create Test Plan Document and Release It",
+       "steps": [
+        {
+         "action": "From the Navigator, select <strong>PTC New Publication Template > Folders</strong>.",
+         "detail": "You will create a test document in this product context to validate the end-to-end workflow process.",
+         "hint": null
+        },
+        {
+         "action": "Create a new document with Type set to <strong>Plan</strong>, Primary Content Source set to <strong>No Content</strong>, and Name set to <strong>Test Plan Document Validation</strong>.",
+         "detail": "This document will use the Plan Development Life Cycle you just configured. Upon creation, the Plan Development Workflow should start automatically.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Finish</strong>; the created document uses the first state of the created life cycle.",
+         "detail": "Windchill applies the OIR during creation, assigning the Plan Development Life Cycle and starting the associated workflow.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Home</strong> icon and notice the <strong>Submit Document</strong> task associated to the created Test Plan Document Validation.",
+         "detail": "The workflow's first activity (Submit Document) should appear in your Tasks table or Updates section.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Submit Document</strong> task name and select <strong>Complete Task</strong>.",
+         "detail": "Completing this task triggers the next step in the workflow — the Review Document activity.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Home</strong> icon and notice the <strong>Review Document</strong> task is assigned to you as Product Manager.",
+         "detail": "The routing from Submit Document triggered the Review Document activity, which is assigned to the Product Manager role.",
+         "hint": null
+        },
+        {
+         "action": "Click any of the <strong>Review Document</strong> task names, observe the routing choice (<strong>Release</strong> or <strong>Rework</strong>), and keep the default choice.",
+         "detail": "The Manual Exclusive routing you configured presents Release and Rework as options on the task form.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>Complete Task</strong>.",
+         "detail": "Choosing Release sends the document through the approval path. The Set State robot will automatically transition the document to the Released state.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Home</strong> icon and notice that the Test Plan Document Validation document is now in the <strong>Released</strong> state in the Updates table.",
+         "detail": "This validates that the workflow and life cycle are working together correctly — the document moved from Creation through the workflow to Released.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex4-t4",
+       "title": "Check Organization Member Access",
+       "steps": [
+        {
+         "action": "Open an <strong>incognito</strong> browser session.",
+         "detail": "Using an incognito window avoids session conflicts with the bpatterson login.",
+         "hint": null
+        },
+        {
+         "action": "Sign in as <strong>dgriffin/ptc</strong>.",
+         "detail": "dgriffin is a member of the PTC Publications organization but not a member of the product content team.",
+         "hint": null
+        },
+        {
+         "action": "Type <strong>Test Plan Document*</strong> in the search field.",
+         "detail": "dgriffin is not a member of the product content team, but they can see any released document stored in contexts belonging to the PTC Publications organization.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>View information</strong> icon of the Test Plan Document Validation document and notice that dgriffin does not have access to the context and location information.",
+         "detail": "The document is visible (confirming Read access via the Viewer role), but the user has limited access — they cannot see context details or edit the document.",
+         "hint": "Try to edit the document — you should receive an access denied message."
+        },
+        {
+         "action": "Close all browser sessions.",
+         "detail": "You have confirmed that the Viewer role grants read-only access to organization members for released documents.",
+         "hint": null
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Converting a life cycle from basic to advanced enables workflow-driven state transitions with full traceability",
+    "Removing manual transitions ensures state changes can only occur through the workflow process",
+    "Role-based access control in life cycle states allows granting specific permissions (like Read) to organization members",
+    "Testing with a different user account validates that access control is working as intended"
+   ]
+  }
  ]
 }

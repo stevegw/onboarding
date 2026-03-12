@@ -1,0 +1,58 @@
+{
+  "moduleId": "m4",
+  "title": "Trace Requirements Knowledge Check",
+  "questions": [
+    {
+      "id": "m4-kc-001",
+      "question": "What should you verify during a traceability review?",
+      "options": [
+        "All tracker items have been assigned to team members",
+        "Every customer requirement has downstream system requirements and no system requirement lacks an upstream customer requirement",
+        "All requirements have been exported to Microsoft Excel",
+        "Every tracker item has a comment with a link to another item"
+      ],
+      "answerIndex": 1,
+      "rationale": "A traceability review verifies that each customer requirement has sufficient downstream system requirements to support it, and that no system requirement exists without an upstream customer requirement to justify it. This ensures complete coverage and no orphan items.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-002",
+      "question": "What does a red suspected badge on a downstream item indicate?",
+      "options": [
+        "The downstream item has been deleted",
+        "The downstream item was created by an unauthorized user",
+        "An upstream reference has changed and the downstream item needs review",
+        "The downstream item has failed validation testing"
+      ],
+      "answerIndex": 2,
+      "rationale": "A red suspected badge indicates that an upstream reference has been changed, meaning the downstream item may need to be updated to remain consistent. Clicking the badge shows which fields changed, allowing you to decide whether the downstream item needs modification.",
+      "topic": "m4t2"
+    },
+    {
+      "id": "m4-kc-003",
+      "question": "What is the advantage of using Inspect All Changes for clearing suspected badges?",
+      "options": [
+        "It automatically fixes all downstream items without review",
+        "It allows you to filter by upstream reference field, compare values, and clear multiple suspects at once",
+        "It prevents future suspected badges from appearing",
+        "It creates new reference relationships between items"
+      ],
+      "answerIndex": 1,
+      "rationale": "Inspect All Changes lets you filter suspected items by upstream reference field, shows only differing fields, allows you to apply upstream values to downstream items, and clear all suspected badges at once. Unlike manual clearing, it handles many items efficiently while still allowing review.",
+      "topic": "m4t3"
+    },
+    {
+      "id": "m4-kc-004",
+      "question": "In the course project, which direction do references flow for traceability?",
+      "options": [
+        "System requirements are upstream of customer requirements",
+        "Customer requirements are downstream of system requirements",
+        "Customer requirements are upstream and system requirements are downstream",
+        "Customer and system requirements are at the same level"
+      ],
+      "answerIndex": 2,
+      "rationale": "Customer requirements are upstream items that define what the customer needs. System requirements are downstream items that specify how those needs will be met. Changes to upstream customer requirements cause downstream system requirements to become suspect.",
+      "topic": "m4t1"
+    }
+  ]
+}

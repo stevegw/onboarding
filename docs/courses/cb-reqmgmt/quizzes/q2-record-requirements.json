@@ -1,0 +1,58 @@
+{
+  "moduleId": "m2",
+  "title": "Record Requirements Knowledge Check",
+  "questions": [
+    {
+      "id": "m2-kc-001",
+      "question": "What type of relationship drives traceability in Codebeamer?",
+      "options": [
+        "Parent-child relationships",
+        "Reference relationships (upstream/downstream)",
+        "Document number relationships",
+        "Comment links"
+      ],
+      "answerIndex": 1,
+      "rationale": "Reference relationships (upstream/downstream) are the primary relationship type that drives traceability in Codebeamer. Parent-child relationships are organizational only within a tracker. Document numbers are view-dependent labels, and comment links are informal and not maintained by Codebeamer.",
+      "topic": "m2t2"
+    },
+    {
+      "id": "m2-kc-002",
+      "question": "What happens to downstream items when an upstream reference is changed in Codebeamer?",
+      "options": [
+        "Downstream items are automatically updated to match",
+        "Downstream items are deleted and must be recreated",
+        "Downstream items receive a suspected badge",
+        "Downstream items are moved to a different tracker"
+      ],
+      "answerIndex": 2,
+      "rationale": "When an upstream item changes, downstream items receive a suspected badge indicating they need to be reviewed. The downstream items are not automatically updated or deleted — the badge alerts users that the change may affect the downstream item's validity.",
+      "topic": "m2t2"
+    },
+    {
+      "id": "m2-kc-003",
+      "question": "In the exercise project, what prefix identifies a Customer Requirement Specification?",
+      "options": [
+        "SRS",
+        "CRS",
+        "US",
+        "REQ"
+      ],
+      "answerIndex": 1,
+      "rationale": "In the exercise project, Customer Requirement Specifications use the prefix CRS. System Requirement Specifications use SRS. The prefix is determined by the tracker's Key field in its configuration and is used to quickly identify which tracker an item belongs to.",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-004",
+      "question": "Why should you NOT use document numbers when discussing tracker items with coworkers?",
+      "options": [
+        "Document numbers are not visible to other users",
+        "Document numbers change depending on the tracker view being used",
+        "Document numbers are only available in the admin panel",
+        "Document numbers are assigned randomly and have no meaning"
+      ],
+      "answerIndex": 1,
+      "rationale": "Document numbers vary depending on the tracker view. In a basic document view of System Requirements, an item might be number 2.2, but in a traceability view of Customer Requirements, the same item could be 1.1. Use the tracker item ID or summary name instead for unambiguous communication.",
+      "topic": "m2t3"
+    }
+  ]
+}

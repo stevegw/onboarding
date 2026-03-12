@@ -475,14 +475,34 @@
               "title": "Access the Policy Administrator",
               "steps": [
                 {
-                  "action": "Sign in to Windchill as <code>bpatterson/ptc</code>.",
-                  "detail": "bpatterson is a business administrator with access to the Policy Administrator utility.",
+                  "action": "Launch a browser and click the <strong>Windchill</strong> bookmark.",
+                  "detail": "This opens the Windchill home page.",
                   "hint": null
                 },
                 {
-                  "action": "Navigate to <strong>Organizations > PTC Publications > Utilities</strong> and click <strong>Policy Administration</strong>.",
-                  "detail": "The Policy Administrator is the central utility for managing domains and access control rules.",
-                  "hint": "Expand the Navigator panel to access the Organizations section."
+                  "action": "Click <strong>Sign In</strong>.",
+                  "detail": "The sign-in page allows you to authenticate with your Windchill credentials.",
+                  "hint": null
+                },
+                {
+                  "action": "Sign in to Windchill with username <code>bpatterson</code> and password <code>ptc</code>.",
+                  "detail": "bpatterson is a business administrator with access to the Policy Administrator utility.",
+                  "hint": "Do not save the password."
+                },
+                {
+                  "action": "Expand the <strong>Navigator</strong>.",
+                  "detail": "The Navigator panel provides access to organizational contexts and utilities.",
+                  "hint": null
+                },
+                {
+                  "action": "Browse to <strong>Organizations > PTC Publications > Utilities</strong>.",
+                  "detail": "The Utilities section contains administration tools including Policy Administration.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Policy Administration</strong>.",
+                  "detail": "The Policy Administrator opens in a new tab, displaying the domain hierarchy and rule tables.",
+                  "hint": null
                 }
               ]
             },
@@ -491,34 +511,54 @@
               "title": "Explore the Domain Hierarchy",
               "steps": [
                 {
-                  "action": "Select the <strong>/ (Root)</strong> domain name.",
+                  "action": "In the Policy Administration tab, select the <strong>/ (Root)</strong> domain name.",
                   "detail": "The Root domain contains rules that govern the entire Windchill installation.",
                   "hint": null
                 },
                 {
-                  "action": "Expand the <strong>Default</strong> node beneath Root.",
+                  "action": "Below the Root, expand the <strong>Default</strong> node.",
                   "detail": "This domain governs policies for PTC Publications data.",
                   "hint": null
                 },
                 {
-                  "action": "Note the <strong>PDM</strong> domain - this is the parent of all Product and Library public default domains.",
-                  "detail": "The PDM domain is different from the Organization domain. Rules here affect all public products and libraries.",
+                  "action": "Note the <strong>PDM</strong> domain.",
+                  "detail": "This is the parent of all Product and Library public default domains. It is different from the Organization domain.",
                   "hint": null
                 },
                 {
                   "action": "Click the <strong>Project</strong> domain.",
-                  "detail": "This is the parent of Product and Project domains. Note the rule permitting all PTC Publications members to create projects.",
+                  "detail": "This is the parent of Product and Project domains wherein you can create rules that affect all contexts in that Organization. Note that one rule exists here to permit all PTC Publications members to create projects.",
                   "hint": null
                 },
                 {
-                  "action": "Note the <strong>Private</strong> domain and click the <strong>System</strong> domain.",
-                  "detail": "Private bypasses global rules. System controls administrative templates - hover over rows in the Type column to see the object types.",
+                  "action": "Note the <strong>Private</strong> domain.",
+                  "detail": "This domain can bypass any global rules created at the Organization level in favor of very restrictive access rules.",
                   "hint": null
                 },
                 {
-                  "action": "Expand the <strong>User</strong> node and observe the organization domains.",
+                  "action": "Click the <strong>System</strong> domain.",
+                  "detail": "This domain controls administrative templates based on the hierarchy of domains.",
+                  "hint": "Hover over the rows in the Type column in the Search Results table to see the object types."
+                },
+                {
+                  "action": "Expand the <strong>User</strong> node.",
                   "detail": "The User domain is the parent for organization and unaffiliated participant domains.",
-                  "hint": "Note that bpatterson cannot view domains in other organization contexts."
+                  "hint": null
+                },
+                {
+                  "action": "Note the <strong>PTC Publications</strong> domain.",
+                  "detail": "This is the parent organization for all participants in PTC Publications.",
+                  "hint": null
+                },
+                {
+                  "action": "From the <strong>Contexts</strong> menu, select <strong>All Contexts</strong>.",
+                  "detail": "Note that user bpatterson cannot view the domains in other organization contexts.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the browser.",
+                  "detail": "You have completed the review of the domain architecture.",
+                  "hint": null
                 }
               ]
             }
@@ -855,31 +895,139 @@
           "tasks": [
             {
               "id": "ex2-t1",
-              "title": "Verify Current Access and Set Private",
+              "title": "Search a Released Document",
               "steps": [
                 {
-                  "action": "Sign in as <code>jgrisdam/ptc</code> and search for <code>public*</code>.",
-                  "detail": "User jgrisdam is not a team member of PTC New Publication Template, but because the product is public, they can search for released documents.",
-                  "hint": "Browse to the PUBLICATION CHECK-LIST document Information page and note the Released state."
+                  "action": "Launch a browser and click the <strong>Windchill</strong> bookmark.",
+                  "detail": "This opens the Windchill home page.",
+                  "hint": null
                 },
                 {
-                  "action": "In a separate session, sign in as <code>bpatterson/ptc</code> and browse to <strong>PTC New Publication Template > Details</strong>.",
+                  "action": "Click <strong>Sign In</strong>.",
+                  "detail": "The sign-in page allows you to authenticate with your Windchill credentials.",
+                  "hint": null
+                },
+                {
+                  "action": "Sign in to Windchill with username <code>jgrisdam</code> and password <code>ptc</code>.",
+                  "detail": "The user jgrisdam is not a team member of the PTC New Publication Template product. They cannot see the product context. However, because the product is currently Public, they can search for released documents.",
+                  "hint": "Do not save the password."
+                },
+                {
+                  "action": "Search Windchill for <code>public*</code>.",
+                  "detail": "This searches for all objects with names starting with 'public' across all accessible contexts.",
+                  "hint": null
+                },
+                {
+                  "action": "From the Search Results table, browse to the Information page for <strong>PUBLICATION CHECK-LIST</strong>.",
+                  "detail": "This opens the document's information page showing its attributes and state.",
+                  "hint": null
+                },
+                {
+                  "action": "Notice that the document is at a <strong>Released</strong> state.",
+                  "detail": "Released objects are visible to users with Read access in public product contexts.",
+                  "hint": null
+                },
+                {
+                  "action": "Notice that the Context has the <strong>(Secured information)</strong> label.",
+                  "detail": "User jgrisdam can see the document attributes. However, they cannot identify where it is stored.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex2-t2",
+              "title": "Activate the Private Access for the Product",
+              "steps": [
+                {
+                  "action": "Launch an incognito browser session or a different browser where you are not signed in as jgrisdam.",
+                  "detail": "You need a separate session to sign in as the business administrator without logging out jgrisdam.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Windchill</strong> bookmark.",
+                  "detail": "This opens the Windchill home page in the new session.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Sign In</strong>.",
+                  "detail": "The sign-in page allows you to authenticate as the business administrator.",
+                  "hint": null
+                },
+                {
+                  "action": "Sign in to Windchill with username <code>bpatterson</code> and password <code>ptc</code>.",
                   "detail": "bpatterson is the business administrator who can change the product access settings.",
                   "hint": null
                 },
                 {
-                  "action": "Edit the product and set <strong>Private Access</strong> to <strong>Yes</strong>.",
+                  "action": "Browse to <strong>PTC New Publication Template > Details</strong>.",
+                  "detail": "The Details page shows the product configuration including its access settings.",
+                  "hint": null
+                },
+                {
+                  "action": "Edit the product.",
+                  "detail": "This opens the Edit Product dialog where you can change configuration settings.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Edit Product dialog, set <strong>Private Access</strong> to <strong>Yes</strong> and click <strong>OK</strong>.",
                   "detail": "This moves the product's Default domain to be a child of the Private domain, bypassing global PDM rules.",
                   "hint": null
                 },
                 {
-                  "action": "Return to the jgrisdam session and search for <code>public*</code> again.",
-                  "detail": "The search results should no longer show the document since jgrisdam is not a team member.",
+                  "action": "Browse to <strong>PTC New Publication Template > Team</strong>.",
+                  "detail": "Notice that jgrisdam is not a member of the PTC New Publication Template team.",
                   "hint": null
                 },
                 {
-                  "action": "As bpatterson, set Private Access back to <strong>No</strong> to restore public access.",
-                  "detail": "This reactivates the public access rules from the PDM domain.",
+                  "action": "Do not close the browser session.",
+                  "detail": "You will return to this session to reactivate public access after verifying the restriction.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex2-t3",
+              "title": "Check the Updated Access Control",
+              "steps": [
+                {
+                  "action": "Return to the browser session signed in as <code>jgrisdam</code>.",
+                  "detail": "You need to verify that the private access setting has taken effect for non-team members.",
+                  "hint": null
+                },
+                {
+                  "action": "Search Windchill for <code>public*</code>.",
+                  "detail": "Notice that the search results table is no longer showing the document. The private access setting has removed jgrisdam's ability to see released objects.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex2-t4",
+              "title": "Reactivate the Public Access",
+              "steps": [
+                {
+                  "action": "Return to the browser session signed in as <code>bpatterson</code>.",
+                  "detail": "You will now restore the product to public access.",
+                  "hint": null
+                },
+                {
+                  "action": "Browse to <strong>PTC New Publication Template > Details</strong>.",
+                  "detail": "Navigate back to the product details to change the access setting.",
+                  "hint": null
+                },
+                {
+                  "action": "Edit the product.",
+                  "detail": "This opens the Edit Product dialog.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Edit Product dialog, set <strong>Private Access</strong> to <strong>No</strong> and click <strong>OK</strong>.",
+                  "detail": "This reactivates the public access rules from the PDM domain, restoring visibility of released objects to all organization members.",
+                  "hint": null
+                },
+                {
+                  "action": "Close all browser sessions.",
+                  "detail": "Setting a context as Private enables users to bypass the access control rule that grants Read permission to all Released objects set in the PDM domain. This configuration is inherited from the organization template General (PDM) used to create the organization.",
                   "hint": null
                 }
               ]
@@ -917,42 +1065,210 @@
           "tasks": [
             {
               "id": "ex3-t1",
-              "title": "Verify Current Access and Create Grant Rule",
+              "title": "Check Current Technical Writer Access",
               "steps": [
                 {
-                  "action": "Sign in as <code>kperez/ptc</code>, browse to PTC New Publication Template folders, and try creating a new document.",
-                  "detail": "Confirm that Outline is not listed in the Type menu - kperez currently lacks create access to this type.",
+                  "action": "Launch a browser and click the <strong>Windchill</strong> bookmark.",
+                  "detail": "This opens the Windchill home page.",
                   "hint": null
                 },
                 {
-                  "action": "Sign in as <code>bpatterson/ptc</code> and open <strong>Policy Administration</strong> for PTC New Publication Template.",
-                  "detail": "Select the Default domain, then view the current access control list for the Outline type at Creation state.",
-                  "hint": "Technical Writers currently have only Read and Download permissions."
+                  "action": "Click <strong>Sign In</strong>.",
+                  "detail": "The sign-in page allows you to authenticate with your Windchill credentials.",
+                  "hint": null
                 },
                 {
-                  "action": "Create a new rule: Type = <strong>Outline</strong>, State = <strong>Creation</strong>, Participant = <strong>Technical Writer</strong>, Grant = <strong>Create</strong> and <strong>Set State</strong>.",
-                  "detail": "When you select Create, Windchill auto-selects complementary modification permissions.",
+                  "action": "Sign in to Windchill as a technical writer with username <code>kperez</code> and password <code>ptc</code>.",
+                  "detail": "User kperez has the Technical Writer role in the PTC New Publication Template product.",
+                  "hint": null
+                },
+                {
+                  "action": "Browse to <strong>PTC New Publication Template > Folders</strong>.",
+                  "detail": "The Folders page shows the folder structure of the product context.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>New Document</strong> icon.",
+                  "detail": "This opens the New Document dialog where you can select the document type to create.",
+                  "hint": null
+                },
+                {
+                  "action": "Confirm that <strong>Outline</strong> is not listed in the Type menu.",
+                  "detail": "User kperez does not currently have create access to the Outline document type.",
+                  "hint": null
+                },
+                {
+                  "action": "Cancel the New Document dialog and close the browser session.",
+                  "detail": "You have confirmed the current access limitation. You will now create a rule to grant this access.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex3-t2",
-              "title": "Create Absolute Deny Rule and Test",
+              "title": "View Current Access Control Rules",
               "steps": [
                 {
-                  "action": "Create a second rule: Type = <strong>Outline</strong>, State = <strong>Under Review</strong>, Participant = <strong>PTC Publications</strong> organization.",
-                  "detail": "This rule will prevent modifications during the review process.",
+                  "action": "Launch a browser and click the <strong>Windchill</strong> bookmark.",
+                  "detail": "This opens the Windchill home page for the administrator session.",
                   "hint": null
                 },
                 {
-                  "action": "Set <strong>Absolute Deny</strong> for Modify Content and Change Permissions.",
+                  "action": "Sign in to Windchill with username <code>bpatterson</code> and password <code>ptc</code>.",
+                  "detail": "bpatterson is the business administrator with access to the Policy Administrator.",
+                  "hint": null
+                },
+                {
+                  "action": "Browse to <strong>PTC New Publication Template > Utilities</strong>.",
+                  "detail": "The Utilities section contains administration tools.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Business Administration section, click <strong>Policy Administration</strong>.",
+                  "detail": "This opens the Policy Administrator for the PTC New Publication Template product context.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Default</strong> domain of the PTC New Publication Template context.",
+                  "detail": "The Default domain contains the access control rules for data objects in this product.",
+                  "hint": null
+                },
+                {
+                  "action": "Collapse the <strong>Domains</strong> panel.",
+                  "detail": "This gives more room for the rule table and access control list.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Access Control Rules tab, click the <strong>View access control lists</strong> icon in the Search Result table.",
+                  "detail": "This icon generates a summary report of all access control rules for a given object type or state.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Type field, search for and select the <strong>Outline</strong> object type.",
+                  "detail": "This filters the access control list to show rules affecting the Outline document type.",
+                  "hint": null
+                },
+                {
+                  "action": "From the State menu, select <strong>Creation</strong>, then click <strong>Search</strong>.",
+                  "detail": "By default, the Technical Writer role has the same permissions as Team Members who have only Read and Download permissions at Creation state. User kperez cannot create an Outline document because Creation is the initial state for the document.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the report.",
+                  "detail": "You have reviewed the current access control rules and confirmed the gap.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex3-t3",
+              "title": "Create a Rule at Creation State for Technical Writers",
+              "steps": [
+                {
+                  "action": "From the Search Results toolbar, create a <strong>new access control rule</strong>.",
+                  "detail": "This opens the New Access Control Rule dialog where you define the rule components.",
+                  "hint": null
+                },
+                {
+                  "action": "In the New Access Control Rule dialog, next to the Type field, click the <strong>Find</strong> icon.",
+                  "detail": "This opens a type browser to search for and select the object type.",
+                  "hint": null
+                },
+                {
+                  "action": "Search for the <strong>Outline</strong> type in the tree, select the radio button, and click <strong>OK</strong>.",
+                  "detail": "The Outline type is a subtype of WTDocument.",
+                  "hint": null
+                },
+                {
+                  "action": "From the State menu, select <strong>Creation</strong>.",
+                  "detail": "This restricts the rule to only apply when Outline documents are in the Creation lifecycle state.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Participant search field, type <code>Tech</code>, and select the <strong>Technical Writer (Context Team Role — PTC Publications)</strong> role.",
+                  "detail": "This sets the participant for the rule to the Technical Writer context team role.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Grant column, select <strong>Create</strong> and <strong>Set State</strong> permissions.",
+                  "detail": "When you select the Create permission, Windchill automatically selects other complementary permissions that allow modifications (Modify, Modify Content, Read, Download).",
+                  "hint": null
+                },
+                {
+                  "action": "Notice that selecting Create automatically selects other permissions.",
+                  "detail": "Windchill auto-selects Modify, Modify Content, Read, and Download when you grant Create, because it is normal to be able to modify and read content that you create.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "The new access control rule is created and added to the rule table for the Default domain.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex3-t4",
+              "title": "Create a Rule to Deny Modifications for Under Review State",
+              "steps": [
+                {
+                  "action": "From the Search Results toolbar, create a <strong>new access control rule</strong>.",
+                  "detail": "You will create a second rule to deny modifications during the review process.",
+                  "hint": null
+                },
+                {
+                  "action": "In the New Access Control Rule dialog, search and select the <strong>Outline</strong> object type.",
+                  "detail": "This sets the rule to apply to the Outline document type.",
+                  "hint": null
+                },
+                {
+                  "action": "From the State menu, select the <strong>Under Review</strong> state.",
+                  "detail": "This restricts the rule to only apply during the Under Review lifecycle state.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Participant search field, type <code>PTC Pub</code> and select the <strong>PTC Publications</strong> organization role.",
+                  "detail": "This targets all users in the PTC Publications organization.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Permissions table, in the <strong>Absolute Deny</strong> column, select <strong>Modify Content</strong> and <strong>Change Permissions</strong>.",
                   "detail": "Absolute deny ensures no user can override these restrictions with ad hoc or user-level grants.",
                   "hint": null
                 },
                 {
-                  "action": "In a separate session, sign in as <code>kperez/ptc</code> and verify that Outline now appears in the Type menu.",
-                  "detail": "The Technical Writer role now has create access to Outline documents.",
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "The deny rule is created. No user in the PTC Publications organization can modify Outline content or change permissions during the Under Review state.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex3-t5",
+              "title": "Test the Outline Document Creation Rule",
+              "steps": [
+                {
+                  "action": "Open an incognito browser session and sign in to Windchill as <code>kperez/ptc</code>.",
+                  "detail": "You will verify that the Technical Writer role now has create access to Outline documents.",
+                  "hint": null
+                },
+                {
+                  "action": "Browse to <strong>PTC New Publication Template > Folders</strong>.",
+                  "detail": "Navigate to the product folders where new documents can be created.",
+                  "hint": null
+                },
+                {
+                  "action": "Create a <strong>new document</strong>.",
+                  "detail": "Click the New Document icon to open the New Document dialog.",
+                  "hint": null
+                },
+                {
+                  "action": "Notice that the <strong>Outline</strong> type is listed in the Type menu.",
+                  "detail": "The Technical Writer role now has the necessary access to create Outline documents. The access control rule you created is working correctly.",
+                  "hint": null
+                },
+                {
+                  "action": "Cancel the New Document dialog and close the incognito browser session.",
+                  "detail": "You have successfully verified the new access control rule.",
                   "hint": null
                 }
               ]
@@ -1286,52 +1602,138 @@
           "tasks": [
             {
               "id": "ex4-t1",
-              "title": "Create the Domain and Access Control Rule",
+              "title": "Create a New Domain",
               "steps": [
                 {
-                  "action": "In Policy Administration, right-click the <strong>Default</strong> domain of PTC New Publication Template and select <strong>New</strong>.",
-                  "detail": "The new domain must be a child of the product's default domain to control folder access.",
+                  "action": "In the Policy Administration utility, right-click the <strong>Default</strong> domain of the PTC New Publication Template context, then select <strong>New</strong>.",
+                  "detail": "The new domain must be created as a child of the PTC New Publication Template default domain to inherit the product context access control rules.",
                   "hint": null
                 },
                 {
-                  "action": "Name the domain <code>Team Only</code> with description <code>Restricts read access to context team and users added by ad hoc rules</code>.",
-                  "detail": "This domain will contain rules that restrict read access.",
+                  "action": "In the Name field, type <code>Team Only</code>.",
+                  "detail": "This will be the name of the new folder domain.",
                   "hint": null
                 },
                 {
-                  "action": "Click the Team Only domain and create a new access control rule.",
-                  "detail": "Collapse the Domains pane to give more room for the rule table.",
+                  "action": "In the Description field, type <code>Restricts read access to context team and users added by ad hoc rules</code>.",
+                  "detail": "The description helps other administrators understand the purpose of this domain.",
                   "hint": null
                 },
                 {
-                  "action": "Set Type = <strong>WTObject</strong>, State = <strong>All</strong>, Participant = <strong>Team Members</strong>, select <strong>All except selected participant</strong>.",
-                  "detail": "This targets everyone who is NOT a team member.",
-                  "hint": null
-                },
-                {
-                  "action": "In the Deny column, select <strong>Read</strong> and <strong>Download</strong>, then click OK.",
-                  "detail": "Non-team members will be denied Read and Download access to all objects in folders assigned to this domain.",
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "The Team Only domain is created as a child of the Default domain.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex4-t2",
-              "title": "Assign the Domain to the Folder",
+              "title": "Create a Rule to Exclude Read and Download",
               "steps": [
                 {
-                  "action": "Navigate to <strong>Preference Management</strong> and set <strong>Display Folder Domains</strong> to <strong>Yes</strong>.",
-                  "detail": "This preference must be enabled before you can assign domains to folders.",
-                  "hint": "Search for 'Domains' in the preference search field."
-                },
-                {
-                  "action": "Navigate to PTC New Publication Template folders, right-click <strong>Team Information</strong> folder, and select <strong>Edit</strong>.",
-                  "detail": "The Edit Folder dialog allows you to assign a domain to the folder.",
+                  "action": "Click the <strong>Team Only</strong> domain to display its access control rules.",
+                  "detail": "The new domain currently has no rules defined. Rules will be inherited from the parent Default domain.",
                   "hint": null
                 },
                 {
-                  "action": "Click <strong>Find</strong>, expand the Default domain, select <strong>Team Only</strong>, and click OK.",
-                  "detail": "Notice the 'Inherit domain from parent' checkbox is cleared because a domain has been explicitly selected.",
+                  "action": "Collapse the <strong>Domains</strong> pane.",
+                  "detail": "This gives more room for the rule table.",
+                  "hint": null
+                },
+                {
+                  "action": "From the Search Results toolbar, create a <strong>new access control rule</strong>.",
+                  "detail": "This opens the New Access Control Rule dialog.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Type field, click <strong>Find</strong> and select the <strong>WTObject</strong> radio button, then click <strong>OK</strong>.",
+                  "detail": "WTObject is the root object type, so this rule will apply to all object types and subtypes.",
+                  "hint": null
+                },
+                {
+                  "action": "Keep the State menu set to <strong>All</strong>.",
+                  "detail": "The rule will apply to objects in all lifecycle states.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Participant search field, search and select the <strong>Team Members (Context Team Role — PTC Publications)</strong> role.",
+                  "detail": "Team Members is a context team role that includes all members of the product team.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>All except selected participant</strong> radio button.",
+                  "detail": "This inverts the rule to target everyone who is NOT a team member.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Deny column, select <strong>Read</strong> and <strong>Download</strong>.",
+                  "detail": "Non-team members will be denied Read and Download access to all objects in folders assigned to this domain.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "The access control rule is created in the Team Only domain.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the Policy Administration browser tab.",
+                  "detail": "You are finished creating the domain and its access control rule.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex4-t3",
+              "title": "Assign the Domain to the Folder",
+              "steps": [
+                {
+                  "action": "In the PTC New Publication Template utilities, select <strong>Preference Management</strong>.",
+                  "detail": "To assign a domain to a folder, the Display Folder Domains preference must be set to Yes. When the assignation is done, the preference can be reverted to its original value.",
+                  "hint": null
+                },
+                {
+                  "action": "In the search field, type <code>Domains</code> and press <strong>Enter</strong>.",
+                  "detail": "This searches for preferences containing the word 'Domains'.",
+                  "hint": "The search may take up to a minute."
+                },
+                {
+                  "action": "Click the <strong>Next match</strong> icon until you see the <strong>Display Folder Domains</strong> preference.",
+                  "detail": "You may need to click Next match several times to locate the correct preference.",
+                  "hint": null
+                },
+                {
+                  "action": "Right-click the <strong>Display Folder Domains</strong> preference and set it to <strong>Yes</strong>.",
+                  "detail": "This enables the domain assignment option in folder properties.",
+                  "hint": null
+                },
+                {
+                  "action": "In the breadcrumbs, select <strong>PTC New Publication Template</strong> to access the product folders.",
+                  "detail": "This navigates back to the product's folder view.",
+                  "hint": null
+                },
+                {
+                  "action": "Right-click the <strong>Team Information</strong> folder and select <strong>Edit</strong>.",
+                  "detail": "This opens the Edit Folder dialog where you can assign a domain.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Edit Folder dialog, click <strong>Find</strong>.",
+                  "detail": "This opens the domain browser to select a domain for the folder.",
+                  "hint": null
+                },
+                {
+                  "action": "Expand the <strong>Default</strong> domain and select the <strong>Team Only</strong> domain radio button, then click <strong>OK</strong>.",
+                  "detail": "The Team Only domain you created will now control access for objects in this folder.",
+                  "hint": null
+                },
+                {
+                  "action": "Notice the <strong>Inherit domain from parent</strong> checkbox is clear because a domain has been selected.",
+                  "detail": "When a domain is explicitly assigned, the folder no longer inherits from its parent context's domain.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "The Team Information folder is now associated with the Team Only domain. Creating a product template from this setup will preserve the domain configuration.",
                   "hint": null
                 }
               ]
@@ -1653,43 +2055,73 @@
           "tasks": [
             {
               "id": "ex5-t1",
-              "title": "Grant Ad Hoc Access to the Document",
+              "title": "Grant Olive Watkins Ad Hoc Access",
               "steps": [
                 {
-                  "action": "Browse to <strong>PTC New Publication Template > Folders > Team Information</strong>.",
-                  "detail": "This folder has restricted access due to the folder domain you created in a previous exercise.",
+                  "action": "Browse to <strong>PTC New Publication Template > Folders</strong>.",
+                  "detail": "You should still be signed in to Windchill as <code>bpatterson/ptc</code>.",
                   "hint": null
                 },
                 {
-                  "action": "Select the <strong>Specification 1</strong> document checkbox, then click <strong>Actions > Edit Access Control</strong>.",
-                  "detail": "The Edit Access Control dialog shows current participants and their permissions.",
+                  "action": "Open the <strong>Team Information</strong> folder.",
+                  "detail": "This folder has restricted access due to the folder domain you created in the previous exercise.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the checkbox for the <strong>Specification 1</strong> document.",
+                  "detail": "You need to select the document before accessing its actions.",
+                  "hint": null
+                },
+                {
+                  "action": "From the <strong>Actions</strong> menu, select <strong>Edit Access Control</strong>.",
+                  "detail": "The Edit Access Control dialog shows current participants and their permissions for this specific object.",
                   "hint": null
                 },
                 {
                   "action": "Add <strong>Olive Watkins (owatkins)</strong> to the Access table.",
-                  "detail": "You can search for the user by name or username.",
+                  "detail": "You can search for the user by name or username to add them as a participant.",
                   "hint": null
                 },
                 {
-                  "action": "Select the <strong>Read</strong> and <strong>Modify</strong> permissions for Olive Watkins, then click OK.",
-                  "detail": "Guest roles have Read access by default, but the folder domain rule restricts access to non-team members. Ad hoc access overrides the domain deny rule.",
+                  "action": "Select the <strong>Read</strong> and <strong>Modify</strong> permissions for Olive Watkins.",
+                  "detail": "Guest roles have Read access by default, but the folder domain rule restricts Read and Download access to participants outside the context team. Ad hoc access overrides the domain deny rule.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "The ad hoc permissions are saved. Olive Watkins now has Read and Modify access to the Specification 1 document.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the browser.",
+                  "detail": "You have granted ad hoc access to the document.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex5-t2",
-              "title": "Validate the Access Change",
+              "title": "Validate the Access Control Change",
               "steps": [
                 {
-                  "action": "In a new browser session, sign in as <code>owatkins/ptc</code>.",
+                  "action": "Launch a new browser session.",
+                  "detail": "You need a fresh session to sign in as Olive Watkins.",
+                  "hint": null
+                },
+                {
+                  "action": "Sign in to Windchill as <code>owatkins/ptc</code>.",
                   "detail": "Olive Watkins is a Guest user who was previously denied access to the Team Information folder.",
                   "hint": null
                 },
                 {
-                  "action": "Search for <code>Specificat*</code> and right-click the Specification 1 document.",
-                  "detail": "Olive can now see the document in search results and should have edit capabilities.",
-                  "hint": "Notice that Check Out and edit actions are now available."
+                  "action": "Search Windchill for <code>Specificat*</code>.",
+                  "detail": "This searches for objects with names starting with 'Specificat' to locate the document.",
+                  "hint": null
+                },
+                {
+                  "action": "Right-click the <strong>Specification 1</strong> document and notice that Olive can now check out and edit the object.",
+                  "detail": "The Check Out and Download action is not available because this document has been created with the No Content option. If the document contains content, the Modify Content permission grants the user the right to modify the primary content and attachments.",
+                  "hint": "Notice that Check Out and edit actions are now available in the context menu."
                 }
               ]
             }
@@ -2016,7 +2448,7 @@
   "topic.stepsProgress": "{done}/{total} steps",
   "topic.doThis": "Do This",
   "topic.whyItMatters": "Why It Matters",
-  "topic.doneNextStep": "Done - Next Step",
+  "topic.doneNextStep": "Done",
   "topic.topicsComplete": "{done}/{total} topics complete",
   "topic.moduleBadge": "Module {num}",
   "topic.topics": "Topics",

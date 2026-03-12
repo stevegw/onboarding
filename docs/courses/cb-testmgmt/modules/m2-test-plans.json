@@ -1,0 +1,380 @@
+{
+  "id": "m2",
+  "title": "Test Plans",
+  "description": "Learn how test plans serve as blueprints for testing, work with trackers and parent-child relationships, and structure test cases within the project.",
+  "topics": [
+    {
+      "id": "m2t1",
+      "title": "Test Plans and Strategy",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Test leads write test plans to document the strategy used to verify the product meets specified requirements. A test plan is a blueprint for testing — it outlines which requirements to test, when to test them, and who is responsible for each aspect of the testing effort."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What Is a Test Plan?"
+        },
+        {
+          "type": "paragraph",
+          "text": "A test plan acts as a framework for outlining the methodology for testing a product and ensuring validation of all its specified requirements. Products are comprised of smaller functional units — hardware components, software modules, and their integrations. Testing these components as they are built is vital for ensuring the full product works as expected."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Test Strategy",
+              "back": "Defines the overall approach to testing — what types of tests to perform, which tools to use, and how to manage risk. The strategy is company-dependent and may follow Agile, V-model, or ASPICE."
+            },
+            {
+              "front": "Test Scope",
+              "back": "Identifies which requirements are in scope for testing and which are out of scope. Ensures all critical requirements have corresponding test coverage."
+            },
+            {
+              "front": "Test Schedule",
+              "back": "Defines when testing occurs — during development sprints, at integration milestones, or before release. Aligns testing activities with the overall project timeline."
+            },
+            {
+              "front": "Roles and Responsibilities",
+              "back": "Assigns testing work to specific roles. The test lead manages the plan, test engineers design cases, and testers execute them."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Test plans are typically written and managed by the test lead. This course does not cover how to create test plans from scratch, but understanding their purpose is essential because test engineers reference them when writing test cases."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Test Plan in the Workflow"
+        },
+        {
+          "type": "paragraph",
+          "text": "In the test management workflow, the test plan is the first deliverable. The test lead creates the plan, uploads it to the Codebeamer project, and then assigns workflow tasks to team members. Test engineers use the plan as their guide for writing test cases."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the test plan activities in the correct order:",
+          "items": [
+            "Write the test plan document",
+            "Upload the test plan to the Codebeamer project",
+            "Assign workflow tasks to team members",
+            "Test engineers reference the plan to write test cases"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "A test plan is a blueprint that outlines testing strategies, scope, schedule, and responsibilities",
+        "Test leads write and manage test plans; test engineers use them to guide test case creation",
+        "Test plans are company-dependent and may follow Agile, V-model, or ASPICE methodologies",
+        "The test plan is the first deliverable in the test management workflow"
+      ]
+    },
+    {
+      "id": "m2t2",
+      "title": "Trackers and Parent-Child Relationships",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In Codebeamer, project data is organized at the highest level into trackers. Trackers provide logical containers for your data where you can define data structure with fields, configure permissions, state transitions, actions, and notifications."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Tracker Types in Test Management"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Tracker Type", "Purpose", "Icon"],
+          "rows": [
+            ["Requirement", "Stores customer, system, hardware, and software requirements", "Document icon"],
+            ["Test Case", "Contains test procedures with steps that verify requirements", "Checkmark icon"],
+            ["Test Run", "Records the execution of test cases and their results", "Play icon"],
+            ["Bug", "Tracks defects discovered during testing", "Bug icon"],
+            ["Task", "Manages workflow assignments between team members", "Task icon"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Parent-Child Relationships"
+        },
+        {
+          "type": "paragraph",
+          "text": "Parent-child relationships are organizational tools within a tracker. They organize items in a logical hierarchy to make trackers more readable and understandable. Parent-child relationships are strictly within the same tracker — you cannot create a parent-child relationship between items in different trackers."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Parent-child relationships are organizational only and are <strong>not</strong> used for traceability. They do not cause suspected badges. Use reference relationships (upstream/downstream) for traceability between trackers."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each concept to its correct description:",
+          "pairs": [
+            {
+              "left": "Tracker",
+              "right": "A container that holds related items with configurable fields and workflows"
+            },
+            {
+              "left": "Parent-child relationship",
+              "right": "An organizational hierarchy within a single tracker"
+            },
+            {
+              "left": "Reference relationship",
+              "right": "A traceability link between items across different trackers"
+            },
+            {
+              "left": "Suspected badge",
+              "right": "An indicator that appears when an upstream reference changes"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Codebeamer organizes data into trackers — each with configurable fields, workflows, and permissions",
+        "Test management uses tracker types including Requirement, Test Case, Test Run, Bug, and Task",
+        "Parent-child relationships organize items within a single tracker but do not provide traceability",
+        "Reference relationships (upstream/downstream) drive traceability and trigger suspected badges when changes occur"
+      ]
+    },
+    {
+      "id": "m2t3",
+      "title": "Exercise - Set Up the Test Plan",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "As the test lead, you will upload the test plan document to the Codebeamer project and assign a workflow task to the test engineer to begin writing test cases."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Make sure you have completed Exercise 1 (Set Up Course Project) so the PTCU Electric Car TEST project exists with the correct user roles configured."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex2",
+          "title": "Set Up the Test Plan",
+          "objective": "Upload the test plan document and assign a workflow task to the test engineer.",
+          "tasks": [
+            {
+              "id": "ex2-t1",
+              "title": "Examine the Test Plan",
+              "steps": [
+                {
+                  "action": "Open the test plan document <code>TestPlan_AHS.docx</code> from the course files.",
+                  "detail": "Test plans act as a framework for outlining the methodology for testing a product. This plan covers the Advanced Headlight System.",
+                  "hint": "The file opens in LibreOffice. Do not alter the file."
+                },
+                {
+                  "action": "Examine the test plan contents and identify the testing strategies.",
+                  "detail": "The plan identifies test types, when the product is tested, and by whom. Your company may follow Agile, V-model, or a hybrid approach.",
+                  "hint": null
+                },
+                {
+                  "action": "Close LibreOffice without saving the file.",
+                  "detail": "You have reviewed the plan and will now upload it to Codebeamer.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex2-t2",
+              "title": "Upload the Test Plan to the Project",
+              "steps": [
+                {
+                  "action": "Select the <strong>Documents</strong> tab of the PTCU Electric Car TEST project.",
+                  "detail": "The Documents tab is where project files such as test plans, specifications, and guides are stored.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>New (+)</strong> then select <strong>File</strong>.",
+                  "detail": "You are uploading the test plan as a project document.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Choose files to upload</strong> and select the <code>TestPlan_AHS.docx</code> file.",
+                  "detail": "This uploads the test lead's approved test plan to the project.",
+                  "hint": null
+                },
+                {
+                  "action": "Update the Status field to <strong>Final</strong> and click <strong>Upload</strong>.",
+                  "detail": "Setting the status to Final indicates the test plan has been approved and is ready for use.",
+                  "hint": "You can also use a document tracker type to manage test plans with workflow status updates and traceability."
+                }
+              ]
+            },
+            {
+              "id": "ex2-t3",
+              "title": "Add and Assign a New Task",
+              "steps": [
+                {
+                  "action": "Navigate to the <strong>Trackers</strong> tab and double-click the <strong>Tasks</strong> tracker from Work Items.",
+                  "detail": "The test lead assigns workflow tasks to team members to coordinate the testing effort.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Create a new item</strong> (+) and set the Summary to <code>Write AHS Test Cases</code>.",
+                  "detail": "This task tells the test engineer to follow the test plan while writing test cases.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the Description to <code>Workflow task for Advanced Headlight System test cases</code>.",
+                  "detail": "A clear description helps the assignee understand what is expected.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the <strong>Assigned to</strong> field to the Test Engineer role.",
+                  "detail": "Click the pencil icon, select Test Engineer from Choose Roles, then click Set.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the association type to <strong>related</strong> and associate the item with <code>TestPlan_AHS.docx</code>.",
+                  "detail": "This links the task to the test plan document so the engineer can easily find it.",
+                  "hint": "Edit the association type and associated item fields in the Association section."
+                },
+                {
+                  "action": "Save the task and verify the association in the <strong>Associations</strong> tab of the Details section.",
+                  "detail": "The test plan document should appear as an association to the new task.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Test plans are uploaded to the project's Documents tab for team access",
+        "The test lead assigns workflow tasks to coordinate test case authoring",
+        "Tasks can be associated with documents to maintain links between work items and reference materials",
+        "Setting the document status to Final indicates the test plan is approved and ready for use"
+      ]
+    },
+    {
+      "id": "m2t4",
+      "title": "Exercise - Structure Test Cases",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "As the test lead, you will implement the test plan by structuring the project's test case trackers. You will examine existing trackers, create new ones for software requirements, and organize them into their respective specification folders."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "The Advanced Headlight System project needs test case trackers for system, hardware, and software requirements. System and Hardware Test Cases already exist — you will create the Software Test Cases tracker."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex3",
+          "title": "Structure Test Cases",
+          "objective": "Examine existing test case trackers, create a new Software Test Cases tracker, and organize it into the correct folder.",
+          "tasks": [
+            {
+              "id": "ex3-t1",
+              "title": "Examine the Predefined Test Cases Structure",
+              "steps": [
+                {
+                  "action": "Navigate to the <strong>Trackers</strong> tab and locate the System Test Cases tracker in the System Specifications folder.",
+                  "detail": "The project already has test case trackers for system and hardware requirements.",
+                  "hint": null
+                },
+                {
+                  "action": "Right-click the <strong>System Test Cases</strong> tracker and select <strong>Configuration Diagram</strong>.",
+                  "detail": "The configuration diagram shows which upstream references this tracker can verify.",
+                  "hint": null
+                },
+                {
+                  "action": "Observe that System Test Cases can verify upstream references of User Stories, System Requirements, Bugs, and Tasks.",
+                  "detail": "These relationships define the traceability between test cases and the items they validate.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the diagram, then view the <strong>Hardware Test Cases</strong> Configuration Diagram similarly.",
+                  "detail": "Hardware Test Cases verify upstream references of Hardware Requirements, Bugs, and Tasks.",
+                  "hint": "Right-click the Hardware Test Cases tracker in the Hardware Specifications folder."
+                },
+                {
+                  "action": "Close the Configuration Diagram.",
+                  "detail": "You now understand how existing test case trackers are configured.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex3-t2",
+              "title": "Create a Software Test Cases Tracker",
+              "steps": [
+                {
+                  "action": "From the toolbar, click <strong>New Tracker (+)</strong>.",
+                  "detail": "You are creating a new tracker to hold test cases for software requirements.",
+                  "hint": null
+                },
+                {
+                  "action": "Set Type to <strong>Test Case</strong>, Name to <code>Software Test Cases</code>, Key to <code>SOTESTCASE</code>, and Description to <code>Verify software requirements</code>.",
+                  "detail": "The tracker type determines its default fields and capabilities. Test Case trackers include test steps and verification fields.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Save</strong> and select the <strong>Fields</strong> tab.",
+                  "detail": "You need to configure which requirements this tracker verifies.",
+                  "hint": null
+                },
+                {
+                  "action": "Search for <code>verifies</code> and click the Work/Config Items option.",
+                  "detail": "This field defines the traceability link between test cases and requirements.",
+                  "hint": null
+                },
+                {
+                  "action": "Under the project bullet, click the <strong>More</strong> dropdown and select the last <strong>Work Items</strong> option. Then set it to <strong>Software Requirements</strong>.",
+                  "detail": "This configures the tracker so its test cases can verify Software Requirements specifically.",
+                  "hint": "Use the second indented bullet's More dropdown, not the first."
+                },
+                {
+                  "action": "Click <strong>OK</strong> and save the new tracker.",
+                  "detail": "The Software Test Cases tracker is now configured to verify Software Requirements.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex3-t3",
+              "title": "Organize the New Tracker",
+              "steps": [
+                {
+                  "action": "Navigate to the <strong>Trackers</strong> tab and locate the new Software Test Cases tracker at the bottom of the tracker tree.",
+                  "detail": "New trackers are added at the bottom and need to be organized into the correct folder.",
+                  "hint": null
+                },
+                {
+                  "action": "Drag the <strong>Software Test Cases</strong> tracker to the <strong>Software Specifications</strong> folder.",
+                  "detail": "Organizing trackers into their respective specification folders keeps the project structure clean and logical.",
+                  "hint": "Use the arrow feedback to ensure you drop the tracker into the correct folder."
+                },
+                {
+                  "action": "Confirm the Software Test Cases' Configuration Diagram now verifies Software Requirements.",
+                  "detail": "Right-click the tracker and select Configuration Diagram to verify the upstream reference is correctly configured.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Test case trackers are configured to verify specific requirement types through the Verifies field",
+        "The Configuration Diagram shows upstream and downstream traceability relationships between trackers",
+        "New trackers should be organized into their respective specification folders for a clean project structure",
+        "Each specification area (system, hardware, software) has its own test case tracker"
+      ]
+    }
+  ]
+}

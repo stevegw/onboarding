@@ -1,0 +1,424 @@
+{
+  "id": "m1",
+  "title": "Introduction to Requirements Management",
+  "description": "Explore the Codebeamer requirements management framework, examine common categories and user roles, and understand the gather-record-trace-develop lifecycle.",
+  "topics": [
+    {
+      "id": "m1t1",
+      "title": "The ALM Development Framework",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Application Lifecycle Management (ALM) provides a structured approach to developing complex products by connecting every phase of development into a single, traceable chain. Before diving into requirements management techniques in Codebeamer, it is important to understand where requirements definition fits within the broader ALM development framework."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "ALM Stages"
+        },
+        {
+          "type": "paragraph",
+          "text": "The ALM development framework consists of four sequential stages. Each stage builds on the output of the previous one, and traceability links connect artifacts across all stages so that changes can be tracked from stakeholder need to verified product."
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Stage",
+            "Purpose",
+            "Key Output"
+          ],
+          "rows": [
+            [
+              "Requirements Definition",
+              "Capture and formalize what the product must do based on stakeholder needs",
+              "Requirement specifications at multiple levels (customer, system, hardware, software)"
+            ],
+            [
+              "Design",
+              "Define how the product will satisfy the documented requirements",
+              "Architecture documents, interface definitions, design specifications"
+            ],
+            [
+              "Development",
+              "Build the product according to the approved design",
+              "Source code, hardware designs, build artifacts, configuration files"
+            ],
+            [
+              "Testing",
+              "Verify and validate that the product meets its requirements",
+              "Test cases, test runs, bug reports, coverage analysis"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "This course focuses on the <strong>Requirements Definition</strong> stage of the ALM framework. Requirements definition is the foundation of the entire lifecycle — errors or omissions at this stage cascade through design, development, and testing, making them progressively more expensive to fix."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the ALM development framework stages in the correct order:",
+          "items": [
+            "Requirements Definition",
+            "Design",
+            "Development",
+            "Testing"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The ALM development framework consists of four stages: Requirements Definition, Design, Development, and Testing",
+        "Requirements definition is the foundation of the lifecycle — errors here cascade through all downstream stages",
+        "This course focuses specifically on the requirements definition stage within Codebeamer"
+      ]
+    },
+    {
+      "id": "m1t2",
+      "title": "Common Categories of Requirements",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Requirements come in many forms depending on who needs them and what they describe. Understanding the different categories of requirements helps teams organize, prioritize, and trace their work effectively. Each category serves a distinct purpose and is typically authored by different stakeholders within the organization."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Requirement Categories"
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Category",
+            "Description",
+            "Example"
+          ],
+          "rows": [
+            [
+              "Business",
+              "High-level objectives that justify the project and align with organizational goals",
+              "The product must achieve a 15% market share in the EV segment within two years"
+            ],
+            [
+              "Customer",
+              "Needs and expectations expressed by external customers or end users",
+              "The headlights must provide adequate illumination for night driving on unlit roads"
+            ],
+            [
+              "User",
+              "Specific tasks and interactions that users must be able to perform with the product",
+              "The driver must be able to switch between high-beam and low-beam with a single action"
+            ],
+            [
+              "System",
+              "Technical behaviors and constraints that the overall system must satisfy",
+              "The headlight system must activate within 200 milliseconds of the switch input"
+            ],
+            [
+              "Hardware",
+              "Physical component specifications including dimensions, materials, and tolerances",
+              "The LED module must operate within a temperature range of -40°C to +85°C"
+            ],
+            [
+              "Software",
+              "Functional and non-functional behaviors that software components must exhibit",
+              "The headlight control firmware must support over-the-air updates"
+            ],
+            [
+              "Regulatory",
+              "Compliance requirements imposed by laws, standards, and industry regulations",
+              "Headlights must comply with ECE R112 for asymmetric passing beams"
+            ],
+            [
+              "Safety",
+              "Requirements that prevent harm to users, the public, or the environment",
+              "The system must default to low-beam operation if a sensor failure is detected"
+            ],
+            [
+              "Environmental",
+              "Constraints related to operating conditions, sustainability, and environmental impact",
+              "The headlight assembly must be 95% recyclable by weight"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "This course focuses on <strong>customer</strong>, <strong>system</strong>, <strong>hardware</strong>, and <strong>software</strong> requirements. These four categories form the core traceability chain in Codebeamer — customer needs flow down to system specifications, which are decomposed into hardware and software requirements."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each requirement example to its correct category:",
+          "pairs": [
+            {
+              "left": "The headlight must illuminate at least 100 meters ahead",
+              "right": "Customer Requirement"
+            },
+            {
+              "left": "The LED driver IC must accept 9V–16V input voltage",
+              "right": "Hardware Requirement"
+            },
+            {
+              "left": "The control module must respond to CAN bus messages within 50ms",
+              "right": "System Requirement"
+            },
+            {
+              "left": "The diagnostic firmware must log fault codes to non-volatile memory",
+              "right": "Software Requirement"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Requirements are categorized by their source and scope — business, customer, user, system, hardware, software, regulatory, safety, and environmental",
+        "Customer, system, hardware, and software requirements form the core traceability chain in Codebeamer",
+        "Each category is typically authored by different stakeholders and serves a distinct purpose in the development lifecycle"
+      ]
+    },
+    {
+      "id": "m1t3",
+      "title": "User Roles in Requirements Management",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Effective requirements management depends on clearly defined roles and responsibilities. While many people contribute to the requirements process, two roles are central to the workflow in this course: the Project Manager and the Lead Engineer. Each role brings a different perspective and set of skills to the requirements lifecycle."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Project Manager"
+        },
+        {
+          "type": "paragraph",
+          "text": "The Project Manager is responsible for defining and managing the overall product definition. In the context of requirements management, the Project Manager writes high-level requirements that capture what the product must do from a business and customer perspective. They prioritize requirements based on stakeholder input, budget constraints, and strategic objectives, ensuring the team focuses on the most valuable work first."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Lead Engineer"
+        },
+        {
+          "type": "paragraph",
+          "text": "The Lead Engineer translates high-level requirements into detailed technical specifications. They write system, hardware, and software requirements that define how the product will satisfy customer needs. The Lead Engineer evaluates the technical feasibility of proposed requirements, identifies constraints and dependencies, and ensures the technical solution meets all specified requirements. Their expertise bridges the gap between what stakeholders want and what engineering can deliver."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Other roles such as business analysts, quality engineers, and customers also contribute to the requirements process. This course focuses on the <strong>Project Manager</strong> and <strong>Lead Engineer</strong> roles, which correspond to the Arminstead and Kartini user accounts in the course project."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each responsibility to the correct role:",
+          "pairs": [
+            {
+              "left": "Writes high-level customer requirements",
+              "right": "Project Manager"
+            },
+            {
+              "left": "Evaluates technical feasibility of requirements",
+              "right": "Lead Engineer"
+            },
+            {
+              "left": "Prioritizes requirements based on stakeholder input",
+              "right": "Project Manager"
+            },
+            {
+              "left": "Writes detailed system and hardware specifications",
+              "right": "Lead Engineer"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Project Manager writes high-level requirements and prioritizes work based on stakeholder input and strategic objectives",
+        "The Lead Engineer translates high-level requirements into technical specifications and evaluates feasibility",
+        "In the course project, Arminstead acts as Project Manager and Kartini acts as Lead Engineer"
+      ]
+    },
+    {
+      "id": "m1t4",
+      "title": "The Requirements Management Framework",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Requirements management is not a single activity but a structured framework of phases that guide requirements from initial stakeholder conversations to verified, baselined specifications. Understanding this framework helps teams manage requirements systematically and avoid common pitfalls such as scope creep, incomplete coverage, and orphaned artifacts."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Gather Requirements"
+        },
+        {
+          "type": "paragraph",
+          "text": "The gather phase collects insights, needs, and constraints from stakeholders through interviews, workshops, document analysis, and observation. Gathering is intentionally flexible — different organizations use different techniques depending on their industry, culture, and project type. Requirements may originate from customer feedback, regulatory standards, competitor analysis, or internal strategic goals. The key is to capture all relevant inputs before formalizing them."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Record and Formalize"
+        },
+        {
+          "type": "paragraph",
+          "text": "Once gathered, requirements must be entered into Codebeamer so they become structured, searchable, and traceable. Codebeamer supports multiple methods for recording requirements: importing from Microsoft Word or Excel documents, typing directly into tracker items, using templates for standardized requirement structures, or copying from other projects. The record phase transforms informal inputs into formal, managed artifacts with attributes such as status, priority, and ownership."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Trace Requirements"
+        },
+        {
+          "type": "paragraph",
+          "text": "Traceability verifies that every requirement has appropriate downstream coverage — no requirement should exist without a corresponding design element, implementation, or test. Equally important, no downstream item should be an orphan without a traceable link back to a requirement. The trace phase uses Codebeamer's association and relationship features to create and verify these links, ensuring complete coverage across the requirements hierarchy."
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Traceability extends beyond just requirements. In Codebeamer, tests, releases, bugs, and change requests can all be traced to their originating requirements, creating a complete audit trail from stakeholder need to delivered product."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Gather",
+              "back": "Collect stakeholder insights through interviews, workshops, document analysis, and observation. Flexible by design — techniques vary by organization and industry."
+            },
+            {
+              "front": "Record and Formalize",
+              "back": "Enter requirements into Codebeamer via Word/Excel import, manual entry, templates, or project copy. Transform informal inputs into structured, traceable artifacts."
+            },
+            {
+              "front": "Trace",
+              "back": "Verify complete coverage — every requirement has downstream items, and no downstream items are orphaned. Use associations to link requirements across levels."
+            },
+            {
+              "front": "Baseline and Develop/Test",
+              "back": "Lock a snapshot of approved requirements as a baseline. Development and testing begin against the baselined requirements, with changes managed through formal processes."
+            }
+          ]
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the requirements management framework phases in the correct order:",
+          "items": [
+            "Gather",
+            "Record and Formalize",
+            "Trace",
+            "Baseline and Develop/Test"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The requirements management framework follows five phases: Gather, Record, Trace, Baseline, and Develop/Test",
+        "Codebeamer supports multiple methods for recording requirements including Word/Excel import, manual entry, templates, and project copy",
+        "Traceability ensures every requirement has downstream coverage and no downstream items are orphaned",
+        "Baselines lock a snapshot of approved requirements before development and testing begin"
+      ]
+    },
+    {
+      "id": "m1t5",
+      "title": "Explore the Course Project",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will explore the PTC Electric Car headlights project in Codebeamer. You will examine the user accounts and their assigned roles, review the tracker configuration diagram that defines the project structure, and inspect the requirement tracker configuration to understand how trackers are organized for this course."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "This exercise introduces the project configuration you will use throughout the course. Three user accounts are available: <strong>Admin</strong> (system administrator), <strong>Arminstead</strong> (project manager), and <strong>Kartini</strong> (lead engineer)."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex1",
+          "title": "Explore the Course Project",
+          "objective": "Familiarize yourself with the PTC Electric Car headlights project by examining user roles, the tracker configuration diagram, and requirement tracker settings.",
+          "tasks": [
+            {
+              "id": "ex1-t1",
+              "title": "Examine Project Users and Roles",
+              "steps": [
+                {
+                  "action": "Log in to Codebeamer as the Admin user and navigate to the PTC Electric Car headlights project.",
+                  "detail": "The Admin account has full system access and can view all project configuration details including user assignments and role memberships.",
+                  "hint": "Use the credentials provided by your instructor. The project may appear on the dashboard or under the Projects menu."
+                },
+                {
+                  "action": "Open the project Members or Users section to view the list of users assigned to the project.",
+                  "detail": "The Members section shows all users who have access to the project and their assigned roles. Each role determines what actions a user can perform within the project.",
+                  "hint": "Look for a Members, Users, or People link in the project navigation or settings area."
+                },
+                {
+                  "action": "Identify the three user accounts: Admin, Arminstead, and Kartini. Note the role assigned to each user.",
+                  "detail": "Admin serves as the system administrator, Arminstead is assigned the Project Manager role, and Kartini is assigned the Lead Engineer role. These role assignments determine each user's permissions and workflow responsibilities.",
+                  "hint": null
+                },
+                {
+                  "action": "Review the permissions associated with the Project Manager and Lead Engineer roles.",
+                  "detail": "The Project Manager role typically has permissions to create and prioritize high-level requirements, while the Lead Engineer role has permissions to create detailed technical specifications and manage downstream traceability.",
+                  "hint": "Click on the role name or navigate to the project role configuration to see the associated permissions."
+                }
+              ]
+            },
+            {
+              "id": "ex1-t2",
+              "title": "Examine the Tracker Configuration Diagram",
+              "steps": [
+                {
+                  "action": "Navigate to the project configuration or documentation area and locate the tracker configuration diagram.",
+                  "detail": "The tracker configuration diagram provides a visual overview of how trackers are organized in the project and how they relate to each other. It shows the flow from customer requirements down through system, hardware, and software requirements.",
+                  "hint": "The diagram may be available as a wiki page, an attached document, or within the project dashboard."
+                },
+                {
+                  "action": "Identify the requirement trackers shown in the diagram: Customer Requirements, System Requirements, Hardware Requirements, and Software Requirements.",
+                  "detail": "Each tracker holds a specific category of requirements. The diagram illustrates the traceability hierarchy — customer requirements flow down to system requirements, which are decomposed into hardware and software specifications.",
+                  "hint": null
+                },
+                {
+                  "action": "Note the directional relationships between trackers — which trackers feed into which.",
+                  "detail": "Arrows or connections in the diagram show upstream-downstream relationships. Customer requirements are upstream, flowing down through system requirements to hardware and software. This hierarchy is the foundation for traceability verification.",
+                  "hint": "Look for arrows indicating parent-child or upstream-downstream relationships between tracker boxes."
+                },
+                {
+                  "action": "Identify any additional trackers in the diagram beyond requirements, such as test case or bug trackers.",
+                  "detail": "Complete ALM projects include trackers for test management, defect tracking, and change management in addition to requirements. Understanding the full tracker landscape helps you see where requirements fit in the broader project structure.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex1-t3",
+              "title": "Examine Requirement Tracker Configuration",
+              "steps": [
+                {
+                  "action": "Navigate to one of the requirement trackers (such as Customer Requirements) and open its tracker configuration or settings.",
+                  "detail": "Tracker configuration defines the fields, workflows, and permissions for all items in that tracker. Understanding the configuration helps you know what information to provide when creating or editing requirements.",
+                  "hint": "Look for a Settings, Configure, or Administration option within the tracker view — typically accessible via a gear icon or the tracker menu."
+                },
+                {
+                  "action": "Review the custom fields defined for the tracker, such as Priority, Status, Category, and any project-specific attributes.",
+                  "detail": "Custom fields capture the metadata that makes requirements searchable, filterable, and reportable. Common fields include Priority (importance ranking), Status (lifecycle state), and Category (requirement type).",
+                  "hint": null
+                },
+                {
+                  "action": "Examine the workflow states and transitions configured for the tracker.",
+                  "detail": "The workflow defines the lifecycle of a requirement — from Draft through Review, Approved, Implemented, and Verified. Transitions control which state changes are allowed and may require specific roles or approvals.",
+                  "hint": "Look for a Workflow or State Transitions section in the tracker configuration. A visual state diagram may be available."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The course project uses three user accounts — Admin (system admin), Arminstead (project manager), and Kartini (lead engineer) — each with distinct permissions",
+        "The tracker configuration diagram illustrates the traceability hierarchy from customer requirements through system, hardware, and software specifications",
+        "Tracker configuration defines the fields, workflows, and permissions that govern how requirements are created, reviewed, and approved"
+      ]
+    }
+  ]
+}

@@ -3,373 +3,429 @@
  "title": "Life Cycle Configuration",
  "description": "Configure life cycle transitions, object initialization rules, version series, role participation, access control, and workflow association. Apply life cycle best practices.",
  "topics": [
- {
- "id": "m2t1",
- "title": "Object Life Cycle Resolution",
- "estimatedMinutes": 7,
- "content": [
- {
- "type": "paragraph",
- "text": "Before an object can be created in Windchill, the system must determine which life cycle template will manage it. This determination begins with <strong>Object Initialization Rules (OIRs)</strong>, which map object types to specific life cycle and team templates. Understanding how OIRs work and how the resolution hierarchy is evaluated is essential for controlling object behavior across your Windchill deployment."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Object Initialization Rules"
- },
- {
- "type": "paragraph",
- "text": "An Object Initialization Rule (OIR) is the starting point for determining which life cycle template manages an object. Each OIR specifies an object type (for example, a Plan document subtype) and the life cycle and team template names that should be assigned to objects of that type. OIRs are configured via the <strong>Object Initialization Rules Administration</strong> utility and stored as XML files that define the object type and the corresponding template assignments."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Resolution Hierarchy"
- },
- {
- "type": "paragraph",
- "text": "When an object is created, Windchill searches for a matching OIR using a specific resolution hierarchy. The system starts at the most specific context and works outward until it finds a match. If no matching life cycle template is found anywhere in the hierarchy, the system <strong>prevents the object from being created</strong> in that context."
- },
- {
- "type": "interactive-sort",
- "prompt": "Arrange the OIR resolution levels from the most specific (checked first) to the most general (checked last):",
- "items": [
- "Product / Library / Project / Program context",
- "Organization",
- "Site"
- ]
- },
- {
- "type": "callout",
- "variant": "warning",
- "text": "If no matching life cycle template is found at any level of the resolution hierarchy, Windchill will not allow the object to be created in that context. Always verify that an appropriate OIR exists before attempting to create objects of a new type or subtype."
- },
- {
- "type": "callout",
- "variant": "tip",
- "text": "OIRs also determine the team template for an object, not just the life cycle template. This means a single OIR controls both the lifecycle behavior and the team membership assignments for objects of a given type."
- }
- ],
- "keyTakeaways": [
- "Object Initialization Rules (OIRs) are the starting point for determining which life cycle template manages an object",
- "The resolution hierarchy searches from the most specific context (product/library/project/program) through Organization to Site",
- "If no matching life cycle template is found at any level, Windchill prevents object creation in that context",
- "OIRs also determine the team template, controlling both lifecycle behavior and team membership assignments"
- ]
- },
- {
- "id": "m2t2",
- "title": "Version Series and State-Based Versioning",
- "estimatedMinutes": 7,
- "content": [
- {
- "type": "paragraph",
- "text": "Windchill supports optional <strong>version series per state</strong>, allowing different versioning schemes to apply at different life cycle states. This capability is useful when an organization needs one versioning convention during development and a different convention after release. State-based versioning must be explicitly enabled in the object type's OIR."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "How State-Based Versioning Works"
- },
- {
- "type": "paragraph",
- "text": "When state-based versioning is active, the first state in the life cycle determines the initial versioning scheme. Subsequent revisions adopt the versioning scheme of the state where the revision is conducted. Once a new version sequence starts, the previous sequence is no longer used, even if the object returns to an earlier state."
- },
- {
- "type": "comparison-table",
- "headers": ["Version Series", "Scheme", "Example Sequence"],
- "rows": [
- ["Numeric", "Sequential integers", "1, 2, 3, 4, ..."],
- ["Mil Std", "Alphabetic (military standard)", "A, B, C, D, ..."]
- ]
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Versioning Walk-Through"
- },
- {
- "type": "paragraph",
- "text": "Consider a Part managed by a life cycle with Numeric versioning in the Design state and Mil Std versioning in the Released state. The part starts at version 1 in Design. Revising while in Design increments to version 2. Promoting to a Prototype state (still Numeric) and revising yields version 3. Promoting to Released does <em>not</em> change the version (promotion is not a revision). But the next revision while in Released switches to Mil Std, producing version A. If the part later returns to Design and is revised there, it continues with Mil Std (version B) because once a new sequence starts, the previous sequence is permanently abandoned."
- },
- {
- "type": "callout",
- "variant": "insight",
- "text": "The key principle to remember: the versioning scheme is determined by the state where the revision occurs, not the current state of the object. And once a new version sequence begins, the previous one is never resumed, even if the object moves back to a state that originally used the old sequence."
- },
- {
- "type": "interactive-match",
- "prompt": "Match each versioning scenario to its correct outcome:",
- "pairs": [
- {
- "left": "Part at version 2 in Design (Numeric), revised in Design",
- "right": "Version 3 (Numeric continues)"
- },
- {
- "left": "Part at version 3 promoted to Released (Mil Std)",
- "right": "Version unchanged (promotion is not a revision)"
- },
- {
- "left": "Part at version 3 in Released, revised in Released",
- "right": "Version A (Mil Std begins)"
- },
- {
- "left": "Part at version A returned to Design, revised in Design",
- "right": "Version B (Mil Std continues, Numeric abandoned)"
- }
- ]
- }
- ],
- "keyTakeaways": [
- "State-based versioning allows different versioning schemes (Numeric or Mil Std) at different life cycle states",
- "The versioning scheme is determined by the state where the revision is conducted, not the object's current state",
- "Once a new version sequence starts, the previous sequence is permanently abandoned even if the object returns to an earlier state",
- "State-based versioning must be explicitly enabled in the object type's OIR"
- ]
- },
- {
- "id": "m2t3",
- "title": "Role Participation and Access Control",
- "estimatedMinutes": 6,
- "content": [
- {
- "type": "paragraph",
- "text": "Advanced life cycles in Windchill support defining <strong>roles per state</strong>, enabling fine-grained control over who participates at each stage of an object's life. Roles generically identify participation, which makes life cycles reusable across different product lines. Combined with state-specific access control, roles provide a powerful mechanism for governing object development."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Role Resolution"
- },
- {
- "type": "paragraph",
- "text": "Roles defined in life cycles are abstract identifiers. They must be resolved to actual users before they take effect. Roles are first defined in workflow templates and then resolved through one of several mechanisms. Resolving with teams is the most flexible, most common, and recommended method."
- },
- {
- "type": "reveal-cards",
- "cards": [
- {
- "front": "Resolve to Users",
- "back": "Map a role directly to specific named users. Simple but inflexible - requires updates whenever personnel change."
- },
- {
- "front": "Resolve to Groups",
- "back": "Map a role to a user group. More maintainable than direct user assignment, but still relatively static."
- },
- {
- "front": "Resolve to Organizations",
- "back": "Map a role to all members of an organization. Useful for broad participation requirements."
- },
- {
- "front": "Resolve with Teams (Recommended)",
- "back": "Map a role using team templates and context teams. Most flexible and most commonly used method because team membership can vary by product or project context."
- }
- ]
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Access Control in Advanced Life Cycles"
- },
- {
- "type": "paragraph",
- "text": "Access control in advanced life cycles is <strong>grant-only</strong>, <strong>state-specific</strong>, and applied to <strong>selected roles</strong>. All roles automatically receive Read permission. Administrators can additionally grant Create, Modify, Delete, Administrative, or Full Control permissions. Life cycle access control overrides most domain-level access control, but it cannot override absolute deny rules or security labels."
- },
- {
- "type": "callout",
- "variant": "warning",
- "text": "Life cycle access control can only grant permissions - it cannot deny them. However, an absolute deny rule at the domain level or a security label restriction will still take precedence over any life cycle access control grant."
- },
- {
- "type": "interactive-sort",
- "prompt": "Arrange the access control precedence from highest priority (overrides others) to lowest priority:",
- "items": [
- "Security labels / Absolute deny",
- "Life cycle access control (state-specific)",
- "Domain-level access control policies"
- ]
- }
- ],
- "keyTakeaways": [
- "Roles in advanced life cycles generically identify participation, enabling life cycle reuse across product lines",
- "Resolving roles with teams is the most flexible, most common, and recommended approach",
- "Life cycle access control is grant-only, state-specific, and overrides most domain-level policies",
- "Absolute deny rules and security labels always take precedence over life cycle access control grants"
- ]
- },
- {
- "id": "m2t4",
- "title": "Workflow Association and Best Practices",
- "estimatedMinutes": 7,
- "content": [
- {
- "type": "paragraph",
- "text": "Advanced life cycles control object development by associating <strong>workflow templates</strong> with specific states. Each state can use a workflow for the phase only, the gate only, both, or neither. Understanding workflow iteration behavior and following established best practices helps you design life cycles that are maintainable, performant, and predictable."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Workflow Iteration Behavior"
- },
- {
- "type": "paragraph",
- "text": "When associating a workflow template with a life cycle state, you can select either the <strong>latest iteration</strong> or a <strong>current (specific) iteration</strong> of the workflow template. With latest iteration, if the workflow template is checked out, objects in that state use the last checked-in version. When the updated workflow template is checked back in, new objects entering that state use the updated version. Existing objects already managed by an earlier iteration of the workflow are unaffected."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Life Cycle Best Practices"
- },
- {
- "type": "comparison-table",
- "headers": ["Best Practice", "Rationale"],
- "rows": [
- ["Use Basic life cycles when no workflow is needed", "Basic life cycles offer better performance than Advanced life cycles without workflow templates"],
- ["Limit life cycles at sub-organizational level", "Reduces complexity and makes administration more manageable across the deployment"],
- ["Create new life cycles with Save As instead of modifying out-of-the-box ones", "Preserves the original templates for reference and avoids unintended side effects on existing objects"],
- ["Minimize the number of states", "Fewer states mean simpler transitions, less access control configuration, and easier maintenance"],
- ["Remove unnecessary Submit/Review workflows after creating an Advanced life cycle", "Advanced life cycles auto-generate Submit and Review workflows that are often not needed and add clutter"],
- ["Do not use gates if modification access is required", "Gate states restrict modification; if users need to edit objects during a gate review, use a phase workflow instead"],
- ["Avoid Promote/Lock/Set State transitions that conflict with workflow execution", "These transitions can interrupt or bypass running workflow processes, leading to unpredictable behavior"]
- ]
- },
- {
- "type": "callout",
- "variant": "tip",
- "text": "After saving a new Advanced life cycle for the first time, always inspect the default transitions that Windchill generates. Also remember that Reviewer and Approver roles should only be used for the promotion process, not for general state participation."
- },
- {
- "type": "interactive-match",
- "prompt": "Match each life cycle design decision to the recommended best practice:",
- "pairs": [
- {
- "left": "Object type does not require any workflow",
- "right": "Use a Basic life cycle for better performance"
- },
- {
- "left": "Need to customize the default Windchill life cycle",
- "right": "Use Save As to create a new life cycle rather than modifying the original"
- },
- {
- "left": "Users need modification access during a review step",
- "right": "Use a phase workflow instead of a gate"
- },
- {
- "left": "Newly created Advanced life cycle has extra workflows",
- "right": "Remove the auto-generated Submit and Review workflows"
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Each life cycle state can associate a workflow for the phase, the gate, both, or neither",
- "Latest iteration workflow association ensures new objects use the most recent checked-in version without affecting existing objects",
- "Use Basic life cycles when no workflow is needed for better performance",
- "Always inspect default transitions after creating an Advanced life cycle and remove unnecessary auto-generated workflows"
- ]
- },
- {
- "id": "m2t5",
- "title": "Exercise 2 - Assign a Life Cycle with Object Initialization Rule",
- "estimatedMinutes": 8,
- "isExercise": true,
- "content": [
- {
- "type": "paragraph",
- "text": "In this exercise, you will import an Object Initialization Rule (OIR) to assign the Plan Development Life Cycle to the Plan document subtype. You will then validate that the OIR is working correctly by creating a Plan document and verifying its initial life cycle state."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "You will need the <code>PlanDevelopmentOIR.xml</code> file and access to the Windchill training environment with the PTC Publications organization and PTC New Publication Template product."
- },
- {
- "type": "exercise",
- "exerciseId": "ex2",
- "title": "Assign a Life Cycle with Object Initialization Rule",
- "objective": "Import an OIR XML file to assign the Plan Development Life Cycle to the Plan document subtype, then validate the assignment by creating a test document.",
- "tasks": [
- {
- "id": "ex2-t1",
- "title": "Import an Object Initialization Rule",
- "steps": [
- {
- "action": "Open the PlanDevelopmentOIR.xml file in a text editor such as Notepad++.",
- "detail": "Review the XML structure to identify the object type (Plan subtype) and the life cycle and team template names specified in the rule.",
- "hint": "Look for the type attribute and the life cycle template name in the XML elements."
- },
- {
- "action": "In Windchill, navigate to the PTC Publications organization.",
- "detail": "OIRs are configured at the organization level so they apply to all products and libraries within that organization.",
- "hint": null
- },
- {
- "action": "Open the Object Initialization Rules Administration utility.",
- "detail": "This utility allows you to create, import, and manage OIRs that control how new objects are initialized with life cycle and team templates.",
- "hint": "Access the utility from the organization's administration tools or utilities menu."
- },
- {
- "action": "Create a new OIR named 'Development Plan'.",
- "detail": "The name should clearly describe the purpose of the rule so administrators can identify it later.",
- "hint": null
- },
- {
- "action": "Set the Type to Plan using the Find dialog to locate the correct subtype.",
- "detail": "The Type field specifies which object type or subtype this OIR applies to. Using the Find dialog ensures you select the exact Plan subtype.",
- "hint": "Click the search icon next to the Type field and search for 'Plan' in the type hierarchy."
- },
- {
- "action": "Import the PlanDevelopmentOIR.xml file into the OIR.",
- "detail": "Importing the XML file populates the life cycle template and team template assignments defined in the file.",
- "hint": "Use the Import button or action and browse to the location of the XML file."
- }
- ]
- },
- {
- "id": "ex2-t2",
- "title": "Validate the Combined Life Cycle and OIR",
- "steps": [
- {
- "action": "Navigate to the PTC New Publication Template product and open the Folders view.",
- "detail": "You will create a test document in this product context to verify that the OIR correctly assigns the Plan Development Life Cycle.",
- "hint": null
- },
- {
- "action": "Create a new document with Type set to Plan, Primary Content Source set to No Content, and Name set to 'Test Plan Doc'.",
- "detail": "By creating a Plan document in this context, the OIR should automatically assign the Plan Development Life Cycle to the new object.",
- "hint": "Use the New Document action from the Folders toolbar or right-click menu."
- },
- {
- "action": "Click Finish to complete document creation.",
- "detail": "Windchill applies the OIR during object creation, assigning the life cycle template and team template specified in the rule.",
- "hint": null
- },
- {
- "action": "Open the Information page for the new document and select the Details tab.",
- "detail": "The Details tab displays the object's current life cycle state, life cycle template name, and other metadata.",
- "hint": null
- },
- {
- "action": "Verify that the document is in the Creation state, which is the first state of the Plan Development Life Cycle.",
- "detail": "If the document shows the Creation state, the OIR is correctly assigning the Plan Development Life Cycle to Plan documents.",
- "hint": "If the state does not match, verify the OIR is enabled and the Type field matches the Plan subtype exactly."
- },
- {
- "action": "(Optional) Disable the OIR and attempt to create another Plan document to observe the difference.",
- "detail": "Disabling the OIR removes its effect, so the system will fall back to the next level in the resolution hierarchy or prevent creation if no other OIR matches.",
- "hint": null
- }
- ]
- }
- ]
- }
- ],
- "keyTakeaways": [
- "OIR XML files specify the object type, life cycle template, and team template to assign during object creation",
- "OIRs are configured at the organization level via the Object Initialization Rules Administration utility",
- "You can validate an OIR by creating an object of the target type and checking its initial life cycle state on the Details tab",
- "Disabling an OIR causes the system to fall back to the next level in the resolution hierarchy"
- ]
- }
+  {
+   "id": "m2t1",
+   "title": "Object Life Cycle Resolution",
+   "estimatedMinutes": 7,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Before an object can be created in Windchill, the system must determine which life cycle template will manage it. This determination begins with <strong>Object Initialization Rules (OIRs)</strong>, which map object types to specific life cycle and team templates. Understanding how OIRs work and how the resolution hierarchy is evaluated is essential for controlling object behavior across your Windchill deployment."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Object Initialization Rules"
+    },
+    {
+     "type": "paragraph",
+     "text": "An Object Initialization Rule (OIR) is the starting point for determining which life cycle template manages an object. Each OIR specifies an object type (for example, a Plan document subtype) and the life cycle and team template names that should be assigned to objects of that type. OIRs are configured via the <strong>Object Initialization Rules Administration</strong> utility and stored as XML files that define the object type and the corresponding template assignments."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Resolution Hierarchy"
+    },
+    {
+     "type": "paragraph",
+     "text": "When an object is created, Windchill searches for a matching OIR using a specific resolution hierarchy. The system starts at the most specific context and works outward until it finds a match. If no matching life cycle template is found anywhere in the hierarchy, the system <strong>prevents the object from being created</strong> in that context."
+    },
+    {
+     "type": "interactive-sort",
+     "prompt": "Arrange the OIR resolution levels from the most specific (checked first) to the most general (checked last):",
+     "items": [
+      "Product / Library / Project / Program context",
+      "Organization",
+      "Site"
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "warning",
+     "text": "If no matching life cycle template is found at any level of the resolution hierarchy, Windchill will not allow the object to be created in that context. Always verify that an appropriate OIR exists before attempting to create objects of a new type or subtype."
+    },
+    {
+     "type": "callout",
+     "variant": "tip",
+     "text": "OIRs also determine the team template for an object, not just the life cycle template. This means a single OIR controls both the lifecycle behavior and the team membership assignments for objects of a given type."
+    }
+   ],
+   "keyTakeaways": [
+    "Object Initialization Rules (OIRs) are the starting point for determining which life cycle template manages an object",
+    "The resolution hierarchy searches from the most specific context (product/library/project/program) through Organization to Site",
+    "If no matching life cycle template is found at any level, Windchill prevents object creation in that context",
+    "OIRs also determine the team template, controlling both lifecycle behavior and team membership assignments"
+   ]
+  },
+  {
+   "id": "m2t2",
+   "title": "Version Series and State-Based Versioning",
+   "estimatedMinutes": 7,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Windchill supports optional <strong>version series per state</strong>, allowing different versioning schemes to apply at different life cycle states. This capability is useful when an organization needs one versioning convention during development and a different convention after release. State-based versioning must be explicitly enabled in the object type's OIR."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "How State-Based Versioning Works"
+    },
+    {
+     "type": "paragraph",
+     "text": "When state-based versioning is active, the first state in the life cycle determines the initial versioning scheme. Subsequent revisions adopt the versioning scheme of the state where the revision is conducted. Once a new version sequence starts, the previous sequence is no longer used, even if the object returns to an earlier state."
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Version Series",
+      "Scheme",
+      "Example Sequence"
+     ],
+     "rows": [
+      [
+       "Numeric",
+       "Sequential integers",
+       "1, 2, 3, 4, ..."
+      ],
+      [
+       "Mil Std",
+       "Alphabetic (military standard)",
+       "A, B, C, D, ..."
+      ]
+     ]
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Versioning Walk-Through"
+    },
+    {
+     "type": "paragraph",
+     "text": "Consider a Part managed by a life cycle with Numeric versioning in the Design state and Mil Std versioning in the Released state. The part starts at version 1 in Design. Revising while in Design increments to version 2. Promoting to a Prototype state (still Numeric) and revising yields version 3. Promoting to Released does <em>not</em> change the version (promotion is not a revision). But the next revision while in Released switches to Mil Std, producing version A. If the part later returns to Design and is revised there, it continues with Mil Std (version B) because once a new sequence starts, the previous sequence is permanently abandoned."
+    },
+    {
+     "type": "callout",
+     "variant": "insight",
+     "text": "The key principle to remember: the versioning scheme is determined by the state where the revision occurs, not the current state of the object. And once a new version sequence begins, the previous one is never resumed, even if the object moves back to a state that originally used the old sequence."
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each versioning scenario to its correct outcome:",
+     "pairs": [
+      {
+       "left": "Part at version 2 in Design (Numeric), revised in Design",
+       "right": "Version 3 (Numeric continues)"
+      },
+      {
+       "left": "Part at version 3 promoted to Released (Mil Std)",
+       "right": "Version unchanged (promotion is not a revision)"
+      },
+      {
+       "left": "Part at version 3 in Released, revised in Released",
+       "right": "Version A (Mil Std begins)"
+      },
+      {
+       "left": "Part at version A returned to Design, revised in Design",
+       "right": "Version B (Mil Std continues, Numeric abandoned)"
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "State-based versioning allows different versioning schemes (Numeric or Mil Std) at different life cycle states",
+    "The versioning scheme is determined by the state where the revision is conducted, not the object's current state",
+    "Once a new version sequence starts, the previous sequence is permanently abandoned even if the object returns to an earlier state",
+    "State-based versioning must be explicitly enabled in the object type's OIR"
+   ]
+  },
+  {
+   "id": "m2t3",
+   "title": "Role Participation and Access Control",
+   "estimatedMinutes": 6,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Advanced life cycles in Windchill support defining <strong>roles per state</strong>, enabling fine-grained control over who participates at each stage of an object's life. Roles generically identify participation, which makes life cycles reusable across different product lines. Combined with state-specific access control, roles provide a powerful mechanism for governing object development."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Role Resolution"
+    },
+    {
+     "type": "paragraph",
+     "text": "Roles defined in life cycles are abstract identifiers. They must be resolved to actual users before they take effect. Roles are first defined in workflow templates and then resolved through one of several mechanisms. Resolving with teams is the most flexible, most common, and recommended method."
+    },
+    {
+     "type": "reveal-cards",
+     "cards": [
+      {
+       "front": "Resolve to Users",
+       "back": "Map a role directly to specific named users. Simple but inflexible - requires updates whenever personnel change."
+      },
+      {
+       "front": "Resolve to Groups",
+       "back": "Map a role to a user group. More maintainable than direct user assignment, but still relatively static."
+      },
+      {
+       "front": "Resolve to Organizations",
+       "back": "Map a role to all members of an organization. Useful for broad participation requirements."
+      },
+      {
+       "front": "Resolve with Teams (Recommended)",
+       "back": "Map a role using team templates and context teams. Most flexible and most commonly used method because team membership can vary by product or project context."
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Access Control in Advanced Life Cycles"
+    },
+    {
+     "type": "paragraph",
+     "text": "Access control in advanced life cycles is <strong>grant-only</strong>, <strong>state-specific</strong>, and applied to <strong>selected roles</strong>. All roles automatically receive Read permission. Administrators can additionally grant Create, Modify, Delete, Administrative, or Full Control permissions. Life cycle access control overrides most domain-level access control, but it cannot override absolute deny rules or security labels."
+    },
+    {
+     "type": "callout",
+     "variant": "warning",
+     "text": "Life cycle access control can only grant permissions - it cannot deny them. However, an absolute deny rule at the domain level or a security label restriction will still take precedence over any life cycle access control grant."
+    },
+    {
+     "type": "interactive-sort",
+     "prompt": "Arrange the access control precedence from highest priority (overrides others) to lowest priority:",
+     "items": [
+      "Security labels / Absolute deny",
+      "Life cycle access control (state-specific)",
+      "Domain-level access control policies"
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Roles in advanced life cycles generically identify participation, enabling life cycle reuse across product lines",
+    "Resolving roles with teams is the most flexible, most common, and recommended approach",
+    "Life cycle access control is grant-only, state-specific, and overrides most domain-level policies",
+    "Absolute deny rules and security labels always take precedence over life cycle access control grants"
+   ]
+  },
+  {
+   "id": "m2t4",
+   "title": "Workflow Association and Best Practices",
+   "estimatedMinutes": 7,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Advanced life cycles control object development by associating <strong>workflow templates</strong> with specific states. Each state can use a workflow for the phase only, the gate only, both, or neither. Understanding workflow iteration behavior and following established best practices helps you design life cycles that are maintainable, performant, and predictable."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Workflow Iteration Behavior"
+    },
+    {
+     "type": "paragraph",
+     "text": "When associating a workflow template with a life cycle state, you can select either the <strong>latest iteration</strong> or a <strong>current (specific) iteration</strong> of the workflow template. With latest iteration, if the workflow template is checked out, objects in that state use the last checked-in version. When the updated workflow template is checked back in, new objects entering that state use the updated version. Existing objects already managed by an earlier iteration of the workflow are unaffected."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Life Cycle Best Practices"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Best Practice",
+      "Rationale"
+     ],
+     "rows": [
+      [
+       "Use Basic life cycles when no workflow is needed",
+       "Basic life cycles offer better performance than Advanced life cycles without workflow templates"
+      ],
+      [
+       "Limit life cycles at sub-organizational level",
+       "Reduces complexity and makes administration more manageable across the deployment"
+      ],
+      [
+       "Create new life cycles with Save As instead of modifying out-of-the-box ones",
+       "Preserves the original templates for reference and avoids unintended side effects on existing objects"
+      ],
+      [
+       "Minimize the number of states",
+       "Fewer states mean simpler transitions, less access control configuration, and easier maintenance"
+      ],
+      [
+       "Remove unnecessary Submit/Review workflows after creating an Advanced life cycle",
+       "Advanced life cycles auto-generate Submit and Review workflows that are often not needed and add clutter"
+      ],
+      [
+       "Do not use gates if modification access is required",
+       "Gate states restrict modification; if users need to edit objects during a gate review, use a phase workflow instead"
+      ],
+      [
+       "Avoid Promote/Lock/Set State transitions that conflict with workflow execution",
+       "These transitions can interrupt or bypass running workflow processes, leading to unpredictable behavior"
+      ]
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "tip",
+     "text": "After saving a new Advanced life cycle for the first time, always inspect the default transitions that Windchill generates. Also remember that Reviewer and Approver roles should only be used for the promotion process, not for general state participation."
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each life cycle design decision to the recommended best practice:",
+     "pairs": [
+      {
+       "left": "Object type does not require any workflow",
+       "right": "Use a Basic life cycle for better performance"
+      },
+      {
+       "left": "Need to customize the default Windchill life cycle",
+       "right": "Use Save As to create a new life cycle rather than modifying the original"
+      },
+      {
+       "left": "Users need modification access during a review step",
+       "right": "Use a phase workflow instead of a gate"
+      },
+      {
+       "left": "Newly created Advanced life cycle has extra workflows",
+       "right": "Remove the auto-generated Submit and Review workflows"
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Each life cycle state can associate a workflow for the phase, the gate, both, or neither",
+    "Latest iteration workflow association ensures new objects use the most recent checked-in version without affecting existing objects",
+    "Use Basic life cycles when no workflow is needed for better performance",
+    "Always inspect default transitions after creating an Advanced life cycle and remove unnecessary auto-generated workflows"
+   ]
+  },
+  {
+   "id": "m2t5",
+   "title": "Exercise 2 - Assign a Life Cycle with Object Initialization Rule",
+   "estimatedMinutes": 8,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "In this exercise, you will import an Object Initialization Rule (OIR) to assign the Plan Development Life Cycle to the Plan document subtype. You will then validate that the OIR is working correctly by creating a Plan document and verifying its initial life cycle state."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "You will need the <code>PlanDevelopmentOIR.xml</code> file and access to the Windchill training environment with the PTC Publications organization and PTC New Publication Template product."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex2",
+     "title": "Assign a Life Cycle with Object Initialization Rule",
+     "objective": "Import an OIR XML file to assign the Plan Development Life Cycle to the Plan document subtype, then validate the assignment by creating a test document.",
+     "tasks": [
+      {
+       "id": "ex2-t1",
+       "title": "Import an Object Initialization Rule",
+       "steps": [
+        {
+         "action": "In Notepad++, open <code>W:\\WCCM-AUTO-Lab-Files\\PlanDevelopmentOIR.xml</code>.",
+         "detail": "Review the XML structure to identify the object type (Plan subtype) and the life cycle and team template names specified in the rule.",
+         "hint": "Note the Plan subtype listed on the first line."
+        },
+        {
+         "action": "Close Notepad++.",
+         "detail": "You have confirmed the OIR content and are ready to import it into Windchill.",
+         "hint": null
+        },
+        {
+         "action": "In the Windchill breadcrumb navigation, select <strong>PTC Publications</strong>.",
+         "detail": "OIRs are configured at the organization level so they apply to all products and libraries within that organization.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>Object Initialization Rules Administration</strong>.",
+         "detail": "This utility allows you to create, import, and manage OIRs that control how new objects are initialized with life cycle and team templates.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>New Object Initialization Rule</strong> icon.",
+         "detail": "This creates a new OIR entry where you will specify the object type and import the XML configuration.",
+         "hint": null
+        },
+        {
+         "action": "Type <strong>Development Plan</strong> in the Name field.",
+         "detail": "The name should clearly describe the purpose of the rule so administrators can identify it later.",
+         "hint": null
+        },
+        {
+         "action": "In the Type field, click <strong>Find</strong>.",
+         "detail": "The Find dialog lets you search the object type hierarchy to select the exact type or subtype this OIR applies to.",
+         "hint": null
+        },
+        {
+         "action": "In the Object Type list, select the <strong>Plan</strong> radio button and click <strong>OK</strong>.",
+         "detail": "Selecting Plan ensures this OIR applies specifically to Plan document subtypes.",
+         "hint": null
+        },
+        {
+         "action": "In the XML File field, click <strong>Choose File</strong>.",
+         "detail": "You will browse to the OIR XML file that contains the life cycle and team template assignments.",
+         "hint": null
+        },
+        {
+         "action": "Select <code>W:\\WCCM-AUTO-Lab-Files\\PlanDevelopmentOIR.xml</code> in the file dialog and click <strong>Open</strong>, then <strong>OK</strong>.",
+         "detail": "Importing the XML file populates the life cycle template and team template assignments defined in the file.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex2-t2",
+       "title": "Validate the Combined Life Cycle and OIR",
+       "steps": [
+        {
+         "action": "From the Navigator, browse to <strong>Recent Products > PTC New Publication Template > Folders</strong>.",
+         "detail": "You will create a test document in this product context to verify that the OIR correctly assigns the Plan Development Life Cycle.",
+         "hint": null
+        },
+        {
+         "action": "Create a new document with Type set to <strong>Plan</strong>, Primary Content Source set to <strong>No Content</strong>, and Name set to <strong>Test Plan Doc</strong>.",
+         "detail": "By creating a Plan document in this context, the OIR should automatically assign the Plan Development Life Cycle to the new object.",
+         "hint": "Use the New Document action from the Folders toolbar or right-click menu."
+        },
+        {
+         "action": "Click <strong>Finish</strong>.",
+         "detail": "Windchill applies the OIR during object creation, assigning the life cycle template and team template specified in the rule.",
+         "hint": null
+        },
+        {
+         "action": "Go to the <strong>Information page</strong> of Test Plan Doc.",
+         "detail": "The Information page displays the object's metadata including its life cycle assignment.",
+         "hint": null
+        },
+        {
+         "action": "In the <strong>Details</strong> tab, notice that the new document is in <strong>Creation</strong> state, which is the first state of the Plan Development life cycle.",
+         "detail": "If the document shows the Creation state, the OIR is correctly assigning the Plan Development Life Cycle to Plan documents.",
+         "hint": "If the state does not match, verify the OIR is enabled and the Type field matches the Plan subtype exactly."
+        },
+        {
+         "action": "(Optional) Disable the Object Initialization Rule and test a second Plan document creation.",
+         "detail": "Disabling the OIR removes its effect, so the system will fall back to the next level in the resolution hierarchy or prevent creation if no other OIR matches.",
+         "hint": null
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "OIR XML files specify the object type, life cycle template, and team template to assign during object creation",
+    "OIRs are configured at the organization level via the Object Initialization Rules Administration utility",
+    "You can validate an OIR by creating an object of the target type and checking its initial life cycle state on the Details tab",
+    "Disabling an OIR causes the system to fall back to the next level in the resolution hierarchy"
+   ]
+  }
  ]
 }

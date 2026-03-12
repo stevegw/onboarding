@@ -1,0 +1,71 @@
+{
+  "moduleId": "m1",
+  "title": "Introduction to Requirements Management Knowledge Check",
+  "questions": [
+    {
+      "id": "m1-kc-001",
+      "question": "Which stage of the ALM development framework does this course primarily focus on?",
+      "options": [
+        "Design",
+        "Requirements Definition",
+        "Development",
+        "Testing"
+      ],
+      "answerIndex": 1,
+      "rationale": "This course focuses on the Requirements Definition stage, where requirements are gathered, recorded, refined, and traced. The Design, Development, and Testing stages occur after requirements have been baselined and approved.",
+      "topic": "m1t1"
+    },
+    {
+      "id": "m1-kc-002",
+      "question": "What is the primary responsibility of the Lead Engineer in requirements management?",
+      "options": [
+        "Collecting high-level requirements from customers",
+        "Managing project budgets and timelines",
+        "Writing technical requirements and evaluating feasibility",
+        "Approving all requirements before development begins"
+      ],
+      "answerIndex": 2,
+      "rationale": "The Lead Engineer translates high-level requirements into technical requirements, evaluates feasibility and workload, and ensures the technical solution meets defined requirements. The Project Manager handles high-level requirements and prioritization.",
+      "topic": "m1t3"
+    },
+    {
+      "id": "m1-kc-003",
+      "question": "In the requirements management framework, what happens during the Trace phase?",
+      "options": [
+        "Requirements are gathered from stakeholders and customers",
+        "Requirements are entered into Codebeamer from various sources",
+        "Every requirement is verified to have sufficient downstream items to prove it is satisfied",
+        "The project is frozen and requirements are locked for development"
+      ],
+      "answerIndex": 2,
+      "rationale": "During the Trace phase, you verify that each customer requirement has sufficient downstream system requirements and that no orphan items exist without upstream justification. The Gather phase collects requirements, the Record phase enters them, and the Baseline phase freezes them.",
+      "topic": "m1t4"
+    },
+    {
+      "id": "m1-kc-004",
+      "question": "Which category of requirements describes what customers directly care about?",
+      "options": [
+        "System requirements",
+        "Software requirements",
+        "Customer requirements",
+        "Hardware requirements"
+      ],
+      "answerIndex": 2,
+      "rationale": "Customer requirements represent what customers directly need or want from the product. System, software, and hardware requirements are technical specifications that describe how those customer needs will be met — they are downstream decompositions of customer requirements.",
+      "topic": "m1t2"
+    },
+    {
+      "id": "m1-kc-005",
+      "question": "What is the correct order of the requirements management framework phases?",
+      "options": [
+        "Record → Gather → Trace → Baseline",
+        "Gather → Record/Formalize → Trace → Baseline",
+        "Trace → Gather → Baseline → Record",
+        "Baseline → Gather → Record → Trace"
+      ],
+      "answerIndex": 1,
+      "rationale": "The requirements management framework follows: Gather (collect stakeholder inputs) → Record/Formalize (enter into Codebeamer) → Trace (verify coverage and relationships) → Baseline (freeze for review). This iterative loop ensures requirements are complete and properly linked before development begins.",
+      "topic": "m1t4"
+    }
+  ]
+}

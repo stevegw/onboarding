@@ -1,401 +1,556 @@
 {
-  "id": "m1",
-  "title": "Introduction to Windchill eBOM",
-  "description": "Examine bill of materials concepts, BOM types and management risks, the digital thread, Windchill parts, product structure, and design methodologies.",
-  "topics": [
+ "id": "m1",
+ "title": "Introduction to Windchill eBOM",
+ "description": "Examine bill of materials concepts, BOM types and management risks, the digital thread, Windchill parts, product structure, and design methodologies.",
+ "topics": [
+  {
+   "id": "m1t1",
+   "title": "Understanding Bills of Materials",
+   "estimatedMinutes": 6,
+   "content": [
     {
-      "id": "m1t1",
-      "title": "Understanding Bills of Materials",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "A bill of materials (BOM) is a comprehensive inventory of the raw materials, assemblies, subassemblies, parts, components, and the quantities of each needed to manufacture a product. Understanding BOM types and management challenges is fundamental to working effectively with Windchill."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Types of Bills of Materials"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["BOM Type", "Purpose", "Key Characteristics"],
-          "rows": [
-            ["eBOM (Engineering)", "Defines the design of the finished product", "Includes all part numbers, revisions, descriptions, quantities, and specifications"],
-            ["mBOM (Manufacturing)", "Supports the assembly and manufacturing process", "Contains all assemblies, parts, packaging materials, and manufacturing process information"],
-            ["sBOM (Service)", "Represents the finished product at the sales stage", "Includes the finished product and components as separate items in the sales order"]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "insight",
-          "text": "The different types of BOMs depend on projected use and business needs. Each type involves a different structure and level of detail, but they all must mesh to create a product that meets its designers' expectations."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "BOM Management Risks"
-        },
-        {
-          "type": "paragraph",
-          "text": "A BOM contains the necessary information for a variety of expert groups and is shared across departments such as design, development, quality, manufacturing, and purchasing. Poor BOM management leads to significant business risks."
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Production of Out-of-Specification Items",
-              "back": "Department disconnects lead to manufacturing mistakes. One department may be unaware of another's changes to a BOM until remediation is too late, resulting in out-of-specification product items."
-            },
-            {
-              "front": "Purchasing Dilemmas",
-              "back": "When purchasing employees receive notifications about BOM updates after purchases are processed, ordered components become unusable company assets. Manual notification processes incur high costs."
-            },
-            {
-              "front": "Service and Maintenance Failures",
-              "back": "When service technicians in the field cannot locate the correct version of a BOM, it leads to financial or reputation-based repercussions and delays in prompt service and maintenance."
-            }
-          ]
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each BOM type to its primary focus:",
-          "pairs": [
-            {"left": "Defines the design with all part numbers and specifications", "right": "eBOM"},
-            {"left": "Contains assemblies, packaging, and manufacturing processes", "right": "mBOM"},
-            {"left": "Represents the finished product at the sales stage", "right": "sBOM"}
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "A BOM is a comprehensive inventory of materials, parts, and quantities needed to manufacture a product.",
-        "Three main BOM types serve different purposes: eBOM for engineering design, mBOM for manufacturing, and sBOM for service and sales.",
-        "Poor BOM management leads to out-of-specification products, purchasing dilemmas, and service failures.",
-        "BOMs are shared across multiple departments and must be managed carefully throughout the product lifecycle."
-      ]
+     "type": "paragraph",
+     "text": "A bill of materials (BOM) is a comprehensive inventory of the raw materials, assemblies, subassemblies, parts, components, and the quantities of each needed to manufacture a product. Understanding BOM types and management challenges is fundamental to working effectively with Windchill."
     },
     {
-      "id": "m1t2",
-      "title": "BOM and the Digital Thread",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "To address management challenges and establish a fully digitized manufacturing process, organizations need to connect their eBOM, mBOM, and sBOM structures through a digital thread. This creates a single source of truth that defines the product across all departments."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "The Digital Thread"
-        },
-        {
-          "type": "paragraph",
-          "text": "When eBOM, mBOM, and sBOM structures are synchronized in real time via the digital thread, they critically inform a single source of truth that defines the product. Each type of BOM structure contributes to, and draws from, this source of truth."
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "A well-managed and unified BOM is vital to the enterprise's overall business objectives. It keeps dispersed teams aligned by transmitting changes across departments."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Benefits of an Integrated BOM"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Benefit", "Description"],
-          "rows": [
-            ["Plan purchases", "Accurately plan purchases of raw materials based on current product definitions"],
-            ["Estimate costs", "Reliably estimate material costs across the entire product structure"],
-            ["Inventory control", "Gain visibility and control over component inventory"],
-            ["Track requirements", "Track and plan material requirements across departments"],
-            ["Maintain records", "Keep accurate, up-to-date records accessible to all stakeholders"],
-            ["Reduce waste", "Minimize waste through precise material planning and management"]
-          ]
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange these BOM integration benefits from most strategic to most operational:",
-          "items": [
-            "Single source of truth across all departments",
-            "Real-time synchronization of BOM changes",
-            "Easy access to product details by all stakeholders",
-            "Accurate material cost estimation and inventory control"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "The digital thread synchronizes eBOM, mBOM, and sBOM structures in real time to create a single source of truth.",
-        "Each BOM type contributes to and draws from the unified product definition.",
-        "Integrated BOM management keeps dispersed teams aligned by transmitting changes across departments.",
-        "A well-managed BOM supports purchasing, cost estimation, inventory control, and waste reduction."
-      ]
+     "type": "heading",
+     "level": 2,
+     "text": "Types of Bills of Materials"
     },
     {
-      "id": "m1t3",
-      "title": "Windchill Parts and Product Structure",
-      "estimatedMinutes": 7,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Windchill uses business objects to capture product data. Understanding how CAD documents and Windchill parts relate to each other is essential for building and managing product structures effectively."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "CAD Structure in Windchill"
-        },
-        {
-          "type": "paragraph",
-          "text": "When a CAD model assembly from a supported CAD authoring tool is checked into Windchill, it creates the CAD structure. A CAD model is represented by a Windchill object known as a <strong>CAD document</strong>. The membership-in-assembly relationships from the CAD model are preserved in the Windchill CAD document structure."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "What Are Windchill Parts?"
-        },
-        {
-          "type": "paragraph",
-          "text": "A Windchill part is a logical database representation of a physical item used to build a product. Parts are used to organize product information through relationships. Parts do not contain files, but they enable all associated information."
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Design Files",
-              "back": "ECAD and MCAD design files can be related to the part. They can be used to drive part information and visual representations."
-            },
-            {
-              "front": "Attributes",
-              "back": "Describe the part's characteristics including name, unique number, version, default unit of measure, life cycle state, working status, and source."
-            },
-            {
-              "front": "Documents",
-              "back": "A wide array of documentation can be related to the part: specifications, test information, analysis results, and supplier information."
-            },
-            {
-              "front": "Changes and Replacements",
-              "back": "Change objects trace modifications throughout the development cycle. Alternate and substitute parts define alternatives that can be used in place of the original."
-            }
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Product Structure Key Capabilities"
-        },
-        {
-          "type": "paragraph",
-          "text": "A product structure is a hierarchical representation of Windchill parts that makes up a specific product. It captures all product configurations from first release through current production to future releases."
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Capability", "Description"],
-          "rows": [
-            ["Structure Filter", "View past or future configurations, displaying only parts relevant to your task"],
-            ["End Item", "Represents the top node of a product structure; a special type of part developed for delivery"],
-            ["Usage Link", "Links between Windchill parts to build assemblies; selects the correct version of each part"],
-            ["Usage Attributes", "Quantity, unit of measure, and other attributes specific to a part's use within an assembly"],
-            ["Occurrence Link", "Stores information about each specific named use of a component within an assembly"]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "A hierarchy of Windchill parts is called a product structure. The terms BOM and product structure are often used interchangeably throughout Windchill."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each Windchill concept to its description:",
-          "pairs": [
-            {"left": "Logical database representation of a physical item", "right": "Windchill Part"},
-            {"left": "Represents a CAD model checked into Windchill", "right": "CAD Document"},
-            {"left": "Top node of a product structure developed for delivery", "right": "End Item"},
-            {"left": "Link between parts used to build assemblies", "right": "Usage Link"}
-          ]
-        }
+     "type": "comparison-table",
+     "headers": [
+      "BOM Type",
+      "Purpose",
+      "Key Characteristics"
+     ],
+     "rows": [
+      [
+       "eBOM (Engineering)",
+       "Defines the design of the finished product",
+       "Includes all part numbers, revisions, descriptions, quantities, and specifications"
       ],
-      "keyTakeaways": [
-        "A Windchill part is a logical representation of a physical item that organizes product information through relationships.",
-        "CAD documents represent CAD models in Windchill and preserve assembly structure relationships.",
-        "Product structures are hierarchical representations of Windchill parts with key capabilities including structure filters, end items, usage links, and occurrence links.",
-        "Windchill parts don't contain files directly but enable associated design files, attributes, documents, and change records."
+      [
+       "mBOM (Manufacturing)",
+       "Supports the assembly and manufacturing process",
+       "Contains all assemblies, parts, packaging materials, and manufacturing process information"
+      ],
+      [
+       "sBOM (Service)",
+       "Represents the finished product at the sales stage",
+       "Includes the finished product and components as separate items in the sales order"
       ]
+     ]
     },
     {
-      "id": "m1t4",
-      "title": "Design Methodologies in Windchill",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "The process of designing products and managing product data using Windchill requires specific design methodologies. Windchill supports two primary approaches for creating product structures, each suited to different engineering workflows."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Bottom-Up Design (CAD-Driven Approach)"
-        },
-        {
-          "type": "paragraph",
-          "text": "In a CAD-driven approach, the design process begins in the CAD authoring environment. Once the design is complete, the CAD assembly structure is checked into Windchill to automatically generate an enterprise part structure."
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Characteristic", "Bottom-Up (CAD-Driven)", "Top-Down (Part-Driven)"],
-          "rows": [
-            ["Starting point", "CAD authoring environment", "Windchill product structure"],
-            ["Part creation", "Windchill parts created automatically from CAD documents", "Windchill parts created first, independent of CAD"],
-            ["CAD linking", "Automatic link between CAD document and part", "Tasks of designing/linking CAD models distributed to teams"],
-            ["Best for", "Traditional design workflows", "Large multidisciplinary product assemblies"],
-            ["Structure relationship", "CAD structure drives part structure", "Part structure drives design assignments"]
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Top-Down Design (Part-Driven Approach)"
-        },
-        {
-          "type": "paragraph",
-          "text": "In a part-driven approach, the Windchill parts and structures are created first, independent of CAD. Creating the product structure independently and sharing it with other teams starts the design process for product architects. Tasks of designing and linking CAD models are then distributed to engineering teams using workflows."
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "The top-down design approach is a best practice for creating large multidisciplinary product assemblies. It enables product architects to define the structure before distributing design tasks to engineering teams."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "The relationship created between the CAD structure and the part structure is known as an association. If the association context is set to owner, CAD designers can update the part structure with each check-in of a modified CAD structure."
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange the steps of the bottom-up (CAD-driven) design approach in order:",
-          "items": [
-            "Define geometry and design constraints in CAD authoring tool",
-            "Check CAD assembly structure into Windchill",
-            "Windchill generates enterprise part structure automatically",
-            "Association links are established between CAD documents and parts"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Windchill supports bottom-up (CAD-driven) and top-down (part-driven) design methodologies.",
-        "Bottom-up design starts in the CAD tool and automatically generates Windchill part structures on check-in.",
-        "Top-down design creates the product structure first in Windchill, then distributes CAD design tasks to engineering teams.",
-        "The association relationship between CAD and part structures enables ongoing exchange of structure, attribute, and visualization information."
-      ]
+     "type": "callout",
+     "variant": "insight",
+     "text": "The different types of BOMs depend on projected use and business needs. Each type involves a different structure and level of detail, but they all must mesh to create a product that meets its designers' expectations."
     },
     {
-      "id": "m1t5",
-      "title": "Examine the Part Information Page",
-      "estimatedMinutes": 8,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In this exercise, you sign in to Windchill as Mike Jones and search for the Drill 720 end item. You will browse through the tabs on the Information page and explore the Product Structure Browser (PSB) to get acquainted with the product structure."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "The Part Information page is a central location for accessing information related to a part and performing actions. You can access it by clicking the View information icon next to a part."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex1",
-          "title": "Examine the Part Information Page",
-          "objective": "Sign in to Windchill, locate the Drill 720 end item, and explore the Information page tabs and Product Structure Browser.",
-          "tasks": [
-            {
-              "id": "ex1-t1",
-              "title": "Sign In and Search for the Drill 720",
-              "steps": [
-                {
-                  "action": "Sign in to Windchill as Mike Jones.",
-                  "detail": "When asked to choose your application, select WindchillClient. Wait for the Windchill Client command window to open.",
-                  "hint": "Select Mike Jones from the sign-in options in the browser."
-                },
-                {
-                  "action": "Type <code>DRILL_720*</code> in the search bar.",
-                  "detail": "The wildcard character (*) finds all objects starting with DRILL_720.",
-                  "hint": null
-                },
-                {
-                  "action": "Click the View information icon of the DRILL_720 end item in the Search Results table.",
-                  "detail": "This opens the Part Information page, which is the central hub for viewing and managing part data.",
-                  "hint": null
-                }
-              ]
-            },
-            {
-              "id": "ex1-t2",
-              "title": "Explore the Information Page Tabs",
-              "steps": [
-                {
-                  "action": "Select the <strong>Details</strong> tab to view part attributes and visualization image.",
-                  "detail": "The Details tab lists the part attributes and contains a thumbnail visualization image generated from CAD models.",
-                  "hint": "Click the thumbnail to open a detailed image for inspection and measurement."
-                },
-                {
-                  "action": "Select the <strong>Structure</strong> tab to view the part structure.",
-                  "detail": "The Structure tab displays the hierarchical product structure and is also known as the Product Structure Browser (PSB).",
-                  "hint": null
-                },
-                {
-                  "action": "Select the <strong>Related Objects</strong> tab.",
-                  "detail": "Contains tables showing product definition data related to the part, such as associated CAD documents and reference documents.",
-                  "hint": "Notice the association made to a CAD document."
-                },
-                {
-                  "action": "Select the <strong>Changes</strong> tab, then the <strong>History</strong> tab.",
-                  "detail": "Changes shows change-related objects. History contains a dynamic timeline of events such as new versions and lifecycle state changes.",
-                  "hint": null
-                },
-                {
-                  "action": "Select the <strong>Where Used</strong> tab, then review the Actions menu.",
-                  "detail": "Where Used shows where this part is used from the immediate parent assembly up to the highest-level assembly.",
-                  "hint": "Note the available actions in the Actions menu for future reference."
-                }
-              ]
-            },
-            {
-              "id": "ex1-t3",
-              "title": "Explore the Product Structure Browser",
-              "steps": [
-                {
-                  "action": "Select the <strong>Structure</strong> tab, then select the <strong>Attributes</strong> tab in the lower-right pane.",
-                  "detail": "The Attributes tab displays important attribute information about the selected Windchill part.",
-                  "hint": null
-                },
-                {
-                  "action": "Select the <strong>Visualization</strong> tab to view the 3D image of the drill.",
-                  "detail": "Visualization displays graphic images generated from CAD models. You can rotate, zoom, and pan the view.",
-                  "hint": null
-                },
-                {
-                  "action": "Click the <strong>Automatically Select from Visualization to Structure</strong> option, then click parts on the 3D model.",
-                  "detail": "This enables bi-directional selection between the 3D visualization and the structure tree.",
-                  "hint": "Click random parts on the drill model and see the corresponding part highlighted in the structure pane."
-                },
-                {
-                  "action": "Select the <strong>Uses</strong> tab, then the <strong>Occurrences</strong> tab, and finally the <strong>Documents</strong> tab.",
-                  "detail": "Uses shows child parts and attributes. Occurrences shows each instance of a part in the structure. Documents shows related CAD documents.",
-                  "hint": "From the Uses tab, you can add, remove, or edit the attributes of a child part."
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "The Part Information page is the central hub for viewing part data, structure, related objects, changes, and history.",
-        "The Product Structure Browser (PSB) displays the hierarchical product structure with visualization and attribute details.",
-        "Bi-directional selection between 3D visualization and the structure tree helps navigate complex assemblies."
-      ]
+     "type": "heading",
+     "level": 2,
+     "text": "BOM Management Risks"
+    },
+    {
+     "type": "paragraph",
+     "text": "A BOM contains the necessary information for a variety of expert groups and is shared across departments such as design, development, quality, manufacturing, and purchasing. Poor BOM management leads to significant business risks."
+    },
+    {
+     "type": "reveal-cards",
+     "cards": [
+      {
+       "front": "Production of Out-of-Specification Items",
+       "back": "Department disconnects lead to manufacturing mistakes. One department may be unaware of another's changes to a BOM until remediation is too late, resulting in out-of-specification product items."
+      },
+      {
+       "front": "Purchasing Dilemmas",
+       "back": "When purchasing employees receive notifications about BOM updates after purchases are processed, ordered components become unusable company assets. Manual notification processes incur high costs."
+      },
+      {
+       "front": "Service and Maintenance Failures",
+       "back": "When service technicians in the field cannot locate the correct version of a BOM, it leads to financial or reputation-based repercussions and delays in prompt service and maintenance."
+      }
+     ]
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each BOM type to its primary focus:",
+     "pairs": [
+      {
+       "left": "Defines the design with all part numbers and specifications",
+       "right": "eBOM"
+      },
+      {
+       "left": "Contains assemblies, packaging, and manufacturing processes",
+       "right": "mBOM"
+      },
+      {
+       "left": "Represents the finished product at the sales stage",
+       "right": "sBOM"
+      }
+     ]
     }
-  ]
+   ],
+   "keyTakeaways": [
+    "A BOM is a comprehensive inventory of materials, parts, and quantities needed to manufacture a product.",
+    "Three main BOM types serve different purposes: eBOM for engineering design, mBOM for manufacturing, and sBOM for service and sales.",
+    "Poor BOM management leads to out-of-specification products, purchasing dilemmas, and service failures.",
+    "BOMs are shared across multiple departments and must be managed carefully throughout the product lifecycle."
+   ]
+  },
+  {
+   "id": "m1t2",
+   "title": "BOM and the Digital Thread",
+   "estimatedMinutes": 5,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "To address management challenges and establish a fully digitized manufacturing process, organizations need to connect their eBOM, mBOM, and sBOM structures through a digital thread. This creates a single source of truth that defines the product across all departments."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "The Digital Thread"
+    },
+    {
+     "type": "paragraph",
+     "text": "When eBOM, mBOM, and sBOM structures are synchronized in real time via the digital thread, they critically inform a single source of truth that defines the product. Each type of BOM structure contributes to, and draws from, this source of truth."
+    },
+    {
+     "type": "callout",
+     "variant": "tip",
+     "text": "A well-managed and unified BOM is vital to the enterprise's overall business objectives. It keeps dispersed teams aligned by transmitting changes across departments."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Benefits of an Integrated BOM"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Benefit",
+      "Description"
+     ],
+     "rows": [
+      [
+       "Plan purchases",
+       "Accurately plan purchases of raw materials based on current product definitions"
+      ],
+      [
+       "Estimate costs",
+       "Reliably estimate material costs across the entire product structure"
+      ],
+      [
+       "Inventory control",
+       "Gain visibility and control over component inventory"
+      ],
+      [
+       "Track requirements",
+       "Track and plan material requirements across departments"
+      ],
+      [
+       "Maintain records",
+       "Keep accurate, up-to-date records accessible to all stakeholders"
+      ],
+      [
+       "Reduce waste",
+       "Minimize waste through precise material planning and management"
+      ]
+     ]
+    },
+    {
+     "type": "interactive-sort",
+     "prompt": "Arrange these BOM integration benefits from most strategic to most operational:",
+     "items": [
+      "Single source of truth across all departments",
+      "Real-time synchronization of BOM changes",
+      "Easy access to product details by all stakeholders",
+      "Accurate material cost estimation and inventory control"
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "The digital thread synchronizes eBOM, mBOM, and sBOM structures in real time to create a single source of truth.",
+    "Each BOM type contributes to and draws from the unified product definition.",
+    "Integrated BOM management keeps dispersed teams aligned by transmitting changes across departments.",
+    "A well-managed BOM supports purchasing, cost estimation, inventory control, and waste reduction."
+   ]
+  },
+  {
+   "id": "m1t3",
+   "title": "Windchill Parts and Product Structure",
+   "estimatedMinutes": 7,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Windchill uses business objects to capture product data. Understanding how CAD documents and Windchill parts relate to each other is essential for building and managing product structures effectively."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "CAD Structure in Windchill"
+    },
+    {
+     "type": "paragraph",
+     "text": "When a CAD model assembly from a supported CAD authoring tool is checked into Windchill, it creates the CAD structure. A CAD model is represented by a Windchill object known as a <strong>CAD document</strong>. The membership-in-assembly relationships from the CAD model are preserved in the Windchill CAD document structure."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "What Are Windchill Parts?"
+    },
+    {
+     "type": "paragraph",
+     "text": "A Windchill part is a logical database representation of a physical item used to build a product. Parts are used to organize product information through relationships. Parts do not contain files, but they enable all associated information."
+    },
+    {
+     "type": "reveal-cards",
+     "cards": [
+      {
+       "front": "Design Files",
+       "back": "ECAD and MCAD design files can be related to the part. They can be used to drive part information and visual representations."
+      },
+      {
+       "front": "Attributes",
+       "back": "Describe the part's characteristics including name, unique number, version, default unit of measure, life cycle state, working status, and source."
+      },
+      {
+       "front": "Documents",
+       "back": "A wide array of documentation can be related to the part: specifications, test information, analysis results, and supplier information."
+      },
+      {
+       "front": "Changes and Replacements",
+       "back": "Change objects trace modifications throughout the development cycle. Alternate and substitute parts define alternatives that can be used in place of the original."
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Product Structure Key Capabilities"
+    },
+    {
+     "type": "paragraph",
+     "text": "A product structure is a hierarchical representation of Windchill parts that makes up a specific product. It captures all product configurations from first release through current production to future releases."
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Capability",
+      "Description"
+     ],
+     "rows": [
+      [
+       "Structure Filter",
+       "View past or future configurations, displaying only parts relevant to your task"
+      ],
+      [
+       "End Item",
+       "Represents the top node of a product structure; a special type of part developed for delivery"
+      ],
+      [
+       "Usage Link",
+       "Links between Windchill parts to build assemblies; selects the correct version of each part"
+      ],
+      [
+       "Usage Attributes",
+       "Quantity, unit of measure, and other attributes specific to a part's use within an assembly"
+      ],
+      [
+       "Occurrence Link",
+       "Stores information about each specific named use of a component within an assembly"
+      ]
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "A hierarchy of Windchill parts is called a product structure. The terms BOM and product structure are often used interchangeably throughout Windchill."
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each Windchill concept to its description:",
+     "pairs": [
+      {
+       "left": "Logical database representation of a physical item",
+       "right": "Windchill Part"
+      },
+      {
+       "left": "Represents a CAD model checked into Windchill",
+       "right": "CAD Document"
+      },
+      {
+       "left": "Top node of a product structure developed for delivery",
+       "right": "End Item"
+      },
+      {
+       "left": "Link between parts used to build assemblies",
+       "right": "Usage Link"
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "A Windchill part is a logical representation of a physical item that organizes product information through relationships.",
+    "CAD documents represent CAD models in Windchill and preserve assembly structure relationships.",
+    "Product structures are hierarchical representations of Windchill parts with key capabilities including structure filters, end items, usage links, and occurrence links.",
+    "Windchill parts don't contain files directly but enable associated design files, attributes, documents, and change records."
+   ]
+  },
+  {
+   "id": "m1t4",
+   "title": "Design Methodologies in Windchill",
+   "estimatedMinutes": 5,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "The process of designing products and managing product data using Windchill requires specific design methodologies. Windchill supports two primary approaches for creating product structures, each suited to different engineering workflows."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Bottom-Up Design (CAD-Driven Approach)"
+    },
+    {
+     "type": "paragraph",
+     "text": "In a CAD-driven approach, the design process begins in the CAD authoring environment. Once the design is complete, the CAD assembly structure is checked into Windchill to automatically generate an enterprise part structure."
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Characteristic",
+      "Bottom-Up (CAD-Driven)",
+      "Top-Down (Part-Driven)"
+     ],
+     "rows": [
+      [
+       "Starting point",
+       "CAD authoring environment",
+       "Windchill product structure"
+      ],
+      [
+       "Part creation",
+       "Windchill parts created automatically from CAD documents",
+       "Windchill parts created first, independent of CAD"
+      ],
+      [
+       "CAD linking",
+       "Automatic link between CAD document and part",
+       "Tasks of designing/linking CAD models distributed to teams"
+      ],
+      [
+       "Best for",
+       "Traditional design workflows",
+       "Large multidisciplinary product assemblies"
+      ],
+      [
+       "Structure relationship",
+       "CAD structure drives part structure",
+       "Part structure drives design assignments"
+      ]
+     ]
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Top-Down Design (Part-Driven Approach)"
+    },
+    {
+     "type": "paragraph",
+     "text": "In a part-driven approach, the Windchill parts and structures are created first, independent of CAD. Creating the product structure independently and sharing it with other teams starts the design process for product architects. Tasks of designing and linking CAD models are then distributed to engineering teams using workflows."
+    },
+    {
+     "type": "callout",
+     "variant": "tip",
+     "text": "The top-down design approach is a best practice for creating large multidisciplinary product assemblies. It enables product architects to define the structure before distributing design tasks to engineering teams."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "The relationship created between the CAD structure and the part structure is known as an association. If the association context is set to owner, CAD designers can update the part structure with each check-in of a modified CAD structure."
+    },
+    {
+     "type": "interactive-sort",
+     "prompt": "Arrange the steps of the bottom-up (CAD-driven) design approach in order:",
+     "items": [
+      "Define geometry and design constraints in CAD authoring tool",
+      "Check CAD assembly structure into Windchill",
+      "Windchill generates enterprise part structure automatically",
+      "Association links are established between CAD documents and parts"
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Windchill supports bottom-up (CAD-driven) and top-down (part-driven) design methodologies.",
+    "Bottom-up design starts in the CAD tool and automatically generates Windchill part structures on check-in.",
+    "Top-down design creates the product structure first in Windchill, then distributes CAD design tasks to engineering teams.",
+    "The association relationship between CAD and part structures enables ongoing exchange of structure, attribute, and visualization information."
+   ]
+  },
+  {
+   "id": "m1t5",
+   "title": "Examine the Part Information Page",
+   "estimatedMinutes": 8,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "In this exercise, you sign in to Windchill as Mike Jones and search for the Drill 720 end item. You will browse through the tabs on the Information page and explore the Product Structure Browser (PSB) to get acquainted with the product structure."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "The Part Information page is a central location for accessing information related to a part and performing actions. You can access it by clicking the View information icon next to a part."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex1",
+     "title": "Examine the Part Information Page",
+     "objective": "Sign in to Windchill, locate the Drill 720 end item, and explore the Information page tabs and Product Structure Browser.",
+     "tasks": [
+      {
+       "id": "ex1-t1",
+       "title": "Sign in to Windchill",
+       "steps": [
+        {
+         "action": "When asked to choose your application, select <strong>WindchillClient</strong>.",
+         "detail": "After a few minutes, the Windchill Client command window will open. Please wait while Windchill starts.",
+         "hint": null
+        },
+        {
+         "action": "A Google Chrome browser will open with several sign-in options.",
+         "detail": "The browser displays the Windchill sign-in page with user profiles.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>Mike Jones</strong>.",
+         "detail": "You will sign in as Mike Jones (mjones/ptc) to examine the Drill 720 product.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex1-t2",
+       "title": "Examine Part Information Page Tabs",
+       "steps": [
+        {
+         "action": "Type <code>DRILL_720*</code> in the search bar.",
+         "detail": "The wildcard character (*) finds all objects starting with DRILL_720.",
+         "hint": null
+        },
+        {
+         "action": "In the Search Results table, click the <strong>View information</strong> icon of the DRILL_720 end item.",
+         "detail": "This opens the Part Information page, the central hub for viewing and managing part data.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Details</strong> tab to view the part attributes, details, and visualization image.",
+         "detail": "The Details tab lists part attributes and contains a thumbnail visualization image. A thumbnail is automatically generated when you save parts using the Windchill visualization services.",
+         "hint": "Click the thumbnail to open a more detailed image for inspection and measurement."
+        },
+        {
+         "action": "Select the <strong>Structure</strong> tab to view the part structure.",
+         "detail": "The Structure tab displays the part structure in a two- or three-pane display. You can add, remove, or modify parts within the structure.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Related Objects</strong> tab.",
+         "detail": "Contains tables showing product definition data related to the part, such as associated CAD documents and reference documents.",
+         "hint": null
+        },
+        {
+         "action": "Notice that there is an association made to a CAD document.",
+         "detail": "Associations link CAD documents to Windchill parts, enabling the exchange of structure, attribute, and visualization information.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Changes</strong> tab to view historical changes and changes currently in progress.",
+         "detail": "Contains tables showing change-related objects related to the part, such as Change Requests and Change Notices.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>History</strong> tab to view the events that have occurred in part development.",
+         "detail": "Contains a dynamic timeline displaying events such as new versions and changes in the lifecycle state.",
+         "hint": "You can review events in the Version History table and Timeline History graph."
+        },
+        {
+         "action": "Select the <strong>Where Used</strong> tab to see where this part is used in the product design.",
+         "detail": "Contains a table displaying where the part is used from the immediate parent assembly up to the highest-level assembly.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Actions</strong> menu and note the available actions.",
+         "detail": "The Actions menu provides access to all actions you can perform on this part, including check-out, revise, and lifecycle state changes.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex1-t3",
+       "title": "Examine Part Structure Tabs",
+       "steps": [
+        {
+         "action": "Select the <strong>Structure</strong> tab.",
+         "detail": "The Structure tab is also called the Product Structure Browser (PSB). It displays a hierarchical representation of the product.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Attributes</strong> tab in the lower-right pane to view attribute information of the drill part.",
+         "detail": "The Attributes tab displays important attribute information about the selected Windchill part.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Visualization</strong> tab to view the 3D image of the drill.",
+         "detail": "Displays graphic images of the selected Windchill part with published geometry generated from CAD models.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Toggle the automatic selection preference</strong> icon and select <strong>Automatically Select from Structure to Visualization</strong>.",
+         "detail": "This links the structure tree selection to the 3D visualization so that clicking a part in the tree highlights it in the model.",
+         "hint": null
+        },
+        {
+         "action": "Repeat the previous step and select <strong>Automatically Select from Visualization to Structure</strong>.",
+         "detail": "This enables the reverse direction — clicking a part in the 3D model highlights it in the structure tree.",
+         "hint": null
+        },
+        {
+         "action": "Click random parts on the drill model and see the corresponding part highlighted in the structure pane.",
+         "detail": "The bi-directional selection synchronizes the 3D visualization with the structure tree for easy navigation.",
+         "hint": null
+        },
+        {
+         "action": "Click random lines on the structure pane and see the corresponding parts highlighted on the model.",
+         "detail": "This confirms the bi-directional selection is working in both directions.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Uses</strong> tab to view information about child parts.",
+         "detail": "All the child parts and attributes information is displayed. From this location, you can add, remove, or edit the attributes of a child part.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Occurrences</strong> tab to view each occurrence of a part in the structure.",
+         "detail": "Occurrences show each specific named use of a component within an assembly, identified by Reference Designators.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Documents</strong> tab to view the related CAD documents of the selected part.",
+         "detail": "The Documents tab lists all CAD documents associated with the selected Windchill part.",
+         "hint": null
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "The Part Information page is the central hub for viewing part data, structure, related objects, changes, and history.",
+    "The Product Structure Browser (PSB) displays the hierarchical product structure with visualization and attribute details.",
+    "Bi-directional selection between 3D visualization and the structure tree helps navigate complex assemblies."
+   ]
+  }
+ ]
 }

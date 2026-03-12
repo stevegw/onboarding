@@ -3,470 +3,624 @@
  "title": "System Behavior",
  "description": "Configure the Windchill Home page, manage calendars and task delegation, and set preferences and properties to control system behavior across contexts.",
  "topics": [
- {
- "id": "m4t1",
- "title": "Configuring the Windchill Home Page",
- "estimatedMinutes": 6,
- "content": [
- {
- "type": "paragraph",
- "text": "The Windchill Home page is the first screen users see after signing in, and it shapes their daily interaction with the system. Administrators can configure a standard Home page that applies to all users on the site, ensuring a consistent starting experience that highlights the most relevant information."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Public and Private Tabs"
- },
- {
- "type": "paragraph",
- "text": "When signed in as an administrator, the Home page displays two tabs. The <strong>Private</strong> tab controls the administrator's own personal Home page settings. The <strong>Public</strong> tab enables the administrator to configure a standard Home page that is deployed to all users on the site. Changes made to the Public tab are carried forward to the Home pages of all users, except those who have already modified their own Home pages."
- },
- {
- "type": "comparison-table",
- "headers": ["Tab", "Scope", "Who Sees Changes"],
- "rows": [
- ["Private", "Administrator's personal Home page only", "Only the administrator who made the changes"],
- ["Public", "Standard Home page for the entire site", "All users who have not already customized their own Home page"]
- ]
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Customizing the Home Page Layout"
- },
- {
- "type": "paragraph",
- "text": "The default Home page includes tables for Tasks, Updates, and Checked Out Work. Using the <strong>Customize</strong> option in the upper-right corner of the Public tab, administrators can add or remove tables, rearrange the display order by dragging table hyperlinks, and configure which information is most prominent. Users always retain the ability to override the initially configured Home page to suit their own work preferences."
- },
- {
- "type": "callout",
- "variant": "tip",
- "text": "Configure the Public Home page early in your deployment. Users who customize their own Home pages before you set the Public tab will not receive your changes. Setting the standard layout first ensures all users start with a consistent, well-organized view."
- },
- {
- "type": "interactive-match",
- "prompt": "Match each Home page concept to its description:",
- "pairs": [
- {
- "left": "Private tab",
- "right": "Controls the administrator's personal Home page settings"
- },
- {
- "left": "Public tab",
- "right": "Configures a standard Home page deployed to all site users"
- },
- {
- "left": "Customize option",
- "right": "Adds, removes, or rearranges tables on the Home page"
- },
- {
- "left": "User override",
- "right": "Allows individual users to modify their own Home page layout"
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Administrators configure a standard Home page for all users via the Public tab",
- "Changes to the Public tab only affect users who have not already customized their own Home pages",
- "The Customize option allows adding, removing, and reordering tables on the Home page",
- "Users always retain the ability to override the standard Home page to suit their own preferences"
- ]
- },
- {
- "id": "m4t2",
- "title": "Calendar Management",
- "estimatedMinutes": 6,
- "content": [
- {
- "type": "paragraph",
- "text": "The Windchill calendar defines working and non-working days for the system, and it directly affects how deadlines are calculated. A workflow task with a 7-day deadline means 7 <em>working</em> days, not 7 calendar days. Proper calendar management ensures deadlines are accurate and prevents tasks from being trapped with unavailable users."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Calendar Scope and Types"
- },
- {
- "type": "paragraph",
- "text": "Calendar maintenance is conducted at the Site context level, meaning there is a single system calendar that applies to the entire Windchill installation. Out of the box, Saturday and Sunday are defined as non-working days. Administrators can manage three different calendar scopes:"
- },
- {
- "type": "comparison-table",
- "headers": ["Calendar Type", "Scope", "Key Use"],
- "rows": [
- ["My Calendar", "Administrator's personal calendar", "Set the administrator's own working and non-working days"],
- ["User Calendar", "A specified user account", "Manage working days and delegation for individual users"],
- ["System Calendar", "Entire Windchill system", "Define non-working days (holidays, company closures) that affect all deadline calculations"]
- ]
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Task Delegation"
- },
- {
- "type": "paragraph",
- "text": "When users are unavailable, Windchill supports task delegation. Users can delegate their work assignments to another user for a specified period of time or indefinitely. Delegation is configured on individual user calendars, not the system calendar. This ensures that workflows continue to progress even when participants are on vacation or leave."
- },
- {
- "type": "callout",
- "variant": "warning",
- "text": "Delegation is only available on individual user calendars. You cannot configure delegation at the system calendar level. If your organization spans multiple countries, remember that national holidays vary. Administrators should update the system calendar to reflect company-wide non-working days and rely on user calendars for individual absences."
- },
- {
- "type": "interactive-sort",
- "prompt": "Arrange these calendar management tasks from system-wide scope to individual scope:",
- "items": [
- "Define company-wide non-working days on the System Calendar",
- "Set national holiday exceptions on the System Calendar",
- "Configure a user's vacation days on their User Calendar",
- "Set up task delegation to a colleague on the User Calendar"
- ]
- }
- ],
- "keyTakeaways": [
- "Windchill deadlines are calculated in working days, not calendar days, based on the system calendar",
- "Three calendar scopes exist: My Calendar, User Calendar, and System Calendar",
- "Task delegation allows users to redirect work assignments to a colleague for a specified period or indefinitely",
- "Delegation is configured on individual user calendars, not the system calendar"
- ]
- },
- {
- "id": "m4t3",
- "title": "Preferences and Properties",
- "estimatedMinutes": 7,
- "content": [
- {
- "type": "paragraph",
- "text": "Windchill provides two distinct mechanisms for controlling system behavior: <strong>preferences</strong> and <strong>properties</strong>. Although both influence how the system operates, they differ fundamentally in scope, management method, and whether they require a server restart. Understanding this distinction is critical for business administrators."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Preferences"
- },
- {
- "type": "paragraph",
- "text": "Preferences define default application behavior and can be set at the Site, Organization, or application context levels. They follow the context hierarchy, meaning child contexts inherit preference values from their parent. Administrators can lock preferences to prevent overrides in child contexts. In the Preference Manager, the term <strong>scope</strong> is synonymous with <strong>context</strong>. Users can also set personal preferences through <strong>My Settings</strong>, which override context-level values for that individual."
- },
- {
- "type": "comparison-table",
- "headers": ["Preference Category", "Examples"],
- "rows": [
- ["Display", "Thumbnail images for 2D/3D content, table column defaults"],
- ["Content", "Check-in defaults, save-as defaults, default object types"],
- ["Searching", "Latest version search behavior, search scope defaults"],
- ["Revision", "Revision label picker display count, allow override on revise"],
- ["Workspace", "Display workspace preferences, workspace management options"],
- ["Visualization", "Configuration specifications, rendering defaults"]
- ]
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Properties"
- },
- {
- "type": "paragraph",
- "text": "Properties control low-level behavior and system functions. They are stored in configuration files in the Windchill installation directories (such as <code>wt.properties</code>) and are managed using the <code>xconfmanager</code> command-line tool. Unlike preferences, properties affect the entire system and <strong>require a Windchill server restart</strong> to take effect."
- },
- {
- "type": "callout",
- "variant": "warning",
- "text": "Never confuse preferences with properties. Preferences are managed through the UI, apply per-context, and take effect immediately (with a browser refresh at most). Properties are managed via <code>xconfmanager</code>, apply system-wide, and require a full server restart. Changing a property on a production server requires coordination with the system administrator and a planned maintenance window."
- },
- {
- "type": "interactive-match",
- "prompt": "Match each characteristic to preferences or properties:",
- "pairs": [
- {
- "left": "Managed via Preference Management UI",
- "right": "Preferences"
- },
- {
- "left": "Managed via xconfmanager tool",
- "right": "Properties"
- },
- {
- "left": "Can be set per-context and inherited",
- "right": "Preferences"
- },
- {
- "left": "Requires Windchill server restart",
- "right": "Properties"
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Preferences define default application behavior and are managed through the Preference Management UI without requiring a server restart",
- "Properties control system-level behavior, are stored in configuration files, and require a server restart via xconfmanager",
- "Preferences can be set at Site, Organization, or application context levels and follow the context inheritance hierarchy",
- "Administrators can lock preferences to prevent child contexts from overriding them"
- ]
- },
- {
- "id": "m4t4",
- "title": "Exercise 6 - Configure the Windchill Home Page",
- "estimatedMinutes": 6,
- "isExercise": true,
- "content": [
- {
- "type": "paragraph",
- "text": "In this exercise, you will standardize the Windchill Home page for all users at the site by modifying the Public tab display and then verifying that the changes propagate to a regular user account."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "You need access to the Windchill training server. For Task 1, sign in as <strong>wcadmin/wcadmin</strong> (site administrator). For Task 2, sign in as a regular user (<strong>Arden Reed</strong>) to verify the changes."
- },
- {
- "type": "exercise",
- "exerciseId": "ex6",
- "title": "Configure the Windchill Home Page",
- "objective": "Modify the default Home page display via the Public tab and verify that changes are visible to a regular user.",
- "tasks": [
- {
- "id": "ex6-t1",
- "title": "Modify the Default Home Page Display",
- "steps": [
- {
- "action": "Sign in to Windchill as wcadmin/wcadmin.",
- "detail": "The site administrator account has access to the Public tab on the Home page, which controls the standard layout for all users.",
- "hint": null
- },
- {
- "action": "Click the Home icon and then click the Public tab.",
- "detail": "The Public tab shows the current standard Home page layout that is deployed to all users who have not customized their own Home pages.",
- "hint": "The Public tab is only visible to administrators. If you do not see it, verify you are signed in as wcadmin."
- },
- {
- "action": "Click the Customize menu in the upper-right corner of the Public tab.",
- "detail": "The Customize menu allows you to add or remove tables from the Home page layout and rearrange their display order.",
- "hint": null
- },
- {
- "action": "Select the Workspaces and Discussions checkboxes to add these tables to the Home page.",
- "detail": "Adding Workspaces gives users quick access to their active workspaces. Adding Discussions surfaces collaboration threads on the Home page.",
- "hint": "If these tables are already present, choose other available tables to add."
- },
- {
- "action": "Reorder the tables: drag the Tasks hyperlink to the far left position and the Workspaces hyperlink to the end.",
- "detail": "Table order determines the visual priority on the Home page. Placing Tasks first ensures users immediately see their pending work items.",
- "hint": "Click and drag the table name hyperlinks to rearrange their order."
- },
- {
- "action": "Close the browser to end the administrator session.",
- "detail": "The Home page changes are saved automatically and will be deployed to all users who have not already customized their own Home page.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex6-t2",
- "title": "Verify Home Page Changes for a User",
- "steps": [
- {
- "action": "Launch the browser and sign in as a regular user (Arden Reed).",
- "detail": "Signing in as a non-administrator account lets you verify that the Public tab changes have propagated to a standard user's Home page.",
- "hint": "Use the credentials provided by your instructor for the Arden Reed account."
- },
- {
- "action": "Click the Home icon and verify that the Discussions and Workspaces tables are now present on the Home page.",
- "detail": "If the user had not previously customized their Home page, your Public tab changes should be reflected. The Tasks table should appear first in the display order.",
- "hint": "If the tables are not visible, the user may have previously customized their Home page, which overrides the Public tab settings."
- },
- {
- "action": "Close the browser to end the session.",
- "detail": "You have successfully configured a standard Home page layout and verified it appears for end users.",
- "hint": null
- }
- ]
- }
- ]
- }
- ],
- "keyTakeaways": [
- "The Public tab on the Home page controls the standard layout for all site users",
- "Workspaces and Discussions tables can be added to provide users with quick access to collaboration and workspace data",
- "Users who have already customized their Home page are not affected by Public tab changes"
- ]
- },
- {
- "id": "m4t5",
- "title": "Exercise 7 - Delegate Tasks in Calendar",
- "estimatedMinutes": 6,
- "isExercise": true,
- "content": [
- {
- "type": "paragraph",
- "text": "In this exercise, you will configure task delegation for a user who is taking two weeks off. Juan Edwards needs to delegate his work assignments to Kathleen Perez so that workflows continue to progress during his absence."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "Sign in as <strong>jedwards/ptc</strong> for this exercise. You will configure delegation on Juan Edwards' personal calendar to redirect tasks to Kathleen Perez."
- },
- {
- "type": "exercise",
- "exerciseId": "ex7",
- "title": "Delegate Tasks in Calendar",
- "objective": "Configure task delegation from Juan Edwards to Kathleen Perez for a two-week period using the User Calendar.",
- "tasks": [
- {
- "id": "ex7-t1",
- "title": "Delegate Your Tasks",
- "steps": [
- {
- "action": "Sign in to Windchill as jedwards/ptc.",
- "detail": "Juan Edwards is the user who needs to delegate tasks. Delegation is configured from the user's own account via the Calendar settings.",
- "hint": null
- },
- {
- "action": "Navigate to Quick Links > My Settings > Calendar.",
- "detail": "The Calendar settings page shows the user's working and non-working days and provides the delegation configuration options.",
- "hint": "Quick Links is typically accessible from the top navigation or the user menu."
- },
- {
- "action": "Select next Monday through Friday two weeks later by clicking the dates on the calendar. Use Shift-click to select a range and Ctrl-click to extend the selection across month boundaries.",
- "detail": "Selecting the specific dates defines the delegation period. Only working days need to be selected since non-working days (weekends) are already excluded from task deadlines.",
- "hint": "If the two-week period spans two calendar months, use Ctrl-click to select dates in the second month without losing the first month's selections."
- },
- {
- "action": "Click Delegate > Delegate Selected Days to open the delegation dialog.",
- "detail": "The Delegate action assigns all workflow tasks for the selected days to another user. This ensures that pending work items are routed to the delegate instead of remaining with the unavailable user.",
- "hint": null
- },
- {
- "action": "In the Find Participant dialog, search for User Name kperez and select Kathleen Perez.",
- "detail": "The delegate must be a valid Windchill user. Kathleen Perez will receive Juan's workflow tasks for the selected period.",
- "hint": "Type 'kperez' in the user name search field and click Search."
- },
- {
- "action": "Verify that the delegated tasks are shown for the selected days on the calendar, then close the calendar and browser.",
- "detail": "The calendar should display delegation indicators on the selected dates. During this period, any workflow tasks assigned to Juan Edwards will be automatically routed to Kathleen Perez.",
- "hint": null
- }
- ]
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Task delegation is configured from the user's own account via Quick Links > My Settings > Calendar",
- "Delegation can be set for a specific date range using Shift-click and Ctrl-click to select working days",
- "Delegated tasks are automatically routed to the specified colleague during the delegation period"
- ]
- },
- {
- "id": "m4t6",
- "title": "Exercise 8 - Set Preferences",
- "estimatedMinutes": 8,
- "isExercise": true,
- "content": [
- {
- "type": "paragraph",
- "text": "In this exercise, you will configure revision-related preferences to ensure that technical editors have the correct revision choices when importing and revising documents. You will set preferences at both the Organization and Site levels and lock them to prevent overrides."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "For Tasks 1 and 2, sign in as <strong>wcadmin/wcadmin</strong> to configure preferences. For Task 3, sign in as <strong>bpatterson/ptc</strong> to test the preference changes from a regular user's perspective."
- },
- {
- "type": "exercise",
- "exerciseId": "ex8",
- "title": "Set Preferences",
- "objective": "Configure revision override and picker list preferences at the Organization and Site levels, lock them to prevent overrides, and verify the changes for a regular user.",
- "tasks": [
- {
- "id": "ex8-t1",
- "title": "Set Revision Override Preference for Organization",
- "steps": [
- {
- "action": "Sign in to Windchill as wcadmin/wcadmin.",
- "detail": "The site administrator has access to the Preference Management utility across all contexts.",
- "hint": null
- },
- {
- "action": "Navigate to PTC Publications > Utilities > Preference Management.",
- "detail": "Preference Management is the administration tool for viewing and setting preferences at any context level. Navigating to the PTC Publications organization sets the scope for the preference change.",
- "hint": "If PTC Publications is not visible, navigate to Organizations first and then open the PTC Publications context."
- },
- {
- "action": "Expand the Revise node in the preference tree and set 'Allow Override on Revise' to Yes.",
- "detail": "This preference controls whether users can override the default revision label when revising a document. Setting it to Yes gives technical editors flexibility to choose the appropriate revision label.",
- "hint": "Look for the Revise category in the preference tree on the left side of the Preference Management page."
- },
- {
- "action": "Select the Locked checkbox to apply this preference to all application contexts within the organization.",
- "detail": "Locking a preference prevents any child context (products, libraries) from overriding the value. This ensures consistent revision behavior across the entire PTC Publications organization.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex8-t2",
- "title": "Set Revision Picker List Size",
- "steps": [
- {
- "action": "Navigate to Site > Utilities > Preference Management.",
- "detail": "Switching to the Site context allows you to set a preference that applies across the entire Windchill installation, not just one organization.",
- "hint": "Use the context breadcrumb or Browse menu to navigate to the Site level."
- },
- {
- "action": "Expand the Revise node and set 'Revision Label Picker Display Count' to 15.",
- "detail": "This preference controls how many revision options appear in the revision picker dropdown. Increasing it from the default ensures that editors see enough revision choices to select the appropriate label.",
- "hint": null
- },
- {
- "action": "Select the Locked checkbox to prevent overrides at any lower context level.",
- "detail": "Locking at the Site level ensures no organization or application context can change this value. All users across the system will see up to 15 revision options in the picker.",
- "hint": null
- }
- ]
- },
- {
- "id": "ex8-t3",
- "title": "Test the Preferences",
- "steps": [
- {
- "action": "Sign in to Windchill as bpatterson/ptc.",
- "detail": "Signing in as a regular user lets you verify that the preference changes are visible and effective from an end-user perspective.",
- "hint": null
- },
- {
- "action": "Navigate to PTC New Publication Template > Folders > Team Information.",
- "detail": "This folder contains documents that can be used to test the revision behavior. You will attempt to revise a document and verify the picker settings.",
- "hint": "If the folder path differs in your environment, navigate to any document that supports revision."
- },
- {
- "action": "Right-click SPECIFICATION 2 and select Revise.",
- "detail": "The Revise action opens the revision dialog, which should now reflect the preferences you configured - allowing override and showing up to 15 revision options.",
- "hint": null
- },
- {
- "action": "Click the Select Revision glyph and verify that up to 15 revision options are displayed in the picker.",
- "detail": "The revision picker should show more options than the default. This confirms that both the Site-level display count preference and the Organization-level override preference are active.",
- "hint": "If fewer than 15 options appear, the total available revisions may be less than 15, which is expected. The key is that the limit has been raised."
- },
- {
- "action": "Cancel the revision and close the browser.",
- "detail": "You have verified that locked preferences propagate correctly and affect end-user behavior without requiring a server restart.",
- "hint": null
- }
- ]
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Preferences can be set at different context levels (Site, Organization, application context) and inherited by child contexts",
- "The Locked checkbox prevents child contexts from overriding a preference value",
- "Preference changes take effect without a server restart, unlike properties which require a restart",
- "Testing preferences from a regular user account verifies that the configuration is working as intended"
- ]
- }
+  {
+   "id": "m4t1",
+   "title": "Configuring the Windchill Home Page",
+   "estimatedMinutes": 6,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "The Windchill Home page is the first screen users see after signing in, and it shapes their daily interaction with the system. Administrators can configure a standard Home page that applies to all users on the site, ensuring a consistent starting experience that highlights the most relevant information."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Public and Private Tabs"
+    },
+    {
+     "type": "paragraph",
+     "text": "When signed in as an administrator, the Home page displays two tabs. The <strong>Private</strong> tab controls the administrator's own personal Home page settings. The <strong>Public</strong> tab enables the administrator to configure a standard Home page that is deployed to all users on the site. Changes made to the Public tab are carried forward to the Home pages of all users, except those who have already modified their own Home pages."
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Tab",
+      "Scope",
+      "Who Sees Changes"
+     ],
+     "rows": [
+      [
+       "Private",
+       "Administrator's personal Home page only",
+       "Only the administrator who made the changes"
+      ],
+      [
+       "Public",
+       "Standard Home page for the entire site",
+       "All users who have not already customized their own Home page"
+      ]
+     ]
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Customizing the Home Page Layout"
+    },
+    {
+     "type": "paragraph",
+     "text": "The default Home page includes tables for Tasks, Updates, and Checked Out Work. Using the <strong>Customize</strong> option in the upper-right corner of the Public tab, administrators can add or remove tables, rearrange the display order by dragging table hyperlinks, and configure which information is most prominent. Users always retain the ability to override the initially configured Home page to suit their own work preferences."
+    },
+    {
+     "type": "callout",
+     "variant": "tip",
+     "text": "Configure the Public Home page early in your deployment. Users who customize their own Home pages before you set the Public tab will not receive your changes. Setting the standard layout first ensures all users start with a consistent, well-organized view."
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each Home page concept to its description:",
+     "pairs": [
+      {
+       "left": "Private tab",
+       "right": "Controls the administrator's personal Home page settings"
+      },
+      {
+       "left": "Public tab",
+       "right": "Configures a standard Home page deployed to all site users"
+      },
+      {
+       "left": "Customize option",
+       "right": "Adds, removes, or rearranges tables on the Home page"
+      },
+      {
+       "left": "User override",
+       "right": "Allows individual users to modify their own Home page layout"
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Administrators configure a standard Home page for all users via the Public tab",
+    "Changes to the Public tab only affect users who have not already customized their own Home pages",
+    "The Customize option allows adding, removing, and reordering tables on the Home page",
+    "Users always retain the ability to override the standard Home page to suit their own preferences"
+   ]
+  },
+  {
+   "id": "m4t2",
+   "title": "Calendar Management",
+   "estimatedMinutes": 6,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "The Windchill calendar defines working and non-working days for the system, and it directly affects how deadlines are calculated. A workflow task with a 7-day deadline means 7 <em>working</em> days, not 7 calendar days. Proper calendar management ensures deadlines are accurate and prevents tasks from being trapped with unavailable users."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Calendar Scope and Types"
+    },
+    {
+     "type": "paragraph",
+     "text": "Calendar maintenance is conducted at the Site context level, meaning there is a single system calendar that applies to the entire Windchill installation. Out of the box, Saturday and Sunday are defined as non-working days. Administrators can manage three different calendar scopes:"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Calendar Type",
+      "Scope",
+      "Key Use"
+     ],
+     "rows": [
+      [
+       "My Calendar",
+       "Administrator's personal calendar",
+       "Set the administrator's own working and non-working days"
+      ],
+      [
+       "User Calendar",
+       "A specified user account",
+       "Manage working days and delegation for individual users"
+      ],
+      [
+       "System Calendar",
+       "Entire Windchill system",
+       "Define non-working days (holidays, company closures) that affect all deadline calculations"
+      ]
+     ]
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Task Delegation"
+    },
+    {
+     "type": "paragraph",
+     "text": "When users are unavailable, Windchill supports task delegation. Users can delegate their work assignments to another user for a specified period of time or indefinitely. Delegation is configured on individual user calendars, not the system calendar. This ensures that workflows continue to progress even when participants are on vacation or leave."
+    },
+    {
+     "type": "callout",
+     "variant": "warning",
+     "text": "Delegation is only available on individual user calendars. You cannot configure delegation at the system calendar level. If your organization spans multiple countries, remember that national holidays vary. Administrators should update the system calendar to reflect company-wide non-working days and rely on user calendars for individual absences."
+    },
+    {
+     "type": "interactive-sort",
+     "prompt": "Arrange these calendar management tasks from system-wide scope to individual scope:",
+     "items": [
+      "Define company-wide non-working days on the System Calendar",
+      "Set national holiday exceptions on the System Calendar",
+      "Configure a user's vacation days on their User Calendar",
+      "Set up task delegation to a colleague on the User Calendar"
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Windchill deadlines are calculated in working days, not calendar days, based on the system calendar",
+    "Three calendar scopes exist: My Calendar, User Calendar, and System Calendar",
+    "Task delegation allows users to redirect work assignments to a colleague for a specified period or indefinitely",
+    "Delegation is configured on individual user calendars, not the system calendar"
+   ]
+  },
+  {
+   "id": "m4t3",
+   "title": "Preferences and Properties",
+   "estimatedMinutes": 7,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Windchill provides two distinct mechanisms for controlling system behavior: <strong>preferences</strong> and <strong>properties</strong>. Although both influence how the system operates, they differ fundamentally in scope, management method, and whether they require a server restart. Understanding this distinction is critical for business administrators."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Preferences"
+    },
+    {
+     "type": "paragraph",
+     "text": "Preferences define default application behavior and can be set at the Site, Organization, or application context levels. They follow the context hierarchy, meaning child contexts inherit preference values from their parent. Administrators can lock preferences to prevent overrides in child contexts. In the Preference Manager, the term <strong>scope</strong> is synonymous with <strong>context</strong>. Users can also set personal preferences through <strong>My Settings</strong>, which override context-level values for that individual."
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Preference Category",
+      "Examples"
+     ],
+     "rows": [
+      [
+       "Display",
+       "Thumbnail images for 2D/3D content, table column defaults"
+      ],
+      [
+       "Content",
+       "Check-in defaults, save-as defaults, default object types"
+      ],
+      [
+       "Searching",
+       "Latest version search behavior, search scope defaults"
+      ],
+      [
+       "Revision",
+       "Revision label picker display count, allow override on revise"
+      ],
+      [
+       "Workspace",
+       "Display workspace preferences, workspace management options"
+      ],
+      [
+       "Visualization",
+       "Configuration specifications, rendering defaults"
+      ]
+     ]
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Properties"
+    },
+    {
+     "type": "paragraph",
+     "text": "Properties control low-level behavior and system functions. They are stored in configuration files in the Windchill installation directories (such as <code>wt.properties</code>) and are managed using the <code>xconfmanager</code> command-line tool. Unlike preferences, properties affect the entire system and <strong>require a Windchill server restart</strong> to take effect."
+    },
+    {
+     "type": "callout",
+     "variant": "warning",
+     "text": "Never confuse preferences with properties. Preferences are managed through the UI, apply per-context, and take effect immediately (with a browser refresh at most). Properties are managed via <code>xconfmanager</code>, apply system-wide, and require a full server restart. Changing a property on a production server requires coordination with the system administrator and a planned maintenance window."
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each characteristic to preferences or properties:",
+     "pairs": [
+      {
+       "left": "Managed via Preference Management UI",
+       "right": "Preferences"
+      },
+      {
+       "left": "Managed via xconfmanager tool",
+       "right": "Properties"
+      },
+      {
+       "left": "Can be set per-context and inherited",
+       "right": "Preferences"
+      },
+      {
+       "left": "Requires Windchill server restart",
+       "right": "Properties"
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Preferences define default application behavior and are managed through the Preference Management UI without requiring a server restart",
+    "Properties control system-level behavior, are stored in configuration files, and require a server restart via xconfmanager",
+    "Preferences can be set at Site, Organization, or application context levels and follow the context inheritance hierarchy",
+    "Administrators can lock preferences to prevent child contexts from overriding them"
+   ]
+  },
+  {
+   "id": "m4t4",
+   "title": "Exercise 6 - Configure the Windchill Home Page",
+   "estimatedMinutes": 6,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "In this exercise, you will standardize the Windchill Home page for all users at the site by modifying the Public tab display and then verifying that the changes propagate to a regular user account."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "You need access to the Windchill training server. For Task 1, sign in as <strong>wcadmin/wcadmin</strong> (site administrator). For Task 2, sign in as a regular user (<strong>Arden Reed</strong>) to verify the changes."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex6",
+     "title": "Configure the Windchill Home Page",
+     "objective": "Modify the default Home page display via the Public tab and verify that changes are visible to a regular user.",
+     "tasks": [
+      {
+       "id": "ex6-t1",
+       "title": "Modify the Default Home Page Display",
+       "steps": [
+        {
+         "action": "Launch a web browser and click the Windchill bookmark.",
+         "detail": "Open the Windchill sign-in page using the bookmark configured for your training environment.",
+         "hint": null
+        },
+        {
+         "action": "Sign in to Windchill: Username <code>wcadmin</code>, Password <code>wcadmin</code>.",
+         "detail": "The site administrator account has access to the Public tab on the Home page, which controls the standard layout for all users.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Home</strong> icon to display the Home page.",
+         "detail": "The Home page is the first screen users see after signing in. It contains tables showing tasks, updates, and other information.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Public</strong> tab and click the <strong>Customize</strong> menu to view all available tables.",
+         "detail": "The Public tab shows the current standard Home page layout that is deployed to all users who have not customized their own Home pages. The Customize menu lets you add or remove tables.",
+         "hint": "The Public tab is only visible to administrators. If you do not see it, verify you are signed in as wcadmin."
+        },
+        {
+         "action": "Select the <strong>Workspaces</strong> and <strong>Discussions</strong> checkboxes.",
+         "detail": "Adding Workspaces gives users quick access to their active workspaces. Adding Discussions surfaces collaboration threads on the Home page.",
+         "hint": "If these tables are already present, choose other available tables to add."
+        },
+        {
+         "action": "Change the table order: at the top of the Public tab, drag the <strong>Tasks</strong> hyperlink all the way to the left.",
+         "detail": "Table order determines the visual priority on the Home page. Placing Tasks first ensures users immediately see their pending work items.",
+         "hint": "Note: You cannot drag the tables themselves, only the hyperlinks at the top of the tab."
+        },
+        {
+         "action": "Drag <strong>Workspaces</strong> to the end of the hyperlinks list.",
+         "detail": "Moving Workspaces to the last position keeps it accessible but gives priority to Tasks, Updates, and other tables.",
+         "hint": null
+        },
+        {
+         "action": "Close the web browser.",
+         "detail": "The Home page changes are saved automatically and will be deployed to all users who have not already customized their own Home page.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex6-t2",
+       "title": "Verify the Home Page Changes for a User",
+       "steps": [
+        {
+         "action": "Launch a web browser and click the Windchill bookmark.",
+         "detail": "Open a new browser session to sign in as a different user and verify the Home page changes.",
+         "hint": null
+        },
+        {
+         "action": "On the Profiles page, select <strong>Arden Reed</strong>.",
+         "detail": "Signing in as a non-administrator account lets you verify that the Public tab changes have propagated to a standard user's Home page.",
+         "hint": "Use the credentials provided by your instructor for the Arden Reed account."
+        },
+        {
+         "action": "Click the <strong>Home</strong> icon and notice that the default table display includes the <strong>Discussions</strong> and <strong>Workspaces</strong> tables.",
+         "detail": "If the user had not previously customized their Home page, your Public tab changes should be reflected. The Tasks table should appear first in the display order.",
+         "hint": "If the tables are not visible, the user may have previously customized their Home page, which overrides the Public tab settings."
+        },
+        {
+         "action": "Close the web browser.",
+         "detail": "You have successfully configured a standard Home page layout and verified it appears for end users.",
+         "hint": null
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "The Public tab on the Home page controls the standard layout for all site users",
+    "Workspaces and Discussions tables can be added to provide users with quick access to collaboration and workspace data",
+    "Users who have already customized their Home page are not affected by Public tab changes"
+   ]
+  },
+  {
+   "id": "m4t5",
+   "title": "Exercise 7 - Delegate Tasks in Calendar",
+   "estimatedMinutes": 6,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "In this exercise, you will configure task delegation for a user who is taking two weeks off. Juan Edwards needs to delegate his work assignments to Kathleen Perez so that workflows continue to progress during his absence."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "Sign in as <strong>jedwards/ptc</strong> for this exercise. You will configure delegation on Juan Edwards' personal calendar to redirect tasks to Kathleen Perez."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex7",
+     "title": "Delegate Tasks in Calendar",
+     "objective": "Configure task delegation from Juan Edwards to Kathleen Perez for a two-week period using the User Calendar.",
+     "tasks": [
+      {
+       "id": "ex7-t1",
+       "title": "Delegate Your Tasks",
+       "steps": [
+        {
+         "action": "Launch a web browser and select the Windchill bookmark.",
+         "detail": "Open the Windchill sign-in page using the bookmark configured for your training environment.",
+         "hint": null
+        },
+        {
+         "action": "Sign in to Windchill: Username <code>jedwards</code>, Password <code>ptc</code>.",
+         "detail": "Juan Edwards is the user who needs to delegate tasks. Delegation is configured from the user's own account via the Calendar settings.",
+         "hint": null
+        },
+        {
+         "action": "Select <strong>Quick Links > My Settings > Calendar</strong>.",
+         "detail": "The Calendar settings page shows the user's working and non-working days and provides the delegation configuration options.",
+         "hint": "Quick Links is typically accessible from the top navigation or the user menu."
+        },
+        {
+         "action": "In the Calendar dialog, select the <strong>next Monday</strong>, press <strong>Shift</strong>, and select <strong>Friday two weeks later</strong>.",
+         "detail": "Selecting the specific date range defines the delegation period. Only working days need to be selected since non-working days (weekends) are already excluded from task deadlines.",
+         "hint": "If the weeks span a month, press Shift to select the days in the current month and then press Ctrl to select the remaining days."
+        },
+        {
+         "action": "Select <strong>Delegate > Delegate Selected Days</strong>.",
+         "detail": "The Delegate action assigns all workflow tasks for the selected days to another user. This ensures that pending work items are routed to the delegate instead of remaining with the unavailable user.",
+         "hint": null
+        },
+        {
+         "action": "In the Find Participants dialog, search for the User Name <code>kperez</code>.",
+         "detail": "Search for the user who will receive the delegated tasks. Kathleen Perez is Juan's colleague who will handle his workflow tasks during the absence.",
+         "hint": "Type 'kperez' in the user name search field and click Search."
+        },
+        {
+         "action": "In the Search Results, select the radio button for <strong>Kathleen Perez</strong> and click <strong>OK</strong>.",
+         "detail": "Selecting the user and clicking OK confirms the delegation. Kathleen Perez will receive Juan's workflow tasks for the selected period.",
+         "hint": null
+        },
+        {
+         "action": "Notice that <strong>Kathleen Perez</strong> now has delegated tasks from Juan Edwards for the selected days.",
+         "detail": "The calendar should display delegation indicators on the selected dates. During this period, any workflow tasks assigned to Juan Edwards will be automatically routed to Kathleen Perez.",
+         "hint": null
+        },
+        {
+         "action": "Close the calendar.",
+         "detail": "The delegation settings are saved and will take effect on the selected dates.",
+         "hint": null
+        },
+        {
+         "action": "Close the web browser.",
+         "detail": "You have successfully configured task delegation from Juan Edwards to Kathleen Perez for a two-week period.",
+         "hint": null
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Task delegation is configured from the user's own account via Quick Links > My Settings > Calendar",
+    "Delegation can be set for a specific date range using Shift-click and Ctrl-click to select working days",
+    "Delegated tasks are automatically routed to the specified colleague during the delegation period"
+   ]
+  },
+  {
+   "id": "m4t6",
+   "title": "Exercise 8 - Set Preferences",
+   "estimatedMinutes": 8,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "In this exercise, you will configure revision-related preferences to ensure that technical editors have the correct revision choices when importing and revising documents. You will set preferences at both the Organization and Site levels and lock them to prevent overrides."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "For Tasks 1 and 2, sign in as <strong>wcadmin/wcadmin</strong> to configure preferences. For Task 3, sign in as <strong>bpatterson/ptc</strong> to test the preference changes from a regular user's perspective."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex8",
+     "title": "Set Preferences",
+     "objective": "Configure revision override and picker list preferences at the Organization and Site levels, lock them to prevent overrides, and verify the changes for a regular user.",
+     "tasks": [
+      {
+       "id": "ex8-t1",
+       "title": "Set the Revision Override Preference for an Organization",
+       "steps": [
+        {
+         "action": "Launch a web browser and click the Windchill bookmark.",
+         "detail": "Open the Windchill sign-in page using the bookmark configured for your training environment.",
+         "hint": null
+        },
+        {
+         "action": "Sign in to Windchill: Username <code>wcadmin</code>, Password <code>wcadmin</code>.",
+         "detail": "The site administrator has access to the Preference Management utility across all contexts.",
+         "hint": null
+        },
+        {
+         "action": "Expand the Navigator and select <strong>Organizations > PTC Publications</strong>.",
+         "detail": "Navigate to the PTC Publications organization to set preferences at the organization level. This scopes the preference change to this organization and its child contexts.",
+         "hint": "If PTC Publications is not visible, navigate to Organizations first and then open the PTC Publications context."
+        },
+        {
+         "action": "Click <strong>Utilities</strong>.",
+         "detail": "The Utilities section provides access to administrative tools for the current context.",
+         "hint": null
+        },
+        {
+         "action": "In the Business Administration section, click <strong>Preference Management</strong>.",
+         "detail": "Preference Management is the administration tool for viewing and setting preferences at any context level.",
+         "hint": null
+        },
+        {
+         "action": "In the Preference Management table, expand the <strong>Revise</strong> node.",
+         "detail": "The Revise node contains preferences related to revision behavior, including override settings and display options.",
+         "hint": "Look for the Revise category in the preference tree on the left side of the Preference Management page."
+        },
+        {
+         "action": "Right-click the <strong>Allow Override on Revise</strong> preference and select the <strong>Set Preference</strong> action.",
+         "detail": "The Set Preference action opens a dialog where you can change the preference value and optionally lock it.",
+         "hint": null
+        },
+        {
+         "action": "In the Set Preference dialog, set the value to <strong>Yes</strong>, select the <strong>Locked</strong> checkbox to apply this preference to all the application contexts belonging to the organization, then click <strong>OK</strong>.",
+         "detail": "Setting the value to Yes allows technical editors to override the default revision label when revising documents. Locking the preference prevents any child context (products, libraries) from changing this value, ensuring consistent revision behavior across the entire PTC Publications organization.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex8-t2",
+       "title": "Set the Revision Picker List Size",
+       "steps": [
+        {
+         "action": "From the Navigator, select the <strong>Site</strong> context.",
+         "detail": "Switching to the Site context allows you to set a preference that applies across the entire Windchill installation, not just one organization.",
+         "hint": "Use the context breadcrumb or Browse menu to navigate to the Site level."
+        },
+        {
+         "action": "Click <strong>Utilities</strong>.",
+         "detail": "Access the Utilities section to open Preference Management at the Site level.",
+         "hint": null
+        },
+        {
+         "action": "In the Business Administration section, click <strong>Preference Management</strong>.",
+         "detail": "Opening Preference Management from the Site context means any preferences you set here will apply system-wide.",
+         "hint": null
+        },
+        {
+         "action": "In the Preference Management table, expand the <strong>Revise</strong> node.",
+         "detail": "Navigate to the same Revise category to find the revision picker display count preference.",
+         "hint": null
+        },
+        {
+         "action": "Right-click the <strong>Revision Label Picker Display Count</strong> preference and select the <strong>Set Preference</strong> action.",
+         "detail": "This preference controls how many revision options appear in the revision picker dropdown when users revise a document.",
+         "hint": null
+        },
+        {
+         "action": "In the <strong>Value</strong> field, delete the existing value and type <code>15</code>.",
+         "detail": "Increasing the count from the default value ensures that editors see enough revision choices to select the appropriate label. A value of 15 provides a wider range of revision options.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Locked</strong> checkbox to apply this preference to all contexts below the Site level. Click <strong>OK</strong>.",
+         "detail": "Locking at the Site level ensures no organization or application context can change this value. All users across the system will see up to 15 revision options in the picker.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex8-t3",
+       "title": "Test the Preferences",
+       "steps": [
+        {
+         "action": "Close the web browser.",
+         "detail": "End the site administrator session before signing in as a different user to test the preferences.",
+         "hint": null
+        },
+        {
+         "action": "Launch a web browser and click the Windchill bookmark.",
+         "detail": "Open a new browser session to sign in as a regular user.",
+         "hint": null
+        },
+        {
+         "action": "Sign in to Windchill: Username <code>bpatterson</code>, Password <code>ptc</code>.",
+         "detail": "Signing in as a regular user lets you verify that the preference changes are visible and effective from an end-user perspective.",
+         "hint": null
+        },
+        {
+         "action": "From the Navigator, browse to <strong>Recent Products > PTC New Publication Template</strong>.",
+         "detail": "Navigate to an existing product that belongs to the PTC Publications organization where the revision override preference was set.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Folders</strong> link.",
+         "detail": "Navigate to the Folders view to access documents stored in the product context.",
+         "hint": null
+        },
+        {
+         "action": "Open the <strong>Team Information</strong> folder.",
+         "detail": "This folder contains documents that can be used to test the revision behavior.",
+         "hint": "If the folder path differs in your environment, navigate to any document that supports revision."
+        },
+        {
+         "action": "Right-click <strong>SPECIFICATION 2</strong> and select <strong>Revise</strong>.",
+         "detail": "The Revise action opens the revision dialog, which should now reflect the preferences you configured — allowing override and showing up to 15 revision options.",
+         "hint": null
+        },
+        {
+         "action": "In the New Revision column, click the <strong>Select Revision</strong> glyph.",
+         "detail": "The revision glyph opens the picker dropdown showing available revision labels.",
+         "hint": null
+        },
+        {
+         "action": "Expand the revision list and notice that you can select up to <strong>15 revision options</strong>.",
+         "detail": "The revision picker should show more options than the default. This confirms that both the Site-level display count preference and the Organization-level override preference are active.",
+         "hint": "If fewer than 15 options appear, the total available revisions may be less than 15, which is expected. The key is that the limit has been raised."
+        },
+        {
+         "action": "Click <strong>Cancel</strong>.",
+         "detail": "Cancel the revision dialog without making changes to the document.",
+         "hint": null
+        },
+        {
+         "action": "Close the web browser.",
+         "detail": "You have verified that locked preferences propagate correctly and affect end-user behavior without requiring a server restart.",
+         "hint": null
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Preferences can be set at different context levels (Site, Organization, application context) and inherited by child contexts",
+    "The Locked checkbox prevents child contexts from overriding a preference value",
+    "Preference changes take effect without a server restart, unlike properties which require a restart",
+    "Testing preferences from a regular user account verifies that the configuration is working as intended"
+   ]
+  }
  ]
 }

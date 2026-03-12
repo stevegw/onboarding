@@ -1,0 +1,560 @@
+{
+  "id": "m3",
+  "title": "Test Design",
+  "description": "Design test cases with steps and parameters, establish requirements traceability, and practice creating, reusing, importing, and approving test cases.",
+  "topics": [
+    {
+      "id": "m3t1",
+      "title": "Test Design Process",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Now that you have a test plan and have set up the project structure, you move on to test design. Test design involves the creation of procedures called test cases. Test cases verify product requirements fulfillment and have traceability to the requirements they test."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Creating Test Cases in Codebeamer"
+        },
+        {
+          "type": "paragraph",
+          "text": "In Codebeamer, test cases have steps in which you define each step's action, expected result, and criticality. Typically, the test engineer performs the test design, referencing content from test plans created by the test lead."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Test Design Process"
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the test design steps in the correct order:",
+          "items": [
+            "Create a new test case artifact",
+            "Establish traceability to the requirement it verifies",
+            "Write the test steps with actions and expected results",
+            "Write pre- and post-actions",
+            "Update the workflow state"
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Test Case Components"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Component", "Purpose", "Details"],
+          "rows": [
+            ["Verifies Field", "Links the test case to a requirement", "Establishes traceability — the requirement is an upstream reference to the test case"],
+            ["Test Steps", "Define actions and expected results", "Each step has an action (what the tester does) and an expected result (what should happen)"],
+            ["Parameters", "Enable variable-driven test steps", "Use ${paramName} syntax to reference parameter values in actions and expected results"],
+            ["Pre-Action", "Setup instructions before executing", "Tells the tester how to prepare the test environment before running steps"],
+            ["Post-Action", "Cleanup instructions after executing", "Tells the tester how to restore the test environment after the test completes"],
+            ["Critical Flag", "Marks a step as critical", "If a step marked critical fails, the entire test stops at that step"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "You can create a test case in two ways: from the test case tracker page, or directly as a downstream reference from a requirement. Creating from a requirement automatically populates the Verifies field with the traceability link."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each test case component to its function:",
+          "pairs": [
+            {
+              "left": "Pre-Action",
+              "right": "Instructions to prepare the test environment before execution"
+            },
+            {
+              "left": "Test Steps",
+              "right": "Sequence of actions with expected results for the tester to follow"
+            },
+            {
+              "left": "Parameters",
+              "right": "Variable values that generate multiple test case instances"
+            },
+            {
+              "left": "Critical Flag",
+              "right": "Stops the entire test if the marked step fails"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Test design involves creating test cases with steps, parameters, and traceability links",
+        "The five-step design process: create, link to requirement, write steps, add pre/post-actions, update state",
+        "Parameters use ${paramName} syntax and generate multiple test case instances during execution",
+        "Test cases can be created from the tracker or directly from a requirement for automatic traceability"
+      ]
+    },
+    {
+      "id": "m3t2",
+      "title": "Requirements Traceability",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Reference relationships are the main relationships in Codebeamer that drive traceability. A downstream item is intended to validate upstream items — if all downstream items are satisfied, the upstream requirement is validated and proven."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Upstream and Downstream References"
+        },
+        {
+          "type": "paragraph",
+          "text": "Consider a system test case to verify the manual headlight switch integration. The test case includes steps to verify the headlight switch correctly controls the vehicle headlights. Upstream from the test case is the system requirement that the vehicle must have a switch mechanism for manual headlight operation. The test case is a <strong>downstream reference</strong> to the requirement."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Direction", "Meaning", "Example"],
+          "rows": [
+            ["Upstream", "Higher-level item being validated", "System Requirement: Vehicle must have manual headlight switch"],
+            ["Downstream", "Item that validates the upstream item", "Test Case: Verify headlight switch controls beam brightness"],
+            ["Suspect", "Downstream item may be outdated due to upstream changes", "Test run becomes suspect when its test case is modified"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Suspected Badges"
+        },
+        {
+          "type": "paragraph",
+          "text": "When an upstream item changes, downstream items become <strong>suspect</strong>. For example, if a test case is modified after a test run has been executed, the test run becomes suspect because the original upstream reference changed. This is the benefit of traceability relationships — Codebeamer automatically flags items that may need review."
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Requirements do not need to be in an accepted state to write test cases for them. You may perform preliminary tests to help determine requirement details. In this case, test cases become suspect as requirements are updated — this is the intended benefit of traceability."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each traceability concept to its example:",
+          "pairs": [
+            {
+              "left": "Upstream reference",
+              "right": "A system requirement that a test case verifies"
+            },
+            {
+              "left": "Downstream reference",
+              "right": "A test case that validates a requirement"
+            },
+            {
+              "left": "Suspected badge",
+              "right": "A test run flagged because its test case was modified"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Reference relationships drive traceability — downstream items validate upstream items",
+        "When an upstream item changes, all downstream items become suspect automatically",
+        "Test cases are downstream references to the requirements they verify",
+        "Traceability allows Codebeamer to flag potentially outdated items for review"
+      ]
+    },
+    {
+      "id": "m3t3",
+      "title": "Exercise - Create a New Test Case",
+      "estimatedMinutes": 12,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "As a test engineer, you will write a test case directly from a software requirement, ensuring traceability is automatically established. You will also use parameters in your test case steps to efficiently handle multiple input/output combinations."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Sign in as the Test Engineer user (<code>emma</code> / <code>ptc</code>). Make sure Exercises 2 and 3 are complete so the Software Test Cases tracker exists."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex4",
+          "title": "Create a New Test Case",
+          "objective": "Create a test case from a requirement, write test steps with parameters, and establish traceability.",
+          "tasks": [
+            {
+              "id": "ex4-t1",
+              "title": "Review Tasks for the Test Engineer",
+              "steps": [
+                {
+                  "action": "Sign out as the Test Lead and sign in as the Test Engineer with username <code>emma</code> and password <code>ptc</code>.",
+                  "detail": "You are switching to the Test Engineer role to begin designing test cases.",
+                  "hint": null
+                },
+                {
+                  "action": "On the Trackers tab, click the vertical ellipsis then select <strong>Tasks</strong>.",
+                  "detail": "Check for tasks assigned to your role.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Kanban Board</strong> view and locate the <strong>Write AHS Test Cases</strong> task.",
+                  "detail": "This task was assigned by the test lead in the previous exercise.",
+                  "hint": "The task should be in the ToDo column."
+                },
+                {
+                  "action": "Drag the <strong>Write AHS Test Cases</strong> task to the <strong>In progress</strong> column.",
+                  "detail": "This updates the task status to indicate you are actively working on it.",
+                  "hint": "Hover over the left edge of the task tile to see the drag cursor."
+                }
+              ]
+            },
+            {
+              "id": "ex4-t2",
+              "title": "Create a Test Case from a Requirement",
+              "steps": [
+                {
+                  "action": "Navigate to <strong>Software Requirements</strong> via the Trackers tab vertical ellipsis.",
+                  "detail": "Observe that all requirements related to the Advanced Headlight System have been accepted prior to test management.",
+                  "hint": null
+                },
+                {
+                  "action": "Expand the <strong>Automatic Headlight Illumination Control</strong> requirement and select <strong>Light Sensor Communication with ECU</strong>.",
+                  "detail": "You will create a test case that verifies this software requirement.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>+</strong> (create new Downstream References) and select <strong>PTCU Electric Car TEST >> Software Test Cases</strong>.",
+                  "detail": "Creating the test case from the requirement automatically populates the Verifies field with the traceability link.",
+                  "hint": "Do not select Generate Test Case — use the direct creation option."
+                },
+                {
+                  "action": "Set Pre-Action to <code>Setup input code interfaces</code> and Post-Action to <code>Remove interfaces for code</code>.",
+                  "detail": "Pre- and Post-Actions tell the tester how to prepare and clean up the test environment.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Test Steps section, click <strong>Add step</strong>. Set step 1 Action to <code>Provide simulated low light conditions (10lux) to sensor input</code>.",
+                  "detail": "Test steps define the actions the tester takes when executing the test case.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Add step</strong> again. Set step 2 Action to <code>Validate ECU output condition of 'high beam' of value 3</code>.",
+                  "detail": "This step verifies the ECU responds correctly to the simulated input.",
+                  "hint": null
+                },
+                {
+                  "action": "Save the test case and navigate to it via the Software Test Cases tracker.",
+                  "detail": "The test case is now created with two steps and linked to the requirement.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex4-t3",
+              "title": "Create Test Case Parameters",
+              "steps": [
+                {
+                  "action": "Open the new test case in a new tab and click <strong>Edit</strong> (pencil icon).",
+                  "detail": "You will add parameters to avoid writing multiple similar steps for different input/output combinations.",
+                  "hint": null
+                },
+                {
+                  "action": "Expand the <strong>Test Parameters</strong> section and insert a 4x2 table using Advanced options > Insert Table.",
+                  "detail": "The table defines parameter names in the first row and values in subsequent rows.",
+                  "hint": null
+                },
+                {
+                  "action": "Fill in the parameter table: Row 1: <code>input</code> | <code>output</code>. Row 2: <code>10 lux</code> | <code>high beam 3</code>. Row 3: <code>300 lux</code> | <code>low beam 2</code>. Row 4: <code>1000 lux</code> | <code>running lights 1</code>.",
+                  "detail": "These parameters come from the defined requirement details. Spell parameter names exactly as they will be referenced in test steps.",
+                  "hint": "Press Tab to quickly navigate between table cells."
+                },
+                {
+                  "action": "Save the test case and observe the Own parameter values in the Test Parameters section.",
+                  "detail": "The Used Parameters field is empty because you have not yet referenced parameters in the test steps.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex4-t4",
+              "title": "Update Test Steps with Parameters",
+              "steps": [
+                {
+                  "action": "Edit the test case again. In Test Steps, delete step #2.",
+                  "detail": "You will replace the two steps with a single parameterized step.",
+                  "hint": null
+                },
+                {
+                  "action": "Edit step #1 Action to <code>Provide simulated input light condition ${input} to sensor</code>.",
+                  "detail": "The ${input} syntax references the input parameter column from the parameter table.",
+                  "hint": "The ${input} text must be typed exactly as written."
+                },
+                {
+                  "action": "Set step #1 Expected result to <code>Verify ECU output of ${output}</code>.",
+                  "detail": "The ${output} syntax references the output parameter column. During execution, Codebeamer creates separate test case instances for each parameter row.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Critical</strong> checkbox for step #1 and save the test case.",
+                  "detail": "If a step marked critical fails, the test stops at that step. This ensures critical validations are not bypassed.",
+                  "hint": null
+                },
+                {
+                  "action": "Verify the Used Parameters field in the Test Parameters section is no longer empty.",
+                  "detail": "If it is still empty, check the ${input} and ${output} syntax in the step matches the parameter table column headers exactly.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Creating a test case from a requirement automatically establishes the traceability link",
+        "Parameters use ${paramName} syntax and generate separate test case instances during execution",
+        "The Critical flag on a test step stops the entire test if that step fails",
+        "Pre- and Post-Actions tell the tester how to prepare and clean up the test environment"
+      ]
+    },
+    {
+      "id": "m3t4",
+      "title": "Exercise - Reuse and Import Test Cases",
+      "estimatedMinutes": 12,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "As a test engineer, you will reuse a test case from a template project representing industry compliance standards, then import test cases from a Microsoft Excel file provided by a hardware vendor."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Continue as the Test Engineer (<code>emma</code> / <code>ptc</code>). These exercises demonstrate two methods for efficiently populating test cases: library reuse and file import."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex5",
+          "title": "Reuse and Import Test Cases",
+          "objective": "Reuse a test case from a template library and import test cases from an Excel file.",
+          "tasks": [
+            {
+              "id": "ex5-t1",
+              "title": "Add a Test Case to Library",
+              "steps": [
+                {
+                  "action": "Navigate to the <strong>Software Test Cases</strong> tracker and click <strong>Library</strong> in the right pane.",
+                  "detail": "The library provides reusable test case templates from other projects.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the gear icon to configure the library. Expand <strong>Vehicle Template</strong> and select <strong>Software Compliance Test Cases</strong>.",
+                  "detail": "This template represents industry compliance standards your company maintains in a separate project.",
+                  "hint": null
+                },
+                {
+                  "action": "Scroll to the top and click <strong>Save</strong>.",
+                  "detail": "The template is now available in your library panel.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex5-t2",
+              "title": "Copy a Test Case from the Library",
+              "steps": [
+                {
+                  "action": "Expand each node of the Vehicle Template in the Library panel.",
+                  "detail": "You will find the compliance test case to reuse.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Verify Unit Code for ECU Headlight Control</strong> and drag it to <strong>Software Test Cases</strong> in the left pane.",
+                  "detail": "This copies the test case details including Pre-Action, Post-Action, and Test Steps from the template.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Close</strong> on the success message.",
+                  "detail": "The test case has been copied to your tracker.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex5-t3",
+              "title": "Link the Reused Test Case to a Requirement",
+              "steps": [
+                {
+                  "action": "Select the new test case <strong>Verify Unit Code for ECU Headlight Control</strong> in the tracker tree.",
+                  "detail": "Expand the Details section to see the copied fields. Note that Pre-Action, Post-Action, and Test Steps are populated.",
+                  "hint": null
+                },
+                {
+                  "action": "Double-click the <strong>Verifies</strong> field, click the pencil icon, select <strong>ECU Data Processing</strong>, and click <strong>Add</strong>.",
+                  "detail": "Copied test cases need to be linked to the requirements they verify — the traceability link is not copied from the template.",
+                  "hint": null
+                },
+                {
+                  "action": "Click outside the Verifies field to save, then refresh the browser and observe the updated References section.",
+                  "detail": "The test case now has a traceability link to the ECU Data Processing requirement.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex5-t4",
+              "title": "Import Test Cases from Excel",
+              "steps": [
+                {
+                  "action": "Navigate to the <strong>Software Test Cases</strong> tracker. Click the more menu (vertical ellipsis) and select <strong>Import</strong>.",
+                  "detail": "You can import test cases from Excel files to facilitate collaboration with vendors and external teams.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Attach a file</strong> and select the vendor's test cases Excel file. Verify <strong>Microsoft Excel</strong> is selected and click <strong>Next</strong>.",
+                  "detail": "The file contains test cases from the vendor that built the headlight sensor.",
+                  "hint": null
+                },
+                {
+                  "action": "Verify Start Import as Row is <strong>2</strong>. Map columns: Name, Description, Pre-Action, Post-Action, Test Steps.Action, Test Steps.Expected result.",
+                  "detail": "Row 1 contains column headers. The mapping tells Codebeamer how to read the data into test case fields.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Next</strong>. In Advanced conversions, set Column #4 and Column #5 to <strong>Splitter</strong> with Split by <strong>Line end</strong>.",
+                  "detail": "The splitter separates multiple test steps within a single Excel cell using line breaks.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Next</strong>, observe the preview, and click <strong>Finish</strong>.",
+                  "detail": "Two test cases are imported: Light Sensor Unit Test and Light Sensor Component Test.",
+                  "hint": "Refresh your browser if the imported test cases do not appear immediately."
+                }
+              ]
+            },
+            {
+              "id": "ex5-t5",
+              "title": "Modify Imported Test Cases",
+              "steps": [
+                {
+                  "action": "Select <strong>Light Sensor Unit Test</strong> and edit the Verifies field to <strong>Light Sensor Environment Detection</strong>.",
+                  "detail": "Imported test cases need traceability links added manually.",
+                  "hint": "Double-click the field and start typing the requirement name."
+                },
+                {
+                  "action": "Select <strong>Light Sensor Component Test</strong> and observe it is a hardware test case in the wrong tracker.",
+                  "detail": "The import placed all test cases in Software Test Cases, but this one belongs in Hardware Test Cases.",
+                  "hint": null
+                },
+                {
+                  "action": "Right-click the test case, select <strong>Move To</strong>, and set Destination to <strong>Hardware Test Cases</strong>.",
+                  "detail": "You may receive a permissions error — the test engineer role may not have permission to move items between trackers.",
+                  "hint": null
+                },
+                {
+                  "action": "If permission is denied, create a downstream task: Summary <code>Move before Approval</code>, Description <code>Move to Hardware Test Cases and approve</code>, Assigned to <strong>Test Lead</strong>.",
+                  "detail": "When you lack permissions, create a task for someone who has the appropriate access.",
+                  "hint": "Click + (create new Downstream References) for the test case, then select Tasks."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Test cases can be reused from template libraries to maintain consistency with industry compliance standards",
+        "Imported test cases from Excel require manual traceability linking and may need tracker reassignment",
+        "The Splitter conversion option separates multiple test steps within a single Excel cell",
+        "When permissions prevent an action, create a workflow task for a role that has the required access"
+      ]
+    },
+    {
+      "id": "m3t5",
+      "title": "Exercise - Update Workflow for Test Cases",
+      "estimatedMinutes": 8,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "After writing test cases as a test engineer, you will update their workflow status for the test lead to approve. You will use different views to manage state changes and then sign in as the test lead to approve the test cases."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Test cases should be approved before they are executed in a formal test run. Unapproved test cases can be run informally to check coverage, but formal testing requires approval."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex6",
+          "title": "Update Workflow for Test Cases",
+          "objective": "Update test case workflow states and approve test cases as the test lead.",
+          "tasks": [
+            {
+              "id": "ex6-t1",
+              "title": "View the Workflow Definition",
+              "steps": [
+                {
+                  "action": "From the Software Test Cases tracker toolbar, click the more menu and select <strong>Workflow Diagram</strong>.",
+                  "detail": "The workflow diagram shows all possible states and transitions for test case items.",
+                  "hint": null
+                },
+                {
+                  "action": "Observe the states defined for this tracker, noting the In progress state has two options: <strong>In Design</strong> and <strong>Awaiting Approval</strong>.",
+                  "detail": "Understanding the workflow helps you know which state transitions are available at each stage.",
+                  "hint": null
+                },
+                {
+                  "action": "Navigate back to the Software Test Cases tracker.",
+                  "detail": "You can use the breadcrumbs to quickly navigate.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex6-t2",
+              "title": "Update Workflow from Kanban Board",
+              "steps": [
+                {
+                  "action": "Select the <strong>Kanban Board</strong> view from the right side of the toolbar.",
+                  "detail": "The Kanban Board view is well-suited for updating item states through drag-and-drop.",
+                  "hint": null
+                },
+                {
+                  "action": "Drag each test case from the <strong>ToDo</strong> column to the <strong>In progress</strong> column.",
+                  "detail": "Each test case moves to the In Design state.",
+                  "hint": "Hover over the left edge of a test case tile to see the drag cursor."
+                },
+                {
+                  "action": "Drag one test case from In progress to the In progress column again to move it to <strong>Awaiting Approval</strong>.",
+                  "detail": "The second transition within In progress changes the state from In Design to Awaiting Approval.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex6-t3",
+              "title": "Approve Test Cases as Test Lead",
+              "steps": [
+                {
+                  "action": "Sign out of Codebeamer and sign in as the test lead with username <code>alani</code> and password <code>ptc</code>.",
+                  "detail": "The test lead typically approves test cases before they are executed in formal test runs.",
+                  "hint": null
+                },
+                {
+                  "action": "Navigate to the <strong>Software Test Cases</strong> tracker and select the <strong>Table View</strong>.",
+                  "detail": "The Table View is well-suited for bulk status updates across multiple items.",
+                  "hint": null
+                },
+                {
+                  "action": "Update the Status field of each test case to <strong>Accept</strong> and save each one.",
+                  "detail": "You can use the Mass Edit tool to change multiple items at once, or update each individually using the vertical ellipsis next to each status.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Test case workflows define the states and transitions items move through (ToDo, In Design, Awaiting Approval, Accepted)",
+        "The Kanban Board view enables drag-and-drop state transitions for test cases",
+        "The Table View is efficient for bulk status updates across multiple items",
+        "Test cases should be approved by the test lead before formal test execution"
+      ]
+    }
+  ]
+}

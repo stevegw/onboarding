@@ -54,7 +54,7 @@
   "topic.stepsProgress": "{done}/{total} 个步骤",
   "topic.doThis": "操作步骤",
   "topic.whyItMatters": "为什么重要",
-  "topic.doneNextStep": "完成 - 下一步",
+  "topic.doneNextStep": "完成",
   "topic.topicsComplete": "已完成 {done}/{total} 个主题",
   "topic.moduleBadge": "模块 {num}",
   "topic.topics": "主题",

@@ -1,0 +1,132 @@
+{
+  "terms": [
+    {
+      "term": "Bug",
+      "definition": "A tracker item representing a defect found during testing. Bugs are linked to the failing test case and the requirement that was violated, maintaining a complete traceability chain for impact analysis."
+    },
+    {
+      "term": "Change Request",
+      "definition": "A tracker type used to formally request modifications to a product or its requirements. Change requests may be initiated when bugs reveal product problems that require design or specification changes."
+    },
+    {
+      "term": "Configuration Diagram",
+      "definition": "A visual representation of the relationships between tracker types in a Codebeamer project. Shows upstream and downstream references between trackers such as requirements, test cases, and test runs."
+    },
+    {
+      "term": "Critical Flag",
+      "definition": "A marker on a test step that stops the entire test execution if that step fails. Used to ensure critical validations are not bypassed when a fundamental requirement check fails."
+    },
+    {
+      "term": "Downstream Reference",
+      "definition": "A traceability link from a higher-level item to a more detailed item that validates it. Test cases are downstream references to the requirements they verify; test runs are downstream references to test cases."
+    },
+    {
+      "term": "Expected Result",
+      "definition": "The anticipated outcome of a test step action. During execution, the tester compares the actual result to the expected result to determine if the step passes or fails."
+    },
+    {
+      "term": "Import",
+      "definition": "The process of bringing test case data from external sources (such as Microsoft Excel files) into Codebeamer. Import mappings define how source columns correspond to tracker fields."
+    },
+    {
+      "term": "Kanban Board",
+      "definition": "A visual board view where columns represent workflow states and items are displayed as cards. Supports drag-and-drop state transitions, making it efficient for updating test case or task statuses."
+    },
+    {
+      "term": "Library",
+      "definition": "A repository of reusable test case templates that can be copied into your project. Libraries enable consistency with industry compliance standards and reduce duplicate effort across projects."
+    },
+    {
+      "term": "Parameter",
+      "definition": "A variable used in test case steps with ${paramName} syntax. Parameters are defined in a table within the test case and generate separate test case instances during execution — one for each parameter row."
+    },
+    {
+      "term": "Parent-Child Relationship",
+      "definition": "An organizational hierarchy within a single tracker that makes items more readable. Parent-child relationships are strictly organizational — they do not provide traceability and do not trigger suspected badges."
+    },
+    {
+      "term": "Post-Action",
+      "definition": "Instructions defined in a test case that tell the tester how to restore or clean up the test environment after test execution is complete."
+    },
+    {
+      "term": "Pre-Action",
+      "definition": "Instructions defined in a test case that tell the tester how to prepare the test environment before beginning test step execution."
+    },
+    {
+      "term": "Reference Relationship",
+      "definition": "The main relationship type in Codebeamer that drives traceability. Upstream references point to higher-level items being validated; downstream references point to items that perform the validation."
+    },
+    {
+      "term": "Sequential Execution",
+      "definition": "A test set setting that requires test cases to be executed in a specified order. Used when the order of testing matters, such as running unit tests before integration tests."
+    },
+    {
+      "term": "Splitter",
+      "definition": "An import conversion option that separates multiple values within a single Excel cell into individual items. The Line end splitter uses line breaks to separate test steps during import."
+    },
+    {
+      "term": "Suspected Badge",
+      "definition": "An indicator that appears on a downstream item when its upstream reference has changed. Alerts users that the item may be outdated and needs review to ensure it still accurately validates the modified upstream item."
+    },
+    {
+      "term": "Test Case",
+      "definition": "A tracker item that defines a procedure for verifying a product requirement. Contains test steps with actions and expected results, pre- and post-actions, and optional parameters for variable-driven testing."
+    },
+    {
+      "term": "Test Configuration",
+      "definition": "A tracker item that defines the environment or conditions under which tests are executed. Examples include vehicle models, operating systems, or hardware settings. Applied to test runs, not test cases."
+    },
+    {
+      "term": "Test Engineer",
+      "definition": "A test management role responsible for designing test cases, setting up test runs, monitoring execution, and assessing defects. Works between the test lead (planning) and tester (execution) roles."
+    },
+    {
+      "term": "Test Lead",
+      "definition": "A test management role responsible for writing test plans, managing the testing team, coordinating standards, and approving test cases. Often has project admin permissions in Codebeamer."
+    },
+    {
+      "term": "Test Plan",
+      "definition": "A document that outlines the strategy for verifying product requirements. Defines what to test, when to test, who is responsible, and which methodologies to follow. Written by the test lead."
+    },
+    {
+      "term": "Test Run",
+      "definition": "A tracker item representing the actual execution of one or more test cases. Records pass/fail/block results for each step, configuration details, conclusions, and any reported bugs."
+    },
+    {
+      "term": "Test Run Browser",
+      "definition": "A consolidated view in Codebeamer that displays test run results and statistics. Shows pass/fail rates across test cases and test sets, enabling test engineers to monitor overall testing progress."
+    },
+    {
+      "term": "Test Set",
+      "definition": "A named collection of test cases grouped for a specific purpose such as regression testing or functional area testing. Test sets can enforce sequential execution order and are their own tracker type."
+    },
+    {
+      "term": "Test Step",
+      "definition": "A specific action within a test case that the tester must perform during execution. Each step includes an action (what to do), an expected result (what should happen), and an optional critical flag."
+    },
+    {
+      "term": "Tester",
+      "definition": "A test management role responsible for executing test runs, recording pass/fail results for each step, reporting bugs from failures, and writing test run conclusions."
+    },
+    {
+      "term": "Tracker",
+      "definition": "A configurable container in Codebeamer that holds related items. Each tracker defines fields, workflows, and permissions. Test management uses tracker types including Test Case, Test Run, Test Set, Test Configuration, and Bug."
+    },
+    {
+      "term": "Traceability",
+      "definition": "The ability to link and follow relationships between artifacts across the product lifecycle. In test management, traceability connects requirements to test cases, test runs, and bugs."
+    },
+    {
+      "term": "Upstream Reference",
+      "definition": "A traceability link pointing from a detailed item back to the higher-level item it validates. A requirement is an upstream reference to the test case that verifies it."
+    },
+    {
+      "term": "Verifies Field",
+      "definition": "A test case attribute that links the test case to the requirement(s) it validates. Establishing this link creates the upstream/downstream traceability relationship essential for coverage analysis."
+    },
+    {
+      "term": "Workflow",
+      "definition": "A defined set of states and transitions controlling a tracker item's lifecycle. For test cases, the workflow typically progresses through states like ToDo, In Design, Awaiting Approval, and Accepted."
+    }
+  ]
+}

@@ -1,0 +1,523 @@
+{
+  "id": "m2",
+  "title": "Record Requirements",
+  "description": "Input requirements from various sources, understand Codebeamer relationships, assign requirements, and manage tracker status transitions.",
+  "topics": [
+    {
+      "id": "m2t1",
+      "title": "Trackers in the Exercises",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Throughout this course, exercises use a simple project that contains three trackers representing different levels of requirements. Understanding these trackers and how they relate to one another is essential before you begin recording and managing requirements in the exercises."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Exercise Trackers"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Tracker", "Type", "Purpose", "Prefix"],
+          "rows": [
+            ["Customer Requirement Specifications", "Requirement", "Top-level tracker capturing what the customer needs; serves as the starting point for all downstream traceability", "CRS"],
+            ["System Requirement Specifications", "Requirement", "Supports customer requirements by breaking them into hardware and software specifications; always downstream of a customer requirement", "SRS"],
+            ["User Stories", "Requirement", "Illustrate customer requirements in user-centric language; not required to have an upstream customer requirement", "US"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "A project can enforce required references between trackers (for example, every SRS item <strong>must</strong> have an upstream CRS item). The exercise project does not enforce this rule, so you can create items freely without mandatory links."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each tracker to its key characteristic:",
+          "pairs": [
+            {"left": "Customer Requirement Specifications", "right": "Top-level tracker that drives downstream traceability"},
+            {"left": "System Requirement Specifications", "right": "Divided into hardware and software categories"},
+            {"left": "User Stories", "right": "Not required to have an upstream customer requirement"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The exercise project uses three trackers: Customer Requirement Specifications (CRS), System Requirement Specifications (SRS), and User Stories (US)",
+        "SRS items are always downstream of CRS items and are divided into hardware and software specifications",
+        "User Stories illustrate customer requirements but are not required to have upstream CRS references",
+        "Projects can enforce required references between trackers, but the exercise project does not"
+      ]
+    },
+    {
+      "id": "m2t2",
+      "title": "Parent-Child and Reference Relationships",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Codebeamer offers several relationship types to connect tracker items. Two of the most important are <strong>parent-child</strong> and <strong>reference</strong> relationships. Each serves a distinct purpose, and choosing the right one determines whether you get organizational structure, traceability, or both."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Parent-Child Relationships"
+        },
+        {
+          "type": "paragraph",
+          "text": "Parent-child relationships are <strong>organizational</strong> in nature. They exist <em>within</em> a single tracker and define a tree hierarchy among items. For example, a high-level requirement can have several child requirements beneath it. Parent-child relationships do <strong>not</strong> participate in traceability and do <strong>not</strong> generate suspected badges when items change."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Reference Relationships"
+        },
+        {
+          "type": "paragraph",
+          "text": "Reference relationships connect items across trackers using <strong>upstream</strong> and <strong>downstream</strong> directions. They are the primary mechanism for traceability in Codebeamer. When an upstream item changes, all downstream items that reference it receive a <strong>suspected badge</strong>, alerting teams that the downstream item may need to be reviewed or updated. Project configuration defines which tracker items can reference which other items."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "When an upstream item is modified, every downstream item that references it becomes <strong>suspect</strong>. This suspected badge persists until someone manually reviews and clears it. Ignoring suspected badges can lead to requirements that no longer align with their source."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Aspect", "Parent-Child", "Reference"],
+          "rows": [
+            ["Scope", "Within a single tracker", "Across trackers (upstream/downstream)"],
+            ["Purpose", "Organize items into a tree hierarchy", "Establish traceability between items"],
+            ["Traceability", "Not used for traceability", "Primary mechanism for traceability"],
+            ["Suspected Badges", "Does not generate suspected badges", "Generates suspected badges when upstream changes"]
+          ]
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the following items in the correct upstream-to-downstream reference flow:",
+          "items": [
+            "Customer Requirement",
+            "System Requirement",
+            "Test Case",
+            "Test Run"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Parent-child relationships are organizational, exist within a single tracker, and do not drive traceability",
+        "Reference relationships connect items across trackers and are the primary mechanism for traceability",
+        "Downstream items receive suspected badges when their upstream references change",
+        "Project configuration defines which items can reference which other items"
+      ]
+    },
+    {
+      "id": "m2t3",
+      "title": "Document Numbers and Associations",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Beyond parent-child and reference relationships, Codebeamer provides two additional ways to identify and connect tracker items: <strong>document numbers</strong> for human-readable identification and <strong>associations</strong> for informal, descriptive links between items."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Document Numbers"
+        },
+        {
+          "type": "paragraph",
+          "text": "Document numbers are a convenience feature that improves readability. They provide a formatted identifier for tracker items, but their values can <strong>vary by view</strong> depending on how the tracker is configured. Because document numbers are not stable identifiers, you should <strong>never</strong> use them to reference items when communicating with coworkers. Instead, use the tracker item ID, which is unique and permanent."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Association Relationships"
+        },
+        {
+          "type": "paragraph",
+          "text": "Associations are <strong>less formal</strong> than reference relationships. They use descriptor phrases to describe the nature of the link and can be created by any user, between any items, in any state. Unlike references, associations are not constrained by project configuration rules. Associations <em>may</em> cause suspected badges depending on the configuration."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "depends on",
+              "back": "Indicates that one item relies on another for completion or implementation. For example, a software module <em>depends on</em> a hardware specification being finalized."
+            },
+            {
+              "front": "subordinate to",
+              "back": "Indicates a hierarchical relationship where one item is secondary to or governed by another. For example, a detailed design document is <em>subordinate to</em> the system architecture."
+            },
+            {
+              "front": "was copied from",
+              "back": "Records the origin of a duplicated item. Useful when requirements are reused across projects or when a template item is cloned into a working tracker."
+            },
+            {
+              "front": "excludes",
+              "back": "Declares that two items are mutually exclusive. If one is implemented, the other must not be. For example, a safety requirement <em>excludes</em> a performance shortcut."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "When one item validates another (for example, a test case validates a requirement), use a <strong>reference relationship</strong> rather than an association. References provide formal traceability and trigger suspected badges, which is essential for verification workflows."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each relationship type to its key characteristic:",
+          "pairs": [
+            {"left": "Parent-Child", "right": "Organizational hierarchy within a single tracker"},
+            {"left": "Reference", "right": "Formal upstream/downstream link that drives traceability"},
+            {"left": "Document Number", "right": "Human-readable identifier that varies by view"},
+            {"left": "Association", "right": "Informal link using descriptor phrases like \"depends on\""}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Document numbers improve readability but vary by view, so they should not be used to reference items in conversation",
+        "Associations are less formal than references and use descriptor phrases to describe the link",
+        "Any user can create an association between any items in any state, without project configuration restrictions",
+        "Use reference relationships instead of associations when formal traceability and suspected badges are needed"
+      ]
+    },
+    {
+      "id": "m2t4",
+      "title": "Methods for Changing Tracker Item Status",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Codebeamer provides multiple methods for changing the status of tracker items. Depending on whether you are updating a single item or many items at once, and whether you prefer a visual or tabular workflow, different methods are better suited to different situations."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Status Transition Methods"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Method", "Description", "Best For"],
+          "rows": [
+            ["Kanban Drag", "Drag an item card from one status column to another on the Kanban board", "Visual status tracking for individual items"],
+            ["Mass Edit", "Select multiple items and apply a status change to all of them at once", "Updating many items to the same status simultaneously"],
+            ["Table View", "Edit the status field inline in a spreadsheet-like grid", "Quick updates while reviewing item details in context"],
+            ["Details Panel", "Open an item and change its status from the detail view", "Reviewing full item details before transitioning"],
+            ["Transition Header Button", "Click the transition action button displayed in the item header", "Fast single-item transitions without opening the full editor"],
+            ["MS Office Import", "Import items from Word or Excel with a pre-set status value", "Bulk creation of items with an initial status already assigned"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "The <strong>Kanban view</strong> is ideal for visual status tracking because you can see all items organized by status at a glance. However, Kanban does not support multi-select, so use <strong>Mass Edit</strong> in Table View when you need to update many items at once."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the following statuses in the typical requirement lifecycle order:",
+          "items": [
+            "New",
+            "Draft",
+            "In Review",
+            "Accepted"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Codebeamer offers six methods for changing tracker item status, each suited to different workflows",
+        "Kanban view provides visual status tracking but does not support multi-select operations",
+        "Mass Edit in Table View is the most efficient method for updating many items simultaneously",
+        "Items imported from Microsoft Office can have their initial status pre-set during import"
+      ]
+    },
+    {
+      "id": "m2t5",
+      "title": "Import Requirements from Word",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will import requirements from a Microsoft Word document into Codebeamer. The Word document uses heading styles to define the structure, and the import wizard maps those headings to tracker items in the Customer Requirement Specifications and System Requirement Specifications trackers."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Do <strong>not</strong> alter the Microsoft Office files in the VM. The import process reads the files as-is, and modifying them may cause unexpected results or break the exercise steps."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex2",
+          "title": "Import Requirements from Word",
+          "objective": "Import a structured Word document into Codebeamer, mapping headings to Customer Requirement Specifications and System Requirement Specifications tracker items.",
+          "tasks": [
+            {
+              "id": "ex2-t1",
+              "title": "Examine the Word Document",
+              "steps": [
+                {
+                  "action": "Open the provided Word document and review the heading structure.",
+                  "detail": "The Word document uses Heading 1, Heading 2, and Heading 3 styles to organize requirements hierarchically. The import wizard will use these heading levels to determine parent-child relationships.",
+                  "hint": "Look for the document in the shared exercise files folder on the VM desktop."
+                },
+                {
+                  "action": "Identify which headings represent customer requirements and which represent system requirements.",
+                  "detail": "Top-level headings (Heading 1) typically correspond to Customer Requirement Specifications, while subordinate headings (Heading 2 and 3) correspond to System Requirement Specifications.",
+                  "hint": null
+                },
+                {
+                  "action": "Note the body text beneath each heading, which will become the description of each tracker item.",
+                  "detail": "The import wizard captures both the heading text (as the item name) and the body text beneath it (as the item description). Reviewing this helps you anticipate the imported result.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex2-t2",
+              "title": "Start the Import",
+              "steps": [
+                {
+                  "action": "Navigate to the Customer Requirement Specifications tracker in your exercise project.",
+                  "detail": "You will import the Word document into this tracker first. The import wizard is accessible from within the tracker.",
+                  "hint": "Open the CRS tracker from the project sidebar."
+                },
+                {
+                  "action": "Click the import button and select <strong>Microsoft Word</strong> as the source format.",
+                  "detail": "Codebeamer supports importing from Word, Excel, and other formats. Each format has its own import wizard with format-specific options.",
+                  "hint": "Look for an Import or Upload button in the tracker toolbar."
+                },
+                {
+                  "action": "Browse to and select the Word document file.",
+                  "detail": "The import wizard will upload the file and parse its structure before presenting configuration options.",
+                  "hint": null
+                },
+                {
+                  "action": "Review the parsed document preview to confirm the heading structure was detected correctly.",
+                  "detail": "The preview shows how Codebeamer interpreted the Word document structure. Verify that headings and body text are mapped as expected.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the target tracker (Customer Requirement Specifications) and confirm the field mapping.",
+                  "detail": "The field mapping determines which Word elements map to which tracker item fields. The heading text maps to the item name and the body text maps to the description.",
+                  "hint": "Ensure the Name and Description fields are correctly mapped before proceeding."
+                }
+              ]
+            },
+            {
+              "id": "ex2-t3",
+              "title": "Configure Import Rules",
+              "steps": [
+                {
+                  "action": "Configure the import rules to separate CRS and SRS items based on heading level.",
+                  "detail": "The import wizard allows you to define rules that route items to different trackers based on heading level. Top-level headings go to CRS, while lower-level headings go to SRS.",
+                  "hint": "Look for a rule or mapping configuration section in the import wizard."
+                },
+                {
+                  "action": "Assign heading levels to the appropriate trackers: Heading 1 to CRS, Heading 2 and 3 to SRS.",
+                  "detail": "This configuration ensures that the hierarchical structure of the Word document is preserved as a traceability structure in Codebeamer, with SRS items referencing their parent CRS items.",
+                  "hint": null
+                },
+                {
+                  "action": "Preview the import result to verify items are routed to the correct trackers with proper parent-child relationships.",
+                  "detail": "The preview shows exactly what will be created. Check that CRS items appear in the CRS tracker and SRS items appear in the SRS tracker with the correct references.",
+                  "hint": "If the preview does not look correct, go back and adjust the heading-level mapping rules."
+                },
+                {
+                  "action": "Click <strong>Import</strong> to execute the import, then verify the results in both the CRS and SRS trackers.",
+                  "detail": "After import completes, navigate to each tracker and confirm that the items were created with the correct names, descriptions, and cross-tracker references.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Codebeamer can import requirements from Microsoft Word documents using heading styles to define structure",
+        "Import rules map Word heading levels to different trackers, preserving the hierarchical structure as traceability",
+        "Always preview the import result before executing to verify correct item routing and relationships",
+        "Do not alter the source Office files in the VM, as changes may break the expected import results"
+      ]
+    },
+    {
+      "id": "m2t6",
+      "title": "Add Requirements Manually",
+      "estimatedMinutes": 8,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "When importing from Word is insufficient or additional requirements are identified after import, you need to add them manually in Codebeamer. In this exercise, you will examine existing headlight requirements that are missing downstream system requirements and create the missing SRS items as downstream references."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex3",
+          "title": "Add Requirements Manually",
+          "objective": "Identify customer requirements missing downstream system requirements and manually create the missing SRS items with proper downstream references.",
+          "tasks": [
+            {
+              "id": "ex3-t1",
+              "title": "Examine Headlight Requirements",
+              "steps": [
+                {
+                  "action": "Navigate to the Customer Requirement Specifications tracker and locate the headlight-related requirements.",
+                  "detail": "These customer requirements describe what the customer expects from the headlight system. Some of them do not yet have downstream system requirements.",
+                  "hint": "Use the search or filter feature to find items containing \"headlight\" in the name."
+                },
+                {
+                  "action": "Check the downstream references for each headlight CRS item to identify which ones are missing SRS items.",
+                  "detail": "A CRS item without downstream SRS references indicates a gap in the requirements hierarchy. Every customer requirement should eventually be decomposed into system-level specifications.",
+                  "hint": "Look at the Associations or References section of each item to see downstream links."
+                },
+                {
+                  "action": "Note which headlight requirements need hardware SRS items and which need software SRS items.",
+                  "detail": "System requirements are divided into hardware (HW) and software (SW) categories. A headlight brightness requirement is hardware, while a headlight auto-dimming control algorithm is software.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex3-t2",
+              "title": "Create Downstream System Requirements",
+              "steps": [
+                {
+                  "action": "Navigate to the System Requirement Specifications tracker.",
+                  "detail": "You will create new SRS items in this tracker and link them back to the headlight customer requirements as downstream references.",
+                  "hint": null
+                },
+                {
+                  "action": "Create a new SRS item for the hardware headlight requirement (for example, <code>SRS-HW: Headlight Brightness Minimum 1200 Lumens</code>).",
+                  "detail": "Use the HW prefix or folder to categorize this as a hardware system requirement. The name should be a specific, testable technical specification.",
+                  "hint": "Look for a Hardware subfolder or category within the SRS tracker."
+                },
+                {
+                  "action": "Add a downstream reference from the corresponding CRS headlight item to this new SRS item.",
+                  "detail": "This reference establishes the traceability link showing that this system requirement derives from the customer requirement. If the CRS item changes, this SRS item will receive a suspected badge.",
+                  "hint": "You can add the reference from either the CRS item (as a downstream link) or the SRS item (as an upstream link)."
+                },
+                {
+                  "action": "Create a new SRS item for the software headlight requirement (for example, <code>SRS-SW: Auto-Dimming Algorithm Shall Respond Within 200ms</code>).",
+                  "detail": "Software system requirements describe the behavior and performance of software components. This item specifies a measurable response time for the auto-dimming feature.",
+                  "hint": null
+                },
+                {
+                  "action": "Add a downstream reference from the corresponding CRS headlight item and verify both new SRS items appear in its downstream references.",
+                  "detail": "After linking, the CRS item should show both the hardware and software SRS items as downstream references, demonstrating complete coverage of the customer requirement.",
+                  "hint": "Open the CRS item and check its Associations or References section to confirm both links."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Not all requirements can be imported; some must be created manually to fill gaps in the hierarchy",
+        "System requirements are divided into hardware (HW) and software (SW) categories",
+        "Downstream references from CRS to SRS items establish traceability and trigger suspected badges on change",
+        "Every customer requirement should be fully decomposed into system-level specifications"
+      ]
+    },
+    {
+      "id": "m2t7",
+      "title": "Assign Requirements and Set Status",
+      "estimatedMinutes": 8,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "After requirements are recorded, they need to be assigned to team members and moved through the workflow. In this exercise, you will assign individual and bulk requirements to users and use the Kanban view to visually manage status transitions."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex4",
+          "title": "Assign Requirements and Set Status",
+          "objective": "Assign requirements to team members individually and in bulk, then use the Kanban view to change item status.",
+          "tasks": [
+            {
+              "id": "ex4-t1",
+              "title": "Assign a Requirement to a User",
+              "steps": [
+                {
+                  "action": "Open a customer requirement item in the CRS tracker.",
+                  "detail": "You will assign this item to a specific user who will be responsible for reviewing and refining it.",
+                  "hint": "Choose one of the headlight requirements you worked with in the previous exercise."
+                },
+                {
+                  "action": "Locate the <strong>Assigned To</strong> field and select a user from the dropdown.",
+                  "detail": "The Assigned To field determines who is responsible for the item. This user will see the item in their personal dashboard and receive notifications about changes.",
+                  "hint": "If the field is not visible, check the item's field layout configuration."
+                },
+                {
+                  "action": "Add a description or comment explaining what the assignee should do with this requirement.",
+                  "detail": "Clear instructions help the assignee understand their responsibility, whether it is to review, refine, decompose, or approve the requirement.",
+                  "hint": null
+                },
+                {
+                  "action": "Save the item and verify the assignment is reflected in the item details.",
+                  "detail": "After saving, the Assigned To field should display the selected user. The user will be notified according to the project's notification settings.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex4-t2",
+              "title": "Mass Assign in Table View",
+              "steps": [
+                {
+                  "action": "Switch to <strong>Table View</strong> in the CRS tracker.",
+                  "detail": "Table View presents items in a spreadsheet-like grid, making it easy to select and edit multiple items at once.",
+                  "hint": "Use the view selector in the tracker toolbar to switch views."
+                },
+                {
+                  "action": "Apply a filter to show only unassigned requirements.",
+                  "detail": "Filtering narrows the list to items that still need an owner. This prevents accidentally reassigning items that already have assignees.",
+                  "hint": "Filter the Assigned To column for empty or blank values."
+                },
+                {
+                  "action": "Select multiple items using the checkboxes and click <strong>Mass Edit</strong>.",
+                  "detail": "Mass Edit applies the same field change to all selected items simultaneously. This is far more efficient than editing each item individually.",
+                  "hint": "Look for a Mass Edit button in the toolbar that appears when items are selected."
+                },
+                {
+                  "action": "Set the <strong>Assigned To</strong> field to a team member and apply the change to all selected items.",
+                  "detail": "All selected items will be assigned to the chosen user at once. Verify the change by reviewing the Assigned To column in the table.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex4-t3",
+              "title": "Set Status in Kanban View",
+              "steps": [
+                {
+                  "action": "Switch to <strong>Kanban View</strong> in the CRS tracker.",
+                  "detail": "The Kanban view organizes items into columns based on their workflow status. Each column represents a status, and items appear as cards within their current status column.",
+                  "hint": "Use the view selector to switch to Kanban View."
+                },
+                {
+                  "action": "Log in as <strong>Kartini</strong> (or switch to the Kartini user account).",
+                  "detail": "Switching users demonstrates that workflow transitions and assignments are user-specific. Kartini's dashboard and permissions may differ from yours.",
+                  "hint": "Use the provided credentials for the Kartini user account."
+                },
+                {
+                  "action": "Locate items in the <strong>New</strong> column and drag them to the <strong>Draft</strong> column.",
+                  "detail": "Dragging a card from one column to another triggers a workflow transition. The item's status changes from New to Draft, indicating that work has begun on refining the requirement.",
+                  "hint": "Click and hold the item card, then drag it to the Draft column and release."
+                },
+                {
+                  "action": "Verify the status change by opening one of the moved items and confirming its status is now <strong>Draft</strong>.",
+                  "detail": "The item detail view should reflect the new status. The transition history in the item's change log records who made the change and when.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Assigned To field determines item ownership and drives notifications to the responsible user",
+        "Mass Edit in Table View efficiently assigns multiple items to the same user at once",
+        "Kanban View provides a visual drag-and-drop interface for status transitions",
+        "Workflow transitions are recorded in the item's change log with the user and timestamp"
+      ]
+    }
+  ]
+}

@@ -3,330 +3,372 @@
  "title": "Anatomy of WRS",
  "description": "Learn the foundational concepts of REST and OData, explore the Windchill REST Services architecture, and practice retrieving domain metadata.",
  "topics": [
- {
- "id": "m1t1",
- "title": "What is REST and OData",
- "estimatedMinutes": 6,
- "content": [
- {
- "type": "paragraph",
- "text": "Modern integrations rely on web services to exchange data between systems. Two foundational concepts underpin Windchill REST Services: the REST architectural style and the OData protocol that extends it. Understanding these concepts gives you a framework for everything that follows."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "REST: Representational State Transfer"
- },
- {
- "type": "paragraph",
- "text": "<strong>REST</strong> stands for Representational State Transfer. It is an architectural style for web services that transfers <em>representations</em> of resources over the internet using standard HTTP methods. A <strong>resource</strong> is any data you want to read or act upon - a part, a document, a change notice. A <strong>representation</strong> is a snapshot of that resource's state at a point in time, typically formatted as JSON or XML."
- },
- {
- "type": "paragraph",
- "text": "An <strong>API</strong> (Application Programming Interface) acts as the intermediary between a client and a server - similar to a waiter in a restaurant who takes your order to the kitchen and brings back your food. The client makes a request, the API routes it to the server, and the server returns a response. The client never interacts with the server directly."
- },
- {
- "type": "callout",
- "variant": "insight",
- "text": "REST is not a protocol - it is a set of architectural constraints. Any service that follows those constraints (statelessness, uniform interface, resource identification via URLs) is considered RESTful, regardless of the underlying technology."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "OData: REST for Structured Data"
- },
- {
- "type": "paragraph",
- "text": "<strong>OData</strong> (Open Data Protocol) is a REST-based protocol specifically designed for querying and updating structured data. Built on top of HTTP, OData standardizes how resources are described, queried, and manipulated. It uses formats such as Atom/XML and JSON for data representation. Windchill REST Services (WRS) is built entirely on the OData protocol."
- },
- {
- "type": "interactive-match",
- "prompt": "Match each REST and OData concept to its correct definition.",
- "pairs": [
- {
- "left": "REST resource",
- "right": "Any data you want to read or perform actions on"
- },
- {
- "left": "API",
- "right": "An intermediary that routes requests between client and server"
- },
- {
- "left": "OData",
- "right": "A REST-based protocol for querying and updating structured data"
- },
- {
- "left": "Representation",
- "right": "A snapshot of a resource's state, typically formatted as JSON or XML"
- }
- ]
- }
- ],
- "keyTakeaways": [
- "REST transfers representations of resources over HTTP using standard methods.",
- "An API acts as an intermediary between the client and the server, abstracting direct communication.",
- "OData is a REST-based protocol that standardizes querying and updating structured data.",
- "Windchill REST Services is built on the OData protocol."
- ]
- },
- {
- "id": "m1t2",
- "title": "Windchill REST Services Overview",
- "estimatedMinutes": 6,
- "content": [
- {
- "type": "paragraph",
- "text": "Windchill REST Services (WRS) is the standard mechanism for reading and modifying Windchill data programmatically. As the Digital Thread extends across more tools and teams, WRS provides the REST-based backbone that keeps systems connected."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "What WRS Does"
- },
- {
- "type": "paragraph",
- "text": "<strong>WRS</strong> is a Windchill module that enables communication between Windchill and third-party systems. It exposes Windchill data as OData resources that clients can read, create, update, and delete using standard HTTP methods. WRS follows the OData protocol and identifies resources using URLs."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "WRS operates on its <strong>own release cycle</strong>, separate from Windchill itself. WRS versions are bundled with supported Windchill versions and installed through the PTC Solution Installer. Check the WRS compatibility matrix when planning upgrades."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "The Digital Thread Connection"
- },
- {
- "type": "paragraph",
- "text": "Modern product development involves data spread across PLM, ALM, CAD, and ERP systems. The <strong>Digital Thread</strong> is the connected flow of data across these systems throughout a product's lifecycle. WRS is a key enabler of the Digital Thread: it lets external tools access Windchill data without custom database queries, keeping integrations maintainable and standards-based."
- },
- {
- "type": "interactive-sort",
- "prompt": "Arrange the steps in the correct order for how WRS processes a client request.",
- "items": [
- "Client sends an HTTP request to the WRS endpoint",
- "OData servlet receives the incoming request",
- "Domain provider routes the request to the appropriate handler",
- "Entity delegate processes the request against Windchill data",
- "Response is returned to the client"
- ]
- }
- ],
- "keyTakeaways": [
- "WRS enables reading and modifying Windchill data through REST APIs.",
- "WRS operates on its own release cycle, separate from the Windchill platform.",
- "The Digital Thread drives the need for REST-based data access across PLM and connected systems.",
- "WRS is installed through the PTC Solution Installer alongside supported Windchill versions."
- ]
- },
- {
- "id": "m1t3",
- "title": "WRS Framework and Metadata",
- "estimatedMinutes": 7,
- "content": [
- {
- "type": "paragraph",
- "text": "WRS organizes Windchill data into domains, and each domain is described by a metadata document. Understanding how domains, entities, and properties are structured is essential for navigating and consuming WRS endpoints effectively."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Domains and the wcOdata Framework"
- },
- {
- "type": "paragraph",
- "text": "A <strong>domain</strong> in WRS is an OData service - also called a service endpoint - that represents a functionally independent area of the Windchill schema. Each domain exposes Windchill object types as <strong>OData entity types</strong> and <strong>entity sets</strong>. The <strong>wcOdata framework</strong> is the core WRS framework that provides CRUD operations on Windchill persistables, including support for soft types and custom attributes."
- },
- {
- "type": "paragraph",
- "text": "Configuration files for domains live in the Windchill codebase: each domain has a folder, inside which is a version folder (such as <code>v1</code>), then an entity folder, and finally JSON configuration files. The WRS servlet reads these configuration files to determine which domains and resource types are available."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "The Entity Data Model"
- },
- {
- "type": "paragraph",
- "text": "The <strong>Entity Data Model (EDM)</strong> is the formal specification of entities, properties, and relationships within a domain. You can retrieve a domain's EDM by appending <code>$metadata</code> to the domain root URL - for example: <code>/Windchill/servlet/odata/ProdMgmt/$metadata</code>. The metadata response is an XML document that describes all entity types and their properties."
- },
- {
- "type": "callout",
- "variant": "tip",
- "text": "Always check the <code>$metadata</code> endpoint first when exploring a new WRS domain. It tells you exactly which entity types, structural properties, and navigation properties are available - no guesswork required."
- },
- {
- "type": "comparison-table",
- "headers": ["Property Type", "Definition", "Examples"],
- "rows": [
- ["Structural Properties", "Data values that describe an entity's attributes; always included in a response", "Name, Number, State, CreatedOn"],
- ["Navigation Properties", "References to related entities; only included in a response when explicitly requested", "Uses, Components, Folder, Creator"]
- ]
- },
- {
- "type": "interactive-match",
- "prompt": "Match each WRS domain component to its correct description.",
- "pairs": [
- {
- "left": "Domain",
- "right": "An OData service representing a functionally independent area of the Windchill schema"
- },
- {
- "left": "Entity Data Model (EDM)",
- "right": "Formal specification of all entities and properties available in a domain"
- },
- {
- "left": "wcOdata framework",
- "right": "Core WRS framework providing CRUD operations on Windchill persistables"
- },
- {
- "left": "$metadata endpoint",
- "right": "URL suffix that retrieves the EDM document for a domain"
- }
- ]
- }
- ],
- "keyTakeaways": [
- "Domains expose functionally independent areas of the Windchill schema as OData service endpoints.",
- "The Entity Data Model (EDM) describes all available entities and properties for a domain.",
- "Structural properties hold data values and are always included in responses; navigation properties reference related entities and must be explicitly requested.",
- "Append <code>$metadata</code> to any domain URL to retrieve its full EDM definition."
- ]
- },
- {
- "id": "m1t4",
- "title": "OData URL Components and HTTP Methods",
- "estimatedMinutes": 6,
- "content": [
- {
- "type": "paragraph",
- "text": "Every WRS request is expressed as a URL built from defined OData components, and every operation is performed using one of four HTTP methods. Mastering these building blocks lets you construct any WRS request with confidence."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "Anatomy of a WRS URL"
- },
- {
- "type": "paragraph",
- "text": "WRS URLs follow the OData URL convention and contain five components in order: <strong>Service Root</strong> (the base server address and servlet path), <strong>Version</strong> (such as <code>v1</code>), <strong>Domain Identifier</strong> (the specific OData service, such as <code>ProdMgmt</code>), <strong>Entity Set</strong> (the collection of entities, such as <code>Parts</code>), and <strong>Query Options</strong> (filters, selects, and expands prefixed with <code>?$</code>)."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "WRS requests are <strong>stateless</strong> - no session context is stored on the server between requests. Each request must be fully self-descriptive, containing all the information needed for the server to fulfill it. Percent-encoding is used for special characters in URLs: <code>%3A</code> = colon, <code>%27</code> = apostrophe, <code>%20</code> = space."
- },
- {
- "type": "heading",
- "level": 2,
- "text": "HTTP Methods in WRS"
- },
- {
- "type": "comparison-table",
- "headers": ["HTTP Method", "Operation", "Notes"],
- "rows": [
- ["GET", "Read an entity or collection", "Safe and read-only; analogous to SELECT in SQL"],
- ["POST", "Create a new resource or perform an action", "Used for new entities and multi-level structures"],
- ["PATCH", "Update an existing resource", "Modifies only the fields specified in the request body"],
- ["DELETE", "Remove an entity", "Requires the user to have appropriate Windchill permissions"]
- ]
- },
- {
- "type": "paragraph",
- "text": "When WRS processes a request, the framework checks the entity type, queries Windchill for the matching data, converts the results to OData entity format, and sends the response back to the client. This pipeline is the same regardless of which HTTP method is used."
- },
- {
- "type": "interactive-match",
- "prompt": "Match each HTTP method to its correct description in the context of WRS.",
- "pairs": [
- {
- "left": "GET",
- "right": "Read one or more resources; safe and does not modify data"
- },
- {
- "left": "POST",
- "right": "Create a new resource or trigger a server-side action"
- },
- {
- "left": "PATCH",
- "right": "Update specific fields on an existing resource"
- },
- {
- "left": "DELETE",
- "right": "Remove an entity, subject to user permissions"
- }
- ]
- }
- ],
- "keyTakeaways": [
- "OData URLs contain five components: service root, version, domain identifier, entity set, and query options.",
- "WRS uses four HTTP methods: GET (read), POST (create/action), PATCH (update), and DELETE (remove).",
- "All WRS requests are stateless and self-descriptive; no session context is stored between requests.",
- "Special characters in WRS URLs must be percent-encoded (for example, %27 for an apostrophe)."
- ]
- },
- {
- "id": "m1t5",
- "title": "Exercise - Get Domain Metadata",
- "estimatedMinutes": 8,
- "isExercise": true,
- "content": [
- {
- "type": "paragraph",
- "text": "In this exercise you will access the WRS metadata endpoint for the CAD Document Management domain and locate the CADStructure entity type definition. Reviewing metadata is the first practical skill for any WRS integration."
- },
- {
- "type": "callout",
- "variant": "info",
- "text": "You need access to a running Windchill environment with WRS installed to complete this exercise. Sign-in credentials with at least read access to the CAD Document Management domain are required."
- },
- {
- "type": "exercise",
- "exerciseId": "ex1",
- "title": "Get Domain Metadata",
- "objective": "Review the CADStructure entity type definition in the metadata for the CAD Document Management domain.",
- "tasks": [
- {
- "id": "ex1-t1",
- "title": "Access the Metadata",
- "steps": [
- {
- "action": "Launch a web browser",
- "detail": "You will access the WRS metadata endpoint directly in the browser using a GET request. Any modern browser will render the metadata XML response.",
- "hint": null
- },
- {
- "action": "Navigate to the CAD Document Management $metadata URL",
- "detail": "The URL follows the OData pattern: <code>/Windchill/servlet/odata/&lt;domain&gt;/$metadata</code>. For CAD documents, the domain identifier is <code>CADDocumentMgmt</code>.",
- "hint": "The full URL is <code>/Windchill/servlet/odata/CADDocumentMgmt/$metadata</code> - prepend your server's host and port."
- },
- {
- "action": "Sign in to Windchill when prompted",
- "detail": "Authentication is required to access WRS endpoints, even for metadata requests. Enter your Windchill credentials when the login dialog appears.",
- "hint": null
- },
- {
- "action": "Locate the EntityType Name='CADStructure' definition",
- "detail": "The metadata XML lists all entity types in the domain. Each <code>EntityType</code> element defines the structural and navigation properties available for that entity type.",
- "hint": "Use your browser's find function (Ctrl+F or Cmd+F) and search for <strong>CADStructure</strong> to jump directly to the definition."
- },
- {
- "action": "Review the Property Name and NavigationProperty Name values",
- "detail": "Structural <code>Property</code> elements define data fields such as Name and Number. <code>NavigationProperty</code> elements define relationships to other entities such as CAD Documents and Components.",
- "hint": null
- }
- ]
- }
- ]
- }
- ],
- "keyTakeaways": [
- "The <code>$metadata</code> endpoint reveals all entity types and their properties for a domain.",
- "Structural properties describe data fields, while navigation properties describe relationships to other entities.",
- "Reviewing domain metadata is the first step to understanding what data is available through WRS.",
- "Authentication is required even for read-only metadata requests to WRS endpoints."
- ]
- }
+  {
+   "id": "m1t1",
+   "title": "What is REST and OData",
+   "estimatedMinutes": 6,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Modern integrations rely on web services to exchange data between systems. Two foundational concepts underpin Windchill REST Services: the REST architectural style and the OData protocol that extends it. Understanding these concepts gives you a framework for everything that follows."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "REST: Representational State Transfer"
+    },
+    {
+     "type": "paragraph",
+     "text": "<strong>REST</strong> stands for Representational State Transfer. It is an architectural style for web services that transfers <em>representations</em> of resources over the internet using standard HTTP methods. A <strong>resource</strong> is any data you want to read or act upon - a part, a document, a change notice. A <strong>representation</strong> is a snapshot of that resource's state at a point in time, typically formatted as JSON or XML."
+    },
+    {
+     "type": "paragraph",
+     "text": "An <strong>API</strong> (Application Programming Interface) acts as the intermediary between a client and a server - similar to a waiter in a restaurant who takes your order to the kitchen and brings back your food. The client makes a request, the API routes it to the server, and the server returns a response. The client never interacts with the server directly."
+    },
+    {
+     "type": "callout",
+     "variant": "insight",
+     "text": "REST is not a protocol - it is a set of architectural constraints. Any service that follows those constraints (statelessness, uniform interface, resource identification via URLs) is considered RESTful, regardless of the underlying technology."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "OData: REST for Structured Data"
+    },
+    {
+     "type": "paragraph",
+     "text": "<strong>OData</strong> (Open Data Protocol) is a REST-based protocol specifically designed for querying and updating structured data. Built on top of HTTP, OData standardizes how resources are described, queried, and manipulated. It uses formats such as Atom/XML and JSON for data representation. Windchill REST Services (WRS) is built entirely on the OData protocol."
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each REST and OData concept to its correct definition.",
+     "pairs": [
+      {
+       "left": "REST resource",
+       "right": "Any data you want to read or perform actions on"
+      },
+      {
+       "left": "API",
+       "right": "An intermediary that routes requests between client and server"
+      },
+      {
+       "left": "OData",
+       "right": "A REST-based protocol for querying and updating structured data"
+      },
+      {
+       "left": "Representation",
+       "right": "A snapshot of a resource's state, typically formatted as JSON or XML"
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "REST transfers representations of resources over HTTP using standard methods.",
+    "An API acts as an intermediary between the client and the server, abstracting direct communication.",
+    "OData is a REST-based protocol that standardizes querying and updating structured data.",
+    "Windchill REST Services is built on the OData protocol."
+   ]
+  },
+  {
+   "id": "m1t2",
+   "title": "Windchill REST Services Overview",
+   "estimatedMinutes": 6,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Windchill REST Services (WRS) is the standard mechanism for reading and modifying Windchill data programmatically. As the Digital Thread extends across more tools and teams, WRS provides the REST-based backbone that keeps systems connected."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "What WRS Does"
+    },
+    {
+     "type": "paragraph",
+     "text": "<strong>WRS</strong> is a Windchill module that enables communication between Windchill and third-party systems. It exposes Windchill data as OData resources that clients can read, create, update, and delete using standard HTTP methods. WRS follows the OData protocol and identifies resources using URLs."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "WRS operates on its <strong>own release cycle</strong>, separate from Windchill itself. WRS versions are bundled with supported Windchill versions and installed through the PTC Solution Installer. Check the WRS compatibility matrix when planning upgrades."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "The Digital Thread Connection"
+    },
+    {
+     "type": "paragraph",
+     "text": "Modern product development involves data spread across PLM, ALM, CAD, and ERP systems. The <strong>Digital Thread</strong> is the connected flow of data across these systems throughout a product's lifecycle. WRS is a key enabler of the Digital Thread: it lets external tools access Windchill data without custom database queries, keeping integrations maintainable and standards-based."
+    },
+    {
+     "type": "interactive-sort",
+     "prompt": "Arrange the steps in the correct order for how WRS processes a client request.",
+     "items": [
+      "Client sends an HTTP request to the WRS endpoint",
+      "OData servlet receives the incoming request",
+      "Domain provider routes the request to the appropriate handler",
+      "Entity delegate processes the request against Windchill data",
+      "Response is returned to the client"
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "WRS enables reading and modifying Windchill data through REST APIs.",
+    "WRS operates on its own release cycle, separate from the Windchill platform.",
+    "The Digital Thread drives the need for REST-based data access across PLM and connected systems.",
+    "WRS is installed through the PTC Solution Installer alongside supported Windchill versions."
+   ]
+  },
+  {
+   "id": "m1t3",
+   "title": "WRS Framework and Metadata",
+   "estimatedMinutes": 7,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "WRS organizes Windchill data into domains, and each domain is described by a metadata document. Understanding how domains, entities, and properties are structured is essential for navigating and consuming WRS endpoints effectively."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Domains and the wcOdata Framework"
+    },
+    {
+     "type": "paragraph",
+     "text": "A <strong>domain</strong> in WRS is an OData service - also called a service endpoint - that represents a functionally independent area of the Windchill schema. Each domain exposes Windchill object types as <strong>OData entity types</strong> and <strong>entity sets</strong>. The <strong>wcOdata framework</strong> is the core WRS framework that provides CRUD operations on Windchill persistables, including support for soft types and custom attributes."
+    },
+    {
+     "type": "paragraph",
+     "text": "Configuration files for domains live in the Windchill codebase: each domain has a folder, inside which is a version folder (such as <code>v1</code>), then an entity folder, and finally JSON configuration files. The WRS servlet reads these configuration files to determine which domains and resource types are available."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "The Entity Data Model"
+    },
+    {
+     "type": "paragraph",
+     "text": "The <strong>Entity Data Model (EDM)</strong> is the formal specification of entities, properties, and relationships within a domain. You can retrieve a domain's EDM by appending <code>$metadata</code> to the domain root URL - for example: <code>/Windchill/servlet/odata/ProdMgmt/$metadata</code>. The metadata response is an XML document that describes all entity types and their properties."
+    },
+    {
+     "type": "callout",
+     "variant": "tip",
+     "text": "Always check the <code>$metadata</code> endpoint first when exploring a new WRS domain. It tells you exactly which entity types, structural properties, and navigation properties are available - no guesswork required."
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Property Type",
+      "Definition",
+      "Examples"
+     ],
+     "rows": [
+      [
+       "Structural Properties",
+       "Data values that describe an entity's attributes; always included in a response",
+       "Name, Number, State, CreatedOn"
+      ],
+      [
+       "Navigation Properties",
+       "References to related entities; only included in a response when explicitly requested",
+       "Uses, Components, Folder, Creator"
+      ]
+     ]
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each WRS domain component to its correct description.",
+     "pairs": [
+      {
+       "left": "Domain",
+       "right": "An OData service representing a functionally independent area of the Windchill schema"
+      },
+      {
+       "left": "Entity Data Model (EDM)",
+       "right": "Formal specification of all entities and properties available in a domain"
+      },
+      {
+       "left": "wcOdata framework",
+       "right": "Core WRS framework providing CRUD operations on Windchill persistables"
+      },
+      {
+       "left": "$metadata endpoint",
+       "right": "URL suffix that retrieves the EDM document for a domain"
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Domains expose functionally independent areas of the Windchill schema as OData service endpoints.",
+    "The Entity Data Model (EDM) describes all available entities and properties for a domain.",
+    "Structural properties hold data values and are always included in responses; navigation properties reference related entities and must be explicitly requested.",
+    "Append <code>$metadata</code> to any domain URL to retrieve its full EDM definition."
+   ]
+  },
+  {
+   "id": "m1t4",
+   "title": "OData URL Components and HTTP Methods",
+   "estimatedMinutes": 6,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Every WRS request is expressed as a URL built from defined OData components, and every operation is performed using one of four HTTP methods. Mastering these building blocks lets you construct any WRS request with confidence."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Anatomy of a WRS URL"
+    },
+    {
+     "type": "paragraph",
+     "text": "WRS URLs follow the OData URL convention and contain five components in order: <strong>Service Root</strong> (the base server address and servlet path), <strong>Version</strong> (such as <code>v1</code>), <strong>Domain Identifier</strong> (the specific OData service, such as <code>ProdMgmt</code>), <strong>Entity Set</strong> (the collection of entities, such as <code>Parts</code>), and <strong>Query Options</strong> (filters, selects, and expands prefixed with <code>?$</code>)."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "WRS requests are <strong>stateless</strong> - no session context is stored on the server between requests. Each request must be fully self-descriptive, containing all the information needed for the server to fulfill it. Percent-encoding is used for special characters in URLs: <code>%3A</code> = colon, <code>%27</code> = apostrophe, <code>%20</code> = space."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "HTTP Methods in WRS"
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "HTTP Method",
+      "Operation",
+      "Notes"
+     ],
+     "rows": [
+      [
+       "GET",
+       "Read an entity or collection",
+       "Safe and read-only; analogous to SELECT in SQL"
+      ],
+      [
+       "POST",
+       "Create a new resource or perform an action",
+       "Used for new entities and multi-level structures"
+      ],
+      [
+       "PATCH",
+       "Update an existing resource",
+       "Modifies only the fields specified in the request body"
+      ],
+      [
+       "DELETE",
+       "Remove an entity",
+       "Requires the user to have appropriate Windchill permissions"
+      ]
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "When WRS processes a request, the framework checks the entity type, queries Windchill for the matching data, converts the results to OData entity format, and sends the response back to the client. This pipeline is the same regardless of which HTTP method is used."
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each HTTP method to its correct description in the context of WRS.",
+     "pairs": [
+      {
+       "left": "GET",
+       "right": "Read one or more resources; safe and does not modify data"
+      },
+      {
+       "left": "POST",
+       "right": "Create a new resource or trigger a server-side action"
+      },
+      {
+       "left": "PATCH",
+       "right": "Update specific fields on an existing resource"
+      },
+      {
+       "left": "DELETE",
+       "right": "Remove an entity, subject to user permissions"
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "OData URLs contain five components: service root, version, domain identifier, entity set, and query options.",
+    "WRS uses four HTTP methods: GET (read), POST (create/action), PATCH (update), and DELETE (remove).",
+    "All WRS requests are stateless and self-descriptive; no session context is stored between requests.",
+    "Special characters in WRS URLs must be percent-encoded (for example, %27 for an apostrophe)."
+   ]
+  },
+  {
+   "id": "m1t5",
+   "title": "Exercise - Get Domain Metadata",
+   "estimatedMinutes": 8,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "In this exercise you will access the WRS metadata endpoint for the CAD Document Management domain and locate the CADStructure entity type definition. Reviewing metadata is the first practical skill for any WRS integration."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "You need access to a running Windchill environment with WRS installed to complete this exercise. Sign-in credentials with at least read access to the CAD Document Management domain are required."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex1",
+     "title": "Get Domain Metadata",
+     "objective": "Review the CADStructure entity type definition in the metadata for the CAD Document Management domain.",
+     "tasks": [
+      {
+       "id": "ex1-t1",
+       "title": "Access the Metadata",
+       "steps": [
+        {
+         "action": "Launch a web browser",
+         "detail": "You will access the WRS metadata endpoint directly in the browser using a GET request. Any modern browser will render the metadata XML response.",
+         "hint": null
+        },
+        {
+         "action": "Navigate to <code>http://ptc-training.ptc.com:8181/Windchill/servlet/odata/CADDocumentMgmt/$metadata</code>",
+         "detail": "The URL follows the OData pattern: <code>/Windchill/servlet/odata/&lt;domain&gt;/$metadata</code>. For CAD documents, the domain identifier is <code>CADDocumentMgmt</code>.",
+         "hint": "You can paste this URL from <code>W:\\WCEC-REST-Lab-Files\\WCEC-REST-Copy-Text.txt</code>."
+        },
+        {
+         "action": "Sign in to Windchill",
+         "detail": "Authentication is required to access WRS endpoints, even for metadata requests.",
+         "hint": "Username: <strong>isaha</strong>, Password: <strong>ptc</strong>"
+        },
+        {
+         "action": "Locate the <code>&lt;EntityType Name=\"CADStructure\"&gt;</code> definition",
+         "detail": "The metadata XML lists all entity types in the domain. Each <code>EntityType</code> element defines the structural and navigation properties available for that entity type.",
+         "hint": "Use your browser's find function (Ctrl+F or Cmd+F) and search for <strong>CADStructure</strong> to jump directly to the definition."
+        },
+        {
+         "action": "Notice the listed Property Name values in the definition",
+         "detail": "This is just one example of the structural properties for CAD Structures in Windchill that you could request using the REST API.",
+         "hint": null
+        },
+        {
+         "action": "Notice the NavigationProperty Name values in the CADStructure definition",
+         "detail": "These listed values define the relationships to other domain entities like CAD Documents and Component collections.",
+         "hint": null
+        },
+        {
+         "action": "Close the browser",
+         "detail": "You have completed the metadata review for this exercise.",
+         "hint": null
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "The <code>$metadata</code> endpoint reveals all entity types and their properties for a domain.",
+    "Structural properties describe data fields, while navigation properties describe relationships to other entities.",
+    "Reviewing domain metadata is the first step to understanding what data is available through WRS.",
+    "Authentication is required even for read-only metadata requests to WRS endpoints."
+   ]
+  }
  ]
 }

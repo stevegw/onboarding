@@ -1,0 +1,71 @@
+{
+  "moduleId": "m3",
+  "title": "Refine and Prioritize Requirements Knowledge Check",
+  "questions": [
+    {
+      "id": "m3-kc-001",
+      "question": "How do association relationships differ from reference relationships?",
+      "options": [
+        "Associations are more formal and restrictive than references",
+        "Associations can only link items within the same tracker",
+        "Associations are less formal and can be created by any user on any item in any state",
+        "Associations automatically create traceability between items"
+      ],
+      "answerIndex": 2,
+      "rationale": "Association relationships are less formal than references. Any user can create an association on any item in any state, linking to any tracker item or document in any project. References are governed by project configuration rules about which trackers can reference each other.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-002",
+      "question": "What is the best practice for matching items during Excel round-trip import?",
+      "options": [
+        "Match by Summary field",
+        "Match by Document Number",
+        "Match by ID",
+        "Match by Description"
+      ],
+      "answerIndex": 2,
+      "rationale": "Matching by ID is the best practice because each tracker item has a unique, permanent ID. Summary matching is a workaround when IDs are unavailable — it can fail if summaries are not spelled identically. Document numbers change depending on the view.",
+      "topic": "m3t3"
+    },
+    {
+      "id": "m3-kc-003",
+      "question": "What type of relationship is created when you copy a tracker item from the Library?",
+      "options": [
+        "A reference relationship",
+        "A parent-child relationship",
+        "An association with the descriptor 'was copied from'",
+        "No relationship is created"
+      ],
+      "answerIndex": 2,
+      "rationale": "When you copy a tracker item from the Library, Codebeamer automatically creates an association with the descriptor 'was copied from' linking the new item to the original. This maintains traceability to the source but can be edited to prevent suspect propagation if the items should be independent.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-004",
+      "question": "Why are comment links NOT suitable for traceability?",
+      "options": [
+        "They can only be created by administrators",
+        "They are not true relationships maintained by Codebeamer and can break if the target is deleted",
+        "They are too formal and require approval workflows",
+        "They cannot link to items in different projects"
+      ],
+      "answerIndex": 1,
+      "rationale": "Comment links are merely web addresses embedded in comments. They are not maintained by Codebeamer, not navigable in traceability views or reports, and will remain as broken links if the target is deleted. Use reference or association relationships for traceability.",
+      "topic": "m3t2"
+    },
+    {
+      "id": "m3-kc-005",
+      "question": "Which of the following is NOT a valid association descriptor phrase in Codebeamer?",
+      "options": [
+        "This item depends on",
+        "This item validates",
+        "This item excludes",
+        "This item is derived from"
+      ],
+      "answerIndex": 1,
+      "rationale": "There is no 'validates' descriptor for associations. If one item validates or proves another, you should use a reference relationship instead of an association. Available descriptors include depends on, subordinate to, related to, derived from, violates, excludes, invalidates, and copy of.",
+      "topic": "m3t1"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "moduleId": "m2",
+  "title": "Test Plans Knowledge Check",
+  "questions": [
+    {
+      "id": "m2-kc-001",
+      "question": "What is the primary purpose of a test plan?",
+      "options": [
+        "To execute test cases and record pass/fail results",
+        "To outline the testing strategy, scope, schedule, and responsibilities",
+        "To create traceability links between bugs and requirements",
+        "To define the hardware configuration for test environments"
+      ],
+      "answerIndex": 1,
+      "rationale": "A test plan is a blueprint for testing that outlines the strategy, scope, schedule, and role responsibilities. It is written by the test lead and used by test engineers to guide test case creation. It does not involve execution or traceability setup directly.",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-002",
+      "question": "Which task may be the responsibility of a test lead?",
+      "options": [
+        "Executing test runs and recording results",
+        "Writing automated test scripts",
+        "Writing test plans and managing other roles' tasks",
+        "Importing test cases from vendor Excel files"
+      ],
+      "answerIndex": 2,
+      "rationale": "Test leads write test plans, configure Codebeamer artifacts, and manage other roles' tasks and responsibilities. Executing tests is the tester's responsibility, and writing test cases is typically the test engineer's role.",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-003",
+      "question": "What is the difference between parent-child relationships and reference relationships in Codebeamer?",
+      "options": [
+        "Parent-child relationships are for traceability; reference relationships are for organization",
+        "Parent-child relationships organize items within a single tracker; reference relationships provide traceability across trackers",
+        "Parent-child relationships can only be used with requirement trackers",
+        "There is no difference — they are the same concept"
+      ],
+      "answerIndex": 1,
+      "rationale": "Parent-child relationships are strictly organizational tools within a single tracker and do not create traceability or trigger suspected badges. Reference relationships (upstream/downstream) provide traceability across different trackers and trigger suspected badges when upstream items change.",
+      "topic": "m2t2"
+    },
+    {
+      "id": "m2-kc-004",
+      "question": "Why are test case trackers configured with a Verifies field?",
+      "options": [
+        "To assign test cases to specific testers for execution",
+        "To establish traceability between test cases and the requirements they validate",
+        "To organize test cases into parent-child hierarchies",
+        "To define the test environment configuration"
+      ],
+      "answerIndex": 1,
+      "rationale": "The Verifies field establishes a traceability link between a test case and the requirement it validates. This upstream/downstream relationship is what enables Codebeamer to track test coverage and flag suspected items when requirements change.",
+      "topic": "m2t2"
+    }
+  ]
+}

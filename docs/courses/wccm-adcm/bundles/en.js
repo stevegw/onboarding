@@ -903,7 +903,7 @@
     {
       "id": "m2t5",
       "title": "Create Change Objects and Groups",
-      "estimatedMinutes": 10,
+      "estimatedMinutes": 15,
       "isExercise": true,
       "content": [
         {
@@ -923,99 +923,275 @@
           "tasks": [
             {
               "id": "ex1-t1",
-              "title": "Create the Delta Review Subtype",
+              "title": "Create Regulation Review",
               "steps": [
                 {
-                  "action": "Navigate to <strong>Site > Utilities</strong> and open <strong>Type and Attribute Management</strong>.",
-                  "detail": "The Type and Attribute Management utility is the central location for creating and managing object types and their attributes.",
+                  "action": "If necessary, open a browser and click the <strong>Windchill</strong> bookmark.",
+                  "detail": "Launches the Windchill web client in your browser.",
                   "hint": null
                 },
                 {
-                  "action": "Expand <strong>Change Management</strong> and select <strong>Review Object</strong>.",
-                  "detail": "Review Object is the parent type from which Delta Review will inherit its properties and behaviors.",
-                  "hint": "Look under the Change Management category in the type tree."
+                  "action": "From the Select Your User page, select <strong>Mike Jones</strong>.",
+                  "detail": "Mike Jones is the organization administrator who will configure the change process.",
+                  "hint": "Sign in credentials are <code>mjones/ptc</code>."
                 },
                 {
-                  "action": "Click <strong>New Type</strong> and name it <code>Delta Review</code>.",
-                  "detail": "The new subtype will inherit all attributes and lifecycle behaviors from the Review Object parent type.",
+                  "action": "Open the Navigator and select <strong>Organizations > PTC Power Equipment > Utilities</strong>.",
+                  "detail": "Navigates to the organization-level Utilities page where administrative tools are located.",
                   "hint": null
                 },
                 {
-                  "action": "Set the icon and configure display attributes for the Delta Review subtype.",
-                  "detail": "Display attributes control which fields appear when users view or create Delta Review objects.",
-                  "hint": "Use a distinctive icon to help users quickly identify Delta Review objects in search results."
+                  "action": "Under the <strong>Business Administration</strong> heading, select <strong>Type and Attribute Management</strong>.",
+                  "detail": "Type and Attribute Management is the central utility for creating and managing object types and their attributes.",
+                  "hint": null
                 },
                 {
-                  "action": "Click <strong>Finish</strong> to create the Delta Review subtype.",
-                  "detail": "The new subtype is now available for use in change processes and can be selected when creating new review objects.",
+                  "action": "Open the <strong>Manage Types</strong> bar on the left of the page.",
+                  "detail": "The Manage Types panel displays the type hierarchy tree used to navigate to specific object types.",
+                  "hint": null
+                },
+                {
+                  "action": "Scroll down to <strong>Review</strong> and expand the node.",
+                  "detail": "The Review type is the parent type that contains Design Review and Peer Review subtypes.",
+                  "hint": null
+                },
+                {
+                  "action": "Right-click <strong>Review</strong> and select <strong>New Subtype</strong>.",
+                  "detail": "Creates a new subtype that inherits all properties and behaviors from the Review parent type.",
+                  "hint": null
+                },
+                {
+                  "action": "Enter the following for the listed fields:<br><strong>Internal Name:</strong> <code>DeltaReview</code> (no space)<br><strong>Display Name:</strong> <code>Delta Review</code><br><strong>Instantiable:</strong> <code>Yes</code>",
+                  "detail": "The Internal Name is the system identifier (no spaces allowed). The Display Name is what users see in the UI.",
+                  "hint": "Setting Instantiable to Yes lets you create new Delta Review objects."
+                },
+                {
+                  "action": "Click <strong>OK</strong> to create the subtype.",
+                  "detail": "The Delta Review subtype is now available under the Review node in the type hierarchy.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex1-t2",
-              "title": "Create the Delta New Regulation Document Subtype",
+              "title": "Create New Regulation Object",
               "steps": [
                 {
-                  "action": "In Type and Attribute Management, expand <strong>Document</strong>.",
+                  "action": "In the Manage Types tree, find the <strong>Document</strong> type.",
                   "detail": "The Document category contains WTDocument and its existing subtypes.",
                   "hint": null
                 },
                 {
-                  "action": "Select <strong>WTDocument</strong> and click <strong>New Type</strong>.",
-                  "detail": "WTDocument is the parent type for all document subtypes in Windchill.",
+                  "action": "Right-click <strong>Document</strong> and select <strong>New Subtype</strong>.",
+                  "detail": "Creates a new document subtype that inherits all properties from the Document parent type.",
                   "hint": null
                 },
                 {
-                  "action": "Name the new type <code>Delta New Regulation Document</code>.",
+                  "action": "Enter the following for the listed fields:<br><strong>Internal Name:</strong> <code>DeltaNewRegulationDoc</code> (no space)<br><strong>Display Name:</strong> <code>Delta New Regulation Document</code><br><strong>Instantiable:</strong> <code>Yes</code>",
                   "detail": "This subtype will store regulation documents that trigger change requests in the Delta Drills process.",
                   "hint": null
                 },
                 {
-                  "action": "Configure the display attributes and icon for the new document subtype.",
-                  "detail": "Ensure the display attributes include fields relevant to regulation tracking, such as regulation number or effective date.",
+                  "action": "Click <strong>OK</strong> to create the subtype.",
+                  "detail": "The Delta New Regulation Document subtype is now available under the Document node.",
                   "hint": null
                 },
                 {
-                  "action": "Click <strong>Finish</strong> to create the Delta New Regulation Document subtype.",
-                  "detail": "The new document subtype is now available for use in the regulation review process.",
+                  "action": "Click <strong>Done</strong>.",
+                  "detail": "Closes the type creation workflow.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the <strong>Type - Delta New Regulation Document</strong> tab.",
+                  "detail": "Returns you to the main Type and Attribute Management view.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex1-t3",
-              "title": "Create User-Defined Groups",
+              "title": "Create Two Groups",
               "steps": [
                 {
-                  "action": "Navigate to <strong>Organizations > PTC Power Equipment > Members</strong>.",
-                  "detail": "The Members page displays all users and groups within the PTC Power Equipment organization.",
+                  "action": "Open the Navigator and select <strong>Organizations > PTC Power Equipment > Groups</strong>.",
+                  "detail": "The Groups page displays all user-defined groups within the PTC Power Equipment organization.",
+                  "hint": "You should be signed in to Windchill as <code>mjones/ptc</code>."
+                },
+                {
+                  "action": "Click the <strong>Create new group</strong> icon.",
+                  "detail": "Opens the New Group dialog for creating a user-defined group.",
                   "hint": null
                 },
                 {
-                  "action": "Create a new group named <code>Delta Regulation Group</code>.",
+                  "action": "In the New Group dialog, type <code>Delta Regulation Group</code> in the <strong>Name</strong> field.",
                   "detail": "This group will contain regulation reviewers who evaluate new regulations for compliance impact.",
-                  "hint": "Use the New Group action from the Members page toolbar."
-                },
-                {
-                  "action": "Add appropriate users to the Delta Regulation Group.",
-                  "detail": "Add users who are responsible for evaluating regulations and determining compliance requirements.",
                   "hint": null
                 },
                 {
-                  "action": "Create another group named <code>Delta Change Group</code>.",
-                  "detail": "This group will contain change implementers who execute the engineering changes.",
+                  "action": "In the <strong>Description</strong> field, type <code>Complete change tasks necessary for compliance with new regulation</code>.",
+                  "detail": "A clear description helps administrators understand the group's purpose.",
                   "hint": null
                 },
                 {
-                  "action": "Add users to the Delta Change Group.",
-                  "detail": "Add users who are responsible for implementing the change tasks resulting from regulation reviews.",
+                  "action": "Click <strong>Next</strong>.",
+                  "detail": "Advances to the Members step where you add users to the group.",
                   "hint": null
                 },
                 {
-                  "action": "Assign the groups to roles in the team template, mapping the Delta Regulation Group to the <strong>Delta Regulation Manager</strong> role.",
-                  "detail": "Assigning groups to team template roles enables targeted task routing in workflows - tasks are automatically assigned to the correct group.",
-                  "hint": "Navigate to the team template for the product context to assign role mappings."
+                  "action": "At the top of the Members table, click the <strong>Add members to group</strong> icon.",
+                  "detail": "Opens the Find Participant dialog for searching and selecting users.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Find Participant window, click <strong>Search</strong>.",
+                  "detail": "Displays all available participants in the search results.",
+                  "hint": null
+                },
+                {
+                  "action": "Press <strong>Ctrl</strong> and select: <strong>Anna Chen</strong>, <strong>Kaylee Fry</strong>, <strong>Mike Jones</strong>, and <strong>Simon Tam</strong>.",
+                  "detail": "These four users will be members of the Delta Regulation Group, responsible for regulation review tasks.",
+                  "hint": "Hold the Ctrl key while clicking each name to select multiple users."
+                },
+                {
+                  "action": "Click <strong>Add</strong>. Click <strong>OK</strong> to close the Find Participant dialog and return the results to the Members table.",
+                  "detail": "The selected users are now listed as members of the Delta Regulation Group.",
+                  "hint": null
+                },
+                {
+                  "action": "In the New Group dialog, click <strong>Apply</strong>.",
+                  "detail": "Creates the Delta Regulation Group and keeps the dialog open so you can create the second group.",
+                  "hint": null
+                },
+                {
+                  "action": "In the New Group dialog, type <code>Delta Change Group</code> in the <strong>Name</strong> field.",
+                  "detail": "This group will contain change implementers who execute engineering change tasks.",
+                  "hint": null
+                },
+                {
+                  "action": "In the <strong>Description</strong> field, type <code>Complete change tasks</code>.",
+                  "detail": "Describes the purpose of the Delta Change Group.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Next</strong>.",
+                  "detail": "Advances to the Members step for the second group.",
+                  "hint": null
+                },
+                {
+                  "action": "At the top of the Members table, click the <strong>Add members to group</strong> icon.",
+                  "detail": "Opens the Find Participant dialog for the second group.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Find Participant window, click <strong>Search</strong>.",
+                  "detail": "Displays all available participants.",
+                  "hint": null
+                },
+                {
+                  "action": "Press <strong>Ctrl</strong> and select: <strong>Sharon Abrams</strong>, <strong>Hans Christensen</strong>, <strong>Jayne Cobb</strong>, and <strong>Mike Jones</strong>.",
+                  "detail": "These four users will be members of the Delta Change Group.",
+                  "hint": "Mike Jones is included in both groups to make it easier for testing your process later."
+                },
+                {
+                  "action": "Click <strong>Add</strong>. Click <strong>OK</strong> to close the Find Participant dialog and return the results to the Members table.",
+                  "detail": "The selected users are now listed as members of the Delta Change Group.",
+                  "hint": null
+                },
+                {
+                  "action": "In the New Group dialog, click <strong>Finish</strong>.",
+                  "detail": "Creates the Delta Change Group and closes the dialog. Both groups are now available in the Groups table.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex1-t4",
+              "title": "Assign Groups to Roles",
+              "steps": [
+                {
+                  "action": "Open the Navigator and select <strong>Drill-1000 Series > Team</strong>.",
+                  "detail": "Navigates to the team configuration for the Drill 1000 product context where roles are managed.",
+                  "hint": null
+                },
+                {
+                  "action": "From the <strong>Actions</strong> menu, select <strong>Add Roles</strong>.",
+                  "detail": "Opens the dialog to add new roles to the product team.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Add Roles to Team dialog, select <strong>Delta Regulation Manager</strong> from the list and click <strong>OK</strong>.",
+                  "detail": "Adds the Delta Regulation Manager role to the Drill 1000 product team.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Add participants to team</strong> icon next to <strong>Delta Regulation Manager</strong> in the Members table.",
+                  "detail": "Opens the participant search dialog for the Delta Regulation Manager role.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the <strong>Search for</strong> field to <strong>Group</strong>.",
+                  "detail": "Filters the search to show only user-defined groups instead of individual users.",
+                  "hint": null
+                },
+                {
+                  "action": "In the <strong>Group Name</strong> field, type <code>Delta*</code> and click <strong>Search</strong>.",
+                  "detail": "The wildcard search finds both Delta groups you created.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Delta Regulation Group</strong> from the Search Results list and click <strong>Add</strong>.",
+                  "detail": "Assigns the Delta Regulation Group to the Delta Regulation Manager role.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Apply</strong>.",
+                  "detail": "Saves the role assignment and keeps the dialog open for additional assignments.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the field above the Participant List and select <strong>Change Admin I</strong>.",
+                  "detail": "Switches to assigning participants to the Change Admin I role.",
+                  "hint": null
+                },
+                {
+                  "action": "From the Search Results list, select <strong>Delta Change Group</strong> and click <strong>Add</strong>.",
+                  "detail": "Assigns the Delta Change Group to the Change Admin I role.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Apply</strong>.",
+                  "detail": "Saves the Change Admin I role assignment.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the field above the Participant List and select <strong>Change Admin II</strong>.",
+                  "detail": "Switches to assigning participants to the Change Admin II role.",
+                  "hint": null
+                },
+                {
+                  "action": "From the Search Results list, select <strong>Delta Change Group</strong> and click <strong>Add</strong>.",
+                  "detail": "Assigns the Delta Change Group to the Change Admin II role.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Apply</strong>.",
+                  "detail": "Saves the Change Admin II role assignment.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the field above the Participant List and select <strong>Change Admin III</strong>.",
+                  "detail": "Switches to assigning participants to the Change Admin III role.",
+                  "hint": null
+                },
+                {
+                  "action": "From the Search Results list, select <strong>Delta Change Group</strong> and click <strong>Add</strong>.",
+                  "detail": "Assigns the Delta Change Group to the Change Admin III role.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "Saves all role assignments and closes the dialog. The Delta groups are now assigned to the appropriate roles on the Drill 1000 team.",
+                  "hint": null
                 }
               ]
             }
@@ -1032,7 +1208,7 @@
     {
       "id": "m2t6",
       "title": "Configure Preferences and Templates",
-      "estimatedMinutes": 5,
+      "estimatedMinutes": 10,
       "isExercise": true,
       "content": [
         {
@@ -1050,65 +1226,187 @@
               "title": "Set Change Management Preferences",
               "steps": [
                 {
-                  "action": "Navigate to <strong>Organizations > PTC Power Equipment > Utilities > Preference Management</strong>.",
+                  "action": "Open the Navigator and select <strong>Organizations > PTC Power Equipment > Utilities</strong>.",
+                  "detail": "Navigates to the organization-level Utilities page.",
+                  "hint": "You should be signed in to Windchill as <code>mjones/ptc</code>."
+                },
+                {
+                  "action": "In the <strong>Business Administration</strong> section, select <strong>Preference Management</strong>.",
                   "detail": "Preference Management is where you configure organization-level settings that control change management behavior.",
                   "hint": null
                 },
                 {
-                  "action": "Set the <strong>Allow CN without CR</strong> preference to <strong>Yes</strong>.",
-                  "detail": "This allows Change Notices to be created directly without requiring a preceding Change Request, which is needed for regulation-driven changes.",
-                  "hint": "Search for the preference name or browse under the Change Management category."
-                },
-                {
-                  "action": "Enable <strong>Sequenced Plan</strong> to allow task ordering.",
-                  "detail": "Sequenced Plan ensures change tasks execute in a defined order - the regulatory review must complete before the implementation task begins.",
+                  "action": "Expand the <strong>Change Management</strong> node and notice the available preferences.",
+                  "detail": "The Change Management preference group contains all preferences that determine the behaviors of change objects.",
                   "hint": null
                 },
                 {
-                  "action": "Enable the <strong>Task Form Templates</strong> preference.",
-                  "detail": "This preference must be enabled before task form templates can be created or used when submitting Change Notices.",
-                  "hint": null
+                  "action": "Find each of the listed preferences and change the setting to the indicated value:<br><strong>Change Management > Optional Assignee and Reviewer States:</strong> set to <code>Open</code><br><strong>Operation > CheckIn Operation > Auto Associate upon Check In:</strong> set to <code>Yes</code><br><strong>Workflow > Use task form template to generate the task details page:</strong> set to <code>Yes</code>",
+                  "detail": "These three preferences enable key behaviors: assigning reviewers when editing Change Tasks, auto-associating objects on check-in, and using task form templates for task detail pages.",
+                  "hint": "To change a preference, right-click the preference and select <strong>Set Preference</strong> from the context menu. In the Set Preference dialog, select the <strong>Locked</strong> checkbox and click <strong>OK</strong> for each preference you change."
                 },
                 {
-                  "action": "Save the preference changes.",
-                  "detail": "Preferences take effect immediately after saving. Verify the changes by refreshing the Preference Management page.",
-                  "hint": null
+                  "action": "Verify each preference now shows the updated value and is <strong>locked</strong>.",
+                  "detail": "Locking a preference ensures it will not be modified in any context located under the organization. A lock icon is displayed next to the preference name.",
+                  "hint": "The Preference Management table is extensive. You can use the \"Find in tree\" field to find preferences by typing the first few letters or words of the preference followed by an asterisk (*)."
                 }
               ]
             },
             {
               "id": "ex2-t2",
-              "title": "Create Task Form Templates",
+              "title": "Create Task Form Template",
               "steps": [
                 {
-                  "action": "Navigate to <strong>Organizations > PTC Power Equipment > Templates</strong>.",
-                  "detail": "The Templates page contains all template types available for the organization, including task form templates.",
+                  "action": "Open the Navigator and go to <strong>PTC Power Equipment > Templates</strong>.",
+                  "detail": "Navigates to the organization-level Templates page where task form templates are managed.",
+                  "hint": "You should be signed in to Windchill as <code>mjones/ptc</code>."
+                },
+                {
+                  "action": "From the <strong>Pick a View</strong> menu, select <strong>Task Form Templates</strong>.",
+                  "detail": "Filters the Templates table to show only task form templates.",
                   "hint": null
                 },
                 {
-                  "action": "Select <strong>Task Form Templates</strong> from the Pick a View menu.",
-                  "detail": "This view filters the templates list to show only task form templates, making it easier to create and manage them.",
+                  "action": "Click the <strong>Create Task Form Template</strong> icon from the toolbar.",
+                  "detail": "Opens the New Task Form Template dialog.",
                   "hint": null
                 },
                 {
-                  "action": "Create a new template named <code>Delta Change Task</code>.",
-                  "detail": "This template defines the implementation task that will be automatically assigned to change implementers.",
+                  "action": "Maximize the New Task Form Template dialog.",
+                  "detail": "Maximizing the dialog makes it easier to see and configure all fields.",
                   "hint": null
                 },
                 {
-                  "action": "Configure the task name, default assignee role, and review settings for the Delta Change Task.",
-                  "detail": "Set the assignee to the Delta Change Group role and configure any required review or approval steps.",
-                  "hint": "Ensure the sequence position reflects that this task runs after the regulatory task."
-                },
-                {
-                  "action": "Create a second template named <code>Delta Regulatory Task</code>.",
-                  "detail": "This template defines the regulatory review task that will be assigned to the Delta Regulation Group.",
+                  "action": "In the <strong>Template Name</strong> field, type <code>Create Delta Change Notice</code>.",
+                  "detail": "Names the template that will define the task when a Delta Change Notice is created.",
                   "hint": null
                 },
                 {
-                  "action": "Save both templates.",
-                  "detail": "The templates will be used automatically when a Change Notice is submitted, creating the defined tasks with the configured assignees and sequencing.",
-                  "hint": "Verify both templates appear in the Task Form Templates view after saving."
+                  "action": "In the <strong>Subject Class</strong> field, select <code>wt.change2.WTChangeReview|com.ptc_training.PTCPowerEquipment.DeltaReview</code>.",
+                  "detail": "Associates this task form template with the Delta Review object type you created earlier.",
+                  "hint": null
+                },
+                {
+                  "action": "If necessary, select <strong>Default</strong> from the <strong>Task Type</strong> list.",
+                  "detail": "Default is the standard task type for change management workflows.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Configure in wizard</strong> radio button.",
+                  "detail": "The wizard mode allows you to define tabs, actions, and tables for the task form.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Add New Tab</strong> icon in the <strong>Tabs</strong> field.",
+                  "detail": "Creates a new tab that will organize the task form's content.",
+                  "hint": null
+                },
+                {
+                  "action": "Double-click <strong>New0</strong> and select the text, type <code>Details</code>, and press <strong>Enter</strong>.",
+                  "detail": "Renames the first tab to Details, which will contain the main task information.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Edit</strong> icon for <strong>Action on Subject</strong>.",
+                  "detail": "Opens the list of available actions that can be performed from the task form.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the checkboxes for: <strong>View Information</strong>, <strong>Edit</strong>, and <strong>New > New Change Notice</strong>.",
+                  "detail": "These actions allow the task assignee to view, edit, and create a Change Notice from the task form.",
+                  "hint": null
+                },
+                {
+                  "action": "Click on white space in the dialog to close the list.",
+                  "detail": "Closes the action selection dropdown.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Edit</strong> icon for <strong>Tables/Attributes</strong>.",
+                  "detail": "Opens the list of tables and attributes that can be displayed on the tab.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the checkboxes for: <strong>Task Completion Buttons</strong>, <strong>Attributes</strong>, <strong>Actions on Subject</strong>, <strong>Review Objects</strong>, and <strong>Associated Process Objects</strong>.",
+                  "detail": "These tables and attributes will appear in the Details tab in the order the checkboxes are selected.",
+                  "hint": "The tables and attributes listed above will appear in the tab in the order the checkboxes are selected."
+                },
+                {
+                  "action": "Click on white space in the dialog to close the list.",
+                  "detail": "Closes the tables/attributes selection dropdown.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex2-t3",
+              "title": "Add a Second Tab",
+              "steps": [
+                {
+                  "action": "Click the <strong>Add New Tab</strong> icon in the <strong>Tabs</strong> field.",
+                  "detail": "Creates a second tab for organizing additional task information.",
+                  "hint": null
+                },
+                {
+                  "action": "Double-click <strong>New1</strong> and select the text, type <code>Actions/Processes</code>, and press <strong>Enter</strong>.",
+                  "detail": "Renames the second tab to Actions/Processes, which will contain workflow-related information.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Edit</strong> icon for <strong>Tables/Attributes</strong>.",
+                  "detail": "Opens the list of tables and attributes for the second tab.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the checkboxes for: <strong>Actions on Subject</strong>, <strong>Action Items</strong>, <strong>Process Status</strong>, <strong>Tasks for Change Process</strong>, and <strong>Task Completion</strong>.",
+                  "detail": "These tables provide workflow context and completion controls on the second tab.",
+                  "hint": null
+                },
+                {
+                  "action": "Click on white space in the dialog to close the list.",
+                  "detail": "Closes the tables/attributes selection dropdown.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "Creates the task form template with both tabs configured.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex2-t4",
+              "title": "Import Task Form Templates",
+              "steps": [
+                {
+                  "action": "Click the <strong>Import</strong> icon from the toolbar.",
+                  "detail": "Opens the import dialog for loading pre-built task form templates.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Choose File</strong>.",
+                  "detail": "Opens the file browser to select the template file.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>This PC</strong>.",
+                  "detail": "Navigates to the local file system.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <code>New Volume (W:)\\WCBA-ADCH-Lab-Files\\Task Flow Templates.zip</code>.",
+                  "detail": "This ZIP file contains the two pre-built task form templates for the Delta review and submit workflows.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Open</strong>.",
+                  "detail": "Loads the selected file into the import dialog.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "Imports the templates. Two new Task Form Templates are added to the Templates table: <strong>Delta Regulation – Review</strong> and <strong>Delta Regulation – Submit</strong>.",
+                  "hint": null
                 }
               ]
             }
@@ -1148,69 +1446,49 @@
               "title": "Create an Association Rule",
               "steps": [
                 {
-                  "action": "Navigate to <strong>Organizations > PTC Power Equipment > Utilities > Business Rules Administration</strong>.",
-                  "detail": "Business Rules Administration is the central location for managing association rules, mapping rules, and other business rules.",
+                  "action": "Open the Navigator and go to <strong>Organizations > PTC Power Equipment > Utilities</strong>.",
+                  "detail": "Navigates to the organization-level Utilities page where business rules are managed.",
+                  "hint": "You should be signed in to Windchill as <code>mjones/ptc</code>."
+                },
+                {
+                  "action": "Select <strong>Business Rules</strong>.",
+                  "detail": "Opens the Business Rules Administration page with tables for Rule Sets, Association Rules, and Mapping Rules.",
                   "hint": null
                 },
                 {
-                  "action": "Select the <strong>Association Rules</strong> tab.",
-                  "detail": "The Association Rules tab displays all existing association rules and allows you to create new ones.",
+                  "action": "From the <strong>Association Rules</strong> table, click <strong>New Association Rule</strong>.",
+                  "detail": "Opens the New Association Rule dialog where you define the relationship between two change object types.",
                   "hint": null
                 },
                 {
-                  "action": "Click <strong>New Association Rule</strong>.",
-                  "detail": "This opens the association rule creation form where you define the relationship between two change object types.",
+                  "action": "Fill in the fields of the New Association Rule dialog:<br><strong>Association Type:</strong> <code>Change Process</code><br><strong>Role A Type:</strong> <code>Delta Review</code><br><strong>Role B Type:</strong> <code>Change Notice</code><br><strong>Cardinality:</strong> <code>1:Many</code><br><strong>Owning Role:</strong> <code>Role B</code><br><strong>Required Role:</strong> <code>None</code>",
+                  "detail": "Change Process links objects within the same change process flow. 1:Many cardinality means one Delta Review can link to many Change Notices. Setting Role B as the owning role means you need modify access to the Change Notice to create the link.",
                   "hint": null
                 },
                 {
-                  "action": "Set Association Type to <code>Change Process</code>, Role A Type to <code>Delta Review</code>, Role B Type to <code>Change Notice</code>.",
-                  "detail": "The Change Process association type links objects within the same change process flow. Delta Review (Role A) initiates the process, and Change Notice (Role B) carries out the change.",
-                  "hint": "Use the type picker to search for Delta Review - it will appear under Review Object subtypes."
-                },
-                {
-                  "action": "Set Cardinality to <code>1:many</code> and Owning Role to <code>Role B</code>.",
-                  "detail": "1:many cardinality means one Delta Review can link to many Change Notices. Setting Role B as the owning role means you need modify access to the Change Notice to create the link.",
-                  "hint": null
-                },
-                {
-                  "action": "Click <strong>OK</strong> to create the rule.",
-                  "detail": "The association rule is now active and will govern how Delta Review objects link to Change Notice objects.",
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "Creates the association rule. This rule enables Delta Drills to associate multiple Change Notices with a single Delta Review.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex3-t2",
-              "title": "Create a Mapping Rule",
+              "title": "Create a Change Intent Mapping Rule",
               "steps": [
                 {
-                  "action": "From the Business Rules Administration page, select <strong>Mapping Rules</strong>.",
-                  "detail": "The Mapping Rules tab displays existing mapping rules and allows you to create new ones for change intent, release targets, and release states.",
+                  "action": "From the <strong>Mapping Rules</strong> table, click the <strong>New Mapping Rule</strong> icon.",
+                  "detail": "Opens the New Mapping Rule dialog for defining how change intents map to release targets.",
+                  "hint": "You should be signed in to Windchill as <code>mjones/ptc</code>."
+                },
+                {
+                  "action": "Fill in the fields of the New Mapping Rule dialog:<br><strong>Rule Name:</strong> <code>Change Intent Release Targets</code><br><strong>Type:</strong> <code>Delta New Regulation Document</code><br><strong>Source Value:</strong> <code>None</code><br><strong>Mapped Value:</strong> <code>Change</code><br><strong>Default:</strong> <code>Change</code>",
+                  "detail": "This mapping rule sets the release target value for new release targets on Delta New Regulation Document objects. It maps the default change intent to 'Change', indicating the document triggers a product change.",
                   "hint": null
                 },
                 {
-                  "action": "Click <strong>New Mapping Rule</strong>.",
-                  "detail": "This opens the mapping rule creation form where you define how change intents map to release targets for a specific object type.",
-                  "hint": null
-                },
-                {
-                  "action": "Set Rule Name to <code>Change Intent Release Targets</code>.",
-                  "detail": "This rule type maps change intent values to release targets for affected object types.",
-                  "hint": null
-                },
-                {
-                  "action": "Set Type to <code>Delta New Regulation Document</code>.",
-                  "detail": "This specifies that the mapping rule applies to Delta New Regulation Document objects.",
-                  "hint": "Use the type picker to search for the custom document subtype you created earlier."
-                },
-                {
-                  "action": "Set Source Value to <code>None</code>, Mapped Value to <code>Change</code>, Default to <code>Change</code>.",
-                  "detail": "This configuration maps the default change intent to 'Change' for regulation documents, indicating that the document triggers a product change.",
-                  "hint": null
-                },
-                {
-                  "action": "Click <strong>OK</strong> to create the mapping rule.",
-                  "detail": "The mapping rule is now active and will control how change intents are applied to Delta New Regulation Document objects.",
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "Creates the mapping rule. It is now active and will control how change intents are applied to Delta New Regulation Document objects in the Resulting Objects table.",
                   "hint": null
                 }
               ]
@@ -1524,29 +1802,29 @@
               "title": "Save Copy of Workflow",
               "steps": [
                 {
-                  "action": "Open the Navigator and go to Organizations > PTC Power Equipment > Templates.",
+                  "action": "Open the Navigator and go to <strong>Organizations > PTC Power Equipment > Templates</strong>.",
                   "detail": "This is where workflow templates are stored at the organization level.",
+                  "hint": "You should be signed in to Windchill as <code>mjones/ptc</code>."
+                },
+                {
+                  "action": "Select <strong>Workflow Templates</strong> from the <strong>Pick a View</strong> menu.",
+                  "detail": "Filters the Templates table to show only workflow templates.",
                   "hint": null
                 },
                 {
-                  "action": "Select Workflow Templates from the Pick a View menu.",
-                  "detail": "Filters the templates table to show only workflow templates.",
+                  "action": "Right-click the <strong>Design Review Workflow</strong> and select <strong>Save As</strong>.",
+                  "detail": "Creates a copy of the existing workflow template. Always copy a workflow template before changing it; avoid customizing an original OOTB workflow template.",
                   "hint": null
                 },
                 {
-                  "action": "Right-click the Design Review Workflow and select Save As.",
-                  "detail": "Always copy an existing workflow rather than modifying the original OOTB template.",
-                  "hint": null
-                },
-                {
-                  "action": "In the Save As dialog, type \"Delta Reg Review WF\" in the Name field.",
+                  "action": "In the Save As dialog, select the text in the <strong>Name</strong> field, and type <code>Delta Reg Review WF</code>.",
                   "detail": "The name should reflect the Delta Drills regulation review process.",
                   "hint": null
                 },
                 {
-                  "action": "Click OK and note the new template appears in the table, checked out to you.",
-                  "detail": "The template is checked out for editing after being copied.",
-                  "hint": null
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "The new Delta Reg Review WF template is now in the Templates table with a context of PTC Power Equipment, and it is checked out to you.",
+                  "hint": "Always copy a workflow template before changing it; avoid customizing an original OOTB workflow template."
                 }
               ]
             },
@@ -1555,89 +1833,241 @@
               "title": "Modify Approve Activity Node",
               "steps": [
                 {
-                  "action": "Right-click Delta Reg Review WF and click Edit, then maximize the window.",
-                  "detail": "Opens the visual workflow editor.",
+                  "action": "Right-click <strong>Delta Reg Review WF</strong> and click <strong>Edit</strong>.",
+                  "detail": "Opens the visual workflow editor for the copied template.",
                   "hint": null
                 },
                 {
-                  "action": "Click the word \"Approve\" below the Activity icon on the far right of the workflow.",
-                  "detail": "This opens the activity properties for the approval step.",
+                  "action": "Maximize the window.",
+                  "detail": "Maximizing the workflow editor window makes it easier to see and edit all nodes.",
                   "hint": null
                 },
                 {
-                  "action": "Change the Name field to \"Decision Required\".",
+                  "action": "On the far right of the workflow diagram, below the Activity icon, click the word <strong>Approve</strong>.",
+                  "detail": "Opens the activity properties dialog for the approval step.",
+                  "hint": null
+                },
+                {
+                  "action": "Change the <strong>Name</strong> field to <code>Decision Required</code>.",
                   "detail": "The Delta process uses a Yes/No decision rather than Approve/Reject.",
                   "hint": null
                 },
                 {
-                  "action": "In the Responsible Role field, select \"Delta Regulation Manager\".",
-                  "detail": "Assigns the decision to the custom role you created earlier.",
+                  "action": "In the <strong>Responsible Role</strong> field, select <strong>Delta Regulation Manager</strong>.",
+                  "detail": "Assigns the decision to the custom role created earlier for the Delta regulation review process.",
                   "hint": null
                 },
                 {
-                  "action": "Select the Activity tab and set Template Name to \"Delta Regulation - Review\".",
-                  "detail": "Associates the activity with the correct task form template.",
+                  "action": "Select the <strong>Activity</strong> tab.",
+                  "detail": "Switches to the Activity configuration tab within the activity properties dialog.",
                   "hint": null
                 },
                 {
-                  "action": "In the Instructions field, type \"Does the new regulation require a change to our product or process? Yes/No.\"",
+                  "action": "In the <strong>Template Name</strong> field, select <strong>Delta Regulation - Review</strong>.",
+                  "detail": "Associates the activity with the correct task form template imported in the previous exercise.",
+                  "hint": null
+                },
+                {
+                  "action": "In the <strong>Instructions</strong> field, type <code>Does the new regulation require a change to our product or process? Yes/No.</code>",
                   "detail": "Clear instructions help the assigned user understand what decision is needed.",
                   "hint": null
                 },
                 {
-                  "action": "Clear the Signing Required checkbox.",
-                  "detail": "Signing required forces credential re-entry which is not needed for this review.",
+                  "action": "Clear the <strong>Signing Required</strong> checkbox.",
+                  "detail": "Signing required forces credential re-entry to complete the task. This is a security option that is not needed for this review.",
+                  "hint": "If this box is checked, the user will be required to enter their credentials to complete the task."
+                },
+                {
+                  "action": "Select the <strong>Participants</strong> tab.",
+                  "detail": "Switches to the Participants configuration where you define who receives the task.",
                   "hint": null
                 },
                 {
-                  "action": "Select the Participants tab, remove \"Approver\", click Roles, select \"Delta Regulation Manager\", and click Add.",
-                  "detail": "Ensures the correct role receives the task.",
+                  "action": "Click <strong>Approver</strong> in the right field.",
+                  "detail": "Selects the existing Approver role to be removed.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Remove (<<)</strong>.",
+                  "detail": "Removes the Approver role from the participants list.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Roles</strong>.",
+                  "detail": "Switches to the Roles list for adding a new role as a participant.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Delta Regulation Manager</strong>.",
+                  "detail": "Selects the custom role to receive the task.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Add (>>)</strong>.",
+                  "detail": "Adds the Delta Regulation Manager role as a participant for this activity.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex4-t3",
-              "title": "Modify Routing and Set State Robots",
+              "title": "Modify Routing of Approve Activity Node",
               "steps": [
                 {
-                  "action": "Select the Routing tab and delete the routing events Approve and Reject.",
-                  "detail": "The Delta process uses Yes/No instead of Approve/Reject.",
+                  "action": "Select the <strong>Routing</strong> tab.",
+                  "detail": "Switches to the Routing configuration where you define decision paths.",
                   "hint": null
                 },
                 {
-                  "action": "Type \"Yes\" and press Enter, then type \"No\" to create new routing events.",
-                  "detail": "These match the decision options in the activity instructions.",
+                  "action": "Delete the Routing Events: <strong>Approve</strong> and <strong>Reject</strong>.",
+                  "detail": "Removes the OOTB routing events that do not match the Delta review process.",
                   "hint": null
                 },
                 {
-                  "action": "In the Routing/Tallying Expression, change \"Approve\" to \"Yes\" and \"Reject\" to \"No\" (two occurrences each).",
-                  "detail": "Updates the tallying logic to use the new routing event names.",
+                  "action": "Type <code>Yes</code> and press <strong>Enter</strong>.",
+                  "detail": "Creates a new routing event for the affirmative decision path.",
                   "hint": null
                 },
                 {
-                  "action": "Click Check Syntax to verify, then click OK to close the dialog.",
-                  "detail": "Always verify routing expressions before saving.",
+                  "action": "Type <code>No</code>.",
+                  "detail": "Creates a new routing event for the negative decision path.",
                   "hint": null
                 },
                 {
-                  "action": "Update the Set State Review robot: change Name to \"Set State In Analysis\" and set Specific State to \"In Analysis\".",
-                  "detail": "Matches the life cycle states you will create later.",
+                  "action": "In the <strong>Routing/Tallying Expression</strong> field, change two occurrences of the word <code>Approve</code> to the word <code>Yes</code>.",
+                  "detail": "Updates the tallying logic to use the new Yes routing event name.",
                   "hint": null
                 },
                 {
-                  "action": "Update the Set State Approval robot: change Name to \"Set State Pending Approval\" and set Specific State to \"Pending Approval\".",
-                  "detail": "Aligns the workflow states with the custom life cycle.",
+                  "action": "In the <strong>Routing/Tallying Expression</strong> field, change two occurrences of the word <code>Reject</code> to the word <code>No</code>.",
+                  "detail": "The complete expression should read: <code>result = WfTally.all(self, \"Yes\", \"No\");</code>",
                   "hint": null
                 },
                 {
-                  "action": "Add an End icon below the Set State Rejected robot and connect the arrow from Set State Rejected to it.",
-                  "detail": "Ends the workflow if the regulation review is rejected.",
+                  "action": "Click <strong>Check Syntax</strong> to verify your changes.",
+                  "detail": "Compiles and validates the routing/tallying expression to ensure it has no errors.",
                   "hint": null
                 },
                 {
-                  "action": "Save the workflow and close the editor, then check in the template.",
-                  "detail": "Check-in makes the template available for use.",
+                  "action": "Click <strong>OK</strong> to close the Compile Progress window.",
+                  "detail": "Confirms the syntax check completed successfully.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong> in the Decision Required dialog.",
+                  "detail": "Saves all changes to the activity node and closes the properties dialog.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>?</strong> in the link to the <strong>Set State Approved</strong> robot.",
+                  "detail": "Opens the link properties dialog to configure which routing event triggers this path.",
+                  "hint": null
+                },
+                {
+                  "action": "Click in the <strong>Yes</strong> field and select <strong>Start</strong>.",
+                  "detail": "Maps the Yes routing event to the approved state path.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "Saves the link configuration for the Yes path.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>?</strong> in the link to the <strong>Set State Rejected</strong> robot.",
+                  "detail": "Opens the link properties dialog for the rejection path.",
+                  "hint": null
+                },
+                {
+                  "action": "Click in the <strong>No</strong> field and select <strong>Start</strong>.",
+                  "detail": "Maps the No routing event to the rejected state path.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "Saves the link configuration for the No path.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex4-t4",
+              "title": "Modify Set State Robots",
+              "steps": [
+                {
+                  "action": "In the workspace, click the <strong>Set State Review</strong> robot text.",
+                  "detail": "Opens the robot properties dialog for the Review state transition.",
+                  "hint": null
+                },
+                {
+                  "action": "Change the <strong>Name</strong> field to <code>Set State In Analysis</code>.",
+                  "detail": "Renames the robot to match the custom life cycle state.",
+                  "hint": null
+                },
+                {
+                  "action": "Click in the <strong>Specific State</strong> field and select <strong>In Analysis</strong>.",
+                  "detail": "Configures the robot to set the object to the In Analysis state instead of Review.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "Saves the Set State In Analysis robot configuration.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Set State Approval</strong> robot text.",
+                  "detail": "Opens the robot properties dialog for the Approval state transition.",
+                  "hint": null
+                },
+                {
+                  "action": "Change the <strong>Name</strong> to <code>Set State Pending Approval</code>.",
+                  "detail": "Renames the robot to match the custom life cycle state.",
+                  "hint": null
+                },
+                {
+                  "action": "Click in the <strong>Specific State</strong> field and select <strong>Pending Approval</strong>.",
+                  "detail": "Configures the robot to set the object to the Pending Approval state instead of Approval.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "Saves the Set State Pending Approval robot configuration.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex4-t5",
+              "title": "End Workflow If Set State Is Rejected",
+              "steps": [
+                {
+                  "action": "From the left toolbar, select the <strong>End</strong> icon to make it active.",
+                  "detail": "Activates the End node tool so you can place it on the workflow canvas.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the workspace below the <strong>Set Resolution Date</strong> robot to insert the End icon.",
+                  "detail": "Places a new End node in the workflow diagram.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the end of the arrow coming from the <strong>Set State Rejected</strong> robot and drag the arrowhead over the <strong>End</strong> icon.",
+                  "detail": "Connects the rejected path to the new End node, so the workflow terminates when the review is rejected.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>File</strong> from the toolbar and click <strong>Save</strong>.",
+                  "detail": "Saves all changes to the workflow template.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the window.",
+                  "detail": "Closes the workflow editor.",
+                  "hint": null
+                },
+                {
+                  "action": "Check in the <strong>Delta Reg Review WF</strong>.",
+                  "detail": "Checking in the template makes it available for use by other processes. Right-click the template and select Check In.",
                   "hint": null
                 }
               ]
@@ -1678,24 +2108,39 @@
               "title": "Import Workflow with Change Notice Section",
               "steps": [
                 {
-                  "action": "In the Templates table, ensure Workflow Templates is selected in the Pick a View list.",
+                  "action": "In the Templates table, ensure the <strong>Pick a View</strong> list has <strong>Workflow Templates</strong> selected.",
                   "detail": "You need to be viewing workflow templates to import one.",
+                  "hint": "You should be signed in to Windchill as <code>mjones/ptc</code>."
+                },
+                {
+                  "action": "Click the <strong>Actions</strong> menu.",
+                  "detail": "Opens the Actions dropdown with import/export options.",
                   "hint": null
                 },
                 {
-                  "action": "Click the Actions menu and select Import.",
-                  "detail": "Import allows loading a pre-configured workflow template from a file.",
+                  "action": "Click <strong>Import</strong>.",
+                  "detail": "Opens the import dialog for loading a workflow template from a file.",
                   "hint": null
                 },
                 {
-                  "action": "Click Choose File, select the Partial Delta Regulation Review.zip file, and click Open.",
-                  "detail": "This file contains the workflow with the Change Notice segment already attached.",
+                  "action": "Click <strong>Choose File</strong>.",
+                  "detail": "Opens the file browser to select the template file.",
                   "hint": null
                 },
                 {
-                  "action": "Click OK to import the Delta Regulation Review Workflow.",
-                  "detail": "The imported workflow includes both the review portion and the Change Notice segment.",
+                  "action": "Select <code>New Volume (W:)\\WCBA-ADCH-Lab-Files\\Partial Delta Regulation Review.zip</code>.",
+                  "detail": "This file contains the Delta Regulation Review Workflow with the Change Notice segment already attached.",
                   "hint": null
+                },
+                {
+                  "action": "Click <strong>Open</strong>.",
+                  "detail": "Loads the selected file into the import dialog.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "Imports the Delta Regulations Review Workflow into the Templates table.",
+                  "hint": "This workflow is the sum of the tasks performed in the previous exercise. A segment copied from the Change Request Workflow has been attached for you to continue to edit. In the interest of time, many modifications to the Change Notice segment have been completed for you."
                 }
               ]
             },
@@ -1704,39 +2149,99 @@
               "title": "Modify the Change Notice Section",
               "steps": [
                 {
-                  "action": "Right-click Delta Regulation Review Workflow and click Edit, then maximize the window.",
-                  "detail": "Opens the complete workflow with the CN segment for editing.",
+                  "action": "Right-click <strong>Delta Regulation Review Workflow</strong> and click <strong>Edit</strong>.",
+                  "detail": "Opens the workflow editor for the imported template.",
                   "hint": null
                 },
                 {
-                  "action": "Click \"Create Delta Change Notice\" text and select the Activity tab.",
-                  "detail": "Configures which template is used for creating the change notice.",
+                  "action": "Maximize the window.",
+                  "detail": "Maximizing the window makes it easier to see the entire workflow including the new Change Notice segment.",
                   "hint": null
                 },
                 {
-                  "action": "Select \"Create Delta Change Notice\" in the Template Name field and click OK.",
-                  "detail": "Associates the activity with the correct template.",
+                  "action": "At the far right of the workflow, click the <strong>Create Delta Change Notice</strong> text.",
+                  "detail": "Opens the activity properties dialog for the Change Notice creation step.",
                   "hint": null
                 },
                 {
-                  "action": "Click the \"Change Request Resolved Notify By E-mail\" robot text.",
-                  "detail": "This notification robot needs to reference the Delta process instead of generic change request.",
+                  "action": "Select the <strong>Activity</strong> tab.",
+                  "detail": "Switches to the Activity configuration tab.",
                   "hint": null
                 },
                 {
-                  "action": "Change the name to \"Delta Regulation Review Resolved\" and set Responsible Role to \"Delta Regulation Manager\".",
-                  "detail": "Updates the notification to use the correct role and naming.",
+                  "action": "Select <strong>Create Delta Change Notice</strong> in the <strong>Template Name</strong> field.",
+                  "detail": "Associates the activity with the task form template you created earlier.",
                   "hint": null
                 },
                 {
-                  "action": "Update the Description and Message tab to replace \"Change Request\" with \"Delta Regulation Review\".",
-                  "detail": "Ensures notification content correctly identifies the process.",
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "Saves the template assignment for the Create Delta Change Notice activity.",
                   "hint": null
                 },
                 {
-                  "action": "Save the workflow, close the editor, and check in the template.",
-                  "detail": "Check-in makes the modified workflow available for use.",
+                  "action": "Click the <strong>Change Request Resolved Notify By E-mail</strong> robot text.",
+                  "detail": "Opens the properties for the notification robot that needs to be updated for the Delta process.",
                   "hint": null
+                },
+                {
+                  "action": "Change the name to <code>Delta Regulation Review Resolved</code>.",
+                  "detail": "Updates the robot name to reflect the Delta process instead of the generic change request.",
+                  "hint": null
+                },
+                {
+                  "action": "In the <strong>Responsible Role</strong> field, select <strong>Delta Regulation Manager</strong>.",
+                  "detail": "Assigns the notification to the correct role for the Delta process.",
+                  "hint": null
+                },
+                {
+                  "action": "In the <strong>Description</strong> field, type <code>Delta</code> before the term <strong>Change Notice</strong>.",
+                  "detail": "Updates the description to reference the Delta Change Notice.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Change Request</strong> in the text and type <code>Delta Regulation Review</code>.",
+                  "detail": "Replaces the generic Change Request reference with the Delta process name.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Message</strong> tab.",
+                  "detail": "Switches to the Message tab to update the email notification content.",
+                  "hint": null
+                },
+                {
+                  "action": "Delete the text in the <strong>Subject</strong> field and type <code>Delta Regulation Review Resolved</code>.",
+                  "detail": "Updates the email subject line to reflect the Delta process.",
+                  "hint": null
+                },
+                {
+                  "action": "In the text field, replace <strong>Change Request</strong> with <code>Delta Regulation Review</code>.",
+                  "detail": "Updates the email body to correctly identify the Delta process.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "Saves all changes to the notification robot.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>File</strong> and click <strong>Save</strong>.",
+                  "detail": "Saves all changes to the workflow template.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the <strong>Delta Regulation Review Workflow</strong> window.",
+                  "detail": "Closes the workflow editor.",
+                  "hint": null
+                },
+                {
+                  "action": "Right-click <strong>Delta Regulation Review Workflow</strong> and select <strong>Check In</strong>.",
+                  "detail": "Makes the modified workflow template available for use.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "Confirms the check-in. The Delta Regulation Review Workflow is now ready for use.",
+                  "hint": "Most activities and robots in the copied Change Notice segment were changed using the same methods before the segment was inserted. The roles of Change Admin I, II, and III are left as is in the workflow because you designated the Delta Change Group for each of those roles in a previous exercise."
                 }
               ]
             }
@@ -1753,7 +2258,7 @@
     {
       "id": "m3t6",
       "title": "Create Life Cycle and OIR",
-      "estimatedMinutes": 8,
+      "estimatedMinutes": 15,
       "isExercise": true,
       "content": [
         {
@@ -1773,82 +2278,335 @@
           "tasks": [
             {
               "id": "ex6-t1",
-              "title": "Create Delta Regulation Review Life Cycle",
+              "title": "Save Copy of Design Review Life Cycle",
               "steps": [
                 {
-                  "action": "In the Templates table, select Life Cycle Templates from the Pick a View menu.",
+                  "action": "In the Templates table, select <strong>Life Cycle Templates</strong> from the <strong>Pick a View</strong> menu.",
                   "detail": "Switches to viewing life cycle templates.",
+                  "hint": "You should be signed in to Windchill as <code>mjones/ptc</code>."
+                },
+                {
+                  "action": "Right-click <strong>Design Review Life Cycle</strong> and select <strong>Save As</strong>.",
+                  "detail": "Creates a copy of the OOTB life cycle template to use as a starting point.",
                   "hint": null
                 },
                 {
-                  "action": "Right-click Design Review Life Cycle, select Save As, and name it \"Delta Regulation Review LC\".",
-                  "detail": "Copies the OOTB life cycle as a starting point.",
+                  "action": "Type <code>Delta Regulation Review LC</code> in the <strong>Name</strong> field.",
+                  "detail": "Names the new life cycle to reflect the Delta regulation review process.",
                   "hint": null
                 },
                 {
-                  "action": "Right-click the new life cycle and select Edit.",
-                  "detail": "Opens the life cycle editor.",
-                  "hint": null
-                },
-                {
-                  "action": "Select the Open phase, go to the Workflow tab, and set Phase Process to \"Delta Regulation Review Workflow\".",
-                  "detail": "Associates your custom workflow with the initial phase.",
-                  "hint": null
-                },
-                {
-                  "action": "Select the Review phase, change State to \"In Analysis\", update Roles to \"Delta Regulation Manager\", and set Full Control access.",
-                  "detail": "Configures who can act during the analysis phase.",
-                  "hint": null
-                },
-                {
-                  "action": "Select the Approval phase, change State to \"Pending Approval\", update Roles to \"Delta Regulation Manager\" with Read and Download access.",
-                  "detail": "Restricts modifications during the approval phase.",
-                  "hint": null
-                },
-                {
-                  "action": "Click New Phase, set State to \"Resolved\", add \"Delta Regulation Manager\" role with Full Control access.",
-                  "detail": "Adds the final state for completed reviews.",
-                  "hint": null
-                },
-                {
-                  "action": "Click Save & Close, then check in the life cycle.",
-                  "detail": "Makes the life cycle available for use.",
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "Creates the copy. The new life cycle template appears in the Templates table.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex6-t2",
-              "title": "Create Delta Review Object Initialization Rule",
+              "title": "Modify Life Cycle",
               "steps": [
                 {
-                  "action": "Navigate to Organizations > PTC Power Equipment > Utilities and select Object Initialization Rules Administration.",
-                  "detail": "OIRs are managed from the Utilities page.",
+                  "action": "Right-click <strong>Delta Regulation Review LC</strong> and select <strong>Edit</strong>.",
+                  "detail": "Opens the life cycle editor for the copied template.",
                   "hint": null
                 },
                 {
-                  "action": "Click the Download Composite Rule icon, find and select \"Delta Review\", and click OK.",
-                  "detail": "Downloads the existing OIR XML as a starting point.",
+                  "action": "Select the <strong>Open</strong> phase.",
+                  "detail": "Selects the initial phase of the life cycle for configuration.",
                   "hint": null
                 },
                 {
-                  "action": "Open the downloaded rule.xml file in a text editor.",
-                  "detail": "The XML file contains the life cycle assignment that needs to be updated.",
+                  "action": "Select the <strong>Workflow</strong> tab.",
+                  "detail": "Switches to the Workflow configuration for the Open phase.",
                   "hint": null
                 },
                 {
-                  "action": "In line 16, replace \"Basic\" with \"Delta Regulation Review LC\" and save as \"Delta OIR\".",
-                  "detail": "This tells the OIR to use your custom life cycle instead of the default.",
+                  "action": "Click <strong>Browse</strong> next to the <strong>Phase Process</strong> field.",
+                  "detail": "Opens the workflow selection dialog.",
                   "hint": null
                 },
                 {
-                  "action": "Click New Object Initialization Rule, name it \"Delta Review OIR\", and select \"Delta Review\" as the object type.",
-                  "detail": "Creates a new OIR for your custom change object.",
+                  "action": "Select <strong>Delta Regulation Review Workflow</strong>.",
+                  "detail": "Associates your custom workflow with the initial Open phase.",
                   "hint": null
                 },
                 {
-                  "action": "Choose the modified Delta OIR.xml file and click OK.",
-                  "detail": "Uploads the XML that connects the Delta workflow to the Delta life cycle.",
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "Saves the workflow assignment for the Open phase.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Review</strong> phase.",
+                  "detail": "Selects the Review phase that needs to be modified for the Delta process.",
+                  "hint": null
+                },
+                {
+                  "action": "In the <strong>State</strong> field, select <strong>In Analysis</strong>.",
+                  "detail": "Changes the phase state from Review to In Analysis to match the Delta life cycle.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Roles</strong> tab.",
+                  "detail": "Switches to the Roles configuration for the In Analysis phase.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Remove All</strong>.",
+                  "detail": "Removes all existing role assignments from this phase.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Delta Regulation Manager</strong> in the <strong>Available Roles</strong> table.",
+                  "detail": "Selects the custom role to be added to this phase.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Add</strong>.",
+                  "detail": "Adds the Delta Regulation Manager as an authorized role for the In Analysis phase.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Access Control</strong> tab.",
+                  "detail": "Switches to the Access Control configuration for the In Analysis phase.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Full Control (All)</strong> checkbox.",
+                  "detail": "Grants Full Control access to the Delta Regulation Manager during the In Analysis phase.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Approval</strong> phase.",
+                  "detail": "Selects the Approval phase that needs to be modified for the Delta process.",
+                  "hint": null
+                },
+                {
+                  "action": "In the <strong>State</strong> field, select <strong>Pending Approval</strong>.",
+                  "detail": "Changes the phase state from Approval to Pending Approval to match the Delta life cycle.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Roles</strong> tab.",
+                  "detail": "Switches to the Roles configuration for the Pending Approval phase.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Remove All</strong>.",
+                  "detail": "Removes all existing role assignments from this phase.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Delta Regulation Manager</strong> in the <strong>Available Roles</strong> table.",
+                  "detail": "Selects the custom role for this phase.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Add</strong>.",
+                  "detail": "Adds the Delta Regulation Manager as an authorized role for the Pending Approval phase.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Access Control</strong> tab.",
+                  "detail": "Switches to the Access Control configuration for the Pending Approval phase.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Delta Regulation Manager</strong> in the <strong>Selected Roles</strong> table.",
+                  "detail": "Selects the role to configure its access permissions.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Read</strong> and <strong>Download</strong> checkboxes.",
+                  "detail": "Restricts the Delta Regulation Manager to Read and Download access during the Pending Approval phase - modifications are not permitted while awaiting approval.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex6-t3",
+              "title": "Add a New Phase to Life Cycle",
+              "steps": [
+                {
+                  "action": "Click the <strong>New Phase</strong> icon.",
+                  "detail": "Adds a new phase to the life cycle.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the new phase.",
+                  "detail": "Selects the newly created phase for configuration.",
+                  "hint": null
+                },
+                {
+                  "action": "In the <strong>State</strong> field, select <strong>Resolved</strong>.",
+                  "detail": "Sets the state for the new phase, which represents completed regulation reviews.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Roles</strong> tab.",
+                  "detail": "Switches to the Roles configuration for the Resolved phase.",
+                  "hint": null
+                },
+                {
+                  "action": "In the <strong>Available Roles</strong> table, select <strong>Delta Regulation Manager</strong>.",
+                  "detail": "Selects the custom role for the Resolved phase.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Add</strong>.",
+                  "detail": "Adds the Delta Regulation Manager as an authorized role for the Resolved phase.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Access Control</strong> tab.",
+                  "detail": "Switches to the Access Control configuration for the Resolved phase.",
+                  "hint": null
+                },
+                {
+                  "action": "In the <strong>Selected Roles</strong> table, select <strong>Delta Regulation Manager</strong>.",
+                  "detail": "Selects the role to configure its access permissions for the Resolved phase.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Full Control (All)</strong> checkbox.",
+                  "detail": "Grants Full Control access to the Delta Regulation Manager during the Resolved phase.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Save & Close</strong>.",
+                  "detail": "Saves the life cycle configuration and closes the editor.",
+                  "hint": null
+                },
+                {
+                  "action": "Right-click <strong>Delta Regulation Review LC</strong>.",
+                  "detail": "Opens the context menu for the new life cycle template.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Check In</strong> and click <strong>OK</strong>.",
+                  "detail": "Checks in the life cycle template, making it available for use. In case of a problem, a ZIP file <code>Final Delta LC.zip</code> is provided in the WCBA-ADCH-Lab-Files as a backup.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex6-t4",
+              "title": "Download and Modify Composite Rule",
+              "steps": [
+                {
+                  "action": "Open the Navigator and go to <strong>Organizations > PTC Power Equipment > Utilities</strong>.",
+                  "detail": "Navigates to the organization-level Utilities page.",
+                  "hint": "You should be signed in to Windchill as <code>mjones/ptc</code>."
+                },
+                {
+                  "action": "Select <strong>Object Initialization Rules Administration</strong>.",
+                  "detail": "Opens the OIR Manager where you create and manage object initialization rules.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Download Composite Rule</strong> icon from the toolbar.",
+                  "detail": "Opens the dialog to download an existing OIR as an XML file for modification.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Find</strong> and type <code>Delta Review</code> in the <strong>Find in tree</strong> field.",
+                  "detail": "Searches for the Delta Review object type in the type hierarchy.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Delta Review</strong> radio button.",
+                  "detail": "Selects the Delta Review type for the composite rule download.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong> and click <strong>OK</strong> again.",
+                  "detail": "Initiates the download of the composite rule XML file.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Downloads</strong> next to the address bar.",
+                  "detail": "Opens the browser's downloads panel to access the downloaded file.",
+                  "hint": "You may need to click <strong>Keep</strong> before continuing."
+                },
+                {
+                  "action": "Click the <strong>Show in folder</strong> icon next to <code>rule.xml</code> in Downloads.",
+                  "detail": "Opens the file location in Windows Explorer.",
+                  "hint": null
+                },
+                {
+                  "action": "Right-click <code>rule.xml</code> and select <strong>Edit with Notepad++</strong>.",
+                  "detail": "Opens the XML file in a text editor for modification.",
+                  "hint": "If a Notepad++ update dialog opens, click No."
+                },
+                {
+                  "action": "In line 16, delete the word <code>Basic</code> and replace it with <code>Delta Regulation Review LC</code>.",
+                  "detail": "This tells the OIR to use your custom life cycle instead of the default Basic life cycle.",
+                  "hint": null
+                },
+                {
+                  "action": "From the toolbar, click <strong>File</strong>, select <strong>Save As</strong>, and type <code>Delta OIR</code> for the File name.",
+                  "detail": "Saves the modified XML with a new name to avoid overwriting the original.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Save</strong>.",
+                  "detail": "Saves the modified OIR XML file.",
+                  "hint": null
+                },
+                {
+                  "action": "Close Notepad++ and close the Downloads windows.",
+                  "detail": "Returns to the Windchill browser window.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex6-t5",
+              "title": "Create Delta Review OIR",
+              "steps": [
+                {
+                  "action": "Click the <strong>New Object Initialization Rule</strong> icon in the Object Initialization Rules table.",
+                  "detail": "Opens the dialog to create a new OIR.",
+                  "hint": null
+                },
+                {
+                  "action": "Type <code>Delta Review OIR</code> in the <strong>Name</strong> field.",
+                  "detail": "Names the OIR to identify it in the rules table.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Find</strong> and type <code>Delta Review</code> in the <strong>Find in tree</strong> field.",
+                  "detail": "Searches for the Delta Review type to associate with this OIR.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Delta Review</strong> radio button.",
+                  "detail": "Selects the Delta Review type for the new OIR.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong>.",
+                  "detail": "Confirms the type selection and returns to the New OIR dialog.",
+                  "hint": null
+                },
+                {
+                  "action": "In the New Object Initialization Rule dialog, click <strong>Choose File</strong>.",
+                  "detail": "Opens the file browser to select the modified XML file.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <code>New Volume (W:)\\WCBA-ADCH-Lab-Files\\Delta OIR.xml</code>.",
+                  "detail": "Selects the XML file you saved from Notepad++ with the Delta Regulation Review LC reference.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Open</strong>.",
+                  "detail": "Loads the XML file into the OIR creation dialog.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>OK</strong> to create the <strong>Delta Review OIR</strong> in the Object Initialization Rules table.",
+                  "detail": "Creates the OIR that connects the Delta Regulation Review Workflow to the Delta Regulation Review LC. Every new Delta Review object will now automatically receive the correct workflow and life cycle.",
                   "hint": null
                 }
               ]
@@ -2039,7 +2797,7 @@
     {
       "id": "m4t3",
       "title": "Start the Delta Review Process",
-      "estimatedMinutes": 8,
+      "estimatedMinutes": 12,
       "isExercise": true,
       "content": [
         {
@@ -2059,57 +2817,127 @@
           "tasks": [
             {
               "id": "ex7-t1",
-              "title": "Create and Submit a Delta Review",
+              "title": "Start the Delta Review Process",
               "steps": [
                 {
-                  "action": "Search for the \"HANDLE_SIDE_1000\" Windchill Part and access its Information page.",
+                  "action": "Search for <strong>HANDLE_SIDE_1000</strong> Windchill Part and access the Information page.",
                   "detail": "This is the part that needs regulatory review in the Delta Drills scenario.",
-                  "hint": null
+                  "hint": "You should be signed in to Windchill as <code>mjones/ptc</code>."
                 },
                 {
-                  "action": "Create a Delta Review Object from the Actions menu.",
+                  "action": "Create a <strong>Delta Review Object</strong>.",
                   "detail": "The Delta Review subtype should be available because of the custom type you created in Module 2.",
+                  "hint": "Use the Actions menu or the New action to create the Delta Review."
+                },
+                {
+                  "action": "In the <strong>Name</strong> field, type <code>Testing the Delta Review Process</code>.",
+                  "detail": "A descriptive name helps identify this test instance during the verification process.",
                   "hint": null
                 },
                 {
-                  "action": "In the Name field, type \"Testing the Delta Review Process\" and select \"Other\" in the Category field.",
-                  "detail": "Naming the review clearly helps with tracking during testing.",
+                  "action": "Select <strong>Other</strong> in the <strong>Category</strong> field.",
+                  "detail": "Categorizes the review object.",
                   "hint": null
                 },
                 {
-                  "action": "Click Finish and then click Submit Now.",
-                  "detail": "Submit Now immediately starts the workflow rather than saving as a draft.",
+                  "action": "Click <strong>Finish</strong>.",
+                  "detail": "Creates the Delta Review object with the specified name and category.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Submit Now</strong>.",
+                  "detail": "Immediately submits the Delta Review into the workflow rather than saving as a draft. The Delta Regulation Review Workflow begins.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex7-t2",
-              "title": "Complete Initial Workflow Tasks",
+              "title": "Complete Workflow Tasks",
               "steps": [
                 {
-                  "action": "Click the Home icon to return to the home page.",
-                  "detail": "Workflow tasks appear in the My Tasks table on the home page.",
+                  "action": "Click the <strong>Home</strong> icon.",
+                  "detail": "Returns to the home page where workflow tasks appear in the My Tasks table.",
+                  "hint": "You included Mike Jones in all Delta groups to make this demonstration easier. In a real-life change process, these tasks would be completed by several people."
+                },
+                {
+                  "action": "Click <strong>Assign Reviewers</strong>.",
+                  "detail": "Opens the Assign Reviewers task in the workflow.",
+                  "hint": "If a link does not appear in the My Tasks table, wait a few seconds and refresh the screen. If a <code>ptc-training.ptc.com:8181</code> Attention dialog appears, click OK and continue."
+                },
+                {
+                  "action": "Click <strong>Complete Task</strong>.",
+                  "detail": "Completes the reviewer assignment step of the workflow.",
                   "hint": null
                 },
                 {
-                  "action": "Click \"Assign Reviewers\" in the My Tasks table and click Complete Task.",
-                  "detail": "This completes the reviewer assignment step of the workflow.",
-                  "hint": "If the link does not appear, wait a few seconds and refresh the screen."
-                },
-                {
-                  "action": "Press Ctrl+R to refresh, then click \"Perform Review\" and click Complete Task.",
-                  "detail": "The Perform Review activity represents the entire review process.",
+                  "action": "Press <strong>Ctrl+R</strong> to refresh the home screen.",
+                  "detail": "Refreshes the My Tasks table to show the next available task.",
                   "hint": null
                 },
                 {
-                  "action": "Press Ctrl+R to refresh, then click \"Decision Required\".",
-                  "detail": "This is the modified approval activity where you choose Yes or No.",
+                  "action": "Click <strong>Perform Review</strong>.",
+                  "detail": "Opens the Perform Review task, which represents the entire review process.",
                   "hint": null
                 },
                 {
-                  "action": "Select the Actions/Processes tab and click Task Completion, then click Complete Task.",
-                  "detail": "Completing this task with the default routing moves the workflow forward.",
+                  "action": "Click <strong>Complete Task</strong>.",
+                  "detail": "Completes the review step of the workflow.",
+                  "hint": null
+                },
+                {
+                  "action": "Press <strong>Ctrl+R</strong> to refresh the home screen.",
+                  "detail": "Refreshes the My Tasks table to show the next available task.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Decision Required</strong>.",
+                  "detail": "Opens the modified approval activity where you choose Yes or No on whether the regulation requires a change.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Actions/Processes</strong> tab.",
+                  "detail": "Switches to the tab that contains workflow process actions.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Task Completion</strong>.",
+                  "detail": "Opens the task completion controls.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Complete Task</strong>.",
+                  "detail": "Completes the Decision Required task with the default (Yes) routing, advancing the workflow to the Change Notice creation step.",
+                  "hint": null
+                },
+                {
+                  "action": "Press <strong>Ctrl+R</strong> to refresh the home screen.",
+                  "detail": "Refreshes the My Tasks table to show the Create Delta Change Notice task.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Create Delta Change Notice</strong>.",
+                  "detail": "Opens the Create Delta Change Notice task from the My Tasks table.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Delta Regulation Review Workflow</strong> link next to the <strong>Process</strong> attribute to open the Process Manager in a new tab.",
+                  "detail": "The Process Manager shows a visual representation of the workflow progress.",
+                  "hint": null
+                },
+                {
+                  "action": "Enlarge the upper field to see the entire workflow.",
+                  "detail": "Expanding the view lets you see all workflow nodes and their status.",
+                  "hint": null
+                },
+                {
+                  "action": "Verify the <strong>Create Delta Change Notice</strong> activity icon is green and states that it is <strong>Running</strong>. Note that prior activities are marked as <strong>Executed</strong>.",
+                  "detail": "Confirms the workflow has progressed correctly through all prior steps to the Change Notice creation point.",
+                  "hint": null
+                },
+                {
+                  "action": "Return to the <strong>Task</strong> web browser tab.",
+                  "detail": "Switches back to the task page to continue with the workflow.",
                   "hint": null
                 }
               ]
@@ -2119,43 +2947,128 @@
               "title": "Create Delta Change Notice",
               "steps": [
                 {
-                  "action": "Press Ctrl+R to refresh the home screen and click \"Create Delta Change Notice\".",
-                  "detail": "This task appears because the workflow routing sent it to the Change Notice creation step.",
+                  "action": "Select the <strong>Actions/Processes</strong> tab.",
+                  "detail": "Switches to the tab containing workflow actions.",
                   "hint": null
                 },
                 {
-                  "action": "Click the Delta Regulation Review Workflow link next to the Process attribute.",
-                  "detail": "Opens the Process Manager where you can visually see the workflow progress.",
+                  "action": "Click <strong>Actions on Subject</strong>.",
+                  "detail": "Opens the list of actions available for the subject object.",
                   "hint": null
                 },
                 {
-                  "action": "Verify the Create Delta Change Notice activity is green (Running) and prior activities show as Executed.",
-                  "detail": "Confirms the workflow has progressed correctly through all prior steps.",
+                  "action": "Select <strong>New > New Change Notice</strong>.",
+                  "detail": "Initiates creating a Change Notice associated with the Delta Review. This is possible because of the association rule you created in Exercise 5.",
                   "hint": null
                 },
                 {
-                  "action": "Return to the Task tab, select Actions/Processes tab, click Actions on Subject, and select New > New Change Notice.",
-                  "detail": "This creates the change notice associated with the Delta Review - possible because of the association rule.",
+                  "action": "Select the <strong>Propagate information</strong> checkbox.",
+                  "detail": "Carries forward relevant data from the Delta Review to the new Change Notice.",
                   "hint": null
                 },
                 {
-                  "action": "Select the Propagate information checkbox and choose \"Delta Change Notice\" in the Template field, then click Next.",
-                  "detail": "Propagate information carries forward relevant data from the Delta Review.",
+                  "action": "Select <strong>Delta Change Notice</strong> in the <strong>Template</strong> field.",
+                  "detail": "Uses the Delta Change Notice template for creating the change notice.",
                   "hint": null
                 },
                 {
-                  "action": "Click the Edit icon for the Delta Change Task, clear Review Required, set Assignee to \"Jones, Mike\", and click Finish.",
-                  "detail": "Configures the first change task assignment.",
+                  "action": "Click <strong>Next</strong>.",
+                  "detail": "Advances to the task configuration step where you assign tasks.",
                   "hint": null
                 },
                 {
-                  "action": "Click the Edit icon for the Delta Regulatory Task, clear Review Required, set Assignee to \"Jones, Mike\", and click Finish.",
-                  "detail": "Configures the second change task assignment.",
-                  "hint": "You can specify task order because of the Sequenced Plan preference."
+                  "action": "Note that the Assignee and Reviewer have not been designated for either task.",
+                  "detail": "The task assignments need to be configured manually at this point.",
+                  "hint": null
                 },
                 {
-                  "action": "Click Finish, then Submit Now, then complete the Create Delta Change Notice task.",
-                  "detail": "Submitting the Change Notice starts its workflow process.",
+                  "action": "Click the <strong>Edit change task</strong> icon for the <strong>Delta Change Task</strong>.",
+                  "detail": "Opens the task editor for the first change task.",
+                  "hint": null
+                },
+                {
+                  "action": "Clear the <strong>Review Required</strong> checkbox.",
+                  "detail": "Disables the review requirement for this task during testing.",
+                  "hint": null
+                },
+                {
+                  "action": "Type <code>Jones</code> in the <strong>Assignee</strong> field.",
+                  "detail": "Begins searching for the user to assign to this task.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Jones, Mike</strong> from the pop-up line.",
+                  "detail": "Assigns Mike Jones as the task assignee.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Finish</strong>.",
+                  "detail": "Saves the Delta Change Task configuration.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Edit change task</strong> icon for the <strong>Delta Regulatory Task</strong>.",
+                  "detail": "Opens the task editor for the second change task.",
+                  "hint": null
+                },
+                {
+                  "action": "Clear the <strong>Review Required</strong> checkbox.",
+                  "detail": "Disables the review requirement for this task during testing.",
+                  "hint": null
+                },
+                {
+                  "action": "Type <code>Jones</code> in the <strong>Assignee</strong> field.",
+                  "detail": "Begins searching for the user to assign to this task.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Jones, Mike</strong> from the pop-up line.",
+                  "detail": "Assigns Mike Jones as the task assignee.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Finish</strong>.",
+                  "detail": "Saves the Delta Regulatory Task configuration.",
+                  "hint": "You can specify the order in which the tasks will be completed because of the preference set in Exercise 3."
+                },
+                {
+                  "action": "Click <strong>Finish</strong>.",
+                  "detail": "Completes the Change Notice creation wizard.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Submit Now</strong>.",
+                  "detail": "Submits the Delta Change Notice into its workflow.",
+                  "hint": null
+                },
+                {
+                  "action": "Select <strong>Task Completion</strong> on the Delta Regulation Review Workflow – Create Delta Change Notice Task page.",
+                  "detail": "Opens the task completion controls for the Create Delta Change Notice task.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Complete Task</strong>.",
+                  "detail": "Completes the Create Delta Change Notice task, advancing the Delta Review workflow.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Process Manager</strong> web browser tab.",
+                  "detail": "Switches to the Process Manager to verify workflow progress.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Refresh</strong>.",
+                  "detail": "Refreshes the Process Manager view to show the latest workflow state.",
+                  "hint": null
+                },
+                {
+                  "action": "Verify the <strong>Synch on Delta Change Notice Completion</strong> robot is now green.",
+                  "detail": "Confirms that the workflow has progressed past the Change Notice creation step.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the <strong>Windchill – Home</strong> web browser tab.",
+                  "detail": "Returns to the home page to continue with the remaining tasks.",
                   "hint": null
                 }
               ]
@@ -2173,7 +3086,7 @@
     {
       "id": "m4t4",
       "title": "Complete and Verify the Process",
-      "estimatedMinutes": 6,
+      "estimatedMinutes": 8,
       "isExercise": true,
       "content": [
         {
@@ -2188,67 +3101,122 @@
           "tasks": [
             {
               "id": "ex8-t1",
-              "title": "Complete Change Tasks",
+              "title": "Finish Delta Review Workflow",
               "steps": [
                 {
-                  "action": "Click \"Complete Change Notice Task\" next to the Delta Regulatory Task in My Tasks.",
-                  "detail": "The regulatory task appears first because of the sequenced plan.",
+                  "action": "Click the <strong>Complete Change Notice Task</strong> text next to the <strong>Delta Regulatory Task</strong>.",
+                  "detail": "Opens the first Change Notice task. The regulatory task appears first because of the sequenced plan.",
                   "hint": null
                 },
                 {
-                  "action": "Click the Task Completion link and click Complete Task.",
-                  "detail": "Marks the regulatory task as done.",
+                  "action": "Click the <strong>Task Completion</strong> link.",
+                  "detail": "Opens the task completion controls.",
                   "hint": null
                 },
                 {
-                  "action": "Press Ctrl+R to refresh, then click \"Complete Change Notice Task\" next to the Delta Change Task.",
-                  "detail": "The change task becomes available after the regulatory task is completed.",
+                  "action": "Click <strong>Complete Task</strong>.",
+                  "detail": "Marks the Delta Regulatory Task as done.",
                   "hint": null
                 },
                 {
-                  "action": "Click the Task Completion link and click Complete Task.",
-                  "detail": "Both change tasks are now complete.",
+                  "action": "Press <strong>Ctrl+R</strong> to refresh the home screen.",
+                  "detail": "Refreshes the My Tasks table to show the next available task.",
                   "hint": null
                 },
                 {
-                  "action": "Press Ctrl+R to refresh, then click \"Audit Change Notice\".",
-                  "detail": "The audit step is the final review before the change process completes.",
+                  "action": "Click the <strong>Complete Change Notice Task</strong> text next to the <strong>Delta Change Task</strong>.",
+                  "detail": "Opens the second Change Notice task. The change task becomes available after the regulatory task is completed.",
                   "hint": null
                 },
                 {
-                  "action": "Click the Task Completion link, ensure the \"Complete\" radio button is selected, and click Complete Task.",
-                  "detail": "Completing the audit with \"Complete\" selected allows the workflow to finish.",
+                  "action": "Click the <strong>Task Completion</strong> link.",
+                  "detail": "Opens the task completion controls.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Complete Task</strong>.",
+                  "detail": "Marks the Delta Change Task as done. Both change tasks are now complete.",
+                  "hint": null
+                },
+                {
+                  "action": "Press <strong>Ctrl+R</strong> to refresh the home screen.",
+                  "detail": "Refreshes the My Tasks table to show the audit task.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Audit Change Notice</strong>.",
+                  "detail": "Opens the Audit Change Notice task, which is the final review step before the change process completes.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the <strong>Task Completion</strong> link.",
+                  "detail": "Opens the task completion controls for the audit task.",
+                  "hint": null
+                },
+                {
+                  "action": "Ensure the radio button for <strong>Complete</strong> is selected.",
+                  "detail": "Selecting Complete allows the workflow to finish successfully. Selecting Rework would send the process back.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Complete Task</strong>.",
+                  "detail": "Completes the audit, allowing the workflow to proceed to its final state.",
+                  "hint": null
+                },
+                {
+                  "action": "Press <strong>Ctrl+R</strong> to refresh the home screen.",
+                  "detail": "Refreshes the My Tasks table.",
+                  "hint": null
+                },
+                {
+                  "action": "Verify there are no new tasks.",
+                  "detail": "No remaining tasks indicates the workflow has completed all steps.",
                   "hint": null
                 }
               ]
             },
             {
               "id": "ex8-t2",
-              "title": "Verify the Delta Review Is Resolved",
+              "title": "Check That Delta Review Is Resolved",
               "steps": [
                 {
-                  "action": "Press Ctrl+R to refresh the home screen and verify there are no new tasks.",
-                  "detail": "No remaining tasks indicates the workflow has completed all steps.",
+                  "action": "Click the <strong>Updates</strong> link on Mike Jones' Home page.",
+                  "detail": "The Updates section shows recently changed objects and their current status.",
                   "hint": null
                 },
                 {
-                  "action": "Click the Updates link on the Home page and press Ctrl+R to refresh.",
-                  "detail": "The Updates section shows recently changed objects.",
+                  "action": "Press <strong>Ctrl+R</strong>.",
+                  "detail": "Refreshes the Updates list to show the latest status of all objects.",
                   "hint": null
                 },
                 {
-                  "action": "Verify that \"Change Notice: Testing the Delta Review Process\" is listed as Resolved.",
-                  "detail": "The Change Notice reaching Resolved state confirms the CN workflow completed.",
+                  "action": "Verify that <strong>Change Notice: Testing the Delta Review Process</strong> is listed as <strong>Resolved</strong>.",
+                  "detail": "The Change Notice reaching Resolved state confirms the CN workflow completed successfully.",
                   "hint": null
                 },
                 {
-                  "action": "Verify that \"Delta Review: Testing the Delta Review Process\" is listed as Resolved.",
-                  "detail": "The Delta Review reaching Resolved state confirms the entire process completed successfully.",
+                  "action": "Verify that <strong>Delta Review: Testing the Delta Review Process</strong> is listed as <strong>Resolved</strong>.",
+                  "detail": "The Delta Review reaching Resolved state confirms the entire custom process completed successfully.",
                   "hint": null
                 },
                 {
-                  "action": "Open the Process Manager tab and click Refresh to verify all workflow steps show as Executed.",
-                  "detail": "The visual workflow view confirms every step in the process was completed in the correct order.",
+                  "action": "Select the <strong>Process Manager</strong> web browser tab.",
+                  "detail": "Switches to the Process Manager for a visual verification of the workflow.",
+                  "hint": null
+                },
+                {
+                  "action": "Click <strong>Refresh</strong>.",
+                  "detail": "Refreshes the Process Manager to show the final workflow state.",
+                  "hint": null
+                },
+                {
+                  "action": "Note that all steps in the upper Resolve branch after the <strong>Synch on Delta Change Notice Completion</strong> robot have been executed.",
+                  "detail": "Confirms that every step in the workflow was completed in the correct order.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the <strong>Process Manager</strong> tab.",
+                  "detail": "Closes the Process Manager. The verification is complete – the Delta Drills custom change process is functioning as designed.",
                   "hint": null
                 }
               ]
@@ -2576,7 +3544,7 @@
   "topic.stepsProgress": "{done}/{total} steps",
   "topic.doThis": "Do This",
   "topic.whyItMatters": "Why It Matters",
-  "topic.doneNextStep": "Done - Next Step",
+  "topic.doneNextStep": "Done",
   "topic.topicsComplete": "{done}/{total} topics complete",
   "topic.moduleBadge": "Module {num}",
   "topic.topics": "Topics",

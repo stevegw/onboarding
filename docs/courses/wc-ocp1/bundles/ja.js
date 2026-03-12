@@ -2466,7 +2466,7 @@
   "topic.stepsProgress": "{done}/{total} ステップ",
   "topic.doThis": "操作手順",
   "topic.whyItMatters": "重要な理由",
-  "topic.doneNextStep": "完了 - 次のステップへ",
+  "topic.doneNextStep": "完了",
   "topic.topicsComplete": "{done}/{total} トピック完了",
   "topic.moduleBadge": "モジュール {num}",
   "topic.topics": "トピック",

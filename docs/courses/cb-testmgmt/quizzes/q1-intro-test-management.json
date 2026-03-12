@@ -1,0 +1,58 @@
+{
+  "moduleId": "m1",
+  "title": "Introduction to Test Management Knowledge Check",
+  "questions": [
+    {
+      "id": "m1-kc-001",
+      "question": "What is test management?",
+      "options": [
+        "Writing software code for automated test scripts",
+        "The practice of coordinating, creating, and executing all tests needed to verify product requirements are met",
+        "A tool for tracking project deadlines and milestones",
+        "The process of deploying products to production environments"
+      ],
+      "answerIndex": 1,
+      "rationale": "Test management is the practice of coordinating, creating, and executing all tests needed to verify that product requirements have been met. It encompasses planning, designing, executing, and reviewing tests across all levels — not just writing code or tracking schedules.",
+      "topic": "m1t1"
+    },
+    {
+      "id": "m1-kc-002",
+      "question": "Which role is primarily responsible for writing test plans?",
+      "options": [
+        "Tester",
+        "Test Engineer",
+        "Test Lead",
+        "System Administrator"
+      ],
+      "answerIndex": 2,
+      "rationale": "The Test Lead is responsible for writing test plans, managing the testing team, and coordinating standards and practices. Test Engineers design test cases based on the plan, and Testers execute the tests.",
+      "topic": "m1t2"
+    },
+    {
+      "id": "m1-kc-003",
+      "question": "What is the correct order of the test management workflow?",
+      "options": [
+        "Design → Plan → Execute → Set Up → Review",
+        "Plan → Design → Set Up → Execute → Review",
+        "Execute → Design → Plan → Review → Set Up",
+        "Set Up → Plan → Design → Review → Execute"
+      ],
+      "answerIndex": 1,
+      "rationale": "The test management workflow follows five steps: 1) Write a test plan, 2) Design test cases, 3) Set up test runs, 4) Execute tests, 5) Review results. Each step builds on the previous one and involves different roles.",
+      "topic": "m1t2"
+    },
+    {
+      "id": "m1-kc-004",
+      "question": "In the course project, what is the focus of the vehicle advanced headlight system testing?",
+      "options": [
+        "Designing the electrical circuit for the headlights",
+        "Practicing the test management workflow using a realistic product scenario",
+        "Programming the headlight control software from scratch",
+        "Manufacturing and assembling headlight hardware components"
+      ],
+      "answerIndex": 1,
+      "rationale": "The course project uses the vehicle advanced headlight system as a realistic scenario to practice test management. You are not expected to know the inner workings of headlight systems — the focus is on the test management workflow: planning, designing test cases, setting up and executing tests, and reporting results.",
+      "topic": "m1t3"
+    }
+  ]
+}

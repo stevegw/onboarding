@@ -1,297 +1,434 @@
 {
-  "id": "m2",
-  "title": "Creating an eBOM",
-  "description": "Explore four methods for creating an eBOM in Windchill: Product Structure Browser, Auto Associate, Import from Spreadsheet, and Save As.",
-  "topics": [
+ "id": "m2",
+ "title": "Creating an eBOM",
+ "description": "Explore four methods for creating an eBOM in Windchill: Product Structure Browser, Auto Associate, Import from Spreadsheet, and Save As.",
+ "topics": [
+  {
+   "id": "m2t1",
+   "title": "eBOM Creation Methods Overview",
+   "estimatedMinutes": 6,
+   "content": [
     {
-      "id": "m2t1",
-      "title": "eBOM Creation Methods Overview",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Windchill provides four methods you can use individually or in combination to create an engineering bill of materials. The method you choose depends on the available data and your design approach."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Four Methods for Creating an eBOM"
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Method", "Design Approach", "Best For"],
-          "rows": [
-            ["Product Structure Browser (PSB)", "Top-down and bottom-up", "Creating small to mid-size product structures manually"],
-            ["Auto Associate", "Typically bottom-up", "Linking CAD documents to Windchill parts automatically"],
-            ["Import from Spreadsheet", "Typically top-down", "Bulk loading large sets of parts and structures from external data"],
-            ["Save As", "Top-down and bottom-up", "Creating product structures of similar type products by duplication"]
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Case Study: ITC Auto Drill 720"
-        },
-        {
-          "type": "paragraph",
-          "text": "The ITC drilling machine manufacturing company wants to automate their existing Drill 720 series product. With design and manufacturing facilities scattered across the globe, ITC has decided to follow a <strong>top-down design approach</strong> to launch the new version in a timely manner."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "The case study follows five high-level process steps: Create the BOM, Create the Baseline, Edit the BOM, Manage the BOM, and Create the BOM Report. These steps will be covered across all modules in this course."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each eBOM creation method to its primary use case:",
-          "pairs": [
-            {"left": "Manually add and remove parts in a structure", "right": "Product Structure Browser"},
-            {"left": "Automatically link CAD documents to Windchill parts", "right": "Auto Associate"},
-            {"left": "Bulk load large sets of parts from external data", "right": "Import from Spreadsheet"},
-            {"left": "Duplicate an existing product structure for similar products", "right": "Save As"}
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Windchill provides four methods for creating an eBOM: PSB, Auto Associate, Import from Spreadsheet, and Save As.",
-        "The choice of method depends on available data, design approach, and product structure size.",
-        "Methods can be used individually or in combination to build a complete product structure.",
-        "The ITC case study follows a five-step process from BOM creation through reporting."
-      ]
+     "type": "paragraph",
+     "text": "Windchill provides four methods you can use individually or in combination to create an engineering bill of materials. The method you choose depends on the available data and your design approach."
     },
     {
-      "id": "m2t2",
-      "title": "PSB and Auto Associate",
-      "estimatedMinutes": 6,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "The Product Structure Browser (PSB) and Auto Associate are two primary methods for creating an eBOM. The PSB is used for direct manipulation of the part structure, while Auto Associate automates the linking of CAD documents to Windchill parts."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Using the PSB to Create an eBOM"
-        },
-        {
-          "type": "paragraph",
-          "text": "The PSB can be used in both CAD-centric and part-centric environments and is typically used for creating small to mid-size product structures. With the PSB, you can add and remove Windchill parts and edit attribute values."
-        },
-        {
-          "type": "reveal-cards",
-          "cards": [
-            {
-              "front": "Insert Existing Part",
-              "back": "Add a part that already exists in Windchill into the current product structure. Use the Editing group in the command ribbon or the right-click menu."
-            },
-            {
-              "front": "Insert New Part(s)",
-              "back": "Create one or multiple new parts directly within the product structure. You can set the part type, end item status, number, and name."
-            },
-            {
-              "front": "Remove or Edit a Part",
-              "back": "Remove a part from the structure or edit its attributes, rename it, or move it to a different location in Windchill."
-            }
-          ]
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Using Auto Associate to Create an eBOM"
-        },
-        {
-          "type": "paragraph",
-          "text": "Auto Associate automatically locates and associates an existing Windchill part to a CAD document, or creates a new part if no matching part exists. It is typically used in CAD-driven design workflows."
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Auto Associate Method", "Description"],
-          "rows": [
-            ["From Workspace Action Menu", "Preferred method. Provides a better view of the association and greater control when creating structure for selective CAD documents."],
-            ["During Check-in", "Performed automatically or by selecting the Auto Associate option during check-in from the CAD tool. Creates product structure based on CAD structure."]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "Windchill uses the CAD document's base number as the default criteria to find a matching Windchill part. You can customize this behavior through the Auto Associate preferences in Windchill administration."
-        },
-        {
-          "type": "interactive-sort",
-          "prompt": "Arrange the steps for using Auto Associate from the workspace in order:",
-          "items": [
-            "Check out the CAD assembly to the workspace",
-            "Select Edit > Auto Associate from the workspace action menu",
-            "Windchill locates matching parts or creates new ones",
-            "Review and confirm the associations between CAD documents and parts"
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "The PSB is used for direct manipulation of product structures in both CAD-centric and part-centric environments.",
-        "PSB actions include inserting existing parts, creating new parts, removing parts, and editing attributes.",
-        "Auto Associate automatically links CAD documents to Windchill parts using the base number as matching criteria.",
-        "Auto Associate can be performed from the workspace action menu (preferred) or during check-in."
-      ]
+     "type": "heading",
+     "level": 2,
+     "text": "Four Methods for Creating an eBOM"
     },
     {
-      "id": "m2t3",
-      "title": "Import from Spreadsheet and Save As",
-      "estimatedMinutes": 5,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "Import from Spreadsheet and Save As provide additional methods for creating product structures in Windchill. These methods are particularly useful for bulk loading data and duplicating existing structures."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Import from Spreadsheet"
-        },
-        {
-          "type": "paragraph",
-          "text": "You can import part and product structure data from a Microsoft Excel spreadsheet into a library or product. This method is primarily used for bulk loading large sets of Windchill parts and product structures when definitions are maintained externally."
-        },
-        {
-          "type": "callout",
-          "variant": "warning",
-          "text": "Out of the box, only a Windchill Product Manager has access to the Import from Spreadsheet action. Administrators may need to grant access to other roles."
-        },
-        {
-          "type": "heading",
-          "level": 2,
-          "text": "Save As"
-        },
-        {
-          "type": "paragraph",
-          "text": "The Save As method works best for creating product structures of similar type products. You can duplicate the complete structure or a smaller portion. If the associated CAD structure exists, you can gather it for duplication."
-        },
-        {
-          "type": "comparison-table",
-          "headers": ["Feature", "Import from Spreadsheet", "Save As"],
-          "rows": [
-            ["Design approach", "Typically top-down", "Both top-down and bottom-up"],
-            ["Best for", "Bulk loading large part sets", "Duplicating similar product structures"],
-            ["Data source", "External Microsoft Excel spreadsheet", "Existing Windchill product structure"],
-            ["Access", "Windchill Product Manager only (default)", "Available to users with edit permissions"],
-            ["CAD handling", "Does not import CAD documents directly", "Can gather associated CAD structure for duplication"]
-          ]
-        },
-        {
-          "type": "callout",
-          "variant": "tip",
-          "text": "When using Save As, you can collect related parts, drawings, and CAD/Dynamic documents for the assembly. The new objects can be renamed during the Save As process."
-        },
-        {
-          "type": "interactive-match",
-          "prompt": "Match each scenario to the best eBOM creation method:",
-          "pairs": [
-            {"left": "Product definitions are maintained in an Excel file", "right": "Import from Spreadsheet"},
-            {"left": "A new product is very similar to an existing one", "right": "Save As"},
-            {"left": "Building a small structure manually with specific parts", "right": "Product Structure Browser"},
-            {"left": "CAD models need to be automatically linked to parts", "right": "Auto Associate"}
-          ]
-        }
+     "type": "comparison-table",
+     "headers": [
+      "Method",
+      "Design Approach",
+      "Best For"
+     ],
+     "rows": [
+      [
+       "Product Structure Browser (PSB)",
+       "Top-down and bottom-up",
+       "Creating small to mid-size product structures manually"
       ],
-      "keyTakeaways": [
-        "Import from Spreadsheet is used for bulk loading large sets of parts and structures from Excel files.",
-        "Only the Windchill Product Manager has default access to Import from Spreadsheet.",
-        "Save As duplicates existing product structures and optionally collects associated CAD documents.",
-        "Save As works best when creating new products that are similar to existing ones."
+      [
+       "Auto Associate",
+       "Typically bottom-up",
+       "Linking CAD documents to Windchill parts automatically"
+      ],
+      [
+       "Import from Spreadsheet",
+       "Typically top-down",
+       "Bulk loading large sets of parts and structures from external data"
+      ],
+      [
+       "Save As",
+       "Top-down and bottom-up",
+       "Creating product structures of similar type products by duplication"
       ]
+     ]
     },
     {
-      "id": "m2t4",
-      "title": "Create an eBOM Using Save As",
-      "estimatedMinutes": 10,
-      "isExercise": true,
-      "content": [
-        {
-          "type": "paragraph",
-          "text": "In this exercise, you use the Save As action to create a new eBOM for the Auto Drill 720 by duplicating an existing product structure. You will collect related parts and CAD documents, set the location, and verify the new product structure."
-        },
-        {
-          "type": "callout",
-          "variant": "info",
-          "text": "You should be signed in to Windchill as Mike Jones (mjones/ptc). Mike is the product manager for the ITC Auto Drill 720 team."
-        },
-        {
-          "type": "exercise",
-          "exerciseId": "ex2",
-          "title": "Create an eBOM Using the Save As Method",
-          "objective": "Use Save As to duplicate the existing Drill 720 product structure into the Auto Drill 720 Series, including child parts and CAD documents.",
-          "tasks": [
-            {
-              "id": "ex2-t1",
-              "title": "Create an eBOM Using Save As",
-              "steps": [
-                {
-                  "action": "Browse to the Drill 720 Series product Engineering folder.",
-                  "detail": "The Auto Drill 720 Series product does not yet have an Engineering folder. You will copy the contents from the existing Drill 720 Series.",
-                  "hint": null
-                },
-                {
-                  "action": "Search for <code>Drill*asm</code> and open the DRILL_720.ASM CAD document Information page.",
-                  "detail": "Use the Search in table field to locate the CAD assembly document, then click the View information icon.",
-                  "hint": null
-                },
-                {
-                  "action": "Click the <strong>Actions</strong> menu and select <strong>Save As</strong>.",
-                  "detail": "Save As allows you to duplicate the assembly and all its dependent objects.",
-                  "hint": null
-                },
-                {
-                  "action": "Click <strong>Dependents</strong> from the toolbar and select <strong>All</strong>.",
-                  "detail": "This ensures all dependent objects in the assembly are included in the duplication.",
-                  "hint": null
-                },
-                {
-                  "action": "Select all rows and click <strong>Collect related parts</strong>, then <strong>Collect related drawings</strong>, then <strong>Collect related CAD/Dynamic documents</strong>.",
-                  "detail": "You must collect all three types of related objects to create a complete copy of the product structure.",
-                  "hint": "Select the Select all rows checkbox before each collect action."
-                },
-                {
-                  "action": "Click <strong>Set Location</strong>, select the Auto Drill 720 Series product, and create a new Engineering folder.",
-                  "detail": "The new objects will be stored in the Engineering folder of the Auto Drill 720 Series product.",
-                  "hint": null
-                },
-                {
-                  "action": "Click <strong>OK</strong> to execute the Save As operation.",
-                  "detail": "Windchill creates copies of all selected objects with '_New' appended to their names.",
-                  "hint": null
-                }
-              ]
-            },
-            {
-              "id": "ex2-t2",
-              "title": "Verify the Product Structure",
-              "steps": [
-                {
-                  "action": "Go to the Auto Drill 720 Series product Engineering folder.",
-                  "detail": "All the parts have _New appended to their names to distinguish them from the original Drill 720 parts.",
-                  "hint": "You could have renamed them during the Save As process."
-                },
-                {
-                  "action": "Search for the DRILL_720_NEW End Item part and open its Information page.",
-                  "detail": "Use the Search in table field to find the new end item part.",
-                  "hint": null
-                },
-                {
-                  "action": "Click the <strong>Structure</strong> tab and observe the product structure.",
-                  "detail": "Verify that the complete product structure has been duplicated from the original Drill 720.",
-                  "hint": null
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "keyTakeaways": [
-        "Save As duplicates an existing product structure including child parts, drawings, and CAD documents.",
-        "You must explicitly collect related parts, drawings, and CAD/Dynamic documents during Save As.",
-        "New objects created by Save As can be placed in a different product context and folder.",
-        "Always verify the new product structure after duplication to ensure completeness."
-      ]
+     "type": "heading",
+     "level": 2,
+     "text": "Case Study: ITC Auto Drill 720"
+    },
+    {
+     "type": "paragraph",
+     "text": "The ITC drilling machine manufacturing company wants to automate their existing Drill 720 series product. With design and manufacturing facilities scattered across the globe, ITC has decided to follow a <strong>top-down design approach</strong> to launch the new version in a timely manner."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "The case study follows five high-level process steps: Create the BOM, Create the Baseline, Edit the BOM, Manage the BOM, and Create the BOM Report. These steps will be covered across all modules in this course."
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each eBOM creation method to its primary use case:",
+     "pairs": [
+      {
+       "left": "Manually add and remove parts in a structure",
+       "right": "Product Structure Browser"
+      },
+      {
+       "left": "Automatically link CAD documents to Windchill parts",
+       "right": "Auto Associate"
+      },
+      {
+       "left": "Bulk load large sets of parts from external data",
+       "right": "Import from Spreadsheet"
+      },
+      {
+       "left": "Duplicate an existing product structure for similar products",
+       "right": "Save As"
+      }
+     ]
     }
-  ]
+   ],
+   "keyTakeaways": [
+    "Windchill provides four methods for creating an eBOM: PSB, Auto Associate, Import from Spreadsheet, and Save As.",
+    "The choice of method depends on available data, design approach, and product structure size.",
+    "Methods can be used individually or in combination to build a complete product structure.",
+    "The ITC case study follows a five-step process from BOM creation through reporting."
+   ]
+  },
+  {
+   "id": "m2t2",
+   "title": "PSB and Auto Associate",
+   "estimatedMinutes": 6,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "The Product Structure Browser (PSB) and Auto Associate are two primary methods for creating an eBOM. The PSB is used for direct manipulation of the part structure, while Auto Associate automates the linking of CAD documents to Windchill parts."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Using the PSB to Create an eBOM"
+    },
+    {
+     "type": "paragraph",
+     "text": "The PSB can be used in both CAD-centric and part-centric environments and is typically used for creating small to mid-size product structures. With the PSB, you can add and remove Windchill parts and edit attribute values."
+    },
+    {
+     "type": "reveal-cards",
+     "cards": [
+      {
+       "front": "Insert Existing Part",
+       "back": "Add a part that already exists in Windchill into the current product structure. Use the Editing group in the command ribbon or the right-click menu."
+      },
+      {
+       "front": "Insert New Part(s)",
+       "back": "Create one or multiple new parts directly within the product structure. You can set the part type, end item status, number, and name."
+      },
+      {
+       "front": "Remove or Edit a Part",
+       "back": "Remove a part from the structure or edit its attributes, rename it, or move it to a different location in Windchill."
+      }
+     ]
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Using Auto Associate to Create an eBOM"
+    },
+    {
+     "type": "paragraph",
+     "text": "Auto Associate automatically locates and associates an existing Windchill part to a CAD document, or creates a new part if no matching part exists. It is typically used in CAD-driven design workflows."
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Auto Associate Method",
+      "Description"
+     ],
+     "rows": [
+      [
+       "From Workspace Action Menu",
+       "Preferred method. Provides a better view of the association and greater control when creating structure for selective CAD documents."
+      ],
+      [
+       "During Check-in",
+       "Performed automatically or by selecting the Auto Associate option during check-in from the CAD tool. Creates product structure based on CAD structure."
+      ]
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "tip",
+     "text": "Windchill uses the CAD document's base number as the default criteria to find a matching Windchill part. You can customize this behavior through the Auto Associate preferences in Windchill administration."
+    },
+    {
+     "type": "interactive-sort",
+     "prompt": "Arrange the steps for using Auto Associate from the workspace in order:",
+     "items": [
+      "Check out the CAD assembly to the workspace",
+      "Select Edit > Auto Associate from the workspace action menu",
+      "Windchill locates matching parts or creates new ones",
+      "Review and confirm the associations between CAD documents and parts"
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "The PSB is used for direct manipulation of product structures in both CAD-centric and part-centric environments.",
+    "PSB actions include inserting existing parts, creating new parts, removing parts, and editing attributes.",
+    "Auto Associate automatically links CAD documents to Windchill parts using the base number as matching criteria.",
+    "Auto Associate can be performed from the workspace action menu (preferred) or during check-in."
+   ]
+  },
+  {
+   "id": "m2t3",
+   "title": "Import from Spreadsheet and Save As",
+   "estimatedMinutes": 5,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "Import from Spreadsheet and Save As provide additional methods for creating product structures in Windchill. These methods are particularly useful for bulk loading data and duplicating existing structures."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Import from Spreadsheet"
+    },
+    {
+     "type": "paragraph",
+     "text": "You can import part and product structure data from a Microsoft Excel spreadsheet into a library or product. This method is primarily used for bulk loading large sets of Windchill parts and product structures when definitions are maintained externally."
+    },
+    {
+     "type": "callout",
+     "variant": "warning",
+     "text": "Out of the box, only a Windchill Product Manager has access to the Import from Spreadsheet action. Administrators may need to grant access to other roles."
+    },
+    {
+     "type": "heading",
+     "level": 2,
+     "text": "Save As"
+    },
+    {
+     "type": "paragraph",
+     "text": "The Save As method works best for creating product structures of similar type products. You can duplicate the complete structure or a smaller portion. If the associated CAD structure exists, you can gather it for duplication."
+    },
+    {
+     "type": "comparison-table",
+     "headers": [
+      "Feature",
+      "Import from Spreadsheet",
+      "Save As"
+     ],
+     "rows": [
+      [
+       "Design approach",
+       "Typically top-down",
+       "Both top-down and bottom-up"
+      ],
+      [
+       "Best for",
+       "Bulk loading large part sets",
+       "Duplicating similar product structures"
+      ],
+      [
+       "Data source",
+       "External Microsoft Excel spreadsheet",
+       "Existing Windchill product structure"
+      ],
+      [
+       "Access",
+       "Windchill Product Manager only (default)",
+       "Available to users with edit permissions"
+      ],
+      [
+       "CAD handling",
+       "Does not import CAD documents directly",
+       "Can gather associated CAD structure for duplication"
+      ]
+     ]
+    },
+    {
+     "type": "callout",
+     "variant": "tip",
+     "text": "When using Save As, you can collect related parts, drawings, and CAD/Dynamic documents for the assembly. The new objects can be renamed during the Save As process."
+    },
+    {
+     "type": "interactive-match",
+     "prompt": "Match each scenario to the best eBOM creation method:",
+     "pairs": [
+      {
+       "left": "Product definitions are maintained in an Excel file",
+       "right": "Import from Spreadsheet"
+      },
+      {
+       "left": "A new product is very similar to an existing one",
+       "right": "Save As"
+      },
+      {
+       "left": "Building a small structure manually with specific parts",
+       "right": "Product Structure Browser"
+      },
+      {
+       "left": "CAD models need to be automatically linked to parts",
+       "right": "Auto Associate"
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Import from Spreadsheet is used for bulk loading large sets of parts and structures from Excel files.",
+    "Only the Windchill Product Manager has default access to Import from Spreadsheet.",
+    "Save As duplicates existing product structures and optionally collects associated CAD documents.",
+    "Save As works best when creating new products that are similar to existing ones."
+   ]
+  },
+  {
+   "id": "m2t4",
+   "title": "Create an eBOM Using Save As",
+   "estimatedMinutes": 10,
+   "isExercise": true,
+   "content": [
+    {
+     "type": "paragraph",
+     "text": "In this exercise, you use the Save As action to create a new eBOM for the Auto Drill 720 by duplicating an existing product structure. You will collect related parts and CAD documents, set the location, and verify the new product structure."
+    },
+    {
+     "type": "callout",
+     "variant": "info",
+     "text": "You should be signed in to Windchill as Mike Jones (mjones/ptc). Mike is the product manager for the ITC Auto Drill 720 team."
+    },
+    {
+     "type": "exercise",
+     "exerciseId": "ex2",
+     "title": "Create an eBOM Using the Save As Method",
+     "objective": "Use Save As to duplicate the existing Drill 720 product structure into the Auto Drill 720 Series, including child parts and CAD documents.",
+     "tasks": [
+      {
+       "id": "ex2-t1",
+       "title": "Create an eBOM Using Save As",
+       "steps": [
+        {
+         "action": "Browse to the <strong>Auto Drill – 720 Series</strong> product folders.",
+         "detail": "Notice that it does not have an Engineering folder. You will copy contents from the existing Drill 720 Series.",
+         "hint": null
+        },
+        {
+         "action": "Go to the <strong>Drill – 720 Series</strong> product Engineering folder.",
+         "detail": "The remaining steps in this task will copy the contents of an existing assembly into the new Auto Drill – 720 Series.",
+         "hint": null
+        },
+        {
+         "action": "In the <strong>Search in table</strong> field, type <code>Drill*asm</code>.",
+         "detail": "This filters the folder contents to show only the CAD assembly documents.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>View information</strong> icon for the <strong>DRILL_720.ASM</strong> CAD document.",
+         "detail": "This opens the Information page for the CAD assembly document.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Actions</strong> menu.",
+         "detail": "The Actions menu contains the Save As option for duplicating the assembly.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Save As</strong> option.",
+         "detail": "Save As allows you to duplicate the assembly and all its dependent objects into a new location.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>Dependents</strong> from the toolbar and select <strong>All</strong>.",
+         "detail": "This ensures all dependent objects in the assembly are included in the duplication.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Select all rows</strong> checkbox and click the <strong>Collect related parts</strong> icon.",
+         "detail": "This collects all the related Windchill parts for the assembly.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Select all rows</strong> checkbox and click the <strong>Collect related drawings</strong> icon.",
+         "detail": "This collects all related drawings for the assembly.",
+         "hint": null
+        },
+        {
+         "action": "Select the <strong>Select all rows</strong> checkbox, if not already selected, and click the <strong>Collect related CAD/Dynamic documents</strong> icon.",
+         "detail": "This collects all the CAD and Dynamic documents related to the assembly.",
+         "hint": null
+        },
+        {
+         "action": "Keep the default names for the new assembly.",
+         "detail": "Windchill will append '_New' to the names of all duplicated objects by default.",
+         "hint": "You could rename them during the Save As process if desired."
+        },
+        {
+         "action": "Click the <strong>Set Location</strong> icon from the toolbar.",
+         "detail": "You need to specify where the new objects will be stored.",
+         "hint": null
+        },
+        {
+         "action": "In the Set Location dialog, click the <strong>Context</strong> menu and select the <strong>Auto Drill – 720 Series</strong> product option.",
+         "detail": "This sets the target product context for the new assembly.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Create New Folder</strong> icon to create a new folder for the assembly and its related parts.",
+         "detail": "The Auto Drill – 720 Series product needs an Engineering folder to store the new objects.",
+         "hint": null
+        },
+        {
+         "action": "In the New Folder dialog, type <code>Engineering</code> in the Name field.",
+         "detail": "This creates the Engineering folder in the Auto Drill – 720 Series product.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong> to create the new folder.",
+         "detail": "The Engineering folder is now created in the Auto Drill – 720 Series product.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong> to set the location.",
+         "detail": "The location is now set to the Engineering folder in the Auto Drill – 720 Series product.",
+         "hint": null
+        },
+        {
+         "action": "Click <strong>OK</strong> to create the new assembly structure in the Save As dialog.",
+         "detail": "Windchill creates copies of all selected objects with '_New' appended to their names.",
+         "hint": null
+        }
+       ]
+      },
+      {
+       "id": "ex2-t2",
+       "title": "Verify Product Structure",
+       "steps": [
+        {
+         "action": "Go to the <strong>Auto Drill – 720 Series</strong> product Engineering folder.",
+         "detail": "All the parts have _New appended at the end of their names to distinguish them from the original Drill_720 parts.",
+         "hint": "You could have renamed them something else during the Save As process, if desired."
+        },
+        {
+         "action": "Use the <strong>Search in table</strong> field to find the <strong>DRILL_720_NEW</strong> End Item part.",
+         "detail": "The search filters the folder contents to locate the new end item.",
+         "hint": null
+        },
+        {
+         "action": "Go to the <strong>DRILL_720_NEW</strong> End Item part Information page.",
+         "detail": "Click the part name or View information icon to open the Information page.",
+         "hint": null
+        },
+        {
+         "action": "Click the <strong>Structure</strong> tab and observe the product structure.",
+         "detail": "Verify that the complete product structure has been duplicated from the original Drill 720, including all child parts and CAD documents.",
+         "hint": null
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "keyTakeaways": [
+    "Save As duplicates an existing product structure including child parts, drawings, and CAD documents.",
+    "You must explicitly collect related parts, drawings, and CAD/Dynamic documents during Save As.",
+    "New objects created by Save As can be placed in a different product context and folder.",
+    "Always verify the new product structure after duplication to ensure completeness."
+   ]
+  }
+ ]
 }

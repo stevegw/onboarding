@@ -1,0 +1,48 @@
+{
+  "id": "cb-testmgmt",
+  "title": "Codebeamer: Fundamentals of Test Management",
+  "description": "Set up, write, and execute tests in Codebeamer to verify product requirements. Assume different user roles in a typical test management workflow and configure traceability between artifacts.",
+  "prerequisite": "cb-overview",
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Introduction to Test Management",
+      "description": "Understand why test management matters, explore key user roles and the test management workflow, and set up the course project in Codebeamer.",
+      "estimatedMinutes": 25,
+      "topicCount": 4,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m1-intro-test-management.json",
+      "quizFile": "quizzes/q1-intro-test-management.json"
+    },
+    {
+      "id": "m2",
+      "title": "Test Plans",
+      "description": "Learn how test plans serve as blueprints for testing, work with trackers and parent-child relationships, and structure test cases within the project.",
+      "estimatedMinutes": 30,
+      "topicCount": 4,
+      "exerciseTopicStart": 3,
+      "contentFile": "modules/m2-test-plans.json",
+      "quizFile": "quizzes/q2-test-plans.json"
+    },
+    {
+      "id": "m3",
+      "title": "Test Design",
+      "description": "Design test cases with steps and parameters, establish requirements traceability, and practice creating, reusing, importing, and approving test cases.",
+      "estimatedMinutes": 40,
+      "topicCount": 5,
+      "exerciseTopicStart": 3,
+      "contentFile": "modules/m3-test-design.json",
+      "quizFile": "quizzes/q3-test-design.json"
+    },
+    {
+      "id": "m4",
+      "title": "Test Execution and Reports",
+      "description": "Create test runs and test sets, execute tests as a tester, report bugs from failed steps, and examine test results as a test engineer.",
+      "estimatedMinutes": 35,
+      "topicCount": 5,
+      "exerciseTopicStart": 3,
+      "contentFile": "modules/m4-test-execution-reports.json",
+      "quizFile": "quizzes/q4-test-execution-reports.json"
+    }
+  ]
+}
