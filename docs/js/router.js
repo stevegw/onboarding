@@ -109,11 +109,24 @@
     // Render catalog
     OB.content.loadCatalog().then(function (catalog) {
       OB.sidebar.renderCatalog(catalog);
-      OB.dashboard.renderCatalog(catalog);
+      catalogNavigate(catalog);
+      window.addEventListener("hashchange", function () { catalogNavigate(catalog); });
     }).catch(function (err) {
       OB.ui.setMain('<div class="card"><h2>' + OB.i18n.t("error.loadingContent") + '</h2><p class="text-muted">' +
         OB.ui.esc(err.message) + '</p></div>');
     });
+  }
+
+  function catalogNavigate(catalog) {
+    var hash = window.location.hash || "#/";
+    var view = hash.replace("#/", "").split("/")[0] || "";
+    switch (view) {
+      case "help":
+        OB.help.render();
+        break;
+      default:
+        OB.dashboard.renderCatalog(catalog);
+    }
   }
 
   function navigate() {
@@ -149,6 +162,9 @@
             break;
           case "glossary":
             OB.glossary.render();
+            break;
+          case "help":
+            OB.help.render();
             break;
           default:
             OB.dashboard.render(course);

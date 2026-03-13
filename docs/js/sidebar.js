@@ -55,6 +55,13 @@
       html += '</div>';
     });
 
+    // Help link in catalog sidebar
+    html += '<div class="sb-nav-section">' + t("sidebar.resources") + '</div>';
+    html += '<div class="sb-nav-item" data-route="#/help">';
+    html += '<span class="nav-icon">&#10067;</span>';
+    html += '<span class="nav-label">' + t("sidebar.help") + '</span>';
+    html += '</div>';
+
     nav.innerHTML = html;
 
     // Bind family header clicks to expand/collapse and scroll
@@ -74,6 +81,13 @@
     nav.querySelectorAll("[data-course]").forEach(function (el) {
       el.addEventListener("click", function () {
         OB.router.goToCourse(el.getAttribute("data-course"));
+      });
+    });
+
+    // Bind data-route clicks (e.g., help link)
+    nav.querySelectorAll("[data-route]").forEach(function (el) {
+      el.addEventListener("click", function () {
+        window.location.hash = el.getAttribute("data-route");
       });
     });
 
@@ -101,12 +115,27 @@
    * Render sidebar for course mode (course selected).
    */
   function render(course, activeRoute, allModules) {
-    // Build topic title lookup from loaded module content
+    // Build topic lookups from loaded module content
     var topicTitles = {};
+    var topicKind = {}; // "exercise" | "interactive" | "concept"
     if (allModules) {
       allModules.forEach(function (mod) {
         if (mod && mod.topics) {
-          mod.topics.forEach(function (t) { topicTitles[t.id] = t.title; });
+          mod.topics.forEach(function (tp) {
+            topicTitles[tp.id] = tp.title;
+            // Determine topic kind from actual content blocks
+            var hasExercise = false;
+            var hasInteractive = false;
+            if (tp.content) {
+              tp.content.forEach(function (b) {
+                if (b.type === "exercise") hasExercise = true;
+                if (b.type === "interactive-match" || b.type === "interactive-sort") hasInteractive = true;
+              });
+            }
+            if (tp.isExercise || hasExercise) topicKind[tp.id] = "exercise";
+            else if (hasInteractive) topicKind[tp.id] = "interactive";
+            else topicKind[tp.id] = "concept";
+          });
         }
       });
     }
@@ -171,13 +200,15 @@
           html += '<div class="sb-nav-item' + (isTopicActive ? " active" : "") + '" data-route="' + topicRoute + '">';
           html += '<span class="nav-check' + (isDone ? " done" : "") + '">&#10003;</span>';
           var topicTitle = topicTitles[topicId];
+          var kind = topicKind[topicId] || (isExercise ? "exercise" : "concept");
+          // 🔧 exercise (has step-by-step tasks)  🎯 interactive (has match/sort)  📝 concept (reading)
+          var prefix = kind === "exercise" ? '&#128295; ' : kind === "interactive" ? '&#127919; ' : '&#128221; ';
           if (topicTitle) {
-            var prefix = isExercise ? '&#128295; ' : '';
             html += '<span class="nav-label">' + prefix + OB.ui.esc(topicTitle) + '</span>';
           } else if (isExercise) {
             html += '<span class="nav-label">&#128295; ' + t("sidebar.exerciseLabel", { num: ti - exStart + 1 }) + '</span>';
           } else {
-            html += '<span class="nav-label">' + t("sidebar.topicLabel", { mod: modNum, topic: ti }) + '</span>';
+            html += '<span class="nav-label">&#128221; ' + t("sidebar.topicLabel", { mod: modNum, topic: ti }) + '</span>';
           }
           html += '</div>';
         }
@@ -200,6 +231,12 @@
     html += '<div class="sb-nav-item' + glossActive + '" data-route="#/glossary">';
     html += '<span class="nav-icon">&#128218;</span>';
     html += '<span class="nav-label">' + t("sidebar.glossary") + '</span>';
+    html += '</div>';
+
+    var helpActive = activeRoute === "#/help" ? " active" : "";
+    html += '<div class="sb-nav-item' + helpActive + '" data-route="#/help">';
+    html += '<span class="nav-icon">&#10067;</span>';
+    html += '<span class="nav-label">' + t("sidebar.help") + '</span>';
     html += '</div>';
 
     nav.innerHTML = html;

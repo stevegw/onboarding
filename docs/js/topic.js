@@ -235,19 +235,6 @@
     var prog = OB.state.getExerciseProgress(exId, tasks);
     var pct = prog.total > 0 ? Math.round((prog.done / prog.total) * 100) : 0;
 
-    // Find first incomplete step to mark as active
-    var activeTaskId = null;
-    var activeStepIdx = -1;
-    for (var ti = 0; ti < tasks.length && activeStepIdx === -1; ti++) {
-      for (var si = 0; si < tasks[ti].steps.length; si++) {
-        if (!OB.state.isStepDone(exId, tasks[ti].id, si)) {
-          activeTaskId = tasks[ti].id;
-          activeStepIdx = si;
-          break;
-        }
-      }
-    }
-
     var html = '<div class="exercise-block" data-exercise="' + exId + '">';
 
     // Objective
@@ -262,7 +249,7 @@
     html += '<div class="exercise-progress-bar"><div class="exercise-progress-fill" style="width:' + pct + '%"></div></div>';
     html += '</div>';
 
-    // Tasks
+    // Tasks as flat checklists
     tasks.forEach(function (task) {
       var taskDone = 0;
       task.steps.forEach(function (_s, si) {
@@ -278,35 +265,33 @@
 
       task.steps.forEach(function (step, si) {
         var isDone = OB.state.isStepDone(exId, task.id, si);
-        var isActive = (task.id === activeTaskId && si === activeStepIdx);
-        var cls = isDone ? "done" : (isActive ? "active" : "upcoming");
+        var hasDetail = step.detail || step.hint;
 
-        html += '<div class="exercise-step ' + cls + '" data-ex="' + exId + '" data-task="' + task.id + '" data-step="' + si + '">';
-        html += '<div class="exercise-step-indicator">' + (isDone ? "&#10003;" : (si + 1)) + '</div>';
-        html += '<div class="exercise-step-action-text">' + safeHtml(step.action) + '</div>';
+        html += '<div class="exercise-step' + (isDone ? " done" : "") + '" data-ex="' + exId + '" data-task="' + task.id + '" data-step="' + si + '">';
 
-        // Detail area (shown when active or expanded)
-        html += '<div class="exercise-step-detail">';
+        // Row: number + checkbox + action text + expand toggle
+        html += '<label class="exercise-step-row">';
+        html += '<span class="exercise-step-num">' + (si + 1) + '</span>';
+        html += '<input type="checkbox" class="exercise-step-check" data-ex="' + exId + '" data-task="' + task.id + '" data-step="' + si + '"' + (isDone ? " checked" : "") + '>';
+        html += '<span class="exercise-step-action">' + safeHtml(step.action) + '</span>';
+        html += '</label>';
 
-        if (step.detail) {
-          html += '<div class="exercise-step-box detail-box">';
-          html += '<div class="exercise-step-box-label">' + t("topic.whyItMatters") + '</div>';
-          html += '<p>' + safeHtml(step.detail) + '</p>';
+        if (hasDetail) {
+          html += '<button class="exercise-step-expand" data-expand="' + exId + '-' + task.id + '-' + si + '" title="Details">&#9660;</button>';
+        }
+
+        // Collapsible detail (hidden by default)
+        if (hasDetail) {
+          html += '<div class="exercise-step-detail" id="detail-' + exId + '-' + task.id + '-' + si + '">';
+          if (step.detail) {
+            html += '<p class="exercise-step-context">' + safeHtml(step.detail) + '</p>';
+          }
+          if (step.hint) {
+            html += '<p class="exercise-step-hint"><strong>' + t("topic.showHint") + ':</strong> ' + safeHtml(step.hint) + '</p>';
+          }
           html += '</div>';
         }
 
-        if (step.hint) {
-          html += '<div class="exercise-hint-toggle" data-hint="' + exId + '-' + task.id + '-' + si + '">&#9654; ' + t("topic.showHint") + '</div>';
-          html += '<div class="exercise-hint-text" id="hint-' + exId + '-' + task.id + '-' + si + '">' + safeHtml(step.hint) + '</div>';
-        }
-
-        if (!isDone) {
-          html += '<div class="exercise-step-actions">';
-          html += '<button class="btn btn-primary btn-sm exercise-step-done" data-ex="' + exId + '" data-task="' + task.id + '" data-step="' + si + '">' + t("topic.doneNextStep") + '</button>';
-          html += '</div>';
-        }
-
-        html += '</div>'; // .exercise-step-detail
         html += '</div>'; // .exercise-step
       });
 
@@ -379,42 +364,24 @@
       });
     });
 
-    // Exercise step done buttons
-    document.querySelectorAll(".exercise-step-done").forEach(function (btn) {
-      btn.addEventListener("click", function (e) {
-        e.stopPropagation();
-        var exId = btn.getAttribute("data-ex");
-        var taskId = btn.getAttribute("data-task");
-        var stepIdx = parseInt(btn.getAttribute("data-step"), 10);
-        OB.state.completeStep(exId, taskId, stepIdx);
+    // Exercise step checkboxes
+    document.querySelectorAll(".exercise-step-check").forEach(function (cb) {
+      cb.addEventListener("change", function () {
+        var exId = cb.getAttribute("data-ex");
+        var taskId = cb.getAttribute("data-task");
+        var stepIdx = parseInt(cb.getAttribute("data-step"), 10);
+        var stepEl = cb.closest(".exercise-step");
 
-        // Surgical DOM update on THIS specific step
-        var stepEl = btn.closest(".exercise-step");
-        var wasActive = stepEl && stepEl.classList.contains("active");
-        if (stepEl) {
-          stepEl.classList.remove("active", "expanded", "upcoming");
-          stepEl.classList.add("done");
-          var indicator = stepEl.querySelector(".exercise-step-indicator");
-          if (indicator) indicator.innerHTML = "&#10003;";
-          var actions = stepEl.querySelector(".exercise-step-actions");
-          if (actions) actions.remove();
-        }
-
-        // Only auto-open the next step if the completed step was the active one
-        var exerciseBlock = document.querySelector('.exercise-block[data-exercise="' + exId + '"]');
-        if (exerciseBlock && wasActive) {
-          var allSteps = exerciseBlock.querySelectorAll(".exercise-step");
-          var activated = false;
-          allSteps.forEach(function (s) {
-            if (!activated && s.classList.contains("upcoming")) {
-              s.classList.remove("upcoming");
-              s.classList.add("active");
-              activated = true;
-            }
-          });
+        if (cb.checked) {
+          OB.state.completeStep(exId, taskId, stepIdx);
+          if (stepEl) stepEl.classList.add("done");
+        } else {
+          OB.state.uncompleteStep(exId, taskId, stepIdx);
+          if (stepEl) stepEl.classList.remove("done");
         }
 
         // Update progress bar and task progress counters
+        var exerciseBlock = document.querySelector('.exercise-block[data-exercise="' + exId + '"]');
         if (exerciseBlock) {
           var tasks = exerciseBlock.querySelectorAll(".exercise-task");
           var totalDone = 0, totalSteps = 0;
@@ -436,24 +403,16 @@
       });
     });
 
-    // Exercise hint toggles
-    document.querySelectorAll(".exercise-hint-toggle").forEach(function (toggle) {
-      toggle.addEventListener("click", function (e) {
+    // Exercise detail expand/collapse toggles
+    document.querySelectorAll(".exercise-step-expand").forEach(function (btn) {
+      btn.addEventListener("click", function (e) {
         e.stopPropagation();
-        var hintKey = toggle.getAttribute("data-hint");
-        var hintEl = document.getElementById("hint-" + hintKey);
-        if (hintEl) {
-          var isOpen = hintEl.classList.toggle("expanded");
-          toggle.innerHTML = (isOpen ? "&#9660; " + OB.i18n.t("topic.hideHint") : "&#9654; " + OB.i18n.t("topic.showHint"));
+        var key = btn.getAttribute("data-expand");
+        var detail = document.getElementById("detail-" + key);
+        if (detail) {
+          var isOpen = detail.classList.toggle("open");
+          btn.classList.toggle("open", isOpen);
         }
-      });
-    });
-
-    // Exercise step expand/collapse on click
-    document.querySelectorAll(".exercise-step").forEach(function (step) {
-      step.addEventListener("click", function () {
-        if (step.classList.contains("active")) return; // already expanded
-        step.classList.toggle("expanded");
       });
     });
 
