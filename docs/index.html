@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/views.css">
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/celebrate.css">
+  <link rel="stylesheet" href="css/gate.css">
 </head>
 <body>
   <div class="app" id="app">
@@ -97,6 +98,7 @@
   <!-- JS modules (order matters) -->
   <script src="js/ui.js"></script>
   <script src="js/state.js"></script>
+  <script src="js/gate.js"></script>
   <script src="js/catalog-bundle.js"></script>
   <script src="js/content.js"></script>
   <script src="js/i18n.js"></script>
@@ -117,6 +119,6 @@
   <script src="js/catalog-manager.js"></script>
   <script src="js/router.js"></script>
 
-  <script>OB.i18n.init().then(function() { OB.router.init(); });</script>
+  <script>OB.gate.init(function() { OB.i18n.init().then(function() { OB.router.init(); }); });</script>
 </body>
 </html>
