@@ -170,6 +170,7 @@
 
     // Save result
     OB.state.saveQuizResult(currentModuleId, correct, total);
+    if (OB.celebrate) OB.celebrate.onQuizComplete(currentModuleId, correct, total);
 
     var pct = Math.round((correct / total) * 100);
     var circumference = 2 * Math.PI * 42;

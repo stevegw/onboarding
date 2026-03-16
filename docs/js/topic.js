@@ -542,9 +542,10 @@
         bar.classList.add("completed");
         bar.innerHTML = '<button class="btn btn-outline btn-sm" id="uncomplete-btn">&#10003; ' + t("topic.completedUndo") + '</button>';
         bindCompletion(topicId, moduleId);
-        // Update sidebar
+        // Update sidebar + celebrate
         OB.content.getCourse().then(function (course) {
           OB.sidebar.render(course, window.location.hash);
+          if (OB.celebrate) OB.celebrate.onTopicComplete(topicId, course);
         });
       });
     }

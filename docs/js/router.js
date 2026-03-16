@@ -46,6 +46,7 @@
     // Init subsystems
     OB.theme.init();
     OB.notepad.init();
+    if (OB.celebrate) OB.celebrate.init();
     if (OB.speech) OB.speech.init();
     if (OB.author) OB.author.init();
 

@@ -200,6 +200,11 @@
     html += '<div class="stat-card"><div class="stat-value">~' + totalMin + 'm</div><div class="stat-label">' + t("dashboard.statEstimated") + '</div></div>';
     html += '</div>';
 
+    // Engagement section (badges, streak, activity)
+    if (OB.celebrate) {
+      html += OB.celebrate.renderDashboardSection(course);
+    }
+
     // Module cards
     html += '<h2 class="mb-md">' + t("dashboard.modules") + '</h2>';
     html += '<div class="module-grid stagger">';

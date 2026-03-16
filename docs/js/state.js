@@ -179,7 +179,7 @@
 
   /* Reset current course progress */
   function resetAll() {
-    var keysToRemove = ["topics", "quizzes", "exercises", "currentRoute", "notepad", "notepad_open"];
+    var keysToRemove = ["topics", "quizzes", "exercises", "currentRoute", "notepad", "notepad_open", "badges", "activity"];
     keysToRemove.forEach(function (k) {
       try { localStorage.removeItem(key(k)); } catch (e) { /* ignore */ }
     });
