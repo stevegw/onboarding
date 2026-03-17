@@ -11,9 +11,33 @@ import http.server
 import json
 import os
 import re
+import ssl
+import subprocess
 import sys
 
 PORT = 8050
+CERTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "certs")
+CERT_FILE = os.path.join(CERTS_DIR, "localhost.pem")
+KEY_FILE = os.path.join(CERTS_DIR, "localhost-key.pem")
+
+
+def ensure_certs():
+    """Generate self-signed localhost certs if they don't exist."""
+    if os.path.exists(CERT_FILE) and os.path.exists(KEY_FILE):
+        return True
+    os.makedirs(CERTS_DIR, exist_ok=True)
+    try:
+        subprocess.run([
+            "openssl", "req", "-x509", "-newkey", "rsa:2048",
+            "-keyout", KEY_FILE, "-out", CERT_FILE,
+            "-days", "365", "-nodes",
+            "-subj", "/CN=localhost",
+        ], check=True, capture_output=True)
+        print("[OB] Generated self-signed certs in certs/")
+        return True
+    except (FileNotFoundError, subprocess.CalledProcessError) as e:
+        print(f"[OB] Could not generate certs (openssl not found?): {e}")
+        return False
 
 
 class DevHandler(http.server.SimpleHTTPRequestHandler):
@@ -95,8 +119,20 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
 
 if __name__ == "__main__":
     os.chdir(os.path.dirname(os.path.abspath(__file__)) or ".")
+    use_https = "--https" in sys.argv
+
     with http.server.HTTPServer(("", PORT), DevHandler) as httpd:
-        print(f"Serving on http://localhost:{PORT}")
+        protocol = "http"
+        if use_https:
+            if ensure_certs():
+                ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+                ctx.load_cert_chain(CERT_FILE, KEY_FILE)
+                httpd.socket = ctx.wrap_socket(httpd.socket, server_side=True)
+                protocol = "https"
+            else:
+                print("[OB] Falling back to HTTP (no certs)")
+
+        print(f"Serving on {protocol}://localhost:{PORT}")
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:

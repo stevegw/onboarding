@@ -29,6 +29,8 @@ import json
 import os
 import re
 import shutil
+import ssl
+import subprocess
 import sys
 from email import policy
 from email.parser import BytesParser
@@ -36,6 +38,28 @@ from urllib.parse import urlparse, parse_qs
 
 PORT = 8050
 COURSES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "courses")
+CERTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "certs")
+CERT_FILE = os.path.join(CERTS_DIR, "localhost.pem")
+KEY_FILE = os.path.join(CERTS_DIR, "localhost-key.pem")
+
+
+def ensure_certs():
+    """Generate self-signed localhost certs if they don't exist."""
+    if os.path.exists(CERT_FILE) and os.path.exists(KEY_FILE):
+        return True
+    os.makedirs(CERTS_DIR, exist_ok=True)
+    try:
+        subprocess.run([
+            "openssl", "req", "-x509", "-newkey", "rsa:2048",
+            "-keyout", KEY_FILE, "-out", CERT_FILE,
+            "-days", "365", "-nodes",
+            "-subj", "/CN=localhost",
+        ], check=True, capture_output=True)
+        print("[OB] Generated self-signed certs in certs/")
+        return True
+    except (FileNotFoundError, subprocess.CalledProcessError) as e:
+        print(f"[OB] Could not generate certs (openssl not found?): {e}")
+        return False
 
 
 def safe_path(base, *parts):
@@ -1086,12 +1110,24 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
 
 def main():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    use_https = "--https" in sys.argv
     server = http.server.HTTPServer(("", PORT), DevHandler)
-    print(f"[OB] Dev server running at http://localhost:{PORT}")
+
+    protocol = "http"
+    if use_https:
+        if ensure_certs():
+            ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+            ctx.load_cert_chain(CERT_FILE, KEY_FILE)
+            server.socket = ctx.wrap_socket(server.socket, server_side=True)
+            protocol = "https"
+        else:
+            print("[OB] Falling back to HTTP (no certs)")
+
+    print(f"[OB] Dev server running at {protocol}://localhost:{PORT}")
     print(f"[OB] Serving from: {os.getcwd()}")
     print(f"[OB]")
-    print(f"[OB]   View:  http://localhost:{PORT}?course=wc-ocp1")
-    print(f"[OB]   Edit:  http://localhost:{PORT}?course=wc-ocp1&edit=true")
+    print(f"[OB]   View:  {protocol}://localhost:{PORT}?course=wc-ocp1")
+    print(f"[OB]   Edit:  {protocol}://localhost:{PORT}?course=wc-ocp1&edit=true")
     print(f"[OB]")
     print(f"[OB] Press Ctrl+C to stop")
     try:

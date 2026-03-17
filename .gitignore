@@ -12,6 +12,9 @@ __pycache__/
 # Backup files (author mode undo snapshots)
 *.bak
 
+# Self-signed dev certs
+docs/certs/
+
 # Local tool config
 .agents/
 .claude/
