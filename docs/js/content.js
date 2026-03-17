@@ -173,6 +173,10 @@
     return loadJSON("glossary.json");
   }
 
+  function getExactSteps(exerciseId) {
+    return loadJSON("exercises/" + exerciseId + ".json").catch(function () { return null; });
+  }
+
   /* Get all topic IDs across all modules (for overall progress) */
   function getAllTopicIds() {
     var ids = [];
@@ -202,6 +206,7 @@
     getModule: getModule,
     getQuiz: getQuiz,
     getGlossary: getGlossary,
+    getExactSteps: getExactSteps,
     getAllTopicIds: getAllTopicIds,
     loadAllModules: loadAllModules,
     loadCatalog: loadCatalog,

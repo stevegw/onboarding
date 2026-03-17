@@ -15,10 +15,18 @@ A multi-course interactive training platform for PTC products (Windchill, Codebe
 ## Running the App
 
 ```bash
-cd docs && python -m http.server 8050
-# Open http://localhost:8050            → catalog view
-# Open http://localhost:8050?course=wc-ocp1  → OCP1 course
+# From project root (recommended):
+start.bat                # Windows — double-click or run from terminal
+
+# Or manually:
+cd docs && python server.py
+
+# Open http://localhost:8050                         → catalog view
+# Open http://localhost:8050?course=wc-ocp1          → OCP1 course
+# Open http://localhost:8050?course=wc-ocp1&edit=true → author mode
 ```
+
+**Always use `server.py`** — it serves static files AND the authoring API endpoints (`/api/image`, `/api/content-block`, etc.). Do NOT use `python -m http.server` as it lacks the API routes.
 
 `fetch()` requires HTTP — `file://` protocol works with bundled content only.
 

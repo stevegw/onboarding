@@ -85,6 +85,13 @@ def collect_content_files(course_dir, locale_prefix=""):
             key = "quizzes/" + os.path.basename(f)
             entries[key] = read_json(f)
 
+    # exercises/*.json
+    exercises_dir = os.path.join(base, "exercises")
+    if os.path.isdir(exercises_dir):
+        for f in sorted(glob.glob(os.path.join(exercises_dir, "*.json"))):
+            key = "exercises/" + os.path.basename(f)
+            entries[key] = read_json(f)
+
     return entries
 
 

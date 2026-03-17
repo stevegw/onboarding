@@ -62,6 +62,9 @@
         html += '<button class="author-block-action" data-action="up" data-block-index="' + blockIdx + '" title="Move up"' + (blockIdx === 0 ? ' disabled' : '') + '>&#8593;</button>';
         html += '<button class="author-block-action" data-action="down" data-block-index="' + blockIdx + '" title="Move down"' + (blockIdx === totalBlocks - 1 ? ' disabled' : '') + '>&#8595;</button>';
         html += '<button class="author-block-action" data-action="delete" data-block-index="' + blockIdx + '" title="Delete block">&#10005;</button>';
+        if (block.type === "exercise") {
+          html += '<button class="author-block-action author-edit-btn" data-action="edit-exact-steps" data-exercise-id="' + (block.exerciseId || '') + '" title="Edit Exact Steps">&#128221;</button>';
+        }
         html += '</div>';
         html += blockHtml;
         html += '</div>';
@@ -258,6 +261,7 @@
 
       html += '<div class="exercise-task">';
       html += '<div class="exercise-task-header">';
+      html += '<button class="exact-steps-trigger" data-exact-for="' + exId + '" data-exact-open="' + exId + '" title="View Exact Steps" style="display:none;background:none;border:none;cursor:pointer;font-size:1.1em;padding:0;margin-right:6px">&#128203;</button>';
       html += '<h3>' + safeHtml(task.title) + '</h3>';
       html += '<span class="exercise-task-progress">' + t("topic.stepsProgress", { done: taskDone, total: task.steps.length }) + '</span>';
       html += '</div>';
@@ -403,6 +407,19 @@
       });
     });
 
+    // Exact steps: check availability and show icon + bind open
+    document.querySelectorAll(".exact-steps-trigger[data-exact-for]").forEach(function (btn) {
+      var exId = btn.getAttribute("data-exact-for");
+      OB.content.getExactSteps(exId).then(function (data) {
+        if (data) {
+          btn.style.display = "";
+          btn.addEventListener("click", function () {
+            OB.exactSteps.open(exId);
+          });
+        }
+      });
+    });
+
     // Exercise detail expand/collapse toggles
     document.querySelectorAll(".exercise-step-expand").forEach(function (btn) {
       btn.addEventListener("click", function (e) {
@@ -459,6 +476,15 @@
             if (mHash) moduleId = mHash[1];
           }
           if (moduleId) OB.author.openModuleMetaModal(moduleId);
+        });
+      });
+
+      // Edit Exact Steps buttons
+      document.querySelectorAll("[data-action='edit-exact-steps']").forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          var exId = btn.getAttribute("data-exercise-id");
+          if (exId && OB.author.openExactStepsModal) OB.author.openExactStepsModal(exId);
         });
       });
 

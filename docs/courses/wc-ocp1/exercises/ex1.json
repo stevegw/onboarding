@@ -1,0 +1,53 @@
+{
+  "exerciseId": "ex1",
+  "title": "Exact Steps: Create an Option Set",
+  "tasks": [
+    {
+      "id": "ex1-t1",
+      "title": "Create the Option Set",
+      "steps": [
+        {
+          "action": "Navigate to <strong>Product > Option Sets</strong> in the left navigation pane",
+          "detail": "The Option Sets folder is located under the Product node in the folder tree.",
+          "hint": null
+        },
+        {
+          "action": "Right-click the <strong>Option Sets</strong> folder and select <strong>New Option Set</strong>",
+          "detail": "This opens the New Option Set creation wizard.",
+          "hint": "If you don't see the right-click menu, ensure you have the correct permissions."
+        },
+        {
+          "action": "Enter <code>Color Options</code> as the Name and click <strong>OK</strong>",
+          "detail": "The name must be unique within the product context.",
+          "hint": null
+        }
+      ]
+    },
+    {
+      "id": "ex1-t2",
+      "title": "Add Choices to the Option Set",
+      "steps": [
+        {
+          "action": "Open the newly created <strong>Color Options</strong> option set",
+          "detail": "Double-click or select and press Enter to open it.",
+          "hint": null
+        },
+        {
+          "action": "Click <strong>Add Choice</strong> in the toolbar",
+          "detail": "Each choice represents one selectable option for the customer.",
+          "hint": null
+        },
+        {
+          "action": "Enter <code>Red</code> as the choice name and click <strong>OK</strong>",
+          "detail": null,
+          "hint": null
+        },
+        {
+          "action": "Repeat to add <code>Blue</code> and <code>Green</code> choices",
+          "detail": "You should now have three choices in the option set.",
+          "hint": null
+        }
+      ]
+    }
+  ]
+}

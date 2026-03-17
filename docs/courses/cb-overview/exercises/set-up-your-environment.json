@@ -1,0 +1,96 @@
+{
+  "exerciseId": "set-up-your-environment",
+  "title": "Exact Steps: set-up-your-environment",
+  "tasks": [
+    {
+      "id": "set-up-your-environment-t1",
+      "title": "Import a Project and Add Users",
+      "steps": [
+        {
+          "action": "Click the Projects tab."
+        },
+        {
+          "action": "Click New Project."
+        },
+        {
+          "action": "Select Attach a File and open W:\\Course Files\\CBFD-OVER\\PTC_Electric_Car.zip."
+        },
+        {
+          "action": "Click Next."
+        },
+        {
+          "action": "Observe the values in the Name and Key fields.<br><em>Note: The Key is a string that can be appended to tracker items to easily identify their project identity.</em>"
+        },
+        {
+          "action": "Ensure the checkboxes are selected for Include all Work Items and Documents and Include Wiki pages."
+        },
+        {
+          "action": "Click Finish."
+        },
+        {
+          "action": "Click the vertical ellipsis (?) in the Admin tab and select Members.<br><em>Note: Vertical ellipses often display a dropdown list in Codebeamer.</em>"
+        },
+        {
+          "action": "From the toolbar, click Add new Member."
+        },
+        {
+          "action": "In the Add new Member dialog under Step 1, type yut and select Yuta Systems Engineer when the suggestion pop-up dialog appears."
+        },
+        {
+          "action": "Next to yuta, type k and then select Kartini Requirements Engineer when the suggestion pop-up"
+        },
+        {
+          "action": "dialog appears."
+        },
+        {
+          "action": "Under Step 2, select the checkboxes for Developer and Tester."
+        },
+        {
+          "action": "Click Add."
+        },
+        {
+          "action": "Click Add new Member."
+        },
+        {
+          "action": "Under Step 1, type jiw and select Jiwan Release Manager."
+        },
+        {
+          "action": "Under Step 2, select the checkbox for Stakeholder."
+        },
+        {
+          "action": "Click Add."
+        }
+      ]
+    },
+    {
+      "id": "set-up-your-environment-t2",
+      "title": "Examine Customer Requirements",
+      "steps": [
+        {
+          "action": "Click the Trackers tab."
+        },
+        {
+          "action": "Observe the tracker tree to the left and a dashboard with widgets to the right.<br><em>Note: The concepts of trackers and dashboards in Codebeamer will be discussed in more detail later.</em>"
+        },
+        {
+          "action": "In the tracker tree, double-click Customer Requirement Specifications to open the customer requirements tracker."
+        },
+        {
+          "action": "Observe the three requirements in the tracker.<br><em>Note: These are requirements for the electric car design as supplied to the project team by the customer.</em>"
+        },
+        {
+          "action": "From the toolbar, click the Settings (gear) icon."
+        },
+        {
+          "action": "In the Settings dialog, select the checkboxes for Work Item Key-IDs and Numbering."
+        },
+        {
+          "action": "Click Save."
+        },
+        {
+          "action": "Observe the changes to requirements in the tracker tree.<br><em>Note: The tracker items (customer requirements) in the list are now numbered. They also bear a unique Key ID that identifies them as belonging to the Customer Requirement Specifications tracker and have a unique index number for that tracker.</em><br><em>Note: These settings will now apply to all trackers  display views.</em>"
+        }
+      ]
+    }
+  ]
+}

@@ -1209,7 +1209,13 @@
         '<label class="author-label">Task ' + (ti + 1) + ' Title</label>' +
         '<input class="author-input" data-task-title="' + ti + '" value="' + OB.ui.esc(task.title || '') + '">' +
       '</div>' +
-      '<div class="author-field"><label class="author-label">Steps</label><div data-task-steps="' + ti + '">';
+      '<div class="author-field"><label class="author-label">Steps</label>' +
+      '<div class="author-rich-toolbar author-es-toolbar" data-es-toolbar="' + ti + '">' +
+        '<button class="author-rich-btn author-rich-bold" data-es-cmd="bold" title="Bold">B</button>' +
+        '<button class="author-rich-btn author-rich-italic" data-es-cmd="italic" title="Italic">I</button>' +
+        '<button class="author-rich-btn author-rich-code" data-es-cmd="code" title="Code">{&thinsp;}</button>' +
+      '</div>' +
+      '<div data-task-steps="' + ti + '">';
     (task.steps || []).forEach(function (step, si) {
       html += buildStepItem(ti, step, si);
     });
@@ -1221,14 +1227,13 @@
 
   function buildStepItem(ti, step, si) {
     var key = ti + '-' + si;
-    return '<div class="author-step-item" data-step="' + key + '">' +
-      '<div class="author-field"><label class="author-label">Action</label>' +
-        buildRichEditor("rich-sa-" + key, step.action || "", 1, 'data-step-action="' + key + '"') + '</div>' +
-      '<div class="author-field"><label class="author-label">Detail</label>' +
-        buildRichEditor("rich-sd-" + key, step.detail || "", 1, 'data-step-detail="' + key + '"') + '</div>' +
-      '<div class="author-field"><label class="author-label">Hint</label>' +
-        buildRichEditor("rich-sh-" + key, step.hint || "", 1, 'data-step-hint="' + key + '"') + '</div>' +
-      '<button class="author-list-remove" data-remove-step="' + key + '">&#10005;</button>' +
+    var num = si + 1;
+    return '<div class="author-step-item" data-step="' + key + '" style="display:flex;align-items:center;gap:8px">' +
+      '<span class="author-step-num">' + num + '</span>' +
+      '<div class="author-step-action" contenteditable="true" data-step-action="' + key + '" data-placeholder="Step action...">' +
+        (step.action || '') +
+      '</div>' +
+      '<button class="author-list-remove" data-remove-step="' + key + '" style="flex-shrink:0">&#10005;</button>' +
     '</div>';
   }
 
@@ -1397,7 +1402,7 @@
         if (!stepsContainer) return;
         var count = stepsContainer.querySelectorAll("[data-step]").length;
         var tmp = document.createElement("div");
-        tmp.innerHTML = buildStepItem(ti, { action: "", detail: "", hint: "" }, count);
+        tmp.innerHTML = buildStepItem(ti, { action: "" }, count);
         var newEl = tmp.firstChild;
         stepsContainer.appendChild(newEl);
         bindStepRemoveButtons(stepsContainer);
@@ -2118,6 +2123,310 @@
     });
   }
 
+  /* ==================================================================
+     Exact Steps Editor Modal
+     ================================================================== */
+
+  function openExactStepsModal(exerciseId) {
+    if (!exerciseId) return;
+    var courseId = getCourseId();
+
+    // Fetch existing data or start fresh
+    fetch("/api/exact-steps?courseId=" + encodeURIComponent(courseId) + "&exerciseId=" + encodeURIComponent(exerciseId))
+      .then(function (res) { return res.ok ? res.json() : null; })
+      .then(function (existing) {
+        var data = existing || {
+          exerciseId: exerciseId,
+          title: "Exact Steps: " + exerciseId,
+          tasks: [{ id: exerciseId + "-t1", title: "Task 1", steps: [{ action: "" }] }],
+        };
+        showExactStepsEditor(exerciseId, data);
+      });
+  }
+
+  function showExactStepsEditor(exerciseId, data) {
+    if (editModalEl) return;
+
+    var html = '<div class="author-field">' +
+      '<label class="author-label">Title</label>' +
+      '<input class="author-input" id="edit-es-title" type="text" value="' + OB.ui.esc(data.title || '') + '">' +
+    '</div>';
+    html += '<div class="author-field">' +
+      '<button class="author-list-add" id="edit-es-import">Import Steps from Clipboard</button>' +
+      '<div id="edit-es-import-area" style="display:none">' +
+        '<textarea class="author-input" id="edit-es-import-text" rows="8" placeholder="Paste steps here (one per line)..."></textarea>' +
+        '<div style="display:flex;gap:8px;margin-top:6px">' +
+          '<button class="author-save-btn" id="edit-es-import-go" style="flex:1">Import</button>' +
+          '<button class="author-list-remove" id="edit-es-import-cancel" style="flex:1;justify-content:center">Cancel</button>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+    html += '<div class="author-field"><label class="author-label">Tasks</label><div id="edit-es-tasks">';
+    (data.tasks || []).forEach(function (task, ti) {
+      html += buildTaskItem(task, ti);
+    });
+    html += '</div><button class="author-list-add" id="edit-es-add-task">+ Add Task</button></div>';
+
+    var modalHtml =
+      '<div class="author-backdrop" id="edit-backdrop">' +
+        '<div class="author-modal" role="dialog" aria-label="Edit exact steps">' +
+          '<div class="author-modal-header">' +
+            '<h3>Edit Exact Steps: ' + OB.ui.esc(exerciseId) + '</h3>' +
+            '<button class="author-modal-close" id="edit-close">&#10005;</button>' +
+          '</div>' +
+          '<div class="author-modal-body">' +
+            html +
+            '<button class="author-save-btn" id="edit-save">Save Exact Steps</button>' +
+            '<div class="author-save-status" id="edit-status"></div>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+
+    var container = document.createElement("div");
+    container.innerHTML = modalHtml;
+    editModalEl = container.firstChild;
+    document.body.appendChild(editModalEl);
+
+    document.getElementById("edit-close").addEventListener("click", closeEditModal);
+    editModalEl.addEventListener("click", function (e) { if (e.target === editModalEl) closeEditModal(); });
+
+    // Init rich editors and exercise interactions
+    initAllRichEditors(editModalEl);
+    initExactStepsInteractions(exerciseId, data);
+
+    document.getElementById("edit-save").addEventListener("click", function () {
+      saveExactSteps(exerciseId);
+    });
+  }
+
+  /**
+   * Parse pasted exercise text into tasks and steps.
+   * Recognises:
+   *   "Task N: Title"      → starts a new task
+   *   "1. Step text"       → numbered step (number stripped)
+   *   "Note: ..."          → appended to previous step action
+   *   Plain non-empty line → treated as a step
+   * Returns: [{ title: string, steps: [{ action }] }]
+   */
+  function parseImportedSteps(text) {
+    var lines = text.split('\n');
+    var tasks = [];
+    var currentTask = null;
+    var lastStep = null;
+
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i].trim();
+      if (!line) continue;
+
+      // Task header: "Task 1: Title" or "Task 2 - Title"
+      var taskMatch = line.match(/^Task\s+\d+[\:\-\.\)]\s*(.*)/i);
+      if (taskMatch) {
+        currentTask = { title: taskMatch[1] || "", steps: [] };
+        tasks.push(currentTask);
+        lastStep = null;
+        continue;
+      }
+
+      // Note line: append to previous step
+      var noteMatch = line.match(/^Note\s*:\s*(.*)/i);
+      if (noteMatch && lastStep) {
+        lastStep.action += '<br><em>Note: ' + noteMatch[1] + '</em>';
+        continue;
+      }
+
+      // Numbered step: strip "1. " or "1) " prefix
+      var stepLine = line.replace(/^\d+[\.\)\-]\s*/, '');
+
+      // If no task yet, create a default one
+      if (!currentTask) {
+        currentTask = { title: "Task 1", steps: [] };
+        tasks.push(currentTask);
+      }
+
+      lastStep = { action: stepLine };
+      currentTask.steps.push(lastStep);
+    }
+
+    return tasks;
+  }
+
+  function initExactStepsInteractions(exerciseId, data) {
+    if (!editModalEl) return;
+
+    // Import steps
+    var importBtn = document.getElementById("edit-es-import");
+    var importArea = document.getElementById("edit-es-import-area");
+    var importText = document.getElementById("edit-es-import-text");
+    var importGo = document.getElementById("edit-es-import-go");
+    var importCancel = document.getElementById("edit-es-import-cancel");
+
+    if (importBtn && importArea) {
+      importBtn.addEventListener("click", function () {
+        importArea.style.display = importArea.style.display === "none" ? "" : "none";
+      });
+      importCancel.addEventListener("click", function () {
+        importArea.style.display = "none";
+        importText.value = "";
+      });
+      importGo.addEventListener("click", function () {
+        var parsed = parseImportedSteps(importText.value);
+        if (!parsed.length) return;
+        var tasksContainer = document.getElementById("edit-es-tasks");
+        if (!tasksContainer) return;
+        // Clear existing empty tasks
+        tasksContainer.innerHTML = "";
+        // Build a task item for each parsed task
+        parsed.forEach(function (task, ti) {
+          var taskData = {
+            id: exerciseId + "-t" + (ti + 1),
+            title: task.title,
+            steps: task.steps
+          };
+          var tmp = document.createElement("div");
+          tmp.innerHTML = buildTaskItem(taskData, ti);
+          tasksContainer.appendChild(tmp.firstChild);
+        });
+        initAllRichEditors(tasksContainer);
+        rebindExactStepsListeners(exerciseId);
+        importArea.style.display = "none";
+        importText.value = "";
+      });
+    }
+
+    // Add task
+    var addTaskBtn = document.getElementById("edit-es-add-task");
+    if (addTaskBtn) {
+      addTaskBtn.addEventListener("click", function () {
+        var tasksContainer = document.getElementById("edit-es-tasks");
+        if (!tasksContainer) return;
+        var count = tasksContainer.querySelectorAll(".author-task-item").length;
+        var tmp = document.createElement("div");
+        tmp.innerHTML = buildTaskItem({ id: exerciseId + "-t" + (count + 1), title: "", steps: [] }, count);
+        tasksContainer.appendChild(tmp.firstChild);
+        initAllRichEditors(tasksContainer);
+        rebindExactStepsListeners(exerciseId);
+      });
+    }
+
+    rebindExactStepsListeners(exerciseId);
+  }
+
+  function rebindExactStepsListeners(exerciseId) {
+    if (!editModalEl) return;
+
+    // Shared formatting toolbar — applies to whichever step has focus
+    editModalEl.querySelectorAll("[data-es-cmd]").forEach(function (btn) {
+      btn.onmousedown = function (e) {
+        e.preventDefault(); // keep selection in the step
+        var cmd = btn.getAttribute("data-es-cmd");
+        if (cmd === "code") {
+          // Toggle <code> wrap on selection
+          var sel = window.getSelection();
+          if (sel.rangeCount) {
+            var parent = sel.anchorNode && sel.anchorNode.parentElement;
+            if (parent && parent.tagName === "CODE") {
+              document.execCommand("insertHTML", false, parent.textContent);
+            } else {
+              document.execCommand("insertHTML", false, "<code>" + sel.toString() + "</code>");
+            }
+          }
+        } else {
+          document.execCommand(cmd, false, null);
+        }
+      };
+    });
+
+    // Remove task
+    editModalEl.querySelectorAll("[data-remove-task]").forEach(function (btn) {
+      btn.onclick = function () {
+        var item = btn.closest(".author-task-item");
+        if (item) item.remove();
+      };
+    });
+
+    // Add step
+    editModalEl.querySelectorAll("[data-add-step]").forEach(function (btn) {
+      btn.onclick = function () {
+        var ti = parseInt(btn.getAttribute("data-add-step"), 10);
+        var container = editModalEl.querySelector('[data-task-steps="' + ti + '"]');
+        if (!container) return;
+        var count = container.querySelectorAll(".author-step-item").length;
+        var tmp = document.createElement("div");
+        tmp.innerHTML = buildStepItem(ti, { action: "" }, count);
+        container.appendChild(tmp.firstChild);
+        rebindExactStepsListeners(exerciseId);
+      };
+    });
+
+    // Remove step
+    editModalEl.querySelectorAll("[data-remove-step]").forEach(function (btn) {
+      btn.onclick = function () {
+        var item = btn.closest(".author-step-item");
+        if (item) item.remove();
+      };
+    });
+  }
+
+  function saveExactSteps(exerciseId) {
+    var courseId = getCourseId();
+    var title = gVal("edit-es-title");
+    var tasksContainer = document.getElementById("edit-es-tasks");
+    if (!tasksContainer) return;
+
+    var tasks = [];
+    tasksContainer.querySelectorAll(".author-task-item").forEach(function (taskEl, ti) {
+      var taskTitle = (taskEl.querySelector('[data-task-title="' + ti + '"]') || {}).value || "";
+      var steps = [];
+      taskEl.querySelectorAll(".author-step-item").forEach(function (stepEl) {
+        var key = stepEl.getAttribute("data-step");
+        var action = extractRichEl(stepEl.querySelector('[data-step-action="' + key + '"]'));
+        steps.push({ action: action });
+      });
+      tasks.push({
+        id: exerciseId + "-t" + (ti + 1),
+        title: taskTitle,
+        steps: steps,
+      });
+    });
+
+    var content = {
+      exerciseId: exerciseId,
+      title: title,
+      tasks: tasks,
+    };
+
+    var saveBtn = document.getElementById("edit-save");
+    var statusEl = document.getElementById("edit-status");
+    if (saveBtn) { saveBtn.disabled = true; saveBtn.textContent = "Saving..."; }
+
+    // Try PUT first (update), if 404 then POST (create)
+    fetch("/api/exact-steps", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      cache: "no-store",
+      body: JSON.stringify({ courseId: courseId, exerciseId: exerciseId, content: content }),
+    })
+      .then(function (res) {
+        if (!res.ok) return res.json().then(function (d) { throw new Error(d.error || "Save failed"); });
+        return res.json();
+      })
+      .then(function (result) {
+        OB.content.clearCache();
+        closeEditModal();
+        OB.router.navigate();
+        showToast("Exact steps saved", {
+          undoCallback: result.undoId
+            ? function () { triggerUndo(result.undoId, result.filePath); }
+            : null
+        });
+        if (result.undoId) updateUndoFab(result.undoId, result.filePath, "Exact steps saved");
+      })
+      .catch(function (err) {
+        if (statusEl) { statusEl.className = "author-save-status error"; statusEl.textContent = err.message; }
+        if (saveBtn) { saveBtn.disabled = false; saveBtn.textContent = "Save Exact Steps"; }
+      });
+  }
+
   OB.author = {
     init: init,
     isEditMode: isEditMode,
@@ -2133,5 +2442,6 @@
     openTopicMetaModal: openTopicMetaModal,
     openTakeawaysModal: openTakeawaysModal,
     openModuleMetaModal: openModuleMetaModal,
+    openExactStepsModal: openExactStepsModal,
   };
 })();

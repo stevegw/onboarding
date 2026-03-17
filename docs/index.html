@@ -95,6 +95,15 @@
     <div id="celebrate-modal-container"></div>
   </div>
 
+  <!-- Exact Steps popup (outside #app so gate toggle doesn't affect it) -->
+  <div class="exact-steps-popup" id="exact-steps-popup">
+    <div class="exact-steps-header" id="exact-steps-drag-handle">
+      <span id="exact-steps-title">Exact Steps</span>
+      <button class="exact-steps-close" id="exact-steps-close">&#10005;</button>
+    </div>
+    <div class="exact-steps-body" id="exact-steps-body"></div>
+  </div>
+
   <!-- JS modules (order matters) -->
   <script src="js/ui.js"></script>
   <script src="js/state.js"></script>
@@ -110,6 +119,7 @@
   <script src="js/quiz.js"></script>
   <script src="js/glossary.js"></script>
   <script src="js/help.js"></script>
+  <script src="js/exact-steps.js"></script>
   <script src="js/notepad.js"></script>
   <script src="js/celebrate.js"></script>
   <script src="js/speech.js"></script>

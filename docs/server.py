@@ -29,8 +29,6 @@ import json
 import os
 import re
 import shutil
-import ssl
-import subprocess
 import sys
 from email import policy
 from email.parser import BytesParser
@@ -38,28 +36,6 @@ from urllib.parse import urlparse, parse_qs
 
 PORT = 8050
 COURSES_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "courses")
-CERTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "certs")
-CERT_FILE = os.path.join(CERTS_DIR, "localhost.pem")
-KEY_FILE = os.path.join(CERTS_DIR, "localhost-key.pem")
-
-
-def ensure_certs():
-    """Generate self-signed localhost certs if they don't exist."""
-    if os.path.exists(CERT_FILE) and os.path.exists(KEY_FILE):
-        return True
-    os.makedirs(CERTS_DIR, exist_ok=True)
-    try:
-        subprocess.run([
-            "openssl", "req", "-x509", "-newkey", "rsa:2048",
-            "-keyout", KEY_FILE, "-out", CERT_FILE,
-            "-days", "365", "-nodes",
-            "-subj", "/CN=localhost",
-        ], check=True, capture_output=True)
-        print("[OB] Generated self-signed certs in certs/")
-        return True
-    except (FileNotFoundError, subprocess.CalledProcessError) as e:
-        print(f"[OB] Could not generate certs (openssl not found?): {e}")
-        return False
 
 
 def safe_path(base, *parts):
@@ -124,6 +100,8 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
         parsed = urlparse(self.path)
         if parsed.path == "/api/module-structure":
             self.handle_module_structure(parse_qs(parsed.query))
+        elif parsed.path == "/api/exact-steps":
+            self.handle_get_exact_steps(parse_qs(parsed.query))
         else:
             super().do_GET()
 
@@ -139,6 +117,8 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
             self.handle_update_topic_metadata()
         elif parsed.path == "/api/module-metadata":
             self.handle_update_module_metadata()
+        elif parsed.path == "/api/exact-steps":
+            self.handle_update_exact_steps()
         else:
             self.send_error(404)
 
@@ -152,6 +132,8 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
             self.handle_add_quiz_question()
         elif parsed.path == "/api/glossary-term":
             self.handle_add_glossary_term()
+        elif parsed.path == "/api/exact-steps":
+            self.handle_create_exact_steps()
         elif parsed.path == "/api/undo":
             self.handle_undo()
         else:
@@ -995,6 +977,92 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
         self.send_json(200, {"ok": True,
                              "undoId": undo_id, "filePath": self._rel_path(filepath, course_id)})
 
+    # ── GET /api/exact-steps ──
+
+    def handle_get_exact_steps(self, qs):
+        course_id = (qs.get("courseId") or [None])[0]
+        exercise_id = (qs.get("exerciseId") or [None])[0]
+
+        if not course_id or not exercise_id:
+            self.send_json_error(400, "courseId and exerciseId are required")
+            return
+
+        filepath = safe_path(COURSES_DIR, course_id, "exercises", exercise_id + ".json")
+        if not filepath or not os.path.isfile(filepath):
+            self.send_json_error(404, "Exact steps not found")
+            return
+
+        try:
+            with open(filepath, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except (json.JSONDecodeError, OSError) as e:
+            self.send_json_error(500, f"Failed to read exact steps: {e}")
+            return
+
+        self.send_json(200, data)
+
+    # ── POST /api/exact-steps ──
+
+    def handle_create_exact_steps(self):
+        data = self._read_json_body()
+        if data is None:
+            return
+
+        course_id = data.get("courseId")
+        exercise_id = data.get("exerciseId")
+        content = data.get("content")
+
+        if not all([course_id, exercise_id, content]):
+            self.send_json_error(400, "courseId, exerciseId, and content are required")
+            return
+
+        exercises_dir = safe_path(COURSES_DIR, course_id, "exercises")
+        if not exercises_dir:
+            self.send_json_error(403, "Invalid path")
+            return
+
+        os.makedirs(exercises_dir, exist_ok=True)
+
+        filepath = safe_path(exercises_dir, exercise_id + ".json")
+        if not filepath:
+            self.send_json_error(403, "Invalid exercise ID")
+            return
+
+        undo_id = self._write_json(filepath, content)
+        if undo_id is False:
+            return
+        self.send_json(200, {"ok": True,
+                             "undoId": undo_id, "filePath": self._rel_path(filepath, course_id)})
+
+    # ── PUT /api/exact-steps ──
+
+    def handle_update_exact_steps(self):
+        data = self._read_json_body()
+        if data is None:
+            return
+
+        course_id = data.get("courseId")
+        exercise_id = data.get("exerciseId")
+        content = data.get("content")
+
+        if not all([course_id, exercise_id, content]):
+            self.send_json_error(400, "courseId, exerciseId, and content are required")
+            return
+
+        filepath = safe_path(COURSES_DIR, course_id, "exercises", exercise_id + ".json")
+        if not filepath:
+            self.send_json_error(403, "Invalid path")
+            return
+
+        if not os.path.isfile(filepath):
+            os.makedirs(os.path.dirname(filepath), exist_ok=True)
+
+        undo_id = self._write_json(filepath, content)
+        if undo_id is False:
+            return
+        self.send_json(200, {"ok": True,
+                             "undoId": undo_id, "filePath": self._rel_path(filepath, course_id)})
+
     # ── POST /api/undo ──
 
     def handle_undo(self):
@@ -1108,26 +1176,19 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
         sys.stderr.write(f"[OB] {args[0]}\n")
 
 
+class ReusableHTTPServer(http.server.HTTPServer):
+    allow_reuse_address = True
+    allow_reuse_port = True
+
+
 def main():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    use_https = "--https" in sys.argv
-    server = http.server.HTTPServer(("", PORT), DevHandler)
-
-    protocol = "http"
-    if use_https:
-        if ensure_certs():
-            ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-            ctx.load_cert_chain(CERT_FILE, KEY_FILE)
-            server.socket = ctx.wrap_socket(server.socket, server_side=True)
-            protocol = "https"
-        else:
-            print("[OB] Falling back to HTTP (no certs)")
-
-    print(f"[OB] Dev server running at {protocol}://localhost:{PORT}")
+    server = ReusableHTTPServer(("", PORT), DevHandler)
+    print(f"[OB] Dev server running at http://localhost:{PORT}")
     print(f"[OB] Serving from: {os.getcwd()}")
     print(f"[OB]")
-    print(f"[OB]   View:  {protocol}://localhost:{PORT}?course=wc-ocp1")
-    print(f"[OB]   Edit:  {protocol}://localhost:{PORT}?course=wc-ocp1&edit=true")
+    print(f"[OB]   View:  http://localhost:{PORT}?course=wc-ocp1")
+    print(f"[OB]   Edit:  http://localhost:{PORT}?course=wc-ocp1&edit=true")
     print(f"[OB]")
     print(f"[OB] Press Ctrl+C to stop")
     try:

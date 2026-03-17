@@ -89,6 +89,10 @@
   "glossary.noResults": "No terms match your search.",
   "glossary.notAvailable": "Glossary not available.",
 
+  "topic.viewExactSteps": "View Exact Steps",
+  "exactSteps.title": "Exact Steps",
+  "exactSteps.stepsCompleted": "{done}/{total} verified",
+
   "notepad.title": "Notes",
   "notepad.placeholder": "Take notes as you learn...",
   "notepad.charCount": "{count} chars",

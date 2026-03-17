@@ -2426,6 +2426,59 @@
     }
   ]
 },
+    "exercises/ex1.json": {
+  "exerciseId": "ex1",
+  "title": "Exact Steps: Create an Option Set",
+  "tasks": [
+    {
+      "id": "ex1-t1",
+      "title": "Create the Option Set",
+      "steps": [
+        {
+          "action": "Navigate to <strong>Product > Option Sets</strong> in the left navigation pane",
+          "detail": "The Option Sets folder is located under the Product node in the folder tree.",
+          "hint": null
+        },
+        {
+          "action": "Right-click the <strong>Option Sets</strong> folder and select <strong>New Option Set</strong>",
+          "detail": "This opens the New Option Set creation wizard.",
+          "hint": "If you don't see the right-click menu, ensure you have the correct permissions."
+        },
+        {
+          "action": "Enter <code>Color Options</code> as the Name and click <strong>OK</strong>",
+          "detail": "The name must be unique within the product context.",
+          "hint": null
+        }
+      ]
+    },
+    {
+      "id": "ex1-t2",
+      "title": "Add Choices to the Option Set",
+      "steps": [
+        {
+          "action": "Open the newly created <strong>Color Options</strong> option set",
+          "detail": "Double-click or select and press Enter to open it.",
+          "hint": null
+        },
+        {
+          "action": "Click <strong>Add Choice</strong> in the toolbar",
+          "detail": "Each choice represents one selectable option for the customer.",
+          "hint": null
+        },
+        {
+          "action": "Enter <code>Red</code> as the choice name and click <strong>OK</strong>",
+          "detail": null,
+          "hint": null
+        },
+        {
+          "action": "Repeat to add <code>Blue</code> and <code>Green</code> choices",
+          "detail": "You should now have three choices in the option set.",
+          "hint": null
+        }
+      ]
+    }
+  ]
+},
     "i18n/ui-en.json": {
   "app.title": "Windchill OCP",
   "app.subtitle": "Onboarding",
@@ -2511,6 +2564,9 @@
   "glossary.searchPlaceholder": "Search terms...",
   "glossary.noResults": "No terms match your search.",
   "glossary.notAvailable": "Glossary not available.",
+  "topic.viewExactSteps": "View Exact Steps",
+  "exactSteps.title": "Exact Steps",
+  "exactSteps.stepsCompleted": "{done}/{total} verified",
   "notepad.title": "Notes",
   "notepad.placeholder": "Take notes as you learn...",
   "notepad.charCount": "{count} chars",
@@ -2528,11 +2584,57 @@
   "catalog.prerequisite": "Prerequisite",
   "catalog.backToCatalog": "All Courses",
   "search.placeholder": "Search course...",
+  "search.placeholderGlobal": "Search all courses...",
   "search.noResults": "No results found.",
+  "search.building": "Building search index...",
   "search.resultCount": "{count} results",
   "search.topicResults": "Topics",
   "search.glossaryResults": "Glossary",
   "search.quizResults": "Quiz Questions",
+  "sidebar.help": "Help",
+  "help.title": "Help Guide",
+  "help.subtitle": "Learn how to use the PTC Training platform",
+  "help.gettingStarted": "Getting Started",
+  "help.navigatingCourses": "Navigating Courses",
+  "help.topicIconsKey": "Topic Icons Key",
+  "help.iconCol": "Icon",
+  "help.typeCol": "Type",
+  "help.descCol": "Description",
+  "help.conceptType": "Concept",
+  "help.conceptDesc": "Reading-based learning content with explanations and visuals",
+  "help.interactiveType": "Interactive",
+  "help.interactiveDesc": "Topics with match or sort activities to reinforce learning",
+  "help.exerciseType": "Exercise",
+  "help.exerciseDesc": "Hands-on practice with step-by-step tasks and checklists",
+  "help.exercises": "Exercises",
+  "help.search": "Search",
+  "help.otherFeatures": "Other Features",
+  "help.keyboardShortcuts": "Keyboard Shortcuts",
+  "help.shortcutCol": "Shortcut",
+  "help.actionCol": "Action",
+  "help.shortcutSearch": "Open search",
+  "celebrate.topicDone": "Topic complete!",
+  "celebrate.moduleDone": "Module {num} Complete!",
+  "celebrate.courseComplete": "Course Complete!",
+  "celebrate.streakDays": "day streak",
+  "celebrate.streakEncourage": "Keep it going!",
+  "celebrate.todayTopics": "{count} topic(s) completed today",
+  "celebrate.continue": "Continue",
+  "celebrate.backToDashboard": "Back to Dashboard",
+  "celebrate.badgesTitle": "Badges",
+  "celebrate.badgeLocked": "Not yet earned",
+  "celebrate.badgeEarned": "Badge earned",
+  "celebrate.streakTitle": "Streak",
+  "celebrate.noStreakYet": "Complete a topic to start your streak!",
+  "badge.first-topic": "First Step",
+  "badge.five-topics": "Getting Going",
+  "badge.halfway": "Halfway There",
+  "badge.module-master": "Module Master",
+  "badge.perfect-quiz": "Perfect Score",
+  "badge.all-quizzes": "Quiz Champion",
+  "badge.course-complete": "Graduate",
+  "badge.streak-3": "On Fire",
+  "badge.streak-7": "Week Warrior",
   "locale.en": "English",
   "locale.fr": "Français",
   "locale.de": "Deutsch",

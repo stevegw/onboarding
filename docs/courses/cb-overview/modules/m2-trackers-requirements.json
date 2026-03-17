@@ -18,6 +18,13 @@
           "text": "What Is a Tracker?"
         },
         {
+          "type": "image",
+          "src": "images/cbfun_trackers-1.png",
+          "alt": "Codebeamer trackers image",
+          "caption": "Codebeamer Trackers",
+          "size": "small"
+        },
+        {
           "type": "paragraph",
           "text": "A tracker is a configurable container that holds a collection of related items. Each tracker defines the fields (attributes), workflows (state transitions), and permissions for its items. Think of a tracker as a specialized database table, but with built-in workflow, notification, and traceability capabilities."
         },
@@ -28,12 +35,32 @@
         },
         {
           "type": "comparison-table",
-          "headers": ["Tracker Type", "Purpose", "Examples"],
+          "headers": [
+            "Tracker Type",
+            "Purpose",
+            "Examples"
+          ],
           "rows": [
-            ["Requirements", "Capture and manage requirements at different levels", "Customer Requirements, System Requirements, Software Requirements"],
-            ["Development", "Track development work items and code artifacts", "Tasks, User Stories, Epics, Bugs"],
-            ["Testing", "Manage test planning and execution", "Test Cases, Test Runs, Test Configurations"],
-            ["Project Management", "Track project activities and milestones", "Releases, Sprints, Risks, Change Requests"]
+            [
+              "Requirements",
+              "Capture and manage requirements at different levels",
+              "Customer Requirements, System Requirements, Software Requirements"
+            ],
+            [
+              "Development",
+              "Track development work items and code artifacts",
+              "Tasks, User Stories, Epics, Bugs"
+            ],
+            [
+              "Testing",
+              "Manage test planning and execution",
+              "Test Cases, Test Runs, Test Configurations"
+            ],
+            [
+              "Project Management",
+              "Track project activities and milestones",
+              "Releases, Sprints, Risks, Change Requests"
+            ]
           ]
         },
         {
@@ -54,10 +81,22 @@
           "type": "interactive-match",
           "prompt": "Match each tracker type to its primary purpose:",
           "pairs": [
-            {"left": "Requirements tracker", "right": "Capture and manage product requirements"},
-            {"left": "Bug tracker", "right": "Track defects found during development and testing"},
-            {"left": "Test Case tracker", "right": "Define and manage test specifications"},
-            {"left": "Release tracker", "right": "Track project milestones and delivery schedules"}
+            {
+              "left": "Requirements tracker",
+              "right": "Capture and manage product requirements"
+            },
+            {
+              "left": "Bug tracker",
+              "right": "Track defects found during development and testing"
+            },
+            {
+              "left": "Test Case tracker",
+              "right": "Define and manage test specifications"
+            },
+            {
+              "left": "Release tracker",
+              "right": "Track project milestones and delivery schedules"
+            }
           ]
         }
       ],
@@ -114,11 +153,27 @@
         },
         {
           "type": "comparison-table",
-          "headers": ["Level", "Tracker", "Audience"],
+          "headers": [
+            "Level",
+            "Tracker",
+            "Audience"
+          ],
           "rows": [
-            ["Stakeholder / Customer", "Customer Requirements", "Business stakeholders, product owners"],
-            ["System", "System Requirements", "Systems engineers, architects"],
-            ["Software / Hardware", "Software Requirements, Hardware Requirements", "Developers, hardware engineers"]
+            [
+              "Stakeholder / Customer",
+              "Customer Requirements",
+              "Business stakeholders, product owners"
+            ],
+            [
+              "System",
+              "System Requirements",
+              "Systems engineers, architects"
+            ],
+            [
+              "Software / Hardware",
+              "Software Requirements, Hardware Requirements",
+              "Developers, hardware engineers"
+            ]
           ]
         },
         {
@@ -150,12 +205,27 @@
         },
         {
           "type": "comparison-table",
-          "headers": ["Concept", "Description"],
+          "headers": [
+            "Concept",
+            "Description"
+          ],
           "rows": [
-            ["State", "A named stage in the item's lifecycle (e.g., New, In Progress, Resolved, Closed)"],
-            ["Transition", "A defined path from one state to another (e.g., New → In Progress). Transitions can have guards and actions."],
-            ["Guard", "A condition that must be met before a transition can occur (e.g., all required fields filled)"],
-            ["Action", "An automatic operation triggered by a transition (e.g., send notification, update field)"]
+            [
+              "State",
+              "A named stage in the item's lifecycle (e.g., New, In Progress, Resolved, Closed)"
+            ],
+            [
+              "Transition",
+              "A defined path from one state to another (e.g., New → In Progress). Transitions can have guards and actions."
+            ],
+            [
+              "Guard",
+              "A condition that must be met before a transition can occur (e.g., all required fields filled)"
+            ],
+            [
+              "Action",
+              "An automatic operation triggered by a transition (e.g., send notification, update field)"
+            ]
           ]
         },
         {
@@ -193,9 +263,18 @@
           "type": "interactive-match",
           "prompt": "Match each view option to its best use case:",
           "pairs": [
-            {"left": "Document View", "right": "Reading and editing requirements in context"},
-            {"left": "Table View", "right": "Bulk editing and comparing items across attributes"},
-            {"left": "Kanban View", "right": "Visual tracking of item progress through workflow states"}
+            {
+              "left": "Document View",
+              "right": "Reading and editing requirements in context"
+            },
+            {
+              "left": "Table View",
+              "right": "Bulk editing and comparing items across attributes"
+            },
+            {
+              "left": "Kanban View",
+              "right": "Visual tracking of item progress through workflow states"
+            }
           ]
         }
       ],
@@ -403,14 +482,42 @@
         },
         {
           "type": "comparison-table",
-          "headers": ["View", "Best For", "Key Features"],
+          "headers": [
+            "View",
+            "Best For",
+            "Key Features"
+          ],
           "rows": [
-            ["Document View", "Authoring and reviewing requirements in context", "Hierarchical display, inline editing, rich text support"],
-            ["Table View", "Bulk operations and data comparison", "Sortable columns, inline editing, column customization"],
-            ["Kanban View", "Visual progress tracking", "Drag-and-drop state transitions, WIP limits, swimlanes"],
-            ["Document Edit View", "Focused document authoring", "Full-screen editing, section numbering, export support"],
-            ["Traceability Report", "Analyzing cross-tracker relationships", "Graph of links between items across trackers"],
-            ["Test Coverage", "Verifying requirement test coverage", "Shows which requirements have linked test cases and their pass/fail status"]
+            [
+              "Document View",
+              "Authoring and reviewing requirements in context",
+              "Hierarchical display, inline editing, rich text support"
+            ],
+            [
+              "Table View",
+              "Bulk operations and data comparison",
+              "Sortable columns, inline editing, column customization"
+            ],
+            [
+              "Kanban View",
+              "Visual progress tracking",
+              "Drag-and-drop state transitions, WIP limits, swimlanes"
+            ],
+            [
+              "Document Edit View",
+              "Focused document authoring",
+              "Full-screen editing, section numbering, export support"
+            ],
+            [
+              "Traceability Report",
+              "Analyzing cross-tracker relationships",
+              "Graph of links between items across trackers"
+            ],
+            [
+              "Test Coverage",
+              "Verifying requirement test coverage",
+              "Shows which requirements have linked test cases and their pass/fail status"
+            ]
           ]
         },
         {
@@ -448,10 +555,22 @@
           "type": "interactive-match",
           "prompt": "Match each scenario to the best tracker view:",
           "pairs": [
-            {"left": "A requirements engineer is writing a specification document", "right": "Document View"},
-            {"left": "A project manager wants to see sprint progress at a glance", "right": "Kanban View"},
-            {"left": "A test lead needs to verify all requirements have tests", "right": "Test Coverage"},
-            {"left": "An engineer needs to see all items affected by a requirement change", "right": "Traceability Report"}
+            {
+              "left": "A requirements engineer is writing a specification document",
+              "right": "Document View"
+            },
+            {
+              "left": "A project manager wants to see sprint progress at a glance",
+              "right": "Kanban View"
+            },
+            {
+              "left": "A test lead needs to verify all requirements have tests",
+              "right": "Test Coverage"
+            },
+            {
+              "left": "An engineer needs to see all items affected by a requirement change",
+              "right": "Traceability Report"
+            }
           ]
         }
       ],

@@ -159,6 +159,46 @@
     return { done: done, total: total };
   }
 
+  /* Exact-steps progress (separate from main exercise progress) */
+  function getExactSteps() {
+    return load(key("exactSteps")) || {};
+  }
+
+  function getExactStepProgress(exerciseId, tasks) {
+    var data = getExactSteps();
+    var ex = data[exerciseId];
+    var done = 0;
+    var total = 0;
+    tasks.forEach(function (task) {
+      task.steps.forEach(function (_step, idx) {
+        total++;
+        if (ex && ex.steps && ex.steps[task.id + "-" + idx]) done++;
+      });
+    });
+    return { done: done, total: total };
+  }
+
+  function isExactStepDone(exerciseId, taskId, stepIdx) {
+    var data = getExactSteps();
+    var ex = data[exerciseId];
+    if (!ex || !ex.steps) return false;
+    return !!ex.steps[taskId + "-" + stepIdx];
+  }
+
+  function completeExactStep(exerciseId, taskId, stepIdx) {
+    var data = getExactSteps();
+    if (!data[exerciseId]) data[exerciseId] = { steps: {} };
+    data[exerciseId].steps[taskId + "-" + stepIdx] = true;
+    save(key("exactSteps"), data);
+  }
+
+  function uncompleteExactStep(exerciseId, taskId, stepIdx) {
+    var data = getExactSteps();
+    if (!data[exerciseId] || !data[exerciseId].steps) return;
+    delete data[exerciseId].steps[taskId + "-" + stepIdx];
+    save(key("exactSteps"), data);
+  }
+
   /* Route memory (per-course) */
   function saveRoute(hash) {
     saveRaw(key("currentRoute"), hash);
@@ -179,7 +219,7 @@
 
   /* Reset current course progress */
   function resetAll() {
-    var keysToRemove = ["topics", "quizzes", "exercises", "currentRoute", "notepad", "notepad_open", "badges", "activity"];
+    var keysToRemove = ["topics", "quizzes", "exercises", "exactSteps", "currentRoute", "notepad", "notepad_open", "badges", "activity"];
     keysToRemove.forEach(function (k) {
       try { localStorage.removeItem(key(k)); } catch (e) { /* ignore */ }
     });
@@ -203,6 +243,10 @@
     completeStep: completeStep,
     uncompleteStep: uncompleteStep,
     getExerciseProgress: getExerciseProgress,
+    getExactStepProgress: getExactStepProgress,
+    isExactStepDone: isExactStepDone,
+    completeExactStep: completeExactStep,
+    uncompleteExactStep: uncompleteExactStep,
     getModuleProgress: getModuleProgress,
     getCourseProgress: getCourseProgress,
     saveRoute: saveRoute,

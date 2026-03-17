@@ -463,6 +463,13 @@
           "text": "You need access to the Codebeamer training server to complete this exercise. Your instructor will provide the URL and login credentials."
         },
         {
+          "type": "image",
+          "src": "images/codebeamer_login.png",
+          "alt": "Login UI and using Account Name Admin and password ptc",
+          "caption": "Login UI and using Account Name Admin and password ptc",
+          "size": "small"
+        },
+        {
           "type": "exercise",
           "exerciseId": "set-up-your-environment",
           "title": "Set Up Your Environment",
@@ -473,7 +480,7 @@
               "title": "Log In and Explore the Interface",
               "steps": [
                 {
-                  "action": "log in with the credentials provided by your instructor. \nOr try these Type the following user credentials and then click Login. <br>• Account name: <strong>admin </strong><br>• Password: <strong>ptc </strong> <br>Helpful Links Open the Codebeamer training URL in your browser \nhttps://learningconnector.ptc.com/tutorial/1722405367765/set-up-environment",
+                  "action": "log in with the credentials provided by your instructor.&amp;nbsp;",
                   "detail": "Codebeamer is a web-based application. After logging in, you will see the main dashboard which provides quick access to your projects, recent items, and notifications.",
                   "hint": "Use a modern browser (Chrome, Firefox, Edge) for the best experience."
                 },
@@ -494,13 +501,6 @@
               ]
             }
           ]
-        },
-        {
-          "type": "image",
-          "src": "images/codebeamer_login.png",
-          "alt": "Login UI and using Account Name Admin and password ptc",
-          "caption": "Login UI and using Account Name Admin and password ptc",
-          "size": "medium"
         }
       ],
       "keyTakeaways": [
@@ -598,6 +598,13 @@
           "type": "heading",
           "level": 2,
           "text": "What Is a Tracker?"
+        },
+        {
+          "type": "image",
+          "src": "images/cbfun_trackers-1.png",
+          "alt": "Codebeamer trackers image",
+          "caption": "Codebeamer Trackers",
+          "size": "small"
         },
         {
           "type": "paragraph",
@@ -2271,6 +2278,102 @@
     }
   ]
 },
+    "exercises/set-up-your-environment.json": {
+  "exerciseId": "set-up-your-environment",
+  "title": "Exact Steps: set-up-your-environment",
+  "tasks": [
+    {
+      "id": "set-up-your-environment-t1",
+      "title": "Import a Project and Add Users",
+      "steps": [
+        {
+          "action": "Click the Projects tab."
+        },
+        {
+          "action": "Click New Project."
+        },
+        {
+          "action": "Select Attach a File and open W:\\Course Files\\CBFD-OVER\\PTC_Electric_Car.zip."
+        },
+        {
+          "action": "Click Next."
+        },
+        {
+          "action": "Observe the values in the Name and Key fields.<br><em>Note: The Key is a string that can be appended to tracker items to easily identify their project identity.</em>"
+        },
+        {
+          "action": "Ensure the checkboxes are selected for Include all Work Items and Documents and Include Wiki pages."
+        },
+        {
+          "action": "Click Finish."
+        },
+        {
+          "action": "Click the vertical ellipsis (?) in the Admin tab and select Members.<br><em>Note: Vertical ellipses often display a dropdown list in Codebeamer.</em>"
+        },
+        {
+          "action": "From the toolbar, click Add new Member."
+        },
+        {
+          "action": "In the Add new Member dialog under Step 1, type yut and select Yuta Systems Engineer when the suggestion pop-up dialog appears."
+        },
+        {
+          "action": "Next to yuta, type k and then select Kartini Requirements Engineer when the suggestion pop-up"
+        },
+        {
+          "action": "dialog appears."
+        },
+        {
+          "action": "Under Step 2, select the checkboxes for Developer and Tester."
+        },
+        {
+          "action": "Click Add."
+        },
+        {
+          "action": "Click Add new Member."
+        },
+        {
+          "action": "Under Step 1, type jiw and select Jiwan Release Manager."
+        },
+        {
+          "action": "Under Step 2, select the checkbox for Stakeholder."
+        },
+        {
+          "action": "Click Add."
+        }
+      ]
+    },
+    {
+      "id": "set-up-your-environment-t2",
+      "title": "Examine Customer Requirements",
+      "steps": [
+        {
+          "action": "Click the Trackers tab."
+        },
+        {
+          "action": "Observe the tracker tree to the left and a dashboard with widgets to the right.<br><em>Note: The concepts of trackers and dashboards in Codebeamer will be discussed in more detail later.</em>"
+        },
+        {
+          "action": "In the tracker tree, double-click Customer Requirement Specifications to open the customer requirements tracker."
+        },
+        {
+          "action": "Observe the three requirements in the tracker.<br><em>Note: These are requirements for the electric car design as supplied to the project team by the customer.</em>"
+        },
+        {
+          "action": "From the toolbar, click the Settings (gear) icon."
+        },
+        {
+          "action": "In the Settings dialog, select the checkboxes for Work Item Key-IDs and Numbering."
+        },
+        {
+          "action": "Click Save."
+        },
+        {
+          "action": "Observe the changes to requirements in the tracker tree.<br><em>Note: The tracker items (customer requirements) in the list are now numbered. They also bear a unique Key ID that identifies them as belonging to the Customer Requirement Specifications tracker and have a unique index number for that tracker.</em><br><em>Note: These settings will now apply to all trackers  display views.</em>"
+        }
+      ]
+    }
+  ]
+},
     "i18n/ui-en.json": {
   "app.title": "Windchill OCP",
   "app.subtitle": "Onboarding",
@@ -2356,6 +2459,9 @@
   "glossary.searchPlaceholder": "Search terms...",
   "glossary.noResults": "No terms match your search.",
   "glossary.notAvailable": "Glossary not available.",
+  "topic.viewExactSteps": "View Exact Steps",
+  "exactSteps.title": "Exact Steps",
+  "exactSteps.stepsCompleted": "{done}/{total} verified",
   "notepad.title": "Notes",
   "notepad.placeholder": "Take notes as you learn...",
   "notepad.charCount": "{count} chars",
@@ -2373,11 +2479,57 @@
   "catalog.prerequisite": "Prerequisite",
   "catalog.backToCatalog": "All Courses",
   "search.placeholder": "Search course...",
+  "search.placeholderGlobal": "Search all courses...",
   "search.noResults": "No results found.",
+  "search.building": "Building search index...",
   "search.resultCount": "{count} results",
   "search.topicResults": "Topics",
   "search.glossaryResults": "Glossary",
   "search.quizResults": "Quiz Questions",
+  "sidebar.help": "Help",
+  "help.title": "Help Guide",
+  "help.subtitle": "Learn how to use the PTC Training platform",
+  "help.gettingStarted": "Getting Started",
+  "help.navigatingCourses": "Navigating Courses",
+  "help.topicIconsKey": "Topic Icons Key",
+  "help.iconCol": "Icon",
+  "help.typeCol": "Type",
+  "help.descCol": "Description",
+  "help.conceptType": "Concept",
+  "help.conceptDesc": "Reading-based learning content with explanations and visuals",
+  "help.interactiveType": "Interactive",
+  "help.interactiveDesc": "Topics with match or sort activities to reinforce learning",
+  "help.exerciseType": "Exercise",
+  "help.exerciseDesc": "Hands-on practice with step-by-step tasks and checklists",
+  "help.exercises": "Exercises",
+  "help.search": "Search",
+  "help.otherFeatures": "Other Features",
+  "help.keyboardShortcuts": "Keyboard Shortcuts",
+  "help.shortcutCol": "Shortcut",
+  "help.actionCol": "Action",
+  "help.shortcutSearch": "Open search",
+  "celebrate.topicDone": "Topic complete!",
+  "celebrate.moduleDone": "Module {num} Complete!",
+  "celebrate.courseComplete": "Course Complete!",
+  "celebrate.streakDays": "day streak",
+  "celebrate.streakEncourage": "Keep it going!",
+  "celebrate.todayTopics": "{count} topic(s) completed today",
+  "celebrate.continue": "Continue",
+  "celebrate.backToDashboard": "Back to Dashboard",
+  "celebrate.badgesTitle": "Badges",
+  "celebrate.badgeLocked": "Not yet earned",
+  "celebrate.badgeEarned": "Badge earned",
+  "celebrate.streakTitle": "Streak",
+  "celebrate.noStreakYet": "Complete a topic to start your streak!",
+  "badge.first-topic": "First Step",
+  "badge.five-topics": "Getting Going",
+  "badge.halfway": "Halfway There",
+  "badge.module-master": "Module Master",
+  "badge.perfect-quiz": "Perfect Score",
+  "badge.all-quizzes": "Quiz Champion",
+  "badge.course-complete": "Graduate",
+  "badge.streak-3": "On Fire",
+  "badge.streak-7": "Week Warrior",
   "locale.en": "English",
   "locale.fr": "Français",
   "locale.de": "Deutsch",

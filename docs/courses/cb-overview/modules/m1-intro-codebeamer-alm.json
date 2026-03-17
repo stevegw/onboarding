@@ -284,6 +284,13 @@
           "text": "You need access to the Codebeamer training server to complete this exercise. Your instructor will provide the URL and login credentials."
         },
         {
+          "type": "image",
+          "src": "images/codebeamer_login.png",
+          "alt": "Login UI and using Account Name Admin and password ptc",
+          "caption": "Login UI and using Account Name Admin and password ptc",
+          "size": "small"
+        },
+        {
           "type": "exercise",
           "exerciseId": "set-up-your-environment",
           "title": "Set Up Your Environment",
@@ -294,7 +301,7 @@
               "title": "Log In and Explore the Interface",
               "steps": [
                 {
-                  "action": "log in with the credentials provided by your instructor. \nOr try these Type the following user credentials and then click Login. <br>• Account name: <strong>admin </strong><br>• Password: <strong>ptc </strong> <br>Helpful Links Open the Codebeamer training URL in your browser \nhttps://learningconnector.ptc.com/tutorial/1722405367765/set-up-environment",
+                  "action": "log in with the credentials provided by your instructor.&amp;nbsp;",
                   "detail": "Codebeamer is a web-based application. After logging in, you will see the main dashboard which provides quick access to your projects, recent items, and notifications.",
                   "hint": "Use a modern browser (Chrome, Firefox, Edge) for the best experience."
                 },
@@ -315,13 +322,6 @@
               ]
             }
           ]
-        },
-        {
-          "type": "image",
-          "src": "images/codebeamer_login.png",
-          "alt": "Login UI and using Account Name Admin and password ptc",
-          "caption": "Login UI and using Account Name Admin and password ptc",
-          "size": "medium"
         }
       ],
       "keyTakeaways": [
