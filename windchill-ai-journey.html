@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exploring AI for Windchill Enablement</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,600&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ptc-green:       #69be28;
+    --ptc-green-dark:  #4d8f1e;
+    --ptc-green-light: #edf7e0;
+    --ptc-gray:        #53565a;
+    --ptc-gray-mid:    #d0d0d0;
+    --ptc-gray-dark:   #2b2d2f;
+    --white:           #ffffff;
+    --text:            #2b2d2f;
+    --text-muted:      #6b6e72;
+    --border:          #e2e2e2;
+    --surface:         #f7f8f6;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--text);
+    font-family: 'Raleway', 'Open Sans', 'Century Gothic', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+  }
+
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px;
+    background: var(--ptc-green); z-index: 200; transition: width 0.1s linear;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 3rem; height: 60px;
+    background: var(--white); border-bottom: 1px solid var(--border);
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  }
+
+  .nav-brand { display: flex; align-items: center; gap: 0.75rem; }
+  .ptc-mark { width: 30px; height: 30px; flex-shrink: 0; }
+  .nav-title { font-size: 0.76rem; font-weight: 700; color: var(--ptc-gray); letter-spacing: 0.05em; text-transform: uppercase; }
+  .nav-title span { color: var(--ptc-green); }
+  .nav-dots { display: flex; gap: 0.45rem; align-items: center; }
+  .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ptc-gray-mid); cursor: pointer; transition: all 0.25s; border: none; padding: 0; }
+  .nav-dot.active { background: var(--ptc-green); transform: scale(1.4); }
+  .nav-dot:hover { background: var(--ptc-gray); }
+  .nav-label { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.08em; font-weight: 600; min-width: 150px; text-align: right; text-transform: uppercase; }
+
+  section { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 6rem 5rem 5rem; position: relative; overflow: hidden; }
+  .section-inner { max-width: 1100px; width: 100%; margin: 0 auto; }
+
+  .section-tag { font-size: 0.67rem; font-weight: 700; color: var(--ptc-green); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+  .section-tag::before { content: ''; display: inline-block; width: 18px; height: 2px; background: var(--ptc-green); flex-shrink: 0; }
+
+  h1 { font-size: clamp(2.2rem, 5.5vw, 4rem); font-weight: 700; line-height: 1.1; color: var(--ptc-gray-dark); margin-bottom: 1.25rem; letter-spacing: -0.015em; }
+  h1 em { font-style: italic; color: var(--ptc-green); font-weight: 600; }
+  h2 { font-size: clamp(1.6rem, 3vw, 2.5rem); font-weight: 700; line-height: 1.18; color: var(--ptc-gray-dark); margin-bottom: 1rem; letter-spacing: -0.01em; }
+  h2 em { font-style: italic; color: var(--ptc-green); font-weight: 600; }
+
+  p { line-height: 1.8; color: var(--text); font-size: 1rem; font-weight: 400; }
+  .lead { font-size: 1.02rem; color: var(--text-muted); line-height: 1.8; font-weight: 400; }
+
+  /* ══ COVER ══ */
+  #cover { background: var(--white); }
+  #cover::after {
+    content: ''; position: absolute; top: 0; right: 0;
+    width: 40%; height: 100%;
+    background: linear-gradient(140deg, var(--ptc-green-light) 0%, rgba(105,190,40,0.03) 65%, transparent 100%);
+    clip-path: polygon(18% 0, 100% 0, 100% 100%, 0% 100%);
+    pointer-events: none;
+  }
+
+  .cover-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: center; position: relative; z-index: 1; }
+
+  .cover-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ptc-gray); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+  .cover-eyebrow::before { content: ''; display: inline-block; width: 18px; height: 2px; background: var(--ptc-green); }
+
+  .cover-body { margin-top: 1.25rem; font-size: 1rem; color: var(--text-muted); line-height: 1.82; max-width: 52ch; }
+
+  .cover-cta { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 2rem; padding: 0.72rem 1.4rem; background: var(--ptc-green); color: var(--white); font-family: 'Raleway', sans-serif; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; transition: background 0.2s; }
+  .cover-cta:hover { background: var(--ptc-green-dark); }
+  .cover-cta svg { width: 13px; height: 13px; }
+
+  .cover-card { background: var(--white); border: 1px solid var(--border); }
+  .cover-card-header { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); font-size: 0.64rem; font-weight: 700; color: var(--ptc-gray); letter-spacing: 0.14em; text-transform: uppercase; }
+  .cover-card-row { display: grid; grid-template-columns: 2.5rem 1fr; border-bottom: 1px solid var(--border); transition: background 0.2s; }
+  .cover-card-row:last-child { border-bottom: none; }
+  .cover-card-row:hover { background: var(--ptc-green-light); }
+  .ccr-num { display: flex; align-items: flex-start; justify-content: center; padding-top: 1rem; font-size: 1.3rem; font-weight: 800; color: var(--ptc-gray-mid); transition: color 0.2s; }
+  .cover-card-row:hover .ccr-num { color: var(--ptc-green); }
+  .ccr-body { padding: 0.9rem 1.25rem 0.9rem 0; }
+  .ccr-title { font-size: 0.8rem; font-weight: 700; color: var(--ptc-gray-dark); margin-bottom: 0.2rem; }
+  .ccr-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; }
+  .ccr-tag { display: inline-block; margin-top: 0.35rem; font-size: 0.58rem; font-weight: 700; padding: 0.15rem 0.4rem; border: 1px solid var(--ptc-green); color: var(--ptc-green-dark); background: rgba(105,190,40,0.06); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  .scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.4rem; opacity: 0.25; animation: bounce 2s ease-in-out infinite; z-index: 2; }
+  .scroll-hint span { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ptc-gray); }
+  .scroll-arrow { width: 1px; height: 26px; background: var(--ptc-gray); position: relative; }
+  .scroll-arrow::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%) rotate(45deg); width: 5px; height: 5px; border-right: 1px solid var(--ptc-gray); border-bottom: 1px solid var(--ptc-gray); }
+  @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(7px); } }
+
+  /* ══ CONTEXT ══ */
+  #context { background: var(--surface); border-top: 1px solid var(--border); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4.5rem; align-items: start; }
+
+  .body-text { font-size: 0.95rem; color: var(--text-muted); line-height: 1.85; margin-bottom: 1rem; max-width: 54ch; }
+  .body-text:last-child { margin-bottom: 0; }
+  .body-text strong { color: var(--ptc-gray-dark); font-weight: 600; }
+
+  .doc-mock { background: var(--white); border: 1px solid var(--border); font-family: 'Open Sans', monospace; font-size: 0.71rem; line-height: 1.85; color: var(--text-muted); }
+  .doc-mock-bar { background: var(--ptc-gray-dark); padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.4rem; }
+  .doc-bar-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--ptc-gray); }
+  .doc-bar-title { font-size: 0.58rem; color: rgba(255,255,255,0.38); letter-spacing: 0.1em; margin-left: 0.25rem; }
+  .doc-content { padding: 1.4rem 1.5rem; }
+  .doc-line { margin-bottom: 0.12rem; }
+  .doc-line.h { color: var(--ptc-gray-dark); font-weight: 600; margin-top: 0.7rem; font-size: 0.75rem; }
+  .doc-line.indent { padding-left: 1rem; }
+  .doc-line.dim { opacity: 0.22; }
+  .doc-caption { font-size: 0.7rem; color: var(--text-muted); opacity: 0.5; margin-top: 0.7rem; font-style: italic; }
+
+  .enabler-note { margin-top: 2rem; background: var(--white); border: 1px solid var(--border); border-left: 3px solid var(--ptc-green); padding: 1.25rem 1.5rem; }
+  .enabler-note p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; font-style: italic; max-width: none; }
+  .enabler-note strong { color: var(--ptc-gray-dark); font-weight: 600; font-style: normal; }
+
+  /* ══ SCRAPING ══ */
+  #scraping { background: var(--white); border-top: 1px solid var(--border); }
+
+  .scraping-intro { margin-bottom: 2.5rem; }
+  .scraping-intro p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.85; max-width: 66ch; margin-top: 0.75rem; }
+
+  .version-stack { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+
+  .version-row { background: var(--white); display: grid; grid-template-columns: 9rem 1fr 1fr; transition: background 0.2s; cursor: default; }
+  .version-row:hover { background: var(--ptc-green-light); }
+  .version-row > * { padding: 1.75rem 2rem; border-right: 1px solid var(--border); }
+  .version-row > *:last-child { border-right: none; }
+
+  .v-label-col { display: flex; flex-direction: column; justify-content: flex-start; }
+  .v-badge { font-size: 0.58rem; font-weight: 700; color: var(--ptc-green); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.45rem; display: flex; align-items: center; gap: 0.4rem; }
+  .v-badge::before { content: ''; display: inline-block; width: 12px; height: 2px; background: var(--ptc-green); }
+  .v-name { font-size: 0.85rem; font-weight: 700; color: var(--ptc-gray-dark); line-height: 1.3; }
+
+  .v-what h4, .v-learned h4 { font-size: 0.64rem; font-weight: 700; color: var(--ptc-gray); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.6rem; }
+  .v-what p, .v-learned p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.65; }
+
+  .v-learned ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.1rem; }
+  .v-learned li { font-size: 0.8rem; color: var(--text-muted); padding-left: 0.85rem; position: relative; line-height: 1.5; }
+  .v-learned li::before { content: '–'; position: absolute; left: 0; opacity: 0.4; }
+  .v-learned li strong { color: var(--ptc-gray-dark); font-weight: 600; }
+
+  .scraping-summary { margin-top: 1.5rem; background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--ptc-gray-mid); padding: 1.4rem 1.75rem; }
+  .scraping-summary p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; max-width: none; }
+  .scraping-summary strong { color: var(--ptc-gray-dark); font-weight: 600; }
+
+  /* ══ CONTENT ══ */
+  #content-turn { background: var(--surface); border-top: 1px solid var(--border); }
+
+  .content-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4.5rem; align-items: start; }
+
+  .shift-list { margin-top: 1.75rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .shift-item { background: var(--white); border: 1px solid var(--border); border-left: 3px solid var(--ptc-gray-mid); display: grid; grid-template-columns: 2.5rem 1fr; transition: border-left-color 0.2s; }
+  .shift-item:hover { border-left-color: var(--ptc-green); }
+  .si-icon { display: flex; align-items: flex-start; justify-content: center; padding-top: 0.9rem; font-size: 1rem; }
+  .si-body { padding: 0.8rem 1rem 0.8rem 0; }
+  .si-title { font-size: 0.75rem; font-weight: 700; color: var(--ptc-gray-dark); margin-bottom: 0.2rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .si-text { font-size: 0.8rem; color: var(--text-muted); line-height: 1.55; }
+
+  .result-card { background: var(--white); border: 1px solid var(--border); border-top: 3px solid var(--ptc-green); }
+  .rc-header { padding: 1.25rem 1.75rem; border-bottom: 1px solid var(--border); }
+  .rc-header-label { font-size: 0.62rem; font-weight: 700; color: var(--ptc-gray); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 0.3rem; }
+  .rc-header-title { font-size: 0.95rem; font-weight: 700; color: var(--ptc-gray-dark); line-height: 1.3; }
+
+  .rc-compare { display: grid; grid-template-rows: 1fr 1fr; gap: 1px; background: var(--border); }
+  .rc-row { background: var(--white); padding: 1.4rem 1.75rem; }
+  .rc-row-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.45rem; }
+  .rc-row-label::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+  .rc-row-label.before { color: #c07070; }
+  .rc-row-label.after { color: var(--ptc-green); }
+  .rc-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .rc-list li { font-size: 0.8rem; color: var(--text-muted); padding-left: 0.85rem; position: relative; line-height: 1.45; }
+  .rc-list li::before { content: '–'; position: absolute; left: 0; opacity: 0.35; }
+
+  .platform-note { margin-top: 1.5rem; padding: 1.4rem 1.75rem; background: var(--ptc-green-light); border: 1px solid rgba(105,190,40,0.25); }
+  .platform-note p { font-size: 0.85rem; color: var(--ptc-gray-dark); line-height: 1.7; max-width: none; }
+  .platform-note strong { font-weight: 700; }
+
+  /* ══ REFLECTION ══ */
+  #reflection { background: var(--ptc-gray-dark); }
+  #reflection h2 { color: var(--white); }
+  #reflection .section-tag { color: var(--ptc-green); }
+  #reflection .section-tag::before { background: var(--ptc-green); }
+
+  .reflection-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 1.5rem; }
+
+  .learning-stack { display: flex; flex-direction: column; gap: 1px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.07); }
+  .learning-item { background: rgba(255,255,255,0.03); padding: 1.6rem 2rem; transition: background 0.2s; }
+  .learning-item:hover { background: rgba(105,190,40,0.08); }
+  .li-num { font-size: 0.58rem; font-weight: 700; color: var(--ptc-green); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .li-title { font-size: 0.93rem; font-weight: 700; color: var(--white); margin-bottom: 0.45rem; line-height: 1.3; }
+  .li-body { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.65; }
+
+  .central-thought { background: var(--ptc-green); padding: 2.25rem 2.5rem; margin-bottom: 1px; }
+  .ct-label { font-size: 0.6rem; font-weight: 700; color: rgba(255,255,255,0.6); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.85rem; }
+  .ct-text { font-size: 1.08rem; font-weight: 600; color: var(--white); line-height: 1.68; font-style: italic; max-width: 42ch; }
+
+  .harmony-note { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); padding: 1.75rem 2rem; }
+  .hn-label { font-size: 0.6rem; font-weight: 700; color: var(--ptc-green); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.6rem; }
+  .hn-text { font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.72; }
+
+  /* ══ CLOSE ══ */
+  #close { background: var(--surface); border-top: 1px solid var(--border); text-align: center; min-height: 65vh; }
+  .close-inner { max-width: 720px; margin: 0 auto; }
+  .close-inner h2 { margin-bottom: 1.25rem; }
+  .close-summary { font-size: 0.95rem; color: var(--text-muted); line-height: 1.82; margin: 0 auto 2.5rem; max-width: 56ch; text-align: center; }
+
+  .open-q-list { margin-top: 0; display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); text-align: left; }
+  .oq-item { background: var(--white); padding: 1.35rem 2rem; display: grid; grid-template-columns: 1.5rem 1fr; gap: 1rem; align-items: start; transition: background 0.2s; }
+  .oq-item:hover { background: var(--ptc-green-light); }
+  .oq-icon { font-size: 0.95rem; padding-top: 0.05rem; }
+  .oq-text { font-size: 0.87rem; color: var(--text-muted); line-height: 1.62; }
+  .oq-text strong { color: var(--ptc-gray-dark); font-weight: 700; }
+
+  .close-footer { margin-top: 3.5rem; font-size: 0.63rem; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.4; font-weight: 600; }
+
+  /* ── ANIMATION ── */
+  .fade-up { opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up:nth-child(2) { transition-delay: 0.08s; }
+  .fade-up:nth-child(3) { transition-delay: 0.16s; }
+  .fade-up:nth-child(4) { transition-delay: 0.24s; }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <div class="nav-brand">
+    <svg class="ptc-mark" viewBox="0 0 30 30" fill="none">
+      <path d="M15 1.5L27.5 8.5V21.5L15 28.5L2.5 21.5V8.5L15 1.5Z" fill="#53565a"/>
+      <path d="M15 15L27.5 8.5V21.5L15 28.5V15Z" fill="#69be28"/>
+    </svg>
+    <div class="nav-title">Windchill · <span>AI Exploration</span></div>
+  </div>
+  <div class="nav-dots" id="navDots"></div>
+  <div class="nav-label" id="navLabel">Overview</div>
+</nav>
+
+<!-- ══ COVER ══ -->
+<section id="cover">
+  <div class="section-inner">
+    <div class="cover-layout">
+      <div>
+        <div class="cover-eyebrow fade-up">A Personal Exploration · Windchill Enablement</div>
+        <h1 class="fade-up">Where does <em>AI fit</em><br>in Windchill learning?</h1>
+        <p class="cover-body fade-up">I spent several months testing this question myself — drawing on my experience as a long-term enabler to evaluate each approach honestly. This is what I tried, what I found, and what it taught me about how AI and human content expertise can work together.</p>
+        <button class="cover-cta fade-up" onclick="document.getElementById('context').scrollIntoView({behavior:'smooth'})">
+          Read the Journey
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 1v12M1 7l6 6 6-6"/></svg>
+        </button>
+      </div>
+
+      <div class="fade-up">
+        <div class="cover-card">
+          <div class="cover-card-header">The journey at a glance</div>
+          <div class="cover-card-row">
+            <div class="ccr-num">1</div>
+            <div class="ccr-body">
+              <div class="ccr-title">The starting observation</div>
+              <div class="ccr-desc">Windchill documentation exists — but learning from it is harder than it needs to be</div>
+            </div>
+          </div>
+          <div class="cover-card-row">
+            <div class="ccr-num">2</div>
+            <div class="ccr-body">
+              <div class="ccr-title">Web scraping — three attempts</div>
+              <div class="ccr-desc">An idea that seemed promising, but revealed a deeper truth about source quality</div>
+              <span class="ccr-tag">Includes local LLM test</span>
+            </div>
+          </div>
+          <div class="cover-card-row">
+            <div class="ccr-num">3</div>
+            <div class="ccr-body">
+              <div class="ccr-title">The content quality pivot</div>
+              <div class="ccr-desc">Switching to verified PDF sources and building for genuine learning flow</div>
+              <span class="ccr-tag">Key shift</span>
+            </div>
+          </div>
+          <div class="cover-card-row">
+            <div class="ccr-num">4</div>
+            <div class="ccr-body">
+              <div class="ccr-title">What this suggests</div>
+              <div class="ccr-desc">How AI and human content creators might work in better harmony</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="scroll-arrow"></div></div>
+</section>
+
+<!-- ══ CONTEXT ══ -->
+<section id="context">
+  <div class="section-inner">
+    <div class="section-tag fade-up">01 — The Starting Point</div>
+    <div class="two-col">
+      <div>
+        <h2 class="fade-up">Good documentation.<br><em>Hard to learn from.</em></h2>
+        <p class="body-text fade-up">As someone who has worked in enablement for a long time, I've seen how users actually relate to technical documentation. With Windchill, the pattern was familiar: the content is thorough and accurate, but it's structured for people who already understand the system — not for people still building that understanding.</p>
+        <p class="body-text fade-up">The web help covers features in isolation. Topics rarely explain how they connect to other parts of the system, or what a user is actually trying to achieve when they land on that page. The result is documentation that answers precise questions well, but doesn't help someone develop working knowledge of how Windchill fits together.</p>
+        <p class="body-text fade-up">This is the gap I wanted to explore using AI — not to replace the documentation, but to see whether AI could help bridge the distance between reference material and genuine understanding.</p>
+
+        <div class="enabler-note fade-up">
+          <p><strong>A note on the approach:</strong> I was the only person running these experiments. Being able to evaluate each result against experience of what good enablement looks like — what flows, what confuses, what learners actually need — was central to how I assessed what was and wasn't working.</p>
+        </div>
+      </div>
+
+      <div class="fade-up">
+        <div class="doc-mock">
+          <div class="doc-mock-bar">
+            <div class="doc-bar-dot"></div><div class="doc-bar-dot"></div><div class="doc-bar-dot"></div>
+            <div class="doc-bar-title">WINDCHILL WEB HELP — REPRESENTATIVE EXAMPLE</div>
+          </div>
+          <div class="doc-content">
+            <div class="doc-line h">3.4.2 — Access Control Entries</div>
+            <div class="doc-line">An Access Control Entry (ACE) defines the permissions that</div>
+            <div class="doc-line">apply to a principal for objects in a domain. ACEs are</div>
+            <div class="doc-line">evaluated in the context of the policy access control list.</div>
+            <div class="doc-line">&nbsp;</div>
+            <div class="doc-line h">Configuring ACEs</div>
+            <div class="doc-line indent">• Navigate to Site → Policy Administration</div>
+            <div class="doc-line indent">• Select the domain to configure</div>
+            <div class="doc-line indent">• See also: 3.4.1, 4.2.7, Appendix C</div>
+            <div class="doc-line">&nbsp;</div>
+            <div class="doc-line dim">Note: Default ACE evaluation order depends on the inheritance</div>
+            <div class="doc-line dim">model selected during initial configuration. Refer to the</div>
+            <div class="doc-line dim">Windchill PDMLink Installation Guide for domain hierarchy...</div>
+            <div class="doc-line dim">&nbsp;</div>
+            <div class="doc-line dim">See also: 2.1.4, 3.3.8, 4.2.1, 4.2.7, 5.1.1(b), 6.3.2...</div>
+          </div>
+        </div>
+        <p class="doc-caption">Accurate and detailed — but written for reference, not for building understanding in someone new to the topic.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SCRAPING ══ -->
+<section id="scraping">
+  <div class="section-inner">
+    <div class="section-tag fade-up">02 — The Web Scraping Experiments</div>
+    <div class="scraping-intro fade-up">
+      <h2>An idea that seemed right — <em>and what it actually taught me</em></h2>
+      <p>My first instinct was to use the web help pages themselves as the raw material. Scraping them programmatically felt like an elegant solution — the content was already there, AI could restructure it into something more learnable. I tried this three times, each version a response to what the previous one revealed.</p>
+    </div>
+
+    <div class="version-stack fade-up">
+      <div class="version-row">
+        <div class="v-label-col">
+          <div class="v-badge">Version 1</div>
+          <div class="v-name">Basic scraping + AI restructuring</div>
+        </div>
+        <div class="v-what">
+          <h4>What I tried</h4>
+          <p>Scraped Windchill web help pages and passed the raw content through the Claude API to generate scenario-based challenge cards — each with a question, context, progressive hints, and an answer.</p>
+        </div>
+        <div class="v-learned">
+          <h4>What I found</h4>
+          <ul>
+            <li>The pipeline worked technically and produced content quickly.</li>
+            <li><strong>But the output quality was inconsistent.</strong> Questions were sometimes off-target, answers occasionally missed the mark.</li>
+            <li>The web help's reference-style writing didn't give AI enough context to generate reliably useful learning material.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="version-row">
+        <div class="v-label-col">
+          <div class="v-badge">Version 2</div>
+          <div class="v-name">Refined prompting + local LLM</div>
+        </div>
+        <div class="v-what">
+          <h4>What I tried</h4>
+          <p>Refined the approach and introduced a local LLM (Ollama/Mistral) to explore whether a more dynamic, on-device model could improve adaptability and reduce dependency on external APIs. This was also a test of the concept of locally-run AI for enablement.</p>
+        </div>
+        <div class="v-learned">
+          <h4>What I found</h4>
+          <ul>
+            <li>The local LLM experiment was genuinely useful — it confirmed that <strong>dynamic AI-generated learning is technically feasible</strong>.</li>
+            <li>However, output quality with smaller local models was noticeably lower than with Claude.</li>
+            <li>The concept of dynamic content generation was validated even if this specific path got too abstract to pursue further.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="version-row">
+        <div class="v-label-col">
+          <div class="v-badge">Version 3</div>
+          <div class="v-name">Further iteration on scraping</div>
+        </div>
+        <div class="v-what">
+          <h4>What I tried</h4>
+          <p>A third pass at refining the scraping and generation pipeline, attempting to address the quality and consistency issues through better processing of the scraped content before passing it to AI.</p>
+        </div>
+        <div class="v-learned">
+          <h4>What I found</h4>
+          <ul>
+            <li>Incremental improvement, but the fundamental problem remained.</li>
+            <li><strong>The source material was the limiting factor</strong>, not the pipeline or the prompting.</li>
+            <li>No amount of refinement could fully compensate for web help content that lacked the depth and context needed for good learning material.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scraping-summary fade-up">
+      <p>Three attempts at web scraping taught me something I might not have arrived at another way: <strong>the quality of the output is determined almost entirely by the quality of the input.</strong> The scraping approach wasn't a failure — it was a necessary experiment that pointed clearly to where I needed to go next.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTENT TURN ══ -->
+<section id="content-turn">
+  <div class="section-inner">
+    <div class="section-tag fade-up">03 — The Content Quality Pivot</div>
+    <div class="content-layout">
+      <div>
+        <h2 class="fade-up">When the source improved,<br><em>everything improved.</em></h2>
+        <p class="body-text fade-up">Moving to official PTC PDF documentation as the source material changed the results noticeably. PDFs contain more complete explanations, proper context, and content that had been written with some thought for the reader. That gave AI something genuinely useful to work with.</p>
+        <p class="body-text fade-up">At the same time, I shifted focus from generating quizzes toward building interactive learning guides — content structured around how a user thinks through a Windchill task, not how the documentation is organised. The difference in how that landed was clear.</p>
+
+        <div class="shift-list fade-up">
+          <div class="shift-item">
+            <div class="si-icon">📋</div>
+            <div class="si-body">
+              <div class="si-title">PDF as the source of truth</div>
+              <div class="si-text">Official Windchill and Codebeamer PDFs gave AI enough context to produce accurate, complete learning content — not just structurally reformatted reference text.</div>
+            </div>
+          </div>
+          <div class="shift-item">
+            <div class="si-icon">🔁</div>
+            <div class="si-body">
+              <div class="si-title">Workflow order, not feature order</div>
+              <div class="si-text">Guides built around what a user is trying to do — rather than mirroring documentation structure — felt immediately more useful and easier to follow.</div>
+            </div>
+          </div>
+          <div class="shift-item">
+            <div class="si-icon">🎯</div>
+            <div class="si-body">
+              <div class="si-title">Learning flow matters</div>
+              <div class="si-text">Interactive HTML guides on real topics (Change Implementation, Access Control, role-permission matrices) got a stronger response — because they had a beginning, middle, and end that built understanding progressively.</div>
+            </div>
+          </div>
+          <div class="shift-item">
+            <div class="si-icon">🔓</div>
+            <div class="si-body">
+              <div class="si-title">No IT dependency by design</div>
+              <div class="si-text">Platform choices throughout were deliberately low-friction — browser-based, no login, no LMS infrastructure required. The goal was accessibility without organisational overhead.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up">
+        <div class="result-card">
+          <div class="rc-header">
+            <div class="rc-header-label">The difference in practice</div>
+            <div class="rc-header-title">Same topic. Very different learning experience.</div>
+          </div>
+          <div class="rc-compare">
+            <div class="rc-row">
+              <div class="rc-row-label before">Starting from web help</div>
+              <ul class="rc-list">
+                <li>Reference language without context</li>
+                <li>Isolated topic with no workflow connection</li>
+                <li>Requires the reader to already know why they're there</li>
+                <li>AI output inconsistent — some questions miss the mark</li>
+              </ul>
+            </div>
+            <div class="rc-row">
+              <div class="rc-row-label after">Starting from verified PDF</div>
+              <ul class="rc-list">
+                <li>Complete explanations with proper context</li>
+                <li>AI can reason about the topic accurately</li>
+                <li>Learning material follows a logical progression</li>
+                <li>Content feels authored, not generated</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="platform-note fade-up">
+          <p><strong>On platform choice:</strong> Throughout the exploration I deliberately avoided solutions that would require IT involvement or infrastructure decisions. The aim was to test ideas quickly and accessibly — to understand what works before asking anyone else to commit to it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ REFLECTION ══ -->
+<section id="reflection">
+  <div class="section-inner">
+    <div class="section-tag fade-up">04 — What I've Concluded</div>
+    <h2 class="fade-up">AI works best when it works<br>alongside human expertise —<br><em>not instead of it.</em></h2>
+
+    <div class="reflection-layout fade-up">
+      <div>
+        <div class="learning-stack">
+          <div class="learning-item">
+            <div class="li-num">Finding 01</div>
+            <div class="li-title">Source quality is everything</div>
+            <div class="li-body">The scraping experiments made this undeniable. AI amplifies what's in the source material — if the source is shallow or context-free, so is the output. Verified, well-written documentation produces genuinely useful learning content.</div>
+          </div>
+          <div class="learning-item">
+            <div class="li-num">Finding 02</div>
+            <div class="li-title">Dynamic AI-generated learning is feasible</div>
+            <div class="li-body">The local LLM experiment confirmed the concept works, even if that specific path wasn't the right one to pursue. AI can generate responsive, contextual learning content — the question is how to do it reliably and at acceptable quality.</div>
+          </div>
+          <div class="learning-item">
+            <div class="li-num">Finding 03</div>
+            <div class="li-title">The enabler's role doesn't disappear</div>
+            <div class="li-body">Experienced judgement was essential at every stage — recognising when output was off-target, understanding why, and knowing what good learning design looks like. AI accelerates the work; it doesn't replace the expertise behind it.</div>
+          </div>
+          <div class="learning-item">
+            <div class="li-num">Finding 04</div>
+            <div class="li-title">Flow and accessibility matter as much as accuracy</div>
+            <div class="li-body">Technically correct content that doesn't flow, or that lives in a place users won't find it, doesn't achieve anything. The delivery and the design of the learning experience matter just as much as what's in it.</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="central-thought">
+          <div class="ct-label">The central conclusion</div>
+          <p class="ct-text">The most interesting possibility isn't AI replacing content creation — it's AI and human content expertise working in harmony. The human brings validated knowledge, learning design, and judgement. AI brings scale, accessibility, and the ability to make that knowledge findable at the moment it's needed.</p>
+        </div>
+
+        <div class="harmony-note">
+          <div class="hn-label">On the broader question</div>
+          <p class="hn-text">This exploration was genuinely about understanding where AI fits — not proving that it does. What it's shown me is that the value isn't in automating enablement away. It's in using AI to extend what a skilled enabler can do: turning good source material into learning experiences that reach more people, more often, with less friction. What happens with that understanding is a question for the organisation to answer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CLOSE ══ -->
+<section id="close">
+  <div class="section-inner">
+    <div class="close-inner">
+      <div class="section-tag fade-up" style="justify-content:center">05 — Questions Worth Asking Next</div>
+      <h2 class="fade-up">The exploration surfaced<br>some <em>useful open questions</em></h2>
+      <p class="close-summary fade-up">These aren't recommendations — they're honest questions that follow from what the experiments revealed. Where the organisation wants to take them is a separate conversation.</p>
+
+      <div class="open-q-list fade-up">
+        <div class="oq-item">
+          <div class="oq-icon">💬</div>
+          <div class="oq-text"><strong>Where do users go today when they're stuck in Windchill?</strong> Understanding this current behaviour is essential before deciding how or whether to change it.</div>
+        </div>
+        <div class="oq-item">
+          <div class="oq-icon">📋</div>
+          <div class="oq-text"><strong>Which PTC PDFs would form the most useful validated knowledge base?</strong> The source selection matters enormously — not all documentation is equally suitable as learning material.</div>
+        </div>
+        <div class="oq-item">
+          <div class="oq-icon">🤝</div>
+          <div class="oq-text"><strong>How should content creators and AI tools work together in practice?</strong> The experimentation suggests there's a productive model here — but it needs to be designed deliberately, not assumed.</div>
+        </div>
+        <div class="oq-item">
+          <div class="oq-icon">🔗</div>
+          <div class="oq-text"><strong>What's the right delivery channel for our users?</strong> The mechanism matters less than meeting people where they already are — but that means understanding where that actually is.</div>
+        </div>
+        <div class="oq-item">
+          <div class="oq-icon">🔄</div>
+          <div class="oq-text"><strong>How does the knowledge base stay current?</strong> Any AI-supported learning solution is only as good as its sources. Who owns keeping those sources accurate and up to date?</div>
+        </div>
+      </div>
+
+      <div class="close-footer fade-up">Value Enablement · Windchill PLM · Personal AI Exploration</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const sections = [
+    { id: 'cover',        label: 'Overview' },
+    { id: 'context',      label: 'Starting Point' },
+    { id: 'scraping',     label: 'Web Scraping' },
+    { id: 'content-turn', label: 'Content Pivot' },
+    { id: 'reflection',   label: 'Conclusions' },
+    { id: 'close',        label: 'Open Questions' },
+  ];
+
+  const dotsContainer = document.getElementById('navDots');
+  sections.forEach(s => {
+    const dot = document.createElement('button');
+    dot.className = 'nav-dot';
+    dot.setAttribute('aria-label', s.label);
+    dot.addEventListener('click', () => document.getElementById(s.id).scrollIntoView({ behavior: 'smooth' }));
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = document.querySelectorAll('.nav-dot');
+  const navLabel = document.getElementById('navLabel');
+  const progressBar = document.getElementById('progressBar');
+
+  function onScroll() {
+    const sc = window.scrollY;
+    const dh = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.width = (dh > 0 ? (sc / dh) * 100 : 0) + '%';
+    let a = 0;
+    sections.forEach((s, i) => {
+      const el = document.getElementById(s.id);
+      if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.45) a = i;
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === a));
+    navLabel.textContent = sections[a].label;
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.1 }
+  );
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

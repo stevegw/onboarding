@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codebeamer: Fundamentals Overview — Introduction to Codebeamer and ALM</title>
+<style>
+/* === Theme variables === */
+[data-theme="dark"] {
+  --c-bg-base: #0f172a;
+  --c-bg-surface: #1e293b;
+  --c-bg-surface-hover: #1a2744;
+  --c-bg-surface-active: #253347;
+  --c-border: #334155;
+  --c-border-hover: #475569;
+  --c-text-primary: #f1f5f9;
+  --c-text: #e2e8f0;
+  --c-text-secondary: #cbd5e1;
+  --c-text-muted: #94a3b8;
+  --c-text-dim: #64748b;
+  --c-accent: #22c55e;
+  --c-accent-hover: #16a34a;
+  --c-on-accent: #0f172a;
+  --c-danger: #ef4444;
+  --c-warning: #f59e0b;
+  --c-warning-light: #fcd34d;
+  --c-info: #3b82f6;
+  --c-info-light: #60a5fa;
+  --c-info-lighter: #93c5fd;
+  --c-ref-purple: #c084fc;
+  --c-accent-004: rgba(34,197,94,0.04);
+  --c-accent-006: rgba(34,197,94,0.06);
+  --c-accent-008: rgba(34,197,94,0.08);
+  --c-accent-020: rgba(34,197,94,0.2);
+  --c-accent-030: rgba(34,197,94,0.3);
+  --c-danger-008: rgba(239,68,68,0.08);
+  --c-warning-008: rgba(245,158,11,0.08);
+  --c-warning-020: rgba(245,158,11,0.2);
+  --c-info-004: rgba(59,130,246,0.04);
+  --c-info-006: rgba(59,130,246,0.06);
+  --c-info-008: rgba(59,130,246,0.08);
+  --c-info-020: rgba(59,130,246,0.2);
+  --c-purple-008: rgba(192,132,252,0.08);
+  --c-purple-020: rgba(192,132,252,0.2);
+  --c-neutral-004: rgba(148,163,184,0.04);
+}
+[data-theme="light"] {
+  --c-bg-base: #f8fafc;
+  --c-bg-surface: #ffffff;
+  --c-bg-surface-hover: #f1f5f9;
+  --c-bg-surface-active: #e2e8f0;
+  --c-border: #e2e8f0;
+  --c-border-hover: #cbd5e1;
+  --c-text-primary: #0f172a;
+  --c-text: #1e293b;
+  --c-text-secondary: #475569;
+  --c-text-muted: #64748b;
+  --c-text-dim: #94a3b8;
+  --c-accent: #16a34a;
+  --c-accent-hover: #15803d;
+  --c-on-accent: #ffffff;
+  --c-danger: #dc2626;
+  --c-warning: #d97706;
+  --c-warning-light: #b45309;
+  --c-info: #2563eb;
+  --c-info-light: #3b82f6;
+  --c-info-lighter: #1d4ed8;
+  --c-ref-purple: #9333ea;
+  --c-accent-004: rgba(22,163,74,0.04);
+  --c-accent-006: rgba(22,163,74,0.06);
+  --c-accent-008: rgba(22,163,74,0.08);
+  --c-accent-020: rgba(22,163,74,0.2);
+  --c-accent-030: rgba(22,163,74,0.3);
+  --c-danger-008: rgba(220,38,38,0.08);
+  --c-warning-008: rgba(217,119,6,0.1);
+  --c-warning-020: rgba(217,119,6,0.2);
+  --c-info-004: rgba(37,99,235,0.06);
+  --c-info-006: rgba(37,99,235,0.08);
+  --c-info-008: rgba(37,99,235,0.1);
+  --c-info-020: rgba(37,99,235,0.2);
+  --c-purple-008: rgba(147,51,234,0.1);
+  --c-purple-020: rgba(147,51,234,0.15);
+  --c-neutral-004: rgba(100,116,139,0.06);
+}
+
+/* === Base === */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--c-bg-base);
+  color: var(--c-text);
+  line-height: 1.6;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+}
+h1 { font-size: 22px; font-weight: 700; color: var(--c-text-primary); margin-bottom: 6px; }
+h2 { font-size: 18px; font-weight: 700; color: var(--c-text-primary); margin-bottom: 4px; }
+h3 { font-size: 15px; font-weight: 700; color: var(--c-text-primary); margin-bottom: 4px; }
+p { margin-bottom: 12px; font-size: 14px; line-height: 1.7; }
+a { color: var(--c-accent); text-decoration: none; }
+.text-muted { color: var(--c-text-muted); }
+.text-dim { color: var(--c-text-dim); }
+.text-sm { font-size: 12px; }
+.mt-lg { margin-top: 24px; }
+.mb-sm { margin-bottom: 8px; }
+.mb-md { margin-bottom: 16px; }
+.mb-lg { margin-bottom: 24px; }
+
+/* === Scrollbar === */
+* { scrollbar-width: thin; scrollbar-color: var(--c-border) transparent; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--c-border); border-radius: 3px; }
+
+/* === Layout === */
+.scorm-sidebar {
+  width: 260px; flex-shrink: 0;
+  background: var(--c-bg-surface);
+  border-right: 1px solid var(--c-border);
+  display: flex; flex-direction: column;
+  height: 100vh; overflow: hidden;
+}
+.scorm-sidebar-header {
+  padding: 16px 16px 12px;
+  border-bottom: 1px solid var(--c-border);
+}
+.scorm-sidebar-header h3 {
+  font-size: 13px; font-weight: 700;
+  color: var(--c-text-primary); margin: 0;
+}
+.scorm-sidebar-header p {
+  font-size: 11px; color: var(--c-text-dim); margin: 4px 0 0;
+}
+.scorm-sidebar-nav {
+  flex: 1; overflow-y: auto; padding: 8px 0;
+}
+.scorm-topic-link {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 16px; cursor: pointer;
+  font-size: 13px; color: var(--c-text-muted);
+  transition: all 0.12s; border-left: 3px solid transparent;
+}
+.scorm-topic-link:hover { background: var(--c-bg-surface-hover); color: var(--c-text); }
+.scorm-topic-link.active { background: var(--c-bg-surface-hover); color: var(--c-text-primary); border-left-color: var(--c-accent); font-weight: 600; }
+.scorm-topic-link.completed { color: var(--c-text-dim); }
+.scorm-topic-check {
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 2px solid var(--c-border-hover);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; flex-shrink: 0; transition: all 0.15s;
+}
+.scorm-topic-link.completed .scorm-topic-check {
+  background: var(--c-accent); border-color: var(--c-accent); color: var(--c-on-accent);
+}
+.scorm-sidebar-section {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.5px; color: var(--c-text-dim);
+  padding: 12px 16px 4px;
+}
+.scorm-main {
+  flex: 1; overflow-y: auto; padding: 32px 40px;
+  max-width: 760px; height: 100vh;
+}
+
+/* === Buttons === */
+.btn {
+  padding: 10px 24px; border-radius: 6px; font-size: 13px;
+  font-weight: 600; cursor: pointer; font-family: inherit;
+  border: none; transition: all 0.15s; display: inline-flex;
+  align-items: center; gap: 8px;
+}
+.btn-primary { background: var(--c-accent); color: var(--c-on-accent); }
+.btn-primary:hover { background: var(--c-accent-hover); }
+.btn-outline {
+  background: transparent; border: 1px solid var(--c-border);
+  color: var(--c-text-muted); padding: 9px 23px;
+}
+.btn-outline:hover { border-color: var(--c-border-hover); color: var(--c-text); background: var(--c-bg-surface-active); }
+.btn-sm { padding: 6px 14px; font-size: 12px; }
+.nav-btns {
+  display: flex; justify-content: space-between;
+  margin-top: 32px; padding-top: 20px;
+  border-top: 1px solid var(--c-border);
+}
+
+/* === Cards === */
+.card {
+  background: var(--c-bg-surface); border: 1px solid var(--c-border);
+  border-radius: 8px; padding: 16px; margin-bottom: 8px;
+}
+
+/* === Callouts === */
+.callout {
+  padding: 14px 16px; border-radius: 8px; margin-bottom: 16px;
+  font-size: 13px; line-height: 1.6; display: flex; gap: 12px;
+}
+.callout-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.callout-content { flex: 1; }
+.callout-content p { margin-bottom: 6px; }
+.callout-content p:last-child { margin-bottom: 0; }
+.callout.info { background: var(--c-info-008); border: 1px solid var(--c-info-020); color: var(--c-info-lighter); }
+.callout.tip { background: var(--c-accent-008); border: 1px solid var(--c-accent-020); color: var(--c-accent); }
+.callout.warning { background: var(--c-warning-008); border: 1px solid var(--c-warning-020); color: var(--c-warning-light); }
+.callout.insight { background: var(--c-purple-008); border: 1px solid var(--c-purple-020); color: var(--c-ref-purple); }
+
+/* === Tables === */
+.data-table {
+  width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 13px;
+}
+.data-table th {
+  text-align: left; padding: 10px 14px; background: var(--c-bg-surface-active);
+  border: 1px solid var(--c-border); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.5px; color: var(--c-text-muted);
+}
+.data-table td {
+  padding: 10px 14px; border: 1px solid var(--c-border);
+  color: var(--c-text-secondary); vertical-align: top;
+}
+.data-table tbody tr:hover { background: var(--c-neutral-004); }
+
+/* === Topic content === */
+.topic-header { margin-bottom: 24px; }
+.topic-content { margin-bottom: 24px; }
+.topic-content h2 { margin-top: 24px; margin-bottom: 12px; }
+.topic-content h3 { margin-top: 20px; margin-bottom: 8px; }
+.topic-content code {
+  font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+  font-size: 0.9em; background: var(--c-bg-surface-active);
+  padding: 1px 5px; border-radius: 3px;
+}
+
+/* === Takeaways === */
+.takeaways-box {
+  padding: 16px 20px; background: var(--c-accent-006);
+  border: 1px solid var(--c-accent-020); border-radius: 8px; margin: 24px 0;
+}
+.takeaways-box h3 { color: var(--c-accent); font-size: 13px; margin-bottom: 8px; }
+.takeaways-box ul { list-style: none; padding: 0; }
+.takeaways-box li {
+  font-size: 13px; color: var(--c-text-secondary);
+  padding: 4px 0 4px 20px; position: relative;
+}
+.takeaways-box li::before { content: '\2713'; position: absolute; left: 0; color: var(--c-accent); font-weight: 700; }
+
+/* === Mark complete === */
+.mark-complete-bar {
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px; margin: 24px 0;
+  border: 2px dashed var(--c-border); border-radius: 8px; transition: all 0.15s;
+}
+.mark-complete-bar.completed {
+  border-color: var(--c-accent-030); background: var(--c-accent-006); border-style: solid;
+}
+
+/* === Images === */
+.image-block { margin: 16px 0; text-align: center; }
+.image-block img {
+  max-width: 100%; height: auto; border-radius: 8px;
+  border: 1px solid var(--c-border);
+}
+.image-block figcaption {
+  margin-top: 8px; font-size: 12px; color: var(--c-text-dim); font-style: italic;
+}
+.image-block-medium img { max-width: 560px; }
+.image-block-small img { max-width: 360px; }
+
+/* === Reveal cards === */
+.reveal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 16px 0; }
+.reveal-card {
+  padding: 16px; background: var(--c-bg-surface);
+  border: 1px solid var(--c-border); border-radius: 8px;
+  cursor: pointer; transition: all 0.15s; min-height: 80px;
+}
+.reveal-card:hover { border-color: var(--c-border-hover); }
+.reveal-card .reveal-front { font-size: 14px; font-weight: 600; color: var(--c-text-primary); }
+.reveal-card .reveal-hint { font-size: 11px; color: var(--c-text-dim); margin-top: 4px; }
+.reveal-card .reveal-back { display: none; font-size: 13px; color: var(--c-text-secondary); line-height: 1.5; }
+.reveal-card.flipped { background: var(--c-accent-004); border-color: var(--c-accent-020); }
+.reveal-card.flipped .reveal-front { color: var(--c-accent); font-size: 12px; margin-bottom: 6px; }
+.reveal-card.flipped .reveal-hint { display: none; }
+.reveal-card.flipped .reveal-back { display: block; }
+
+/* === Match === */
+.match-container { margin: 16px 0; }
+.match-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.match-column-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--c-text-dim); margin-bottom: 8px; }
+.match-item {
+  padding: 10px 14px; background: var(--c-bg-surface);
+  border: 2px solid var(--c-border); border-radius: 6px;
+  margin-bottom: 6px; cursor: pointer; font-size: 13px;
+  color: var(--c-text); transition: all 0.15s;
+}
+.match-item:hover { border-color: var(--c-border-hover); }
+.match-item.selected { border-color: var(--c-accent); background: var(--c-accent-006); }
+.match-item.matched { border-color: var(--c-accent); background: var(--c-accent-008); opacity: 0.7; cursor: default; }
+.match-item.wrong { border-color: var(--c-danger); background: var(--c-danger-008); animation: shake 0.3s; }
+.match-feedback { font-size: 13px; margin-top: 8px; padding: 10px 14px; border-radius: 6px; }
+.match-feedback.success { background: var(--c-accent-008); color: var(--c-accent); border: 1px solid var(--c-accent-020); }
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* === Sort === */
+.sort-container { margin: 16px 0; }
+.sort-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; background: var(--c-bg-surface);
+  border: 1px solid var(--c-border); border-radius: 6px;
+  margin-bottom: 6px; cursor: grab; font-size: 13px;
+  color: var(--c-text); transition: all 0.15s; user-select: none;
+}
+.sort-item:active { cursor: grabbing; }
+.sort-item .sort-handle { color: var(--c-text-dim); font-size: 14px; }
+.sort-item .sort-num {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--c-border); display: flex; align-items: center;
+  justify-content: center; font-size: 11px; font-weight: 700;
+  color: var(--c-text-muted); flex-shrink: 0;
+}
+.sort-item.correct .sort-num { background: var(--c-accent); color: var(--c-on-accent); }
+.sort-item.dragging { opacity: 0.5; border-color: var(--c-accent); }
+.sort-item.drag-over { border-color: var(--c-accent); background: var(--c-accent-004); }
+
+/* === Exercise === */
+.exercise-objective {
+  padding: 16px 20px; background: var(--c-purple-008);
+  border: 1px solid var(--c-purple-020); border-radius: 8px; margin-bottom: 20px;
+}
+.exercise-objective-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.5px; color: var(--c-ref-purple); margin-bottom: 4px;
+}
+.exercise-objective p { font-size: 13px; color: var(--c-text-secondary); margin: 0; line-height: 1.5; }
+.exercise-progress { margin-bottom: 24px; }
+.exercise-progress-label { font-size: 12px; color: var(--c-text-dim); margin-bottom: 6px; }
+.exercise-progress-bar { height: 6px; background: var(--c-border); border-radius: 3px; overflow: hidden; }
+.exercise-progress-fill { height: 100%; background: var(--c-accent); border-radius: 3px; transition: width 0.3s ease; }
+.exercise-task { margin-bottom: 24px; border: 1px solid var(--c-border); border-radius: 8px; overflow: hidden; }
+.exercise-task-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 16px; background: var(--c-bg-surface);
+  border-bottom: 1px solid var(--c-border); border-left: 3px solid var(--c-ref-purple);
+}
+.exercise-task-header h3 { font-size: 14px; font-weight: 600; color: var(--c-text-primary); margin: 0; }
+.exercise-task-progress { font-size: 11px; color: var(--c-text-dim); white-space: nowrap; }
+.exercise-steps { padding: 16px 16px 8px 16px; }
+.exercise-step {
+  position: relative; padding-left: 32px; padding-bottom: 16px;
+  border-left: 2px solid var(--c-border); margin-left: 9px; cursor: pointer;
+}
+.exercise-step:last-child { border-left-color: transparent; }
+.exercise-step-indicator {
+  position: absolute; left: -10px; top: 0;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--c-bg-surface); border: 2px solid var(--c-border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700; color: var(--c-text-dim); transition: all 0.15s;
+}
+.exercise-step.done .exercise-step-indicator { background: var(--c-accent); border-color: var(--c-accent); color: var(--c-on-accent); }
+.exercise-step.active .exercise-step-indicator { border-color: var(--c-ref-purple); color: var(--c-ref-purple); background: var(--c-purple-008); }
+.exercise-step-action-text { font-size: 13px; color: var(--c-text-muted); line-height: 1.4; }
+.exercise-step.done .exercise-step-action-text { color: var(--c-text-dim); }
+.exercise-step.active .exercise-step-action-text { color: var(--c-text); font-weight: 500; }
+.exercise-step-detail { display: none; margin-top: 10px; }
+.exercise-step.active .exercise-step-detail,
+.exercise-step.expanded .exercise-step-detail { display: block; }
+.exercise-step-box {
+  padding: 10px 14px; border-radius: 6px; margin-bottom: 8px;
+  font-size: 13px; line-height: 1.5;
+}
+.exercise-step-box-label {
+  font-size: 9px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.5px; margin-bottom: 4px;
+}
+.exercise-step-box.detail-box { background: var(--c-info-004); border: 1px solid var(--c-info-020); }
+.exercise-step-box.detail-box .exercise-step-box-label { color: var(--c-info); }
+.exercise-step-box.detail-box p { margin: 0; color: var(--c-text-secondary); }
+.exercise-hint-toggle {
+  font-size: 12px; color: var(--c-text-dim); cursor: pointer;
+  display: inline-flex; align-items: center; gap: 4px; padding: 4px 0; user-select: none;
+}
+.exercise-hint-toggle:hover { color: var(--c-text-muted); }
+.exercise-hint-text {
+  display: none; font-size: 12px; color: var(--c-text-muted);
+  padding: 8px 12px; background: var(--c-neutral-004);
+  border-radius: 4px; margin-top: 4px; line-height: 1.5;
+}
+.exercise-hint-text.expanded { display: block; }
+.exercise-step-actions { display: flex; gap: 8px; align-items: center; margin-top: 10px; }
+
+/* === Topic list items (overview) === */
+.topic-list-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px; background: var(--c-bg-surface);
+  border: 1px solid var(--c-border); border-radius: 8px;
+  margin-bottom: 8px; cursor: pointer; transition: all 0.15s;
+}
+.topic-list-item:hover { border-color: var(--c-border-hover); background: var(--c-bg-surface-hover); }
+.topic-list-item .topic-check {
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 2px solid var(--c-border-hover);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: var(--c-on-accent); flex-shrink: 0;
+}
+.topic-list-item.completed .topic-check { background: var(--c-accent); border-color: var(--c-accent); }
+.topic-list-item .topic-info { flex: 1; }
+.topic-list-item .topic-title { font-size: 14px; font-weight: 600; color: var(--c-text); }
+.topic-list-item .topic-meta { font-size: 11px; color: var(--c-text-dim); margin-top: 2px; }
+.topic-list-item .topic-arrow { color: var(--c-text-dim); font-size: 14px; }
+.topic-list-item.exercise-item { border-left: 3px solid var(--c-ref-purple); }
+.exercise-icon { margin-right: 4px; }
+
+/* === Progress bar === */
+.progress-inline {
+  display: flex; align-items: center; gap: 12px;
+  padding: 16px; background: var(--c-bg-surface);
+  border: 1px solid var(--c-border); border-radius: 8px;
+}
+.progress-inline .progress-bar { flex: 1; height: 6px; background: var(--c-border); border-radius: 3px; overflow: hidden; }
+.progress-inline .progress-fill { height: 100%; background: linear-gradient(90deg, var(--c-accent), var(--c-accent-hover)); border-radius: 3px; transition: width 0.3s; }
+.progress-inline .progress-text { font-size: 13px; font-weight: 700; color: var(--c-accent); min-width: 45px; text-align: right; }
+
+/* === Quiz === */
+.quiz-header { margin-bottom: 24px; text-align: center; }
+.quiz-progress-dots { display: flex; justify-content: center; gap: 6px; margin-top: 12px; }
+.quiz-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c-border); transition: all 0.2s; }
+.quiz-dot.current { background: var(--c-accent); transform: scale(1.2); }
+.quiz-dot.correct { background: var(--c-accent); }
+.quiz-dot.incorrect { background: var(--c-danger); }
+.quiz-question-card {
+  padding: 24px; background: var(--c-bg-surface);
+  border: 1px solid var(--c-border); border-radius: 10px; margin-bottom: 16px;
+}
+.quiz-question-text { font-size: 16px; font-weight: 600; color: var(--c-text-primary); margin-bottom: 20px; line-height: 1.5; }
+.quiz-option {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px; border: 1px solid var(--c-border);
+  border-radius: 8px; margin-bottom: 8px; cursor: pointer;
+  transition: all 0.15s; font-size: 14px; color: var(--c-text);
+}
+.quiz-option:hover { border-color: var(--c-border-hover); background: var(--c-bg-surface-hover); }
+.quiz-option .option-letter {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--c-border); display: flex; align-items: center;
+  justify-content: center; font-size: 12px; font-weight: 700;
+  color: var(--c-text-muted); flex-shrink: 0; transition: all 0.15s;
+}
+.quiz-option.correct { border-color: var(--c-accent); background: var(--c-accent-008); }
+.quiz-option.correct .option-letter { background: var(--c-accent); color: var(--c-on-accent); }
+.quiz-option.incorrect { border-color: var(--c-danger); background: var(--c-danger-008); }
+.quiz-option.incorrect .option-letter { background: var(--c-danger); color: #fff; }
+.quiz-option.disabled { pointer-events: none; opacity: 0.6; }
+.quiz-option.disabled.correct { opacity: 1; }
+.quiz-option.disabled.incorrect { opacity: 1; }
+.quiz-rationale {
+  padding: 14px 16px; background: var(--c-info-006);
+  border: 1px solid var(--c-info-020); border-radius: 8px;
+  margin-top: 12px; font-size: 13px; color: var(--c-text-secondary); line-height: 1.6;
+}
+.quiz-results { text-align: center; padding: 32px 20px; }
+.quiz-score-ring { width: 100px; height: 100px; margin: 0 auto 16px; position: relative; }
+.quiz-score-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.quiz-score-ring .ring-bg { fill: none; stroke: var(--c-border); stroke-width: 6; }
+.quiz-score-ring .ring-fill { fill: none; stroke: var(--c-accent); stroke-width: 6; stroke-linecap: round; transition: stroke-dashoffset 0.5s ease; }
+.quiz-score-ring .ring-fill.low { stroke: var(--c-danger); }
+.quiz-score-text {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 22px; font-weight: 700; color: var(--c-text-primary);
+}
+
+/* === Quiz card (overview) === */
+.quiz-card {
+  margin-top: 20px; padding: 16px 20px;
+  background: var(--c-bg-surface); border: 1px solid var(--c-border);
+  border-radius: 8px; display: flex; align-items: center; gap: 16px;
+  cursor: pointer; transition: all 0.15s;
+}
+.quiz-card:hover { border-color: var(--c-accent-030); background: var(--c-bg-surface-hover); }
+.quiz-card .quiz-icon { font-size: 22px; }
+.quiz-card .quiz-info { flex: 1; }
+.quiz-card .quiz-title { font-size: 14px; font-weight: 600; color: var(--c-text); }
+.quiz-card .quiz-meta { font-size: 11px; color: var(--c-text-dim); margin-top: 2px; }
+
+/* === Module header (overview) === */
+.module-header { margin-bottom: 24px; }
+.module-badge {
+  display: inline-block; padding: 3px 10px; border-radius: 4px;
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.5px; margin-bottom: 8px;
+  background: rgba(78,168,222,0.15); color: #4ea8de;
+}
+
+/* === Theme toggle === */
+.theme-toggle {
+  position: fixed; top: 12px; right: 16px; z-index: 10;
+  background: var(--c-bg-surface); border: 1px solid var(--c-border);
+  border-radius: 6px; padding: 6px 10px; cursor: pointer;
+  font-size: 14px; color: var(--c-text-muted);
+}
+.theme-toggle:hover { border-color: var(--c-border-hover); }
+
+/* === Misc === */
+.scorm-warn {
+  text-align: center; padding: 8px; font-size: 12px;
+  color: var(--c-text-muted); opacity: 0.6;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.stagger > * { animation: fadeInUp 0.3s ease both; }
+.stagger > *:nth-child(1) { animation-delay: 0s; }
+.stagger > *:nth-child(2) { animation-delay: 0.05s; }
+.stagger > *:nth-child(3) { animation-delay: 0.1s; }
+.stagger > *:nth-child(4) { animation-delay: 0.15s; }
+.stagger > *:nth-child(5) { animation-delay: 0.2s; }
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  body { flex-direction: column; height: auto; overflow: auto; }
+  .scorm-sidebar { width: 100%; height: auto; max-height: 40vh; border-right: none; border-bottom: 1px solid var(--c-border); }
+  .scorm-main { padding: 20px 16px; height: auto; max-width: 100%; }
+  .reveal-grid { grid-template-columns: 1fr; }
+  .match-columns { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="scorm-sidebar" id="sidebar"></div>
+<div class="scorm-main" id="main"></div>
+<button class="theme-toggle" id="theme-toggle" title="Toggle theme">&#9788;</button>
+<script>
+(function() {
+"use strict";
+
+/* ============================================================
+   Utilities
+   ============================================================ */
+function esc(str) {
+  if (str == null) return "";
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function safeHtml(str) {
+  if (str == null) return "";
+  str = String(str);
+  if (str.indexOf("<") === -1) return esc(str);
+  var doc = new DOMParser().parseFromString(str, "text/html");
+  return walkNodes(doc.body);
+}
+
+function walkNodes(parent) {
+  var out = "";
+  var child = parent.firstChild;
+  while (child) {
+    if (child.nodeType === 3) {
+      out += esc(child.textContent);
+    } else if (child.nodeType === 1) {
+      var tag = child.nodeName.toLowerCase();
+      if (tag === "b") tag = "strong";
+      if (tag === "i") tag = "em";
+      if (tag === "strong" || tag === "em" || tag === "code") {
+        out += "<" + tag + ">" + walkNodes(child) + "</" + tag + ">";
+      } else if (tag === "br") {
+        out += "<br>";
+      } else if (tag === "div" || tag === "p") {
+        var inner = walkNodes(child);
+        if (inner && out) out += "<br>";
+        out += inner;
+      } else {
+        out += walkNodes(child);
+      }
+    }
+    child = child.nextSibling;
+  }
+  return out;
+}
+
+function shuffleArray(arr) {
+  for (var i = arr.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
+  }
+  return arr;
+}
+
+/* ============================================================
+   Theme toggle
+   ============================================================ */
+(function() {
+  var html = document.documentElement;
+  var btn = document.getElementById("theme-toggle");
+  var saved = null;
+  try { saved = localStorage.getItem("scorm_theme"); } catch(e) {}
+  if (saved === "light") html.setAttribute("data-theme", "light");
+  btn.addEventListener("click", function() {
+    var cur = html.getAttribute("data-theme");
+    var next = cur === "dark" ? "light" : "dark";
+    html.setAttribute("data-theme", next);
+    try { localStorage.setItem("scorm_theme", next); } catch(e) {}
+  });
+})();
+
+/* ============================================================
+   SCORM 1.2 API
+   ============================================================ */
+var SCORM = (function() {
+  var api = null;
+  var initialized = false;
+  var finished = false;
+
+  function findAPI(win) {
+    var attempts = 0;
+    while (win && !win.API && attempts < 10) {
+      if (win.parent && win.parent !== win) { win = win.parent; }
+      else if (win.opener) { win = win.opener; }
+      else { break; }
+      attempts++;
+    }
+    return win && win.API ? win.API : null;
+  }
+
+  function init() {
+    api = findAPI(window);
+    if (!api) {
+      console.warn("SCORM API not found — running in standalone mode.");
+      return false;
+    }
+    var result = api.LMSInitialize("");
+    initialized = (result === "true" || result === true);
+    if (initialized) {
+      api.LMSSetValue("cmi.core.lesson_status", "incomplete");
+      api.LMSCommit("");
+    }
+    return initialized;
+  }
+
+  function reportScore(raw, max, passed) {
+    if (!api || !initialized) return;
+    api.LMSSetValue("cmi.core.score.raw", String(raw));
+    api.LMSSetValue("cmi.core.score.min", "0");
+    api.LMSSetValue("cmi.core.score.max", String(max));
+    api.LMSSetValue("cmi.core.lesson_status", passed ? "passed" : "failed");
+    api.LMSCommit("");
+  }
+
+  function saveSuspendData(obj) {
+    if (!api || !initialized) return;
+    try {
+      api.LMSSetValue("cmi.suspend_data", JSON.stringify(obj));
+      api.LMSCommit("");
+    } catch(e) {}
+  }
+
+  function loadSuspendData() {
+    if (!api || !initialized) return null;
+    try {
+      var data = api.LMSGetValue("cmi.suspend_data");
+      return data ? JSON.parse(data) : null;
+    } catch(e) { return null; }
+  }
+
+  function finish() {
+    if (!api || !initialized || finished) return;
+    finished = true;
+    api.LMSFinish("");
+  }
+
+  return {
+    init: init,
+    reportScore: reportScore,
+    saveSuspendData: saveSuspendData,
+    loadSuspendData: loadSuspendData,
+    finish: finish,
+    isAvailable: function() { return !!api && initialized; }
+  };
+})();
+
+/* ============================================================
+   Embedded Data
+   ============================================================ */
+var MODULE_DATA = {"id": "m1", "title": "Introduction to Codebeamer and ALM", "description": "Explore Application Lifecycle Management concepts, discover Codebeamer as an ALM solution, and understand the ALM development framework.", "topics": [{"id": "m1t1", "title": "Application Lifecycle Management", "estimatedMinutes": 5, "content": [{"type": "paragraph", "text": "Application Lifecycle Management (ALM) is a continuous process of managing the life of a software or systems application from initial planning through development, testing, deployment, and eventual retirement. ALM integrates people, processes, and tools to coordinate activities across the entire product lifecycle."}, {"type": "heading", "level": 2, "text": "Why ALM Matters"}, {"type": "paragraph", "text": "Modern products contain increasingly complex software. A modern car, for example, can contain over 100 million lines of code - more than a fighter jet or a commercial operating system. Managing this complexity without a structured approach leads to missed requirements, untested features, and costly defects discovered late in the development cycle."}, {"type": "comparison-table", "headers": ["Challenge", "Without ALM", "With ALM"], "rows": [["Requirements tracking", "Scattered across documents and emails", "Centralized, versioned, and traceable"], ["Cross-team visibility", "Siloed tools per discipline", "Unified platform linking all artifacts"], ["Compliance evidence", "Manual assembly before audits", "Automatic traceability reports"], ["Change impact analysis", "Guesswork and meetings", "Instant upstream/downstream impact view"]]}, {"type": "callout", "variant": "insight", "text": "A modern car can contain over 100 million lines of code. ALM provides the structure to manage this complexity by connecting requirements, design, development, and testing in a single traceable chain."}, {"type": "heading", "level": 2, "text": "Key Benefits of ALM"}, {"type": "reveal-cards", "cards": [{"front": "End-to-End Traceability", "back": "Link every requirement to its design, implementation, and test - providing a complete audit trail from stakeholder need to verified product."}, {"front": "Improved Collaboration", "back": "Break down silos between requirements engineers, developers, testers, and project managers by sharing a common data model and tool platform."}, {"front": "Regulatory Compliance", "back": "Demonstrate compliance with standards such as ISO 26262 (automotive), IEC 62304 (medical devices), and DO-178C (aerospace) through built-in traceability and reporting."}, {"front": "Faster Time to Market", "back": "Reduce rework and late-stage defects by catching issues early when requirements, design, and tests are connected and continuously validated."}]}], "keyTakeaways": ["ALM integrates people, processes, and tools across the entire product lifecycle", "Modern product complexity (100M+ lines of code) makes structured lifecycle management essential", "Key ALM benefits include traceability, collaboration, compliance, and faster delivery"]}, {"id": "m1t2", "title": "Codebeamer as an ALM Solution", "estimatedMinutes": 6, "content": [{"type": "paragraph", "text": "Codebeamer is PTC's ALM platform designed for organizations developing complex products in regulated industries. It provides an integrated environment for requirements management, test management, project tracking, and analytics - all connected through configurable trackers and workflows."}, {"type": "heading", "level": 2, "text": "Core Capabilities"}, {"type": "reveal-cards", "cards": [{"front": "Requirements Management", "back": "Capture, organize, and trace requirements at multiple levels - stakeholder, system, software, and hardware. Support for baselines, reviews, and approval workflows."}, {"front": "Test Management", "back": "Define test configurations, test cases, and test runs. Link tests to requirements for coverage analysis. Track bugs and defects back to their source."}, {"front": "Project Tracking & Analytics", "back": "Dashboards, burndown charts, velocity tracking, and custom reports. Support for Agile (Scrum, Kanban) and traditional (V-model, Waterfall) development methodologies."}, {"front": "Industry Templates", "back": "Pre-built project templates for automotive (ASPICE, ISO 26262), medical devices (IEC 62304), aviation (DO-178C), and other regulated industries."}, {"front": "Integrations & APIs", "back": "REST API, integrations with Jira, Jenkins, Git, DOORS, and other tools. Enables Codebeamer to fit into existing toolchains."}]}, {"type": "heading", "level": 2, "text": "Real-World Example: Navya"}, {"type": "paragraph", "text": "Navya, a manufacturer of autonomous vehicles, adopted Codebeamer to manage the development of their self-driving shuttle systems. By centralizing requirements, tests, and traceability in Codebeamer, Navya was able to demonstrate compliance with automotive safety standards while accelerating their development cycles."}, {"type": "callout", "variant": "info", "text": "Codebeamer supports both Agile and traditional methodologies. Teams can use Scrum boards and sprints alongside V-model traceability - or combine approaches in a hybrid workflow."}, {"type": "interactive-match", "prompt": "Match each Codebeamer capability to what it provides:", "pairs": [{"left": "Requirements Management", "right": "Capture, organize, and trace requirements with baselines"}, {"left": "Test Management", "right": "Define test cases and runs, link to requirements for coverage"}, {"left": "Industry Templates", "right": "Pre-built compliance frameworks for regulated industries"}, {"left": "Project Tracking", "right": "Dashboards, burndown charts, and velocity metrics"}]}], "keyTakeaways": ["Codebeamer is PTC's ALM platform for complex, regulated product development", "Core capabilities include requirements management, test management, project tracking, and analytics", "Industry templates accelerate compliance with standards like ISO 26262 and IEC 62304"]}, {"id": "m1t3", "title": "The ALM Development Framework", "estimatedMinutes": 6, "content": [{"type": "paragraph", "text": "The ALM development framework describes the iterative cycle of activities that transform stakeholder needs into a verified, validated product. In Codebeamer, every phase of this framework is supported by trackers, workflows, and traceability links."}, {"type": "heading", "level": 2, "text": "Development Lifecycle Phases"}, {"type": "comparison-table", "headers": ["Phase", "Activities", "Key Deliverables"], "rows": [["Requirements", "Elicit, analyze, and document what the product must do", "Stakeholder requirements, system requirements, requirement specifications"], ["Design", "Define how the product will satisfy the requirements", "Architecture documents, design specifications, interface definitions"], ["Development", "Build the product according to the design", "Source code, hardware designs, configuration files, build artifacts"], ["Testing", "Verify the product meets its requirements", "Test cases, test runs, bug reports, coverage reports"]]}, {"type": "callout", "variant": "tip", "text": "The cycle is iterative - testing may reveal requirement gaps that restart the cycle. Codebeamer's traceability links make it easy to trace a bug back through development and design to the original requirement."}, {"type": "heading", "level": 2, "text": "PTC Electric Car Scenario"}, {"type": "paragraph", "text": "Throughout this course, we use the PTC Electric Car project as a practical scenario. This sample project demonstrates how a cross-functional team uses Codebeamer to manage the development of an electric vehicle - from capturing customer requirements through system design, implementation, and testing."}, {"type": "interactive-sort", "prompt": "Arrange the ALM development framework phases in the correct order:", "items": ["Requirements", "Design", "Development", "Testing"]}, {"type": "interactive-match", "prompt": "Match each development phase to its primary deliverable:", "pairs": [{"left": "Requirements", "right": "Requirement specifications and stakeholder needs"}, {"left": "Design", "right": "Architecture documents and interface definitions"}, {"left": "Development", "right": "Source code and build artifacts"}, {"left": "Testing", "right": "Test cases, test runs, and coverage reports"}]}], "keyTakeaways": ["The ALM framework follows an iterative cycle: Requirements â†’ Design â†’ Development â†’ Testing", "Each phase produces specific deliverables that are traceable to artifacts in adjacent phases", "The PTC Electric Car project is used throughout this course as the hands-on scenario"]}, {"id": "m1t4", "title": "Set Up Your Environment", "estimatedMinutes": 4, "isExercise": true, "content": [{"type": "paragraph", "text": "In this exercise, you will log in to the Codebeamer training environment, navigate the main interface, and locate the PTC Electric Car project that you will use throughout the remaining exercises."}, {"type": "callout", "variant": "info", "text": "You need access to the Codebeamer training server to complete this exercise. Your instructor will provide the URL and login credentials."}, {"type": "exercise", "exerciseId": "set-up-your-environment", "title": "Set Up Your Environment", "objective": "Log in to Codebeamer, familiarize yourself with the main navigation, and open the PTC Electric Car project.", "tasks": [{"id": "task1", "title": "Log In and Explore the Interface", "steps": [{"action": "log in with the credentials provided by your instructor. \nOr try these Type the following user credentials and then click Login. <br>• Account name: <strong>admin </strong><br>• Password: <strong>ptc </strong> <br>Helpful Links Open the Codebeamer training URL in your browser \nhttps://learningconnector.ptc.com/tutorial/1722405367765/set-up-environment", "detail": "Codebeamer is a web-based application. After logging in, you will see the main dashboard which provides quick access to your projects, recent items, and notifications.", "hint": "Use a modern browser (Chrome, Firefox, Edge) for the best experience."}, {"action": "Explore the top navigation bar. Identify the links to Projects, Trackers, and your user profile.", "detail": "The top navigation bar is your primary way to move around Codebeamer. Projects contain all the trackers, documents, and artifacts for a specific product or initiative.", "hint": "Look for a 'Projects' link or icon in the top-left area of the page."}, {"action": "Navigate to the Projects list and locate the PTC Electric Car project.", "detail": "The PTC Electric Car project is the sample project used throughout this course. It contains pre-built trackers for customer requirements, system requirements, test cases, and more.", "hint": "You can use the search bar to filter projects by name."}, {"action": "Open the PTC Electric Car project and review its project dashboard.", "detail": "The project dashboard gives an overview of the project including recent activity, tracker summaries, and key metrics. This is your home base when working within a project."}]}]}, {"type": "image", "src": "images/codebeamer_login.png", "alt": "Login UI and using Account Name Admin and password ptc", "caption": "Login UI and using Account Name Admin and password ptc", "size": "medium"}], "keyTakeaways": ["Codebeamer is accessed through a web browser", "The top navigation bar provides access to Projects, Trackers, and user settings", "The PTC Electric Car project serves as the hands-on scenario for all exercises"]}, {"id": "m1t5", "title": "Explore Customer Requirements", "estimatedMinutes": 4, "isExercise": true, "content": [{"type": "paragraph", "text": "In this exercise, you will open the Customer Requirements tracker in the PTC Electric Car project, browse existing requirements, and examine how requirements are structured with attributes, descriptions, and relationships."}, {"type": "callout", "variant": "info", "text": "Make sure you are logged in and have the PTC Electric Car project open before starting this exercise."}, {"type": "exercise", "exerciseId": "ex2", "title": "Explore Customer Requirements", "objective": "Navigate to the Customer Requirements tracker, browse existing items, and understand requirement structure and attributes.", "tasks": [{"id": "ex2-t1", "title": "Open and Browse Customer Requirements", "steps": [{"action": "In the PTC Electric Car project, locate the Trackers section and open the Customer Requirements tracker.", "detail": "Trackers are the core data containers in Codebeamer. The Customer Requirements tracker holds the top-level requirements that describe what the customer expects from the electric car.", "hint": "Look for a 'Trackers' section in the project navigation sidebar or the project dashboard."}, {"action": "Browse the list of customer requirements. Note how they are organized in a hierarchical structure.", "detail": "Customer requirements are often organized in a parent-child hierarchy. Parent items represent high-level needs (e.g., 'Vehicle Performance') while children are more specific (e.g., 'Acceleration 0-60 mph under 6 seconds').", "hint": "Expand the tree view or use the Document view to see the hierarchy."}, {"action": "Click on a requirement to open its detail view. Examine the attributes such as Status, Priority, Owner, and Description.", "detail": "Each tracker item (requirement) has configurable attributes. The Status field shows where the item is in its lifecycle (e.g., Draft, Approved, Implemented). Priority indicates the relative importance. The Description field contains the detailed requirement text.", "hint": null}, {"action": "Look at the Associations or References section of the requirement. Note any downstream links to system requirements or test cases.", "detail": "Associations create traceability links between tracker items. A customer requirement may be linked downstream to system requirements (which break it into technical specifications) and ultimately to test cases that verify it.", "hint": "Scroll down on the requirement detail page to find the Associations or Relations section."}, {"action": "Navigate back to the tracker list and try switching between the Document view and the Table view.", "detail": "Codebeamer offers multiple view options for the same tracker data. Document view shows items in a document-like hierarchy. Table view displays items in a spreadsheet-like grid with sortable columns.", "hint": "Look for view toggle buttons or a view selector dropdown near the top of the tracker page."}]}]}, {"type": "image", "src": "images/codebeamer_trackers.png", "alt": "Trackers and Customer  Requirements Specifications", "caption": "Trackers and Customer  Requirements Specifications", "size": "medium"}], "keyTakeaways": ["Customer requirements are stored in a dedicated tracker and organized hierarchically", "Each requirement has configurable attributes such as Status, Priority, and Owner", "Associations link requirements downstream to system requirements and test cases for traceability", "Multiple view options (Document, Table) present the same data in different formats"]}]};
+var QUIZ_DATA = {"moduleId": "m1", "title": "Introduction to Codebeamer and ALM Knowledge Check", "questions": [{"id": "m1-kc-001", "question": "What is the primary purpose of Application Lifecycle Management (ALM)?", "options": ["To replace all development tools with a single application", "To manage the life of an application from planning through retirement by integrating people, processes, and tools", "To automate all testing activities in a software project", "To provide version control for source code repositories"], "answerIndex": 1, "rationale": "ALM is a continuous process that manages the entire application lifecycle - from planning through development, testing, deployment, and retirement - by integrating people, processes, and tools. It is not limited to testing, version control, or tool replacement.", "topic": "m1t1"}, {"id": "m1-kc-002", "question": "Which of the following is a key benefit of ALM that is especially important in regulated industries?", "options": ["Faster code compilation times", "Automatic generation of source code from requirements", "End-to-end traceability for compliance evidence", "Elimination of the need for manual testing"], "answerIndex": 2, "rationale": "End-to-end traceability is critical in regulated industries because standards like ISO 26262 and IEC 62304 require demonstrating that every requirement has been verified. ALM makes this traceability automatic rather than manually assembled.", "topic": "m1t1"}, {"id": "m1-kc-003", "question": "Which Codebeamer capability provides pre-built frameworks for automotive safety (ISO 26262) and medical device (IEC 62304) compliance?", "options": ["Requirements Management", "Project Tracking & Analytics", "Industry Templates", "REST API Integrations"], "answerIndex": 2, "rationale": "Codebeamer provides industry templates - pre-built project templates for automotive (ASPICE, ISO 26262), medical devices (IEC 62304), aviation (DO-178C), and other regulated industries. These templates include pre-configured trackers, workflows, and traceability structures.", "topic": "m1t2"}, {"id": "m1-kc-004", "question": "What is the correct order of phases in the ALM development framework?", "options": ["Design → Requirements → Testing → Development", "Requirements → Design → Development → Testing", "Testing → Requirements → Design → Development", "Development → Design → Requirements → Testing"], "answerIndex": 1, "rationale": "The ALM development framework follows the cycle: Requirements (what must the product do) → Design (how will it work) → Development (build it) → Testing (verify it meets requirements). This cycle is iterative - testing may reveal gaps that restart the cycle.", "topic": "m1t3"}, {"id": "m1-kc-005", "question": "How many lines of code can a modern car contain, illustrating the need for structured lifecycle management?", "options": ["Around 1 million lines", "Around 10 million lines", "Over 100 million lines", "Over 1 billion lines"], "answerIndex": 2, "rationale": "A modern car can contain over 100 million lines of code - more than a fighter jet or a commercial operating system. This staggering complexity makes structured Application Lifecycle Management essential for managing requirements, development, and testing.", "topic": "m1t1"}]};
+var PASSING_SCORE = 75;
+var MOD_ID = "m1";
+var MOD_IDX = "1";
+var EXERCISE_TOPIC_START = 4;
+
+/* ============================================================
+   State Manager (SCORM suspend_data with localStorage fallback)
+   ============================================================ */
+var State = (function() {
+  // State shape: { v: "#/overview", t: {}, e: {}, q: { i: 0, a: [] }, r: null }
+  var state = { v: "#/overview", t: {}, e: {}, q: { i: 0, a: [] }, r: null };
+  var storageKey = "scorm_state_" + MOD_ID;
+
+  function load() {
+    var data = SCORM.loadSuspendData();
+    if (data) { state = data; return; }
+    try {
+      var raw = localStorage.getItem(storageKey);
+      if (raw) state = JSON.parse(raw);
+    } catch(e) {}
+  }
+
+  function save() {
+    SCORM.saveSuspendData(state);
+    try { localStorage.setItem(storageKey, JSON.stringify(state)); } catch(e) {}
+  }
+
+  function isTopicCompleted(topicId) { return !!state.t[topicId]; }
+  function completeTopic(topicId) { state.t[topicId] = 1; save(); }
+  function uncompleteTopic(topicId) { delete state.t[topicId]; save(); }
+
+  function isStepDone(exId, taskId, stepIdx) {
+    var key = exId + "-" + taskId + "-" + stepIdx;
+    return !!(state.e[exId] && state.e[exId][key]);
+  }
+  function completeStep(exId, taskId, stepIdx) {
+    if (!state.e[exId]) state.e[exId] = {};
+    state.e[exId][exId + "-" + taskId + "-" + stepIdx] = 1;
+    save();
+  }
+  function getExerciseProgress(exId, tasks) {
+    var total = 0, done = 0;
+    for (var ti = 0; ti < tasks.length; ti++) {
+      for (var si = 0; si < tasks[ti].steps.length; si++) {
+        total++;
+        if (isStepDone(exId, tasks[ti].id, si)) done++;
+      }
+    }
+    return { done: done, total: total };
+  }
+
+  function getCompletedTopicCount() {
+    var count = 0;
+    for (var k in state.t) { if (state.t[k]) count++; }
+    return count;
+  }
+
+  function getQuizState() { return state.q; }
+  function setQuizState(q) { state.q = q; save(); }
+
+  function getQuizResult() { return state.r; }
+  function setQuizResult(r) { state.r = r; save(); }
+
+  function getLastView() { return state.v || "#/overview"; }
+  function setLastView(v) { state.v = v; save(); }
+
+  return {
+    load: load, save: save,
+    isTopicCompleted: isTopicCompleted, completeTopic: completeTopic, uncompleteTopic: uncompleteTopic,
+    isStepDone: isStepDone, completeStep: completeStep, getExerciseProgress: getExerciseProgress,
+    getCompletedTopicCount: getCompletedTopicCount,
+    getQuizState: getQuizState, setQuizState: setQuizState,
+    getQuizResult: getQuizResult, setQuizResult: setQuizResult,
+    getLastView: getLastView, setLastView: setLastView
+  };
+})();
+
+/* ============================================================
+   Content Renderers
+   ============================================================ */
+function renderBlock(block, idx) {
+  switch (block.type) {
+    case "heading":
+      var tag = block.level === 3 ? "h3" : "h2";
+      return "<" + tag + ">" + safeHtml(block.text) + "</" + tag + ">";
+
+    case "paragraph":
+      return "<p>" + safeHtml(block.text) + "</p>";
+
+    case "callout":
+      var icon = { info: "&#8505;", tip: "&#9733;", warning: "&#9888;", insight: "&#128161;" }[block.variant] || "&#8505;";
+      return '<div class="callout ' + (block.variant || "info") + '">' +
+        '<span class="callout-icon">' + icon + '</span>' +
+        '<div class="callout-content"><p>' + safeHtml(block.text) + '</p></div></div>';
+
+    case "comparison-table":
+      var tbl = '<div style="overflow-x:auto"><table class="data-table"><thead><tr>';
+      block.headers.forEach(function(h) { tbl += "<th>" + safeHtml(h) + "</th>"; });
+      tbl += "</tr></thead><tbody>";
+      block.rows.forEach(function(row) {
+        tbl += "<tr>";
+        row.forEach(function(cell) { tbl += "<td>" + safeHtml(cell) + "</td>"; });
+        tbl += "</tr>";
+      });
+      tbl += "</tbody></table></div>";
+      return tbl;
+
+    case "reveal-cards":
+      var rc = '<div class="reveal-grid">';
+      block.cards.forEach(function(card, ci) {
+        rc += '<div class="reveal-card" data-reveal="' + ci + '">';
+        rc += '<div class="reveal-front">' + safeHtml(card.front) + '</div>';
+        rc += '<div class="reveal-hint">Click to reveal</div>';
+        rc += '<div class="reveal-back">' + safeHtml(card.back) + '</div>';
+        rc += '</div>';
+      });
+      rc += '</div>';
+      return rc;
+
+    case "interactive-match":
+      return renderMatchBlock(block, idx);
+
+    case "interactive-sort":
+      return renderSortBlock(block, idx);
+
+    case "exercise":
+      return renderExerciseBlock(block, idx);
+
+    case "image":
+      var sizeClass = block.size ? " image-block-" + block.size : "";
+      var figHtml = '<figure class="image-block' + sizeClass + '">';
+      figHtml += '<img src="' + esc(block.src) + '" alt="' + esc(block.alt || '') + '">';
+      if (block.caption) figHtml += '<figcaption>' + safeHtml(block.caption) + '</figcaption>';
+      figHtml += '</figure>';
+      return figHtml;
+
+    default:
+      return "";
+  }
+}
+
+function renderMatchBlock(block, idx) {
+  var html = '<div class="match-container" data-match="' + idx + '">';
+  html += '<p style="font-size:13px;color:var(--c-text-muted);margin-bottom:12px">' + safeHtml(block.prompt) + '</p>';
+  html += '<div class="match-columns">';
+  html += '<div>';
+  html += '<div class="match-column-label">Scenario</div>';
+  block.pairs.forEach(function(p, i) {
+    html += '<div class="match-item" data-match-left="' + idx + '-' + i + '">' + safeHtml(p.left) + '</div>';
+  });
+  html += '</div>';
+  var shuffled = block.pairs.map(function(p, i) { return { text: p.right, origIdx: i }; });
+  shuffleArray(shuffled);
+  html += '<div>';
+  html += '<div class="match-column-label">Strategy</div>';
+  shuffled.forEach(function(s) {
+    html += '<div class="match-item" data-match-right="' + idx + '-' + s.origIdx + '">' + safeHtml(s.text) + '</div>';
+  });
+  html += '</div></div>';
+  html += '<div class="match-feedback" id="match-feedback-' + idx + '" style="display:none"></div>';
+  html += '</div>';
+  return html;
+}
+
+function renderSortBlock(block, idx) {
+  var items = block.items.map(function(item, i) { return { text: item, origIdx: i }; });
+  shuffleArray(items);
+  var html = '<div class="sort-container" data-sort="' + idx + '">';
+  html += '<p style="font-size:13px;color:var(--c-text-muted);margin-bottom:12px">' + safeHtml(block.prompt) + '</p>';
+  items.forEach(function(item, i) {
+    html += '<div class="sort-item" draggable="true" data-sort-idx="' + item.origIdx + '">';
+    html += '<span class="sort-handle">&#9776;</span>';
+    html += '<span class="sort-num">' + (i + 1) + '</span>';
+    html += '<span>' + safeHtml(item.text) + '</span>';
+    html += '</div>';
+  });
+  html += '</div>';
+  return html;
+}
+
+function renderExerciseBlock(block, idx) {
+  var exId = block.exerciseId;
+  var tasks = block.tasks;
+  var prog = State.getExerciseProgress(exId, tasks);
+  var pct = prog.total > 0 ? Math.round((prog.done / prog.total) * 100) : 0;
+
+  var activeTaskId = null, activeStepIdx = -1;
+  for (var ti = 0; ti < tasks.length && activeStepIdx === -1; ti++) {
+    for (var si = 0; si < tasks[ti].steps.length; si++) {
+      if (!State.isStepDone(exId, tasks[ti].id, si)) {
+        activeTaskId = tasks[ti].id;
+        activeStepIdx = si;
+        break;
+      }
+    }
+  }
+
+  var html = '<div class="exercise-block" data-exercise="' + exId + '">';
+  html += '<div class="exercise-objective">';
+  html += '<div class="exercise-objective-label">Objective</div>';
+  html += '<p>' + safeHtml(block.objective) + '</p></div>';
+
+  html += '<div class="exercise-progress">';
+  html += '<div class="exercise-progress-label">' + prog.done + ' of ' + prog.total + ' steps completed</div>';
+  html += '<div class="exercise-progress-bar"><div class="exercise-progress-fill" style="width:' + pct + '%"></div></div>';
+  html += '</div>';
+
+  tasks.forEach(function(task) {
+    var taskDone = 0;
+    task.steps.forEach(function(_s, si) {
+      if (State.isStepDone(exId, task.id, si)) taskDone++;
+    });
+    html += '<div class="exercise-task">';
+    html += '<div class="exercise-task-header"><h3>' + safeHtml(task.title) + '</h3>';
+    html += '<span class="exercise-task-progress">' + taskDone + '/' + task.steps.length + '</span></div>';
+    html += '<div class="exercise-steps">';
+
+    task.steps.forEach(function(step, si) {
+      var isDone = State.isStepDone(exId, task.id, si);
+      var isActive = (task.id === activeTaskId && si === activeStepIdx);
+      var cls = isDone ? "done" : (isActive ? "active" : "upcoming");
+
+      html += '<div class="exercise-step ' + cls + '" data-ex="' + exId + '" data-task="' + task.id + '" data-step="' + si + '">';
+      html += '<div class="exercise-step-indicator">' + (isDone ? "&#10003;" : (si + 1)) + '</div>';
+      html += '<div class="exercise-step-action-text">' + safeHtml(step.action) + '</div>';
+      html += '<div class="exercise-step-detail">';
+
+      if (step.detail) {
+        html += '<div class="exercise-step-box detail-box">';
+        html += '<div class="exercise-step-box-label">Why it matters</div>';
+        html += '<p>' + safeHtml(step.detail) + '</p></div>';
+      }
+
+      if (step.hint) {
+        html += '<div class="exercise-hint-toggle" data-hint="' + exId + '-' + task.id + '-' + si + '">&#9654; Show Hint</div>';
+        html += '<div class="exercise-hint-text" id="hint-' + exId + '-' + task.id + '-' + si + '">' + safeHtml(step.hint) + '</div>';
+      }
+
+      if (!isDone) {
+        html += '<div class="exercise-step-actions">';
+        html += '<button class="btn btn-primary btn-sm exercise-step-done" data-ex="' + exId + '" data-task="' + task.id + '" data-step="' + si + '">Done — Next Step</button>';
+        html += '</div>';
+      }
+
+      html += '</div></div>';
+    });
+
+    html += '</div></div>';
+  });
+
+  html += '</div>';
+  return html;
+}
+
+/* ============================================================
+   Interaction Binders
+   ============================================================ */
+function bindInteractions() {
+  // Reveal cards
+  document.querySelectorAll(".reveal-card").forEach(function(card) {
+    card.addEventListener("click", function() { card.classList.toggle("flipped"); });
+  });
+
+  // Match interactions
+  document.querySelectorAll(".match-container").forEach(function(container) {
+    var matchIdx = container.getAttribute("data-match");
+    var selectedLeft = null;
+    var matchedCount = 0;
+    var totalPairs = container.querySelectorAll("[data-match-left]").length;
+
+    container.querySelectorAll("[data-match-left]").forEach(function(el) {
+      el.addEventListener("click", function() {
+        if (el.classList.contains("matched")) return;
+        container.querySelectorAll("[data-match-left]").forEach(function(e) { e.classList.remove("selected"); });
+        el.classList.add("selected");
+        selectedLeft = el.getAttribute("data-match-left");
+      });
+    });
+
+    container.querySelectorAll("[data-match-right]").forEach(function(el) {
+      el.addEventListener("click", function() {
+        if (!selectedLeft || el.classList.contains("matched")) return;
+        var rightKey = el.getAttribute("data-match-right");
+        if (selectedLeft === rightKey) {
+          var leftEl = container.querySelector('[data-match-left="' + selectedLeft + '"]');
+          if (leftEl) leftEl.classList.add("matched");
+          el.classList.add("matched");
+          matchedCount++;
+          selectedLeft = null;
+          if (matchedCount === totalPairs) {
+            var fb = document.getElementById("match-feedback-" + matchIdx);
+            if (fb) { fb.className = "match-feedback success"; fb.textContent = "All matched correctly!"; fb.style.display = ""; }
+          }
+        } else {
+          el.classList.add("wrong");
+          setTimeout(function() { el.classList.remove("wrong"); }, 500);
+        }
+      });
+    });
+  });
+
+  // Sort drag-and-drop
+  document.querySelectorAll(".sort-container").forEach(function(container) {
+    var items = container.querySelectorAll(".sort-item");
+    var dragEl = null;
+    items.forEach(function(item) {
+      item.addEventListener("dragstart", function(e) {
+        dragEl = item; item.classList.add("dragging");
+        e.dataTransfer.effectAllowed = "move";
+      });
+      item.addEventListener("dragend", function() {
+        item.classList.remove("dragging");
+        container.querySelectorAll(".sort-item").forEach(function(el) { el.classList.remove("drag-over"); });
+        updateSortNumbers(container);
+      });
+      item.addEventListener("dragover", function(e) {
+        e.preventDefault();
+        if (dragEl !== item) item.classList.add("drag-over");
+      });
+      item.addEventListener("dragleave", function() { item.classList.remove("drag-over"); });
+      item.addEventListener("drop", function(e) {
+        e.preventDefault();
+        item.classList.remove("drag-over");
+        if (dragEl && dragEl !== item) {
+          var parent = item.parentNode;
+          var allItems = Array.from(parent.querySelectorAll(".sort-item"));
+          var dragIdx = allItems.indexOf(dragEl);
+          var dropIdx = allItems.indexOf(item);
+          if (dragIdx < dropIdx) parent.insertBefore(dragEl, item.nextSibling);
+          else parent.insertBefore(dragEl, item);
+          updateSortNumbers(parent);
+        }
+      });
+    });
+  });
+
+  // Exercise step done buttons
+  document.querySelectorAll(".exercise-step-done").forEach(function(btn) {
+    btn.addEventListener("click", function(e) {
+      e.stopPropagation();
+      var exId = btn.getAttribute("data-ex");
+      var taskId = btn.getAttribute("data-task");
+      var stepIdx = parseInt(btn.getAttribute("data-step"), 10);
+      State.completeStep(exId, taskId, stepIdx);
+
+      var stepEl = btn.closest(".exercise-step");
+      var wasActive = stepEl && stepEl.classList.contains("active");
+      if (stepEl) {
+        stepEl.classList.remove("active", "expanded", "upcoming");
+        stepEl.classList.add("done");
+        var indicator = stepEl.querySelector(".exercise-step-indicator");
+        if (indicator) indicator.innerHTML = "&#10003;";
+        var actions = stepEl.querySelector(".exercise-step-actions");
+        if (actions) actions.remove();
+      }
+
+      var exerciseBlock = document.querySelector('.exercise-block[data-exercise="' + exId + '"]');
+      if (exerciseBlock && wasActive) {
+        var allSteps = exerciseBlock.querySelectorAll(".exercise-step");
+        var activated = false;
+        allSteps.forEach(function(s) {
+          if (!activated && s.classList.contains("upcoming")) {
+            s.classList.remove("upcoming"); s.classList.add("active"); activated = true;
+          }
+        });
+      }
+
+      if (exerciseBlock) {
+        var taskEls = exerciseBlock.querySelectorAll(".exercise-task");
+        var totalDone = 0, totalSteps = 0;
+        taskEls.forEach(function(taskEl) {
+          var doneInTask = taskEl.querySelectorAll(".exercise-step.done").length;
+          var stepsInTask = taskEl.querySelectorAll(".exercise-step").length;
+          totalDone += doneInTask; totalSteps += stepsInTask;
+          var progLabel = taskEl.querySelector(".exercise-task-progress");
+          if (progLabel) progLabel.textContent = doneInTask + "/" + stepsInTask;
+        });
+        var pct = totalSteps > 0 ? Math.round((totalDone / totalSteps) * 100) : 0;
+        var fill = exerciseBlock.querySelector(".exercise-progress-fill");
+        if (fill) fill.style.width = pct + "%";
+        var label = exerciseBlock.querySelector(".exercise-progress-label");
+        if (label) label.textContent = totalDone + " of " + totalSteps + " steps completed";
+      }
+    });
+  });
+
+  // Exercise hint toggles
+  document.querySelectorAll(".exercise-hint-toggle").forEach(function(toggle) {
+    toggle.addEventListener("click", function(e) {
+      e.stopPropagation();
+      var hintKey = toggle.getAttribute("data-hint");
+      var hintEl = document.getElementById("hint-" + hintKey);
+      if (hintEl) {
+        var isOpen = hintEl.classList.toggle("expanded");
+        toggle.innerHTML = isOpen ? "&#9660; Hide Hint" : "&#9654; Show Hint";
+      }
+    });
+  });
+
+  // Exercise step expand/collapse
+  document.querySelectorAll(".exercise-step").forEach(function(step) {
+    step.addEventListener("click", function() {
+      if (step.classList.contains("active")) return;
+      step.classList.toggle("expanded");
+    });
+  });
+}
+
+function updateSortNumbers(container) {
+  var items = container.querySelectorAll(".sort-item");
+  items.forEach(function(item, i) {
+    var num = item.querySelector(".sort-num");
+    if (num) num.textContent = i + 1;
+    var origIdx = parseInt(item.getAttribute("data-sort-idx"), 10);
+    if (origIdx === i) item.classList.add("correct");
+    else item.classList.remove("correct");
+  });
+}
+
+/* ============================================================
+   View Renderers
+   ============================================================ */
+var mainEl = document.getElementById("main");
+function setMain(h) { mainEl.innerHTML = h; mainEl.scrollTop = 0; }
+
+function renderOverview() {
+  var topics = MODULE_DATA.topics;
+  var completedCount = State.getCompletedTopicCount();
+  var total = topics.length;
+  var pct = total > 0 ? Math.round((completedCount / total) * 100) : 0;
+
+  var h = "";
+  h += '<div class="module-header">';
+  h += '<span class="module-badge">Module ' + MOD_IDX + '</span>';
+  h += '<h1>' + esc(MODULE_DATA.title) + '</h1>';
+  h += '<p class="text-muted">' + esc(MODULE_DATA.description) + '</p>';
+  h += '</div>';
+
+  h += '<div class="progress-inline mb-lg">';
+  h += '<div class="progress-bar"><div class="progress-fill" style="width:' + pct + '%"></div></div>';
+  h += '<span class="progress-text">' + pct + '%</span>';
+  h += '</div>';
+
+  h += '<h2 class="mb-md">Topics</h2>';
+  h += '<div class="stagger">';
+  topics.forEach(function(topic, tIdx) {
+    var isDone = State.isTopicCompleted(topic.id);
+    var isExercise = topic.isExercise || (tIdx + 1) >= EXERCISE_TOPIC_START;
+    var cls = "topic-list-item" + (isDone ? " completed" : "") + (isExercise ? " exercise-item" : "");
+    h += '<div class="' + cls + '" data-route="#/topic/' + topic.id + '">';
+    h += '<div class="topic-check' + (isDone ? " done" : "") + '">' + (isDone ? "&#10003;" : "") + '</div>';
+    h += '<div class="topic-info">';
+    if (isExercise) {
+      var exNum = (tIdx + 1) - EXERCISE_TOPIC_START + 1;
+      h += '<div class="topic-title"><span class="exercise-icon">&#128295;</span>Exercise ' + exNum + ': ' + esc(topic.title) + '</div>';
+    } else {
+      h += '<div class="topic-title">' + MOD_IDX + '.' + (tIdx + 1) + ' ' + esc(topic.title) + '</div>';
+    }
+    h += '<div class="topic-meta">~' + (topic.estimatedMinutes || 5) + ' min</div>';
+    h += '</div>';
+    h += '<span class="topic-arrow">&#8250;</span>';
+    h += '</div>';
+  });
+  h += '</div>';
+
+  // Quiz card
+  var qr = State.getQuizResult();
+  h += '<div class="quiz-card" data-route="#/quiz">';
+  h += '<span class="quiz-icon">&#9997;</span>';
+  h += '<div class="quiz-info">';
+  h += '<div class="quiz-title">Module ' + MOD_IDX + ' Knowledge Check</div>';
+  if (qr) {
+    h += '<div class="quiz-meta">Best: ' + qr.s + '/' + qr.t + '</div>';
+  } else {
+    h += '<div class="quiz-meta">Not attempted yet</div>';
+  }
+  h += '</div><span class="topic-arrow">&#8250;</span></div>';
+
+  if (!SCORM.isAvailable()) {
+    h += '<p class="scorm-warn mt-lg">SCORM API not detected — running in standalone preview mode.</p>';
+  }
+
+  setMain(h);
+  bindRouteClicks();
+}
+
+function renderTopic(topicId) {
+  var topic = null;
+  var topicIdx = -1;
+  for (var i = 0; i < MODULE_DATA.topics.length; i++) {
+    if (MODULE_DATA.topics[i].id === topicId) {
+      topic = MODULE_DATA.topics[i];
+      topicIdx = i;
+      break;
+    }
+  }
+  if (!topic) { setMain("<p>Topic not found.</p>"); return; }
+
+  var isCompleted = State.isTopicCompleted(topicId);
+  var h = "";
+
+  // Header
+  h += '<div class="topic-header">';
+  h += '<h1>' + esc(topic.title) + '</h1>';
+  h += '<p class="text-dim text-sm">~' + (topic.estimatedMinutes || 5) + ' min</p>';
+  h += '</div>';
+
+  // Content blocks
+  h += '<div class="topic-content">';
+  topic.content.forEach(function(block, bi) { h += renderBlock(block, bi); });
+  h += '</div>';
+
+  // Key takeaways
+  if (topic.keyTakeaways && topic.keyTakeaways.length > 0) {
+    h += '<div class="takeaways-box"><h3>Key Takeaways</h3><ul>';
+    topic.keyTakeaways.forEach(function(tk) { h += '<li>' + safeHtml(tk) + '</li>'; });
+    h += '</ul></div>';
+  }
+
+  // Mark complete
+  h += '<div class="mark-complete-bar' + (isCompleted ? " completed" : "") + '" id="mark-complete">';
+  if (isCompleted) {
+    h += '<button class="btn btn-outline btn-sm" id="uncomplete-btn">&#10003; Completed (Undo)</button>';
+  } else {
+    h += '<button class="btn btn-primary" id="complete-btn">Mark as Complete</button>';
+  }
+  h += '</div>';
+
+  // Navigation
+  h += '<div class="nav-btns">';
+  if (topicIdx > 0) {
+    var prevId = MODULE_DATA.topics[topicIdx - 1].id;
+    h += '<button class="btn btn-outline" data-route="#/topic/' + prevId + '">&#8592; Previous</button>';
+  } else {
+    h += '<button class="btn btn-outline" data-route="#/overview">&#8592; Overview</button>';
+  }
+  if (topicIdx < MODULE_DATA.topics.length - 1) {
+    var nextId = MODULE_DATA.topics[topicIdx + 1].id;
+    h += '<button class="btn btn-primary" data-route="#/topic/' + nextId + '">Next &#8594;</button>';
+  } else {
+    h += '<button class="btn btn-primary" data-route="#/quiz">Take Quiz &#8594;</button>';
+  }
+  h += '</div>';
+
+  setMain(h);
+  bindInteractions();
+  bindRouteClicks();
+  bindCompletion(topicId);
+}
+
+function bindCompletion(topicId) {
+  var completeBtn = document.getElementById("complete-btn");
+  var uncompleteBtn = document.getElementById("uncomplete-btn");
+
+  if (completeBtn) {
+    completeBtn.addEventListener("click", function() {
+      State.completeTopic(topicId);
+      var bar = document.getElementById("mark-complete");
+      bar.classList.add("completed");
+      bar.innerHTML = '<button class="btn btn-outline btn-sm" id="uncomplete-btn">&#10003; Completed (Undo)</button>';
+      bindCompletion(topicId);
+      renderSidebar();
+    });
+  }
+
+  if (uncompleteBtn) {
+    uncompleteBtn.addEventListener("click", function() {
+      State.uncompleteTopic(topicId);
+      var bar = document.getElementById("mark-complete");
+      bar.classList.remove("completed");
+      bar.innerHTML = '<button class="btn btn-primary" id="complete-btn">Mark as Complete</button>';
+      bindCompletion(topicId);
+      renderSidebar();
+    });
+  }
+}
+
+/* ============================================================
+   Quiz Engine
+   ============================================================ */
+function renderQuiz() {
+  var qs = State.getQuizState();
+  var currentQ = qs.i || 0;
+  var answers = qs.a || [];
+  var q = QUIZ_DATA.questions[currentQ];
+  var total = QUIZ_DATA.questions.length;
+  var answered = answers[currentQ] != null;
+
+  var h = "";
+  h += '<div class="quiz-header">';
+  h += '<h2>Module ' + MOD_IDX + ' Knowledge Check</h2>';
+  h += '<p class="text-muted text-sm">Question ' + (currentQ + 1) + ' of ' + total + '</p>';
+  h += '<div class="quiz-progress-dots">';
+  for (var i = 0; i < total; i++) {
+    var dc = "quiz-dot";
+    if (i === currentQ) dc += " current";
+    else if (answers[i] != null) dc += (answers[i] === QUIZ_DATA.questions[i].answerIndex ? " correct" : " incorrect");
+    h += '<div class="' + dc + '"></div>';
+  }
+  h += '</div></div>';
+
+  h += '<div class="quiz-question-card">';
+  h += '<div class="quiz-question-text">' + esc(q.question) + '</div>';
+  var letters = ["A", "B", "C", "D"];
+  for (var oi = 0; oi < q.options.length; oi++) {
+    var oc = "quiz-option";
+    if (answered) {
+      oc += " disabled";
+      if (oi === q.answerIndex) oc += " correct";
+      else if (oi === answers[currentQ] && oi !== q.answerIndex) oc += " incorrect";
+    }
+    h += '<div class="' + oc + '" data-option="' + oi + '">';
+    h += '<span class="option-letter">' + letters[oi] + '</span>';
+    h += '<span>' + esc(q.options[oi]) + '</span></div>';
+  }
+  h += '</div>';
+
+  if (answered) {
+    h += '<div class="quiz-rationale">' + esc(q.rationale) + '</div>';
+  }
+
+  h += '<div class="nav-btns">';
+  if (currentQ > 0) {
+    h += '<button class="btn btn-outline" id="quiz-prev">&#8592; Previous</button>';
+  } else {
+    h += '<button class="btn btn-outline" data-route="#/overview">&#8592; Overview</button>';
+  }
+  if (answered) {
+    if (currentQ < total - 1) {
+      h += '<button class="btn btn-primary" id="quiz-next">Next &#8594;</button>';
+    } else {
+      h += '<button class="btn btn-primary" id="quiz-finish">See Results &#8594;</button>';
+    }
+  } else {
+    h += '<span></span>';
+  }
+  h += '</div>';
+
+  setMain(h);
+
+  // Option clicks
+  if (!answered) {
+    document.querySelectorAll(".quiz-option").forEach(function(el) {
+      el.addEventListener("click", function() {
+        var idx = parseInt(el.getAttribute("data-option"), 10);
+        answers[currentQ] = idx;
+        State.setQuizState({ i: currentQ, a: answers });
+        renderQuiz();
+      });
+    });
+  }
+
+  // Nav
+  var prevBtn = document.getElementById("quiz-prev");
+  if (prevBtn) prevBtn.addEventListener("click", function() {
+    State.setQuizState({ i: currentQ - 1, a: answers });
+    renderQuiz();
+  });
+  var nextBtn = document.getElementById("quiz-next");
+  if (nextBtn) nextBtn.addEventListener("click", function() {
+    State.setQuizState({ i: currentQ + 1, a: answers });
+    renderQuiz();
+  });
+  var finishBtn = document.getElementById("quiz-finish");
+  if (finishBtn) finishBtn.addEventListener("click", function() {
+    window.location.hash = "#/results";
+  });
+  bindRouteClicks();
+}
+
+function renderResults() {
+  var qs = State.getQuizState();
+  var answers = qs.a || [];
+  var total = QUIZ_DATA.questions.length;
+  var correct = 0;
+  for (var i = 0; i < total; i++) {
+    if (answers[i] === QUIZ_DATA.questions[i].answerIndex) correct++;
+  }
+
+  var pct = Math.round((correct / total) * 100);
+  var passed = pct >= PASSING_SCORE;
+  SCORM.reportScore(pct, 100, passed);
+  State.setQuizResult({ s: correct, t: total });
+
+  var circumference = 2 * Math.PI * 42;
+  var offset = circumference - (pct / 100) * circumference;
+
+  var h = "";
+  h += '<div class="quiz-results">';
+  h += '<div class="quiz-score-ring"><svg viewBox="0 0 100 100">';
+  h += '<circle class="ring-bg" cx="50" cy="50" r="42"/>';
+  h += '<circle class="ring-fill' + (pct < 50 ? " low" : "") + '" cx="50" cy="50" r="42" stroke-dasharray="' + circumference + '" stroke-dashoffset="' + offset + '"/>';
+  h += '</svg><div class="quiz-score-text">' + correct + '/' + total + '</div></div>';
+
+  var heading = pct >= 75 ? "Great Job!" : pct >= 50 ? "Good Effort!" : "Keep Studying";
+  h += '<h2>' + heading + '</h2>';
+  h += '<p class="text-muted">You scored ' + pct + '% on this knowledge check.</p>';
+  if (SCORM.isAvailable()) {
+    h += '<p class="text-muted text-sm" style="margin-top:4px">Status: ' + (passed ? "Passed" : "Failed") + ' (passing score: ' + PASSING_SCORE + '%)</p>';
+  }
+  h += '</div>';
+
+  h += '<h3 class="mb-md mt-lg">Question Review</h3>';
+  for (var qi = 0; qi < QUIZ_DATA.questions.length; qi++) {
+    var q = QUIZ_DATA.questions[qi];
+    var isCorrect = answers[qi] === q.answerIndex;
+    h += '<div class="card mb-sm">';
+    h += '<p style="font-size:13px;font-weight:600;color:var(--c-text-primary);margin-bottom:8px">';
+    h += (isCorrect ? "&#10003; " : "&#10007; ") + esc(q.question) + '</p>';
+    if (!isCorrect) {
+      h += '<p style="font-size:12px;color:var(--c-danger);margin-bottom:4px">Your answer: ' + esc(q.options[answers[qi]]) + '</p>';
+      h += '<p style="font-size:12px;color:var(--c-accent);margin-bottom:4px">Correct: ' + esc(q.options[q.answerIndex]) + '</p>';
+    }
+    h += '<p style="font-size:12px;color:var(--c-text-muted)">' + esc(q.rationale) + '</p>';
+    h += '</div>';
+  }
+
+  h += '<div class="nav-btns">';
+  h += '<button class="btn btn-outline" data-route="#/overview">&#8592; Overview</button>';
+  h += '<button class="btn btn-primary" id="quiz-retry">Retry Quiz</button>';
+  h += '</div>';
+
+  if (!SCORM.isAvailable()) {
+    h += '<p class="scorm-warn">SCORM API not detected — running in standalone preview mode.</p>';
+  }
+
+  setMain(h);
+
+  var retryBtn = document.getElementById("quiz-retry");
+  if (retryBtn) retryBtn.addEventListener("click", function() {
+    State.setQuizState({ i: 0, a: [] });
+    window.location.hash = "#/quiz";
+  });
+  bindRouteClicks();
+}
+
+/* ============================================================
+   Sidebar
+   ============================================================ */
+function renderSidebar() {
+  var sidebarEl = document.getElementById("sidebar");
+  var topics = MODULE_DATA.topics;
+  var hash = window.location.hash || "#/overview";
+
+  var h = "";
+  h += '<div class="scorm-sidebar-header">';
+  h += '<h3>' + esc(MODULE_DATA.title) + '</h3>';
+  h += '<p>Module ' + MOD_IDX + '</p>';
+  h += '</div>';
+  h += '<div class="scorm-sidebar-nav">';
+
+  // Overview link
+  var ovCls = "scorm-topic-link" + (hash === "#/overview" || hash === "#/" ? " active" : "");
+  h += '<div class="' + ovCls + '" data-route="#/overview">';
+  h += '<span style="font-size:14px">&#9776;</span>';
+  h += '<span>Overview</span></div>';
+
+  h += '<div class="scorm-sidebar-section">Topics</div>';
+
+  topics.forEach(function(topic, idx) {
+    var isCompleted = State.isTopicCompleted(topic.id);
+    var isActive = hash === "#/topic/" + topic.id;
+    var cls = "scorm-topic-link" + (isActive ? " active" : "") + (isCompleted ? " completed" : "");
+    h += '<div class="' + cls + '" data-route="#/topic/' + topic.id + '">';
+    h += '<span class="scorm-topic-check">' + (isCompleted ? "&#10003;" : "") + '</span>';
+    h += '<span>' + MOD_IDX + '.' + (idx + 1) + ' ' + esc(topic.title) + '</span>';
+    h += '</div>';
+  });
+
+  h += '<div class="scorm-sidebar-section">Assessment</div>';
+  var quizActive = hash === "#/quiz" || hash === "#/results";
+  var quizCls = "scorm-topic-link" + (quizActive ? " active" : "");
+  h += '<div class="' + quizCls + '" data-route="#/quiz">';
+  h += '<span style="font-size:14px">&#9997;</span>';
+  h += '<span>Knowledge Check</span></div>';
+
+  h += '</div>';
+  sidebarEl.innerHTML = h;
+
+  // Bind sidebar clicks
+  sidebarEl.querySelectorAll("[data-route]").forEach(function(el) {
+    el.addEventListener("click", function() {
+      window.location.hash = el.getAttribute("data-route");
+    });
+  });
+}
+
+/* ============================================================
+   Router
+   ============================================================ */
+function bindRouteClicks() {
+  document.getElementById("main").querySelectorAll("[data-route]").forEach(function(el) {
+    el.addEventListener("click", function() {
+      window.location.hash = el.getAttribute("data-route");
+    });
+  });
+}
+
+function route() {
+  var hash = window.location.hash || "#/overview";
+  State.setLastView(hash);
+  renderSidebar();
+
+  if (hash === "#/overview" || hash === "#/") {
+    renderOverview();
+  } else if (hash.indexOf("#/topic/") === 0) {
+    var topicId = hash.replace("#/topic/", "");
+    renderTopic(topicId);
+  } else if (hash === "#/quiz") {
+    renderQuiz();
+  } else if (hash === "#/results") {
+    renderResults();
+  } else {
+    renderOverview();
+  }
+}
+
+/* ============================================================
+   Init
+   ============================================================ */
+SCORM.init();
+State.load();
+
+// Resume at last view if available
+var resumeHash = State.getLastView();
+if (resumeHash && resumeHash !== "#/overview" && resumeHash !== "#/") {
+  window.location.hash = resumeHash;
+} else {
+  window.location.hash = "#/overview";
+}
+
+window.addEventListener("hashchange", route);
+route();
+
+// Cleanup on exit
+window.addEventListener("beforeunload", function() {
+  State.save();
+  SCORM.finish();
+});
+
+})();
+</script>
+</body>
+</html>
