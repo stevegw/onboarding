@@ -180,6 +180,28 @@
      "text": "Task Form Templates define the default tasks that are automatically created when a Change Notice is submitted. Each template specifies the task name, default assignee role, reviewer, and sequence position. For Delta Drills, two templates are needed: <strong>Delta Change Task</strong> (assigned to the Delta Change Group for implementation) and <strong>Delta Regulatory Task</strong> (assigned to the Delta Regulation Group for compliance review)."
     },
     {
+     "type": "interactive-match",
+     "prompt": "Match each Change Management preference to what it enables:",
+     "pairs": [
+      {
+       "left": "CN without CR",
+       "right": "Create a Change Notice directly, skipping the Change Request step"
+      },
+      {
+       "left": "Sequenced Plan",
+       "right": "Execute change tasks in a specific order rather than all at once"
+      },
+      {
+       "left": "Task Form Templates",
+       "right": "Auto-generate tasks with predefined names, assignees, and sequencing"
+      },
+      {
+       "left": "Auto Associate",
+       "right": "Automatically link change objects created in the context of another"
+      }
+     ]
+    },
+    {
      "type": "callout",
      "variant": "tip",
      "text": "Task Form Templates save significant time by eliminating manual task creation. When a Change Notice is submitted, the templates automatically generate all required tasks with the correct assignees and sequencing. Always verify that the <strong>Task Form Templates</strong> preference is enabled before creating templates."
