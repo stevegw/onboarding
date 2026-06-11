@@ -138,6 +138,7 @@
      "locales": [
       "en"
      ],
+     "scormAvailable": true,
      "comingSoon": false
     },
     {
@@ -151,6 +152,7 @@
      "locales": [
       "en"
      ],
+     "scormAvailable": true,
      "comingSoon": false
     },
     {
@@ -163,6 +165,7 @@
      "locales": [
       "en"
      ],
+     "scormAvailable": true,
      "comingSoon": false
     },
     {
@@ -176,6 +179,7 @@
      "locales": [
       "en"
      ],
+     "scormAvailable": true,
      "comingSoon": false
     },
     {
@@ -201,6 +205,7 @@
      "locales": [
       "en"
      ],
+     "scormAvailable": true,
      "comingSoon": false
     },
     {
@@ -238,6 +243,7 @@
      "locales": [
       "en"
      ],
+     "scormAvailable": true,
      "comingSoon": false
     },
     {
@@ -263,6 +269,7 @@
      "locales": [
       "en"
      ],
+     "scormAvailable": true,
      "comingSoon": false
     },
     {
@@ -281,6 +288,7 @@
       "ko",
       "es"
      ],
+     "scormAvailable": true,
      "comingSoon": false
     },
     {
@@ -307,6 +315,7 @@
      "locales": [
       "en"
      ],
+     "scormAvailable": true,
      "comingSoon": false
     },
     {
@@ -318,6 +327,7 @@
      "locales": [
       "en"
      ],
+     "scormAvailable": true,
      "comingSoon": false
     },
     {
@@ -329,6 +339,7 @@
      "locales": [
       "en"
      ],
+     "scormAvailable": true,
      "comingSoon": false
     }
    ]
@@ -349,6 +360,7 @@
      "locales": [
       "en"
      ],
+     "scormAvailable": true,
      "comingSoon": false
     },
     {
@@ -362,6 +374,7 @@
      "locales": [
       "en"
      ],
+     "scormAvailable": true,
      "comingSoon": false
     },
     {
@@ -375,6 +388,7 @@
      "locales": [
       "en"
      ],
+     "scormAvailable": true,
      "comingSoon": false
     },
     {
@@ -400,6 +414,7 @@
      "locales": [
       "en"
      ],
+     "scormAvailable": true,
      "comingSoon": false
     }
    ]
@@ -420,6 +435,7 @@
      "locales": [
       "en"
      ],
+     "scormAvailable": true,
      "comingSoon": false
     },
     {
@@ -468,6 +484,7 @@
      "locales": [
       "en"
      ],
+     "scormAvailable": true,
      "comingSoon": false
     },
     {
@@ -479,6 +496,7 @@
      "locales": [
       "en"
      ],
+     "scormAvailable": true,
      "comingSoon": false
     }
    ]
