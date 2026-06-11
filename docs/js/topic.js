@@ -269,7 +269,7 @@
 
       task.steps.forEach(function (step, si) {
         var isDone = OB.state.isStepDone(exId, task.id, si);
-        var hasDetail = step.detail || step.hint;
+        var hasDetail = step.detail || step.hint || step.image;
 
         html += '<div class="exercise-step' + (isDone ? " done" : "") + '" data-ex="' + exId + '" data-task="' + task.id + '" data-step="' + si + '">';
 
@@ -292,6 +292,15 @@
           }
           if (step.hint) {
             html += '<p class="exercise-step-hint"><strong>' + t("topic.showHint") + ':</strong> ' + safeHtml(step.hint) + '</p>';
+          }
+          if (step.image) {
+            var stepImgSrc = "courses/" + OB.content.getCourseId() + "/" + step.image.src;
+            html += '<figure class="exercise-step-image">';
+            html += '<img src="' + esc(stepImgSrc) + '" alt="' + esc(step.image.alt || '') + '" loading="lazy">';
+            if (step.image.caption) {
+              html += '<figcaption>' + safeHtml(step.image.caption) + '</figcaption>';
+            }
+            html += '</figure>';
           }
           html += '</div>';
         }

@@ -314,12 +314,22 @@
                 {
                   "action": "In the header, click Teams, then on the toolbar click Create a new item of this type. In the Name box, type Team Training 1 and set a color.",
                   "detail": "The team color makes the team visually identifiable on Kanban boards and dashboards.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t4-create-team.png",
+                    "alt": "New Team item form with Name, Color, and Team Members fields",
+                    "caption": "Creating a new team in the Teams tracker"
+                  }
                 },
                 {
                   "action": "In the Team Members field, add the admin and peter users as members, and then click Save.",
                   "detail": "Adding members to the team means tasks assigned to this team are associated with these users.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t4-add-team-members.png",
+                    "alt": "Choose Members dialog listing admin, peter, and youngt22 with their roles",
+                    "caption": "Selecting team members to add"
+                  }
                 },
                 {
                   "action": "On the toolbar, click New Item, and repeat the previous steps to create a second team named Team Training 2 with a different color and the same members (admin, peter).",
@@ -335,7 +345,12 @@
                 {
                   "action": "Switch to the Tasks tracker, click Create a new item of this type, in the Summary box type Task 1, and in the Description box type Task for completion of Task 1.",
                   "detail": "Tasks represent the development work that teams will perform during the proof-of-concept.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t4-create-task.png",
+                    "alt": "New Task item form with Summary, Description, Team, Status, and effort fields",
+                    "caption": "Creating a new item in the Tasks tracker"
+                  }
                 },
                 {
                   "action": "In the Team box, click the pencil icon, select the check box beside Team Training 2, and then click Add.",
@@ -360,7 +375,12 @@
                 {
                   "action": "Beside Spent Effort, click the clock icon to log activity. Set Date to today, Spent Effort to 0.5, Activity to Sprint demo, Kind to Approval, and Remaining Effort to 9.5, and then click OK.",
                   "detail": "Logging activity records who worked on the task, how much time was spent, what kind of work it was, and how much effort remains.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t4-log-activity.png",
+                    "alt": "Work done dialog with Date, Spent Effort, Activity, Kind, and Remaining Effort fields filled in",
+                    "caption": "Logging activity against a task"
+                  }
                 },
                 {
                   "action": "Repeat the previous step to log a second activity: Date - previous business day, Spent Effort - 1.0, Activity - Update requirements document, Kind - Design, Remaining Effort - 8.5.",
@@ -370,7 +390,12 @@
                 {
                   "action": "Under Details, click the Work Log tab and expand the Activity column to view the logged activities.",
                   "detail": "The Work Log tab provides a complete history of effort logged against the task, which can also be reviewed using the Timekeeping tracker.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t4-work-log.png",
+                    "alt": "Work Log tab showing two logged activities with spent and remaining effort, totaling 1.5h spent and 9.5h remaining",
+                    "caption": "The Work Log tab with both logged activities expanded"
+                  }
                 }
               ]
             }
@@ -437,7 +462,12 @@
                 {
                   "action": "Navigate to the Tasks tracker and confirm that Task 1, Task 2, and Task 3 all appear in Table view, with their respective teams assigned.",
                   "detail": "Task 1 was created directly with an upstream reference added manually; Task 2 and Task 3 were created as downstream references from upstream items - two different paths to the same traceable result.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t5-tasks-table.png",
+                    "alt": "Tasks tracker Table view showing Task 1, Task 2, and Task 3 with their upstream references and assigned teams",
+                    "caption": "The Tasks tracker in Table view"
+                  }
                 }
               ]
             },
@@ -458,7 +488,12 @@
                 {
                   "action": "Observe the FREE CAPACITY indicator above the ToDo column (3 tasks, below the minimum of 4) and the absence of any indicator above In progress (1 task, within limits).",
                   "detail": "These visual cues let a Scrum Master quickly spot columns that are under- or over-loaded relative to configured thresholds.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t5-kanban-free-capacity.png",
+                    "alt": "Kanban board showing a FREE CAPACITY indicator above the ToDo column with 3 tasks, and no indicator above In progress with 1 task",
+                    "caption": "The Kanban board with WIP limits applied"
+                  }
                 },
                 {
                   "action": "Click and drag Task 2 from the ToDo column to the In progress column.",
@@ -468,7 +503,12 @@
                 {
                   "action": "Observe that the In progress column now shows an OVERLOADED indicator (2 tasks, exceeding the maximum of 1), while ToDo still shows FREE CAPACITY (2 tasks, still below the minimum of 4).",
                   "detail": "The board updates its WIP indicators immediately as cards move, giving real-time feedback on workload distribution.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t5-kanban-overloaded.png",
+                    "alt": "Kanban board showing a FREE CAPACITY indicator above ToDo with 1 task, and an OVERLOADED indicator above In progress with 2 tasks",
+                    "caption": "The Kanban board after moving Task 2 to In progress"
+                  }
                 }
               ]
             }
@@ -515,7 +555,12 @@
                 {
                   "action": "Set Start Date to today's date and the next upcoming half hour, Planned Release Date to two business days later, Sprint Length to 7, Name to Release 1, and Description to Release to cover requirements for Release 1, then click Save.",
                   "detail": "These fields establish the schedule and default sprint duration for Release 1.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t6-release-1-detail.png",
+                    "alt": "Release 1 item detail view showing Status, Start Date, Planned Release Date, Sprint Length, Release Method, and Description",
+                    "caption": "The Release 1 item after it is created"
+                  }
                 },
                 {
                   "action": "In the header, click Releases, and create a second release with Name - Release 2, Description - Release to cover requirements for Release 2, Start Date - following Monday, Planned Release Date - Friday of that same week, and Sprint Length - 7.",
@@ -551,7 +596,12 @@
                 {
                   "action": "On the toolbar, select the Multiple selection check box, select Task 1 and Task 2 in the middle pane, drag them to Sprint 1, and then click Sprint 1 to confirm they were added.",
                   "detail": "Multiple selection lets you assign several backlog items to a sprint in a single drag operation.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t6-sprint1-ranked.png",
+                    "alt": "Sprint 1 list showing Task 3, Task 1, and Task 2 ranked at positions 1, 2, and 3",
+                    "caption": "Sprint 1 with Task 1, Task 2, and Task 3 assigned and ranked"
+                  }
                 },
                 {
                   "action": "In the left pane, click Product Backlog, hover over the CRS to User Story 1 item and click the pencil icon to view its editable fields, then click Cancel. Double-click the AssignedTo column for the same item and add the admin user.",
@@ -572,12 +622,22 @@
                 {
                   "action": "In the left pane, click Product Backlog. Beside the Chassis item, click Send to the bottom of ordered Product Backlog, then repeat for additional items until 7 items are ranked.",
                   "detail": "Manually ranking items in the Product Backlog lets the Product Owner prioritize what should be pulled into the next sprint.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t6-product-backlog-ranked.png",
+                    "alt": "Product Backlog list with 7 items ranked 1 through 7, including Spring rate, Wheel rate, Transmission, and Carbon-fiber plastic structures",
+                    "caption": "The Product Backlog with 7 items ranked"
+                  }
                 },
                 {
                   "action": "In the Filter bar, click Add Filter, type type, click Tracker Type, and select the Requirement, Task, and User Story check boxes. Then click Add Group by, type status, click Status, and click GO.",
                   "detail": "Filtering and grouping the Product Backlog by tracker type and status helps the team focus on specific kinds of work and see how items are distributed across workflow states. Items already assigned to a sprint (such as the three Tasks) no longer appear in the Product Backlog.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t6-filtered-grouped-backlog.png",
+                    "alt": "Product Backlog filtered to Requirement, Task, and User Story types and grouped by status, with a Status: Draft group expanded showing 5 items",
+                    "caption": "The Product Backlog filtered by tracker type and grouped by status"
+                  }
                 },
                 {
                   "action": "Under the Draft status grouping, select the Weight transfer, Chassis, and Suspension item check boxes, drag them to Sprint 1, and then click Sprint 1 to confirm the filtering and grouping carry over to the sprint list.",
@@ -607,7 +667,12 @@
                 {
                   "action": "Click Product Backlog, beside the Carbon-fiber plastic structures item click more, and click Send to the bottom of ordered Product Backlog.",
                   "detail": "The 'more' menu provides additional options for organizing items: sending to a release backlog, or to the top, middle, bottom, or unordered section of the Product Backlog.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t6-item-more-menu.png",
+                    "alt": "Item more menu showing options including Edit, Duplicate, Create Downstream Reference, Send to top/middle/bottom, Send to Release 1 Backlog, and Send to Release 2 Backlog",
+                    "caption": "The 'more' menu options for organizing a Product Backlog item"
+                  }
                 }
               ]
             }
@@ -664,7 +729,12 @@
                 {
                   "action": "Expand Release 1 and Sprint 1, then expand Release 2 and observe that Sprint 2 has no items to display yet.",
                   "detail": "The Dashboard view now shows summary statistics for releases and sprints, including the number of sprints, percentage progress, open versus closed status, item counts, and planned/spent/remaining effort.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t7-release-dashboard.png",
+                    "alt": "Releases Dashboard view showing Release 1 and Sprint 1 expanded with progress percentages, item counts, and effort statistics, plus the Release 1 Backlog",
+                    "caption": "The Releases Dashboard view with Release 1 and Sprint 1 expanded"
+                  }
                 }
               ]
             },
@@ -710,7 +780,12 @@
                 {
                   "action": "On the header toolbar, click Kanban Board, then under the In progress swim lane drag the Suspension item under (without dropping on) the To verify column, observe the three options - Waiting for approval, Rejected, Accepted - and then drop Suspension back under In progress.",
                   "detail": "Dragging an item toward another column previews the workflow transitions available for moving it there, without committing the change until you drop it.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t7-kanban-drag-suspension.png",
+                    "alt": "Kanban board showing the Suspension card being dragged toward the To verify column, with Approve Requirement, Reject Requirement, and Accept Requirement transition options visible",
+                    "caption": "Previewing workflow transitions while dragging the Suspension item"
+                  }
                 }
               ]
             },
@@ -731,7 +806,12 @@
                 {
                   "action": "Repeat to set Suspension and Weight transfer to ACCEPTED using the Accept transition, and Task 4 to COMPLETED using the Complete transition.",
                   "detail": "All items in Sprint 1 are now in either the COMPLETED or ACCEPTED state, which is a prerequisite for finishing the sprint cleanly.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t7-sprint1-completed.png",
+                    "alt": "Release 1 dashboard showing Sprint 1 with Task 1 through Task 4 marked COMPLETED and Weight transfer, Suspension, and Chassis marked ACCEPTED",
+                    "caption": "All Sprint 1 items in COMPLETED or ACCEPTED state"
+                  }
                 },
                 {
                   "action": "In the header click Releases, expand Release 1, click the Sprint 1 status icon, click Finish, and then click Save.",

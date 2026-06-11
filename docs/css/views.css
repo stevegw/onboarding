@@ -429,6 +429,23 @@
   background: var(--c-neutral-004);
   border-radius: 4px;
 }
+.exercise-step-image {
+  margin: 8px 0 4px 0;
+  text-align: left;
+}
+.exercise-step-image img {
+  max-width: 100%;
+  max-height: 320px;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid var(--c-border);
+}
+.exercise-step-image figcaption {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--c-text-dim);
+  font-style: italic;
+}
 
 /* Module overview exercise listing */
 .topic-list-item.exercise-item { border-left: 3px solid var(--c-ref-purple); }

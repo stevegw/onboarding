@@ -32,16 +32,43 @@
         },
         {
           "type": "comparison-table",
-          "headers": ["Role", "Responsibility"],
+          "headers": [
+            "Role",
+            "Responsibility"
+          ],
           "rows": [
-            ["Project Admin", "Administers the project; has full read and write access to all project content"],
-            ["Product Owner", "Sole person responsible for managing the product backlog"],
-            ["Scrum Master", "Facilitates Scrum by coaching the team in Scrum theory and facilitating key events"],
-            ["Developer", "Member of the development team responsible for implementing backlog items"],
-            ["Test Engineer", "Responsible for developing and maintaining test cases"],
-            ["Tester", "Responsible for executing test steps"],
-            ["Test Lead", "Responsible for test sets and test planning/execution"],
-            ["Stakeholder", "Any user who is interested in the project"]
+            [
+              "Project Admin",
+              "Administers the project; has full read and write access to all project content"
+            ],
+            [
+              "Product Owner",
+              "Sole person responsible for managing the product backlog"
+            ],
+            [
+              "Scrum Master",
+              "Facilitates Scrum by coaching the team in Scrum theory and facilitating key events"
+            ],
+            [
+              "Developer",
+              "Member of the development team responsible for implementing backlog items"
+            ],
+            [
+              "Test Engineer",
+              "Responsible for developing and maintaining test cases"
+            ],
+            [
+              "Tester",
+              "Responsible for executing test steps"
+            ],
+            [
+              "Test Lead",
+              "Responsible for test sets and test planning/execution"
+            ],
+            [
+              "Stakeholder",
+              "Any user who is interested in the project"
+            ]
           ]
         },
         {
@@ -53,10 +80,22 @@
           "type": "interactive-match",
           "prompt": "Match each implementation team role to its primary responsibility:",
           "pairs": [
-            { "left": "Project Admin", "right": "Administers the project with full read/write access" },
-            { "left": "Product Owner", "right": "Manages the product backlog" },
-            { "left": "Scrum Master", "right": "Facilitates Scrum events and coaching" },
-            { "left": "Test Lead", "right": "Responsible for test sets and test planning/execution" }
+            {
+              "left": "Project Admin",
+              "right": "Administers the project with full read/write access"
+            },
+            {
+              "left": "Product Owner",
+              "right": "Manages the product backlog"
+            },
+            {
+              "left": "Scrum Master",
+              "right": "Facilitates Scrum events and coaching"
+            },
+            {
+              "left": "Test Lead",
+              "right": "Responsible for test sets and test planning/execution"
+            }
           ]
         }
       ],
@@ -106,15 +145,47 @@
         },
         {
           "type": "comparison-table",
-          "headers": ["Area", "What It Is", "Who Is Responsible"],
+          "headers": [
+            "Area",
+            "What It Is",
+            "Who Is Responsible"
+          ],
           "rows": [
-            ["Requirements management", "Identifying, managing, and tracking requirements throughout their lifecycle from conception to delivery", "Requirements Engineers, Project/Product Managers, Business Analysts"],
-            ["Software development", "Aligning development with requirements and testing through change management, version control, and release planning", "Software Developers, Software Architects, Scrum Masters"],
-            ["QA and testing", "Tracing and managing all product quality assurance and testing activities", "QA Directors, Test Engineers, Software Quality Leads"],
-            ["DevOps", "Integrating feedback and aligning contributors across all phases to streamline delivery", "DevOps Engineer, Release Manager, Build Engineer"],
-            ["Risk management", "Identifying, understanding, and mitigating risks for end users", "Risk Managers, Risk Analysts, Compliance Officers"],
-            ["Software configuration/variants management", "Managing multiple development streams, branching, comparison, merging, and baselining", "Requirements Engineer, Product Manager"],
-            ["Analytics", "Lifecycle-wide data analysis including queries, dashboards, audit trails, and wikis", "Data Analysts, Engineering Managers, Auditors"]
+            [
+              "Requirements management",
+              "Identifying, managing, and tracking requirements throughout their lifecycle from conception to delivery",
+              "Requirements Engineers, Project/Product Managers, Business Analysts"
+            ],
+            [
+              "Software development",
+              "Aligning development with requirements and testing through change management, version control, and release planning",
+              "Software Developers, Software Architects, Scrum Masters"
+            ],
+            [
+              "QA and testing",
+              "Tracing and managing all product quality assurance and testing activities",
+              "QA Directors, Test Engineers, Software Quality Leads"
+            ],
+            [
+              "DevOps",
+              "Integrating feedback and aligning contributors across all phases to streamline delivery",
+              "DevOps Engineer, Release Manager, Build Engineer"
+            ],
+            [
+              "Risk management",
+              "Identifying, understanding, and mitigating risks for end users",
+              "Risk Managers, Risk Analysts, Compliance Officers"
+            ],
+            [
+              "Software configuration/variants management",
+              "Managing multiple development streams, branching, comparison, merging, and baselining",
+              "Requirements Engineer, Product Manager"
+            ],
+            [
+              "Analytics",
+              "Lifecycle-wide data analysis including queries, dashboards, audit trails, and wikis",
+              "Data Analysts, Engineering Managers, Auditors"
+            ]
           ]
         },
         {
@@ -184,9 +255,18 @@
           "type": "interactive-match",
           "prompt": "Match each pillar of Codebeamer to its description:",
           "pairs": [
-            { "left": "Trackers", "right": "Configurable containers for ALM data, connected through references" },
-            { "left": "Workflows", "right": "Lifecycle definitions controlling who can do what and when" },
-            { "left": "Versioning and Baselines", "right": "Always-on version history plus snapshots for compliance" }
+            {
+              "left": "Trackers",
+              "right": "Configurable containers for ALM data, connected through references"
+            },
+            {
+              "left": "Workflows",
+              "right": "Lifecycle definitions controlling who can do what and when"
+            },
+            {
+              "left": "Versioning and Baselines",
+              "right": "Always-on version history plus snapshots for compliance"
+            }
           ]
         }
       ],
@@ -213,14 +293,35 @@
         },
         {
           "type": "comparison-table",
-          "headers": ["Layer/Component", "Description"],
+          "headers": [
+            "Layer/Component",
+            "Description"
+          ],
           "rows": [
-            ["Web container", "Apache Tomcat web server processes web requests from users"],
-            ["Security layer", "Authentication and authorization managed centrally through User Management - Users, Groups, Roles, and Permissions; supports LDAP/Active Directory synchronization"],
-            ["Core services", "Searching and reporting, workflow engine, wiki engine, event engine, SCM management, document management"],
-            ["Relational database", "Stores most model data; PostgreSQL, MySQL, and Oracle are supported"],
-            ["File system", "Disk storage for non-transactional data and large files, e.g., Document Management and SCM repositories such as Git"],
-            ["Mail server", "Works with the Event engine to send notification emails when changes occur to work items, wiki pages, or other artifacts"]
+            [
+              "Web container",
+              "Apache Tomcat web server processes web requests from users"
+            ],
+            [
+              "Security layer",
+              "Authentication and authorization managed centrally through User Management - Users, Groups, Roles, and Permissions; supports LDAP/Active Directory synchronization"
+            ],
+            [
+              "Core services",
+              "Searching and reporting, workflow engine, wiki engine, event engine, SCM management, document management"
+            ],
+            [
+              "Relational database",
+              "Stores most model data; PostgreSQL, MySQL, and Oracle are supported"
+            ],
+            [
+              "File system",
+              "Disk storage for non-transactional data and large files, e.g., Document Management and SCM repositories such as Git"
+            ],
+            [
+              "Mail server",
+              "Works with the Event engine to send notification emails when changes occur to work items, wiki pages, or other artifacts"
+            ]
           ]
         },
         {
@@ -263,8 +364,7 @@
           ]
         },
         {
-          "type": "interactive-sort"
-,
+          "type": "interactive-sort",
           "prompt": "Arrange these architecture layers from the layer closest to the user down to the layer closest to storage:",
           "items": [
             "Web container (Apache Tomcat)",
@@ -301,12 +401,27 @@
         },
         {
           "type": "comparison-table",
-          "headers": ["Component", "Purpose"],
+          "headers": [
+            "Component",
+            "Purpose"
+          ],
           "rows": [
-            ["Wikis", "Store information related to the project or workspace, such as compliance points (SOPs) and development reminders"],
-            ["Documents", "Store and manage project files of common types, with versioning and permission-based access; administrators can see who accessed a document"],
-            ["Source Code Management (SCM)", "Connects to external and managed repositories; supports browsing repository content and history, granular access control, and associating change sets with issues for traceability"],
-            ["Baselines", "Snapshots of the entire project's current state, used for comparison with later versions and for audit reporting"]
+            [
+              "Wikis",
+              "Store information related to the project or workspace, such as compliance points (SOPs) and development reminders"
+            ],
+            [
+              "Documents",
+              "Store and manage project files of common types, with versioning and permission-based access; administrators can see who accessed a document"
+            ],
+            [
+              "Source Code Management (SCM)",
+              "Connects to external and managed repositories; supports browsing repository content and history, granular access control, and associating change sets with issues for traceability"
+            ],
+            [
+              "Baselines",
+              "Snapshots of the entire project's current state, used for comparison with later versions and for audit reporting"
+            ]
           ]
         },
         {
@@ -332,10 +447,22 @@
           "type": "interactive-match",
           "prompt": "Match each project component to what it provides:",
           "pairs": [
-            { "left": "Wikis", "right": "Store project information such as SOPs and reminders" },
-            { "left": "Documents", "right": "Versioned file storage with access permissions" },
-            { "left": "Source Code Management", "right": "Connects to repositories and traces change sets to issues" },
-            { "left": "Baselines", "right": "Snapshots of the project for comparison and audit reports" }
+            {
+              "left": "Wikis",
+              "right": "Store project information such as SOPs and reminders"
+            },
+            {
+              "left": "Documents",
+              "right": "Versioned file storage with access permissions"
+            },
+            {
+              "left": "Source Code Management",
+              "right": "Connects to repositories and traces change sets to issues"
+            },
+            {
+              "left": "Baselines",
+              "right": "Snapshots of the project for comparison and audit reports"
+            }
           ]
         }
       ],
@@ -391,10 +518,22 @@
           "type": "interactive-match",
           "prompt": "Match each Codebeamer concept to its database/programming equivalent or description:",
           "pairs": [
-            { "left": "Tracker", "right": "Equivalent of a table or class - defines fields and relationships" },
-            { "left": "Tracker item", "right": "Equivalent of a row or object" },
-            { "left": "Group", "right": "Collection of users sharing a common trait, such as job profile" },
-            { "left": "Role", "right": "Project-wide access permissions reflecting team structure" }
+            {
+              "left": "Tracker",
+              "right": "Equivalent of a table or class - defines fields and relationships"
+            },
+            {
+              "left": "Tracker item",
+              "right": "Equivalent of a row or object"
+            },
+            {
+              "left": "Group",
+              "right": "Collection of users sharing a common trait, such as job profile"
+            },
+            {
+              "left": "Role",
+              "right": "Project-wide access permissions reflecting team structure"
+            }
           ]
         }
       ],
@@ -433,7 +572,12 @@
                 {
                   "action": "Log in to Codebeamer and observe that you are taken to the My Start tab, which contains your Personal Wiki.",
                   "detail": "The My Start tab is your home base. It can be customized with widgets that visualize your assignments, tasks to complete, and work already done.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m1t7-login.png",
+                    "alt": "Codebeamer login page with Account name and Password fields",
+                    "caption": "The Codebeamer login page"
+                  }
                 },
                 {
                   "action": "In the Structure Tree Section on the left, right-click your Personal Wiki, click Collapse Node, and then click the + icon to expand it again.",
@@ -469,17 +613,32 @@
                 {
                   "action": "On the My Open Reviews widget, click more, then click Pin, and confirm by clicking Yes.",
                   "detail": "Pinning a widget moves it to the top of the dashboard. Only one widget per dashboard can be pinned at a time, so pinning a new widget unpins the previously pinned one.",
-                  "hint": "Scroll to the top of the dashboard to see the pinned widget."
+                  "hint": "Scroll to the top of the dashboard to see the pinned widget.",
+                  "image": {
+                    "src": "images/m1t7-my-open-reviews.png",
+                    "alt": "My Open Reviews widget showing a pull request review item",
+                    "caption": "The My Open Reviews widget"
+                  }
                 },
                 {
                   "action": "On the pinned widget, click more, click Edit, change Alignment from Stretch to Center, and click Save. Then set it back to Stretch and re-pin the originally pinned widget.",
                   "detail": "The Alignment setting controls how content is positioned within a widget's container - left, center, right, or stretched across the full width.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m1t7-widget-centered.png",
+                    "alt": "My Open Reviews widget content centered after changing alignment",
+                    "caption": "The widget with Center alignment applied"
+                  }
                 },
                 {
                   "action": "Hover under the last widget in the right container, click Add Widget, click the Personal tab, hover over User Profile, click Add, and then click Save without changing any properties.",
                   "detail": "Codebeamer offers around 35 widgets across six categories (Report visualization, Project, Agile, Test, Personal, and Other). The User Profile widget is added to the top of the left container, below the pinned widget. Note that widgets can only be added to dashboards, not to plain wiki pages.",
-                  "hint": "You can also add a widget using the Add Widget icon on the toolbar instead of the inline link."
+                  "hint": "You can also add a widget using the Add Widget icon on the toolbar instead of the inline link.",
+                  "image": {
+                    "src": "images/m1t7-add-widget.png",
+                    "alt": "Add Widget dialog showing widget categories and the Personal tab",
+                    "caption": "The Add Widget dialog"
+                  }
                 }
               ]
             },
@@ -547,7 +706,12 @@
                 {
                   "action": "At the top of the Codebeamer interface, click System Admin.",
                   "detail": "The System Administration page lets administrators maintain and operate Codebeamer instances, including User Accounts, User Groups, Documents, Application Configuration, and many other settings.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m1t8-system-admin-tab.png",
+                    "alt": "System Administration page listing user accounts, user groups, projects, and other admin functions",
+                    "caption": "The System Administration page"
+                  }
                 },
                 {
                   "action": "Click User Accounts, click New Account, complete the Username, Password, Confirm Password, First Name, Last Name, and Email fields with your own information, configure group membership as instructed, and click Save.",
@@ -562,7 +726,12 @@
                 {
                   "action": "Beside the API Group, click more, click Assign Members, type part of a username to search for matches, select a user, and then click Cancel without completing the assignment.",
                   "detail": "Only registered Codebeamer users can be assigned to a group, and a group cannot contain another group. The type-ahead search helps you find existing users quickly.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m1t8-assign-members.png",
+                    "alt": "Assign Members to the API Group dialog with the user peter selected",
+                    "caption": "Assigning a member to the API Group"
+                  }
                 },
                 {
                   "action": "Next to the System Administrator group, click more, click Edit, review the permission list, and click Cancel.",
@@ -572,7 +741,12 @@
                 {
                   "action": "In the System Administration list, click Projects to view all projects on the server, including their status, creation date, creator, administrators, and category.",
                   "detail": "Only members of the System Administrator group can view this full list of projects and delete unnecessary ones. A first delete removes a project from the Project Browser (it can be restored); a second delete on a removed project permanently deletes it.",
-                  "hint": "Look at the Removed tab in the Project Browser to see projects that have been deleted once but not yet permanently."
+                  "hint": "Look at the Removed tab in the Project Browser to see projects that have been deleted once but not yet permanently.",
+                  "image": {
+                    "src": "images/m1t8-projects-list.png",
+                    "alt": "Projects page listing all projects on the server with status, creation date, creator, category, and administrators",
+                    "caption": "The Projects list in System Admin"
+                  }
                 }
               ]
             },
@@ -593,17 +767,32 @@
                 {
                   "action": "Click your username again, then click your account name to open your account settings.",
                   "detail": "Your account settings show information from registration (name, email, address), license type, group memberships, and timezone. From here you can edit your account, view your personal wiki, send email, change your password, edit your profile photo, and manage public SSH keys for repository access.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m1t8-account-profile.png",
+                    "alt": "Account settings page showing personal details and user group memberships",
+                    "caption": "Your account settings page"
+                  }
                 },
                 {
                   "action": "Click the My Start tab, then click the Search box at the top right.",
                   "detail": "Search options let you filter by time frame (last modified), all or recent projects, and object type such as Work Items or Documents.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m1t8-search-panel.png",
+                    "alt": "Search panel showing filters for last modified, search in project, and content types",
+                    "caption": "The search panel"
+                  }
                 },
                 {
                   "action": "Click the down arrow beside GO to view advanced search options.",
                   "detail": "Advanced search provides additional filters beyond the basic search box for narrowing results across the Codebeamer instance.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m1t8-advanced-search.png",
+                    "alt": "Advanced Search page with search parameters and content type checkboxes",
+                    "caption": "Advanced Search options"
+                  }
                 }
               ]
             },
@@ -614,7 +803,12 @@
                 {
                   "action": "Click the Projects tab to open the Project Browser, which shows the Projects List by default.",
                   "detail": "The Project Browser lets you navigate different organizational views of the projects you can access, including Projects List, Projects Tree, Available to Join, Compact List, Project Groups, and Removed.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m1t8-project-browser.png",
+                    "alt": "Project Browser showing the Projects List grouped by category",
+                    "caption": "The Project Browser"
+                  }
                 },
                 {
                   "action": "In the left pane, click a category name to focus and highlight that category and its projects in the right pane.",

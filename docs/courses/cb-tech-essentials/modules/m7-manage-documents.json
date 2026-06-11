@@ -233,7 +233,12 @@
                 {
                   "action": "Open the downloaded file in Word, add a new paragraph after the first paragraph with the text This is a new paragraph, then save and close the file.",
                   "detail": "This change will be visible when you compare the new version against the original after re-uploading.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m7t3-edited-document.png",
+                    "alt": "Auto Requirements Document.docx open in Word with a new paragraph added below the first paragraph",
+                    "caption": "The document with the new paragraph added"
+                  }
                 },
                 {
                   "action": "In the Word directory, repeat the upload steps to re-upload the edited Auto Requirements Document.docx, replacing the existing file when prompted.",
@@ -294,7 +299,12 @@
                 {
                   "action": "Click Add Association, in the Association Type list click is related to, then on the From History tab select the Edit requirements document check box and click Add.",
                   "detail": "This creates a bidirectional link - the document is now related to the task, and the task is related to the document.",
-                  "hint": "The task should appear as the first item in the From History list if you created it just before this step."
+                  "hint": "The task should appear as the first item in the From History list if you created it just before this step.",
+                  "image": {
+                    "src": "images/m7t4-document-associations.png",
+                    "alt": "Document properties Associations tab showing 'is related to TASK-5782 Edit requirements document'",
+                    "caption": "The document associated with the task"
+                  }
                 }
               ]
             },
@@ -310,7 +320,12 @@
                 {
                   "action": "At the bottom of the task, click the Associations tab and confirm that Auto Requirements Document.docx appears as a related item.",
                   "detail": "Seeing the association from the task confirms the link works in both directions - from document to task, and from task to document.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m7t4-task-associations.png",
+                    "alt": "Task Associations tab showing 'DOC-63348 Auto Requirements Documents.docx is related to this item'",
+                    "caption": "The task's Associations tab showing the related document"
+                  }
                 },
                 {
                   "action": "Return to the Documents tab and the Word directory, beside Auto Requirements Document.docx click more, then click Properties, and click the History tab.",
@@ -320,7 +335,12 @@
                 {
                   "action": "In the Version column beside version 1, click more, then click Restore this version, and click OK.",
                   "detail": "Restoring version 1 creates a new version (version 3) that is identical to version 1, while version 2 remains in the history as the edited version.",
-                  "hint": "After restoring, the History tab should show three versions: 1, 2, and 3."
+                  "hint": "After restoring, the History tab should show three versions: 1, 2, and 3.",
+                  "image": {
+                    "src": "images/m7t4-version-history.png",
+                    "alt": "Document History tab showing three versions, with version 3 restored from version 1",
+                    "caption": "The document's version history after restoring version 1"
+                  }
                 }
               ]
             }

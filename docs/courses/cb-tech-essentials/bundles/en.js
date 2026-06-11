@@ -821,7 +821,12 @@
                 {
                   "action": "Log in to Codebeamer and observe that you are taken to the My Start tab, which contains your Personal Wiki.",
                   "detail": "The My Start tab is your home base. It can be customized with widgets that visualize your assignments, tasks to complete, and work already done.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m1t7-login.png",
+                    "alt": "Codebeamer login page with Account name and Password fields",
+                    "caption": "The Codebeamer login page"
+                  }
                 },
                 {
                   "action": "In the Structure Tree Section on the left, right-click your Personal Wiki, click Collapse Node, and then click the + icon to expand it again.",
@@ -857,17 +862,32 @@
                 {
                   "action": "On the My Open Reviews widget, click more, then click Pin, and confirm by clicking Yes.",
                   "detail": "Pinning a widget moves it to the top of the dashboard. Only one widget per dashboard can be pinned at a time, so pinning a new widget unpins the previously pinned one.",
-                  "hint": "Scroll to the top of the dashboard to see the pinned widget."
+                  "hint": "Scroll to the top of the dashboard to see the pinned widget.",
+                  "image": {
+                    "src": "images/m1t7-my-open-reviews.png",
+                    "alt": "My Open Reviews widget showing a pull request review item",
+                    "caption": "The My Open Reviews widget"
+                  }
                 },
                 {
                   "action": "On the pinned widget, click more, click Edit, change Alignment from Stretch to Center, and click Save. Then set it back to Stretch and re-pin the originally pinned widget.",
                   "detail": "The Alignment setting controls how content is positioned within a widget's container - left, center, right, or stretched across the full width.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m1t7-widget-centered.png",
+                    "alt": "My Open Reviews widget content centered after changing alignment",
+                    "caption": "The widget with Center alignment applied"
+                  }
                 },
                 {
                   "action": "Hover under the last widget in the right container, click Add Widget, click the Personal tab, hover over User Profile, click Add, and then click Save without changing any properties.",
                   "detail": "Codebeamer offers around 35 widgets across six categories (Report visualization, Project, Agile, Test, Personal, and Other). The User Profile widget is added to the top of the left container, below the pinned widget. Note that widgets can only be added to dashboards, not to plain wiki pages.",
-                  "hint": "You can also add a widget using the Add Widget icon on the toolbar instead of the inline link."
+                  "hint": "You can also add a widget using the Add Widget icon on the toolbar instead of the inline link.",
+                  "image": {
+                    "src": "images/m1t7-add-widget.png",
+                    "alt": "Add Widget dialog showing widget categories and the Personal tab",
+                    "caption": "The Add Widget dialog"
+                  }
                 }
               ]
             },
@@ -935,7 +955,12 @@
                 {
                   "action": "At the top of the Codebeamer interface, click System Admin.",
                   "detail": "The System Administration page lets administrators maintain and operate Codebeamer instances, including User Accounts, User Groups, Documents, Application Configuration, and many other settings.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m1t8-system-admin-tab.png",
+                    "alt": "System Administration page listing user accounts, user groups, projects, and other admin functions",
+                    "caption": "The System Administration page"
+                  }
                 },
                 {
                   "action": "Click User Accounts, click New Account, complete the Username, Password, Confirm Password, First Name, Last Name, and Email fields with your own information, configure group membership as instructed, and click Save.",
@@ -950,7 +975,12 @@
                 {
                   "action": "Beside the API Group, click more, click Assign Members, type part of a username to search for matches, select a user, and then click Cancel without completing the assignment.",
                   "detail": "Only registered Codebeamer users can be assigned to a group, and a group cannot contain another group. The type-ahead search helps you find existing users quickly.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m1t8-assign-members.png",
+                    "alt": "Assign Members to the API Group dialog with the user peter selected",
+                    "caption": "Assigning a member to the API Group"
+                  }
                 },
                 {
                   "action": "Next to the System Administrator group, click more, click Edit, review the permission list, and click Cancel.",
@@ -960,7 +990,12 @@
                 {
                   "action": "In the System Administration list, click Projects to view all projects on the server, including their status, creation date, creator, administrators, and category.",
                   "detail": "Only members of the System Administrator group can view this full list of projects and delete unnecessary ones. A first delete removes a project from the Project Browser (it can be restored); a second delete on a removed project permanently deletes it.",
-                  "hint": "Look at the Removed tab in the Project Browser to see projects that have been deleted once but not yet permanently."
+                  "hint": "Look at the Removed tab in the Project Browser to see projects that have been deleted once but not yet permanently.",
+                  "image": {
+                    "src": "images/m1t8-projects-list.png",
+                    "alt": "Projects page listing all projects on the server with status, creation date, creator, category, and administrators",
+                    "caption": "The Projects list in System Admin"
+                  }
                 }
               ]
             },
@@ -981,17 +1016,32 @@
                 {
                   "action": "Click your username again, then click your account name to open your account settings.",
                   "detail": "Your account settings show information from registration (name, email, address), license type, group memberships, and timezone. From here you can edit your account, view your personal wiki, send email, change your password, edit your profile photo, and manage public SSH keys for repository access.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m1t8-account-profile.png",
+                    "alt": "Account settings page showing personal details and user group memberships",
+                    "caption": "Your account settings page"
+                  }
                 },
                 {
                   "action": "Click the My Start tab, then click the Search box at the top right.",
                   "detail": "Search options let you filter by time frame (last modified), all or recent projects, and object type such as Work Items or Documents.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m1t8-search-panel.png",
+                    "alt": "Search panel showing filters for last modified, search in project, and content types",
+                    "caption": "The search panel"
+                  }
                 },
                 {
                   "action": "Click the down arrow beside GO to view advanced search options.",
                   "detail": "Advanced search provides additional filters beyond the basic search box for narrowing results across the Codebeamer instance.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m1t8-advanced-search.png",
+                    "alt": "Advanced Search page with search parameters and content type checkboxes",
+                    "caption": "Advanced Search options"
+                  }
                 }
               ]
             },
@@ -1002,7 +1052,12 @@
                 {
                   "action": "Click the Projects tab to open the Project Browser, which shows the Projects List by default.",
                   "detail": "The Project Browser lets you navigate different organizational views of the projects you can access, including Projects List, Projects Tree, Available to Join, Compact List, Project Groups, and Removed.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m1t8-project-browser.png",
+                    "alt": "Project Browser showing the Projects List grouped by category",
+                    "caption": "The Project Browser"
+                  }
                 },
                 {
                   "action": "In the left pane, click a category name to focus and highlight that category and its projects in the right pane.",
@@ -1469,7 +1524,12 @@
                 {
                   "action": "Click the ellipsis once more and click Edit, then click the project name in the header to return to the Project Wiki page.",
                   "detail": "The Edit option opens the project properties, where Name, Key, and Category can be changed at any time. Returning to the Wiki page leaves the project open for the next activity.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m2t5-edit-project-properties.png",
+                    "alt": "Project Edit page showing Name, Key, Category, and Tabs in the top menu settings",
+                    "caption": "The project properties Edit page"
+                  }
                 }
               ]
             }
@@ -1516,7 +1576,12 @@
                 {
                   "action": "Beside the Admin tab, click the vertical ellipsis and then click Members.",
                   "detail": "The Members page lists everyone who currently has access to the project and their assigned roles. As the project creator, you are automatically in the Project Admin role.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m2t6-members-page.png",
+                    "alt": "Members page listing project roles on the left and the admin member assigned to Project Admin on the right",
+                    "caption": "The project Members page"
+                  }
                 },
                 {
                   "action": "Click Add new Member, then under Step 1 type pete in the search box and select the Peter user.",
@@ -1552,7 +1617,12 @@
                 {
                   "action": "Hover over the vertical ellipsis beside the Developer role until it changes, then drag and drop the Developer role onto the Peter member in the right pane.",
                   "detail": "This assigns the Developer role to Peter in addition to his existing Project Admin role. A member can hold multiple roles at once.",
-                  "hint": "You can also drag a member onto a role to achieve the same result."
+                  "hint": "You can also drag a member onto a role to achieve the same result.",
+                  "image": {
+                    "src": "images/m2t6-drag-role-to-member.png",
+                    "alt": "Dragging the Developer role onto the Peter member to assign the role",
+                    "caption": "Dragging a role onto a member to assign it"
+                  }
                 },
                 {
                   "action": "In the right pane, hover over the Developer role beside the Peter member and click Resign role from this member.",
@@ -1599,12 +1669,22 @@
                 {
                   "action": "Click the Trackers tab.",
                   "detail": "The left pane shows the Tracker Tree, grouped by work item trackers and configuration item trackers. The right pane shows a dashboard of widgets for the project.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m2t7-trackers-tab.png",
+                    "alt": "Trackers page with the Tracker Tree on the left and a project dashboard of widgets on the right",
+                    "caption": "The Trackers page with the Tracker Tree"
+                  }
                 },
                 {
                   "action": "On the toolbar, click Configuration Diagram.",
                   "detail": "The diagram shows the trackers currently selected in the left pane, with arrows representing bi-directional traceability between them.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m2t7-configuration-diagram.png",
+                    "alt": "Configuration Diagram showing trackers as nodes connected by bi-directional traceability arrows",
+                    "caption": "The Configuration Diagram"
+                  }
                 },
                 {
                   "action": "In the left pane, select only Customer Requirement Specifications, System Requirement Specifications, User Stories, and Tasks (deselect any others).",
@@ -1630,7 +1710,12 @@
                 {
                   "action": "In the Tracker Tree, double-click the System Requirement Specifications tracker, then on the toolbar click more and select Configure.",
                   "detail": "This opens the General tab of the tracker's Configuration page, where you can modify standard properties and optionally base the tracker on a template.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m2t7-tracker-general-config.png",
+                    "alt": "General tab of the System Requirement Specifications tracker Configuration page showing Name, Key, Template, and other properties",
+                    "caption": "The General tab of the tracker Configuration page"
+                  }
                 },
                 {
                   "action": "Click the Permissions tab and review the available tracker permissions and roles.",
@@ -1640,7 +1725,12 @@
                 {
                   "action": "Click the State Transitions tab, then click the Approve transition (From status New, To status Waiting for Approval).",
                   "detail": "The State Transition dialog box shows the From and To statuses, Name, Description, Permissions, Condition, Guard, and Actions for this transition.",
-                  "hint": "Click Cancel after reviewing the dialog to avoid making changes."
+                  "hint": "Click Cancel after reviewing the dialog to avoid making changes.",
+                  "image": {
+                    "src": "images/m2t7-state-transition-dialog.png",
+                    "alt": "State Transition dialog box for the Approve transition showing From, To, Name, Permitted, Condition, Guard, and Actions fields",
+                    "caption": "The State Transition dialog box"
+                  }
                 },
                 {
                   "action": "Scroll down to the Workflow Diagram to view the visual representation of states and transitions, then scroll back up and click the Fields tab.",
@@ -1650,7 +1740,12 @@
                 {
                   "action": "Click the first field label (ID) to view its properties, then click Cancel twice to exit without saving changes.",
                   "detail": "Field-level configuration, including custom and calculated fields, will be covered in more depth in the Codebeamer Advanced Configuration course.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m2t7-edit-field-dialog.png",
+                    "alt": "Edit ID field dialog showing Label, Type, List, Description, and other field properties",
+                    "caption": "The Edit field dialog for the ID field"
+                  }
                 }
               ]
             }
@@ -1994,7 +2089,12 @@
                 {
                   "action": "Click Preview to confirm 6 items will be imported, then click Add new Rule and set it to import Heading 2 items into System Requirement Specifications, and add a third rule importing Heading 3 items into Test Cases.",
                   "detail": "These additional rules let a single document populate three trackers at once, mirroring the requirements hierarchy in the source document.",
-                  "hint": "Select System Requirement Specifications and Test Cases as the target trackers for the new rules, each filtered to its own heading level."
+                  "hint": "Select System Requirement Specifications and Test Cases as the target trackers for the new rules, each filtered to its own heading level.",
+                  "image": {
+                    "src": "images/m3t4-import-rules-three-trackers.png",
+                    "alt": "IMPORT RULES pane showing three rules: Heading 1 Char into the current tracker, Heading 2 Char into System Requirement Specifications, and Heading 3 Char into Test Cases",
+                    "caption": "Import rules distributing the document across three trackers by heading style"
+                  }
                 },
                 {
                   "action": "Click Preview again to confirm the statistics show 6 items for Customer Requirement Specifications, 11 for System Requirement Specifications, and 5 for Test Cases, then click Save.",
@@ -2010,17 +2110,32 @@
                 {
                   "action": "In the Customer Requirement Specifications Tracker Tree, click Settings and select Work Item Key-IDs, Numbering, Mark Work items with suspected links, Add Rating option, and Show Child counts, then click Save.",
                   "detail": "These settings apply across all trackers and make it much easier to identify, number, and assess imported work items.",
-                  "hint": "The Settings icon is at the top of the Tracker Tree pane."
+                  "hint": "The Settings icon is at the top of the Tracker Tree pane.",
+                  "image": {
+                    "src": "images/m3t4-tracker-tree-numbering.png",
+                    "alt": "Tracker Tree showing imported items with key IDs and sequential numbering after enabling tracker tree settings",
+                    "caption": "The Tracker Tree after enabling key IDs and numbering"
+                  }
                 },
                 {
                   "action": "Click the Suspension item, then beside it in the middle pane click the rating icon, give it a 4-star rating with the comment 'This is a very good item', and click Rate.",
                   "detail": "Ratings provide informal quality feedback on individual work items.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t4-rating-dialog.png",
+                    "alt": "Rate this dialog showing a 4-star rating and the comment 'This is a very good item'",
+                    "caption": "The rating dialog for a work item"
+                  }
                 },
                 {
                   "action": "Click the Chassis item, double-click the Business Value field, set it to Must have, then use the status ellipsis to transition the item from New to Draft using the Define transition, and click Save.",
                   "detail": "This demonstrates editing attributes directly in Document View and moving an item through its workflow.",
-                  "hint": "Click away from the Business Value field first to save it, then look for the vertical ellipsis beside the New status label."
+                  "hint": "Click away from the Business Value field first to save it, then look for the vertical ellipsis beside the New status label.",
+                  "image": {
+                    "src": "images/m3t4-chassis-detail-define.png",
+                    "alt": "Chassis item detail page showing the Define dialog with Status set to Draft",
+                    "caption": "The Chassis item with its status transitioned to Draft"
+                  }
                 },
                 {
                   "action": "Switch to Table View, group the items by Status using Add Group by, click GO, then remove the Status filter and click GO again to ungroup.",
@@ -2035,7 +2150,12 @@
                 {
                   "action": "Return to Document View, click New Requirement, create an item named 'Test Customer Requirement #1' with description 'Test description', then drag the 'Sales and Marketing' item from the Library (under Medical Device Engineering Template) into the Tracker Tree as a copy.",
                   "detail": "This demonstrates both manual item creation and adding items from the Requirements Library, including making the Sales and Marketing item a folder using its Type property.",
-                  "hint": "Enable the Medical Device Engineering Template project in Requirement Library Configuration first, then drag-and-drop Sales and Marketing to the bottom of the Tracker Tree and choose 'Make a copy of the Items in the target Tracker'."
+                  "hint": "Enable the Medical Device Engineering Template project in Requirement Library Configuration first, then drag-and-drop Sales and Marketing to the bottom of the Tracker Tree and choose 'Make a copy of the Items in the target Tracker'.",
+                  "image": {
+                    "src": "images/m3t4-sales-marketing-added.png",
+                    "alt": "Tracker Tree showing the new Test Customer Requirement #1 item and the Sales and Marketing item copied in from the Library",
+                    "caption": "The Tracker Tree after adding a manual item and a library item"
+                  }
                 },
                 {
                   "action": "Right-click 'Test Customer Requirement #1', save it as a public item template named 'Test Requirement Template', then use Create item from a template to generate 'Test Customer Requirement #2', and finally delete both the template and 'Test Customer Requirement #2'.",
@@ -2092,7 +2212,12 @@
                 {
                   "action": "Click the 'Default: Continuously variable' item to open its details, expand its Traceability node, and confirm you can see both its upstream reference (Transmission) and its downstream reference (Minimum Torque), then return to the Transmission item.",
                   "detail": "Double-clicking any upstream or downstream item in a traceability view opens that item's own traceability, letting you walk the full chain.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t5-traceability-node.png",
+                    "alt": "Traceability node showing the Transmission item as an upstream reference and Minimum Torque as a downstream reference for the Default: Continuously variable item",
+                    "caption": "The Traceability node showing upstream and downstream references"
+                  }
                 }
               ]
             },
@@ -2103,17 +2228,32 @@
                 {
                   "action": "From the Customer Requirement Specifications header, open Library, click Requirement Library Configuration, and ensure the Codebeamer Technical Essentials training project's relevant trackers are enabled, then click Save.",
                   "detail": "The current project must be added to the Library before its items can be dragged as references onto other items.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t5-library-configuration.png",
+                    "alt": "Requirement Library Configuration tree with the Codebeamer Technical Essentials training project expanded and several trackers checked",
+                    "caption": "Enabling trackers in the Requirement Library Configuration"
+                  }
                 },
                 {
                   "action": "In the Tracker Tree select the Chassis item, then from the Library expand System Requirement Specifications, drag the 'Quality attributes' item over the Chassis item in the middle pane, and drop it in the 'Link to this Creates a reference' drop zone.",
                   "detail": "This is the first technique: linking an existing item from the Library as a downstream reference, without creating a new item.",
-                  "hint": "Confirm the new reference appears under Properties > References for the Chassis item."
+                  "hint": "Confirm the new reference appears under Properties > References for the Chassis item.",
+                  "image": {
+                    "src": "images/m3t5-drag-library-item.png",
+                    "alt": "Quality attributes item being dragged from the Library onto the Chassis item, showing the 'Link to this Creates a reference' drop zone",
+                    "caption": "Dragging a Library item onto the Chassis item to create a reference"
+                  }
                 },
                 {
                   "action": "Beside the Chassis item in the middle pane, click 'Click here to create new Downstream References', choose the User Stories tracker, enter the summary 'CRS to User Story 1' and description 'This is a downstream reference from the Chassis item in the CRS tracker', and click Save.",
                   "detail": "This is the second technique: creating a brand-new item directly from Document View that automatically becomes a downstream reference.",
-                  "hint": "Confirm the new reference appears under Properties > References for the Chassis item."
+                  "hint": "Confirm the new reference appears under Properties > References for the Chassis item.",
+                  "image": {
+                    "src": "images/m3t5-downstream-reference-trackers.png",
+                    "alt": "List of trackers available for creating a new downstream reference, including Risks, System Requirement Specifications, Tasks, and User Stories",
+                    "caption": "The list of trackers available for a new downstream reference"
+                  }
                 },
                 {
                   "action": "Right-click the Chassis item, click Open, and on the toolbar click Create Downstream Reference to confirm the same list of available trackers appears from the item details view.",
@@ -2160,7 +2300,12 @@
                 {
                   "action": "On the tracker toolbar, click Add Filter, and under Default Fields click Status, then under Meaning select In progress, and click outside the dialog to close it before clicking GO.",
                   "detail": "Filtering by Meaning rather than a literal status name lets the filter work consistently even if status names differ between projects.",
-                  "hint": "Confirm the Tracker Tree narrows to only the Chassis item, which has a status of DRAFT mapped to the In progress meaning."
+                  "hint": "Confirm the Tracker Tree narrows to only the Chassis item, which has a status of DRAFT mapped to the In progress meaning.",
+                  "image": {
+                    "src": "images/m3t6-filtered-tracker-tree.png",
+                    "alt": "Tracker Tree filtered by Status: In progress, showing only the Chassis item",
+                    "caption": "The Tracker Tree filtered to show only items with a Status meaning of In progress"
+                  }
                 },
                 {
                   "action": "Click Add Filter again, and under Reference Filters click 'Has Downstream Reference', leave the Boolean value as True, and click GO.",
@@ -2180,7 +2325,12 @@
                 {
                   "action": "Switch to Table View, click Manage Tracker Views, select Show Column Filters, filter the Status column by the In progress meaning, then remove the column filter and disable Show Column Filters again.",
                   "detail": "Column filters in Table View provide a spreadsheet-like way to filter directly from column headers, complementing the filter bar.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t6-column-filters.png",
+                    "alt": "Table View with Show Column Filters enabled, showing filter boxes for BV, Summary, Status, Type, Complexity, Assigned to, and Team columns",
+                    "caption": "Column filters enabled in Table View"
+                  }
                 }
               ]
             },
@@ -2201,12 +2351,22 @@
                 {
                   "action": "Beside Highlight levels, click 1 to highlight Level 1 items, then click 2 to highlight Level 2 items.",
                   "detail": "Highlighting levels makes it visually clear which items belong to each configured traceability level in a complex view.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t6-highlight-level1.png",
+                    "alt": "Tracker Tree with Highlight levels set to 1, showing Level 1 items such as Quality attributes, Inductive Charging, and Optional: Dual clutch transmission highlighted",
+                    "caption": "Highlighting Level 1 items in the Intelligent/Traceability Document View"
+                  }
                 },
                 {
                   "action": "Click 'You have unsaved changes in the current View!', click Save as, name the view 'Trace View_1', select Public View, assign Read access to Product Owner and Stakeholder roles and Write access to Project Admin, and click Save.",
                   "detail": "Saving the view as a public view with role-based permissions lets the whole JAWS team reuse this traceability configuration without rebuilding it.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t6-save-view-dialog.png",
+                    "alt": "View Properties dialog showing the view named 'Trace View #1', Public View checked, saved to Public Views, with Product Owner, Project Admin, and Stakeholder role permissions",
+                    "caption": "Saving the Intelligent/Traceability View with role-based permissions"
+                  }
                 },
                 {
                   "action": "Navigate to Default Views > All Items, then return to the saved Trace View_1 from Manage Tracker Views > Public Views.",
@@ -2216,7 +2376,12 @@
                 {
                   "action": "While viewing Trace View_1, switch to Table View, then open Manage Tracker Views > Traceability Table View Configuration, change RENDERING METHOD to Hierarchical Table View and click GO, then switch it back to Traceability Tree View.",
                   "detail": "The same Intelligent/Traceability configuration can be rendered as a tree (Document View) or as a table, and within the table as a flat tree or a hierarchy.",
-                  "hint": "Finish by returning to Default Views > All Items and switching back to Document View."
+                  "hint": "Finish by returning to Default Views > All Items and switching back to Document View.",
+                  "image": {
+                    "src": "images/m3t6-hierarchical-table-view.png",
+                    "alt": "Trace View_1 in Table View showing Summary, Level 1, and Level 2 columns with items and their downstream references marked SUSPECTED",
+                    "caption": "Trace View_1 rendered as an Intelligent/Traceability Table View"
+                  }
                 }
               ]
             }
@@ -2253,7 +2418,12 @@
                 {
                   "action": "Click the Trackers tab, then on the toolbar click Configuration Diagram, and ensure System Requirement Specifications, User Stories, Tasks, Bugs, and Test Cases (under Config Items) are selected.",
                   "detail": "The diagram currently shows System Requirement Specifications at the highest level, with the other trackers connected downstream of it.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t7-configuration-diagram.png",
+                    "alt": "Configuration Diagram showing Test Cases, Bugs, Tasks, and User Stories connected upstream to System Requirement Specifications and then to Customer Requirement Specifications",
+                    "caption": "The Configuration Diagram showing tracker connections"
+                  }
                 },
                 {
                   "action": "In the left pane, also select Customer Requirement Specifications to add it to the diagram, then click the Bugs tracker in the diagram.",
@@ -2268,22 +2438,42 @@
                 {
                   "action": "Select Show property name, locate the 'subjects' property, hover over its Work/Config items link in the Layout and Content column, and click Edit Tracker relations.",
                   "detail": "The 'subjects' field is what controls which trackers Bugs is connected to upstream.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t7-edit-tracker-relations.png",
+                    "alt": "Upstream Reference Work/Config items dialog showing Bugs is currently connected to Tasks, User Stories, and System Requirement Specifications",
+                    "caption": "The Edit Tracker relations dialog for the Bugs tracker"
+                  }
                 },
                 {
                   "action": "Under Work Items, click More, select Customer Requirement Specifications, click OK, and click Save.",
                   "detail": "This adds Customer Requirement Specifications as a new upstream tracker for Bugs, alongside the existing Task, User Story, and System Requirement Specifications connections.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t7-add-customer-requirement-specs.png",
+                    "alt": "Upstream Reference Work/Config items dialog with the More dropdown open and Customer Requirement Specifications highlighted",
+                    "caption": "Adding Customer Requirement Specifications as an upstream tracker"
+                  }
                 },
                 {
                   "action": "Click the Trackers tab, open Configuration Diagram, and click Bugs again to confirm it is now connected upstream to Customer Requirement Specifications.",
                   "detail": "Verifying the connection in the diagram confirms the configuration change was saved correctly.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t7-bugs-connected-upstream.png",
+                    "alt": "Configuration Diagram showing the Bugs tracker now connected upstream to User Stories, System Requirement Specifications, and Customer Requirement Specifications",
+                    "caption": "The Bugs tracker connected upstream to Customer Requirement Specifications"
+                  }
                 },
                 {
                   "action": "Close the Configuration Diagram, open Customer Requirement Specifications, select the Chassis item, and beside it click 'Click here to create new Downstream References' to confirm Bugs now appears as an option.",
                   "detail": "This confirms the new connection is functional: Customer Requirement Specifications items can now create downstream references directly into the Bugs tracker.",
-                  "hint": "Reload the page if the Tracker Tree does not appear."
+                  "hint": "Reload the page if the Tracker Tree does not appear.",
+                  "image": {
+                    "src": "images/m3t7-bugs-downstream-reference-option.png",
+                    "alt": "Downstream reference tracker list for the Chassis item now including Bugs, Risks, System Requirement Specifications, Tasks, and User Stories",
+                    "caption": "Bugs now available as a downstream reference target for Chassis"
+                  }
                 }
               ]
             }
@@ -2335,7 +2525,12 @@
                 {
                   "action": "Open the downloaded spreadsheet and set Status to Draft for Charger and Inductive Charging, set Status to Waiting for approval for Meet Emission Standards, and set Status to Draft for Weight transfer.",
                   "detail": "Choice fields like Status appear as drop-down lists in the exported spreadsheet, matching the values configured in Codebeamer.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t8-export-spreadsheet.png",
+                    "alt": "Round-trip Excel export spreadsheet with columns for ID, Business Value, Summary, Status, Type, Complexity, and Story Points for System Requirement Specifications items",
+                    "caption": "The Round-trip Excel export of System Requirement Specifications items"
+                  }
                 },
                 {
                   "action": "In the same spreadsheet, set Type to Constraint for 'Default: Continuously variable' and to Functional for Wheel rate, then set Story Points as follows: Quality attributes = 1, Inductive Charging = 1, Charger = 3, Zero Emission = 5, Meet Emission Standards = 1, Optional: Dual clutch transmission = 1, Weight transfer = 3, Spring rate = 5, Default: Continuously variable = 2, Wheel rate = 2, Carbon-fiber plastic structures = 2.",
@@ -2423,17 +2618,32 @@
                 {
                   "action": "On the Settings page, set the Deadline to one week from today, leave the other defaults, click Next, review the Overview page, and click Create Review.",
                   "detail": "The Settings page also controls whether Moderators can create new items from review comments and whether status changes automatically based on approval thresholds.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t9-create-review-overview.png",
+                    "alt": "Create Review wizard Overview page showing the review name, description, moderators, reviewers, and 11 items for review",
+                    "caption": "The Overview page of the Create Review wizard"
+                  }
                 },
                 {
                   "action": "In Review Hub, click 'Carbon-fiber plastic structures', expand its References to confirm Chassis appears as an upstream reference, then click Approve for it.",
                   "detail": "References shown in Review Hub mirror the traceability links visible in the tracker, so reviewers can see context without leaving the review.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t9-voting-breakdown-approved.png",
+                    "alt": "Item Statistics Voting Breakdown chart showing 1 Approved item and 0 Rejected and 0 Not reviewed",
+                    "caption": "The Voting Breakdown after approving an item"
+                  }
                 },
                 {
                   "action": "Click Reject for 'Quality attributes', enter the comment 'Sending back because the work is incomplete', and click Save, then approve Inductive Charging, Spring rate, Weight transfer, 'Default: Continuously variable', 'Optional: Dual clutch transmission', Meet Emission Standards, Zero Emission, and Charger, and reject Wheel rate with the same comment.",
                   "detail": "After each vote, the Item Statistics graph in the right pane updates to reflect the current approve/reject breakdown.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t9-voting-breakdown-rejected.png",
+                    "alt": "Item Statistics Voting Breakdown chart showing 1 Rejected item and 0 Approved and 0 Not reviewed",
+                    "caption": "The Voting Breakdown after rejecting an item"
+                  }
                 },
                 {
                   "action": "Click Sign Review, click Generate signature, log in again with the admin credentials, and click Sign Review to confirm the signature was applied.",
@@ -2443,12 +2653,22 @@
                 {
                   "action": "Review the Comments, Statistics, and History tabs, then on the Review tab click the green vertical ellipsis and click Complete Review, followed by Finish Review.",
                   "detail": "The Statistics page after finishing shows who started, signed, and finished the review, plus a pie chart and table of approved versus rejected items.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t9-comments-tab.png",
+                    "alt": "Review Hub Comments tab for the System Requirements Item Review showing a comment 'Sending back because the work is incomplete' on the Wheel rate item",
+                    "caption": "The Comments tab of the Review Hub review"
+                  }
                 },
                 {
                   "action": "Click the green ellipsis again, click Export, choose the MS Excel option, click Export, and download the resulting Review-System Requirements Item Review.xlsx file.",
                   "detail": "Exporting the completed review to Excel (or Word/PDF) gives JAWS a shareable record of the approval decisions for stakeholders without Codebeamer access.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t9-export-excel.png",
+                    "alt": "Excel export of the System Requirements Item Review showing items, Approved/Needs more work/Not reviewed columns, review status, and upstream/downstream references",
+                    "caption": "The exported review results in Excel"
+                  }
                 }
               ]
             }
@@ -2490,7 +2710,12 @@
                 {
                   "action": "Confirm the Baselines tab now lists two entries: your new baseline and the current Head Revision.",
                   "detail": "Head Revision always represents the live, current state of the project, while your named baseline is frozen at the moment it was created.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t10-baselines-tab.png",
+                    "alt": "Baselines tab listing two entries: Head Revision (the current head revision) and Codebeamer Technical Essentials training Baseline 1 created by admin",
+                    "caption": "The Baselines tab showing Head Revision and the new baseline"
+                  }
                 },
                 {
                   "action": "Open the Customer Requirement Specifications tracker, find the 'Total weight must be 1100kg or less' item, edit its description to change the word 'Since' to 'Because' in the third sentence, and save.",
@@ -2520,7 +2745,12 @@
                 {
                   "action": "Expand the Suspension item to review its field-level changes, collapse it, then expand 'Total weight must be 1100kg or less' to review its description change, and close the Compare baseline tab.",
                   "detail": "This detailed comparison view can also be exported to Excel or filtered, giving JAWS an audit trail of exactly what changed and when.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t10-suspension-diff.png",
+                    "alt": "Compare baseline detail view for the Suspension item showing field-level Edit and Define actions with Old Value and New Value for Assigned to, Complexity, and Status",
+                    "caption": "Field-level changes for the Suspension item between baselines"
+                  }
                 }
               ]
             }
@@ -2840,12 +3070,22 @@
                 {
                   "action": "Expand Test Parameters, click Advanced options on the toolbar, click Insert Table, choose the 3x2 layout, and create a Refresh / Color table with rows '60Hz / Red' and '75Hz / Green'.",
                   "detail": "Test parameters act as placeholders that get substituted with real values during execution - here, refresh rate and the color the display should show at that rate.",
-                  "hint": "The Excel sheet option for parameters must be uploaded to Document Manager first; for now, enter the table manually."
+                  "hint": "The Excel sheet option for parameters must be uploaded to Document Manager first; for now, enter the table manually.",
+                  "image": {
+                    "src": "images/m4t4-test-parameters-table.png",
+                    "alt": "Test Parameters section showing a 3x2 table with Refresh and Color columns under Advanced options",
+                    "caption": "The Test Parameters table"
+                  }
                 },
                 {
                   "action": "Scroll to Test Steps, click Add step, and in the Action box type '${Refresh}, it should display ${Color}'. In the Expected result box type 'Yes'.",
                   "detail": "The ${Refresh} and ${Color} placeholders reference the test parameters you just defined, so this single step will generate one test case execution per parameter row.",
-                  "hint": "Press Enter after typing the expected result."
+                  "hint": "Press Enter after typing the expected result.",
+                  "image": {
+                    "src": "images/m4t4-test-step-parameters.png",
+                    "alt": "Test Steps section with an Action referencing the ${Refresh} and ${Color} parameters",
+                    "caption": "The test step using the parameter table values"
+                  }
                 },
                 {
                   "action": "Click Save at the top of the page.",
@@ -2871,17 +3111,32 @@
                 {
                   "action": "On the test run detailed item view, expand Details of Test Results to confirm two test cases will be generated - one per parameter row (60Hz/Red and 75Hz/Green).",
                   "detail": "Because the test step references parameters with two rows of values, Codebeamer generates a separate test case execution for each row.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m4t4-details-test-results-generated.png",
+                    "alt": "Details of Test Results section showing two generated test cases for the test run",
+                    "caption": "The two test cases generated from the parameter table"
+                  }
                 },
                 {
                   "action": "Click Run!. For the first test case (60Hz, expecting Red), enter the actual result 'Incorrect, screen is green', click Fail Step, add a Conclusion, and click Save.",
                   "detail": "Recording an Actual Result that differs from the expected result and marking the step Failed is how defects are surfaced from test execution.",
-                  "hint": "Use the right-pointing arrow to move between test cases."
+                  "hint": "Use the right-pointing arrow to move between test cases.",
+                  "image": {
+                    "src": "images/m4t4-test-runner.png",
+                    "alt": "Test runner view for executing a test step and entering the actual result",
+                    "caption": "Running a test step and recording the actual result"
+                  }
                 },
                 {
                   "action": "For the second test case (75Hz, expecting Green), enter the actual result 'Yes, screen is green', click Pass Step, add a Conclusion, and click Save.",
                   "detail": "After both test cases are completed, the test run's overall result reflects the worst outcome - here, FAILED, because one of the two test cases failed.",
-                  "hint": "Expand Details of Test Results on the test run to see the pie chart breakdown."
+                  "hint": "Expand Details of Test Results on the test run to see the pie chart breakdown.",
+                  "image": {
+                    "src": "images/m4t4-test-run-results.png",
+                    "alt": "Test run results showing a pie chart breakdown with one test case marked Passed and one Failed",
+                    "caption": "The overall test run results"
+                  }
                 }
               ]
             }
@@ -2939,7 +3194,12 @@
                 {
                   "action": "Open the test case library, select the 'Test Case Test 1' item created earlier, and review its Test Steps, Pre-Action, and Post-Action in the bottom pane.",
                   "detail": "Codebeamer lets you reuse Test Steps, Pre-Actions, and Post-Actions from any existing test case item via a library, avoiding duplicate authoring effort.",
-                  "hint": "The library is accessible from the Edit this configuration item dialog."
+                  "hint": "The library is accessible from the Edit this configuration item dialog.",
+                  "image": {
+                    "src": "images/m4t5-test-case-library.png",
+                    "alt": "Test case library showing the 'Test Case Test 1' item and its Test Steps tab",
+                    "caption": "The 'Test Case Test 1' item in the test case library"
+                  }
                 },
                 {
                   "action": "On the Test Steps tab, click Add Steps!, then click Copy.",
@@ -3001,7 +3261,12 @@
                 {
                   "action": "Open the Documents tracker, navigate to the .codeBeamer > Test Parameters folder, click Browse, and upload the 'Parameters.xlsx' file.",
                   "detail": "The Excel file must be available in Document Manager before it can be referenced from a test case's Test Parameters section.",
-                  "hint": "Click the Documents tab, expand .codeBeamer, then click Test Parameters."
+                  "hint": "Click the Documents tab, expand .codeBeamer, then click Test Parameters.",
+                  "image": {
+                    "src": "images/m4t6-parameters-xlsx-uploaded.png",
+                    "alt": "Documents tracker Test Parameters folder showing the uploaded Parameters.xlsx file",
+                    "caption": "The Parameters.xlsx file uploaded to the Test Parameters folder"
+                  }
                 },
                 {
                   "action": "Open 'Test Case Test 1', click Edit this configuration item, scroll to Test Parameters, click the Excel in Document Management tab, and select 'Parameters.xlsx'.",
@@ -3032,7 +3297,12 @@
                 {
                   "action": "Click Approve, then click Save. The Status changes to READY FOR EXECUTION.",
                   "detail": "Approval is the gate that distinguishes a formal test run from a regular one.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m4t6-formal-test-run-ready.png",
+                    "alt": "Formal test run with Status changed to READY FOR EXECUTION after clicking Approve",
+                    "caption": "The formal test run, ready for execution"
+                  }
                 },
                 {
                   "action": "Click Run!. Enter Color 'Red' and Refresh '90Hz', then click Save to execute the first generated test case; mark both of its steps as Pass.",
@@ -3052,7 +3322,12 @@
                 {
                   "action": "Enter Color 'Red' and Refresh '90Hz', click Save, and mark both steps of the third generated test case as Block. Add Conclusion 'Block' and click Save.",
                   "detail": "If even one step in a test case is Blocked, the entire test case result becomes Blocked - and a Blocked result anywhere in the run makes the overall test run result Blocked, even if the run shows as Finished.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m4t6-test-run-blocked-result.png",
+                    "alt": "Test run results showing the third generated test case marked as Blocked",
+                    "caption": "A test case result marked as Blocked"
+                  }
                 }
               ]
             },
@@ -3063,7 +3338,12 @@
                 {
                   "action": "Open the Test Cases tracker, click more on the toolbar, click Import, attach the 'autovnv.xlsx' file, and click Next.",
                   "detail": "The spreadsheet has a header row of field names and three rows of test case data, including a Verifies column for upstream references to System Requirement Specifications items.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m4t6-autovnv-excel-import.png",
+                    "alt": "Import wizard preview showing data from the autovnv.xlsx file being imported into the Test Cases tracker",
+                    "caption": "Importing test cases from autovnv.xlsx"
+                  }
                 },
                 {
                   "action": "On the Assign Columns of Imported Data page, map the unmapped Excel columns to Test Steps.Action and Test Steps.Expected result, then click Next.",
@@ -3083,7 +3363,12 @@
                 {
                   "action": "Open the 'Measure component weight' test case, expand its Test Steps, click Edit steps, correct the typo 'obsetvation' to 'observation', and click Save.",
                   "detail": "Imported content can still be edited afterward like any manually-entered test step.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m4t6-edit-test-steps-typo.png",
+                    "alt": "Edit steps view for the 'Measure component weight' test case with the typo 'obsetvation' highlighted for correction",
+                    "caption": "Correcting the typo in the test steps"
+                  }
                 }
               ]
             }
@@ -3136,7 +3421,12 @@
                 {
                   "action": "Open the Test Sets tracker, create a new item, and name it 'Test Set 1'.",
                   "detail": "A test set is a collection of related test cases executed together in a test run, against one or more test configurations.",
-                  "hint": "On the toolbar, click Create a new item of this type."
+                  "hint": "On the toolbar, click Create a new item of this type.",
+                  "image": {
+                    "src": "images/m4t7-create-test-set.png",
+                    "alt": "Test Sets tracker with a new item named 'Test Set 1' being created",
+                    "caption": "Creating the 'Test Set 1' item"
+                  }
                 },
                 {
                   "action": "From the Config Items > Test Cases tree, CTRL+click 'Minimum Torque', 'Test Vehicle emissions US', and 'Check Emission Limits', then drag them to the Drop Test Cases or Test Sets here zone.",
@@ -3167,7 +3457,12 @@
                 {
                   "action": "Set Assigned to 'admin', select both the Temperate environment and Warm environment check boxes under Test Configurations, then click Save.",
                   "detail": "Selecting both configurations generates two separate test runs - one per configuration - each with upstream references to Test Set 1 and its three test cases.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m4t7-two-test-runs-generated.png",
+                    "alt": "Test Set 1 showing two generated test runs, one for each selected test configuration",
+                    "caption": "The two test runs generated for the selected configurations"
+                  }
                 },
                 {
                   "action": "Open the test run that uses the Temperate environment configuration, expand Test Results and Details of Test Results, then click Run!.",
@@ -3240,12 +3535,22 @@
                 {
                   "action": "Open the Customer Requirement Specifications tracker and click Test Coverage on the header toolbar, then click GO.",
                   "detail": "The Test Coverage Statistics section gives a percentage overview of how much of the Customer Requirement Specifications is covered by test cases and what the test results look like.",
-                  "hint": "Beside the Trackers tab, click the vertical ellipsis, then click Customer Requirement Specifications."
+                  "hint": "Beside the Trackers tab, click the vertical ellipsis, then click Customer Requirement Specifications.",
+                  "image": {
+                    "src": "images/m4t8-test-coverage-statistics.png",
+                    "alt": "Test Coverage Statistics table showing coverage percentages for the Customer Requirement Specifications",
+                    "caption": "The Test Coverage Statistics table"
+                  }
                 },
                 {
                   "action": "Expand the Codebeamer Technical Essentials training > Customer Requirement Specifications node, and continue expanding child nodes to reveal the hierarchy of requirements, test cases, and test runs.",
                   "detail": "The expanded tree shows coverage status, who executed each test case, the total number of test cases at each level, the coverage analysis bar, and when each run executed.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m4t8-coverage-tree-expanded.png",
+                    "alt": "Expanded hierarchy tree showing Customer Requirement Specifications, their related test cases, and test runs",
+                    "caption": "The expanded test coverage hierarchy"
+                  }
                 }
               ]
             },
@@ -3261,7 +3566,12 @@
                 {
                   "action": "Re-expand the Customer Requirement Specifications node and all child nodes to view the filtered hierarchy.",
                   "detail": "The tree now shows only requirements matching the Not Covered filter, with up to 2 recent test runs per test case.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m4t8-coverage-tree-filtered.png",
+                    "alt": "Test coverage hierarchy filtered to show only items with Not Covered status",
+                    "caption": "The hierarchy filtered to show items that are not covered"
+                  }
                 },
                 {
                   "action": "Click Save new Preset, name it 'CRS Test Coverage 1', and under Permissions grant the Project Admin and Test Lead roles WRITE access. Click Save.",
@@ -3608,12 +3918,22 @@
                 {
                   "action": "In the header, click Teams, then on the toolbar click Create a new item of this type. In the Name box, type Team Training 1 and set a color.",
                   "detail": "The team color makes the team visually identifiable on Kanban boards and dashboards.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t4-create-team.png",
+                    "alt": "New Team item form with Name, Color, and Team Members fields",
+                    "caption": "Creating a new team in the Teams tracker"
+                  }
                 },
                 {
                   "action": "In the Team Members field, add the admin and peter users as members, and then click Save.",
                   "detail": "Adding members to the team means tasks assigned to this team are associated with these users.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t4-add-team-members.png",
+                    "alt": "Choose Members dialog listing admin, peter, and youngt22 with their roles",
+                    "caption": "Selecting team members to add"
+                  }
                 },
                 {
                   "action": "On the toolbar, click New Item, and repeat the previous steps to create a second team named Team Training 2 with a different color and the same members (admin, peter).",
@@ -3629,7 +3949,12 @@
                 {
                   "action": "Switch to the Tasks tracker, click Create a new item of this type, in the Summary box type Task 1, and in the Description box type Task for completion of Task 1.",
                   "detail": "Tasks represent the development work that teams will perform during the proof-of-concept.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t4-create-task.png",
+                    "alt": "New Task item form with Summary, Description, Team, Status, and effort fields",
+                    "caption": "Creating a new item in the Tasks tracker"
+                  }
                 },
                 {
                   "action": "In the Team box, click the pencil icon, select the check box beside Team Training 2, and then click Add.",
@@ -3654,7 +3979,12 @@
                 {
                   "action": "Beside Spent Effort, click the clock icon to log activity. Set Date to today, Spent Effort to 0.5, Activity to Sprint demo, Kind to Approval, and Remaining Effort to 9.5, and then click OK.",
                   "detail": "Logging activity records who worked on the task, how much time was spent, what kind of work it was, and how much effort remains.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t4-log-activity.png",
+                    "alt": "Work done dialog with Date, Spent Effort, Activity, Kind, and Remaining Effort fields filled in",
+                    "caption": "Logging activity against a task"
+                  }
                 },
                 {
                   "action": "Repeat the previous step to log a second activity: Date - previous business day, Spent Effort - 1.0, Activity - Update requirements document, Kind - Design, Remaining Effort - 8.5.",
@@ -3664,7 +3994,12 @@
                 {
                   "action": "Under Details, click the Work Log tab and expand the Activity column to view the logged activities.",
                   "detail": "The Work Log tab provides a complete history of effort logged against the task, which can also be reviewed using the Timekeeping tracker.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t4-work-log.png",
+                    "alt": "Work Log tab showing two logged activities with spent and remaining effort, totaling 1.5h spent and 9.5h remaining",
+                    "caption": "The Work Log tab with both logged activities expanded"
+                  }
                 }
               ]
             }
@@ -3731,7 +4066,12 @@
                 {
                   "action": "Navigate to the Tasks tracker and confirm that Task 1, Task 2, and Task 3 all appear in Table view, with their respective teams assigned.",
                   "detail": "Task 1 was created directly with an upstream reference added manually; Task 2 and Task 3 were created as downstream references from upstream items - two different paths to the same traceable result.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t5-tasks-table.png",
+                    "alt": "Tasks tracker Table view showing Task 1, Task 2, and Task 3 with their upstream references and assigned teams",
+                    "caption": "The Tasks tracker in Table view"
+                  }
                 }
               ]
             },
@@ -3752,7 +4092,12 @@
                 {
                   "action": "Observe the FREE CAPACITY indicator above the ToDo column (3 tasks, below the minimum of 4) and the absence of any indicator above In progress (1 task, within limits).",
                   "detail": "These visual cues let a Scrum Master quickly spot columns that are under- or over-loaded relative to configured thresholds.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t5-kanban-free-capacity.png",
+                    "alt": "Kanban board showing a FREE CAPACITY indicator above the ToDo column with 3 tasks, and no indicator above In progress with 1 task",
+                    "caption": "The Kanban board with WIP limits applied"
+                  }
                 },
                 {
                   "action": "Click and drag Task 2 from the ToDo column to the In progress column.",
@@ -3762,7 +4107,12 @@
                 {
                   "action": "Observe that the In progress column now shows an OVERLOADED indicator (2 tasks, exceeding the maximum of 1), while ToDo still shows FREE CAPACITY (2 tasks, still below the minimum of 4).",
                   "detail": "The board updates its WIP indicators immediately as cards move, giving real-time feedback on workload distribution.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t5-kanban-overloaded.png",
+                    "alt": "Kanban board showing a FREE CAPACITY indicator above ToDo with 1 task, and an OVERLOADED indicator above In progress with 2 tasks",
+                    "caption": "The Kanban board after moving Task 2 to In progress"
+                  }
                 }
               ]
             }
@@ -3809,7 +4159,12 @@
                 {
                   "action": "Set Start Date to today's date and the next upcoming half hour, Planned Release Date to two business days later, Sprint Length to 7, Name to Release 1, and Description to Release to cover requirements for Release 1, then click Save.",
                   "detail": "These fields establish the schedule and default sprint duration for Release 1.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t6-release-1-detail.png",
+                    "alt": "Release 1 item detail view showing Status, Start Date, Planned Release Date, Sprint Length, Release Method, and Description",
+                    "caption": "The Release 1 item after it is created"
+                  }
                 },
                 {
                   "action": "In the header, click Releases, and create a second release with Name - Release 2, Description - Release to cover requirements for Release 2, Start Date - following Monday, Planned Release Date - Friday of that same week, and Sprint Length - 7.",
@@ -3845,7 +4200,12 @@
                 {
                   "action": "On the toolbar, select the Multiple selection check box, select Task 1 and Task 2 in the middle pane, drag them to Sprint 1, and then click Sprint 1 to confirm they were added.",
                   "detail": "Multiple selection lets you assign several backlog items to a sprint in a single drag operation.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t6-sprint1-ranked.png",
+                    "alt": "Sprint 1 list showing Task 3, Task 1, and Task 2 ranked at positions 1, 2, and 3",
+                    "caption": "Sprint 1 with Task 1, Task 2, and Task 3 assigned and ranked"
+                  }
                 },
                 {
                   "action": "In the left pane, click Product Backlog, hover over the CRS to User Story 1 item and click the pencil icon to view its editable fields, then click Cancel. Double-click the AssignedTo column for the same item and add the admin user.",
@@ -3866,12 +4226,22 @@
                 {
                   "action": "In the left pane, click Product Backlog. Beside the Chassis item, click Send to the bottom of ordered Product Backlog, then repeat for additional items until 7 items are ranked.",
                   "detail": "Manually ranking items in the Product Backlog lets the Product Owner prioritize what should be pulled into the next sprint.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t6-product-backlog-ranked.png",
+                    "alt": "Product Backlog list with 7 items ranked 1 through 7, including Spring rate, Wheel rate, Transmission, and Carbon-fiber plastic structures",
+                    "caption": "The Product Backlog with 7 items ranked"
+                  }
                 },
                 {
                   "action": "In the Filter bar, click Add Filter, type type, click Tracker Type, and select the Requirement, Task, and User Story check boxes. Then click Add Group by, type status, click Status, and click GO.",
                   "detail": "Filtering and grouping the Product Backlog by tracker type and status helps the team focus on specific kinds of work and see how items are distributed across workflow states. Items already assigned to a sprint (such as the three Tasks) no longer appear in the Product Backlog.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t6-filtered-grouped-backlog.png",
+                    "alt": "Product Backlog filtered to Requirement, Task, and User Story types and grouped by status, with a Status: Draft group expanded showing 5 items",
+                    "caption": "The Product Backlog filtered by tracker type and grouped by status"
+                  }
                 },
                 {
                   "action": "Under the Draft status grouping, select the Weight transfer, Chassis, and Suspension item check boxes, drag them to Sprint 1, and then click Sprint 1 to confirm the filtering and grouping carry over to the sprint list.",
@@ -3901,7 +4271,12 @@
                 {
                   "action": "Click Product Backlog, beside the Carbon-fiber plastic structures item click more, and click Send to the bottom of ordered Product Backlog.",
                   "detail": "The 'more' menu provides additional options for organizing items: sending to a release backlog, or to the top, middle, bottom, or unordered section of the Product Backlog.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t6-item-more-menu.png",
+                    "alt": "Item more menu showing options including Edit, Duplicate, Create Downstream Reference, Send to top/middle/bottom, Send to Release 1 Backlog, and Send to Release 2 Backlog",
+                    "caption": "The 'more' menu options for organizing a Product Backlog item"
+                  }
                 }
               ]
             }
@@ -3958,7 +4333,12 @@
                 {
                   "action": "Expand Release 1 and Sprint 1, then expand Release 2 and observe that Sprint 2 has no items to display yet.",
                   "detail": "The Dashboard view now shows summary statistics for releases and sprints, including the number of sprints, percentage progress, open versus closed status, item counts, and planned/spent/remaining effort.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t7-release-dashboard.png",
+                    "alt": "Releases Dashboard view showing Release 1 and Sprint 1 expanded with progress percentages, item counts, and effort statistics, plus the Release 1 Backlog",
+                    "caption": "The Releases Dashboard view with Release 1 and Sprint 1 expanded"
+                  }
                 }
               ]
             },
@@ -4004,7 +4384,12 @@
                 {
                   "action": "On the header toolbar, click Kanban Board, then under the In progress swim lane drag the Suspension item under (without dropping on) the To verify column, observe the three options - Waiting for approval, Rejected, Accepted - and then drop Suspension back under In progress.",
                   "detail": "Dragging an item toward another column previews the workflow transitions available for moving it there, without committing the change until you drop it.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t7-kanban-drag-suspension.png",
+                    "alt": "Kanban board showing the Suspension card being dragged toward the To verify column, with Approve Requirement, Reject Requirement, and Accept Requirement transition options visible",
+                    "caption": "Previewing workflow transitions while dragging the Suspension item"
+                  }
                 }
               ]
             },
@@ -4025,7 +4410,12 @@
                 {
                   "action": "Repeat to set Suspension and Weight transfer to ACCEPTED using the Accept transition, and Task 4 to COMPLETED using the Complete transition.",
                   "detail": "All items in Sprint 1 are now in either the COMPLETED or ACCEPTED state, which is a prerequisite for finishing the sprint cleanly.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m5t7-sprint1-completed.png",
+                    "alt": "Release 1 dashboard showing Sprint 1 with Task 1 through Task 4 marked COMPLETED and Weight transfer, Suspension, and Chassis marked ACCEPTED",
+                    "caption": "All Sprint 1 items in COMPLETED or ACCEPTED state"
+                  }
                 },
                 {
                   "action": "In the header click Releases, expand Release 1, click the Sprint 1 status icon, click Finish, and then click Save.",
@@ -4291,22 +4681,42 @@
                 {
                   "action": "Click GO to apply ascending order by Submitted on/at.",
                   "detail": "Items now appear oldest-first, which is useful for reviewing the history of how the JAWS project was built up.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t3-order-ascending.png",
+                    "alt": "Report list ordered in ascending order by Submitted on/at",
+                    "caption": "Items ordered by Submitted on/at in ascending order"
+                  }
                 },
                 {
                   "action": "Next to Group by, click Add, type stat in the filter box, select Status, and click GO.",
                   "detail": "Grouping by Status organizes the report into sections, making it easy to see how many items are in each status across all five trackers at a glance.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t3-grouped-by-status.png",
+                    "alt": "Report items grouped into Accepted and Completed status sections",
+                    "caption": "Items grouped by Status"
+                  }
                 },
                 {
                   "action": "Click Add Filter, type stat in the filter box, select Status, then under Meaning select the Unset and In Progress check boxes, click away from the list, and click GO.",
                   "detail": "This filter narrows the report to only items that are still in draft (Unset) or actively being worked (In Progress), removing Accepted and Completed items from view.",
-                  "hint": "Filters can be applied from many categories, including Default Fields, Reference Filters, and Tag Filters - Status is a Default Field."
+                  "hint": "Filters can be applied from many categories, including Default Fields, Reference Filters, and Tag Filters - Status is a Default Field.",
+                  "image": {
+                    "src": "images/m6t3-filtered-status.png",
+                    "alt": "Report filtered to show only items with Draft and New status",
+                    "caption": "Items filtered to Unset (Draft) and In Progress (New) status"
+                  }
                 },
                 {
                   "action": "From the left pane, drag the Modified on/at field onto the Order by box, replacing the existing ordering, then click the ASC label to switch it to descending and click GO.",
                   "detail": "This re-orders the filtered, grouped report so the most recently modified items appear first - useful for a daily standup review.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t3-reordered-modified.png",
+                    "alt": "Filtered report reordered in descending order by Modified on/at",
+                    "caption": "Items reordered by Modified on/at in descending order"
+                  }
                 },
                 {
                   "action": "Beside the Assigned to column, click the ellipsis, click Add Column, and under Default Fields select Assigned on/at.",
@@ -4316,7 +4726,12 @@
                 {
                   "action": "In the middle of the work area, click Expert to view the underlying cbQL, then click Simple to return to the graphical view.",
                   "detail": "Expert mode shows the cbQL for the report's current where clause, group by, and order by - useful for advanced users, though writing cbQL is beyond the scope of this course.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t3-expert-mode.png",
+                    "alt": "Expert mode showing the cbQL query for the current report configuration",
+                    "caption": "The cbQL query shown in Expert mode"
+                  }
                 },
                 {
                   "action": "At the top of the work area, click Save. In the Name box, type JAWS Proof of Concept Report 1, and in the Description box, type Report showing unset and in progress work items.",
@@ -4383,12 +4798,22 @@
                 {
                   "action": "At Level 1 and Level 2, deselect the Show Folders and Information check boxes.",
                   "detail": "Hiding folders and informational items keeps the traceability view focused on actionable requirements, tasks, and tests.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t4-traceability-config.png",
+                    "alt": "Traceability report configuration showing Initial Filter, Level 1, and Level 2 with visibility settings",
+                    "caption": "The traceability report configuration with three levels defined"
+                  }
                 },
                 {
                   "action": "Click GO and scroll to the bottom to view the list of items.",
                   "detail": "This is a top-down traceability report: it starts from Customer Requirement Specifications and follows links down through System Requirement Specifications to Test Cases.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t4-topdown-traceability.png",
+                    "alt": "Top-down traceability report showing Customer Requirement Specifications linked to System Requirement Specifications and Test Cases, with some Suspected badges",
+                    "caption": "The top-down traceability report results"
+                  }
                 }
               ]
             },
@@ -4409,7 +4834,12 @@
                 {
                   "action": "Click GO.",
                   "detail": "The view is now filtered bottom-up: every test case is traced back to the system and customer requirements it supports.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t4-bottomup-traceability.png",
+                    "alt": "Bottom-up traceability report showing Test Cases linked to System Requirement Specifications and Customer Requirement Specifications",
+                    "caption": "The bottom-up traceability report results"
+                  }
                 },
                 {
                   "action": "Reconfigure the report back to a top-down view: Initial Filter = Customer Requirement Specifications, Level 1 = System Requirement Specifications, Level 2 = Test Cases.",
@@ -4435,7 +4865,12 @@
                 {
                   "action": "In the Apply column next to Business Value, click the Apply arrow to apply the value Must Have to Carbon-fiber plastic structures.",
                   "detail": "This propagates the upstream change to the downstream item, keeping both items consistent.",
-                  "hint": "You can also click the main Apply arrow at the top to apply all listed changes at once."
+                  "hint": "You can also click the main Apply arrow at the top to apply all listed changes at once.",
+                  "image": {
+                    "src": "images/m6t4-suspected-merge-dialog.png",
+                    "alt": "Merge dialog comparing Carbon-fiber plastic structures and Chassis with Apply arrow and Clear Suspected check box",
+                    "caption": "The Suspected badge merge dialog with the Apply arrow"
+                  }
                 },
                 {
                   "action": "Ensure the Clear Suspected check box is selected, then click Save. Reload the page if necessary.",
@@ -4450,7 +4885,12 @@
                 {
                   "action": "Under Permissions, select the Developer, Project Admin, and Test Lead roles, set Access to WRITE for Project Admin, and click Save.",
                   "detail": "As with simple reports, role-based permissions control who can view and edit the saved traceability report.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t4-traceability-permissions.png",
+                    "alt": "Permissions table showing Developer and Test Lead with READ access and Project Admin with WRITE access",
+                    "caption": "Role-based permissions for the saved traceability report"
+                  }
                 }
               ]
             },
@@ -4471,7 +4911,12 @@
                 {
                   "action": "Review the listed changes. Since none of them are relevant to the downstream items, select Clear all suspected links on all pages, then click Save.",
                   "detail": "This clears the Suspected badge across every affected item in the tracker in a single action, without applying any of the upstream attribute changes.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t4-suspected-list.png",
+                    "alt": "List of downstream System Requirement Specifications items showing Suspected badges before bulk clearing",
+                    "caption": "Items with Suspected badges before bulk removal"
+                  }
                 },
                 {
                   "action": "Beside the Reports tab, click the ellipsis, click Find Reports, type Traceability in the filter box, and open the JAWS Proof of Concept Traceability Report.",
@@ -4549,7 +4994,12 @@
                 {
                   "action": "Open the downloaded file in Excel and confirm the rows, columns, and values match the report.",
                   "detail": "Verifying the export confirms the filtered, grouped, and ordered data transferred correctly.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t5-excel-export.png",
+                    "alt": "Exported report opened in Excel showing rows, columns, and status values matching the Codebeamer report",
+                    "caption": "The exported report opened in Excel"
+                  }
                 },
                 {
                   "action": "On the toolbar, click View Mode to leave editing.",
@@ -4647,7 +5097,12 @@
                 {
                   "action": "Click Preview to confirm the widget shows your report data, then click Save.",
                   "detail": "You can also configure the number of columns, column order, order-by criteria, page size, and show options before saving.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t6-table-widget.png",
+                    "alt": "Table widget on the dashboard titled Unset and in progress work items, showing the saved report data",
+                    "caption": "The Table widget displaying the saved report"
+                  }
                 }
               ]
             },
@@ -4668,7 +5123,12 @@
                 {
                   "action": "At the top of the widget, under the title, open the drop-down list and select JAWS Proof of Concept.",
                   "detail": "This filters the widget to show only open items belonging to the JAWS project.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t6-open-tracker-items-widget.png",
+                    "alt": "My Open Tracker Items widget filtered to a project, showing item counts for All Items, Assigned to, Submitted by, and Owned by",
+                    "caption": "The My Open Tracker Items widget filtered to the project"
+                  }
                 },
                 {
                   "action": "At the intersection of the Items column and the All Items row, right-click the value and click Open Link in New Tab, then close the new tab.",
@@ -4693,7 +5153,12 @@
                 {
                   "action": "Click Save, then verify all three widgets display live data from the JAWS project.",
                   "detail": "The dashboard now provides a self-updating, single-page view of work item status, open items, and end-to-end traceability for stakeholders.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t6-traceability-widget.png",
+                    "alt": "Traceability Report widget on the dashboard showing the chain from Customer Requirement Specifications through System Requirement Specifications, Test Cases, and Test Runs",
+                    "caption": "The Traceability Report widget showing the full requirements-to-test chain"
+                  }
                 }
               ]
             }
@@ -4944,7 +5409,12 @@
                 {
                   "action": "Open the downloaded file in Word, add a new paragraph after the first paragraph with the text This is a new paragraph, then save and close the file.",
                   "detail": "This change will be visible when you compare the new version against the original after re-uploading.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m7t3-edited-document.png",
+                    "alt": "Auto Requirements Document.docx open in Word with a new paragraph added below the first paragraph",
+                    "caption": "The document with the new paragraph added"
+                  }
                 },
                 {
                   "action": "In the Word directory, repeat the upload steps to re-upload the edited Auto Requirements Document.docx, replacing the existing file when prompted.",
@@ -5005,7 +5475,12 @@
                 {
                   "action": "Click Add Association, in the Association Type list click is related to, then on the From History tab select the Edit requirements document check box and click Add.",
                   "detail": "This creates a bidirectional link - the document is now related to the task, and the task is related to the document.",
-                  "hint": "The task should appear as the first item in the From History list if you created it just before this step."
+                  "hint": "The task should appear as the first item in the From History list if you created it just before this step.",
+                  "image": {
+                    "src": "images/m7t4-document-associations.png",
+                    "alt": "Document properties Associations tab showing 'is related to TASK-5782 Edit requirements document'",
+                    "caption": "The document associated with the task"
+                  }
                 }
               ]
             },
@@ -5021,7 +5496,12 @@
                 {
                   "action": "At the bottom of the task, click the Associations tab and confirm that Auto Requirements Document.docx appears as a related item.",
                   "detail": "Seeing the association from the task confirms the link works in both directions - from document to task, and from task to document.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m7t4-task-associations.png",
+                    "alt": "Task Associations tab showing 'DOC-63348 Auto Requirements Documents.docx is related to this item'",
+                    "caption": "The task's Associations tab showing the related document"
+                  }
                 },
                 {
                   "action": "Return to the Documents tab and the Word directory, beside Auto Requirements Document.docx click more, then click Properties, and click the History tab.",
@@ -5031,7 +5511,12 @@
                 {
                   "action": "In the Version column beside version 1, click more, then click Restore this version, and click OK.",
                   "detail": "Restoring version 1 creates a new version (version 3) that is identical to version 1, while version 2 remains in the history as the edited version.",
-                  "hint": "After restoring, the History tab should show three versions: 1, 2, and 3."
+                  "hint": "After restoring, the History tab should show three versions: 1, 2, and 3.",
+                  "image": {
+                    "src": "images/m7t4-version-history.png",
+                    "alt": "Document History tab showing three versions, with version 3 restored from version 1",
+                    "caption": "The document's version history after restoring version 1"
+                  }
                 }
               ]
             }

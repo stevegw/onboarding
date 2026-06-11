@@ -424,7 +424,12 @@
                 {
                   "action": "Click the ellipsis once more and click Edit, then click the project name in the header to return to the Project Wiki page.",
                   "detail": "The Edit option opens the project properties, where Name, Key, and Category can be changed at any time. Returning to the Wiki page leaves the project open for the next activity.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m2t5-edit-project-properties.png",
+                    "alt": "Project Edit page showing Name, Key, Category, and Tabs in the top menu settings",
+                    "caption": "The project properties Edit page"
+                  }
                 }
               ]
             }
@@ -471,7 +476,12 @@
                 {
                   "action": "Beside the Admin tab, click the vertical ellipsis and then click Members.",
                   "detail": "The Members page lists everyone who currently has access to the project and their assigned roles. As the project creator, you are automatically in the Project Admin role.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m2t6-members-page.png",
+                    "alt": "Members page listing project roles on the left and the admin member assigned to Project Admin on the right",
+                    "caption": "The project Members page"
+                  }
                 },
                 {
                   "action": "Click Add new Member, then under Step 1 type pete in the search box and select the Peter user.",
@@ -507,7 +517,12 @@
                 {
                   "action": "Hover over the vertical ellipsis beside the Developer role until it changes, then drag and drop the Developer role onto the Peter member in the right pane.",
                   "detail": "This assigns the Developer role to Peter in addition to his existing Project Admin role. A member can hold multiple roles at once.",
-                  "hint": "You can also drag a member onto a role to achieve the same result."
+                  "hint": "You can also drag a member onto a role to achieve the same result.",
+                  "image": {
+                    "src": "images/m2t6-drag-role-to-member.png",
+                    "alt": "Dragging the Developer role onto the Peter member to assign the role",
+                    "caption": "Dragging a role onto a member to assign it"
+                  }
                 },
                 {
                   "action": "In the right pane, hover over the Developer role beside the Peter member and click Resign role from this member.",
@@ -554,12 +569,22 @@
                 {
                   "action": "Click the Trackers tab.",
                   "detail": "The left pane shows the Tracker Tree, grouped by work item trackers and configuration item trackers. The right pane shows a dashboard of widgets for the project.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m2t7-trackers-tab.png",
+                    "alt": "Trackers page with the Tracker Tree on the left and a project dashboard of widgets on the right",
+                    "caption": "The Trackers page with the Tracker Tree"
+                  }
                 },
                 {
                   "action": "On the toolbar, click Configuration Diagram.",
                   "detail": "The diagram shows the trackers currently selected in the left pane, with arrows representing bi-directional traceability between them.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m2t7-configuration-diagram.png",
+                    "alt": "Configuration Diagram showing trackers as nodes connected by bi-directional traceability arrows",
+                    "caption": "The Configuration Diagram"
+                  }
                 },
                 {
                   "action": "In the left pane, select only Customer Requirement Specifications, System Requirement Specifications, User Stories, and Tasks (deselect any others).",
@@ -585,7 +610,12 @@
                 {
                   "action": "In the Tracker Tree, double-click the System Requirement Specifications tracker, then on the toolbar click more and select Configure.",
                   "detail": "This opens the General tab of the tracker's Configuration page, where you can modify standard properties and optionally base the tracker on a template.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m2t7-tracker-general-config.png",
+                    "alt": "General tab of the System Requirement Specifications tracker Configuration page showing Name, Key, Template, and other properties",
+                    "caption": "The General tab of the tracker Configuration page"
+                  }
                 },
                 {
                   "action": "Click the Permissions tab and review the available tracker permissions and roles.",
@@ -595,7 +625,12 @@
                 {
                   "action": "Click the State Transitions tab, then click the Approve transition (From status New, To status Waiting for Approval).",
                   "detail": "The State Transition dialog box shows the From and To statuses, Name, Description, Permissions, Condition, Guard, and Actions for this transition.",
-                  "hint": "Click Cancel after reviewing the dialog to avoid making changes."
+                  "hint": "Click Cancel after reviewing the dialog to avoid making changes.",
+                  "image": {
+                    "src": "images/m2t7-state-transition-dialog.png",
+                    "alt": "State Transition dialog box for the Approve transition showing From, To, Name, Permitted, Condition, Guard, and Actions fields",
+                    "caption": "The State Transition dialog box"
+                  }
                 },
                 {
                   "action": "Scroll down to the Workflow Diagram to view the visual representation of states and transitions, then scroll back up and click the Fields tab.",
@@ -605,7 +640,12 @@
                 {
                   "action": "Click the first field label (ID) to view its properties, then click Cancel twice to exit without saving changes.",
                   "detail": "Field-level configuration, including custom and calculated fields, will be covered in more depth in the Codebeamer Advanced Configuration course.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m2t7-edit-field-dialog.png",
+                    "alt": "Edit ID field dialog showing Label, Type, List, Description, and other field properties",
+                    "caption": "The Edit field dialog for the ID field"
+                  }
                 }
               ]
             }

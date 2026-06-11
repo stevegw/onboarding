@@ -43,17 +43,25 @@ def load_module(course_id, content_file):
 
 
 def collect_images(course_id, module_data):
-    """Scan image blocks in module, return (relative_src, abs_path) tuples."""
+    """Scan image blocks (and exercise step images) in module, return (relative_src, abs_path) tuples."""
     images = []
     seen = set()
+
+    def add(src):
+        if src and src not in seen:
+            seen.add(src)
+            abs_path = os.path.join(COURSES_DIR, course_id, src)
+            images.append((src, abs_path))
+
     for topic in module_data.get("topics", []):
         for block in topic.get("content", []):
             if block.get("type") == "image" and block.get("src"):
-                src = block["src"]
-                if src not in seen:
-                    seen.add(src)
-                    abs_path = os.path.join(COURSES_DIR, course_id, src)
-                    images.append((src, abs_path))
+                add(block["src"])
+            if block.get("type") == "exercise":
+                for task in block.get("tasks", []):
+                    for step in task.get("steps", []):
+                        if step.get("image") and step["image"].get("src"):
+                            add(step["image"]["src"])
     return images
 
 
@@ -502,6 +510,14 @@ a {{ color: var(--c-accent); text-decoration: none; }}
 }}
 .exercise-hint-text.expanded {{ display: block; }}
 .exercise-step-actions {{ display: flex; gap: 8px; align-items: center; margin-top: 10px; }}
+.exercise-step-image {{ margin: 8px 0 4px 0; }}
+.exercise-step-image img {{
+  max-width: 100%; max-height: 320px; height: auto;
+  border-radius: 6px; border: 1px solid var(--c-border);
+}}
+.exercise-step-image figcaption {{
+  margin-top: 6px; font-size: 12px; color: var(--c-text-dim); font-style: italic;
+}}
 
 /* === Topic list items (overview) === */
 .topic-list-item {{
@@ -1047,6 +1063,13 @@ function renderExerciseBlock(block, idx) {{
       if (step.hint) {{
         html += '<div class="exercise-hint-toggle" data-hint="' + exId + '-' + task.id + '-' + si + '">&#9654; Show Hint</div>';
         html += '<div class="exercise-hint-text" id="hint-' + exId + '-' + task.id + '-' + si + '">' + safeHtml(step.hint) + '</div>';
+      }}
+
+      if (step.image) {{
+        html += '<figure class="exercise-step-image">';
+        html += '<img src="' + esc(step.image.src) + '" alt="' + esc(step.image.alt || '') + '">';
+        if (step.image.caption) html += '<figcaption>' + safeHtml(step.image.caption) + '</figcaption>';
+        html += '</figure>';
       }}
 
       if (!isDone) {{

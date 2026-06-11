@@ -194,22 +194,42 @@
                 {
                   "action": "Click GO to apply ascending order by Submitted on/at.",
                   "detail": "Items now appear oldest-first, which is useful for reviewing the history of how the JAWS project was built up.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t3-order-ascending.png",
+                    "alt": "Report list ordered in ascending order by Submitted on/at",
+                    "caption": "Items ordered by Submitted on/at in ascending order"
+                  }
                 },
                 {
                   "action": "Next to Group by, click Add, type stat in the filter box, select Status, and click GO.",
                   "detail": "Grouping by Status organizes the report into sections, making it easy to see how many items are in each status across all five trackers at a glance.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t3-grouped-by-status.png",
+                    "alt": "Report items grouped into Accepted and Completed status sections",
+                    "caption": "Items grouped by Status"
+                  }
                 },
                 {
                   "action": "Click Add Filter, type stat in the filter box, select Status, then under Meaning select the Unset and In Progress check boxes, click away from the list, and click GO.",
                   "detail": "This filter narrows the report to only items that are still in draft (Unset) or actively being worked (In Progress), removing Accepted and Completed items from view.",
-                  "hint": "Filters can be applied from many categories, including Default Fields, Reference Filters, and Tag Filters - Status is a Default Field."
+                  "hint": "Filters can be applied from many categories, including Default Fields, Reference Filters, and Tag Filters - Status is a Default Field.",
+                  "image": {
+                    "src": "images/m6t3-filtered-status.png",
+                    "alt": "Report filtered to show only items with Draft and New status",
+                    "caption": "Items filtered to Unset (Draft) and In Progress (New) status"
+                  }
                 },
                 {
                   "action": "From the left pane, drag the Modified on/at field onto the Order by box, replacing the existing ordering, then click the ASC label to switch it to descending and click GO.",
                   "detail": "This re-orders the filtered, grouped report so the most recently modified items appear first - useful for a daily standup review.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t3-reordered-modified.png",
+                    "alt": "Filtered report reordered in descending order by Modified on/at",
+                    "caption": "Items reordered by Modified on/at in descending order"
+                  }
                 },
                 {
                   "action": "Beside the Assigned to column, click the ellipsis, click Add Column, and under Default Fields select Assigned on/at.",
@@ -219,7 +239,12 @@
                 {
                   "action": "In the middle of the work area, click Expert to view the underlying cbQL, then click Simple to return to the graphical view.",
                   "detail": "Expert mode shows the cbQL for the report's current where clause, group by, and order by - useful for advanced users, though writing cbQL is beyond the scope of this course.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t3-expert-mode.png",
+                    "alt": "Expert mode showing the cbQL query for the current report configuration",
+                    "caption": "The cbQL query shown in Expert mode"
+                  }
                 },
                 {
                   "action": "At the top of the work area, click Save. In the Name box, type JAWS Proof of Concept Report 1, and in the Description box, type Report showing unset and in progress work items.",
@@ -286,12 +311,22 @@
                 {
                   "action": "At Level 1 and Level 2, deselect the Show Folders and Information check boxes.",
                   "detail": "Hiding folders and informational items keeps the traceability view focused on actionable requirements, tasks, and tests.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t4-traceability-config.png",
+                    "alt": "Traceability report configuration showing Initial Filter, Level 1, and Level 2 with visibility settings",
+                    "caption": "The traceability report configuration with three levels defined"
+                  }
                 },
                 {
                   "action": "Click GO and scroll to the bottom to view the list of items.",
                   "detail": "This is a top-down traceability report: it starts from Customer Requirement Specifications and follows links down through System Requirement Specifications to Test Cases.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t4-topdown-traceability.png",
+                    "alt": "Top-down traceability report showing Customer Requirement Specifications linked to System Requirement Specifications and Test Cases, with some Suspected badges",
+                    "caption": "The top-down traceability report results"
+                  }
                 }
               ]
             },
@@ -312,7 +347,12 @@
                 {
                   "action": "Click GO.",
                   "detail": "The view is now filtered bottom-up: every test case is traced back to the system and customer requirements it supports.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t4-bottomup-traceability.png",
+                    "alt": "Bottom-up traceability report showing Test Cases linked to System Requirement Specifications and Customer Requirement Specifications",
+                    "caption": "The bottom-up traceability report results"
+                  }
                 },
                 {
                   "action": "Reconfigure the report back to a top-down view: Initial Filter = Customer Requirement Specifications, Level 1 = System Requirement Specifications, Level 2 = Test Cases.",
@@ -338,7 +378,12 @@
                 {
                   "action": "In the Apply column next to Business Value, click the Apply arrow to apply the value Must Have to Carbon-fiber plastic structures.",
                   "detail": "This propagates the upstream change to the downstream item, keeping both items consistent.",
-                  "hint": "You can also click the main Apply arrow at the top to apply all listed changes at once."
+                  "hint": "You can also click the main Apply arrow at the top to apply all listed changes at once.",
+                  "image": {
+                    "src": "images/m6t4-suspected-merge-dialog.png",
+                    "alt": "Merge dialog comparing Carbon-fiber plastic structures and Chassis with Apply arrow and Clear Suspected check box",
+                    "caption": "The Suspected badge merge dialog with the Apply arrow"
+                  }
                 },
                 {
                   "action": "Ensure the Clear Suspected check box is selected, then click Save. Reload the page if necessary.",
@@ -353,7 +398,12 @@
                 {
                   "action": "Under Permissions, select the Developer, Project Admin, and Test Lead roles, set Access to WRITE for Project Admin, and click Save.",
                   "detail": "As with simple reports, role-based permissions control who can view and edit the saved traceability report.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t4-traceability-permissions.png",
+                    "alt": "Permissions table showing Developer and Test Lead with READ access and Project Admin with WRITE access",
+                    "caption": "Role-based permissions for the saved traceability report"
+                  }
                 }
               ]
             },
@@ -374,7 +424,12 @@
                 {
                   "action": "Review the listed changes. Since none of them are relevant to the downstream items, select Clear all suspected links on all pages, then click Save.",
                   "detail": "This clears the Suspected badge across every affected item in the tracker in a single action, without applying any of the upstream attribute changes.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t4-suspected-list.png",
+                    "alt": "List of downstream System Requirement Specifications items showing Suspected badges before bulk clearing",
+                    "caption": "Items with Suspected badges before bulk removal"
+                  }
                 },
                 {
                   "action": "Beside the Reports tab, click the ellipsis, click Find Reports, type Traceability in the filter box, and open the JAWS Proof of Concept Traceability Report.",
@@ -452,7 +507,12 @@
                 {
                   "action": "Open the downloaded file in Excel and confirm the rows, columns, and values match the report.",
                   "detail": "Verifying the export confirms the filtered, grouped, and ordered data transferred correctly.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t5-excel-export.png",
+                    "alt": "Exported report opened in Excel showing rows, columns, and status values matching the Codebeamer report",
+                    "caption": "The exported report opened in Excel"
+                  }
                 },
                 {
                   "action": "On the toolbar, click View Mode to leave editing.",
@@ -550,7 +610,12 @@
                 {
                   "action": "Click Preview to confirm the widget shows your report data, then click Save.",
                   "detail": "You can also configure the number of columns, column order, order-by criteria, page size, and show options before saving.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t6-table-widget.png",
+                    "alt": "Table widget on the dashboard titled Unset and in progress work items, showing the saved report data",
+                    "caption": "The Table widget displaying the saved report"
+                  }
                 }
               ]
             },
@@ -571,7 +636,12 @@
                 {
                   "action": "At the top of the widget, under the title, open the drop-down list and select JAWS Proof of Concept.",
                   "detail": "This filters the widget to show only open items belonging to the JAWS project.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t6-open-tracker-items-widget.png",
+                    "alt": "My Open Tracker Items widget filtered to a project, showing item counts for All Items, Assigned to, Submitted by, and Owned by",
+                    "caption": "The My Open Tracker Items widget filtered to the project"
+                  }
                 },
                 {
                   "action": "At the intersection of the Items column and the All Items row, right-click the value and click Open Link in New Tab, then close the new tab.",
@@ -596,7 +666,12 @@
                 {
                   "action": "Click Save, then verify all three widgets display live data from the JAWS project.",
                   "detail": "The dashboard now provides a self-updating, single-page view of work item status, open items, and end-to-end traceability for stakeholders.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m6t6-traceability-widget.png",
+                    "alt": "Traceability Report widget on the dashboard showing the chain from Customer Requirement Specifications through System Requirement Specifications, Test Cases, and Test Runs",
+                    "caption": "The Traceability Report widget showing the full requirements-to-test chain"
+                  }
                 }
               ]
             }

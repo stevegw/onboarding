@@ -97,7 +97,9 @@ interactive-match: { type, prompt, pairs }              — pairs: [{ left, righ
 interactive-sort:  { type, prompt, items }              — items: string[] (correct order; shuffled at render)
                    ⚠️ The key is "items", NOT "correctOrder" or "options"
 exercise:          { type, exerciseId, title, objective, tasks }
-                   — tasks: [{ id, title, steps: [{ action, detail, hint }] }]
+                   — tasks: [{ id, title, steps: [{ action, detail, hint, image }] }]
+                   — step.image (optional): { src, alt, caption } — same shape as an image block,
+                     src is relative to the course folder (e.g. "images/m1t8-foo.png")
 image:             { type, src, alt, caption, size }
 ```
 
@@ -359,3 +361,39 @@ courses/{course-id}/
 - **cb-overview** (Codebeamer Fundamentals Overview) — complete with 4 modules, English only
 - **creo-mdl1** (Creo Fundamentals Modeling 1) — complete with 4 modules, English only
 - **All other courses** — `comingSoon: true` in catalog.json; content not yet authored
+
+
+The patterns are already in CLAUDE.md, which is automatically loaded into every Claude Code session in this project. So any new session will already know the patterns.
+
+  To author a new course from a PDF, you'd:
+
+  1. Place the PDF in docs/pdfs/
+  2. Ask Claude Code something like:
+  "Read docs/pdfs/new-course.pdf and create a new course wc-abc1 following the content authoring patterns in CLAUDE.md"
+  3. Claude Code will see the patterns (course structure, topic flow, block types, quiz format, etc.) and generate content matching the established conventions.
+
+  You can also be more incremental:
+  - "Read the PDF and create course.json and glossary.json for wc-abc1"
+  - "Create module 1 content from pages 1-30 of the PDF"
+  - "Create the quiz for module 1"
+
+  After content is created, remember to:
+  # Update catalog files
+  # Run: cd docs && python build-bundles.py
+  # Validate JSON: python -m json.tool < file.json
+
+The key point is that CLAUDE.md is always in context — no special recall step needed.
+example on how to ceate a section
+
+Read docs/pdfs/WCFD-EBOM-Training-Guide.pdf and create a new course wcdf-ebom following the content authoring patterns in CLAUDE.md
+Read docs/pdfs/WCBA-ACCS-Training-Guide.pdf and create a new course wcba-accs following the content authoring patterns in CLAUDE.md
+Read docs/pdfs/WCBA-TEAM-Training-Guide.pdf and create a new course wcba-team following the content authoring patterns in CLAUDE.md
+Read docs/pdfs/WCCM-AUTO-Training-Guide.pdf and create a new course wccm-auto following the content authoring patterns in CLAUDE.md
+Read docs/pdfs/WCBA-CNTX-Training-Guide.pdf and create a new course wcba-cntx following the content authoring patterns in CLAUDE.md
+Read docs/pdfs/WCCM-ADCM-Training-Guide.pdf and create a new course wccm-adcm following the content authoring patterns in CLAUDE.md
+Read docs/pdfs/WCFD-OVER-Training-Guide.pdf and create a new course wcfd-over following the content authoring patterns in CLAUDE.md
+Read docs/pdfs/WCEC-REST-Training-Guide.pdf and create a new course wcec-rest following the content authoring patterns in CLAUDE.md
+Read docs/pdfs/CBFD-TEST-Training-Guide.pdf and create a new course cbfd-test following the content authoring patterns in CLAUDE.md
+Read docs/pdfs/CBFD-REQM-Training-Guide.pdf and create a new course cbfd-reqm following the content authoring patterns in CLAUDE.md
+Read docs/pdfs/WCCM-ADCM-Training-Guide.pdf and create a new course wccm-adcm following the content authoring patterns in CLAUDE.md
+

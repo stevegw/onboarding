@@ -291,7 +291,12 @@
                 {
                   "action": "Click Preview to confirm 6 items will be imported, then click Add new Rule and set it to import Heading 2 items into System Requirement Specifications, and add a third rule importing Heading 3 items into Test Cases.",
                   "detail": "These additional rules let a single document populate three trackers at once, mirroring the requirements hierarchy in the source document.",
-                  "hint": "Select System Requirement Specifications and Test Cases as the target trackers for the new rules, each filtered to its own heading level."
+                  "hint": "Select System Requirement Specifications and Test Cases as the target trackers for the new rules, each filtered to its own heading level.",
+                  "image": {
+                    "src": "images/m3t4-import-rules-three-trackers.png",
+                    "alt": "IMPORT RULES pane showing three rules: Heading 1 Char into the current tracker, Heading 2 Char into System Requirement Specifications, and Heading 3 Char into Test Cases",
+                    "caption": "Import rules distributing the document across three trackers by heading style"
+                  }
                 },
                 {
                   "action": "Click Preview again to confirm the statistics show 6 items for Customer Requirement Specifications, 11 for System Requirement Specifications, and 5 for Test Cases, then click Save.",
@@ -307,17 +312,32 @@
                 {
                   "action": "In the Customer Requirement Specifications Tracker Tree, click Settings and select Work Item Key-IDs, Numbering, Mark Work items with suspected links, Add Rating option, and Show Child counts, then click Save.",
                   "detail": "These settings apply across all trackers and make it much easier to identify, number, and assess imported work items.",
-                  "hint": "The Settings icon is at the top of the Tracker Tree pane."
+                  "hint": "The Settings icon is at the top of the Tracker Tree pane.",
+                  "image": {
+                    "src": "images/m3t4-tracker-tree-numbering.png",
+                    "alt": "Tracker Tree showing imported items with key IDs and sequential numbering after enabling tracker tree settings",
+                    "caption": "The Tracker Tree after enabling key IDs and numbering"
+                  }
                 },
                 {
                   "action": "Click the Suspension item, then beside it in the middle pane click the rating icon, give it a 4-star rating with the comment 'This is a very good item', and click Rate.",
                   "detail": "Ratings provide informal quality feedback on individual work items.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t4-rating-dialog.png",
+                    "alt": "Rate this dialog showing a 4-star rating and the comment 'This is a very good item'",
+                    "caption": "The rating dialog for a work item"
+                  }
                 },
                 {
                   "action": "Click the Chassis item, double-click the Business Value field, set it to Must have, then use the status ellipsis to transition the item from New to Draft using the Define transition, and click Save.",
                   "detail": "This demonstrates editing attributes directly in Document View and moving an item through its workflow.",
-                  "hint": "Click away from the Business Value field first to save it, then look for the vertical ellipsis beside the New status label."
+                  "hint": "Click away from the Business Value field first to save it, then look for the vertical ellipsis beside the New status label.",
+                  "image": {
+                    "src": "images/m3t4-chassis-detail-define.png",
+                    "alt": "Chassis item detail page showing the Define dialog with Status set to Draft",
+                    "caption": "The Chassis item with its status transitioned to Draft"
+                  }
                 },
                 {
                   "action": "Switch to Table View, group the items by Status using Add Group by, click GO, then remove the Status filter and click GO again to ungroup.",
@@ -332,7 +352,12 @@
                 {
                   "action": "Return to Document View, click New Requirement, create an item named 'Test Customer Requirement #1' with description 'Test description', then drag the 'Sales and Marketing' item from the Library (under Medical Device Engineering Template) into the Tracker Tree as a copy.",
                   "detail": "This demonstrates both manual item creation and adding items from the Requirements Library, including making the Sales and Marketing item a folder using its Type property.",
-                  "hint": "Enable the Medical Device Engineering Template project in Requirement Library Configuration first, then drag-and-drop Sales and Marketing to the bottom of the Tracker Tree and choose 'Make a copy of the Items in the target Tracker'."
+                  "hint": "Enable the Medical Device Engineering Template project in Requirement Library Configuration first, then drag-and-drop Sales and Marketing to the bottom of the Tracker Tree and choose 'Make a copy of the Items in the target Tracker'.",
+                  "image": {
+                    "src": "images/m3t4-sales-marketing-added.png",
+                    "alt": "Tracker Tree showing the new Test Customer Requirement #1 item and the Sales and Marketing item copied in from the Library",
+                    "caption": "The Tracker Tree after adding a manual item and a library item"
+                  }
                 },
                 {
                   "action": "Right-click 'Test Customer Requirement #1', save it as a public item template named 'Test Requirement Template', then use Create item from a template to generate 'Test Customer Requirement #2', and finally delete both the template and 'Test Customer Requirement #2'.",
@@ -389,7 +414,12 @@
                 {
                   "action": "Click the 'Default: Continuously variable' item to open its details, expand its Traceability node, and confirm you can see both its upstream reference (Transmission) and its downstream reference (Minimum Torque), then return to the Transmission item.",
                   "detail": "Double-clicking any upstream or downstream item in a traceability view opens that item's own traceability, letting you walk the full chain.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t5-traceability-node.png",
+                    "alt": "Traceability node showing the Transmission item as an upstream reference and Minimum Torque as a downstream reference for the Default: Continuously variable item",
+                    "caption": "The Traceability node showing upstream and downstream references"
+                  }
                 }
               ]
             },
@@ -400,17 +430,32 @@
                 {
                   "action": "From the Customer Requirement Specifications header, open Library, click Requirement Library Configuration, and ensure the Codebeamer Technical Essentials training project's relevant trackers are enabled, then click Save.",
                   "detail": "The current project must be added to the Library before its items can be dragged as references onto other items.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t5-library-configuration.png",
+                    "alt": "Requirement Library Configuration tree with the Codebeamer Technical Essentials training project expanded and several trackers checked",
+                    "caption": "Enabling trackers in the Requirement Library Configuration"
+                  }
                 },
                 {
                   "action": "In the Tracker Tree select the Chassis item, then from the Library expand System Requirement Specifications, drag the 'Quality attributes' item over the Chassis item in the middle pane, and drop it in the 'Link to this Creates a reference' drop zone.",
                   "detail": "This is the first technique: linking an existing item from the Library as a downstream reference, without creating a new item.",
-                  "hint": "Confirm the new reference appears under Properties > References for the Chassis item."
+                  "hint": "Confirm the new reference appears under Properties > References for the Chassis item.",
+                  "image": {
+                    "src": "images/m3t5-drag-library-item.png",
+                    "alt": "Quality attributes item being dragged from the Library onto the Chassis item, showing the 'Link to this Creates a reference' drop zone",
+                    "caption": "Dragging a Library item onto the Chassis item to create a reference"
+                  }
                 },
                 {
                   "action": "Beside the Chassis item in the middle pane, click 'Click here to create new Downstream References', choose the User Stories tracker, enter the summary 'CRS to User Story 1' and description 'This is a downstream reference from the Chassis item in the CRS tracker', and click Save.",
                   "detail": "This is the second technique: creating a brand-new item directly from Document View that automatically becomes a downstream reference.",
-                  "hint": "Confirm the new reference appears under Properties > References for the Chassis item."
+                  "hint": "Confirm the new reference appears under Properties > References for the Chassis item.",
+                  "image": {
+                    "src": "images/m3t5-downstream-reference-trackers.png",
+                    "alt": "List of trackers available for creating a new downstream reference, including Risks, System Requirement Specifications, Tasks, and User Stories",
+                    "caption": "The list of trackers available for a new downstream reference"
+                  }
                 },
                 {
                   "action": "Right-click the Chassis item, click Open, and on the toolbar click Create Downstream Reference to confirm the same list of available trackers appears from the item details view.",
@@ -457,7 +502,12 @@
                 {
                   "action": "On the tracker toolbar, click Add Filter, and under Default Fields click Status, then under Meaning select In progress, and click outside the dialog to close it before clicking GO.",
                   "detail": "Filtering by Meaning rather than a literal status name lets the filter work consistently even if status names differ between projects.",
-                  "hint": "Confirm the Tracker Tree narrows to only the Chassis item, which has a status of DRAFT mapped to the In progress meaning."
+                  "hint": "Confirm the Tracker Tree narrows to only the Chassis item, which has a status of DRAFT mapped to the In progress meaning.",
+                  "image": {
+                    "src": "images/m3t6-filtered-tracker-tree.png",
+                    "alt": "Tracker Tree filtered by Status: In progress, showing only the Chassis item",
+                    "caption": "The Tracker Tree filtered to show only items with a Status meaning of In progress"
+                  }
                 },
                 {
                   "action": "Click Add Filter again, and under Reference Filters click 'Has Downstream Reference', leave the Boolean value as True, and click GO.",
@@ -477,7 +527,12 @@
                 {
                   "action": "Switch to Table View, click Manage Tracker Views, select Show Column Filters, filter the Status column by the In progress meaning, then remove the column filter and disable Show Column Filters again.",
                   "detail": "Column filters in Table View provide a spreadsheet-like way to filter directly from column headers, complementing the filter bar.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t6-column-filters.png",
+                    "alt": "Table View with Show Column Filters enabled, showing filter boxes for BV, Summary, Status, Type, Complexity, Assigned to, and Team columns",
+                    "caption": "Column filters enabled in Table View"
+                  }
                 }
               ]
             },
@@ -498,12 +553,22 @@
                 {
                   "action": "Beside Highlight levels, click 1 to highlight Level 1 items, then click 2 to highlight Level 2 items.",
                   "detail": "Highlighting levels makes it visually clear which items belong to each configured traceability level in a complex view.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t6-highlight-level1.png",
+                    "alt": "Tracker Tree with Highlight levels set to 1, showing Level 1 items such as Quality attributes, Inductive Charging, and Optional: Dual clutch transmission highlighted",
+                    "caption": "Highlighting Level 1 items in the Intelligent/Traceability Document View"
+                  }
                 },
                 {
                   "action": "Click 'You have unsaved changes in the current View!', click Save as, name the view 'Trace View_1', select Public View, assign Read access to Product Owner and Stakeholder roles and Write access to Project Admin, and click Save.",
                   "detail": "Saving the view as a public view with role-based permissions lets the whole JAWS team reuse this traceability configuration without rebuilding it.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t6-save-view-dialog.png",
+                    "alt": "View Properties dialog showing the view named 'Trace View #1', Public View checked, saved to Public Views, with Product Owner, Project Admin, and Stakeholder role permissions",
+                    "caption": "Saving the Intelligent/Traceability View with role-based permissions"
+                  }
                 },
                 {
                   "action": "Navigate to Default Views > All Items, then return to the saved Trace View_1 from Manage Tracker Views > Public Views.",
@@ -513,7 +578,12 @@
                 {
                   "action": "While viewing Trace View_1, switch to Table View, then open Manage Tracker Views > Traceability Table View Configuration, change RENDERING METHOD to Hierarchical Table View and click GO, then switch it back to Traceability Tree View.",
                   "detail": "The same Intelligent/Traceability configuration can be rendered as a tree (Document View) or as a table, and within the table as a flat tree or a hierarchy.",
-                  "hint": "Finish by returning to Default Views > All Items and switching back to Document View."
+                  "hint": "Finish by returning to Default Views > All Items and switching back to Document View.",
+                  "image": {
+                    "src": "images/m3t6-hierarchical-table-view.png",
+                    "alt": "Trace View_1 in Table View showing Summary, Level 1, and Level 2 columns with items and their downstream references marked SUSPECTED",
+                    "caption": "Trace View_1 rendered as an Intelligent/Traceability Table View"
+                  }
                 }
               ]
             }
@@ -550,7 +620,12 @@
                 {
                   "action": "Click the Trackers tab, then on the toolbar click Configuration Diagram, and ensure System Requirement Specifications, User Stories, Tasks, Bugs, and Test Cases (under Config Items) are selected.",
                   "detail": "The diagram currently shows System Requirement Specifications at the highest level, with the other trackers connected downstream of it.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t7-configuration-diagram.png",
+                    "alt": "Configuration Diagram showing Test Cases, Bugs, Tasks, and User Stories connected upstream to System Requirement Specifications and then to Customer Requirement Specifications",
+                    "caption": "The Configuration Diagram showing tracker connections"
+                  }
                 },
                 {
                   "action": "In the left pane, also select Customer Requirement Specifications to add it to the diagram, then click the Bugs tracker in the diagram.",
@@ -565,22 +640,42 @@
                 {
                   "action": "Select Show property name, locate the 'subjects' property, hover over its Work/Config items link in the Layout and Content column, and click Edit Tracker relations.",
                   "detail": "The 'subjects' field is what controls which trackers Bugs is connected to upstream.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t7-edit-tracker-relations.png",
+                    "alt": "Upstream Reference Work/Config items dialog showing Bugs is currently connected to Tasks, User Stories, and System Requirement Specifications",
+                    "caption": "The Edit Tracker relations dialog for the Bugs tracker"
+                  }
                 },
                 {
                   "action": "Under Work Items, click More, select Customer Requirement Specifications, click OK, and click Save.",
                   "detail": "This adds Customer Requirement Specifications as a new upstream tracker for Bugs, alongside the existing Task, User Story, and System Requirement Specifications connections.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t7-add-customer-requirement-specs.png",
+                    "alt": "Upstream Reference Work/Config items dialog with the More dropdown open and Customer Requirement Specifications highlighted",
+                    "caption": "Adding Customer Requirement Specifications as an upstream tracker"
+                  }
                 },
                 {
                   "action": "Click the Trackers tab, open Configuration Diagram, and click Bugs again to confirm it is now connected upstream to Customer Requirement Specifications.",
                   "detail": "Verifying the connection in the diagram confirms the configuration change was saved correctly.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t7-bugs-connected-upstream.png",
+                    "alt": "Configuration Diagram showing the Bugs tracker now connected upstream to User Stories, System Requirement Specifications, and Customer Requirement Specifications",
+                    "caption": "The Bugs tracker connected upstream to Customer Requirement Specifications"
+                  }
                 },
                 {
                   "action": "Close the Configuration Diagram, open Customer Requirement Specifications, select the Chassis item, and beside it click 'Click here to create new Downstream References' to confirm Bugs now appears as an option.",
                   "detail": "This confirms the new connection is functional: Customer Requirement Specifications items can now create downstream references directly into the Bugs tracker.",
-                  "hint": "Reload the page if the Tracker Tree does not appear."
+                  "hint": "Reload the page if the Tracker Tree does not appear.",
+                  "image": {
+                    "src": "images/m3t7-bugs-downstream-reference-option.png",
+                    "alt": "Downstream reference tracker list for the Chassis item now including Bugs, Risks, System Requirement Specifications, Tasks, and User Stories",
+                    "caption": "Bugs now available as a downstream reference target for Chassis"
+                  }
                 }
               ]
             }
@@ -632,7 +727,12 @@
                 {
                   "action": "Open the downloaded spreadsheet and set Status to Draft for Charger and Inductive Charging, set Status to Waiting for approval for Meet Emission Standards, and set Status to Draft for Weight transfer.",
                   "detail": "Choice fields like Status appear as drop-down lists in the exported spreadsheet, matching the values configured in Codebeamer.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t8-export-spreadsheet.png",
+                    "alt": "Round-trip Excel export spreadsheet with columns for ID, Business Value, Summary, Status, Type, Complexity, and Story Points for System Requirement Specifications items",
+                    "caption": "The Round-trip Excel export of System Requirement Specifications items"
+                  }
                 },
                 {
                   "action": "In the same spreadsheet, set Type to Constraint for 'Default: Continuously variable' and to Functional for Wheel rate, then set Story Points as follows: Quality attributes = 1, Inductive Charging = 1, Charger = 3, Zero Emission = 5, Meet Emission Standards = 1, Optional: Dual clutch transmission = 1, Weight transfer = 3, Spring rate = 5, Default: Continuously variable = 2, Wheel rate = 2, Carbon-fiber plastic structures = 2.",
@@ -720,17 +820,32 @@
                 {
                   "action": "On the Settings page, set the Deadline to one week from today, leave the other defaults, click Next, review the Overview page, and click Create Review.",
                   "detail": "The Settings page also controls whether Moderators can create new items from review comments and whether status changes automatically based on approval thresholds.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t9-create-review-overview.png",
+                    "alt": "Create Review wizard Overview page showing the review name, description, moderators, reviewers, and 11 items for review",
+                    "caption": "The Overview page of the Create Review wizard"
+                  }
                 },
                 {
                   "action": "In Review Hub, click 'Carbon-fiber plastic structures', expand its References to confirm Chassis appears as an upstream reference, then click Approve for it.",
                   "detail": "References shown in Review Hub mirror the traceability links visible in the tracker, so reviewers can see context without leaving the review.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t9-voting-breakdown-approved.png",
+                    "alt": "Item Statistics Voting Breakdown chart showing 1 Approved item and 0 Rejected and 0 Not reviewed",
+                    "caption": "The Voting Breakdown after approving an item"
+                  }
                 },
                 {
                   "action": "Click Reject for 'Quality attributes', enter the comment 'Sending back because the work is incomplete', and click Save, then approve Inductive Charging, Spring rate, Weight transfer, 'Default: Continuously variable', 'Optional: Dual clutch transmission', Meet Emission Standards, Zero Emission, and Charger, and reject Wheel rate with the same comment.",
                   "detail": "After each vote, the Item Statistics graph in the right pane updates to reflect the current approve/reject breakdown.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t9-voting-breakdown-rejected.png",
+                    "alt": "Item Statistics Voting Breakdown chart showing 1 Rejected item and 0 Approved and 0 Not reviewed",
+                    "caption": "The Voting Breakdown after rejecting an item"
+                  }
                 },
                 {
                   "action": "Click Sign Review, click Generate signature, log in again with the admin credentials, and click Sign Review to confirm the signature was applied.",
@@ -740,12 +855,22 @@
                 {
                   "action": "Review the Comments, Statistics, and History tabs, then on the Review tab click the green vertical ellipsis and click Complete Review, followed by Finish Review.",
                   "detail": "The Statistics page after finishing shows who started, signed, and finished the review, plus a pie chart and table of approved versus rejected items.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t9-comments-tab.png",
+                    "alt": "Review Hub Comments tab for the System Requirements Item Review showing a comment 'Sending back because the work is incomplete' on the Wheel rate item",
+                    "caption": "The Comments tab of the Review Hub review"
+                  }
                 },
                 {
                   "action": "Click the green ellipsis again, click Export, choose the MS Excel option, click Export, and download the resulting Review-System Requirements Item Review.xlsx file.",
                   "detail": "Exporting the completed review to Excel (or Word/PDF) gives JAWS a shareable record of the approval decisions for stakeholders without Codebeamer access.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t9-export-excel.png",
+                    "alt": "Excel export of the System Requirements Item Review showing items, Approved/Needs more work/Not reviewed columns, review status, and upstream/downstream references",
+                    "caption": "The exported review results in Excel"
+                  }
                 }
               ]
             }
@@ -787,7 +912,12 @@
                 {
                   "action": "Confirm the Baselines tab now lists two entries: your new baseline and the current Head Revision.",
                   "detail": "Head Revision always represents the live, current state of the project, while your named baseline is frozen at the moment it was created.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t10-baselines-tab.png",
+                    "alt": "Baselines tab listing two entries: Head Revision (the current head revision) and Codebeamer Technical Essentials training Baseline 1 created by admin",
+                    "caption": "The Baselines tab showing Head Revision and the new baseline"
+                  }
                 },
                 {
                   "action": "Open the Customer Requirement Specifications tracker, find the 'Total weight must be 1100kg or less' item, edit its description to change the word 'Since' to 'Because' in the third sentence, and save.",
@@ -817,7 +947,12 @@
                 {
                   "action": "Expand the Suspension item to review its field-level changes, collapse it, then expand 'Total weight must be 1100kg or less' to review its description change, and close the Compare baseline tab.",
                   "detail": "This detailed comparison view can also be exported to Excel or filtered, giving JAWS an audit trail of exactly what changed and when.",
-                  "hint": null
+                  "hint": null,
+                  "image": {
+                    "src": "images/m3t10-suspension-diff.png",
+                    "alt": "Compare baseline detail view for the Suspension item showing field-level Edit and Define actions with Old Value and New Value for Assigned to, Complexity, and Status",
+                    "caption": "Field-level changes for the Suspension item between baselines"
+                  }
                 }
               ]
             }
