@@ -1,0 +1,835 @@
+{
+  "id": "m3",
+  "title": "Manage Requirements",
+  "description": "Import, examine, filter, and manage requirements traceability for the JAWS proof-of-concept project, including Excel round-trip editing, reviews, and baselines.",
+  "topics": [
+    {
+      "id": "m3t1",
+      "title": "Importing and Organizing Requirements",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "JAWS (JAY Automotive Works) needs to bring its existing vehicle requirements into Codebeamer as part of its ALM proof-of-concept. Rather than re-typing hundreds of requirements, the team can import them directly from the documents and spreadsheets they already use."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Import Sources"
+        },
+        {
+          "type": "paragraph",
+          "text": "Codebeamer can import work items from Microsoft Word, Microsoft Excel, Microsoft Project, and CSV files (in Excel style). Each format brings information into a tracker in a slightly different way, but all of them let JAWS reuse content that engineers and analysts have already authored."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Importing from Word"
+        },
+        {
+          "type": "paragraph",
+          "text": "When importing a Word document, Codebeamer uses the document's paragraph styles to structure the resulting work items. Heading styles become the summaries (titles) of work items, normal paragraphs that follow a heading become the item descriptions, and the heading level (Heading 1, Heading 2, Heading 3, and so on) determines the parent-child relationship between items. For example, a document with <strong>Transmission</strong> as Heading 1, <strong>Transmission TC, Default: Continuously variable</strong> as Heading 2, and <strong>Minimum Torque</strong> as Heading 3 produces a three-level work item tree after import."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "The Word import can process up to five levels of style hierarchy. If a document has more than five heading levels, items beyond that depth can appear anywhere in the resulting structure, so it's best to keep source documents within five heading levels."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Import Rules"
+        },
+        {
+          "type": "paragraph",
+          "text": "Import rules control which content goes where. Each rule has an action selector (which tracker to import into and how), a work item filter (a condition such as 'has the following style'), a logical operator (AND/OR) when combining conditions, and a Preview option that shows exactly how many items each rule will generate before anything is saved. By default, a single rule imports the whole document into the current tracker, but JAWS can add additional rules - for example, sending Heading 1 items to Customer Requirement Specifications, Heading 2 items to System Requirement Specifications, and Heading 3 items to Test Cases - so that one document populates multiple trackers in a single import."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Requirements Library"
+        },
+        {
+          "type": "paragraph",
+          "text": "Some requirements - such as standard quality attributes or regulatory clauses - apply across multiple JAWS projects. The Requirements Library lets teams save requirements to a shared repository and copy them into any project or tracker that needs them. When an item is copied from the library, Codebeamer automatically maps custom fields where possible and creates an association between the original item and the copy. If the original item changes later, the copy is flagged with a 'Suspected' badge so the team knows it may need re-review."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Before items from another project appear in the Requirements Library, that project's requirement trackers must be enabled in the Requirement Library Configuration. Codebeamer remembers this list, so adding a brand-new tracker later requires reconfiguring the library."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each import concept to its description:",
+          "pairs": [
+            {
+              "left": "Heading style level",
+              "right": "Determines the parent-child relationship between imported items"
+            },
+            {
+              "left": "Import rule",
+              "right": "Defines which tracker receives items matching a given condition"
+            },
+            {
+              "left": "Preview",
+              "right": "Shows how many items each rule will import before saving"
+            },
+            {
+              "left": "Requirements Library",
+              "right": "Shared repository for reusing requirements across projects"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Word imports use heading styles to generate item summaries, descriptions, and parent-child hierarchy",
+        "Import rules combine an action, a tracker target, and conditions (such as heading style) to route content into one or more trackers",
+        "Preview shows exactly how many items each rule will create before you save the import",
+        "The Requirements Library lets teams reuse requirements across projects while flagging copies as 'Suspected' if the source changes"
+      ]
+    },
+    {
+      "id": "m3t2",
+      "title": "Examining Requirements Tracker Items",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Once requirements are imported into a JAWS tracker such as Customer Requirement Specifications, the team needs to navigate, configure, and inspect those items efficiently. Codebeamer's requirements trackers offer multiple views and a rich item details page for this purpose."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Tracker Tree Configuration"
+        },
+        {
+          "type": "paragraph",
+          "text": "The Tracker Tree can be configured to show useful information alongside each item: Work Item Key-IDs, automatic numbering, a 'Mark Work items with suspected links' badge, a star rating control, and child item counts. The 'Mark Work items with suspected links' option is especially useful for impact analysis - if an upstream item changes, any downstream item linked to it is flagged with a Suspected badge so the team knows it may need re-evaluation."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Requirements Type Tracker Views"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["View", "Layout", "Best For"],
+          "rows": [
+            ["Document View", "Item tree (left), document (middle), item properties (right)", "Reading and editing requirements in a hierarchical, document-like flow"],
+            ["Table View", "Rows = items, columns = attributes", "Bulk review, sorting, grouping, and comparing attribute values"],
+            ["Document Edit View", "Inline-editable table that reads like a document", "Quickly editing many fields while still seeing requirement text in context"],
+            ["Kanban Board", "Cards in columns representing workflow stages", "Visualizing and moving items through their lifecycle"]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "In Document View, clicking an item in the tree scrolls the document pane to that item and displays its attributes in the properties pane, which also exposes External linked items, References, Associations, and Comments nodes. Each pane can be resized or hidden using the sizing handles and triangle icons."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Both the Kanban Board and Table View use a tabular format, so both support 'Group By' - for example, grouping System Requirement Specifications items by Status to see how many are New, Draft, or Accepted at a glance."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Item Details, History, and Templates"
+        },
+        {
+          "type": "paragraph",
+          "text": "Opening an item in its detailed view exposes a header (breadcrumb, unique ID, head revision), a Traceability node showing upstream and downstream references, and tabs for Comments and Attachments, Associations, Children, Downstream References, SCM commits, History, and Baselines. Every field change creates a new version in the History tab, where two versions can be compared side by side. JAWS can also save any item as a reusable item template - public templates (for users with the right permission) or private templates - so that future items start with the same default field values, layout, and embedded content such as tables or diagrams."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Order these requirements tracker views from the most document-like (best for reading specs) to the most workflow/visual (best for tracking progress):",
+          "items": [
+            "Document View",
+            "Document Edit View",
+            "Table View",
+            "Kanban Board"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Tracker Tree settings (Key-IDs, numbering, suspected-link marks, ratings, child counts) apply across all trackers, not just one",
+        "Document, Table, Document Edit, and Kanban views each present the same items in a different layout suited to a different task",
+        "The item details view exposes Traceability, Associations, Children, History, and Baselines for a single item",
+        "Item templates capture default field values and content for reuse, but workflow status, comments, tags, and links are not stored in templates"
+      ]
+    },
+    {
+      "id": "m3t3",
+      "title": "Traceability, Filters, and Tracker Connections",
+      "estimatedMinutes": 8,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "JAWS wants every requirement to be traceable from the customer's needs all the way down to test cases - and they want to be able to slice that information into useful views. Codebeamer supports this through traceability references, filters, and configurable connections between trackers."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "References vs. Associations"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Concept", "Description"],
+          "rows": [
+            ["Downstream reference", "A traceability link to an item in a tracker lower in the workstream (e.g., a Customer Requirement to a System Requirement). Available trackers are determined by the Configuration Diagram."],
+            ["Upstream reference", "The reverse view of a downstream reference - shows which higher-level item(s) this item was derived from."],
+            ["Association", "An ad hoc relationship to any Codebeamer item, document, or external resource. Has no defined value set or permissions, and any user with access can create one."],
+            ["Suspected flag", "Applied to an associated or referenced item when the item it points to (or points from, if bi-directional) is modified, prompting re-evaluation."]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Association types describe the nature of the relationship - for example, Depends on, Is superordinate to, Is subordinate to, Is related to, Is derived from, Violates, Excludes, Invalidates, and Was copied from. Associations can also propagate suspect flags in one direction, the reverse direction, or bi-directionally, and can propagate an Unresolved Item Dependencies (UID) badge if linked items are not yet resolved or closed."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Basic Filters"
+        },
+        {
+          "type": "paragraph",
+          "text": "Filters narrow a tracker view to items matching specific field values - for example, Status = Draft, or Business Value = Must have. Multiple filters combine with AND logic by default, meaning an item must satisfy every active filter. JAWS can also switch to OR logic (for example, typing '1 OR 2' in the AND/OR expression box) so that an item matching either filter is included. Status can also be filtered by 'Meaning' - a configured grouping such as 'In progress' that can map to differently named statuses across projects and trackers."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Intelligent / Traceability Views"
+        },
+        {
+          "type": "paragraph",
+          "text": "An Intelligent (Traceability) Document View or Table View lets JAWS configure multiple traceability levels - for example, Level 1 = System Requirement Specifications, Level 2 = Test Cases - and see how items at each level connect to items at the level above. The Tracker Tree can highlight items belonging to a specific level, and the rendering method can be switched between a Traceability Tree View and a Hierarchical Table View. Once configured, these views can be saved (for example, as a public view named 'Trace View_1') with role-based permissions and reused without rebuilding the configuration."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Save complex Intelligent/Traceability views to a public folder and assign role-based permissions (such as Read access for Stakeholders and Write access for Project Admins) so the whole JAWS team can reuse them without recreating the configuration."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Connections Between Trackers"
+        },
+        {
+          "type": "paragraph",
+          "text": "The trackers available for downstream references are defined by the Configuration Diagram, which shows which trackers sit upstream and downstream of one another. To change a connection - for example, to let JAWS link Customer Requirement Specifications directly to Bugs - the change must be made starting from the downstream tracker (Bugs), by editing the upstream reference (the 'subjects' field) in that tracker's configuration to add the new upstream tracker."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each traceability/filtering concept to its description:",
+          "pairs": [
+            {
+              "left": "Downstream reference",
+              "right": "Traceability link to an item lower in the workstream"
+            },
+            {
+              "left": "Association",
+              "right": "Ad hoc relationship with a configurable type, like 'Depends on'"
+            },
+            {
+              "left": "AND/OR filter logic",
+              "right": "Controls whether an item must match all filters or any one of them"
+            },
+            {
+              "left": "Configuration Diagram",
+              "right": "Shows which trackers are connected upstream and downstream of each other"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Downstream/upstream references provide structured traceability; associations provide flexible, typed relationships without permissions",
+        "Suspected flags and UID badges alert teams when linked items change and may need re-evaluation",
+        "Filters combine with AND logic by default, but OR logic can be applied using an AND/OR expression",
+        "Intelligent/Traceability views show multi-level cross-tracker relationships and can be saved and shared with role-based permissions",
+        "New tracker-to-tracker connections must be configured from the downstream tracker's upstream reference field"
+      ]
+    },
+    {
+      "id": "m3t4",
+      "title": "Import Requirements and Examine Work Items",
+      "estimatedMinutes": 14,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will import the JAWS automotive requirements document into the Customer Requirement Specifications tracker using import rules that distribute content across multiple trackers, then explore and edit the imported work items using the Tracker Tree, Document View, Table View, Document Edit View, and Kanban Board."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Before starting, make sure you are logged in to the Codebeamer training environment with the Codebeamer Technical Essentials training project open."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex6",
+          "title": "Import Requirements and Examine Work Items",
+          "objective": "Import requirements from a Word document using multi-level import rules, then configure and explore the resulting work items.",
+          "tasks": [
+            {
+              "id": "ex6-t1",
+              "title": "Import Requirements from a Word Document",
+              "steps": [
+                {
+                  "action": "Open the Customer Requirement Specifications tracker, then on the toolbar click more, and then click Import.",
+                  "detail": "The Importing Items page lets you bring in content from Microsoft Word, Excel, Project, or CSV files.",
+                  "hint": "Beside the Trackers tab label, click the vertical ellipsis to find Customer Requirement Specifications."
+                },
+                {
+                  "action": "Leave Microsoft Word selected as the import source, click Attach a file, and select the Auto Requirements Documents.docx file.",
+                  "detail": "This document contains the high-level JAWS vehicle requirements - chassis, suspension, wheel rate, weight transfer, transmission, and more - structured with heading styles.",
+                  "hint": "The file is located in the Student Data folder of the training environment."
+                },
+                {
+                  "action": "Click Next, then in the right pane under IMPORT RULES, leave the default rule set to import into the current tracker, with the condition 'has the following style' set to Heading 1 Char only.",
+                  "detail": "This default rule will import the top-level (Heading 1) items into Customer Requirement Specifications.",
+                  "hint": "Use 'Uncheck all' and then select only the Heading 1 Char check box."
+                },
+                {
+                  "action": "Click Preview to confirm 6 items will be imported, then click Add new Rule and set it to import Heading 2 items into System Requirement Specifications, and add a third rule importing Heading 3 items into Test Cases.",
+                  "detail": "These additional rules let a single document populate three trackers at once, mirroring the requirements hierarchy in the source document.",
+                  "hint": "Select System Requirement Specifications and Test Cases as the target trackers for the new rules, each filtered to its own heading level."
+                },
+                {
+                  "action": "Click Preview again to confirm the statistics show 6 items for Customer Requirement Specifications, 11 for System Requirement Specifications, and 5 for Test Cases, then click Save.",
+                  "detail": "Reviewing the statistics before saving confirms the import rules are distributing items as expected across the three trackers.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex6-t2",
+              "title": "Configure and Explore Imported Work Items",
+              "steps": [
+                {
+                  "action": "In the Customer Requirement Specifications Tracker Tree, click Settings and select Work Item Key-IDs, Numbering, Mark Work items with suspected links, Add Rating option, and Show Child counts, then click Save.",
+                  "detail": "These settings apply across all trackers and make it much easier to identify, number, and assess imported work items.",
+                  "hint": "The Settings icon is at the top of the Tracker Tree pane."
+                },
+                {
+                  "action": "Click the Suspension item, then beside it in the middle pane click the rating icon, give it a 4-star rating with the comment 'This is a very good item', and click Rate.",
+                  "detail": "Ratings provide informal quality feedback on individual work items.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the Chassis item, double-click the Business Value field, set it to Must have, then use the status ellipsis to transition the item from New to Draft using the Define transition, and click Save.",
+                  "detail": "This demonstrates editing attributes directly in Document View and moving an item through its workflow.",
+                  "hint": "Click away from the Business Value field first to save it, then look for the vertical ellipsis beside the New status label."
+                },
+                {
+                  "action": "Switch to Table View, group the items by Status using Add Group by, click GO, then remove the Status filter and click GO again to ungroup.",
+                  "detail": "Table View's Group By feature is useful for quickly seeing how many items are in each workflow state.",
+                  "hint": "Add Group by is in the toolbar at the top of Table View."
+                },
+                {
+                  "action": "Switch to Document Edit View and change the Chassis item's BV (Business Value) field to Should have using the inline drop-down, then switch to Kanban Board and drag (without dropping) the Chassis card toward the To verify column before returning it to In progress.",
+                  "detail": "Document Edit View supports rapid inline editing across many items, while Kanban Board visualizes workflow stages as columns.",
+                  "hint": "Use 'Leave page' if prompted, to discard the unsaved Kanban drag."
+                },
+                {
+                  "action": "Return to Document View, click New Requirement, create an item named 'Test Customer Requirement #1' with description 'Test description', then drag the 'Sales and Marketing' item from the Library (under Medical Device Engineering Template) into the Tracker Tree as a copy.",
+                  "detail": "This demonstrates both manual item creation and adding items from the Requirements Library, including making the Sales and Marketing item a folder using its Type property.",
+                  "hint": "Enable the Medical Device Engineering Template project in Requirement Library Configuration first, then drag-and-drop Sales and Marketing to the bottom of the Tracker Tree and choose 'Make a copy of the Items in the target Tracker'."
+                },
+                {
+                  "action": "Right-click 'Test Customer Requirement #1', save it as a public item template named 'Test Requirement Template', then use Create item from a template to generate 'Test Customer Requirement #2', and finally delete both the template and 'Test Customer Requirement #2'.",
+                  "detail": "This demonstrates the full lifecycle of an item template: creation, reuse, and cleanup.",
+                  "hint": "Manage Item Templates is available from the tracker toolbar's more menu."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Multi-level import rules can populate several trackers from a single source document in one operation",
+        "Tracker Tree settings such as numbering, suspected-link marks, and ratings apply globally across all trackers",
+        "Document, Table, Document Edit, and Kanban views all edit the same underlying item data in different layouts",
+        "Items can be added manually, copied from the Requirements Library, or generated from saved item templates"
+      ]
+    },
+    {
+      "id": "m3t5",
+      "title": "Examine and Add Traceability for a Work Item",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will examine the upstream and downstream traceability of the Transmission item, then add new downstream references to the Chassis item using three different techniques: dragging an item from the Library, creating a new linked item from Document View, and creating a new linked item from the item details view."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex7",
+          "title": "Examine and Add Traceability",
+          "objective": "Examine an item's traceability levels and add downstream references using the Library, Document View, and item details view.",
+          "tasks": [
+            {
+              "id": "ex7-t1",
+              "title": "Examine Item Traceability",
+              "steps": [
+                {
+                  "action": "In the Tracker Tree, right-click the Transmission item and click Open, then expand the Traceability node.",
+                  "detail": "The Traceability node shows the Transmission item's upstream references (none, since Customer Requirement Specifications is the highest-level tracker) and its downstream references.",
+                  "hint": null
+                },
+                {
+                  "action": "Identify the two downstream references shown - 'Optional: Dual clutch transmission' and 'Default: Continuously variable' - and note that 'Default: Continuously variable' has its own downstream reference, 'Minimum Torque', in the Test Cases tracker.",
+                  "detail": "This three-level chain (Customer Requirement to System Requirement to Test Case) is exactly the kind of traceability JAWS needs for compliance reporting.",
+                  "hint": null
+                },
+                {
+                  "action": "Change the Number of Levels drop-down from 2 to 4 to see the (currently empty) additional levels, then change it back to 2.",
+                  "detail": "The Number of Levels setting controls how many traceability levels are displayed at once; it can be increased for deeper workstreams.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the 'Default: Continuously variable' item to open its details, expand its Traceability node, and confirm you can see both its upstream reference (Transmission) and its downstream reference (Minimum Torque), then return to the Transmission item.",
+                  "detail": "Double-clicking any upstream or downstream item in a traceability view opens that item's own traceability, letting you walk the full chain.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex7-t2",
+              "title": "Add Downstream References Using Three Techniques",
+              "steps": [
+                {
+                  "action": "From the Customer Requirement Specifications header, open Library, click Requirement Library Configuration, and ensure the Codebeamer Technical Essentials training project's relevant trackers are enabled, then click Save.",
+                  "detail": "The current project must be added to the Library before its items can be dragged as references onto other items.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Tracker Tree select the Chassis item, then from the Library expand System Requirement Specifications, drag the 'Quality attributes' item over the Chassis item in the middle pane, and drop it in the 'Link to this Creates a reference' drop zone.",
+                  "detail": "This is the first technique: linking an existing item from the Library as a downstream reference, without creating a new item.",
+                  "hint": "Confirm the new reference appears under Properties > References for the Chassis item."
+                },
+                {
+                  "action": "Beside the Chassis item in the middle pane, click 'Click here to create new Downstream References', choose the User Stories tracker, enter the summary 'CRS to User Story 1' and description 'This is a downstream reference from the Chassis item in the CRS tracker', and click Save.",
+                  "detail": "This is the second technique: creating a brand-new item directly from Document View that automatically becomes a downstream reference.",
+                  "hint": "Confirm the new reference appears under Properties > References for the Chassis item."
+                },
+                {
+                  "action": "Right-click the Chassis item, click Open, and on the toolbar click Create Downstream Reference to confirm the same list of available trackers appears from the item details view.",
+                  "detail": "This is the third technique - functionally equivalent to the second, but accessed from inside the item details view rather than Document View.",
+                  "hint": "You do not need to complete the creation; confirming the option is available is sufficient."
+                },
+                {
+                  "action": "Click the vertical ellipsis at the top right of the Chassis item in the middle pane to reveal the upstream (red) and downstream (yellow) chevron icons, then click the yellow chevron to confirm Chassis now has multiple downstream references.",
+                  "detail": "The chevron icons provide a quick way to see an item's current upstream and downstream reference counts without opening the full traceability view.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Traceability node shows upstream and downstream references and lets you drill into linked items' own traceability",
+        "The Number of Levels setting controls how many traceability levels are visible at once",
+        "Downstream references can be created by linking existing Library items, or by creating new items from Document View or the item details view",
+        "Chevron icons provide a quick visual check of an item's upstream and downstream reference counts"
+      ]
+    },
+    {
+      "id": "m3t6",
+      "title": "Add Filters and Create Intelligent Views",
+      "estimatedMinutes": 12,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will apply basic filters with AND and OR logic to the Customer Requirement Specifications tracker, enable column filters in Table View, and then build, highlight, save, and review an Intelligent/Traceability Document View and its corresponding Table View."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex8",
+          "title": "Add Filters and Create Intelligent Views",
+          "objective": "Apply and combine basic filters, then create and save an Intelligent/Traceability View across multiple trackers.",
+          "tasks": [
+            {
+              "id": "ex8-t1",
+              "title": "Apply Basic Filters with AND/OR Logic",
+              "steps": [
+                {
+                  "action": "On the tracker toolbar, click Add Filter, and under Default Fields click Status, then under Meaning select In progress, and click outside the dialog to close it before clicking GO.",
+                  "detail": "Filtering by Meaning rather than a literal status name lets the filter work consistently even if status names differ between projects.",
+                  "hint": "Confirm the Tracker Tree narrows to only the Chassis item, which has a status of DRAFT mapped to the In progress meaning."
+                },
+                {
+                  "action": "Click Add Filter again, and under Reference Filters click 'Has Downstream Reference', leave the Boolean value as True, and click GO.",
+                  "detail": "By default, multiple filters combine with AND logic, so only items satisfying both the Status/Meaning filter and the Has Downstream Reference filter are shown.",
+                  "hint": "Chassis should still be the only item shown, since it satisfies both conditions."
+                },
+                {
+                  "action": "Click +AND/OR, type '1 OR 2' in the expression box, and click GO.",
+                  "detail": "Switching to OR logic broadens the result set to any item matching either filter, demonstrating how filter expressions can be customized beyond simple AND chaining.",
+                  "hint": "More items should now appear in the Tracker Tree."
+                },
+                {
+                  "action": "Remove all active filters and the AND/OR expression, and click GO to return to the unfiltered item list.",
+                  "detail": "Clearing filters restores the full Tracker Tree for the next steps.",
+                  "hint": "Click the x beside each filter and beside the AND/OR expression."
+                },
+                {
+                  "action": "Switch to Table View, click Manage Tracker Views, select Show Column Filters, filter the Status column by the In progress meaning, then remove the column filter and disable Show Column Filters again.",
+                  "detail": "Column filters in Table View provide a spreadsheet-like way to filter directly from column headers, complementing the filter bar.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex8-t2",
+              "title": "Create and Save an Intelligent/Traceability View",
+              "steps": [
+                {
+                  "action": "Switch to Document View, click Manage Tracker Views, and click Traceability Document View Configuration.",
+                  "detail": "This dialog lets you configure multi-level traceability views spanning multiple trackers.",
+                  "hint": null
+                },
+                {
+                  "action": "For Level 1, set Project to Codebeamer Technical Essentials training and Tracker to System Requirement Specifications, click Add New Level, and for Level 2 set the same project with Tracker set to Test Cases, then click GO.",
+                  "detail": "This configuration shows how Customer Requirement Specifications items connect downstream to System Requirement Specifications items, which in turn connect to Test Cases items.",
+                  "hint": "Expand the resulting Tracker Tree to see items like Chassis with downstream references to Quality attributes and Carbon-fiber plastic structures."
+                },
+                {
+                  "action": "Beside Highlight levels, click 1 to highlight Level 1 items, then click 2 to highlight Level 2 items.",
+                  "detail": "Highlighting levels makes it visually clear which items belong to each configured traceability level in a complex view.",
+                  "hint": null
+                },
+                {
+                  "action": "Click 'You have unsaved changes in the current View!', click Save as, name the view 'Trace View_1', select Public View, assign Read access to Product Owner and Stakeholder roles and Write access to Project Admin, and click Save.",
+                  "detail": "Saving the view as a public view with role-based permissions lets the whole JAWS team reuse this traceability configuration without rebuilding it.",
+                  "hint": null
+                },
+                {
+                  "action": "Navigate to Default Views > All Items, then return to the saved Trace View_1 from Manage Tracker Views > Public Views.",
+                  "detail": "This confirms the saved view can be navigated away from and back to without losing its configuration.",
+                  "hint": null
+                },
+                {
+                  "action": "While viewing Trace View_1, switch to Table View, then open Manage Tracker Views > Traceability Table View Configuration, change RENDERING METHOD to Hierarchical Table View and click GO, then switch it back to Traceability Tree View.",
+                  "detail": "The same Intelligent/Traceability configuration can be rendered as a tree (Document View) or as a table, and within the table as a flat tree or a hierarchy.",
+                  "hint": "Finish by returning to Default Views > All Items and switching back to Document View."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Multiple filters combine with AND logic by default, but an AND/OR expression box lets you customize the logic, e.g. '1 OR 2'",
+        "Filtering by Status Meaning works consistently even when status names differ across projects",
+        "Intelligent/Traceability Views configure multiple cross-tracker levels and can highlight items by level",
+        "Saved Intelligent/Traceability Views support public sharing with role-based permissions and can render as a tree or table"
+      ]
+    },
+    {
+      "id": "m3t7",
+      "title": "Manage Downstream and Upstream Connections",
+      "estimatedMinutes": 8,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will examine the JAWS project's tracker connections in the Configuration Diagram, then create a new connection so the Bugs tracker is linked upstream to the Customer Requirement Specifications tracker, and verify the new connection works."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex9",
+          "title": "Manage Downstream and Upstream Connections",
+          "objective": "Examine the Configuration Diagram, add a new tracker connection from the downstream tracker, and verify it.",
+          "tasks": [
+            {
+              "id": "ex9-t1",
+              "title": "Examine and Modify Tracker Connections",
+              "steps": [
+                {
+                  "action": "Click the Trackers tab, then on the toolbar click Configuration Diagram, and ensure System Requirement Specifications, User Stories, Tasks, Bugs, and Test Cases (under Config Items) are selected.",
+                  "detail": "The diagram currently shows System Requirement Specifications at the highest level, with the other trackers connected downstream of it.",
+                  "hint": null
+                },
+                {
+                  "action": "In the left pane, also select Customer Requirement Specifications to add it to the diagram, then click the Bugs tracker in the diagram.",
+                  "detail": "Customer Requirement Specifications now appears at the highest level. Clicking Bugs reveals it currently has three upstream connections: User Stories, System Requirement Specifications, and Tasks - but no connection to Customer Requirement Specifications.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the Configuration Diagram, double-click Bugs in the left pane to open it, then on the tracker toolbar click more, click Configure, and click the Fields tab.",
+                  "detail": "To add a new connection, you must start from the downstream tracker (Bugs) and edit its upstream reference field.",
+                  "hint": null
+                },
+                {
+                  "action": "Select Show property name, locate the 'subjects' property, hover over its Work/Config items link in the Layout and Content column, and click Edit Tracker relations.",
+                  "detail": "The 'subjects' field is what controls which trackers Bugs is connected to upstream.",
+                  "hint": null
+                },
+                {
+                  "action": "Under Work Items, click More, select Customer Requirement Specifications, click OK, and click Save.",
+                  "detail": "This adds Customer Requirement Specifications as a new upstream tracker for Bugs, alongside the existing Task, User Story, and System Requirement Specifications connections.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the Trackers tab, open Configuration Diagram, and click Bugs again to confirm it is now connected upstream to Customer Requirement Specifications.",
+                  "detail": "Verifying the connection in the diagram confirms the configuration change was saved correctly.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the Configuration Diagram, open Customer Requirement Specifications, select the Chassis item, and beside it click 'Click here to create new Downstream References' to confirm Bugs now appears as an option.",
+                  "detail": "This confirms the new connection is functional: Customer Requirement Specifications items can now create downstream references directly into the Bugs tracker.",
+                  "hint": "Reload the page if the Tracker Tree does not appear."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Configuration Diagram shows which trackers are connected upstream and downstream of each other",
+        "New tracker connections must be configured starting from the downstream tracker, by editing its upstream reference ('subjects') field",
+        "Adding a tracker as an upstream connection makes it available as a target for new downstream references",
+        "Verifying a new connection in the diagram and then testing it on a real item confirms the change took effect"
+      ]
+    },
+    {
+      "id": "m3t8",
+      "title": "Excel Round-Trip Editing of Requirements",
+      "estimatedMinutes": 12,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will use Excel Round-trip editing to update System Requirement Specifications items offline. You will export filtered items to Excel, edit field values such as Status, Type, and Story Points, and re-import the changes back into Codebeamer."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Round-trip editing relies on the item ID column to map rows back to existing items. Do not delete or reorder the ID column in the exported spreadsheet, or your changes may be applied to the wrong items - or imported as new items - on re-import."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex10",
+          "title": "Excel Round-Trip Editing of Requirements",
+          "objective": "Export System Requirement Specifications items to Excel, edit field values offline, and re-import the changes.",
+          "tasks": [
+            {
+              "id": "ex10-t1",
+              "title": "Export, Edit, and Re-Import Tracker Items",
+              "steps": [
+                {
+                  "action": "Open the System Requirement Specifications tracker in Table View, then on the toolbar click more and click Export to Office.",
+                  "detail": "Exporting from Table View captures the current items, fields, and parent/child hierarchy exactly as displayed.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the MS Excel tab, select the Round-trip Excel Export option, leave the defaults, and click Export, then download the resulting .xlsx file.",
+                  "detail": "Round-trip Excel Export produces a spreadsheet formatted so it can later be re-imported and matched back to the original items by ID.",
+                  "hint": null
+                },
+                {
+                  "action": "Open the downloaded spreadsheet and set Status to Draft for Charger and Inductive Charging, set Status to Waiting for approval for Meet Emission Standards, and set Status to Draft for Weight transfer.",
+                  "detail": "Choice fields like Status appear as drop-down lists in the exported spreadsheet, matching the values configured in Codebeamer.",
+                  "hint": null
+                },
+                {
+                  "action": "In the same spreadsheet, set Type to Constraint for 'Default: Continuously variable' and to Functional for Wheel rate, then set Story Points as follows: Quality attributes = 1, Inductive Charging = 1, Charger = 3, Zero Emission = 5, Meet Emission Standards = 1, Optional: Dual clutch transmission = 1, Weight transfer = 3, Spring rate = 5, Default: Continuously variable = 2, Wheel rate = 2, Carbon-fiber plastic structures = 2.",
+                  "detail": "Editing many fields offline in Excel is faster than editing each item individually in Codebeamer, especially for bulk updates like Story Points estimation.",
+                  "hint": null
+                },
+                {
+                  "action": "Save and close the spreadsheet, then in Codebeamer's System Requirement Specifications tracker click more and click Import, select Microsoft Excel, attach the edited spreadsheet, and click Next.",
+                  "detail": "Re-importing the edited spreadsheet brings your offline changes back into the tracker.",
+                  "hint": null
+                },
+                {
+                  "action": "On the Assign Columns page, leave the import start row and mapping defaults and click Next, then on the data conversion options page leave the defaults and click Next, review the final summary highlighting changed values in yellow, and click Finish.",
+                  "detail": "The final summary lets you confirm exactly which fields will change before committing the import.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Tracker Tree, click Charger, Meet Emission Standards, Weight transfer, Inductive Charging, 'Default: Continuously variable', Wheel rate, Zero Emission, and Carbon-fiber plastic structures in turn, and confirm each item shows the Status, Type, and Story Points values you set in Excel.",
+                  "detail": "Confirming the imported values matches the spreadsheet edits closes the round-trip loop: data moved from Codebeamer to Excel and back again with full fidelity.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Excel Round-trip Export preserves item IDs, hierarchy, and field values so changes can be re-imported and matched to the correct items",
+        "Choice fields such as Status and Type appear as drop-down lists in the exported spreadsheet, just as they do in Codebeamer",
+        "The import wizard's final summary highlights changed values before you commit the re-import",
+        "Round-trip editing is also available for other tracker types, such as Tasks and Bugs, not only requirements"
+      ]
+    },
+    {
+      "id": "m3t9",
+      "title": "Send Items for Review in Review Hub",
+      "estimatedMinutes": 12,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will accept an individual System Requirement Specifications item, then create a Review Hub review for the entire tracker, vote on items as Approved or Rejected, sign and complete the review, and export the results to Excel."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex11",
+          "title": "Send Items for Review in Review Hub",
+          "objective": "Review an individual item, run a multi-item Review Hub review with signatures, and export the results.",
+          "tasks": [
+            {
+              "id": "ex11-t1",
+              "title": "Review an Individual Item",
+              "steps": [
+                {
+                  "action": "In Document View for the System Requirement Specifications tracker, right-click the 'Meet Emission Standards' item (status WAITING FOR APPROVAL) and click Open.",
+                  "detail": "Individual item review is only available for items whose status is Waiting for approval.",
+                  "hint": null
+                },
+                {
+                  "action": "On the toolbar, click Accept and then click Save.",
+                  "detail": "Accepting an item transitions its status to ACCEPTED, recording an individual approval decision directly on the item.",
+                  "hint": "If you have appropriate permissions, you'll see the option to Redefine or Accept the item."
+                }
+              ]
+            },
+            {
+              "id": "ex11-t2",
+              "title": "Run a Review Hub Review",
+              "steps": [
+                {
+                  "action": "From the System Requirement Specifications header, click more and click Send to Review Hub, then log in to Review Hub using the admin credentials.",
+                  "detail": "Review Hub opens in a separate browser tab and starts the Create Review wizard, defaulted to the current project, tracker, and 11 items.",
+                  "hint": null
+                },
+                {
+                  "action": "On the Items page click Next, then on the Details page enter the name 'System Requirements Item Review' and description 'Review of all items in the System Requirement Specifications tracker', and click Next.",
+                  "detail": "The Details page lets you optionally start from a saved Review Template, but a fresh review is fine here.",
+                  "hint": null
+                },
+                {
+                  "action": "On the Review Assignments page, under Notification select Notify Reviewers, Notify Moderators, and the option to send event notifications, and under Signatures select 'Requires signatures from Moderators' and 'Requires signature from Reviewers', set the minimum number of reviewer signatures to 1, then click Next.",
+                  "detail": "Reviewers can vote on items but not edit the review; Moderators can do both; Viewers can only see the items. Signature requirements add formal accountability to the approval.",
+                  "hint": null
+                },
+                {
+                  "action": "On the Settings page, set the Deadline to one week from today, leave the other defaults, click Next, review the Overview page, and click Create Review.",
+                  "detail": "The Settings page also controls whether Moderators can create new items from review comments and whether status changes automatically based on approval thresholds.",
+                  "hint": null
+                },
+                {
+                  "action": "In Review Hub, click 'Carbon-fiber plastic structures', expand its References to confirm Chassis appears as an upstream reference, then click Approve for it.",
+                  "detail": "References shown in Review Hub mirror the traceability links visible in the tracker, so reviewers can see context without leaving the review.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Reject for 'Quality attributes', enter the comment 'Sending back because the work is incomplete', and click Save, then approve Inductive Charging, Spring rate, Weight transfer, 'Default: Continuously variable', 'Optional: Dual clutch transmission', Meet Emission Standards, Zero Emission, and Charger, and reject Wheel rate with the same comment.",
+                  "detail": "After each vote, the Item Statistics graph in the right pane updates to reflect the current approve/reject breakdown.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Sign Review, click Generate signature, log in again with the admin credentials, and click Sign Review to confirm the signature was applied.",
+                  "detail": "Signing the review records formal accountability for the votes cast, satisfying the signature requirements configured earlier.",
+                  "hint": null
+                },
+                {
+                  "action": "Review the Comments, Statistics, and History tabs, then on the Review tab click the green vertical ellipsis and click Complete Review, followed by Finish Review.",
+                  "detail": "The Statistics page after finishing shows who started, signed, and finished the review, plus a pie chart and table of approved versus rejected items.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the green ellipsis again, click Export, choose the MS Excel option, click Export, and download the resulting Review-System Requirements Item Review.xlsx file.",
+                  "detail": "Exporting the completed review to Excel (or Word/PDF) gives JAWS a shareable record of the approval decisions for stakeholders without Codebeamer access.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Individual item review (Accept/Redefine) is available only when an item's status is Waiting for approval",
+        "Review Hub reviews always operate on a specific version of the items - either the current version or a baseline version",
+        "Reviewers vote Approve or Reject (with a required comment); Moderators can additionally edit and complete the review",
+        "Completed reviews can be exported to Word, Excel, or PDF for sharing with stakeholders outside Codebeamer"
+      ]
+    },
+    {
+      "id": "m3t10",
+      "title": "Create and Compare Baselines",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create a project baseline for the JAWS Codebeamer Technical Essentials training project, modify several tracker items afterward, and then compare the current Head Revision against the baseline to see exactly what changed."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex12",
+          "title": "Create and Compare Baselines",
+          "objective": "Create a project baseline, make changes to tracker items, and compare the current state against the baseline.",
+          "tasks": [
+            {
+              "id": "ex12-t1",
+              "title": "Create a Baseline and Compare Versions",
+              "steps": [
+                {
+                  "action": "In the Codebeamer Technical Essentials training project, click the Baselines tab, click New Baseline, type the name 'Codebeamer Technical Essentials training Baseline 1', and click OK.",
+                  "detail": "A baseline is a saved snapshot reference to the current version of project content - not a copy - identified by a timestamp.",
+                  "hint": null
+                },
+                {
+                  "action": "Confirm the Baselines tab now lists two entries: your new baseline and the current Head Revision.",
+                  "detail": "Head Revision always represents the live, current state of the project, while your named baseline is frozen at the moment it was created.",
+                  "hint": null
+                },
+                {
+                  "action": "Open the Customer Requirement Specifications tracker, find the 'Total weight must be 1100kg or less' item, edit its description to change the word 'Since' to 'Because' in the third sentence, and save.",
+                  "detail": "This is a simple text edit that will be visible when comparing baselines.",
+                  "hint": "Click 'Click here to edit the description' beside the item in Document View."
+                },
+                {
+                  "action": "Select the Suspension item, use the Status field's transition menu to click Define and Save, then change its Complexity to Complex and Assigned to to admin.",
+                  "detail": "These field changes, made after the baseline was created, will appear as differences when comparing against Baseline 1.",
+                  "hint": null
+                },
+                {
+                  "action": "Navigate to the User Stories tracker, click New User Story, create an item named 'CRS to User Story 2' with description 'This is the second CRS user story', save it, transition its status using Start, and change its Type to Information.",
+                  "detail": "Adding an entirely new item after the baseline was taken demonstrates how baseline comparison surfaces additions, not just edits.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the Baselines tab, click SELECT BASELINE TO COMPARE, choose Head Revision, click SELECT BASELINE TO COMPARE again, choose 'Codebeamer Technical Essentials training Baseline 1', and click Compare Selected Baselines.",
+                  "detail": "The Statistics tab summarizes what changed between the two selected baseline versions.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the Trackers tab to see detailed tabular changes, then click 'Show diff' beside the Suspension item to open the Compare baseline page in a new tab.",
+                  "detail": "The diff view shows Old Value (Baseline 1) versus New Value (Head Revision) for each changed field.",
+                  "hint": null
+                },
+                {
+                  "action": "Expand the Suspension item to review its field-level changes, collapse it, then expand 'Total weight must be 1100kg or less' to review its description change, and close the Compare baseline tab.",
+                  "detail": "This detailed comparison view can also be exported to Excel or filtered, giving JAWS an audit trail of exactly what changed and when.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Baselines are reference snapshots of project content at a point in time, not copies of the data",
+        "Head Revision always reflects the current live state, while named baselines stay frozen at their creation time",
+        "Comparing two baselines summarizes changes at the project level and shows field-level Old Value vs. New Value details per item",
+        "Baseline comparison details can be exported to Excel or filtered, supporting audit and compliance needs"
+      ]
+    }
+  ]
+}

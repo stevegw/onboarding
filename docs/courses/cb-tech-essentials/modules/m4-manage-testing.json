@@ -1,0 +1,700 @@
+{
+  "id": "m4",
+  "title": "Manage Testing",
+  "description": "Explore Codebeamer's holistic test management capabilities and practice creating, importing, executing, and analyzing tests for the JAWS proof-of-concept project.",
+  "topics": [
+    {
+      "id": "m4t1",
+      "title": "Codebeamer's Holistic Test Management",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "JAWS (JAY Automotive Works) wants its proof-of-concept Codebeamer project to demonstrate end-to-end test management - not a separate testing tool bolted onto the side, but tests that live alongside requirements, bugs, and tasks in one connected system. Codebeamer's test management facilities can control testing of software, hardware, or any kind of product or system."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Tests Are Never Isolated"
+        },
+        {
+          "type": "paragraph",
+          "text": "In Codebeamer, test items are integrated with requirement, bug, and task trackers, with source code, and with the full lifecycle of the product being tested. Early in the process, test engineers typically define a test plan: a tree structure of related test cases. Test cases are grouped into a test set, which must be defined before test runs can be executed. The test set also defines the order in which test cases run, and whether that order is mandatory."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Codebeamer supports manual testing out of the box. Automated testing is also possible, but it requires the relevant external tooling integrations to be configured."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Test Management Trackers"
+        },
+        {
+          "type": "paragraph",
+          "text": "Test management is achieved through a combination of test-type trackers: Test Run, Test Set, Test Case, and Test Configuration. The Test Set, Test Case, and Test Configuration tracker types allow you to modify the workflow - for example, adding, modifying, or deleting state transitions. The Test Run tracker type does not allow workflow modification, by design, because test execution follows a strict, predictable lifecycle (running, closed, failed, passed, blocked)."
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "For a JAWS auditor, this strictness is a feature, not a limitation. Because the Test Run workflow cannot be customized away, every test execution across every JAWS project follows the same predictable status model - making cross-project quality reporting reliable."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange these items in the order JAWS test engineers would typically define them when planning testing for a new vehicle subsystem:",
+          "items": [
+            "Test plan with a tree of relevant test cases",
+            "Test set grouping related test cases and defining execution order",
+            "Test configuration describing the product conditions under test",
+            "Test run executing the test set against a release and configuration"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Codebeamer's test management is integrated with requirements, bugs, tasks, source code, and the full product lifecycle",
+        "Test cases are grouped into test sets, which must exist before test runs can be created",
+        "Test management uses four tracker types: Test Run, Test Set, Test Case, and Test Configuration",
+        "Only the Test Run tracker type cannot have its workflow customized, ensuring a consistent execution lifecycle"
+      ]
+    },
+    {
+      "id": "m4t2",
+      "title": "Test Entities: Cases, Sets, Configurations, and Runs",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Before JAWS testers start writing test cases, they need a shared vocabulary for the entities involved. Each entity plays a distinct role, and understanding how they connect is essential for planning, executing, and analyzing tests."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Key Terminology"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Term", "Definition", "JAWS Example"],
+          "rows": [
+            ["Test case", "A detailed procedure that tests a feature or aspect of a feature, made up of pre-actions, test steps, and post-actions. It is an item in a Test Case type tracker.", "'Verify regenerative braking engages below 20 km/h'"],
+            ["Pre-action", "What to do before the test steps run, to set up the environment - for example, populating test data.", "Start the diagnostic device before testing the dashboard display"],
+            ["Post-action", "What to do after the test steps run, regardless of result, to close resources and clean up.", "Shut down the diagnostic device after the test"],
+            ["Parameter", "A placeholder for a data value used in test steps, populated dynamically during execution. Defined manually or imported from Excel.", "${RefreshRate} and ${Color} for a dashboard display test"],
+            ["Test set", "A logical group of related test cases, which can be associated with releases and test configurations it is allowed to run with. It is an item in a Test Set type tracker.", "'Powertrain Smoke Tests' grouping torque and emissions test cases"],
+            ["Test configuration", "A possible configuration of the product under test, since behavior can vary by configuration. It is an item in a Test Configuration type tracker.", "'Cold environment', 'Temperate environment', 'Warm environment'"],
+            ["Test run", "An actual execution of a test set using one specific release and one specific test configuration. It is an item in a Test Run type tracker.", "Running the Powertrain Smoke Tests against the v2.1 release in 'Warm environment'"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Two Ways to Execute"
+        },
+        {
+          "type": "paragraph",
+          "text": "Test execution kicks off a test run, which can happen within Codebeamer using the Test Runner (which records results live), or offline by exporting the test run to an Excel spreadsheet. Testers fill in results in Excel and re-import the file once back online. A bug can be reported from within the Test Runner at any point during execution; for traceability, the bug is automatically associated with the current test run."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Offline execution in Excel is useful for JAWS field testers working in a vehicle test bay or proving ground without reliable network access - they record results locally and sync back to Codebeamer later."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each test management term to its description:",
+          "pairs": [
+            { "left": "Test case", "right": "A procedure with pre-actions, steps, and post-actions that tests a feature" },
+            { "left": "Test set", "right": "A logical group of related test cases with a defined execution order" },
+            { "left": "Test configuration", "right": "Describes the product conditions under which a test run executes" },
+            { "left": "Test run", "right": "An actual execution of a test set using one release and one configuration" }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Test cases consist of pre-actions, test steps, post-actions, and optional parameters",
+        "Test sets group related test cases and define their execution order and allowed configurations",
+        "Test configurations document the product conditions (e.g., environment) used during a test run",
+        "Test runs can be executed live in the Test Runner or offline via Excel export and re-import"
+      ]
+    },
+    {
+      "id": "m4t3",
+      "title": "Executing Test Runs and the Test Coverage Browser",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Once JAWS testers have test cases, sets, and configurations defined, the next step is execution and analysis. Codebeamer's Test Runner guides testers through each test, while the Test Coverage Browser shows how well requirements are verified across all the latest test runs."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Test Runner"
+        },
+        {
+          "type": "paragraph",
+          "text": "After a test run is created, testers monitor and execute it through the Test Runner. Key areas include a progress bar (counts passed/failed tests and shows overall percent completion, configuration, and release), navigation buttons to move between tests (only when the test set is not Sequential), and a timer that can be paused and restarted for each test case."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            { "front": "Pass / Fail / Block / Not Applicable Step", "back": "Buttons that record the result of the current test step. Clear Step removes a recorded result without clearing the Actual Result text." },
+            { "front": "Report Bug", "back": "Creates a bug for a defect found during execution, automatically linked to the current test run for traceability." },
+            { "front": "Save & Next Test Case", "back": "Saves the current result and closes the test if it already has a result, then moves on." },
+            { "front": "Pause Run vs. End Run", "back": "Pause Run saves progress and leaves the test open to resume later. End Run closes and marks the whole test set run complete - no remaining test cases can be run after this." }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "End Run is final for that test set run - once clicked, none of the remaining test cases in the run can be executed. JAWS test leads should confirm all planned test cases are complete before ending a run."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Test Coverage Browser"
+        },
+        {
+          "type": "paragraph",
+          "text": "The Test Coverage Browser analyzes the results of the latest test runs and the resulting coverage. It displays a tree of tracker items, the test cases associated with them (as child nodes), and optionally their test runs. Coverage Analysis aggregates upward: results from a child requirement's test cases contribute to its parent. A full-green bar means every test case verifying that requirement (and its children) passed. The browser is available for Epic, Requirement, User Story, Test Run, and Test Set tracker types, and supports filtering by Coverage, Feature Stability (stable if all recent runs passed; unstable if any of the last 10 failed or were blocked), and the number of recent test runs shown."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange these Test Runner actions in a typical sequence for executing one test step that fails:",
+          "items": [
+            "Perform the test step action and compare to the expected result",
+            "Enter the actual result observed",
+            "Click Fail Step",
+            "Click Report Bug to log the defect",
+            "Click Save & Next Test Case"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Test Runner provides Pass/Fail/Block/Not Applicable controls, a timer, and a Report Bug action for each step",
+        "Pause Run lets you resume a test later; End Run permanently closes the test set run",
+        "The Test Coverage Browser shows aggregated, color-coded coverage from requirements down through test cases to test runs",
+        "Coverage can be filtered by Coverage status, Feature Stability, and the number of recent test runs displayed"
+      ]
+    },
+    {
+      "id": "m4t4",
+      "title": "Create a Test Case",
+      "estimatedMinutes": 12,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will define upstream references for existing Test Case items, manually create a new test case, add test parameters and test steps, and create and execute a test run for that test case in the JAWS proof-of-concept project."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "This exercise assumes the Test Cases tracker already contains items imported from a requirements document, including 'Minimum Torque', 'Driving range must be 1000km or more', and 'Starting retail price must be 15000 EUR or less'."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex10",
+          "title": "Create a Test Case",
+          "objective": "Define upstream references, manually create a test case with parameters and steps, and run it.",
+          "tasks": [
+            {
+              "id": "ex10-t1",
+              "title": "Define Upstream References for Existing Test Cases",
+              "steps": [
+                {
+                  "action": "Open the Test Cases tracker from the Configuration items menu beside the Trackers tab.",
+                  "detail": "This tracker contains Test Case items previously imported from the requirements specification.",
+                  "hint": "Click the vertical ellipsis beside the Trackers tab, then under Configuration items click Test Cases."
+                },
+                {
+                  "action": "Select 'Driving range must be 1000km or more' and check its References node for an upstream link.",
+                  "detail": "Some imported test cases already have upstream references (Verifies links) to System Requirement Specifications items; others do not and need to be set manually.",
+                  "hint": "Scroll to the References node in the right pane and expand it if needed."
+                },
+                {
+                  "action": "Double-click the Verifies field, click the pencil icon, select the matching System Requirement Specifications item (for example, 'Charger'), and click Add.",
+                  "detail": "The Verifies field defines the upstream reference, linking this test case to the requirement it tests.",
+                  "hint": "Only items from upstream trackers (System Requirement Specifications and User Story) will be available to choose."
+                },
+                {
+                  "action": "Repeat the process for 'Starting retail price must be 15000 EUR or less', linking it to an appropriate System Requirement Specifications item such as 'Quality attributes'.",
+                  "detail": "Setting upstream references for every test case ensures the Test Coverage Browser can later show which requirements are verified.",
+                  "hint": "Click a different field label after adding the reference to apply the change."
+                }
+              ]
+            },
+            {
+              "id": "ex10-t2",
+              "title": "Manually Create a New Test Case",
+              "steps": [
+                {
+                  "action": "On the Test Cases tracker toolbar, click New Test Case, enter a name such as 'Verify Dashboard Refresh Rate' and a short description, then click Save.",
+                  "detail": "Manually creating a test case is one of the three ways to add test cases in Codebeamer, alongside Excel import and generating from an upstream item.",
+                  "hint": "The new item appears in the Tracker Tree once saved."
+                },
+                {
+                  "action": "Open the new item, double-click the Verifies field, click the pencil icon, select an appropriate System Requirement Specifications item (for example, 'Zero Emission' or a dashboard-related requirement), and click Add.",
+                  "detail": "Linking the new test case upstream completes its traceability chain back through System Requirements to Customer Requirements.",
+                  "hint": "Expand the Traceability section afterward to confirm the chain back to the Customer Requirement Specifications tracker."
+                },
+                {
+                  "action": "Click Edit this configuration item. In the Pre-Action box type 'Start device' and in the Post-Action box type 'Shut down device'.",
+                  "detail": "Pre-actions and post-actions describe setup and teardown steps that surround the actual test steps.",
+                  "hint": null
+                },
+                {
+                  "action": "Expand Test Parameters, click Advanced options on the toolbar, click Insert Table, choose the 3x2 layout, and create a Refresh / Color table with rows '60Hz / Red' and '75Hz / Green'.",
+                  "detail": "Test parameters act as placeholders that get substituted with real values during execution - here, refresh rate and the color the display should show at that rate.",
+                  "hint": "The Excel sheet option for parameters must be uploaded to Document Manager first; for now, enter the table manually."
+                },
+                {
+                  "action": "Scroll to Test Steps, click Add step, and in the Action box type '${Refresh}, it should display ${Color}'. In the Expected result box type 'Yes'.",
+                  "detail": "The ${Refresh} and ${Color} placeholders reference the test parameters you just defined, so this single step will generate one test case execution per parameter row.",
+                  "hint": "Press Enter after typing the expected result."
+                },
+                {
+                  "action": "Click Save at the top of the page.",
+                  "detail": "The detailed item view now shows the Used Parameters (Color, Refresh), the Own parameter values (60Hz/75Hz and Red/Green), and the test step referencing them.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex10-t3",
+              "title": "Create and Execute a Test Run",
+              "steps": [
+                {
+                  "action": "On the detailed item view toolbar, click New Test Run.",
+                  "detail": "A test run is created directly from a test case (or a test set) and lets you choose how work is distributed and which configuration to use.",
+                  "hint": null
+                },
+                {
+                  "action": "Leave the default of Shared single Test Run, click the pencil icon beside Assigned to, select the admin and a colleague's account, click Set, set Priority to Normal, set Running time to 15, then click Save.",
+                  "detail": "A Shared single Test Run creates one test run shared between all assigned users, as opposed to creating separate test runs per user or role.",
+                  "hint": "Leave the default test run name."
+                },
+                {
+                  "action": "On the test run detailed item view, expand Details of Test Results to confirm two test cases will be generated - one per parameter row (60Hz/Red and 75Hz/Green).",
+                  "detail": "Because the test step references parameters with two rows of values, Codebeamer generates a separate test case execution for each row.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Run!. For the first test case (60Hz, expecting Red), enter the actual result 'Incorrect, screen is green', click Fail Step, add a Conclusion, and click Save.",
+                  "detail": "Recording an Actual Result that differs from the expected result and marking the step Failed is how defects are surfaced from test execution.",
+                  "hint": "Use the right-pointing arrow to move between test cases."
+                },
+                {
+                  "action": "For the second test case (75Hz, expecting Green), enter the actual result 'Yes, screen is green', click Pass Step, add a Conclusion, and click Save.",
+                  "detail": "After both test cases are completed, the test run's overall result reflects the worst outcome - here, FAILED, because one of the two test cases failed.",
+                  "hint": "Expand Details of Test Results on the test run to see the pie chart breakdown."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Upstream references (the Verifies field) link test cases to requirements and complete the traceability chain",
+        "Pre-Actions, Post-Actions, Test Parameters, and Test Steps are all configured from the Edit this configuration item dialog",
+        "Test steps can reference parameters (e.g., ${Refresh}, ${Color}); each parameter value combination generates its own test case execution in a test run",
+        "A test run's overall result reflects the combined outcome of all its generated test case executions"
+      ]
+    },
+    {
+      "id": "m4t5",
+      "title": "Create a Test Case from an Upstream Item",
+      "estimatedMinutes": 8,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will generate a new test case directly from an upstream requirement item, then reuse test steps, pre-actions, and post-actions from an existing test case in the library."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex11",
+          "title": "Create a Test Case from an Upstream Item",
+          "objective": "Generate a downstream test case from a requirement and reuse content from a library test case.",
+          "tasks": [
+            {
+              "id": "ex11-t1",
+              "title": "Generate a Test Case from a Requirement",
+              "steps": [
+                {
+                  "action": "Open the System Requirement Specifications tracker and select the 'Optional: Dual clutch transmission' item.",
+                  "detail": "In the right pane, the References node currently shows no downstream reference to a test case item.",
+                  "hint": "Beside the Trackers tab, click the vertical ellipsis, then click System Requirement Specifications."
+                },
+                {
+                  "action": "In the middle pane beside the item, click 'Click here to create new Downstream References', hover over Generate Test Case, and select the project's Test Cases tracker.",
+                  "detail": "This creates a new item in the Test Cases tracker, automatically linked as a downstream reference to the requirement, and copies the name and description from the upstream item.",
+                  "hint": "The default name will be 'Test Optional: Dual clutch transmission'."
+                },
+                {
+                  "action": "Open the newly generated test case item and click Edit this configuration item.",
+                  "detail": "You will now reuse content from another test case rather than writing the steps from scratch.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex11-t2",
+              "title": "Reuse Test Steps from a Library Test Case",
+              "steps": [
+                {
+                  "action": "Open the test case library, select the 'Test Case Test 1' item created earlier, and review its Test Steps, Pre-Action, and Post-Action in the bottom pane.",
+                  "detail": "Codebeamer lets you reuse Test Steps, Pre-Actions, and Post-Actions from any existing test case item via a library, avoiding duplicate authoring effort.",
+                  "hint": "The library is accessible from the Edit this configuration item dialog."
+                },
+                {
+                  "action": "On the Test Steps tab, click Add Steps!, then click Copy.",
+                  "detail": "The library item's test step is now applied to this new test case.",
+                  "hint": null
+                },
+                {
+                  "action": "On the Pre-Action tab, click Add field!, then click Copy. Repeat for the Post-Action tab.",
+                  "detail": "Pre-Action and Post-Action content can be copied the same way as test steps, but test parameters cannot - those must be added manually.",
+                  "hint": "Scroll up to the Pre-Action and Post-Action sections afterward to verify the content was copied."
+                },
+                {
+                  "action": "Expand Test Parameters, click Advanced options, click Insert Table, choose the 3x2 layout, and create a new Refresh / Color table with rows '90Hz / Blue' and '120Hz / Red'.",
+                  "detail": "Because test parameters cannot be copied from the library, this new test case needs its own parameter values even though it reuses the steps from 'Test Case Test 1'.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Save at the top of the page.",
+                  "detail": "This new test case is now downstream of 'Optional: Dual clutch transmission' and reuses the structure of 'Test Case Test 1' with its own parameter values.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Generating a test case from an upstream requirement automatically creates the item and the Verifies link in one step",
+        "The test case library lets you copy Test Steps, Pre-Actions, and Post-Actions from any existing test case",
+        "Test parameters cannot be copied from the library and must be added manually to each test case",
+        "Reusing library content speeds up authoring while still allowing each test case to have its own parameter values"
+      ]
+    },
+    {
+      "id": "m4t6",
+      "title": "Import Test Case Parameters and Test Cases from Excel",
+      "estimatedMinutes": 14,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will import test case parameters from an Excel sheet, run a formal test run with the updated test case (creating a bug along the way), and then import three new test cases directly from an Excel spreadsheet."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Excel import for parameters and test cases must reference a file already uploaded to the Documents tracker - upload the spreadsheet before attempting either import."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex12",
+          "title": "Import Test Case Parameters and Test Cases from Excel",
+          "objective": "Import parameters from Excel into an existing test case, run a formal test run with a bug, and import new test cases from Excel.",
+          "tasks": [
+            {
+              "id": "ex12-t1",
+              "title": "Import Test Case Parameters from Excel",
+              "steps": [
+                {
+                  "action": "Open the Documents tracker, navigate to the .codeBeamer > Test Parameters folder, click Browse, and upload the 'Parameters.xlsx' file.",
+                  "detail": "The Excel file must be available in Document Manager before it can be referenced from a test case's Test Parameters section.",
+                  "hint": "Click the Documents tab, expand .codeBeamer, then click Test Parameters."
+                },
+                {
+                  "action": "Open 'Test Case Test 1', click Edit this configuration item, scroll to Test Parameters, click the Excel in Document Management tab, and select 'Parameters.xlsx'.",
+                  "detail": "This replaces or supplements the manually-entered parameter table with values sourced from the spreadsheet.",
+                  "hint": null
+                },
+                {
+                  "action": "Add a new test step with Action '${Velocity}, ${Acceleration}' and Expected result 'Yes', then click Save.",
+                  "detail": "This step references two new parameters that were defined in the imported Excel sheet.",
+                  "hint": null
+                },
+                {
+                  "action": "On the toolbar, click Accept, then click Save to move the test case to the Accepted state.",
+                  "detail": "Moving a test case to Accepted is required so that a formal test run can be created for it later.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex12-t2",
+              "title": "Run a Formal Test Run and Report a Bug",
+              "steps": [
+                {
+                  "action": "On the test case toolbar, click New Test Run, then click Create as formal Test Run. Set Assigned to 'admin' and click Save.",
+                  "detail": "A formal test run must be approved before it can be run, unlike a regular test run which can start immediately.",
+                  "hint": "After saving, the Status will show TO BE APPROVED."
+                },
+                {
+                  "action": "Click Approve, then click Save. The Status changes to READY FOR EXECUTION.",
+                  "detail": "Approval is the gate that distinguishes a formal test run from a regular one.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Run!. Enter Color 'Red' and Refresh '90Hz', then click Save to execute the first generated test case; mark both of its steps as Pass.",
+                  "detail": "Because the imported Excel parameters add more value combinations, the test run now executes three generated test cases instead of two.",
+                  "hint": null
+                },
+                {
+                  "action": "Enter Color 'Green' and Refresh '120Hz', click Save, and mark both steps of the second generated test case as Fail.",
+                  "detail": "Marking a step Fail is the trigger point for reporting a bug directly from the Test Runner.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Report Bug, click Next to copy properties from the test run and test case, then click Save. Enter Conclusion 'No' and click Save.",
+                  "detail": "The new bug is automatically populated with details from the test case and test run, and linked to both for traceability.",
+                  "hint": null
+                },
+                {
+                  "action": "Enter Color 'Red' and Refresh '90Hz', click Save, and mark both steps of the third generated test case as Block. Add Conclusion 'Block' and click Save.",
+                  "detail": "If even one step in a test case is Blocked, the entire test case result becomes Blocked - and a Blocked result anywhere in the run makes the overall test run result Blocked, even if the run shows as Finished.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex12-t3",
+              "title": "Import Test Cases from an Excel Spreadsheet",
+              "steps": [
+                {
+                  "action": "Open the Test Cases tracker, click more on the toolbar, click Import, attach the 'autovnv.xlsx' file, and click Next.",
+                  "detail": "The spreadsheet has a header row of field names and three rows of test case data, including a Verifies column for upstream references to System Requirement Specifications items.",
+                  "hint": null
+                },
+                {
+                  "action": "On the Assign Columns of Imported Data page, map the unmapped Excel columns to Test Steps.Action and Test Steps.Expected result, then click Next.",
+                  "detail": "Unmapped columns will not be imported, so confirming every column has a target field is essential before proceeding.",
+                  "hint": null
+                },
+                {
+                  "action": "On the Configure field conversions page, expand Configure advanced conversions, and for both the Test Steps.Action and Test Steps.Expected result columns, set the conversion to Splitter with Split by 'Line end'.",
+                  "detail": "The Excel cells use line breaks to separate multiple steps within a single cell; the Splitter conversion turns each line into a separate test step.",
+                  "hint": null
+                },
+                {
+                  "action": "On the Preview of Imported Data page, click Finish.",
+                  "detail": "Three new test cases are added to the Tracker Tree, each with multiple test steps and a Verifies link populated from the spreadsheet.",
+                  "hint": null
+                },
+                {
+                  "action": "Open the 'Measure component weight' test case, expand its Test Steps, click Edit steps, correct the typo 'obsetvation' to 'observation', and click Save.",
+                  "detail": "Imported content can still be edited afterward like any manually-entered test step.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Files used for parameter or test case import must first be uploaded to the Documents tracker",
+        "A formal test run requires Approve before it becomes READY FOR EXECUTION; a regular test run does not",
+        "A bug reported via Report Bug is automatically linked to both the failing test case and the test run",
+        "When importing test cases from Excel, use the Splitter conversion with 'Line end' to turn multi-line cells into separate test steps"
+      ]
+    },
+    {
+      "id": "m4t7",
+      "title": "Create Configurations, Sets, and Runs and Execute via Excel",
+      "estimatedMinutes": 16,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create test configurations representing different operating environments for JAWS vehicles, group test cases into a test set, generate test runs per configuration, execute one run directly in Codebeamer, and execute the other offline using Excel."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex13",
+          "title": "Create Configurations, Sets, and Runs and Execute a Test Run",
+          "objective": "Create test configurations and a test set, generate test runs per configuration, and execute runs both in Codebeamer and via Excel.",
+          "tasks": [
+            {
+              "id": "ex13-t1",
+              "title": "Create Test Configurations",
+              "steps": [
+                {
+                  "action": "Open the Test Configurations tracker and create a new item named 'Cold environment'. Click Save.",
+                  "detail": "Test configurations document the conditions of the product under test - useful when product behavior may vary by environment, such as a vehicle's battery performance in different temperatures.",
+                  "hint": "On the toolbar, click Create a new item of this type."
+                },
+                {
+                  "action": "Create two more test configurations: 'Temperate environment' and 'Warm environment'.",
+                  "detail": "Having multiple configurations lets the same test set be executed under different conditions to compare results.",
+                  "hint": "Click Test Configurations in the header to see all three new items listed."
+                }
+              ]
+            },
+            {
+              "id": "ex13-t2",
+              "title": "Create a Test Set",
+              "steps": [
+                {
+                  "action": "Open the Test Sets tracker, create a new item, and name it 'Test Set 1'.",
+                  "detail": "A test set is a collection of related test cases executed together in a test run, against one or more test configurations.",
+                  "hint": "On the toolbar, click Create a new item of this type."
+                },
+                {
+                  "action": "From the Config Items > Test Cases tree, CTRL+click 'Minimum Torque', 'Test Vehicle emissions US', and 'Check Emission Limits', then drag them to the Drop Test Cases or Test Sets here zone.",
+                  "detail": "You can re-order the test cases within the drop zone; their order determines the order they execute in during a test run.",
+                  "hint": null
+                },
+                {
+                  "action": "Beside Possible Run Configurations, click the pencil icon, select the Warm environment and Temperate environment check boxes, and click Add.",
+                  "detail": "This restricts the test set to only run against these two configurations.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Save.",
+                  "detail": "Test sets can also define their own Test Parameters, but these only apply to test cases that do not already define their own parameters - they never override existing test case parameters.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex13-t3",
+              "title": "Create and Execute Test Runs per Configuration",
+              "steps": [
+                {
+                  "action": "On the Test Set 1 toolbar, click New Test Run. If prompted about non-Accepted test cases, select 'Run all Test Cases, even those which are not Accepted'.",
+                  "detail": "This error appears because not all of the three test cases in the set have been moved to the Accepted state.",
+                  "hint": null
+                },
+                {
+                  "action": "Set Assigned to 'admin', select both the Temperate environment and Warm environment check boxes under Test Configurations, then click Save.",
+                  "detail": "Selecting both configurations generates two separate test runs - one per configuration - each with upstream references to Test Set 1 and its three test cases.",
+                  "hint": null
+                },
+                {
+                  "action": "Open the test run that uses the Temperate environment configuration, expand Test Results and Details of Test Results, then click Run!.",
+                  "detail": "You can hover over the red chevron icon on either test run to confirm its upstream references to the test set, test cases, and configuration.",
+                  "hint": null
+                },
+                {
+                  "action": "For the third test case in the run, enter 'Ok' as the Actual Result for each step and click Pass Step for each, then click Save without a Conclusion. Click Pass for the remaining two test cases.",
+                  "detail": "This completes execution of the Temperate environment test run directly within Codebeamer.",
+                  "hint": "Use the arrow at the top right of the page to navigate between test cases."
+                }
+              ]
+            },
+            {
+              "id": "ex13-t4",
+              "title": "Execute the Warm Environment Run via Excel",
+              "steps": [
+                {
+                  "action": "Open the test run that uses the Warm environment configuration and click Run in Excel on the toolbar to export it as 'Test Run for Test Set 1.xlsx'.",
+                  "detail": "Run in Excel allows offline execution - useful when testers do not have direct access to the Codebeamer environment, such as on a factory floor.",
+                  "hint": null
+                },
+                {
+                  "action": "In Excel, set the RUN RESULT for each test case and step to PASSED, and add an Expected Result/Conclusion comment for each test case (for example, 'Just like in the simulations').",
+                  "detail": "The exported file contains the same three test cases and steps that appear in Codebeamer's Test Runner.",
+                  "hint": null
+                },
+                {
+                  "action": "Save and close the Excel file, then in Codebeamer, under Test Results on the Warm environment test run, click Upload Run in Excel results here and select the saved file. Click Upload.",
+                  "detail": "After uploading, Codebeamer runs a background process to merge the Excel results back into the test run.",
+                  "hint": "Wait 1-2 minutes and reload the page if results do not appear immediately."
+                },
+                {
+                  "action": "Confirm that the test run's Status shows Finished and the Result shows Passed.",
+                  "detail": "This confirms the offline Excel execution was successfully imported and reflected in the test run item.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Test configurations represent different product conditions (e.g., environments) that a test set can be executed under",
+        "Selecting multiple test configurations when creating a test run from a test set generates one test run per configuration",
+        "Run in Excel lets testers execute a test run offline; results are merged back into Codebeamer via Upload Run in Excel results",
+        "A test run's Status (Finished/Running) and Result (Passed/Failed/Blocked) are tracked independently"
+      ]
+    },
+    {
+      "id": "m4t8",
+      "title": "Explore the Test Coverage Browser",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will open the Test Coverage Browser from the Customer Requirement Specifications tracker, filter the view, save and reload a preset, and export the coverage data to Office for sharing with JAWS stakeholders."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex14",
+          "title": "Explore the Test Coverage Browser",
+          "objective": "Examine, filter, save as a preset, and export test coverage data for the Customer Requirement Specifications tracker.",
+          "tasks": [
+            {
+              "id": "ex14-t1",
+              "title": "Examine the Test Coverage Browser",
+              "steps": [
+                {
+                  "action": "Open the Customer Requirement Specifications tracker and click Test Coverage on the header toolbar, then click GO.",
+                  "detail": "The Test Coverage Statistics section gives a percentage overview of how much of the Customer Requirement Specifications is covered by test cases and what the test results look like.",
+                  "hint": "Beside the Trackers tab, click the vertical ellipsis, then click Customer Requirement Specifications."
+                },
+                {
+                  "action": "Expand the Codebeamer Technical Essentials training > Customer Requirement Specifications node, and continue expanding child nodes to reveal the hierarchy of requirements, test cases, and test runs.",
+                  "detail": "The expanded tree shows coverage status, who executed each test case, the total number of test cases at each level, the coverage analysis bar, and when each run executed.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex14-t2",
+              "title": "Filter, Save, and Export the View",
+              "steps": [
+                {
+                  "action": "Scroll up to FILTER TEST COVERAGE. In the Coverage list, click Not Covered. Set Number of recent Test Runs shown to 2, then click GO.",
+                  "detail": "The browser supports filtering by Coverage type, Coverage status, Feature Stability, and the number of recent test runs displayed per test case.",
+                  "hint": null
+                },
+                {
+                  "action": "Re-expand the Customer Requirement Specifications node and all child nodes to view the filtered hierarchy.",
+                  "detail": "The tree now shows only requirements matching the Not Covered filter, with up to 2 recent test runs per test case.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Save new Preset, name it 'CRS Test Coverage 1', and under Permissions grant the Project Admin and Test Lead roles WRITE access. Click Save.",
+                  "detail": "Saving a preset lets you and other JAWS team members quickly return to a complex, customized coverage view without re-applying every filter.",
+                  "hint": null
+                },
+                {
+                  "action": "Reset the filters to Coverage = Any and Number of recent Test Runs shown = 1, click GO, then click Load/Manage Presets, select 'CRS Test Coverage 1', and click GO.",
+                  "detail": "This confirms the saved preset restores your customized filtered view.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Export to Office, leave the default Excel option, and click Export. Download the resulting Test-Coverage-for-Customer Requirement Specifications.xlsx file.",
+                  "detail": "Exporting to Office lets JAWS share coverage results with stakeholders who do not have Codebeamer access, such as program managers.",
+                  "hint": "You can also export to Microsoft Word."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Test Coverage Browser is opened from a requirements (or test) tracker's header toolbar via Test Coverage",
+        "Filters for Coverage, Coverage status, Feature Stability, and number of recent test runs can be combined and applied at multiple levels",
+        "Saved presets let teams quickly return to a complex, customized coverage view",
+        "Coverage data can be exported to Excel or Word for sharing with stakeholders outside Codebeamer"
+      ]
+    }
+  ]
+}

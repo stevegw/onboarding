@@ -1,0 +1,160 @@
+{
+  "terms": [
+    {
+      "term": "Agile Planner",
+      "definition": "A built-in Codebeamer toolset that supports Agile/Scrum practices, including releases and sprints, the product backlog, release/sprint backlogs, the release dashboard, release notes, the release Gantt chart, and the release burndown chart."
+    },
+    {
+      "term": "ALM (Application Lifecycle Management)",
+      "definition": "The governance, development, and maintenance of software applications throughout a product's life, spanning requirements, architecture, code, testing, maintenance, change management, and release management. Codebeamer is PTC's ALM platform for managing this lifecycle end to end."
+    },
+    {
+      "term": "Association",
+      "definition": "A bidirectional traceability link between two Codebeamer items (such as a requirement, task, or document) and another item, enabling cross-tracker traceability throughout the project."
+    },
+    {
+      "term": "Baseline",
+      "definition": "A saved snapshot of a project, tracker, or document folder's content at a specific point in time, used to compare the current (Head Revision) state against a prior version for audit, compliance, and change-impact reporting."
+    },
+    {
+      "term": "cBQL (Codebeamer Query Language)",
+      "definition": "An expert-mode query language used to build sophisticated reports in Codebeamer. Report results can be exported, emailed via report jobs, or used to power data visualization widgets on dashboards."
+    },
+    {
+      "term": "Configuration Diagram",
+      "definition": "A visual representation of a project's trackers as nodes, with arrows showing bi-directional traceability (references) and blue Generalization arrows showing inheritance from a derived tracker to its template."
+    },
+    {
+      "term": "Dashboard",
+      "definition": "A wiki page (personal or project) that hosts widgets such as tables, traceability reports, and tracker-item summaries, providing a live, self-updating visual summary of project data."
+    },
+    {
+      "term": "Directory (Documents tab)",
+      "definition": "A folder within the Document Manager used to organize files. Directories can contain sub-directories and are created via New > Directory."
+    },
+    {
+      "term": "Document Manager",
+      "definition": "A shared, version-controlled file repository available in every Codebeamer project via the Documents tab. Supports folders, upload/download, locking, comments, and associations to other work items."
+    },
+    {
+      "term": "Document View",
+      "definition": "A hierarchical tracker view that displays items one at a time in a document-like layout, useful for reviewing individual work items, requirements, and their associations in context."
+    },
+    {
+      "term": "Downstream Reference",
+      "definition": "A traceability link from a work item to a related item in a tracker lower in the workstream (e.g., from a Customer Requirement to a System Requirement, or from a User Story to a Task). Available target trackers are determined by the project's Configuration Diagram."
+    },
+    {
+      "term": "Excel Round-Trip Editing",
+      "definition": "A workflow for exporting tracker items to Excel, editing fields offline, and re-importing the changes back into Codebeamer, matched to the original items by ID."
+    },
+    {
+      "term": "Inspect All Changes",
+      "definition": "A tracker-level action that displays all upstream attribute changes triggering Suspected flags on downstream items, and allows bulk clearing of those flags in a single operation."
+    },
+    {
+      "term": "Intelligent/Traceability View",
+      "definition": "A configurable Document or Table view that displays multiple levels of cross-tracker traceability relationships, can highlight items by level, and can be saved publicly with role-based permissions."
+    },
+    {
+      "term": "Lock (Document)",
+      "definition": "A control that restricts other users from editing a document while one user is making changes, preventing conflicting uploads in the Document Manager."
+    },
+    {
+      "term": "Product Backlog",
+      "definition": "The collection of work items not yet assigned to a release or sprint. Items can be ranked, filtered, grouped, and dragged onto releases or sprints from the Plan view."
+    },
+    {
+      "term": "Project Role",
+      "definition": "A named set of permissions (e.g., Developer, Product Owner, Project Admin, Stakeholder, Test Lead) assigned to project members. Permissions are edited only at the role level, and members of the same role share identical access to project information."
+    },
+    {
+      "term": "Release Method",
+      "definition": "A field on a release that determines its delivery approach (Scrum, Kanban, or Waterfall), defaulting to Scrum. Different releases in the same project can use different methods."
+    },
+    {
+      "term": "Report Job",
+      "definition": "A scheduled task that automatically runs a saved report and emails it to specified recipients on a Daily, Weekly, or Monthly frequency, optionally only when the result exceeds a configured item-count threshold."
+    },
+    {
+      "term": "Requirements Library",
+      "definition": "A shared repository that lets teams copy requirements across projects and trackers, with automatic field mapping and a Suspected link back to the original item if it later changes."
+    },
+    {
+      "term": "Role-Based Access",
+      "definition": "Codebeamer's project-scoped permission model, where roles (e.g., Developer, Stakeholder, custom roles like Architect) reflect team structure and grant project-wide access permissions, while User Groups categorize users by shared traits to simplify assigning roles across projects."
+    },
+    {
+      "term": "Simple Report",
+      "definition": "A Codebeamer report that lists items from one or more trackers, potentially across projects, with configurable filters, grouping, ordering, and columns. Can be built in Simple mode (GUI) or Expert mode (cBQL)."
+    },
+    {
+      "term": "Smart Template",
+      "definition": "A built-in Codebeamer project template containing predefined trackers, workflows, and documents, used to quickly set up an environment for evaluation. Teams can also create their own Smart Templates by exporting existing projects for reuse across instances."
+    },
+    {
+      "term": "Sprint",
+      "definition": "A timed unit of development belonging to a release. A sprint shares the same fields and workflow as its parent release and is used to plan and track a single delivery iteration."
+    },
+    {
+      "term": "State Transition",
+      "definition": "A defined change from one tracker item status to another (From and To statuses), with optional permitted roles, condition, guard, and actions controlling when and how the transition can occur."
+    },
+    {
+      "term": "Suspected Flag",
+      "definition": "A flag or badge applied to a referenced or associated item when the item it links to is modified, signaling that the link may need re-evaluation. A grayed-out flag means no relevant change occurred or the item was created after the change."
+    },
+    {
+      "term": "Test Case",
+      "definition": "A detailed procedure that tests a feature or aspect of a feature, consisting of pre-actions, test steps, and post-actions. It is an item in a Test Case type tracker and can be linked upstream to requirements via the Verifies field."
+    },
+    {
+      "term": "Test Configuration",
+      "definition": "An item describing a possible configuration or condition of the product under test (e.g., 'Cold environment,' 'Warm environment'). Because product behavior can vary by configuration, test runs are executed against a specific configuration for traceability."
+    },
+    {
+      "term": "Test Coverage Browser",
+      "definition": "A tool that analyzes the results of the latest test runs and shows aggregated, color-coded coverage of requirements down through their associated test cases and test runs, with filters for coverage status, feature stability, and number of recent runs shown."
+    },
+    {
+      "term": "Test Parameter",
+      "definition": "A placeholder (e.g., ${Color}) used in test steps that is dynamically populated with data values during execution. Parameters can be defined manually or imported from an Excel sheet, and each combination of parameter values generates a separate test case execution in a test run."
+    },
+    {
+      "term": "Test Run",
+      "definition": "An actual execution of a test set using one specific release and one specific test configuration. Unlike other test trackers, the Test Run tracker type cannot have its workflow customized, ensuring a consistent execution lifecycle."
+    },
+    {
+      "term": "Test Set",
+      "definition": "A logical group of related test cases that can be associated with releases and the test configurations it is allowed to run with. The order of test cases in a test set determines their execution order during a test run."
+    },
+    {
+      "term": "Tracker",
+      "definition": "A configurable container for ALM data in Codebeamer, equivalent to a table in a relational database or a class in object-oriented programming. There are twenty-two hard-coded tracker types (e.g., Requirement, Test Case, Bug, Change Request), and each type can have multiple configured instances."
+    },
+    {
+      "term": "Tracker Item",
+      "definition": "A single record stored within a tracker, equivalent to a row in a database table or an object instance. Tracker items move through tracker-defined workflows (e.g., Create > Draft > Reviewed > Approved)."
+    },
+    {
+      "term": "Tracker Template",
+      "definition": "An existing tracker that another tracker can be based on, creating a one-way live connection: changes to the template propagate to derived trackers, but changes to derived trackers never affect the template."
+    },
+    {
+      "term": "Tracker Tree",
+      "definition": "The hierarchical list of trackers within a project, viewable on the Trackers tab, grouped by work item trackers and configuration item trackers. Reordering trackers here does not affect the Configuration Diagram's hierarchy."
+    },
+    {
+      "term": "Traceability Report",
+      "definition": "A report type that shows relationships between items across up to six levels of trackers (an initial filter plus up to five levels), rendered as a Traceability Tree View or Hierarchical Table View. Unlike simple reports, it has no group-by and no Expert/cBQL mode."
+    },
+    {
+      "term": "Version History",
+      "definition": "A record of every uploaded version of a document, accessible from the document's Properties > History tab. Restoring an older version adds a new version rather than deleting later ones."
+    },
+    {
+      "term": "WIP Limit (Work-in-Progress Limit)",
+      "definition": "A configurable threshold on a Kanban board column that triggers visual indicators (FREE CAPACITY or OVERLOADED) when the number of items in that column falls below or exceeds the set bounds."
+    }
+  ]
+}

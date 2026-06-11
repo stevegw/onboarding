@@ -1,0 +1,71 @@
+{
+  "moduleId": "m6",
+  "title": "Create Reports and Analyze Project Data Knowledge Check",
+  "questions": [
+    {
+      "id": "m6-kc-001",
+      "question": "Where are Codebeamer's reporting capabilities located?",
+      "options": [
+        "Inside each individual project, under a Reports folder",
+        "Outside of any specific project, so a report can pull items from trackers across the whole instance",
+        "Only within the Administration area, accessible to Project Admins only",
+        "Inside the Wiki module, as a special type of wiki page"
+      ],
+      "answerIndex": 1,
+      "rationale": "The Reports tab sits outside any single project, letting a report combine trackers and items from multiple projects across the Codebeamer instance. It is not project-scoped, not admin-only, and not part of the Wiki module (dashboards are, but reports themselves are not).",
+      "topic": "m6t1"
+    },
+    {
+      "id": "m6-kc-002",
+      "question": "Which statement correctly describes a key limitation of Traceability Reports compared to simple reports?",
+      "options": [
+        "Traceability Reports cannot include trackers from more than one project",
+        "Traceability Reports cannot apply a group-by, and have no Expert mode for editing cbQL",
+        "Traceability Reports cannot be exported to any Office format",
+        "Traceability Reports can only show one level of traceability beyond the initial filter"
+      ],
+      "answerIndex": 1,
+      "rationale": "Traceability Reports do not support group-by and have no Expert/cbQL mode, unlike simple reports. They can include trackers from any project, support up to five additional levels, and can export to Excel or Word.",
+      "topic": "m6t1"
+    },
+    {
+      "id": "m6-kc-003",
+      "question": "In a top-down traceability report for the JAWS project, which tracker would typically be set as the Initial Filter?",
+      "options": [
+        "Test Runs",
+        "Tasks",
+        "Customer Requirement Specifications",
+        "Test Cases"
+      ],
+      "answerIndex": 2,
+      "rationale": "A top-down traceability report starts from the highest-level items and follows links downstream, so Customer Requirement Specifications is the typical Initial Filter, with System Requirement Specifications and Test Cases as later levels. Test Runs, Tasks, and Test Cases are downstream items in this scenario, not the starting point.",
+      "topic": "m6t2"
+    },
+    {
+      "id": "m6-kc-004",
+      "question": "What does a Suspected badge on a downstream item indicate?",
+      "options": [
+        "The item has failed its most recent test run",
+        "The item's upstream reference has changed and the change may need to be reflected on this item",
+        "The item is missing required permissions and cannot be edited",
+        "The item has been flagged for deletion by a Project Admin"
+      ],
+      "answerIndex": 1,
+      "rationale": "A Suspected badge appears on a downstream item when an attribute on its upstream reference has changed, prompting review of whether the change should propagate. It is unrelated to test results, permissions, or deletion flags.",
+      "topic": "m6t2"
+    },
+    {
+      "id": "m6-kc-005",
+      "question": "How can a project team efficiently clear Suspected badges from dozens of items in a tracker at once?",
+      "options": [
+        "Open each item individually and click the Suspected badge to clear it one at a time",
+        "Delete and recreate the downstream items so they no longer reference the changed upstream item",
+        "Use Inspect All Changes on the tracker, select the upstream reference field, and choose Clear all suspected links on all pages",
+        "Disable Suspected badges entirely in the project's tracker configuration settings"
+      ],
+      "answerIndex": 2,
+      "rationale": "Inspect All Changes provides an overview of all triggering upstream changes and a bulk option, Clear all suspected links on all pages, to resolve them in one action. Clearing badges one at a time is impractical at scale, deleting/recreating items is destructive and unnecessary, and there is no setting to globally disable Suspected badges.",
+      "topic": "m6t2"
+    }
+  ]
+}

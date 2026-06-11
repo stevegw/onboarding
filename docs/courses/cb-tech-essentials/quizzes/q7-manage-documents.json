@@ -1,0 +1,71 @@
+{
+  "moduleId": "m7",
+  "title": "Manage Documents Knowledge Check",
+  "questions": [
+    {
+      "id": "m7-kc-001",
+      "question": "Which Codebeamer feature is accessed from the Documents tab and lets users upload, organize, and version files within a project?",
+      "options": [
+        "The Tracker Administration panel",
+        "The Document Manager",
+        "The Release planning board",
+        "The Reports dashboard"
+      ],
+      "answerIndex": 1,
+      "rationale": "The Document Manager, accessed from the Documents tab, provides folders, upload/download, locking, version control, comments, and associations for project files. The Tracker Administration panel configures trackers, the Release planning board manages releases, and the Reports dashboard is for analytics - none of these manage shared documents.",
+      "topic": "m7t1"
+    },
+    {
+      "id": "m7-kc-002",
+      "question": "What is the default maximum size for a single document upload in Codebeamer?",
+      "options": [
+        "500 MB",
+        "1 GB",
+        "5 GB",
+        "10 GB"
+      ],
+      "answerIndex": 2,
+      "rationale": "The default maximum document upload size in Codebeamer is 5 GB. Administrators can change this default through the Codebeamer configuration if larger files are needed. The other values are not the default.",
+      "topic": "m7t1"
+    },
+    {
+      "id": "m7-kc-003",
+      "question": "Why should a JAWS engineer lock a document in the Document Manager before downloading it to make edits?",
+      "options": [
+        "Locking compresses the file to reduce its size before download",
+        "Locking prevents other users from uploading a conflicting version while the file is being edited",
+        "Locking automatically creates a backup copy of the document",
+        "Locking is required before a document can be associated with a task"
+      ],
+      "answerIndex": 1,
+      "rationale": "Locking a document restricts other users from changing it while you are editing your local copy, avoiding conflicting uploads. Locking does not compress files, does not create automatic backups, and is not a prerequisite for creating associations.",
+      "topic": "m7t1"
+    },
+    {
+      "id": "m7-kc-004",
+      "question": "A document currently has version 2 uploaded after an edit. A user restores version 1 from the History tab. What is the result?",
+      "options": [
+        "Version 2 is permanently deleted and only version 1 remains",
+        "A new version 3 is created that is identical to version 1, while version 2 remains in the history",
+        "Versions 1 and 2 are merged into a single version",
+        "Restoring a version is not possible once a document has more than one version"
+      ],
+      "answerIndex": 1,
+      "rationale": "Restoring a previous version in Codebeamer is additive - it creates a new version (version 3) with the restored content, while all earlier versions, including version 2, remain in the history. Nothing is deleted or merged, and restoring is possible regardless of how many versions exist.",
+      "topic": "m7t2"
+    },
+    {
+      "id": "m7-kc-005",
+      "question": "How does the Document Manager fit into the overall JAWS proof-of-concept demonstrated across this course?",
+      "options": [
+        "It replaces the need for requirements and test trackers entirely",
+        "It provides a shared, version-controlled space for supporting documents that can be associated with requirements, tests, and other tracker items",
+        "It is only used for storing release notes and cannot be linked to other items",
+        "It is a separate tool outside of Codebeamer that JAWS must license independently"
+      ],
+      "answerIndex": 1,
+      "rationale": "The Document Manager complements - rather than replaces - requirements and test trackers, giving JAWS a shared, version-controlled repository for supporting files that can be associated with any tracker item. It is not limited to release notes, and it is a built-in part of Codebeamer, not a separate licensed tool.",
+      "topic": "m7t2"
+    }
+  ]
+}

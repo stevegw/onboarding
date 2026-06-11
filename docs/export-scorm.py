@@ -262,6 +262,13 @@ a {{ color: var(--c-accent); text-decoration: none; }}
   letter-spacing: 0.5px; color: var(--c-text-dim);
   padding: 12px 16px 4px;
 }}
+.scorm-subtopic-link {{
+  display: flex; align-items: center; gap: 10px;
+  padding: 6px 16px 6px 38px; cursor: pointer;
+  font-size: 12px; color: var(--c-text-dim);
+  transition: all 0.12s; border-left: 3px solid transparent;
+}}
+.scorm-subtopic-link:hover {{ background: var(--c-bg-surface-hover); color: var(--c-text); }}
 .scorm-main {{
   flex: 1; overflow-y: auto; padding: 32px 40px;
   max-width: 760px; height: 100vh;
@@ -689,6 +696,15 @@ function walkNodes(parent) {{
   return out;
 }}
 
+function plainText(str) {{
+  if (str == null) return "";
+  return String(str).replace(/<[^>]*>/g, "");
+}}
+
+function slugify(str) {{
+  return plainText(str).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}}
+
 function shuffleArray(arr) {{
   for (var i = arr.length - 1; i > 0; i--) {{
     var j = Math.floor(Math.random() * (i + 1));
@@ -878,7 +894,8 @@ function renderBlock(block, idx) {{
   switch (block.type) {{
     case "heading":
       var tag = block.level === 3 ? "h3" : "h2";
-      return "<" + tag + ">" + safeHtml(block.text) + "</" + tag + ">";
+      var idAttr = tag === "h2" ? ' id="h-' + slugify(block.text) + '"' : "";
+      return "<" + tag + idAttr + ">" + safeHtml(block.text) + "</" + tag + ">";
 
     case "paragraph":
       return "<p>" + safeHtml(block.text) + "</p>";
@@ -1551,16 +1568,36 @@ function renderSidebar() {{
   h += '<span style="font-size:14px">&#9776;</span>';
   h += '<span>Overview</span></div>';
 
-  h += '<div class="scorm-sidebar-section">Topics</div>';
-
+  var sectionLabel = null;
   topics.forEach(function(topic, idx) {{
+    var isExercise = topic.isExercise || (idx + 1) >= EXERCISE_TOPIC_START;
+    var thisLabel = isExercise ? "Exercises" : "Concepts";
+    if (thisLabel !== sectionLabel) {{
+      h += '<div class="scorm-sidebar-section">' + thisLabel + '</div>';
+      sectionLabel = thisLabel;
+    }}
+
     var isCompleted = State.isTopicCompleted(topic.id);
     var isActive = hash === "#/topic/" + topic.id;
     var cls = "scorm-topic-link" + (isActive ? " active" : "") + (isCompleted ? " completed" : "");
     h += '<div class="' + cls + '" data-route="#/topic/' + topic.id + '">';
     h += '<span class="scorm-topic-check">' + (isCompleted ? "&#10003;" : "") + '</span>';
-    h += '<span>' + MOD_IDX + '.' + (idx + 1) + ' ' + esc(topic.title) + '</span>';
+    if (isExercise) {{
+      var exNum = (idx + 1) - EXERCISE_TOPIC_START + 1;
+      h += '<span>Exercise ' + exNum + ': ' + esc(topic.title) + '</span>';
+    }} else {{
+      h += '<span>' + MOD_IDX + '.' + (idx + 1) + ' ' + esc(topic.title) + '</span>';
+    }}
     h += '</div>';
+
+    if (isActive) {{
+      topic.content.forEach(function(block) {{
+        if (block.type === "heading" && (block.level || 2) === 2) {{
+          h += '<div class="scorm-subtopic-link" data-scroll="h-' + slugify(block.text) + '">';
+          h += '<span>' + esc(plainText(block.text)) + '</span></div>';
+        }}
+      }});
+    }}
   }});
 
   h += '<div class="scorm-sidebar-section">Assessment</div>';
@@ -1577,6 +1614,14 @@ function renderSidebar() {{
   sidebarEl.querySelectorAll("[data-route]").forEach(function(el) {{
     el.addEventListener("click", function() {{
       window.location.hash = el.getAttribute("data-route");
+    }});
+  }});
+
+  // Bind sub-topic scroll links
+  sidebarEl.querySelectorAll("[data-scroll]").forEach(function(el) {{
+    el.addEventListener("click", function() {{
+      var target = document.getElementById(el.getAttribute("data-scroll"));
+      if (target) target.scrollIntoView({{ behavior: "smooth", block: "start" }});
     }});
   }});
 }}

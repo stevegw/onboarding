@@ -1,0 +1,623 @@
+{
+  "id": "m2",
+  "title": "Create a Project and Navigate Trackers",
+  "description": "Create a Codebeamer project for the JAWS proof-of-concept, configure project administration settings, and explore how trackers, workflows, and configuration diagrams organize project data.",
+  "topics": [
+    {
+      "id": "m2t1",
+      "title": "Creating a Project",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "JAWS (JAY Automotive Works) is replacing its legacy ALM software and wants to evaluate Codebeamer with a proof-of-concept project. Before any requirements, tests, or releases can be managed, someone with the right permissions has to create the project itself. Codebeamer offers several starting points for a new project, each suited to a different goal."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Who Can Create a Project?"
+        },
+        {
+          "type": "paragraph",
+          "text": "To create a project, a user must have <strong>Create Project</strong> group permissions. For the JAWS proof-of-concept, the Project Admin assigned to the evaluation will be the one to create the new project and set its initial configuration."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Project Creation Options"
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Option",
+            "Description",
+            "When to Use"
+          ],
+          "rows": [
+            [
+              "Default (blank) project",
+              "Starts with minimal configuration; you specify Name, Key, and Category",
+              "When you want full control over the project structure from scratch"
+            ],
+            [
+              "Template project",
+              "Inherits or copies wiki pages, documents, tracker hierarchy, work items, configuration items, calendars, and members from an existing template project",
+              "When you want to reuse a proven configuration and save setup time"
+            ],
+            [
+              "Smart Template (demo project)",
+              "A built-in template containing predefined trackers, workflows, and documents for evaluation",
+              "When you want a ready-to-explore environment, such as the JAWS proof-of-concept"
+            ],
+            [
+              "Import (.zip / .reqifz)",
+              "Imports project settings and content from a compressed template file or a ReqIF archive",
+              "When migrating content from another Codebeamer instance or a ReqIF-compliant tool"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "When creating a default project, only three fields are commonly configured: <strong>Name</strong> (required, uniquely identifies the project), <strong>Key</strong> (a short abbreviation used as a prefix in wiki links), and <strong>Category</strong> (defaults to 'Uncategorized' if not specified)."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "You can create your own Smart Templates by exporting an existing project. This lets the JAWS team reuse a proven proof-of-concept configuration across multiple Codebeamer instances or future evaluations."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each project creation option to its description:",
+          "pairs": [
+            {
+              "left": "Default (blank) project",
+              "right": "Minimal configuration; you specify Name, Key, and Category"
+            },
+            {
+              "left": "Template project",
+              "right": "Inherits artifacts such as trackers, documents, and members"
+            },
+            {
+              "left": "Smart Template",
+              "right": "Predefined trackers, workflows, and documents for evaluation"
+            },
+            {
+              "left": "ReqIF import",
+              "right": "Brings in content from a ReqIF-compliant external tool"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Creating a project requires Create Project group permissions",
+        "A default project only requires Name, Key, and Category to get started",
+        "Template projects and Smart Templates let you inherit or reuse a proven configuration",
+        "Projects can also be imported from .zip or .reqifz (ReqIF) files"
+      ]
+    },
+    {
+      "id": "m2t2",
+      "title": "Project Administration Basics",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Once the JAWS proof-of-concept project exists, the Project Admin role is responsible for configuring it. The Admin tab provides a powerful set of tools for customizing project settings, controlling membership, and managing the project's lifecycle."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "General Project Settings"
+        },
+        {
+          "type": "paragraph",
+          "text": "From the Admin tab, a Project Admin can configure general options such as the project's Name, Key, Category, and Image (icon). Two settings deserve special attention: marking a project as <strong>Available as template</strong> allows other projects to reuse and inherit updates from its trackers, and customizing <strong>Tabs in the top menu</strong> lets the team rename or hide tabs for just this project without affecting any other project."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Membership Visibility"
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Visibility",
+            "How Users Join"
+          ],
+          "rows": [
+            [
+              "Public",
+              "Any user can join automatically at any time"
+            ],
+            [
+              "Public with approval",
+              "Any user can request to join, but a project administrator must approve each request"
+            ],
+            [
+              "Private",
+              "Project administrators must add new members; users cannot request to join"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "When a project is set to Public, you can also configure <strong>Membership constraints</strong> to limit which user groups may join, and set <strong>Assign new members to Role</strong> so that anyone who joins is automatically placed into a default role."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Project Lifecycle and Export"
+        },
+        {
+          "type": "paragraph",
+          "text": "From the Admin tab, a Project Admin can also remove a project (marking it as deleted but recoverable from the Removed tab via Restore Project), export the project as a Template .zip or ReqIF file, and import a project from a ReqIF file or an associated IBM Rational DOORS project. Exporting as a Template creates a one-time copy with no ongoing inheritance link back to the original project."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Removing a project marks it and all of its content as deleted and inaccessible to regular users. Only a Project Admin can later restore it from the Removed tab of the Project Browser."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Order these membership visibility options from most open to most restricted:",
+          "items": [
+            "Public",
+            "Public with approval",
+            "Private"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Admin tab is where Project Admins configure name, key, category, image, and visible tabs",
+        "Membership visibility ranges from Public, to Public with approval, to Private",
+        "Removed projects can be restored later from the Removed tab",
+        "Exporting a project as a Template creates a one-time copy with no ongoing inheritance link"
+      ]
+    },
+    {
+      "id": "m2t3",
+      "title": "Members, Permissions, and Roles",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "The JAWS proof-of-concept will involve people in many different capacities - developers writing code, product owners prioritizing the backlog, testers validating requirements, and stakeholders reviewing progress. Codebeamer manages this diversity through project members and roles."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Adding Members"
+        },
+        {
+          "type": "paragraph",
+          "text": "New members can be added to a project in three ways: from users already registered in Codebeamer, from a configured LDAP/Active Directory source, or by inviting people via email. When inviting by email, if the person doesn't already have a Codebeamer account, one is created automatically and an activation link is sent so they can complete registration and join the project."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Default Project Roles"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every member added to a project must be assigned to one or more roles. Codebeamer ships with a set of default roles, each with default permissions that can be edited. For the JAWS proof-of-concept, the team will use roles such as Developer, Product Owner, Project Admin, Scrum Master, Stakeholder, Test Engineer, Tester, and Test Lead."
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Roles - not individual members - are where permissions live. Members of the same role share the same level of project access, and when a user belongs to multiple roles or groups, Codebeamer applies the highest level of access across all of them."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Editing Roles and Permissions"
+        },
+        {
+          "type": "paragraph",
+          "text": "A Project Admin can remove roles, edit the name and description of default roles, edit the default permissions of a role, add custom roles built from the available permission set, and delete roles. You cannot edit permissions for an individual member or group directly - all permission changes happen at the role level. Once members and groups are assigned, you can drag and drop a member onto a role (or a role onto a member) to change role assignments."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Adding a group as a project member lets you assign permissions to many users at once - useful when an entire department, such as JAWS's Test Engineering team, needs the same access."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each JAWS team role to a typical responsibility on the proof-of-concept:",
+          "pairs": [
+            {
+              "left": "Product Owner",
+              "right": "Prioritizes requirements and the project backlog"
+            },
+            {
+              "left": "Project Admin",
+              "right": "Configures project settings, members, and roles"
+            },
+            {
+              "left": "Test Lead",
+              "right": "Oversees test planning and verifies test coverage"
+            },
+            {
+              "left": "Stakeholder",
+              "right": "Reviews progress and provides business feedback"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Members can be added from Codebeamer users, LDAP/Active Directory, or email invitations",
+        "Every member must be assigned to one or more project roles",
+        "Permissions are edited at the role level, not for individual members or groups",
+        "Adding a group as a member assigns the same permissions to all of its users at once"
+      ]
+    },
+    {
+      "id": "m2t4",
+      "title": "Trackers, Workflows, and Configuration Diagrams",
+      "estimatedMinutes": 8,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Trackers are at the core of every Codebeamer project. For JAWS, trackers will hold everything from customer requirements to test cases to bugs found during the proof-of-concept. Understanding how trackers are structured, configured, and visualized is essential before the team starts entering data."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What Trackers Are Used For"
+        },
+        {
+          "type": "paragraph",
+          "text": "Trackers can manage IT processes, requirements, changes, people and relationships, innovation, escalations and SLAs, agile development, and bug tracking. When JAWS creates a blank project, Codebeamer automatically includes a set of default trackers visible in the Tracker Tree on the project's Trackers tab. Custom trackers can also be created, based on one of twenty-two available tracker types, optionally inheriting structure, relations, and behavior from a template tracker."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Tracker Configuration Areas"
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Configuration Area",
+            "What It Controls"
+          ],
+          "rows": [
+            [
+              "General",
+              "Name, key (ID prefix), description, workflow enablement, visibility"
+            ],
+            [
+              "Permissions",
+              "Tracker-level permissions assigned by role, finer-grained than project-level permissions"
+            ],
+            [
+              "State Transitions",
+              "How items move between states - the tracker item lifecycle"
+            ],
+            [
+              "Fields",
+              "Default and custom fields, including field-level permissions"
+            ],
+            [
+              "Notifications",
+              "Email alerts sent to subscribers on item creation or modification"
+            ],
+            [
+              "Audit Trail",
+              "History of configuration changes to the tracker"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "When a tracker is based on a template, there is a live, one-way connection: changes to the template propagate to trackers that implement it, but changes to the derived tracker never affect the template."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Configuration Diagram"
+        },
+        {
+          "type": "paragraph",
+          "text": "The Configuration Diagram visualizes the project lifecycle by showing trackers as nodes and references as bi-directional traceability arrows. Inheritance appears as blue Generalization arrows from a derived tracker to its template, and references appear as light blue arrows from the declaring reference field to target trackers. For JAWS, this diagram could show the chain from Customer Requirement Specifications through System Requirement Specifications to User Stories and Tasks - similar to decomposing 'four-wheel drive' and 'low emissions' vehicle requirements down into engineering work items."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "A state transition has From and To statuses, a Name, and optional Description, Permitted roles, Condition, Guard, and Actions. Setting a workflow to inactive turns the Status field into a plain dropdown with no controls enforced."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Order these tracker configuration tabs as they typically appear when configuring a tracker:",
+          "items": [
+            "General",
+            "Permissions",
+            "State Transitions",
+            "Fields"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Trackers are based on one of twenty-two tracker types and can inherit from template trackers",
+        "Tracker configuration covers General, Permissions, State Transitions, Fields, Notifications, and Audit Trail",
+        "Template-based trackers have a one-way live connection - template changes propagate down, but not back",
+        "The Configuration Diagram visualizes trackers as nodes with bi-directional traceability arrows"
+      ]
+    },
+    {
+      "id": "m2t5",
+      "title": "Activity: Create a Project",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this activity, you will start the JAWS proof-of-concept by creating a new Codebeamer project from the Default template, then manage that project through the Project Browser."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Make sure you are logged in to the Codebeamer training environment and have access to the Project Browser before you begin."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex1",
+          "title": "Create and Manage a Project",
+          "objective": "Create a blank project for the JAWS proof-of-concept and adjust its display settings in the Project Browser.",
+          "tasks": [
+            {
+              "id": "ex1-t1",
+              "title": "Create a Blank Project",
+              "steps": [
+                {
+                  "action": "In the left pane of the Project Browser, click New Project.",
+                  "detail": "This opens the project creation wizard, where you choose how the new project will be initialized.",
+                  "hint": "The New Project button is typically near the top of the left pane."
+                },
+                {
+                  "action": "With Create a new project selected, ensure Default is chosen in the Project Template list, and click Next.",
+                  "detail": "The Default template is provided out-of-the-box and includes a basic set of artifacts to get started.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Name box, delete the existing text and type Codebeamer Technical Essentials training.",
+                  "detail": "The Name field uniquely identifies the project across the Codebeamer instance.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Key box, type CTE.",
+                  "detail": "The Key is a short abbreviation used as a prefix for the project, for example in wiki links.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Category list, select Codebeamer FTE, and then click Finish.",
+                  "detail": "Categories help organize projects in the Project Browser. The project is generated and opens at its Project Wiki page.",
+                  "hint": "If Codebeamer FTE is not visible, scroll through the Category list."
+                }
+              ]
+            },
+            {
+              "id": "ex1-t2",
+              "title": "Manage the Project in the Project Browser",
+              "steps": [
+                {
+                  "action": "Click the Projects tab to close the current project and return to the Project Browser.",
+                  "detail": "The Projects tab is a global tab (orange upper border) available at all times, unlike project-specific tabs (green upper border).",
+                  "hint": null
+                },
+                {
+                  "action": "In the left pane, under CATEGORIES, scroll to locate and select Codebeamer FTE.",
+                  "detail": "The right pane updates to show only projects in the Codebeamer FTE category, including Codebeamer Technical Essentials training.",
+                  "hint": null
+                },
+                {
+                  "action": "Hover over the Codebeamer Technical Essentials training project card to reveal the ellipsis, click it, and then click Large.",
+                  "detail": "This changes the size of the project icon in the Project Browser, making it easier to spot.",
+                  "hint": "The ellipsis icon appears in the corner of the project card on hover."
+                },
+                {
+                  "action": "Click the ellipsis again, point to Color, and select the red color icon.",
+                  "detail": "Project card colors help teams visually distinguish projects at a glance, such as flagging the JAWS proof-of-concept as a high-priority evaluation.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the ellipsis once more and click Edit, then click the project name in the header to return to the Project Wiki page.",
+                  "detail": "The Edit option opens the project properties, where Name, Key, and Category can be changed at any time. Returning to the Wiki page leaves the project open for the next activity.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Creating a default project requires only a Name, Key, and Category",
+        "Global tabs (orange border) are always available; project tabs (green border) appear only when a project is open",
+        "Project Browser display settings, such as icon size and card color, help teams visually organize projects",
+        "Project properties such as Name, Key, and Category can be edited at any time after creation"
+      ]
+    },
+    {
+      "id": "m2t6",
+      "title": "Activity: Manage Project Members, Permissions, and Roles",
+      "estimatedMinutes": 9,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this activity, you will configure the Codebeamer Technical Essentials training project (the JAWS proof-of-concept) by adding a member, editing role permissions, and assigning and resigning roles."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "This activity continues from the project you created in the previous exercise. Leave the project open between activities."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex2",
+          "title": "Manage Project Members, Permissions, and Roles",
+          "objective": "Add a project member, edit role permissions, and assign and resign roles for that member.",
+          "tasks": [
+            {
+              "id": "ex2-t1",
+              "title": "Add a Project Member",
+              "steps": [
+                {
+                  "action": "In the Codebeamer Technical Essentials training project, click the Admin tab.",
+                  "detail": "The Admin tab is where Project Admins set general project properties and configure the project calendar.",
+                  "hint": null
+                },
+                {
+                  "action": "Beside the Admin tab, click the vertical ellipsis and then click Members.",
+                  "detail": "The Members page lists everyone who currently has access to the project and their assigned roles. As the project creator, you are automatically in the Project Admin role.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Add new Member, then under Step 1 type pete in the search box and select the Peter user.",
+                  "detail": "You can also add members from LDAP/Active Directory (if configured) or invite users by email, but here you are adding an existing registered Codebeamer user.",
+                  "hint": null
+                },
+                {
+                  "action": "Under Step 2, select the Project Admin check box, and then click Add.",
+                  "detail": "Every new member must be assigned to at least one role. Peter is now added to the project as a Project Admin.",
+                  "hint": "You can optionally add a description of why the member was added."
+                },
+                {
+                  "action": "Repeat the process to add your own user account to the project as a member of the Project Admin role.",
+                  "detail": "This ensures your account also has administrative access to manage the JAWS proof-of-concept project going forward.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex2-t2",
+              "title": "Edit Role Permissions and Assign Roles",
+              "steps": [
+                {
+                  "action": "In the left pane, beside the Developer role, click Edit/delete role.",
+                  "detail": "The Edit role permissions page lets you change the role's name, description, and individual permissions, or delete the role entirely.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the Trackers - Administrate check box, and then click Save.",
+                  "detail": "This grants the Developer role additional administrative permissions over trackers - useful if JAWS developers need to help configure tracker fields and workflows during the proof-of-concept.",
+                  "hint": null
+                },
+                {
+                  "action": "Hover over the vertical ellipsis beside the Developer role until it changes, then drag and drop the Developer role onto the Peter member in the right pane.",
+                  "detail": "This assigns the Developer role to Peter in addition to his existing Project Admin role. A member can hold multiple roles at once.",
+                  "hint": "You can also drag a member onto a role to achieve the same result."
+                },
+                {
+                  "action": "In the right pane, hover over the Developer role beside the Peter member and click Resign role from this member.",
+                  "detail": "This removes the Developer role assignment from Peter while leaving his Project Admin role intact, demonstrating how role assignments can be adjusted as project needs change.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Project Admins add members from the Admin tab's Members page",
+        "Every new member must be assigned to at least one role, such as Project Admin",
+        "Role permissions are edited via Edit/delete role, not on individual members",
+        "Roles can be assigned and resigned for a member using drag-and-drop and the resign action"
+      ]
+    },
+    {
+      "id": "m2t7",
+      "title": "Activity: Manage Tracker Configuration",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this activity, you will examine the default Configuration Diagram and Tracker Tree for the JAWS proof-of-concept project, then explore the configuration of the System Requirement Specifications tracker."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "This activity continues using the Codebeamer Technical Essentials training project from the previous exercises."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex3",
+          "title": "Manage Tracker Configuration",
+          "objective": "Examine the Configuration Diagram and Tracker Tree, and review the configuration of the System Requirement Specifications tracker.",
+          "tasks": [
+            {
+              "id": "ex3-t1",
+              "title": "Examine the Configuration Diagram and Tracker Tree",
+              "steps": [
+                {
+                  "action": "Click the Trackers tab.",
+                  "detail": "The left pane shows the Tracker Tree, grouped by work item trackers and configuration item trackers. The right pane shows a dashboard of widgets for the project.",
+                  "hint": null
+                },
+                {
+                  "action": "On the toolbar, click Configuration Diagram.",
+                  "detail": "The diagram shows the trackers currently selected in the left pane, with arrows representing bi-directional traceability between them.",
+                  "hint": null
+                },
+                {
+                  "action": "In the left pane, select only Customer Requirement Specifications, System Requirement Specifications, User Stories, and Tasks (deselect any others).",
+                  "detail": "Filtering the diagram to these four trackers makes the JAWS requirements-to-work-item flow easier to read: Customer Requirement Specifications is the highest level, followed by System Requirement Specifications, then User Stories.",
+                  "hint": "Click a tracker in the left tree to toggle its visibility in the diagram."
+                },
+                {
+                  "action": "Close the Configuration Diagram, and at the top of the Tracker Tree click New Tracker, review the Add New Tracker page, then click Cancel.",
+                  "detail": "The Add New Tracker page lets you specify a tracker type and optionally base the new tracker on an existing template with inherited configuration.",
+                  "hint": null
+                },
+                {
+                  "action": "Drag the Customer Requirement Specifications tracker below the System Requirement Specifications tracker in the Tracker Tree, then drag it back above.",
+                  "detail": "Reordering or nesting trackers in the Tracker Tree changes how they are displayed there, but does not affect the hierarchy shown in the Configuration Diagram.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex3-t2",
+              "title": "Configure the System Requirement Specifications Tracker",
+              "steps": [
+                {
+                  "action": "In the Tracker Tree, double-click the System Requirement Specifications tracker, then on the toolbar click more and select Configure.",
+                  "detail": "This opens the General tab of the tracker's Configuration page, where you can modify standard properties and optionally base the tracker on a template.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the Permissions tab and review the available tracker permissions and roles.",
+                  "detail": "These are the same project roles you worked with earlier, but permissions here apply only to this specific tracker, giving finer-grained control than project-level permissions.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the State Transitions tab, then click the Approve transition (From status New, To status Waiting for Approval).",
+                  "detail": "The State Transition dialog box shows the From and To statuses, Name, Description, Permissions, Condition, Guard, and Actions for this transition.",
+                  "hint": "Click Cancel after reviewing the dialog to avoid making changes."
+                },
+                {
+                  "action": "Scroll down to the Workflow Diagram to view the visual representation of states and transitions, then scroll back up and click the Fields tab.",
+                  "detail": "The Workflow Diagram visualizes the tracker item lifecycle. The Fields tab lists the smallest data containers in the tracker, such as ID, Name, Description, and Status.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the first field label (ID) to view its properties, then click Cancel twice to exit without saving changes.",
+                  "detail": "Field-level configuration, including custom and calculated fields, will be covered in more depth in the Codebeamer Advanced Configuration course.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Configuration Diagram can be filtered to show only selected trackers for clarity",
+        "Reordering trackers in the Tracker Tree does not change the Configuration Diagram hierarchy",
+        "Tracker-level Permissions provide finer-grained control than project-level permissions",
+        "State Transitions and Fields tabs expose the lifecycle and data structure of items in a tracker"
+      ]
+    }
+  ]
+}

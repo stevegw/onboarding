@@ -1,0 +1,71 @@
+{
+  "moduleId": "m3",
+  "title": "Manage Requirements Knowledge Check",
+  "questions": [
+    {
+      "id": "m3-kc-001",
+      "question": "When importing a Word document into a Codebeamer requirements tracker, what determines the parent-child relationship between the resulting work items?",
+      "options": [
+        "The order in which paragraphs appear in the document",
+        "The heading style levels (Heading 1, Heading 2, Heading 3, etc.) used in the document",
+        "The font size of each paragraph",
+        "The bookmarks defined in the Word document"
+      ],
+      "answerIndex": 1,
+      "rationale": "Codebeamer uses heading style levels to generate the parent-child hierarchy of imported work items - Heading 1 becomes a parent of Heading 2, and so on, up to five levels deep. Paragraph order, font size, and bookmarks are not used to determine hierarchy; normal-style paragraphs after a heading become the item's description, not a hierarchy indicator.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-002",
+      "question": "A team wants to reuse a set of standard quality requirements across multiple JAWS projects, with automatic notification if the original requirement changes. Which Codebeamer feature should they use?",
+      "options": [
+        "Item templates",
+        "The Requirements Library",
+        "Excel Round-trip export",
+        "The Kanban Board"
+      ],
+      "answerIndex": 1,
+      "rationale": "The Requirements Library lets teams copy requirements between projects, automatically maps fields where possible, and creates an association between the original and the copy - flagging the copy as 'Suspected' if the original changes. Item templates only capture default field values for new items in the same tracker, Excel Round-trip is for offline editing of existing items, and the Kanban Board is a workflow visualization, not a reuse mechanism.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-003",
+      "question": "Which requirements tracker view presents items as rows and their attributes as columns, similar to a spreadsheet, and supports sorting, filtering, and Group By?",
+      "options": [
+        "Document View",
+        "Kanban Board",
+        "Table View",
+        "Document Edit View"
+      ],
+      "answerIndex": 2,
+      "rationale": "Table View shows items as rows and attributes as columns in a grid, much like Excel, and supports column reordering, filtering, and Group By. Document View shows a hierarchical document with item tree, document, and properties panes; Kanban Board shows cards in workflow-stage columns; Document Edit View is an inline-editable hybrid that reads like a document rather than a spreadsheet grid.",
+      "topic": "m3t2"
+    },
+    {
+      "id": "m3-kc-004",
+      "question": "An engineer enables 'Mark Work items with suspected links' in the Tracker Tree settings. What is the practical effect of this setting?",
+      "options": [
+        "It prevents items from being edited until they are reviewed",
+        "It automatically deletes downstream references when an upstream item is deleted",
+        "It applies a Suspected badge to downstream items when an upstream item they are linked to is modified",
+        "It hides items that have no traceability links at all"
+      ],
+      "answerIndex": 2,
+      "rationale": "When this setting is enabled, any item with a downstream reference to an item that has been modified is flagged with a Suspected badge, prompting the team to re-evaluate whether the change affects the downstream item - useful for impact analysis. It does not lock items for editing, does not delete references, and does not hide unlinked items.",
+      "topic": "m3t2"
+    },
+    {
+      "id": "m3-kc-005",
+      "question": "JAWS wants to add a new traceability connection so that the Bugs tracker is linked upstream to the Customer Requirement Specifications tracker. Where must this connection be configured?",
+      "options": [
+        "In the Customer Requirement Specifications tracker's Fields configuration",
+        "In the Bugs tracker's Fields configuration, by editing the 'subjects' (upstream reference) property",
+        "In the project-level Roles and Permissions settings",
+        "In the Requirements Library configuration"
+      ],
+      "answerIndex": 1,
+      "rationale": "New tracker-to-tracker connections must be configured starting from the downstream tracker - in this case Bugs - by editing the 'subjects' field in its Fields configuration to add Customer Requirement Specifications as an additional upstream tracker. The Configuration Diagram visualizes connections but changes are made via the downstream tracker's field configuration, not from the upstream tracker, roles/permissions, or the Requirements Library.",
+      "topic": "m3t3"
+    }
+  ]
+}

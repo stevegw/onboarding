@@ -1,0 +1,657 @@
+{
+  "id": "m1",
+  "title": "Codebeamer Overview",
+  "description": "Explore Application Lifecycle Management concepts, discover Codebeamer's architecture and capabilities, and navigate the Codebeamer user interface using the JAWS proof-of-concept scenario.",
+  "topics": [
+    {
+      "id": "m1t1",
+      "title": "Course Scenario: JAWS Proof of Concept",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Throughout this course, you will follow a single use case: JAWS (JAY Automotive Works), a vehicle manufacturing company that produces high-performance automobiles. JAWS is replacing its current Application Lifecycle Management (ALM) software, which lacks the capabilities needed for enterprise-wide development collaboration, product line efficiencies, and regulatory compliance."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Proof of Concept"
+        },
+        {
+          "type": "paragraph",
+          "text": "JAWS has requested a 'proof of concept' application that demonstrates fundamental Codebeamer platform capabilities, including requirements management, test management, release management, reporting and analysis, and integration with existing ALM repositories. As you progress through this course, you will build out this proof of concept step by step."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Implementation Team Roles"
+        },
+        {
+          "type": "paragraph",
+          "text": "A successful Codebeamer implementation involves people in several distinct roles, each contributing a different perspective to the project. Understanding these roles will help you recognize who performs which activities as the JAWS proof of concept takes shape."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Role", "Responsibility"],
+          "rows": [
+            ["Project Admin", "Administers the project; has full read and write access to all project content"],
+            ["Product Owner", "Sole person responsible for managing the product backlog"],
+            ["Scrum Master", "Facilitates Scrum by coaching the team in Scrum theory and facilitating key events"],
+            ["Developer", "Member of the development team responsible for implementing backlog items"],
+            ["Test Engineer", "Responsible for developing and maintaining test cases"],
+            ["Tester", "Responsible for executing test steps"],
+            ["Test Lead", "Responsible for test sets and test planning/execution"],
+            ["Stakeholder", "Any user who is interested in the project"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "As the ALM project administrator for JAWS, you will use the Project Admin role throughout this course's hands-on activities, while also learning how the other roles fit into the overall implementation."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each implementation team role to its primary responsibility:",
+          "pairs": [
+            { "left": "Project Admin", "right": "Administers the project with full read/write access" },
+            { "left": "Product Owner", "right": "Manages the product backlog" },
+            { "left": "Scrum Master", "right": "Facilitates Scrum events and coaching" },
+            { "left": "Test Lead", "right": "Responsible for test sets and test planning/execution" }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "JAWS (JAY Automotive Works) is the running scenario used throughout this course to demonstrate Codebeamer capabilities",
+        "The JAWS proof of concept covers requirements management, test management, release management, reporting/analysis, and ALM repository integration",
+        "Implementation teams include roles such as Project Admin, Product Owner, Scrum Master, Developer, Test Engineer, Tester, Test Lead, and Stakeholder",
+        "Each role contributes a different perspective to a successful Codebeamer implementation"
+      ]
+    },
+    {
+      "id": "m1t2",
+      "title": "Application Lifecycle Management (ALM)",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "ALM stands for Application Lifecycle Management. From the standpoint of product manufacturers, the 'A' refers to the application software on, controlling, or accessing their products. ALM includes the governance, development, and maintenance of software applications embedded in or surrounding a product."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What ALM Spans"
+        },
+        {
+          "type": "paragraph",
+          "text": "ALM spans requirements elicitation, software architecture, software code, software testing, software maintenance, change management, project management, continuous integration, and release management. For industrial products, it is estimated that over 90% of product innovation today is driven by, connected to, or enabled by software - whether invisible to consumers (like a vehicle's braking system) or directly visible (like a mobile app that remotely starts the vehicle)."
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "ALM drives the functional behavior of a product for the entire life of the software, not just at initial release. Software updates rolled out to a vehicle's braking system or to a mobile app demonstrate how ALM continues to drive functional innovation long after production."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Why ALM Is Needed"
+        },
+        {
+          "type": "paragraph",
+          "text": "ALM helps organizations set and meet appropriate requirements for projects. It improves the development process by incorporating frequent and thorough testing, and helps developers adjust development processes and goals throughout the software lifecycle. ALM helps ensure that development, operations, and security teams collaborate effectively, gaining a competitive edge by accelerating workflows, increasing efficiencies, and ensuring quality products get deployed."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Key Areas of ALM"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Area", "What It Is", "Who Is Responsible"],
+          "rows": [
+            ["Requirements management", "Identifying, managing, and tracking requirements throughout their lifecycle from conception to delivery", "Requirements Engineers, Project/Product Managers, Business Analysts"],
+            ["Software development", "Aligning development with requirements and testing through change management, version control, and release planning", "Software Developers, Software Architects, Scrum Masters"],
+            ["QA and testing", "Tracing and managing all product quality assurance and testing activities", "QA Directors, Test Engineers, Software Quality Leads"],
+            ["DevOps", "Integrating feedback and aligning contributors across all phases to streamline delivery", "DevOps Engineer, Release Manager, Build Engineer"],
+            ["Risk management", "Identifying, understanding, and mitigating risks for end users", "Risk Managers, Risk Analysts, Compliance Officers"],
+            ["Software configuration/variants management", "Managing multiple development streams, branching, comparison, merging, and baselining", "Requirements Engineer, Product Manager"],
+            ["Analytics", "Lifecycle-wide data analysis including queries, dashboards, audit trails, and wikis", "Data Analysts, Engineering Managers, Auditors"]
+          ]
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange these aspects of ALM in the order they are typically described, from elicitation through to release:",
+          "items": [
+            "Requirements elicitation",
+            "Software architecture and code",
+            "Software testing",
+            "Release management"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "ALM (Application Lifecycle Management) covers governance, development, and maintenance of software applications across a product's entire life",
+        "Over 90% of industrial product innovation today is driven by, connected to, or enabled by software",
+        "ALM spans requirements, architecture, code, testing, maintenance, change management, project management, continuous integration, and release management",
+        "Key ALM areas - requirements management, software development, QA/testing, DevOps, risk management, configuration management, and analytics - each involve different responsible roles"
+      ]
+    },
+    {
+      "id": "m1t3",
+      "title": "What is Codebeamer ALM?",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Codebeamer ALM is a holistically integrated, collaborative application lifecycle management platform with capabilities that cover the entire product development lifecycle. It empowers teams with advanced tooling to streamline end-to-end value delivery, allowing organizations like JAWS to tailor the system to their needs, cut costs, and develop high-quality hardware and software products at every phase of the lifecycle."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "A Single Source of Truth"
+        },
+        {
+          "type": "paragraph",
+          "text": "Codebeamer lets all contributors and auditors develop products based on a single source of truth. Teams manage development through requirements management, software development, risk management, quality assurance and testing, and release and operations - all in one platform."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Three Pillars of Codebeamer"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Trackers (Data)",
+              "back": "With support for Oracle, MySQL, and PostgreSQL, Codebeamer serves as an unlimited set of containers for ALM data. Each tracker is like a configurable bucket with its own fields and access rights. Trackers connect to each other through references, tracing the process flow from requirements through development tasks, source code, and test runs."
+            },
+            {
+              "front": "Workflows (Process)",
+              "back": "Projects are dynamic and collaborative. Each artifact - from requirement to test case - can have a lifecycle defined at the tracker level, determining who sees what, who can perform specific actions, and when. An auto-generated graphical overview helps manage this configuration."
+            },
+            {
+              "front": "Versioning and Baselines (Traceability)",
+              "back": "Codebeamer provides always-on versioning for all artifacts, with branching concepts borrowed from Git. You can also create baselines (data snapshots) that facilitate compliance and audits."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "For the JAWS proof of concept, think of trackers as the 'what' (data containers), workflows as the 'how' (process and lifecycle), and versioning/baselines as the 'proof' (traceability for compliance audits)."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each pillar of Codebeamer to its description:",
+          "pairs": [
+            { "left": "Trackers", "right": "Configurable containers for ALM data, connected through references" },
+            { "left": "Workflows", "right": "Lifecycle definitions controlling who can do what and when" },
+            { "left": "Versioning and Baselines", "right": "Always-on version history plus snapshots for compliance" }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Codebeamer ALM is a holistically integrated platform covering the entire product development lifecycle for both hardware and software",
+        "Codebeamer provides a single source of truth for requirements, development, risk, QA/testing, and release management",
+        "The three pillars of Codebeamer are Trackers (data containers), Workflows (process/lifecycle), and Versioning/Baselines (traceability and compliance)",
+        "Codebeamer supports Oracle, MySQL, and PostgreSQL as database vendors"
+      ]
+    },
+    {
+      "id": "m1t4",
+      "title": "Codebeamer Architecture and Functional Areas",
+      "estimatedMinutes": 8,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Codebeamer ALM is a layered web application built using common industry technologies and open-source frameworks. Understanding its architecture helps explain how the platform's many capabilities fit together."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Architecture Layers and Components"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Layer/Component", "Description"],
+          "rows": [
+            ["Web container", "Apache Tomcat web server processes web requests from users"],
+            ["Security layer", "Authentication and authorization managed centrally through User Management - Users, Groups, Roles, and Permissions; supports LDAP/Active Directory synchronization"],
+            ["Core services", "Searching and reporting, workflow engine, wiki engine, event engine, SCM management, document management"],
+            ["Relational database", "Stores most model data; PostgreSQL, MySQL, and Oracle are supported"],
+            ["File system", "Disk storage for non-transactional data and large files, e.g., Document Management and SCM repositories such as Git"],
+            ["Mail server", "Works with the Event engine to send notification emails when changes occur to work items, wiki pages, or other artifacts"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "SCM repositories such as Git are stored in their native format on the file system, but information can be automatically synchronized with the SQL database using event hooks or change listeners (such as SCMLoop)."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Functional Areas and Capabilities"
+        },
+        {
+          "type": "paragraph",
+          "text": "Codebeamer's functional areas represent end-to-end traceability, with the platform at the center as a holistic, collaborative solution. Everybody has real-time information according to their project roles and permissions."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Requirements Management",
+              "back": "Starts with high-level customer or market requirements. Includes round-tripping with MS Office (Word, Excel, Project), importing ReqIF requirements, a reusable requirements library, requirements ratings and approvals (with e-signatures), and end-to-end lifecycle tracking."
+            },
+            {
+              "front": "Test Management",
+              "back": "Create test cases, test sets, and test runs, linked to requirements, tasks, bugs, and change requests for full traceability and coverage analysis."
+            },
+            {
+              "front": "Hardware and Software Development",
+              "back": "Supported through release management, an Agile Planner (releases, sprints, product/release backlogs, dashboards, release notes, Gantt charts), Kanban boards with WIP limits, task and team management, and change requests."
+            },
+            {
+              "front": "Analytics",
+              "back": "Create reports and dashboards quickly; use cBQL (Codebeamer Query Language) in expert mode for sophisticated queries. Results can be exported, emailed via report jobs, or visualized using 20+ pre-defined widgets."
+            },
+            {
+              "front": "Project Templates",
+              "back": "Industry-specific templates (automotive, medical, pharma, aviation) built from collaboration with client organizations, including pre-built artifacts, business logic, and best practices as a customizable starting point."
+            }
+          ]
+        },
+        {
+          "type": "interactive-sort"
+,
+          "prompt": "Arrange these architecture layers from the layer closest to the user down to the layer closest to storage:",
+          "items": [
+            "Web container (Apache Tomcat)",
+            "Security layer (User Management)",
+            "Core services (workflow, search, wiki engines)",
+            "Relational database / file system"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Codebeamer's architecture includes a web container (Tomcat), security layer, core services, relational database, file system, and mail server",
+        "Core services include searching/reporting, workflow engine, wiki engine, event engine, SCM management, and document management",
+        "Codebeamer functional areas include Requirements Management, Test Management, Hardware/Software Development, Analytics (with cBQL), and industry-specific Project Templates",
+        "Project templates for automotive, medical, pharma, and aviation accelerate setup while allowing customization for organizations like JAWS"
+      ]
+    },
+    {
+      "id": "m1t5",
+      "title": "Project Structure",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Codebeamer projects are secure, collaborative workspaces used to develop ALM initiatives such as the JAWS proof of concept. Projects organize Codebeamer data so users can share, discuss, contribute, coordinate, and find project information."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Project Components"
+        },
+        {
+          "type": "paragraph",
+          "text": "When a registered user with sufficient group permissions creates a project, that user is automatically assigned the Project Admin role and is typically responsible for managing project resources. Project templates can be used as a starting point for the creation process."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Component", "Purpose"],
+          "rows": [
+            ["Wikis", "Store information related to the project or workspace, such as compliance points (SOPs) and development reminders"],
+            ["Documents", "Store and manage project files of common types, with versioning and permission-based access; administrators can see who accessed a document"],
+            ["Source Code Management (SCM)", "Connects to external and managed repositories; supports browsing repository content and history, granular access control, and associating change sets with issues for traceability"],
+            ["Baselines", "Snapshots of the entire project's current state, used for comparison with later versions and for audit reporting"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "A baseline is one of the most useful tools for compliance: run a report comparing baselines to clearly show what changed in a project between two points in time, then forward that report for an audit."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Trackers: The Core of a Project"
+        },
+        {
+          "type": "paragraph",
+          "text": "At the core of every Codebeamer project are Trackers - logical containers for ALM data such as work items, configuration items, and their field/attribute values. There are twenty-two tracker types, including Requirement, Test Case, Bug, and Change Request. Each type has its own fields, workflow, and permissions, though some fields are shared across types. A tracker type can have multiple instances - for example, a JAWS project might have both a Customer Requirements tracker and a System Requirements tracker, both based on the Requirement tracker type."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Tracker types are hard-coded and cannot be edited, and you cannot create new tracker types. However, you can create as many instances of a given type as your project needs, each configured differently."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each project component to what it provides:",
+          "pairs": [
+            { "left": "Wikis", "right": "Store project information such as SOPs and reminders" },
+            { "left": "Documents", "right": "Versioned file storage with access permissions" },
+            { "left": "Source Code Management", "right": "Connects to repositories and traces change sets to issues" },
+            { "left": "Baselines", "right": "Snapshots of the project for comparison and audit reports" }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "A Codebeamer project is a secure collaborative workspace containing wikis, documents, source code management, baselines, and trackers",
+        "The user who creates a project is automatically assigned the Project Admin role",
+        "Trackers are the core data containers of a project; there are twenty-two hard-coded tracker types (e.g., Requirement, Test Case, Bug, Change Request)",
+        "A tracker type can have multiple configured instances, such as separate Customer Requirements and System Requirements trackers"
+      ]
+    },
+    {
+      "id": "m1t6",
+      "title": "Key Terminology: Users, Groups, Roles, and Permissions",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Before navigating the Codebeamer user interface, it helps to understand how Codebeamer organizes users and controls access. These concepts will appear repeatedly as you work through the JAWS proof of concept."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "User Groups"
+        },
+        {
+          "type": "paragraph",
+          "text": "Codebeamer supports the creation of User Groups, which collect or categorize similar types of users - typically by organization, job profile, skill, or title (for example, project leads, requirement managers, developers, or testers). Categorizing users into groups makes it easier to control access to Codebeamer objects. The default System Administrator group has the highest level of administrative privileges, including the ability to view and delete any project on the server."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Roles and Permissions"
+        },
+        {
+          "type": "paragraph",
+          "text": "Within a project, Codebeamer implements role-based access. Roles reflect hierarchical or task-based team structures, and a role's permissions apply project-wide. For example, users in a Developer role might have write access to the SCM system while users in a Designer role do not. Standard roles include Customer, Developer - Extern, Developer - Intern, and Stakeholder, but you can also create custom roles (such as Architect) when the standard roles are insufficient."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Permissions can be assigned at multiple levels - project, tracker, item, and even field level - and to baselines, wiki pages, comments, views, references, and documents. When a user's access comes from multiple roles or groups, the highest level of access always takes precedence."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Trackers as Tables and Items as Rows"
+        },
+        {
+          "type": "paragraph",
+          "text": "Trackers are the equivalent of tables in a relational database, or classes in object-oriented programming - they define the structure (fields) of the data captured and have relationships to other trackers through reference fields, similar to foreign keys. Tracker items are the equivalent of rows in a relational database, or objects in object-oriented programming. Trackers also define workflows that represent how items transition through their lifecycle, for example how a customer requirement moves from Create to Draft to Reviewed to Approved."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each Codebeamer concept to its database/programming equivalent or description:",
+          "pairs": [
+            { "left": "Tracker", "right": "Equivalent of a table or class - defines fields and relationships" },
+            { "left": "Tracker item", "right": "Equivalent of a row or object" },
+            { "left": "Group", "right": "Collection of users sharing a common trait, such as job profile" },
+            { "left": "Role", "right": "Project-wide access permissions reflecting team structure" }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "User Groups categorize similar users (by organization, job profile, skill, or title) to simplify access control",
+        "Roles are project-scoped and reflect team structure; standard roles include Customer, Developer - Extern, Developer - Intern, and Stakeholder, with custom roles also possible",
+        "Permissions can be set at the project, tracker, item, and field level, and the highest applicable access level always takes precedence",
+        "A tracker is like a database table (defining fields and relationships); a tracker item is like a row, and trackers define workflows governing item lifecycle transitions"
+      ]
+    },
+    {
+      "id": "m1t7",
+      "title": "Navigate Your Personal Wiki and Dashboards",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, as the ALM project administrator for JAWS, you will perform a tour of the Codebeamer user interface, starting with your personal wiki page, child dashboards and pages, and dashboard widgets."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Log in to Codebeamer with the account name admin. The admin user is a member of the System Administrator group, which has the highest level of administrative privileges in the Codebeamer instance."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex1",
+          "title": "Navigate Your Personal Wiki and Dashboards",
+          "objective": "Examine your personal wiki page, child dashboards and pages, dashboard layouts, and widgets.",
+          "tasks": [
+            {
+              "id": "ex1-t1",
+              "title": "Examine the Personal Wiki Structure",
+              "steps": [
+                {
+                  "action": "Log in to Codebeamer and observe that you are taken to the My Start tab, which contains your Personal Wiki.",
+                  "detail": "The My Start tab is your home base. It can be customized with widgets that visualize your assignments, tasks to complete, and work already done.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Structure Tree Section on the left, right-click your Personal Wiki, click Collapse Node, and then click the + icon to expand it again.",
+                  "detail": "The Structure Tree Section shows the hierarchy of your Personal Wiki, including the main wiki dashboard and any child wiki pages and dashboards beneath it.",
+                  "hint": "There are typically several child dashboards already present under the main wiki dashboard."
+                },
+                {
+                  "action": "With the main wiki dashboard selected, hover over each toolbar icon to identify the available actions.",
+                  "detail": "From the toolbar you can create child wiki pages, create child dashboards, add widgets to the selected dashboard, change the dashboard layout, and access additional actions via the more menu.",
+                  "hint": "Widgets and layout options are only available when a dashboard (not a wiki page) is selected."
+                }
+              ]
+            },
+            {
+              "id": "ex1-t2",
+              "title": "Change Dashboard Layout and Manage Widgets",
+              "steps": [
+                {
+                  "action": "With the main wiki dashboard selected, scroll down to examine the existing widgets and note the relative sizes of the left and right containers.",
+                  "detail": "By default the dashboard uses a two-panel, 2-to-1 (left to right) ratio layout, so the left container is larger than the right.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Select Layout and choose the third layout option from the left, then scroll to view the widgets again.",
+                  "detail": "Codebeamer offers several two-panel ratio layouts plus an equal-ratio three-panel layout. Switching layouts reverses or changes the relative size of the containers and the widgets within them.",
+                  "hint": "Notice that the right container is now larger than the left after switching layouts."
+                },
+                {
+                  "action": "Change the layout back to the original 2-to-1 (left and right) ratio layout.",
+                  "detail": "Returning to the original layout restores the default appearance of your personal dashboard.",
+                  "hint": null
+                },
+                {
+                  "action": "On the My Open Reviews widget, click more, then click Pin, and confirm by clicking Yes.",
+                  "detail": "Pinning a widget moves it to the top of the dashboard. Only one widget per dashboard can be pinned at a time, so pinning a new widget unpins the previously pinned one.",
+                  "hint": "Scroll to the top of the dashboard to see the pinned widget."
+                },
+                {
+                  "action": "On the pinned widget, click more, click Edit, change Alignment from Stretch to Center, and click Save. Then set it back to Stretch and re-pin the originally pinned widget.",
+                  "detail": "The Alignment setting controls how content is positioned within a widget's container - left, center, right, or stretched across the full width.",
+                  "hint": null
+                },
+                {
+                  "action": "Hover under the last widget in the right container, click Add Widget, click the Personal tab, hover over User Profile, click Add, and then click Save without changing any properties.",
+                  "detail": "Codebeamer offers around 35 widgets across six categories (Report visualization, Project, Agile, Test, Personal, and Other). The User Profile widget is added to the top of the left container, below the pinned widget. Note that widgets can only be added to dashboards, not to plain wiki pages.",
+                  "hint": "You can also add a widget using the Add Widget icon on the toolbar instead of the inline link."
+                }
+              ]
+            },
+            {
+              "id": "ex1-t3",
+              "title": "Create, Organize, and Delete a Child Wiki Page",
+              "steps": [
+                {
+                  "action": "With the main wiki dashboard selected, click New Child Page, type Test as the page name, type 'This is a test page' in the Wiki Content box, and click Save.",
+                  "detail": "The new child wiki page is saved beneath the main wiki dashboard. Toolbar options at the bottom of the page let you format text, add tables or diagrams, insert hyperlinks, upload files, and switch between rich text and markup.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the Test wiki page in the left pane and compare its toolbar icons to those shown when a dashboard is selected.",
+                  "detail": "A wiki page lets you edit the page, create child wiki pages, and create child dashboards, but it does not support adding widgets or changing the layout - those actions are only available for dashboards.",
+                  "hint": null
+                },
+                {
+                  "action": "Drag the Test wiki page and drop it above the Git Integration Demo dashboard but below your main wiki dashboard, then drag it again and drop it inside the Git Integration Demo dashboard.",
+                  "detail": "Items in the Structure Tree Section can be reordered as siblings or nested as children of another dashboard or wiki page, giving you flexibility to organize content however makes sense for your project.",
+                  "hint": null
+                },
+                {
+                  "action": "With the Test wiki page selected, click more, click Delete, and confirm by clicking Yes.",
+                  "detail": "Removing the temporary Test page returns your personal wiki to its original structure.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The My Start tab hosts your Personal Wiki, with its hierarchy of dashboards and pages shown in the Structure Tree Section",
+        "Dashboards support layouts, widgets, pinning, and alignment settings; plain wiki pages do not support widgets or layout changes",
+        "Codebeamer offers around 35 widgets across six categories, but widgets can only be added to dashboards",
+        "Wiki pages and dashboards can be reordered or nested within each other to organize content"
+      ]
+    },
+    {
+      "id": "m1t8",
+      "title": "Navigate System Admin, Profile, Search, and Project Browser",
+      "estimatedMinutes": 11,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Continuing your tour of the Codebeamer interface as the JAWS project administrator, in this exercise you will examine system administration tasks, your user profile and preferences, the Search feature, and the Project Browser."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "The System Admin tab is only available to users with admin privileges. For most activities in this course you will use the admin account, but some later activities require your own personal Codebeamer credentials, which you will create in this exercise."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex2",
+          "title": "Navigate System Admin, Profile, Search, and Project Browser",
+          "objective": "Examine the System Admin tab, create a personal account, manage user groups, review your profile and search options, and explore the Project Browser.",
+          "tasks": [
+            {
+              "id": "ex2-t1",
+              "title": "Examine the System Admin Tab",
+              "steps": [
+                {
+                  "action": "At the top of the Codebeamer interface, click System Admin.",
+                  "detail": "The System Administration page lets administrators maintain and operate Codebeamer instances, including User Accounts, User Groups, Documents, Application Configuration, and many other settings.",
+                  "hint": null
+                },
+                {
+                  "action": "Click User Accounts, click New Account, complete the Username, Password, Confirm Password, First Name, Last Name, and Email fields with your own information, configure group membership as instructed, and click Save.",
+                  "detail": "Creating your own personal account gives you credentials you will need for later activities in the course that require something other than the shared admin login.",
+                  "hint": null
+                },
+                {
+                  "action": "Click User Groups, then beside the API Group, click more and click Edit to view its permissions, and click Cancel.",
+                  "detail": "The Edit Group Permissions dialog lets you set instance-level permissions for a group, and modify its name, description, or delete it.",
+                  "hint": null
+                },
+                {
+                  "action": "Beside the API Group, click more, click Assign Members, type part of a username to search for matches, select a user, and then click Cancel without completing the assignment.",
+                  "detail": "Only registered Codebeamer users can be assigned to a group, and a group cannot contain another group. The type-ahead search helps you find existing users quickly.",
+                  "hint": null
+                },
+                {
+                  "action": "Next to the System Administrator group, click more, click Edit, review the permission list, and click Cancel.",
+                  "detail": "The System Administrator group has the highest level of administrative privileges in the instance, and its permissions cannot be modified.",
+                  "hint": null
+                },
+                {
+                  "action": "In the System Administration list, click Projects to view all projects on the server, including their status, creation date, creator, administrators, and category.",
+                  "detail": "Only members of the System Administrator group can view this full list of projects and delete unnecessary ones. A first delete removes a project from the Project Browser (it can be restored); a second delete on a removed project permanently deletes it.",
+                  "hint": "Look at the Removed tab in the Project Browser to see projects that have been deleted once but not yet permanently."
+                }
+              ]
+            },
+            {
+              "id": "ex2-t2",
+              "title": "Examine Your Profile, Preferences, and Search",
+              "steps": [
+                {
+                  "action": "At the top right of the Codebeamer interface, click your username, then click Preferences.",
+                  "detail": "User preferences are organized by category, including General, Agile, Report/Tracker view, Document and document edit view, Work item details, Reference selector, Menu customization, and Trace logging.",
+                  "hint": null
+                },
+                {
+                  "action": "Expand each preference category to review the available options, then click Cancel.",
+                  "detail": "Reviewing these categories familiarizes you with the personalization options available to every Codebeamer user.",
+                  "hint": null
+                },
+                {
+                  "action": "Click your username again, then click your account name to open your account settings.",
+                  "detail": "Your account settings show information from registration (name, email, address), license type, group memberships, and timezone. From here you can edit your account, view your personal wiki, send email, change your password, edit your profile photo, and manage public SSH keys for repository access.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the My Start tab, then click the Search box at the top right.",
+                  "detail": "Search options let you filter by time frame (last modified), all or recent projects, and object type such as Work Items or Documents.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the down arrow beside GO to view advanced search options.",
+                  "detail": "Advanced search provides additional filters beyond the basic search box for narrowing results across the Codebeamer instance.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex2-t3",
+              "title": "Explore the Project Browser",
+              "steps": [
+                {
+                  "action": "Click the Projects tab to open the Project Browser, which shows the Projects List by default.",
+                  "detail": "The Project Browser lets you navigate different organizational views of the projects you can access, including Projects List, Projects Tree, Available to Join, Compact List, Project Groups, and Removed.",
+                  "hint": null
+                },
+                {
+                  "action": "In the left pane, click a category name to focus and highlight that category and its projects in the right pane.",
+                  "detail": "Categories represent a hierarchy of concepts that administrators can use to organize projects, and can be renamed, deleted, moved, or assigned.",
+                  "hint": null
+                },
+                {
+                  "action": "Beside a category, click the Enable/Disable visibility icon to hide it, then enable it again to restore visibility.",
+                  "detail": "Hiding a category removes it and its projects from view in the right pane without deleting the category itself.",
+                  "hint": null
+                },
+                {
+                  "action": "Beside Current View: Default View, click more, click Save as, type a view name, and click Save.",
+                  "detail": "Saving a custom view preserves your current selections (categories, filters) so you can return to that view later. The Default View itself cannot be changed, only reloaded.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Type Project Category name box, type a new category name and click Add a new Project Category, then locate it at the bottom of the category list.",
+                  "detail": "New categories can be created, renamed, or deleted using the more menu beside each category.",
+                  "hint": null
+                },
+                {
+                  "action": "Expand Status Filtering, deselect a color check box, and observe that projects with that card color are filtered out of the right pane, then re-select it. Then click the Project Status tab and deselect On Track to see how status filtering works.",
+                  "detail": "Each project card has a color property, and the Project Browser can filter by either assigned colors or by project status (such as On Track). Filtering by color is only available in the Projects List, Projects Tree, and Project Groups tabs.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The System Admin tab (available only to admins) provides access to User Accounts, User Groups, Application Configuration, and the full project list",
+        "A first project delete removes it from the Project Browser (recoverable); a second delete on a removed project is permanent",
+        "User Preferences and Account Settings let you personalize Codebeamer and manage credentials, SSH keys, and group memberships",
+        "The Project Browser offers multiple views (List, Tree, Compact, Groups, Removed) and supports custom saved views plus filtering by category, color, and status"
+      ]
+    }
+  ]
+}

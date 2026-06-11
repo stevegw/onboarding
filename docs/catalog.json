@@ -199,6 +199,17 @@
             "en"
           ],
           "comingSoon": false
+        },
+        {
+          "id": "wc-conv",
+          "title": "Windchill Verified Conversations",
+          "description": "Hands-on verified knowledge covering lifecycle mechanics, the three-layer permission model, object initialization rules, and change management configuration with association and mapping rules.",
+          "modules": 4,
+          "estimatedHours": 2,
+          "locales": [
+            "en"
+          ],
+          "comingSoon": false
         }
       ]
     },
@@ -257,6 +268,19 @@
             "en"
           ],
           "comingSoon": true
+        },
+        {
+          "id": "cb-tech-essentials",
+          "title": "Codebeamer: Technical Essentials",
+          "description": "End-to-end Codebeamer ALM workflow - create a project, manage requirements, testing, releases, reports, and documents using the JAWS proof-of-concept scenario.",
+          "pdfFile": "Codebeamer-Technical-Essentials-course-guide.pdf",
+          "prerequisite": "cb-overview",
+          "modules": 7,
+          "estimatedHours": 8,
+          "locales": [
+            "en"
+          ],
+          "comingSoon": false
         }
       ]
     },

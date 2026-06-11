@@ -1,0 +1,66 @@
+{
+  "moduleId": "m4",
+  "title": "Manage Testing Knowledge Check",
+  "questions": [
+    {
+      "id": "m4-kc-001",
+      "question": "Which Codebeamer test entity must be defined before a test run can be created, because it groups related test cases and defines their execution order?",
+      "options": ["Test configuration", "Test set", "Test plan", "Test parameter"],
+      "answerIndex": 1,
+      "rationale": "A test set is a logical group of related test cases and must be defined before test runs are executed; it also determines the order (and whether that order is mandatory) in which test cases run. A test configuration describes product conditions, not grouping or order. A test plan is a planning artifact, not a tracker item type used to create runs. A test parameter is a placeholder value used within test steps.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-002",
+      "question": "Why does the Test Run tracker type not allow workflow customization, unlike Test Set, Test Case, and Test Configuration trackers?",
+      "options": [
+        "Because Test Run items cannot be edited after creation",
+        "Because test execution follows a strict, predictable status lifecycle (e.g., running, closed, passed, failed, blocked)",
+        "Because Test Run is not a real tracker type in Codebeamer",
+        "Because only project administrators are allowed to view test runs"
+      ],
+      "answerIndex": 1,
+      "rationale": "By design, the Test Run tracker enforces a consistent status model because of the strict workflow behavior tied to test execution results. Test Run items can be edited during execution (recording results). Test Run is a genuine tracker type used for test management. Visibility/permissions are unrelated to why workflow customization is restricted.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-003",
+      "question": "A test step uses the placeholders ${Refresh} and ${Color}, and the test case defines two rows of parameter values. What happens when a test run is created for this test case?",
+      "options": [
+        "The test run fails immediately because placeholders are not supported",
+        "Codebeamer generates one test case execution for each row of parameter values",
+        "Only the first row of parameter values is used; the second row is ignored",
+        "The tester must manually type the parameter values into the test case before saving"
+      ],
+      "answerIndex": 1,
+      "rationale": "Test steps that reference parameters cause Codebeamer to generate a separate test case execution for each combination of parameter values defined on the test case. Placeholders are a supported feature, not an error. All parameter rows are used, not just the first. Parameter substitution happens automatically during the test run, not by manual typing beforehand.",
+      "topic": "m4t2"
+    },
+    {
+      "id": "m4-kc-004",
+      "question": "In the Test Runner, what is the key difference between clicking Pause Run and clicking End Run?",
+      "options": [
+        "Pause Run saves progress and allows the test to be resumed later; End Run permanently closes the test set run and prevents any remaining test cases from being run",
+        "Pause Run and End Run have identical effects on the test run",
+        "Pause Run deletes all recorded results; End Run preserves them",
+        "End Run only affects the current test step, while Pause Run affects the entire test set"
+      ],
+      "answerIndex": 0,
+      "rationale": "Pause Run saves the results of the current test case and closes the dialog, leaving the test open so it can be continued later. End Run closes and marks the whole test set run as complete, after which no remaining test cases can be run. The two actions have very different, non-identical effects. Neither action deletes recorded results.",
+      "topic": "m4t3"
+    },
+    {
+      "id": "m4-kc-005",
+      "question": "In the Test Coverage Browser, what does a full-green Coverage Analysis bar on a requirement indicate?",
+      "options": [
+        "The requirement has not yet been linked to any test cases",
+        "All test cases verifying the requirement, or any of its child requirements, were executed successfully",
+        "The requirement has been deleted from the tracker",
+        "The requirement is only visible to Project Admin and Test Lead roles"
+      ],
+      "answerIndex": 1,
+      "rationale": "Coverage Analysis aggregates upward, so a full-green bar means all test cases that verify a requirement or any of its children executed successfully. An unlinked requirement would show as not covered, not full-green. Deletion and role-based visibility have nothing to do with the color of the coverage bar.",
+      "topic": "m4t3"
+    }
+  ]
+}

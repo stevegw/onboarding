@@ -1,0 +1,71 @@
+{
+  "moduleId": "m2",
+  "title": "Create a Project and Navigate Trackers Knowledge Check",
+  "questions": [
+    {
+      "id": "m2-kc-001",
+      "question": "What permission does a user need in order to create a new Codebeamer project?",
+      "options": [
+        "Project Admin role within an existing project",
+        "Create Project group permissions",
+        "Trackers - Administrate permission",
+        "Membership in the Developer role"
+      ],
+      "answerIndex": 1,
+      "rationale": "Creating a new project requires Create Project group permissions, which is a system-level permission, not a role within a specific project. The Project Admin role applies once a project exists. Trackers - Administrate and Developer role membership control access within an existing project's trackers, not project creation.",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-002",
+      "question": "When creating a default (blank) project, which field is required to uniquely identify the project?",
+      "options": [
+        "Category",
+        "Image",
+        "Name",
+        "Membership constraints"
+      ],
+      "answerIndex": 2,
+      "rationale": "Name is the required field that uniquely identifies a project. Category is optional and defaults to 'Uncategorized' if not specified. Image and Membership constraints are optional configuration settings, not required identifiers.",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-003",
+      "question": "A JAWS team member wants any user to be able to request access to the proof-of-concept project, but a Project Admin should approve each request before access is granted. Which membership visibility setting should be used?",
+      "options": [
+        "Public",
+        "Public with approval",
+        "Private",
+        "Available as template"
+      ],
+      "answerIndex": 1,
+      "rationale": "Public with approval allows any user to request to join, but requires a project administrator to approve each request. Public allows automatic joining with no approval step. Private requires administrators to add members directly with no self-service requests. 'Available as template' is unrelated to membership visibility - it controls whether other projects can reuse this project's configuration.",
+      "topic": "m2t2"
+    },
+    {
+      "id": "m2-kc-004",
+      "question": "Where are permissions configured for members of a Codebeamer project?",
+      "options": [
+        "Individually for each member on the Members page",
+        "At the role level, by editing the role's permissions",
+        "Individually for each group added to the project",
+        "Only through the Tracker Permissions tab"
+      ],
+      "answerIndex": 1,
+      "rationale": "Permissions are edited at the role level - you cannot edit permissions for an individual member or group directly. Members and groups are assigned to roles, and all members of a role share that role's permission set. The Tracker Permissions tab configures permissions for a specific tracker by role, which is a finer-grained layer on top of project-level role permissions.",
+      "topic": "m2t3"
+    },
+    {
+      "id": "m2-kc-005",
+      "question": "In the Configuration Diagram, what do blue Generalization arrows represent?",
+      "options": [
+        "Bi-directional traceability between two trackers",
+        "Inheritance from a derived tracker to its template tracker",
+        "A reference from a declaring field to a target tracker",
+        "The order in which trackers appear in the Tracker Tree"
+      ],
+      "answerIndex": 1,
+      "rationale": "Blue Generalization arrows show inheritance, pointing from a derived tracker to the template tracker it is based on. Bi-directional traceability between trackers is shown with regular arrows representing references, and references from a declaring field to target trackers are shown as light blue arrows. The Tracker Tree order is independent of, and does not affect, the Configuration Diagram.",
+      "topic": "m2t4"
+    }
+  ]
+}

@@ -1,0 +1,614 @@
+{
+  "id": "m6",
+  "title": "Create Reports and Analyze Project Data",
+  "description": "Build simple and traceability reports, manage report jobs, and create wiki dashboards to visualize data from the JAWS proof-of-concept project.",
+  "topics": [
+    {
+      "id": "m6t1",
+      "title": "Reporting Capabilities Overview",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "As JAWS (JAY Automotive Works) builds out its proof-of-concept project, the team needs ways to summarize and present data scattered across many trackers - customer requirements, system requirements, tasks, test cases, and test runs. Codebeamer provides three core capabilities for reporting on project data: simple reports, traceability reports, and dashboards."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Simple Reports"
+        },
+        {
+          "type": "paragraph",
+          "text": "From the Reports tab, you can locate and open existing reports, create a new report, manage report jobs, and open recently used reports. Notice that reporting capabilities live outside of any single project - a report can pull items from trackers across your entire Codebeamer instance."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Mode", "Purpose"],
+          "rows": [
+            ["Edit mode", "Name and save the report; build it in Simple or Expert mode; export to Office; create a job"],
+            ["Simple mode", "Build the report visually using the graphical user interface (filters, grouping, ordering, columns)"],
+            ["Expert mode", "Edit the underlying cbQL query directly for advanced reporting"],
+            ["View mode", "Open a saved report; export to Office (Excel only); send to Review Hub; create or manage jobs"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Traceability Reports and Dashboards"
+        },
+        {
+          "type": "paragraph",
+          "text": "A Traceability Report works much like a regular report, but its purpose is to show relationships between items across multiple trackers in a defined order. You can add up to five levels of traceability beyond the initial filter, choosing whether to render the result as a Traceability Tree View or a Hierarchical Table View. Dashboards, built in your personal wiki or a project wiki, let you arrange widgets - including reports and traceability reports - into a customized visual summary of project data."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "Traceability reports can include trackers from any project, can be filtered with AND/OR logic at every level, and can show or hide downstream/upstream references, folders, and test step reuse references at each level. However, you cannot apply a group-by to a traceability report, and there is no Expert mode for editing cbQL."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each JAWS reporting capability to its description:",
+          "pairs": [
+            {"left": "Simple Report", "right": "Lists items from selected trackers with filters, grouping, ordering, and column selection"},
+            {"left": "Traceability Report", "right": "Shows relationships between items across up to six levels of trackers"},
+            {"left": "Dashboard", "right": "A wiki page that arranges widgets, including reports, into a visual summary"},
+            {"left": "Expert mode", "right": "Lets you edit the underlying cbQL query for a simple report"}
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Codebeamer offers three reporting capabilities: simple reports, traceability reports, and dashboards",
+        "Reporting lives outside any single project, so a report can span trackers from multiple projects",
+        "Simple reports support Simple mode (GUI) and Expert mode (cbQL); traceability reports support neither group-by nor Expert mode",
+        "Traceability reports support up to five additional levels and render as a tree or hierarchical table"
+      ]
+    },
+    {
+      "id": "m6t2",
+      "title": "Traceability, Suspected Links, and Dashboard Widgets",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Traceability reports can run top-down (from a high-level requirement down to its tests) or bottom-up (from a test case up to the requirements it supports). For the JAWS project, this lets the team verify that every Customer Requirement Specification has supporting System Requirement Specifications and Test Cases - and that nothing was implemented without a traceable origin."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Top-Down vs. Bottom-Up Traceability"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Direction", "Initial Filter Tracker", "Use Case"],
+          "rows": [
+            ["Top-down", "Customer Requirement Specifications", "Confirm every customer requirement has linked system requirements and tests"],
+            ["Bottom-up", "Test Cases", "Confirm every test case traces back up to a system and customer requirement"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Suspected Links"
+        },
+        {
+          "type": "paragraph",
+          "text": "When an upstream item changes - for example, JAWS changes the Business Value of the Chassis customer requirement to Must Have - any downstream item linked to it (such as Carbon-fiber plastic structures in System Requirement Specifications) is flagged with a Suspected badge. Clicking the badge opens a dialog where you can apply individual attribute changes to the downstream item and clear the badge, or leave the downstream item unchanged by leaving Clear Suspected unselected."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "A grayed-out Suspected badge means either no relevant change occurred upstream, or the downstream item was created after the upstream change. Don't assume a grayed-out badge requires action - review it before clearing in bulk."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Bulk Removal of Suspected Badges"
+        },
+        {
+          "type": "paragraph",
+          "text": "Resolving suspected badges one at a time is impractical when dozens of items are affected. From a tracker's toolbar, the Inspect All Changes action lets you choose the upstream reference field, review every triggering change at once, and select Clear all suspected links on all pages to bulk-clear badges that don't require action."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Dashboard Widgets"
+        },
+        {
+          "type": "paragraph",
+          "text": "Dashboards are wiki pages - personal or project - that host widgets. For JAWS, a useful dashboard might combine a Table widget showing open work items, a My Open Tracker Items widget scoped to the JAWS project, and a Traceability Report widget showing the requirement-to-test chain - all on one page, all updating live as data changes."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the steps for resolving suspected badges in bulk, from first to last:",
+          "items": [
+            "Open the downstream tracker and choose Inspect All Changes from the toolbar",
+            "Select the upstream reference field to inspect (e.g., Customer Requirement)",
+            "Review the overview of all triggering upstream changes",
+            "Select Clear all suspected links on all pages and click Save"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Top-down traceability starts from Customer Requirement Specifications; bottom-up starts from Test Cases",
+        "A Suspected badge appears on a downstream item when its upstream reference changes",
+        "The Suspected badge dialog lets you apply individual attribute changes and clear the badge, or leave the item unchanged",
+        "Inspect All Changes lets you bulk-clear suspected badges across an entire tracker instead of one at a time"
+      ]
+    },
+    {
+      "id": "m6t3",
+      "title": "Create a Simple Report",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create a simple report for the JAWS project that displays work items from multiple trackers, then enhance it with ordering, grouping, filtering, and column changes."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex1",
+          "title": "Create a Simple Report",
+          "objective": "Create a simple report across multiple JAWS trackers and enhance it with ordering, grouping, filtering, and columns.",
+          "tasks": [
+            {
+              "id": "ex1-t1",
+              "title": "Create the Report",
+              "steps": [
+                {
+                  "action": "Click the Reports tab.",
+                  "detail": "Reporting capabilities are located outside of any specific project. You are taken directly to a view where you can begin creating a report.",
+                  "hint": "The Reports tab is in the main navigation, separate from any individual project."
+                },
+                {
+                  "action": "In the Project list, under Recent Projects, select the JAWS Proof of Concept check box.",
+                  "detail": "The left pane contains fields available across your entire Codebeamer instance. Selecting a project narrows the fields and trackers shown.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Tracker list under Project: JAWS Proof of Concept, select the check boxes for Customer Requirement Specifications, System Requirement Specifications, Tasks, Test Cases, and Test Runs.",
+                  "detail": "A report can include trackers from any project, but for this exercise you are scoping it to the trackers your team uses most for status reviews.",
+                  "hint": null
+                },
+                {
+                  "action": "Click away from the list, then click GO.",
+                  "detail": "The first 25 items from the selected project and trackers appear in the list report at the bottom of the work area.",
+                  "hint": null
+                },
+                {
+                  "action": "At the bottom of the report, click Show More.",
+                  "detail": "This expands the report to display all matching items rather than the first page only.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex1-t2",
+              "title": "Enhance the Report",
+              "steps": [
+                {
+                  "action": "Next to Order by, click Add, type sub in the filter box, and select Submitted on/at.",
+                  "detail": "By default, items are ordered in descending order by submission timestamp, with the most recent items first. Adding Submitted on/at lets you change this.",
+                  "hint": "The ascending order is selected by default once you add the field."
+                },
+                {
+                  "action": "Click GO to apply ascending order by Submitted on/at.",
+                  "detail": "Items now appear oldest-first, which is useful for reviewing the history of how the JAWS project was built up.",
+                  "hint": null
+                },
+                {
+                  "action": "Next to Group by, click Add, type stat in the filter box, select Status, and click GO.",
+                  "detail": "Grouping by Status organizes the report into sections, making it easy to see how many items are in each status across all five trackers at a glance.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Add Filter, type stat in the filter box, select Status, then under Meaning select the Unset and In Progress check boxes, click away from the list, and click GO.",
+                  "detail": "This filter narrows the report to only items that are still in draft (Unset) or actively being worked (In Progress), removing Accepted and Completed items from view.",
+                  "hint": "Filters can be applied from many categories, including Default Fields, Reference Filters, and Tag Filters - Status is a Default Field."
+                },
+                {
+                  "action": "From the left pane, drag the Modified on/at field onto the Order by box, replacing the existing ordering, then click the ASC label to switch it to descending and click GO.",
+                  "detail": "This re-orders the filtered, grouped report so the most recently modified items appear first - useful for a daily standup review.",
+                  "hint": null
+                },
+                {
+                  "action": "Beside the Assigned to column, click the ellipsis, click Add Column, and under Default Fields select Assigned on/at.",
+                  "detail": "You can add, remove, and reposition columns to tailor the report to what your audience needs to see.",
+                  "hint": null
+                },
+                {
+                  "action": "In the middle of the work area, click Expert to view the underlying cbQL, then click Simple to return to the graphical view.",
+                  "detail": "Expert mode shows the cbQL for the report's current where clause, group by, and order by - useful for advanced users, though writing cbQL is beyond the scope of this course.",
+                  "hint": null
+                },
+                {
+                  "action": "At the top of the work area, click Save. In the Name box, type JAWS Proof of Concept Report 1, and in the Description box, type Report showing unset and in progress work items.",
+                  "detail": "Saving the report makes it reusable by the team and available as a data source for dashboard widgets.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Please select Role(s) list, select Product Owner, Project Admin, Scrum Master, Stakeholder, and Test Lead. For Project Admin, set Access to WRITE, then click Save.",
+                  "detail": "Permissions control who can view or edit the saved report. Granting Project Admin WRITE access allows them to maintain the report over time.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Simple reports can combine items from multiple trackers and even multiple projects in a single view",
+        "Order by, Group by, Add Filter, and column controls let you reshape a report without writing cbQL",
+        "Expert mode exposes the underlying cbQL for the current report configuration",
+        "Saved reports have configurable role-based permissions, including WRITE access for administrators"
+      ]
+    },
+    {
+      "id": "m6t4",
+      "title": "Create a Traceability Report",
+      "estimatedMinutes": 12,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create a top-down traceability report for the JAWS project, convert it to a bottom-up view, examine and resolve Suspected badges, and perform a bulk removal of remaining suspected links."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex2",
+          "title": "Create a Traceability Report",
+          "objective": "Build top-down and bottom-up traceability reports, then resolve suspected links individually and in bulk.",
+          "tasks": [
+            {
+              "id": "ex2-t1",
+              "title": "Create a Top-Down Traceability Report",
+              "steps": [
+                {
+                  "action": "On the Report toolbar, click New Report, then click Traceability Report.",
+                  "detail": "This opens a configuration view similar to the Intelligent Document View and Table View configuration dialog boxes - you define the project and tracker for each level.",
+                  "hint": null
+                },
+                {
+                  "action": "For Initial Filter, set the Project to JAWS Proof of Concept and the Tracker to Customer Requirement Specifications. For Level 1, set the same project and the Tracker to System Requirement Specifications.",
+                  "detail": "The initial filter is the starting point of the traceability chain; each subsequent level shows items linked downstream from the previous level.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Add New Level, and set Level 2 to Project JAWS Proof of Concept, Tracker Test Cases.",
+                  "detail": "You can add up to five levels beyond the initial filter, and each level can pull from any project's trackers, not just JAWS.",
+                  "hint": null
+                },
+                {
+                  "action": "At the Initial Filter level, click Add Filter, then under Reference Filters select Has Downstream Reference.",
+                  "detail": "This ensures the report only shows customer requirements that actually have something linked beneath them, avoiding empty traceability chains.",
+                  "hint": null
+                },
+                {
+                  "action": "At Level 1 and Level 2, deselect the Show Folders and Information check boxes.",
+                  "detail": "Hiding folders and informational items keeps the traceability view focused on actionable requirements, tasks, and tests.",
+                  "hint": null
+                },
+                {
+                  "action": "Click GO and scroll to the bottom to view the list of items.",
+                  "detail": "This is a top-down traceability report: it starts from Customer Requirement Specifications and follows links down through System Requirement Specifications to Test Cases.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex2-t2",
+              "title": "Create a Bottom-Up Traceability Report",
+              "steps": [
+                {
+                  "action": "Scroll back to the top of the view. At the Initial Filter level, delete the Has Downstream Reference filter, then change the Tracker from Customer Requirement Specifications to Test Cases.",
+                  "detail": "Reversing the chain starts from the most detailed items (test cases) and traces upward.",
+                  "hint": null
+                },
+                {
+                  "action": "At Level 2, change the Tracker from Test Cases to Customer Requirement Specifications.",
+                  "detail": "Level 1 (System Requirement Specifications) stays the same, but the chain now reads Test Cases to System Requirement Specifications to Customer Requirement Specifications.",
+                  "hint": null
+                },
+                {
+                  "action": "Click GO.",
+                  "detail": "The view is now filtered bottom-up: every test case is traced back to the system and customer requirements it supports.",
+                  "hint": null
+                },
+                {
+                  "action": "Reconfigure the report back to a top-down view: Initial Filter = Customer Requirement Specifications, Level 1 = System Requirement Specifications, Level 2 = Test Cases.",
+                  "detail": "You will use the top-down view for the remaining steps in this exercise.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex2-t3",
+              "title": "Resolve Suspected Links",
+              "steps": [
+                {
+                  "action": "In the list of items, locate a System Requirement Specifications item showing a Suspected badge - for example, Carbon-fiber plastic structures, which is downstream from the Chassis customer requirement.",
+                  "detail": "The Suspected badge is applied to a downstream item when its upstream reference changes, signaling that the downstream item may need to be reviewed or updated.",
+                  "hint": "A grayed-out badge means no relevant change occurred, or the item was created after the change."
+                },
+                {
+                  "action": "Click the Suspected badge beside Carbon-fiber plastic structures.",
+                  "detail": "A dialog box opens showing the upstream attribute changes - for example, the Business Value attribute on Chassis was changed to Must Have.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Apply column next to Business Value, click the Apply arrow to apply the value Must Have to Carbon-fiber plastic structures.",
+                  "detail": "This propagates the upstream change to the downstream item, keeping both items consistent.",
+                  "hint": "You can also click the main Apply arrow at the top to apply all listed changes at once."
+                },
+                {
+                  "action": "Ensure the Clear Suspected check box is selected, then click Save. Reload the page if necessary.",
+                  "detail": "Clearing the Suspected flag confirms the change has been reviewed and applied. If you instead wanted to leave the downstream item unchanged, you would deselect Clear Suspected and make no other changes.",
+                  "hint": null
+                },
+                {
+                  "action": "Scroll to the top of the report and click Save new Traceability Report. In the Name box, type JAWS Proof of Concept Traceability Report.",
+                  "detail": "Saving preserves your level configuration so the team can reopen this exact traceability view later.",
+                  "hint": null
+                },
+                {
+                  "action": "Under Permissions, select the Developer, Project Admin, and Test Lead roles, set Access to WRITE for Project Admin, and click Save.",
+                  "detail": "As with simple reports, role-based permissions control who can view and edit the saved traceability report.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex2-t4",
+              "title": "Bulk-Resolve Remaining Suspected Badges",
+              "steps": [
+                {
+                  "action": "Navigate to the System Requirement Specifications tracker in the JAWS Proof of Concept project. On the tracker toolbar, click more, then click Inspect All Changes.",
+                  "detail": "Multiple System Requirement Specifications items still show Suspected badges. Resolving each individually would be tedious, so you will use the bulk capability instead.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Upstream Reference Field list, click Customer Requirement.",
+                  "detail": "This displays an overview of every change made to upstream Customer Requirement Specifications items that triggered a Suspected badge on a downstream System Requirement Specifications item.",
+                  "hint": null
+                },
+                {
+                  "action": "Review the listed changes. Since none of them are relevant to the downstream items, select Clear all suspected links on all pages, then click Save.",
+                  "detail": "This clears the Suspected badge across every affected item in the tracker in a single action, without applying any of the upstream attribute changes.",
+                  "hint": null
+                },
+                {
+                  "action": "Beside the Reports tab, click the ellipsis, click Find Reports, type Traceability in the filter box, and open the JAWS Proof of Concept Traceability Report.",
+                  "detail": "Reopening the saved traceability report lets you confirm the result of the bulk operation.",
+                  "hint": null
+                },
+                {
+                  "action": "Scroll through the items at Level 1 (System Requirement Specifications) and confirm the Suspected badges have been removed.",
+                  "detail": "All previously flagged items at this level should no longer show a Suspected badge.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "A traceability report's direction is determined by which tracker is set as the Initial Filter versus the final level",
+        "Reference filters such as Has Downstream Reference narrow a traceability report to chains that actually exist",
+        "Resolving a Suspected badge can apply individual upstream attribute changes and clear the flag, or leave the item unchanged",
+        "Inspect All Changes on a tracker enables bulk clearing of Suspected badges across all affected items"
+      ]
+    },
+    {
+      "id": "m6t5",
+      "title": "Manage Reports and Schedule Jobs",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will examine report management capabilities for the JAWS Proof of Concept Report 1, export it to Excel, and create and manage a scheduled job that emails the report to stakeholders."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex3",
+          "title": "Manage Reports and Schedule Jobs",
+          "objective": "Use report management options, export a report to Office, and configure a recurring report job.",
+          "tasks": [
+            {
+              "id": "ex3-t1",
+              "title": "Examine Report Management Options",
+              "steps": [
+                {
+                  "action": "Open JAWS Proof of Concept Report 1 and, on the toolbar, click Edit.",
+                  "detail": "Edit mode gives you access to the report's configuration and management options.",
+                  "hint": null
+                },
+                {
+                  "action": "Beside the report name, click the cog wheel icon.",
+                  "detail": "From here you can set report properties, revert recent unsaved changes, save the report under a new name, delete the report, and star or unstar it.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Properties, then under Permissions click x beside the Test Lead role to remove that role's access, and click Save.",
+                  "detail": "Adjusting permissions lets you keep report access aligned with who actually needs to see JAWS reporting data.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex3-t2",
+              "title": "Export the Report to Office",
+              "steps": [
+                {
+                  "action": "On the toolbar, click Export to Office.",
+                  "detail": "Because this is a simple report, the only export option is Excel. Traceability reports can export to Excel or Word.",
+                  "hint": null
+                },
+                {
+                  "action": "Leave the default Export option and click the download link to save the .xlsx file.",
+                  "detail": "Exporting gives stakeholders who do not have Codebeamer access a static snapshot of the report data, with the same rows, columns, and values shown on screen.",
+                  "hint": null
+                },
+                {
+                  "action": "Open the downloaded file in Excel and confirm the rows, columns, and values match the report.",
+                  "detail": "Verifying the export confirms the filtered, grouped, and ordered data transferred correctly.",
+                  "hint": null
+                },
+                {
+                  "action": "On the toolbar, click View Mode to leave editing.",
+                  "detail": "View mode provides a different toolbar focused on viewing, sharing, and scheduling rather than editing the report definition.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex3-t3",
+              "title": "Create and Manage a Report Job",
+              "steps": [
+                {
+                  "action": "On the toolbar, click Job. In the Recipients list, select Project Admin and click away from the list.",
+                  "detail": "Jobs let Codebeamer automatically send a report to specified recipients on a schedule, without anyone manually running it.",
+                  "hint": null
+                },
+                {
+                  "action": "Beside Frequency, click Weekly, then click Monthly to review the available scheduling options before settling on Weekly.",
+                  "detail": "Daily frequency can run once per day or every 4 hours; Weekly recurs on a chosen day; Monthly recurs on a specific day or interval within the month, each with the once-per-day or every-4-hours option.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the check box beside Send email only if number of items are more than, leave the default value of 3, and click Save.",
+                  "detail": "This threshold avoids sending the report when there is little or nothing new to review, reducing noise for stakeholders.",
+                  "hint": null
+                },
+                {
+                  "action": "On the toolbar, click Jobs to open the Manage Report Jobs dialog box.",
+                  "detail": "This dialog lists every job's name, the report it runs, its frequency, and when it last ran.",
+                  "hint": null
+                },
+                {
+                  "action": "To the right of the job you just created, click x to delete it, then close the dialog box.",
+                  "detail": "From this dialog you can also edit a job or its report by clicking the respective name link, or disable a job without deleting it.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The cog wheel menu on a report provides properties, revert, save-as, delete, and star/unstar options",
+        "Simple reports export to Excel only; traceability reports can export to Excel or Word",
+        "Report jobs can run Daily, Weekly, or Monthly, and can be conditioned on a minimum item-count threshold",
+        "The Manage Report Jobs dialog lets you view, edit, disable, or delete jobs across all reports"
+      ]
+    },
+    {
+      "id": "m6t6",
+      "title": "Create a Project Dashboard",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create a dashboard in the JAWS project wiki that combines a Table widget showing your saved report, a My Open Tracker Items widget scoped to JAWS, and a Traceability Report widget showing the requirements-to-test chain."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex4",
+          "title": "Create a Project Dashboard",
+          "objective": "Build a project wiki dashboard combining a Table widget, a My Open Tracker Items widget, and a Traceability Report widget.",
+          "tasks": [
+            {
+              "id": "ex4-t1",
+              "title": "Create the Dashboard and Add the Table Widget",
+              "steps": [
+                {
+                  "action": "Beside the Projects tab, click the vertical ellipsis, and under Recent Projects click JAWS Proof of Concept.",
+                  "detail": "This takes you to the main wiki page for the JAWS project, where dashboards live alongside other wiki content.",
+                  "hint": null
+                },
+                {
+                  "action": "On the toolbar, click New Child Dashboard. In the Name box, type JAWS Proof of Concept Dashboard 1, and click Add.",
+                  "detail": "A dashboard is a special wiki page designed to host widgets in a flexible layout.",
+                  "hint": null
+                },
+                {
+                  "action": "Hover over the work area on the right and click Add Widget. Click the Report Visualization tab, hover over the Table widget, and click Add.",
+                  "detail": "The Table widget displays the rows and columns of a saved report directly inside the dashboard.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Title box, delete the existing title and type Unset and in progress work items. Set the header color as desired.",
+                  "detail": "A descriptive title and distinct header color help viewers quickly identify what each widget shows on a busy dashboard.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Data source box, delete the existing value, click the pencil icon, type JAWS in the Filter box of the Report Finder, select JAWS Proof of Concept Report 1, and click Set.",
+                  "detail": "This connects the widget to the report you created and saved earlier, so the widget always reflects the report's current filtered, grouped, and ordered data.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Preview to confirm the widget shows your report data, then click Save.",
+                  "detail": "You can also configure the number of columns, column order, order-by criteria, page size, and show options before saving.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex4-t2",
+              "title": "Add the My Open Tracker Items and Traceability Report Widgets",
+              "steps": [
+                {
+                  "action": "Scroll to the bottom of the dashboard and click Add Widget. Select the Project tab and add the My Open Tracker Items widget.",
+                  "detail": "This widget summarizes open item counts across trackers for a selected project.",
+                  "hint": null
+                },
+                {
+                  "action": "Leave the default title, set the header color, and click Save.",
+                  "detail": "By default the widget displays item counts across all projects, which is too broad for a JAWS-specific dashboard.",
+                  "hint": null
+                },
+                {
+                  "action": "At the top of the widget, under the title, open the drop-down list and select JAWS Proof of Concept.",
+                  "detail": "This filters the widget to show only open items belonging to the JAWS project.",
+                  "hint": null
+                },
+                {
+                  "action": "At the intersection of the Items column and the All Items row, right-click the value and click Open Link in New Tab, then close the new tab.",
+                  "detail": "This demonstrates that widgets are interactive - you can drill from a summary count directly into the underlying list of items.",
+                  "hint": null
+                },
+                {
+                  "action": "At the bottom of the dashboard, click Add Widget, type Trace in the Filter widgets box, and add the Traceability Report widget.",
+                  "detail": "This widget embeds a live traceability report directly in the dashboard.",
+                  "hint": null
+                },
+                {
+                  "action": "Leave the default title, set the header color, then click Add New Level twice so the widget has an Initial Filter plus Levels 1 through 3.",
+                  "detail": "You need four levels total to map Customer Requirement Specifications through to Test Runs.",
+                  "hint": null
+                },
+                {
+                  "action": "For Initial Filter, Level 1, Level 2, and Level 3, set the Project to JAWS Proof of Concept. Set the Tracker for each level: Initial Filter = Customer Requirement Specifications, Level 1 = System Requirement Specifications, Level 2 = Test Cases, Level 3 = Test Runs.",
+                  "detail": "This configuration shows the full chain from a customer requirement down to the actual test run results that verify it.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Save, then verify all three widgets display live data from the JAWS project.",
+                  "detail": "The dashboard now provides a self-updating, single-page view of work item status, open items, and end-to-end traceability for stakeholders.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "A dashboard is a wiki page (personal or project) that hosts one or more widgets",
+        "The Table widget displays a saved report's data and updates automatically as the report's underlying data changes",
+        "The My Open Tracker Items widget can be filtered to a specific project after it is added",
+        "The Traceability Report widget can embed a multi-level traceability chain directly in a dashboard"
+      ]
+    }
+  ]
+}

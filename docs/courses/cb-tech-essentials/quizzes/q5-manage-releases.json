@@ -1,0 +1,71 @@
+{
+  "moduleId": "m5",
+  "title": "Manage Releases Knowledge Check",
+  "questions": [
+    {
+      "id": "m5-kc-001",
+      "question": "Which Codebeamer feature provides Lean/Kanban support, including Work-in-Progress (WIP) limits?",
+      "options": [
+        "The Agile Planner",
+        "The built-in Kanban board",
+        "The Release Gantt chart",
+        "The Requirements Library"
+      ],
+      "answerIndex": 1,
+      "rationale": "The built-in Kanban board supports Lean/Kanban practices, including WIP limits. The Agile Planner supports releases, sprints, and backlogs for Agile/Scrum; the Release Gantt chart visualizes schedules; the Requirements Library is unrelated to development methodology support.",
+      "topic": "m5t1"
+    },
+    {
+      "id": "m5-kc-002",
+      "question": "JAWS wants different teams to use different ways of working within the same Codebeamer project. Which methodology description is correct?",
+      "options": [
+        "SAFe is designed specifically for very large projects with many team members, while LeSS targets smaller teams",
+        "Hybrid combines aspects of Waterfall and Agile methodologies",
+        "Waterfall allows project phases to overlap and run concurrently",
+        "Agile/Scrum requires a single fixed sprint length across the entire organization"
+      ],
+      "answerIndex": 1,
+      "rationale": "Hybrid combines aspects of Waterfall and Agile. SAFe and LeSS are reversed in the first option (SAFe is typically for smaller teams, LeSS for larger ones); Waterfall is a linear progression where each phase must complete before the next begins, not overlapping phases; Codebeamer does not impose a single fixed sprint length organization-wide.",
+      "topic": "m5t1"
+    },
+    {
+      "id": "m5-kc-003",
+      "question": "On a task in Codebeamer, what is the purpose of the Planned Effort field?",
+      "options": [
+        "It records the team color used on the Kanban board",
+        "It identifies the amount of time required to complete the task and is used to calculate work progress",
+        "It defines the workflow transitions available for the task",
+        "It sets the WIP limit for the column the task appears in"
+      ],
+      "answerIndex": 1,
+      "rationale": "Planned Effort identifies the estimated time required to complete a task and is used to calculate work progress and enable logging of spent effort. Team color is a Teams tracker attribute, workflow transitions are configured separately, and WIP limits are configured on Kanban board columns, not on individual tasks.",
+      "topic": "m5t2"
+    },
+    {
+      "id": "m5-kc-004",
+      "question": "What happens when activity is logged against a task in Codebeamer?",
+      "options": [
+        "The task is automatically reassigned to a new team",
+        "The Spent Effort and %Spent/Plan fields are updated based on the logged activity",
+        "The task's upstream reference is removed",
+        "The release the task belongs to is automatically marked as Released"
+      ],
+      "answerIndex": 1,
+      "rationale": "Logging activity (date, effort, activity description, and kind) updates the Spent Effort and %Spent/Plan fields, and the history is visible on the Work Log tab. Logging activity does not change team assignment, remove upstream references, or affect the release's status.",
+      "topic": "m5t2"
+    },
+    {
+      "id": "m5-kc-005",
+      "question": "In Codebeamer's release management, what is true about a sprint?",
+      "options": [
+        "A sprint is a timed unit of development belonging to a release, and shares the same fields and workflow as its parent release",
+        "A sprint can only be created before its parent release is saved",
+        "A sprint must use a different Release Method than its parent release",
+        "A sprint is visible only in the Kanban Board view, not in the Plan or Dashboard views"
+      ],
+      "answerIndex": 0,
+      "rationale": "A sprint is a timed unit of development belonging to a release and shares the same fields and workflow as its parent release. Sprints are added after a release exists, sprints do not have an independent Release Method, and sprints are visible in the Dashboard and Plan views as well as the Kanban Board view.",
+      "topic": "m5t3"
+    }
+  ]
+}

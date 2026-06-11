@@ -1,0 +1,78 @@
+{
+  "id": "cb-tech-essentials",
+  "title": "Codebeamer: Technical Essentials",
+  "description": "End-to-end Codebeamer ALM workflow - create a project, manage requirements, testing, releases, reports, and documents using the JAWS proof-of-concept scenario.",
+  "prerequisite": "cb-overview",
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Codebeamer Overview",
+      "description": "Explore Application Lifecycle Management concepts, discover Codebeamer's architecture and capabilities, and navigate the Codebeamer user interface using the JAWS proof-of-concept scenario.",
+      "estimatedMinutes": 63,
+      "topicCount": 8,
+      "exerciseTopicStart": 7,
+      "contentFile": "modules/m1-codebeamer-overview.json",
+      "quizFile": "quizzes/q1-codebeamer-overview.json"
+    },
+    {
+      "id": "m2",
+      "title": "Create a Project and Navigate Trackers",
+      "description": "Create a Codebeamer project for the JAWS proof-of-concept, configure project administration settings, and explore how trackers, workflows, and configuration diagrams organize project data.",
+      "estimatedMinutes": 57,
+      "topicCount": 7,
+      "exerciseTopicStart": 5,
+      "contentFile": "modules/m2-create-project-trackers.json",
+      "quizFile": "quizzes/q2-create-project-trackers.json"
+    },
+    {
+      "id": "m3",
+      "title": "Manage Requirements",
+      "description": "Import requirements, examine traceability, build filtered and intelligent views, manage tracker connections, perform Excel round-trip editing, run reviews, and create baselines for the JAWS proof-of-concept project.",
+      "estimatedMinutes": 100,
+      "topicCount": 10,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m3-manage-requirements.json",
+      "quizFile": "quizzes/q3-manage-requirements.json"
+    },
+    {
+      "id": "m4",
+      "title": "Manage Testing",
+      "description": "Explore Codebeamer's holistic test management capabilities and practice creating, importing, executing, and analyzing tests for the JAWS proof-of-concept project.",
+      "estimatedMinutes": 80,
+      "topicCount": 8,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m4-manage-testing.json",
+      "quizFile": "quizzes/q4-manage-testing.json"
+    },
+    {
+      "id": "m5",
+      "title": "Manage Releases",
+      "description": "Explore how Codebeamer supports Agile, Waterfall, and hybrid development methodologies, manage teams and tasks, work with the Kanban board, and create and manage releases and sprints for the JAWS proof-of-concept project.",
+      "estimatedMinutes": 72,
+      "topicCount": 7,
+      "exerciseTopicStart": 4,
+      "contentFile": "modules/m5-manage-releases.json",
+      "quizFile": "quizzes/q5-manage-releases.json"
+    },
+    {
+      "id": "m6",
+      "title": "Create Reports and Analyze Project Data",
+      "description": "Build simple and traceability reports, manage report jobs, and create wiki dashboards to visualize data from the JAWS proof-of-concept project.",
+      "estimatedMinutes": 54,
+      "topicCount": 6,
+      "exerciseTopicStart": 3,
+      "contentFile": "modules/m6-reports-analyze-data.json",
+      "quizFile": "quizzes/q6-reports-analyze-data.json"
+    },
+    {
+      "id": "m7",
+      "title": "Manage Documents",
+      "description": "Use the Codebeamer Document Manager to organize, version, and link supporting documents for the JAWS proof-of-concept project, while wrapping up the Codebeamer Technical Essentials journey.",
+      "estimatedMinutes": 32,
+      "topicCount": 4,
+      "exerciseTopicStart": 3,
+      "contentFile": "modules/m7-manage-documents.json",
+      "quizFile": "quizzes/q7-manage-documents.json"
+    }
+  ]
+}

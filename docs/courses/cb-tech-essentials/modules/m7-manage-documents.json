@@ -1,0 +1,338 @@
+{
+  "id": "m7",
+  "title": "Manage Documents",
+  "description": "Use the Codebeamer Document Manager to organize, version, and link supporting documents for the JAWS proof-of-concept project, and wrap up the course.",
+  "topics": [
+    {
+      "id": "m7t1",
+      "title": "The Document Manager",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Alongside trackers, requirements, tests, and releases, every Codebeamer project includes a Document Manager. JAWS engineers use it to store reference material - specification documents, supplier files, and meeting notes - that supports the requirements and test items in the proof-of-concept project, without forcing that content into a tracker."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What the Document Manager Provides"
+        },
+        {
+          "type": "paragraph",
+          "text": "The Documents tab gives every project a shared file repository. JAWS can use it to centralize files that previously lived in shared drives or email attachments, scattered across their legacy ALM repositories - bringing those artifacts into the same traceable environment as their requirements and tests."
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Capability",
+            "What It Does"
+          ],
+          "rows": [
+            [
+              "Folders and sub-folders",
+              "Create a hierarchy to organize documents by topic, team, or document type"
+            ],
+            [
+              "Upload and download",
+              "Upload single files or multiple files as a .zip, .tar, or .gzip archive; download multiple files as .zip"
+            ],
+            [
+              "Lock",
+              "Lock a document for editing so other users cannot change it while you are working on it"
+            ],
+            [
+              "Version control",
+              "Track every uploaded version of a document and prevent accidental overwrite or deletion"
+            ],
+            [
+              "Comments and attachments",
+              "Add comments and related attachments directly on a document"
+            ],
+            [
+              "Associations",
+              "Link a document to other work items, such as tasks, requirements, or test cases"
+            ]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "The default maximum size for a single document upload in Codebeamer is 5 GB. Administrators can change this default in the Codebeamer configuration if larger files need to be stored."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Why It Matters for JAWS"
+        },
+        {
+          "type": "paragraph",
+          "text": "For the JAWS proof-of-concept, the Document Manager gives engineers a way to keep supplier specification documents, test reports, and meeting notes alongside the requirements and tests they relate to - and to associate those documents directly with tracker items, so reviewers can move from a requirement to its supporting documentation in one click."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Always lock a document before downloading it to make changes. This prevents another team member from uploading a conflicting version while you are editing."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each Document Manager feature to what it provides:",
+          "pairs": [
+            {
+              "left": "Version control",
+              "right": "Tracks every uploaded version and prevents accidental overwrite"
+            },
+            {
+              "left": "Lock",
+              "right": "Restricts other users from editing a document while you work on it"
+            },
+            {
+              "left": "Associations",
+              "right": "Links a document to a task, requirement, or other work item"
+            },
+            {
+              "left": "Folders and sub-folders",
+              "right": "Organizes documents into a hierarchy by topic or team"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Document Manager is a shared file repository available in every Codebeamer project, accessed from the Documents tab",
+        "Folders, version control, locking, comments, and associations help teams manage shared files alongside tracker data",
+        "Documents can be associated with tasks, requirements, or other work items for full traceability",
+        "The default maximum upload size for a single document is 5 GB, which administrators can adjust"
+      ]
+    },
+    {
+      "id": "m7t2",
+      "title": "Document Versioning and Course Wrap-Up",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Every time a document is re-uploaded to the same location in the Document Manager, Codebeamer creates a new version rather than discarding the old one. This version history gives JAWS a complete record of how a document changed over time - and a way to recover an earlier version if needed."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "How Version History Works"
+        },
+        {
+          "type": "paragraph",
+          "text": "Each upload to a document increments its version number. The History tab on a document's properties shows every version, when it was uploaded, and who uploaded it. From there, any earlier version can be restored - which itself creates a new version, so the full history is always preserved. For example, if version 1 is restored after version 2 was uploaded, the document now has three versions: version 1 and version 3 are identical, and version 2 remains the version that was edited."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Restoring a previous version does not delete the versions in between - it adds a new version that copies the restored content. Version history in Codebeamer is additive, not destructive."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Bringing It All Together"
+        },
+        {
+          "type": "paragraph",
+          "text": "This module completes the Codebeamer Technical Essentials course. Across the previous modules, the JAWS proof-of-concept project demonstrated how Codebeamer supports the full ALM lifecycle: capturing and tracing requirements, defining and executing test cases, planning releases, analyzing project data through reports, and integrating with existing repositories. The Document Manager adds one more piece - a shared, version-controlled space for the supporting documents that accompany that work."
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "JAWS set out to replace its legacy ALM tools with a single platform covering requirements, tests, releases, reporting, integration, and document management. Each module of this course mapped to one of those needs - together they form the proof-of-concept that shows Codebeamer can support JAWS end to end."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the areas of the Codebeamer proof-of-concept in the order JAWS explored them across this course:",
+          "items": [
+            "Requirements management",
+            "Test management",
+            "Release management",
+            "Reporting and analysis",
+            "Document management"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Re-uploading a document creates a new version; nothing is overwritten or lost",
+        "The History tab lists every version of a document and allows any version to be restored",
+        "Restoring an old version adds a new version rather than deleting the versions in between",
+        "The Document Manager completes the JAWS proof-of-concept by adding shared, version-controlled supporting documentation to the project"
+      ]
+    },
+    {
+      "id": "m7t3",
+      "title": "Create a Directory and Upload a Document",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create a folder structure in the Document Manager for your JAWS working files, upload a Word document into it, and edit and re-upload that document to see Codebeamer's version control in action."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "You will need a Word document to upload, such as a copy of an Auto Requirements Document. If you do not have a remote desktop environment available, you can substitute any .docx file you have access to and edit it locally before re-uploading."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex-manage-documents-1",
+          "title": "Create a Directory and Upload a Document",
+          "objective": "Create a folder structure on the Documents tab, upload a Word file, then edit and re-upload it to create a new version.",
+          "tasks": [
+            {
+              "id": "ex-manage-documents-1-task1",
+              "title": "Create a Directory Structure",
+              "steps": [
+                {
+                  "action": "Click the Documents tab.",
+                  "detail": "The Documents tab opens the Document Manager for the current project, showing the folder tree in the left pane.",
+                  "hint": null
+                },
+                {
+                  "action": "In the left pane, ensure .codeBeamer is selected, click New on the toolbar, and then click Directory.",
+                  "detail": "The .codeBeamer node is the root folder of the document repository. New directories are created beneath whichever folder is currently selected.",
+                  "hint": "If New is greyed out, click directly on the .codeBeamer node first."
+                },
+                {
+                  "action": "In the Name box, type <your name> Documents, in the Description box type Directory for <your name> documents, and then click OK.",
+                  "detail": "The description helps other JAWS team members understand the purpose of the folder when browsing the repository.",
+                  "hint": null
+                },
+                {
+                  "action": "With the <your name> Documents directory selected, repeat the steps to create a Word sub-directory, with the description Directory for my Word documents.",
+                  "detail": "Sub-directories let you organize documents by file type, team, or topic - in this case, separating Word documents from other file types.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex-manage-documents-1-task2",
+              "title": "Upload, Edit, and Re-upload a Document",
+              "steps": [
+                {
+                  "action": "With the Word directory selected in the left pane, click New, and then click File.",
+                  "detail": "This opens the file upload dialog scoped to the currently selected folder.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Choose files to upload, select your Auto Requirements Document.docx file, and then click Open, and then click Upload.",
+                  "detail": "The file is uploaded as version 1 of the document and appears in the Word directory.",
+                  "hint": null
+                },
+                {
+                  "action": "Beside Auto Requirements Document.docx, click more, and then click Lock.",
+                  "detail": "Locking the document prevents other users from uploading a conflicting version while you make your edits.",
+                  "hint": "The lock icon appears next to the document once it is locked."
+                },
+                {
+                  "action": "Click more again, click Download, and save the file to your local machine, replacing the existing file if prompted.",
+                  "detail": "Downloading gives you a local copy to edit. The locked status remains in Codebeamer while you work.",
+                  "hint": null
+                },
+                {
+                  "action": "Open the downloaded file in Word, add a new paragraph after the first paragraph with the text This is a new paragraph, then save and close the file.",
+                  "detail": "This change will be visible when you compare the new version against the original after re-uploading.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Word directory, repeat the upload steps to re-upload the edited Auto Requirements Document.docx, replacing the existing file when prompted.",
+                  "detail": "Re-uploading to the same location does not overwrite the original - it creates version 2 of the document.",
+                  "hint": "Check the Version column or the document's History tab to confirm the version number increased."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Directories and sub-directories are created with New > Directory from the Documents tab",
+        "Locking a document before downloading it prevents conflicting edits from other users",
+        "Re-uploading an edited document to the same location creates a new version rather than replacing the file"
+      ]
+    },
+    {
+      "id": "m7t4",
+      "title": "Link a Document and Restore a Version",
+      "estimatedMinutes": 10,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will link the document you uploaded to a task using an association, confirm the link from both sides, and then use the document's version history to restore an earlier version."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "This exercise continues from the previous one. You should already have an Auto Requirements Document.docx with at least two versions in your Word directory."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex-manage-documents-2",
+          "title": "Link a Document and Restore a Version",
+          "objective": "Create a task, associate it with a document, verify the association from both the document and the task, and restore a previous document version.",
+          "tasks": [
+            {
+              "id": "ex-manage-documents-2-task1",
+              "title": "Link the Document to a Task",
+              "steps": [
+                {
+                  "action": "Navigate to the Tasks tracker and create a new task with Summary: Edit requirements document, Description: Task for the edit requirements document, and Assigned to: admin. Leave the remaining fields at their defaults, and click Save.",
+                  "detail": "This task represents the work of editing the requirements document, and will become the target of the document's association.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the Documents tab, and in the left pane click the Word directory.",
+                  "detail": "This returns you to the directory containing Auto Requirements Document.docx.",
+                  "hint": null
+                },
+                {
+                  "action": "Beside Auto Requirements Document.docx, click more, then click Properties, and at the bottom click the Associations tab.",
+                  "detail": "The Associations tab on a document's properties shows links between this document and other Codebeamer items.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Add Association, in the Association Type list click is related to, then on the From History tab select the Edit requirements document check box and click Add.",
+                  "detail": "This creates a bidirectional link - the document is now related to the task, and the task is related to the document.",
+                  "hint": "The task should appear as the first item in the From History list if you created it just before this step."
+                }
+              ]
+            },
+            {
+              "id": "ex-manage-documents-2-task2",
+              "title": "Verify the Association and Restore a Version",
+              "steps": [
+                {
+                  "action": "Navigate to the Tasks tracker, click Document View on the header toolbar, right-click the Edit requirements document item, and click Open.",
+                  "detail": "Document View presents tracker items in a hierarchical layout, useful for reviewing one item at a time.",
+                  "hint": null
+                },
+                {
+                  "action": "At the bottom of the task, click the Associations tab and confirm that Auto Requirements Document.docx appears as a related item.",
+                  "detail": "Seeing the association from the task confirms the link works in both directions - from document to task, and from task to document.",
+                  "hint": null
+                },
+                {
+                  "action": "Return to the Documents tab and the Word directory, beside Auto Requirements Document.docx click more, then click Properties, and click the History tab.",
+                  "detail": "The History tab lists every version of the document, including the original upload and your edited re-upload.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Version column beside version 1, click more, then click Restore this version, and click OK.",
+                  "detail": "Restoring version 1 creates a new version (version 3) that is identical to version 1, while version 2 remains in the history as the edited version.",
+                  "hint": "After restoring, the History tab should show three versions: 1, 2, and 3."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Associations are created from a document's Properties > Associations tab using Add Association",
+        "An association between a document and a task is visible from both the document and the task",
+        "Restoring a previous version from the History tab adds a new version rather than removing later versions",
+        "This exercise completes the JAWS proof-of-concept walkthrough across requirements, tests, releases, reporting, integration, and document management"
+      ]
+    }
+  ]
+}

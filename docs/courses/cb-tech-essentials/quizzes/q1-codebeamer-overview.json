@@ -1,0 +1,84 @@
+{
+  "moduleId": "m1",
+  "title": "Codebeamer Overview Knowledge Check",
+  "questions": [
+    {
+      "id": "m1-kc-001",
+      "question": "In the JAWS proof of concept scenario, which capability is NOT one of the fundamental Codebeamer platform capabilities JAWS asked to see demonstrated?",
+      "options": [
+        "Requirements management",
+        "Test management",
+        "Payroll and HR management",
+        "Integration with existing ALM repositories"
+      ],
+      "answerIndex": 2,
+      "rationale": "JAWS requested a proof of concept demonstrating requirements management, test management, release management, reporting and analysis, and integration with existing ALM repositories. Payroll and HR management are unrelated to ALM and were not part of the request.",
+      "topic": "m1t1"
+    },
+    {
+      "id": "m1-kc-002",
+      "question": "Which statement best describes why ALM (Application Lifecycle Management) is important for industrial products like vehicles?",
+      "options": [
+        "ALM is only relevant to consumer mobile apps, not embedded vehicle software",
+        "Over 90% of product innovation today is driven by, connected to, or enabled by software, and ALM helps manage that complexity throughout the product's life",
+        "ALM is a one-time activity performed only before a product's initial release",
+        "ALM replaces the need for software testing by automating all quality assurance"
+      ],
+      "answerIndex": 1,
+      "rationale": "Over 90% of industrial product innovation is driven by, connected to, or enabled by software, and ALM provides governance across the entire lifecycle - including updates after release, such as a vehicle braking system update. ALM applies to both visible and invisible software, is ongoing rather than one-time, and complements (not replaces) testing.",
+      "topic": "m1t2"
+    },
+    {
+      "id": "m1-kc-003",
+      "question": "What are the three pillars of Codebeamer ALM?",
+      "options": [
+        "Dashboards, Widgets, and Reports",
+        "Trackers, Workflows, and Versioning/Baselines",
+        "Projects, Wikis, and Documents",
+        "Users, Groups, and Roles"
+      ],
+      "answerIndex": 1,
+      "rationale": "Codebeamer's three pillars are Trackers (configurable containers for ALM data), Workflows (lifecycle definitions controlling who can do what and when), and Versioning/Baselines (always-on versioning plus snapshots for compliance). The other options describe individual features rather than the foundational pillars.",
+      "topic": "m1t3"
+    },
+    {
+      "id": "m1-kc-004",
+      "question": "Which Codebeamer architecture component is responsible for storing most of the platform's model data, with support for PostgreSQL, MySQL, and Oracle?",
+      "options": [
+        "The web container (Apache Tomcat)",
+        "The relational database",
+        "The mail server",
+        "The wiki engine"
+      ],
+      "answerIndex": 1,
+      "rationale": "The relational database stores most of Codebeamer's model data and supports PostgreSQL, MySQL, and Oracle as vendors. Apache Tomcat is the web container that processes requests, the mail server sends notifications, and the wiki engine is one of the core services - none of these store the bulk of model data.",
+      "topic": "m1t4"
+    },
+    {
+      "id": "m1-kc-005",
+      "question": "A JAWS team needs both a Customer Requirements tracker and a System Requirements tracker. How does Codebeamer support this?",
+      "options": [
+        "By creating two new tracker types, since each project requires custom types",
+        "By creating two separate instances of the Requirement tracker type, each configured differently",
+        "It is not possible - each project may only have one tracker per type",
+        "By renaming the Bug tracker type to Requirement for the second use"
+      ],
+      "answerIndex": 1,
+      "rationale": "Tracker types are hard-coded and cannot be created or edited, but a single tracker type can have multiple configured instances. JAWS can create a Customer Requirements tracker and a separate System Requirements tracker, both based on the Requirement tracker type but configured differently for their purposes.",
+      "topic": "m1t5"
+    },
+    {
+      "id": "m1-kc-006",
+      "question": "How do Roles and Groups differ in Codebeamer?",
+      "options": [
+        "Groups apply only at the project level, while Roles apply across the entire instance",
+        "Roles are project-scoped and reflect team structure with project-wide permissions, while Groups categorize users by shared traits (e.g., job profile) for easier access management",
+        "Groups and Roles are interchangeable terms for the same concept in Codebeamer",
+        "Only the System Administrator group can have Roles assigned to it"
+      ],
+      "answerIndex": 1,
+      "rationale": "Roles reflect hierarchical or task-based team structures and their permissions apply project-wide (e.g., Developer vs. Designer access to SCM). Groups collect users sharing common traits such as organization, job profile, skill, or title, making access control easier to manage. Groups can be assigned to different roles in different projects, so the two concepts are distinct and complementary.",
+      "topic": "m1t6"
+    }
+  ]
+}

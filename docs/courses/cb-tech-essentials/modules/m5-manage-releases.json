@@ -1,0 +1,764 @@
+{
+  "id": "m5",
+  "title": "Manage Releases",
+  "description": "Explore how Codebeamer supports Agile, Waterfall, and hybrid development methodologies, manage teams and tasks, work with the Kanban board, and create and manage releases and sprints for the JAWS proof-of-concept project.",
+  "topics": [
+    {
+      "id": "m5t1",
+      "title": "Development Methodologies in Codebeamer",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "JAWS (JAY Automotive Works) is evaluating Codebeamer as a replacement for its legacy ALM software. Before the team commits to a way of working, they need to understand which development methodologies Codebeamer supports and how its built-in tools map to each one."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Supported Methodologies"
+        },
+        {
+          "type": "paragraph",
+          "text": "Codebeamer is methodology-agnostic. It can be configured to support Agile/Scrum, Waterfall, hybrid combinations of the two, and scaled frameworks such as SAFe and LeSS. This flexibility lets a single platform serve teams that work very differently, which is important for JAWS as different teams (mechanical, electrical, software) may prefer different approaches."
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Methodology",
+            "Description"
+          ],
+          "rows": [
+            [
+              "Agile/Scrum",
+              "Incremental development with timed sprints; includes Lean/Kanban practices"
+            ],
+            [
+              "Waterfall",
+              "Linear progression where each project phase must complete before the next begins"
+            ],
+            [
+              "Hybrid",
+              "Combines aspects of Waterfall and Agile methodologies"
+            ],
+            [
+              "SAFe (Scaled Agile Framework)",
+              "Organizational and workflow patterns for implementing agile practices at enterprise scale, typically for smaller teams"
+            ],
+            [
+              "LeSS (Large Scale Scrum)",
+              "Similar to SAFe, but designed for larger projects with more team members"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Built-In Agile and Kanban Support"
+        },
+        {
+          "type": "paragraph",
+          "text": "Agile/Scrum practices are supported through the built-in Agile Planner, which provides releases and sprints, a product backlog, a release/sprint backlog, a release dashboard, release notes, a release Gantt chart, and a release burndown chart. Lean/Kanban practices are supported through a built-in Kanban board, including Work-in-Progress (WIP) limits."
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Because Codebeamer supports multiple methodologies on the same platform, JAWS can run its proof-of-concept project using Scrum for software teams while other teams continue with a more Waterfall-oriented approach - all within the same project structure."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each methodology to its description:",
+          "pairs": [
+            {
+              "left": "Agile/Scrum",
+              "right": "Incremental development using timed sprints, including Lean/Kanban practices"
+            },
+            {
+              "left": "Waterfall",
+              "right": "Linear progression where each phase must finish before the next begins"
+            },
+            {
+              "left": "Hybrid",
+              "right": "Combines aspects of Waterfall and Agile methodologies"
+            },
+            {
+              "left": "SAFe",
+              "right": "Organizational patterns for agile at enterprise scale, typically for smaller teams"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Codebeamer supports Agile/Scrum, Waterfall, Hybrid, SAFe, and LeSS methodologies",
+        "The built-in Agile Planner provides releases, sprints, backlogs, dashboards, release notes, Gantt charts, and burndown charts",
+        "The built-in Kanban board supports Lean/Kanban practices, including WIP limits",
+        "A single Codebeamer project can accommodate teams that work differently, which suits a multi-discipline company like JAWS"
+      ]
+    },
+    {
+      "id": "m5t2",
+      "title": "Managing Teams and Tasks",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "As JAWS sets up its proof-of-concept project, the Project Admin and Scrum Master need a way to organize people into teams and assign work to them. Codebeamer provides a Teams tracker and a Tasks tracker that work together to support this."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Creating Teams"
+        },
+        {
+          "type": "paragraph",
+          "text": "Teams are created as items in the Teams tracker. Each team has its own attributes, including a name and a color used to visually identify it on boards and reports. When adding team members, you can select individual users or project roles - for example, adding everyone assigned the Developer role to a team in one step."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Assigning Teams and Effort to Tasks"
+        },
+        {
+          "type": "paragraph",
+          "text": "Tasks can be created in several ways, including directly in the Tasks tracker or as downstream references from an upstream item such as a user story or requirement. Once a task exists, you can assign one or more teams to it, set start and end dates to manage completion, and specify planned effort - the amount of time required to complete the task."
+        },
+        {
+          "type": "comparison-table",
+          "headers": [
+            "Field",
+            "Purpose"
+          ],
+          "rows": [
+            [
+              "Team",
+              "Associates the task with one or more teams responsible for the work"
+            ],
+            [
+              "Start Date / End Date",
+              "Defines the planned schedule for completing the task"
+            ],
+            [
+              "Planned Effort",
+              "Estimated time required; used to calculate work progress"
+            ],
+            [
+              "Spent Effort",
+              "Logged time worked, recorded against the task as activity"
+            ],
+            [
+              "Remaining Effort",
+              "Updated estimate of time still required, recorded with each logged activity"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Logging Activity"
+        },
+        {
+          "type": "paragraph",
+          "text": "Tasks are preconfigured for time and activity tracking. When a team member logs work, they record the date worked, the level of effort in hours, a description of the activity, and the kind of activity performed - such as Analysis, Design, Implementation, Test, Approval, Administration, Organization, or Other. Codebeamer uses logged activity to update the Spent Effort and %Spent/Plan fields automatically, and the full history is visible on the task's Work Log tab."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Activity can also be viewed and logged through the dedicated Timekeeping tracker, which gives Project Admins and Scrum Masters a consolidated view of effort across all tasks and team members."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Place these steps for managing teams and tasks in the order they would typically occur:",
+          "items": [
+            "Create a team in the Teams tracker and add members",
+            "Create a task and assign a team to it",
+            "Set planned effort and start/end dates on the task",
+            "Log spent effort, activity kind, and remaining effort against the task"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Teams are created in the Teams tracker and can include individual users or project roles as members",
+        "Tasks can be assigned to one or more teams, with start/end dates and planned effort",
+        "Logged activity records date, hours spent, activity description, and activity kind",
+        "Spent Effort, %Spent/Plan, and Remaining Effort update automatically based on logged activity, and full history is available on the Work Log tab"
+      ]
+    },
+    {
+      "id": "m5t3",
+      "title": "Releases and Sprints",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "For the JAWS proof-of-concept, the Scrum Master and Product Owner need to plan delivery in increments. Codebeamer's release management capabilities let them define releases, divide releases into sprints, and track progress toward each delivery milestone."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What Release Management Involves"
+        },
+        {
+          "type": "paragraph",
+          "text": "Release management in Codebeamer covers defining releases (creating, updating, and deleting them), dividing releases into sprints, managing the lifecycle of releases as they progress through workflow stages toward a 'released' status, associating other work items such as tasks, bugs, or user stories with a release, managing the lifecycle of those associated items, and assigning teams or users to releases and sprints."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Releases and Sprints as Tracker Items"
+        },
+        {
+          "type": "paragraph",
+          "text": "Releases are created from the Releases tracker. Like other Codebeamer entities, releases have customizable properties, a customizable lifecycle managed through workflow transitions, support comments and attachments, and can have associations and references to other entities. A release can even be a child of another release. A sprint is a timed unit of development that belongs to a release, and it shares the same fields and workflows as its parent release."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "When creating a release, the Release Method field defaults to Scrum but can be set to Kanban or Waterfall instead - reinforcing that the same Releases tracker can support different delivery approaches across a JAWS project."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Views for Releases and Sprints"
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            {
+              "front": "Dashboard view",
+              "back": "Visualizes releases and their indented child sprints or releases, with individual statistics for each. Available for the Releases tracker, an individual release, or an individual sprint."
+            },
+            {
+              "front": "Plan view",
+              "back": "The primary interface for agile planning. Shows releases and sprints in the left pane, items assigned to them in the middle pane, and item details in the right pane. Items not yet assigned appear in the Product Backlog and can be dragged onto a release or sprint."
+            },
+            {
+              "front": "Kanban Board view",
+              "back": "Available for a release or a sprint within a release. Workflow stages are represented as columns (at minimum ToDo, In Progress, Done), and items can be progressed through the workflow with one-click changes."
+            }
+          ]
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each release/sprint view to its purpose:",
+          "pairs": [
+            {
+              "left": "Dashboard view",
+              "right": "Shows releases, child sprints, and statistics for each"
+            },
+            {
+              "left": "Plan view",
+              "right": "Primary interface for assigning backlog items to releases and sprints"
+            },
+            {
+              "left": "Kanban Board view",
+              "right": "Shows workflow stages as columns and lets items be progressed through them"
+            },
+            {
+              "left": "Release Backlog",
+              "right": "Items that belong to a release but have not yet been assigned to a sprint"
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Release management includes defining releases, dividing them into sprints, managing lifecycles, and associating work items",
+        "Releases are tracker items with customizable properties, workflows, comments, attachments, and associations; a release can be a child of another release",
+        "A sprint is a timed unit of development belonging to a release and shares its parent release's fields and workflows",
+        "The Dashboard, Plan, and Kanban Board views each support a different aspect of release and sprint management"
+      ]
+    },
+    {
+      "id": "m5t4",
+      "title": "Manage Teams and Tasks",
+      "estimatedMinutes": 12,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will set up the Teams tracker for the JAWS proof-of-concept project, create two teams, create a task and assign a team and an upstream reference to it, and log activity against the task."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "If you are not already in the virtual environment, in the PTC Cloud Portal, click Remote Login. By default, the Teams tracker is not configured to allow team members to be added, so the first task configures the assignedTo field."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex5",
+          "title": "Manage Teams and Tasks",
+          "objective": "Configure the Teams tracker, create teams with members, create a task with a team and upstream reference, and log activity against the task.",
+          "tasks": [
+            {
+              "id": "ex5-t1",
+              "title": "Configure the Teams Tracker and Create Teams",
+              "steps": [
+                {
+                  "action": "Beside the Trackers tab, click the vertical ellipsis, and then click Teams.",
+                  "detail": "This opens the Teams tracker, which is where teams and their members are managed for the project.",
+                  "hint": null
+                },
+                {
+                  "action": "On the toolbar, click more, click Configure, and then click the Fields tab.",
+                  "detail": "By default, the Teams tracker does not allow team members to be added. You will change the field permissions to enable this.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the Show property name check box, scroll to locate the assignedTo property, and in the Permissions column click Single.",
+                  "detail": "Showing property names makes it easier to find the assignedTo field, which controls who can be added as a team member.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Team Members - Field Access dialog box, in the list, click Unrestricted, click OK, and then click Save.",
+                  "detail": "Setting the field access to Unrestricted allows any project member to be added to a team.",
+                  "hint": null
+                },
+                {
+                  "action": "In the header, click Teams, then on the toolbar click Create a new item of this type. In the Name box, type Team Training 1 and set a color.",
+                  "detail": "The team color makes the team visually identifiable on Kanban boards and dashboards.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Team Members field, add the admin and peter users as members, and then click Save.",
+                  "detail": "Adding members to the team means tasks assigned to this team are associated with these users.",
+                  "hint": null
+                },
+                {
+                  "action": "On the toolbar, click New Item, and repeat the previous steps to create a second team named Team Training 2 with a different color and the same members (admin, peter).",
+                  "detail": "Having two teams lets you practice assigning multiple teams to a single task later in this exercise.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex5-t2",
+              "title": "Create a Task, Assign a Team, and Log Activity",
+              "steps": [
+                {
+                  "action": "Switch to the Tasks tracker, click Create a new item of this type, in the Summary box type Task 1, and in the Description box type Task for completion of Task 1.",
+                  "detail": "Tasks represent the development work that teams will perform during the proof-of-concept.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Team box, click the pencil icon, select the check box beside Team Training 2, and then click Add.",
+                  "detail": "Assigning a team to a task makes it visible to that team on boards and dashboards filtered by team.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Upstream Reference box, click the pencil icon, select the check box beside CRS to User Story 1, click Add, and then click Save.",
+                  "detail": "The upstream reference links this task back to the user story it implements, preserving traceability from requirements through to development work.",
+                  "hint": null
+                },
+                {
+                  "action": "Set the Status to IN PROGRESS using the Start state transition, and then click Save.",
+                  "detail": "Moving the task to IN PROGRESS reflects that work has begun and makes the task visible in the corresponding Kanban column.",
+                  "hint": "Look for a Status control near the top of the item detail view."
+                },
+                {
+                  "action": "Set Start Date to today at the current time (rounded to the nearest upcoming half hour), End Date to at least 3 hours later, Story Points to 2, and Planned Effort to 10, then click away from the Planned Effort field.",
+                  "detail": "These fields establish the schedule and size estimate for the task and are used to calculate work progress as effort is logged.",
+                  "hint": null
+                },
+                {
+                  "action": "Beside Spent Effort, click the clock icon to log activity. Set Date to today, Spent Effort to 0.5, Activity to Sprint demo, Kind to Approval, and Remaining Effort to 9.5, and then click OK.",
+                  "detail": "Logging activity records who worked on the task, how much time was spent, what kind of work it was, and how much effort remains.",
+                  "hint": null
+                },
+                {
+                  "action": "Repeat the previous step to log a second activity: Date - previous business day, Spent Effort - 1.0, Activity - Update requirements document, Kind - Design, Remaining Effort - 8.5.",
+                  "detail": "Logging a second entry shows how Spent Effort and %Spent/Plan accumulate as multiple activities are recorded.",
+                  "hint": null
+                },
+                {
+                  "action": "Under Details, click the Work Log tab and expand the Activity column to view the logged activities.",
+                  "detail": "The Work Log tab provides a complete history of effort logged against the task, which can also be reviewed using the Timekeeping tracker.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Teams tracker may need its assignedTo field permission changed before members can be added",
+        "Teams can be created with names, colors, and members, then assigned to tasks",
+        "An upstream reference on a task preserves traceability back to the requirement or user story it implements",
+        "Logging activity (date, effort, activity, kind, remaining effort) automatically updates Spent Effort and %Spent/Plan, visible on the Work Log tab"
+      ]
+    },
+    {
+      "id": "m5t5",
+      "title": "Kanban Board and Tasks from Upstream References",
+      "estimatedMinutes": 12,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will examine the upstream connections of the Tasks tracker, create new tasks directly from upstream items as downstream references, and then view and manage all the resulting tasks using the Kanban board."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "This exercise continues from the previous one. Leave Codebeamer open with the Codebeamer Technical Essentials training project selected."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex6",
+          "title": "Kanban Board and Tasks from Upstream References",
+          "objective": "Examine upstream connections to the Tasks tracker, create tasks as downstream references from upstream items, and manage tasks using the Kanban board.",
+          "tasks": [
+            {
+              "id": "ex6-t1",
+              "title": "Create Tasks as Downstream References from Upstream Items",
+              "steps": [
+                {
+                  "action": "Click the Trackers tab, on the toolbar click Configuration Diagram, and then in the diagram click Tasks.",
+                  "detail": "The Tasks tracker has upstream connections to the User Stories, System Requirement Specifications, and Customer Requirement Specifications trackers, meaning tasks can be created as downstream references from any of these.",
+                  "hint": null
+                },
+                {
+                  "action": "Close the Configuration Diagram, and then navigate to the System Requirement Specifications tracker.",
+                  "detail": "You will create a new task directly from an upstream system requirement, automatically linking the two items.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Tracker Tree, click the Wheel rate item. Beside the item, click Click here to create new Downstream References, and then click Codebeamer Technical Essentials training > Tasks.",
+                  "detail": "Creating a downstream reference from an upstream item automatically establishes the traceability link between the two.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Summary box, type Task 2, in the Description box type Task for completion of Task 2, set the Team to Team Training 1, and then click Save.",
+                  "detail": "Task 2 is now linked upstream to the Wheel rate system requirement and assigned to Team Training 1.",
+                  "hint": null
+                },
+                {
+                  "action": "Repeat the previous steps to add a task as a downstream reference for the Customer Requirement Specifications > Transmission item, with Summary - Task 3, Description - Task for completion of Task 3, and Team - Team Training 1, Team Training 2.",
+                  "detail": "Task 3 demonstrates that a task can be linked to a customer-level requirement and assigned to multiple teams at once.",
+                  "hint": null
+                },
+                {
+                  "action": "Navigate to the Tasks tracker and confirm that Task 1, Task 2, and Task 3 all appear in Table view, with their respective teams assigned.",
+                  "detail": "Task 1 was created directly with an upstream reference added manually; Task 2 and Task 3 were created as downstream references from upstream items - two different paths to the same traceable result.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex6-t2",
+              "title": "View and Manage Tasks on the Kanban Board",
+              "steps": [
+                {
+                  "action": "On the header toolbar, click Kanban Board.",
+                  "detail": "The Kanban board displays each task as a card in a column representing its current workflow status (for example, ToDo, In Progress, To Verify, Done).",
+                  "hint": null
+                },
+                {
+                  "action": "On the toolbar, click more, then click Kanban Board Configuration. With the Column Configuration tab selected, set the ToDo column MIN to 4 and the In progress column MAX to 1, then click Save.",
+                  "detail": "WIP limits generate visual notifications when a column has too few (FREE CAPACITY) or too many (OVERLOADED) items, helping the team balance workload.",
+                  "hint": null
+                },
+                {
+                  "action": "Observe the FREE CAPACITY indicator above the ToDo column (3 tasks, below the minimum of 4) and the absence of any indicator above In progress (1 task, within limits).",
+                  "detail": "These visual cues let a Scrum Master quickly spot columns that are under- or over-loaded relative to configured thresholds.",
+                  "hint": null
+                },
+                {
+                  "action": "Click and drag Task 2 from the ToDo column to the In progress column.",
+                  "detail": "Dragging a card between columns changes the underlying task's workflow status - the same effect as using a Status transition on the item itself.",
+                  "hint": null
+                },
+                {
+                  "action": "Observe that the In progress column now shows an OVERLOADED indicator (2 tasks, exceeding the maximum of 1), while ToDo still shows FREE CAPACITY (2 tasks, still below the minimum of 4).",
+                  "detail": "The board updates its WIP indicators immediately as cards move, giving real-time feedback on workload distribution.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Configuration Diagram shows which trackers have upstream/downstream connections to the Tasks tracker",
+        "Creating a downstream reference from an upstream item (such as a system or customer requirement) automatically links the new task to it",
+        "The Kanban board represents tasks as cards in columns matching workflow status, and supports drag-and-drop status changes",
+        "WIP limits configured per column trigger FREE CAPACITY and OVERLOADED visual indicators as cards move"
+      ]
+    },
+    {
+      "id": "m5t6",
+      "title": "Create Releases and Add Sprints",
+      "estimatedMinutes": 14,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will create two releases for the JAWS proof-of-concept, add a sprint to each, access the Plan view to assign backlog items to sprints, and rank, filter, group, and save views of the Product Backlog."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex7",
+          "title": "Create Releases and Add Sprints",
+          "objective": "Create releases and sprints, assign items to sprints using the Plan view, and rank, filter, group, and save Product Backlog views.",
+          "tasks": [
+            {
+              "id": "ex7-t1",
+              "title": "Create Two Releases",
+              "steps": [
+                {
+                  "action": "Navigate to the Releases tracker, and on the toolbar click Create a new Release in this configuration tracker.",
+                  "detail": "The Releases tracker is where all releases for the project are defined and managed.",
+                  "hint": null
+                },
+                {
+                  "action": "Notice that the Release Method defaults to Scrum, and that Kanban and Waterfall are also available. Leave the default of Scrum.",
+                  "detail": "The Release Method determines which agile artifacts and views are emphasized for this release, but Codebeamer can mix methods across releases in the same project.",
+                  "hint": null
+                },
+                {
+                  "action": "Set Start Date to today's date and the next upcoming half hour, Planned Release Date to two business days later, Sprint Length to 7, Name to Release 1, and Description to Release to cover requirements for Release 1, then click Save.",
+                  "detail": "These fields establish the schedule and default sprint duration for Release 1.",
+                  "hint": null
+                },
+                {
+                  "action": "In the header, click Releases, and create a second release with Name - Release 2, Description - Release to cover requirements for Release 2, Start Date - following Monday, Planned Release Date - Friday of that same week, and Sprint Length - 7.",
+                  "detail": "Release 2 represents the next planned increment, scheduled to begin after Release 1.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex7-t2",
+              "title": "Add Sprints and Assign Items in the Plan View",
+              "steps": [
+                {
+                  "action": "Return to the Releases tracker (Dashboard view), click Release 1, and then click New Sprint. Set Start Date - today, Planned Release Date - today, Name - Sprint 1, Description - Sprint to cover Sprint 1, and click Save.",
+                  "detail": "A sprint inherits the fields and workflow of its parent release and represents one timed iteration within it.",
+                  "hint": null
+                },
+                {
+                  "action": "Return to the Releases tracker and create a sprint in Release 2 with Start Date - following Monday, Planned Release Date - Friday of that week, Name - Sprint 2, and Description - Sprint to cover Sprint 2.",
+                  "detail": "Sprint 2 is the first iteration planned within Release 2.",
+                  "hint": null
+                },
+                {
+                  "action": "Beside Release 1, click Display the items of this Release, and repeat for Release 2, then click Release 1 and on the header toolbar click Plan.",
+                  "detail": "The Plan view is the primary agile planning interface, showing releases/sprints on the left, backlog items in the middle, and item details on the right.",
+                  "hint": null
+                },
+                {
+                  "action": "In the middle pane, drag Task 3 and drop it on Sprint 1 in the left pane.",
+                  "detail": "Dragging an item from the Product Backlog onto a sprint assigns it to that sprint.",
+                  "hint": null
+                },
+                {
+                  "action": "On the toolbar, select the Multiple selection check box, select Task 1 and Task 2 in the middle pane, drag them to Sprint 1, and then click Sprint 1 to confirm they were added.",
+                  "detail": "Multiple selection lets you assign several backlog items to a sprint in a single drag operation.",
+                  "hint": null
+                },
+                {
+                  "action": "In the left pane, click Product Backlog, hover over the CRS to User Story 1 item and click the pencil icon to view its editable fields, then click Cancel. Double-click the AssignedTo column for the same item and add the admin user.",
+                  "detail": "The Plan view supports both full editing (pencil icon) and quick inline editing of individual fields directly in the middle pane.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex7-t3",
+              "title": "Rank, Filter, Group, and Save Product Backlog Views",
+              "steps": [
+                {
+                  "action": "In the left pane, under Release 1, click Sprint 1 and observe that items added to a sprint are automatically ranked.",
+                  "detail": "Ranking determines the order in which items are presented and worked on within a sprint or backlog.",
+                  "hint": null
+                },
+                {
+                  "action": "In the left pane, click Product Backlog. Beside the Chassis item, click Send to the bottom of ordered Product Backlog, then repeat for additional items until 7 items are ranked.",
+                  "detail": "Manually ranking items in the Product Backlog lets the Product Owner prioritize what should be pulled into the next sprint.",
+                  "hint": null
+                },
+                {
+                  "action": "In the Filter bar, click Add Filter, type type, click Tracker Type, and select the Requirement, Task, and User Story check boxes. Then click Add Group by, type status, click Status, and click GO.",
+                  "detail": "Filtering and grouping the Product Backlog by tracker type and status helps the team focus on specific kinds of work and see how items are distributed across workflow states. Items already assigned to a sprint (such as the three Tasks) no longer appear in the Product Backlog.",
+                  "hint": null
+                },
+                {
+                  "action": "Under the Draft status grouping, select the Weight transfer, Chassis, and Suspension item check boxes, drag them to Sprint 1, and then click Sprint 1 to confirm the filtering and grouping carry over to the sprint list.",
+                  "detail": "Filters and groupings applied in the Product Backlog also apply when viewing the same items within a sprint.",
+                  "hint": null
+                },
+                {
+                  "action": "In the left pane, click Product Backlog. On the Filter bar, click You have unsaved changes in the current View!, click Save as, set Name to Filtered and Grouped Product Backlog and Description to Product backlog items are filtered and grouped.",
+                  "detail": "Saving a view preserves the current filter, grouping, and sort settings so they can be reused later.",
+                  "hint": null
+                },
+                {
+                  "action": "Select the Public View check box, under Permissions select the Project Admin and Scrum Master roles, set Access for Project Admin to WRITE and leave Scrum Master as READ, and click Save.",
+                  "detail": "Public views with role-based permissions let teams standardize how different roles see and interact with the Product Backlog.",
+                  "hint": null
+                },
+                {
+                  "action": "Expand Default Views and click All Items to restore the unfiltered view, then on the Filter bar click Manage Tracker Views and select Filtered and Grouped Product Backlog under Public Views to restore the saved view.",
+                  "detail": "Saved views can be switched between at any time without losing the original unfiltered view.",
+                  "hint": null
+                },
+                {
+                  "action": "Return to the All Items view. With Multiple Selection enabled, select the Default: Continuously variable and Optional: Dual clutch transmission items, drag them to Release 1 in the left pane, and click Release 1 to confirm they appear in the Release 1 backlog.",
+                  "detail": "Sending items to a release backlog (without assigning them to a specific sprint) is another way to organize work for future sprint planning.",
+                  "hint": null
+                },
+                {
+                  "action": "Click Product Backlog, beside the Carbon-fiber plastic structures item click more, and click Send to the bottom of ordered Product Backlog.",
+                  "detail": "The 'more' menu provides additional options for organizing items: sending to a release backlog, or to the top, middle, bottom, or unordered section of the Product Backlog.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Releases are created from the Releases tracker and can use Scrum, Kanban, or Waterfall as their Release Method",
+        "A sprint is added to a release and inherits its parent release's fields and workflow",
+        "The Plan view is used to drag items from the Product Backlog onto releases and sprints, including multiple items at once",
+        "The Product Backlog can be ranked, filtered, grouped, and saved as a reusable (optionally public) view with role-based permissions"
+      ]
+    },
+    {
+      "id": "m5t7",
+      "title": "Manage Releases and Sprints",
+      "estimatedMinutes": 14,
+      "isExercise": true,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "In this exercise, you will explore the management options available for releases and sprints, transition a release through its workflow, create a downstream reference from the Plan view, manage a release using its Kanban board, and complete a sprint."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Completing a sprint moves its open items back to the release backlog and removes the sprint from the active dashboard view (it remains visible if Show Released is selected). Make sure all items are in their intended final state before finishing a sprint."
+        },
+        {
+          "type": "exercise",
+          "exerciseId": "ex8",
+          "title": "Manage Releases and Sprints",
+          "objective": "Identify release and sprint management options, transition a release's status, create a downstream reference from the Plan view, use a release Kanban board, and complete a sprint.",
+          "tasks": [
+            {
+              "id": "ex8-t1",
+              "title": "Identify Management Options and Transition Release Status",
+              "steps": [
+                {
+                  "action": "In the left pane of the Plan view, in Release 1, click the vertical ellipsis to view release management options, and then in Release 1 > Sprint 1, click the vertical ellipsis to compare sprint management options.",
+                  "detail": "From a release you can send open backlog items to sprints within that release or to another release's backlog. From a sprint you can send open items back to the current release backlog or to another release's backlog.",
+                  "hint": null
+                },
+                {
+                  "action": "On the header toolbar, click Dashboard, on the tracker toolbar click more, then click Configure and click the State Transitions tab.",
+                  "detail": "The Releases tracker has its own configurable state transitions, just like the Requirement and Task trackers. A new release starts as Unset, can be moved to Draft using Plan, and from Draft can move to Active (Start) or Inactive (Deactivate).",
+                  "hint": null
+                },
+                {
+                  "action": "Click Cancel, then beside Release 1 click the status icon (Status: Draft), and select the Start transition, then click Save.",
+                  "detail": "Transitioning Release 1 to Active reflects that work on this release has formally begun.",
+                  "hint": null
+                },
+                {
+                  "action": "Expand Release 1 and Sprint 1, then expand Release 2 and observe that Sprint 2 has no items to display yet.",
+                  "detail": "The Dashboard view now shows summary statistics for releases and sprints, including the number of sprints, percentage progress, open versus closed status, item counts, and planned/spent/remaining effort.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex8-t2",
+              "title": "Create a Downstream Reference and Manage a Release Kanban Board",
+              "steps": [
+                {
+                  "action": "On the right of the dashboard, click Sprint 2 to navigate to it, then click Plan Releases to return to the Plan view.",
+                  "detail": "Bookmarks on the dashboard provide quick navigation to specific releases and sprints.",
+                  "hint": null
+                },
+                {
+                  "action": "In the left pane, click Sprint 1. In the middle pane, click in the Task 1 row (not the link), and in the right pane under DETAILS change Status from IN PROGRESS to COMPLETED using the Complete transition, then click Save. Repeat for Task 2 and Task 3.",
+                  "detail": "Completed tasks are removed from the active sprint view, reflecting that the work is finished.",
+                  "hint": null
+                },
+                {
+                  "action": "On the header toolbar, click Plan. In the left pane, click Sprint 1, and beside the Weight transfer item click more, point to Create Downstream Reference, and click Codebeamer Technical Essentials training > Tasks.",
+                  "detail": "Creating a downstream reference directly from the Plan view avoids having to leave the planning context to create a linked item.",
+                  "hint": null
+                },
+                {
+                  "action": "Set Summary to Task 4 and Description to Task for completion of Task 4, then click Save.",
+                  "detail": "The new task is automatically added to Sprint 1 because it was created from an item already in that sprint.",
+                  "hint": null
+                },
+                {
+                  "action": "In the header click Releases, click Release 1, and on the header toolbar click Kanban Board.",
+                  "detail": "A Kanban board is also available at the release level, displaying releases, sprints, and items from both the Release Backlog and its sprints as cards.",
+                  "hint": null
+                },
+                {
+                  "action": "Beside the ToDo column label, click Click here to expand/collapse this swim lane to hide it, then click it again to show it.",
+                  "detail": "Hiding and showing swim lanes helps focus the board on the columns that matter for the current task.",
+                  "hint": null
+                },
+                {
+                  "action": "Click the vertical ellipsis at the top of the view, click Kanban Board Configuration, and on the Column Configuration tab drag the Partly Completed status flag from the ToDo column to the In progress column, then click Save.",
+                  "detail": "Mapping status flags to columns determines which workflow states appear under which Kanban column.",
+                  "hint": null
+                },
+                {
+                  "action": "On the header toolbar, click Kanban Board, then under the In progress swim lane drag the Suspension item under (without dropping on) the To verify column, observe the three options - Waiting for approval, Rejected, Accepted - and then drop Suspension back under In progress.",
+                  "detail": "Dragging an item toward another column previews the workflow transitions available for moving it there, without committing the change until you drop it.",
+                  "hint": null
+                }
+              ]
+            },
+            {
+              "id": "ex8-t3",
+              "title": "Complete a Sprint",
+              "steps": [
+                {
+                  "action": "In the header click Releases, expand Release 1 and Sprint 1, click the Sprint 1 status icon, click Start, and then click Save.",
+                  "detail": "A sprint must be Active before it can be completed.",
+                  "hint": null
+                },
+                {
+                  "action": "Expand Release 1 > Sprint 1, right-click the Chassis item and click Open Link in New Tab. On the new tab, set Status from DRAFT to ACCEPTED using the Accept transition, click Save, then close the tab and reload the Sprint 1 tab.",
+                  "detail": "Once Chassis is Accepted, it is automatically removed from Sprint 1's active item list.",
+                  "hint": null
+                },
+                {
+                  "action": "Repeat to set Suspension and Weight transfer to ACCEPTED using the Accept transition, and Task 4 to COMPLETED using the Complete transition.",
+                  "detail": "All items in Sprint 1 are now in either the COMPLETED or ACCEPTED state, which is a prerequisite for finishing the sprint cleanly.",
+                  "hint": null
+                },
+                {
+                  "action": "In the header click Releases, expand Release 1, click the Sprint 1 status icon, click Finish, and then click Save.",
+                  "detail": "Finishing the sprint removes it from the active list under Release 1; only the Release 1 backlog remains visible.",
+                  "hint": null
+                },
+                {
+                  "action": "On the right of the dashboard, select the Show Released check box and expand Release 1 to confirm Sprint 1 is visible again.",
+                  "detail": "The Show Released option lets you review finished sprints and releases without permanently losing access to them.",
+                  "hint": null
+                },
+                {
+                  "action": "On the header toolbar, click Plan, click Release 1, click in the Default: Continuously variable row (not the link), and in the right pane set Status from NEW to DRAFT using the Define transition, then click Save. Repeat for Optional: Dual clutch transmission.",
+                  "detail": "Returning these two backlog items to DRAFT status prepares them for use in later release management activities.",
+                  "hint": null
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Release and sprint management options include sending open items between sprints, releases, and backlogs, plus edit, delete, and Review Hub submission",
+        "The Releases tracker has its own configurable state transitions (for example Plan, Start, Deactivate)",
+        "A downstream reference can be created directly from the Plan view, and the new item is automatically added to the current sprint",
+        "Completing a sprint requires its items to be in a final state (such as Completed or Accepted); finished sprints remain accessible via the Show Released option"
+      ]
+    }
+  ]
+}
