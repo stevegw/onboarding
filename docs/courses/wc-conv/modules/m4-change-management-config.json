@@ -1,0 +1,314 @@
+{
+  "id": "m4",
+  "title": "Change Management Configuration",
+  "description": "Configure association rules and mapping rules on custom change types. Walk through the Delta Drills scenario to see how traceability, process gates, and automatic data flow are enforced end to end.",
+  "topics": [
+    {
+      "id": "m4t1",
+      "title": "Copy & Configure — The Approach",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Windchill ships with standard change object types — Problem Report, ECR, ECN. Rather than building from scratch, the recommended approach is to copy these types and make targeted changes. This preserves the proven foundation while tailoring to your specific process."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Delta Drills Scenario"
+        },
+        {
+          "type": "paragraph",
+          "text": "Delta Drills manufactures precision drilling equipment. New safety and environmental regulations require product design changes. The company needs a formal, traceable change process built on what Windchill provides out of the box. Three gaps define the configuration work: no regulatory traceability, approval gaps, and data lost between stages."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["OOTB Type", "Delta Drills Type", "What Gets Configured"],
+          "rows": [
+            ["Problem Report", "Delta Problem Report", "Association rules, lifecycle template"],
+            ["ECR (Engineering Change Request)", "Delta Regulatory Change Request", "Association rules, mapping rules, lifecycle"],
+            ["ECN (Engineering Change Notice)", "Delta New Regulation Document", "Association rules, mapping rules, release targets"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Start with what works — then configure for what's needed. Copying OOTB types preserves standard behavior (reports, integrations, lifecycle patterns) while giving you a clean surface for customization."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each business gap to the configuration that addresses it:",
+          "pairs": [
+            { "left": "No regulatory traceability", "right": "Association rules requiring a Regulation Document" },
+            { "left": "Approval gaps", "right": "Lifecycle gates blocking promotion without sign-off" },
+            { "left": "Data lost between stages", "right": "Mapping rules carrying data from ECR to ECN" }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Copy OOTB change types rather than building from scratch to preserve standard behavior.",
+        "Association rules, mapping rules, and lifecycle templates are the three configuration surfaces.",
+        "The Delta Drills scenario addresses traceability, approval, and data continuity gaps.",
+        "Start with what works, then configure for what's needed."
+      ]
+    },
+    {
+      "id": "m4t2",
+      "title": "Association Rules — What They Control",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Association Rules define which object types can be attached to a change object, whether that attachment is required or optional, and whether the change can proceed to the next lifecycle state without it. They are the enforcement mechanism for process compliance."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Four Dimensions"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Dimension", "Options", "Purpose"],
+          "rows": [
+            ["Requirement", "Optional / Required / Prohibited", "Whether the attachment must exist, may exist, or is blocked"],
+            ["Cardinality", "One-to-many / One-to-one", "How many objects can be attached (one-to-one is rare)"],
+            ["Lifecycle Gate", "Enabled / Disabled", "Whether promotion is blocked until the association exists"],
+            ["Propagation", "Enabled / Disabled", "Whether attached objects carry forward to child change objects"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "The <strong>Requirement + Lifecycle Gate</strong> combination is the most powerful tool for enforcing regulatory process compliance. Requirement alone suggests; Lifecycle Gate alone blocks without explaining why. Together, they create an enforceable contract."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Prohibited Associations"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can use Association Rules to explicitly block certain object types from being attached to a change type. This is useful when you want to prevent, for example, CAD Documents on a Problem Report. Check OOTB defaults — some are more permissive than you would expect."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange these association rule enforcement levels from weakest to strongest:",
+          "items": [
+            "Optional — attachment is allowed but not required",
+            "Required — attachment must exist but does not block promotion",
+            "Required + Lifecycle Gate — attachment must exist AND blocks promotion",
+            "Prohibited — attachment is explicitly blocked"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Association rules control which objects can be attached, whether they're required, and whether they gate promotion.",
+        "Requirement + Lifecycle Gate is the strongest enforcement — it creates a hard process gate.",
+        "Prohibited associations can block unwanted object types from being attached.",
+        "Check OOTB defaults — they may be more permissive than your process requires."
+      ]
+    },
+    {
+      "id": "m4t3",
+      "title": "Mapping Rules — Automatic Data Flow",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Mapping Rules define what happens automatically when one change type creates the next. Without them, analysts must re-enter affected objects, intent attributes, and release targets at every stage — a manual process that introduces errors and frustration."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Three Types of Mapping"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Mapping Type", "What It Does", "Key Risk"],
+          "rows": [
+            ["Attribute Mapping", "Copies field values from source to target change type", "Breaks silently if attributes are renamed after setup"],
+            ["Association Mapping", "Inherits affected objects (parts, docs) from source change", "Off by default in most Windchill installs — must be explicitly enabled"],
+            ["Release Target Mapping", "Controls when associated objects get released with the change", "Source Value, Mapped Value, and Default serve different fallback roles"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Association Mapping is the most commonly missed setting — and the most complained-about gap when it's absent. If users report having to re-enter all affected parts when an ECR becomes an ECN, this is almost certainly the cause."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Three Release Target Fields"
+        },
+        {
+          "type": "paragraph",
+          "text": "<strong>Source Value</strong>: Did we inherit an answer from upstream? None means don't look upstream — start fresh. <strong>Mapped Value</strong>: What do we apply when everything resolves normally? This is the active instruction. <strong>Default</strong>: What do we apply if the mapping logic hits a snag? When Mapped Value = Default, the outcome is enforced unconditionally — zero ambiguity."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each release target field to its role:",
+          "pairs": [
+            { "left": "Source Value", "right": "Inherited from upstream change — None means start fresh" },
+            { "left": "Mapped Value", "right": "Active instruction applied under normal conditions" },
+            { "left": "Default", "right": "Fallback when mapping logic encounters an edge case" },
+            { "left": "Mapped Value = Default", "right": "Unconditional enforcement with zero ambiguity" }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Mapping rules handle attribute copying, association inheritance, and release target configuration.",
+        "Association Mapping is off by default — the most commonly missed setting.",
+        "Attribute Mapping breaks silently when fields are renamed after setup.",
+        "When Mapped Value equals Default, the outcome is unconditionally enforced."
+      ]
+    },
+    {
+      "id": "m4t4",
+      "title": "Delta Drills — The Complete Configuration",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "This topic walks through the complete Delta Drills configuration, showing how association rules and mapping rules work together across the three change types to create an end-to-end regulatory change process."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Association Rules by Change Type"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Change Type", "Attached Object", "Requirement", "Gate?", "Why"],
+          "rows": [
+            ["Delta Problem Report", "Regulation Document", "Required", "Yes", "Every problem traces to a regulation"],
+            ["Delta Reg. Change Request", "Delta Problem Report", "Required", "Yes", "ECR links back to the triggering problem"],
+            ["Delta Reg. Change Request", "Affected Parts", "Optional", "No", "Scope may still be in progress at ECR stage"],
+            ["Delta New Reg. Document", "Affected Parts", "Required", "Yes", "Scope must be locked before release"],
+            ["Delta New Reg. Document", "CAD Documents", "Optional", "No", "CAD changes are not always required"]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Mapping Rules Between Stages"
+        },
+        {
+          "type": "paragraph",
+          "text": "Problem Report to ECR: Attributes and the Regulation Document association are carried forward automatically. ECR to ECN: Affected Parts association and intent attributes are passed to the ECN. This eliminates re-entry at every stage."
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "Gating at the ECN level — not the ECR — gives engineers room to work while keeping final release controlled. This is a deliberate design choice: at ECR stage, scope is still being defined. By ECN, scope must be locked."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            { "front": "Traceability", "back": "Every change traces back to the triggering regulation — enforced by requiring a Regulation Document on the Problem Report with a lifecycle gate." },
+            { "front": "Process Gates", "back": "No ECN can be released without confirmed affected parts — lifecycle promotion is blocked until required associations exist." },
+            { "front": "No Re-Entry", "back": "Mapping rules carry affected objects and intent attributes forward from ECR to ECN automatically." },
+            { "front": "Controlled Release", "back": "Regulation Documents always release with the change event — enforced by identical Mapped Value and Default in release target mapping." }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Association rules control what must exist at each stage; mapping rules ensure data flows automatically.",
+        "Gating at ECN (not ECR) gives engineers room to scope while keeping release controlled.",
+        "The complete flow provides traceability, process gates, no re-entry, and controlled release.",
+        "Association rules and mapping rules are independent but complementary configurations."
+      ]
+    },
+    {
+      "id": "m4t5",
+      "title": "Six Things to Watch Out For",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Change management configuration has several gotchas that typically surface after go-live. These six verified observations represent real-world issues that should be tested during configuration, not discovered by end users."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Configuration Gotchas"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["#", "Gotcha", "Impact"],
+          "rows": [
+            ["1", "Mapping rules only fire at creation time", "Changes to mapping rules do not affect existing change objects"],
+            ["2", "Attribute mapping breaks silently on field rename", "No error message — mapping stops working after type schema changes"],
+            ["3", "Association mapping is off by default", "Most common cause of 'why do I re-enter parts?' complaints"],
+            ["4", "Lifecycle gate failures give no context", "Users see generic 'promotion failed' with no indication of what's missing"],
+            ["5", "Copy vs. reference in association mapping", "Most orgs don't know this choice exists and accept the default"],
+            ["6", "Prohibited associations are often overlooked", "OOTB defaults may be more permissive than expected"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Most of these only surface after go-live. Configure and test them before users encounter them. Pay special attention to gotcha #4 — train users on what's required before they hit a lifecycle gate, because the error message will not tell them."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each gotcha to its mitigation:",
+          "pairs": [
+            { "left": "Mapping rules only fire at creation", "right": "Test with new objects after rule changes — existing objects are unaffected" },
+            { "left": "Silent attribute mapping failure", "right": "Retest mapping after any type schema changes" },
+            { "left": "Association mapping off by default", "right": "Explicitly enable it during initial configuration" },
+            { "left": "Gate failures with no context", "right": "Train users on required associations before they hit the gate" }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Mapping rules only fire at creation time — changes do not retroactively update existing objects.",
+        "Attribute mapping breaks silently when fields are renamed — always retest after schema changes.",
+        "Association mapping is off by default and is the most commonly missed configuration.",
+        "Test all six gotchas during configuration, not after go-live."
+      ]
+    },
+    {
+      "id": "m4t6",
+      "title": "What Delta Drills Now Has",
+      "estimatedMinutes": 4,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "After completing the association rule and mapping rule configuration, Delta Drills has a change process that enforces regulatory traceability, gates lifecycle promotion, eliminates manual re-entry, and controls document release. This topic summarizes the outcomes."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Outcome", "How It's Enforced", "Configuration Surface"],
+          "rows": [
+            ["Traceability", "Every change traces to its triggering regulation", "Association rule: Required + Lifecycle Gate on Problem Report"],
+            ["Process Gates", "No ECN release without confirmed affected parts", "Association rule: Required + Lifecycle Gate on ECN"],
+            ["No Re-Entry", "Data flows automatically from ECR to ECN", "Mapping rules: attribute + association mapping"],
+            ["Controlled Release", "Regulation Documents release with the change event", "Release target mapping: Mapped Value = Default = Change"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "The power of this configuration is that it is <strong>enforced</strong>, not suggested. Association rules with lifecycle gates create hard stops. Mapping rules eliminate human error in data transfer. Release target alignment removes ambiguity. Configure once. Enforce always. Trace everything."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the change process stages in order from issue identification to final release:",
+          "items": [
+            "Delta Problem Report — identify the issue, link the triggering regulation",
+            "Delta Regulatory Change Request — plan the change, scope affected parts",
+            "Delta New Regulation Document — lock scope, confirm all associations",
+            "Release — regulation document releases with the change event"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Delta Drills achieved traceability, process gates, no re-entry, and controlled release.",
+        "All four outcomes are enforced through configuration, not manual discipline.",
+        "Association rules create hard process gates; mapping rules eliminate re-entry.",
+        "Configure once, enforce always, trace everything."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "id": "m3",
+  "title": "Lifecycles, Workflows & OIR",
+  "description": "Explore how life cycle templates connect to workflow templates through Set State robot activities. Understand Object Initialization Rules and the gaps in out-of-the-box tooling.",
+  "topics": [
+    {
+      "id": "m3t1",
+      "title": "The Lifecycle-Workflow Connection",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Life cycle templates and workflow templates are created in separate UIs, but they must be deliberately aligned. There is no automatic validation across the two — if the names don't match, you discover the problem at runtime, not at save time."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Two Separate UIs, One Shared Contract"
+        },
+        {
+          "type": "paragraph",
+          "text": "Life cycle templates define states and transitions. Workflow templates define the process that executes a transition — who reviews, who approves, and the routing logic. The bridge between them is the <strong>Set State</strong> robot activity in the workflow, which references a lifecycle state <strong>by name</strong>."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "State name mismatches cause <strong>runtime errors</strong>, not build-time errors. If you restructure a lifecycle without updating associated workflows, things break at execution time, not at save time. This makes mismatches hard to catch during configuration."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Set State Robot Activity"
+        },
+        {
+          "type": "paragraph",
+          "text": "The Set State activity is where the connection is made. When a workflow reaches a Set State robot, it tells Windchill to move the object to a specific lifecycle state. The state name in the robot activity must <strong>exactly match</strong> a state defined in the lifecycle template. There is no dropdown validation — it is a text reference."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            { "front": "Life Cycle Template", "back": "Defines which states exist and what transitions are allowed between them. The structure." },
+            { "front": "Workflow Template", "back": "Defines who does what during a transition — the approval process, routing, and task assignments." },
+            { "front": "Set State Robot Activity", "back": "The bridge — a workflow step that tells Windchill to move the object to a named lifecycle state." },
+            { "front": "The Risk", "back": "State names are text references with no cross-validation. Renaming a lifecycle state without updating workflows breaks at runtime." }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Life cycle templates and workflow templates are created in separate UIs with no automatic validation.",
+        "The Set State robot activity bridges workflows to lifecycles by referencing state names.",
+        "State name mismatches cause runtime errors, not build-time errors.",
+        "Always update associated workflows when restructuring a lifecycle."
+      ]
+    },
+    {
+      "id": "m3t2",
+      "title": "Object Initialization Rules — What They Do",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Object Initialization Rules (OIR) control what happens when a new object is created in Windchill — which lifecycle it gets, which workflow fires, which folder it lands in. OIR is the glue that connects type definitions to runtime behavior."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Role of OIR"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you create a document, part, or change object, Windchill evaluates OIR rules to determine the object's initial configuration. This includes which lifecycle template to assign, which team template to use, the default folder location, and whether a workflow should start automatically."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The objType Value in XML"
+        },
+        {
+          "type": "paragraph",
+          "text": "OIR rules use an XML configuration where the <code>objType</code> value drives validation at upload time. The UI type selection in the Create Object rule controls where and when the rule is applied in context. A verified hands-on test confirmed that when the <code>objType</code> value does not match the Find Object type selected in the UI, it does <strong>not</strong> cause an error when the document is created — the two values operate independently."
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "The independence of <code>objType</code> in XML and the UI type selection is not documented by PTC. No community post directly confirms or denies this. The hands-on test is currently the best available evidence — this is a documented gap in PTC documentation."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each OIR concept to its role:",
+          "pairs": [
+            { "left": "OIR rule", "right": "Determines initial config when an object is created" },
+            { "left": "objType in XML", "right": "Drives validation at upload time" },
+            { "left": "UI type selection", "right": "Controls where and when the rule applies in context" },
+            { "left": "Lifecycle template assignment", "right": "One of the outcomes an OIR rule can configure" }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "OIR rules control what happens when a new object is created — lifecycle, team, folder, workflow.",
+        "The objType value in XML and the UI type selection operate independently.",
+        "The independence of these two values is not documented by PTC — verified through hands-on testing.",
+        "OIR is the glue connecting type definitions to runtime behavior."
+      ]
+    },
+    {
+      "id": "m3t3",
+      "title": "OIR Gaps — Finding Rules by Type",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Working with OIR at scale reveals a significant gap in Windchill's out-of-the-box tooling. Finding which OIR rule applies to a specific type is harder than it should be, and the workarounds require access that not all administrators have."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Problem: No Filter-by-Type"
+        },
+        {
+          "type": "paragraph",
+          "text": "The OIR table has a text search but no filter-by-type function. For soft types, the type identifier uses an internal branch ID format (e.g., <code>wt.doc.WTDocument|8666</code>) rather than a readable name, making visual scanning unreliable. You cannot look at the table and quickly find which rules apply to a specific document subtype."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Workaround"
+        },
+        {
+          "type": "paragraph",
+          "text": "A community-built QML report exists that maps branch IDs to readable type names. However, it requires report-building access that not all administrators have. No out-of-the-box solution exists for this use case."
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "This is a confirmed gap in Windchill functionality. If your team frequently works with OIR rules, consider building or obtaining the QML report that maps branch IDs to type names — it saves significant time."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Approach", "Pros", "Cons"],
+          "rows": [
+            ["Text search in OIR table", "Available OOTB, no setup required", "Branch ID format makes type names unreadable"],
+            ["Visual scanning", "No tools needed", "Unreliable with many rules or soft types"],
+            ["QML report (community-built)", "Maps branch IDs to readable names", "Requires report-building access, not OOTB"],
+            ["Manual tracking spreadsheet", "Works with any access level", "Manual maintenance, can drift from reality"]
+          ]
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange these OIR lookup approaches from least effort to most comprehensive:",
+          "items": [
+            "Text search in the OIR table — quick but limited by branch ID format",
+            "Visual scanning — manual and error-prone with many rules",
+            "QML report — comprehensive but requires report-building access",
+            "Manual tracking spreadsheet — independent but requires ongoing maintenance"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The OIR table has no filter-by-type function — this is a confirmed gap in Windchill.",
+        "Soft type identifiers use internal branch ID format, making visual scanning unreliable.",
+        "A community-built QML report can map branch IDs to readable names but requires report access.",
+        "No OOTB solution exists for quickly finding which OIR rules apply to a specific type."
+      ]
+    },
+    {
+      "id": "m3t4",
+      "title": "Connecting the Pieces — Lifecycle, Workflow, and OIR",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "This topic ties together the three configuration surfaces covered in this module. When an object is created, OIR assigns its lifecycle. That lifecycle defines available states and transitions. Workflows execute the transitions. Getting all three aligned is the core administrative challenge."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Configuration Chain"
+        },
+        {
+          "type": "paragraph",
+          "text": "Object creation triggers an OIR evaluation, which assigns a lifecycle template. The lifecycle template defines which states exist and which transitions connect them. When a transition fires that involves a workflow, the workflow's Set State robot activity references a lifecycle state by name. If any link in this chain is misconfigured, the failure surfaces at runtime."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Configuration Surface", "What It Controls", "Failure Mode"],
+          "rows": [
+            ["OIR Rules", "Which lifecycle a new object receives", "Wrong lifecycle assigned — object has unexpected states"],
+            ["Lifecycle Template", "Available states and allowed transitions", "Missing transitions — users cannot promote objects"],
+            ["Workflow Template", "Approval process and Set State activities", "State name mismatch — runtime error on transition"],
+            ["Access Control Tab", "Who can trigger each transition", "Valid transition that no one can execute"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "When debugging a lifecycle issue, trace the chain from creation: What OIR rule fired? Which lifecycle was assigned? Which workflow is executing? What state names does the workflow reference? This chain-tracing approach identifies the broken link faster than checking each surface in isolation."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the configuration chain in execution order when a new object is created:",
+          "items": [
+            "OIR rule evaluates and assigns a lifecycle template",
+            "Lifecycle template defines available states and transitions",
+            "User triggers a transition (e.g., Promote)",
+            "Workflow executes and Set State activity references a lifecycle state by name"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "OIR, lifecycle templates, and workflow templates form a three-link configuration chain.",
+        "Failures in any link surface at runtime, not at configuration time.",
+        "Trace the chain from object creation to diagnose lifecycle issues efficiently.",
+        "All three configuration surfaces must be kept in sync when changes are made."
+      ]
+    }
+  ]
+}

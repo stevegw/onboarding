@@ -1,0 +1,58 @@
+{
+  "moduleId": "m3",
+  "title": "Lifecycles, Workflows & OIR Knowledge Check",
+  "questions": [
+    {
+      "id": "m3-kc-001",
+      "question": "How does a workflow template reference a lifecycle state?",
+      "options": [
+        "Through a dropdown that lists all available lifecycle states",
+        "By the Set State robot activity, which references the state name as text",
+        "Through an automatic link created when the workflow is attached to a lifecycle",
+        "By the lifecycle template ID embedded in the workflow XML"
+      ],
+      "answerIndex": 1,
+      "rationale": "The Set State robot activity in the workflow references a lifecycle state by name as a text string. There is no dropdown validation or automatic cross-checking. If the state name doesn't match, the error occurs at runtime, not at configuration time.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-002",
+      "question": "When does a state name mismatch between a workflow and lifecycle template produce an error?",
+      "options": [
+        "When the workflow template is saved",
+        "When the lifecycle template is saved",
+        "At runtime when the workflow tries to execute the Set State activity",
+        "During the nightly system validation job"
+      ],
+      "answerIndex": 2,
+      "rationale": "State name mismatches cause runtime errors, not build-time errors. If you restructure a lifecycle without updating associated workflows, the failure only surfaces when a user triggers the transition and the workflow attempts to execute the Set State activity.",
+      "topic": "m3t1"
+    },
+    {
+      "id": "m3-kc-003",
+      "question": "What is the primary gap in Windchill's OIR table for finding rules by type?",
+      "options": [
+        "The table does not support any search functionality",
+        "Rules are sorted randomly and cannot be reordered",
+        "Soft type identifiers use internal branch ID format instead of readable names",
+        "OIR rules can only be viewed by system administrators"
+      ],
+      "answerIndex": 2,
+      "rationale": "The OIR table has text search but no filter-by-type function. For soft types, the type identifier uses an internal branch ID format (e.g., wt.doc.WTDocument|8666) rather than a readable name. A community-built QML report can map these IDs to readable names, but no OOTB solution exists.",
+      "topic": "m3t3"
+    },
+    {
+      "id": "m3-kc-004",
+      "question": "In the configuration chain (OIR → Lifecycle → Workflow), what is the most important characteristic of failure modes?",
+      "options": [
+        "Failures are caught at configuration time by validation checks",
+        "Failures always produce clear error messages identifying the broken link",
+        "Failures in any link surface at runtime, not at configuration time",
+        "Failures cascade automatically — one broken link disables the entire chain"
+      ],
+      "answerIndex": 2,
+      "rationale": "Failures in the OIR → Lifecycle → Workflow chain surface at runtime, not at configuration time. There is no cross-validation between the three configuration surfaces. This makes chain-tracing from object creation the most efficient debugging approach.",
+      "topic": "m3t4"
+    }
+  ]
+}

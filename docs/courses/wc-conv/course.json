@@ -1,0 +1,44 @@
+{
+  "id": "wc-conv",
+  "title": "Windchill: Verified Conversations",
+  "description": "Hands-on verified knowledge covering lifecycle mechanics, the three-layer permission model, object initialization rules, and change management configuration with association and mapping rules.",
+  "prerequisite": null,
+  "modules": [
+    {
+      "id": "m1",
+      "title": "Lifecycle Fundamentals",
+      "description": "Master the core terminology of Windchill lifecycles — phases, states, gates, and transitions. Learn to read the transition table and understand why access control is configured separately.",
+      "estimatedMinutes": 25,
+      "topicCount": 5,
+      "contentFile": "modules/m1-lifecycle-fundamentals.json",
+      "quizFile": "quizzes/q1-lifecycle-fundamentals.json"
+    },
+    {
+      "id": "m2",
+      "title": "Permissions & Access Control",
+      "description": "Understand the three-layer permission hierarchy — domain ACLs, life cycle state policies, and ad hoc ACLs. Learn why Windchill ACLs are grant-only and which strategies enforce state-based restrictions.",
+      "estimatedMinutes": 30,
+      "topicCount": 5,
+      "contentFile": "modules/m2-permissions-access-control.json",
+      "quizFile": "quizzes/q2-permissions-access-control.json"
+    },
+    {
+      "id": "m3",
+      "title": "Lifecycles, Workflows & OIR",
+      "description": "Explore how life cycle templates connect to workflow templates through Set State robot activities. Understand Object Initialization Rules and the gaps in out-of-the-box tooling.",
+      "estimatedMinutes": 25,
+      "topicCount": 4,
+      "contentFile": "modules/m3-lifecycles-workflows-oir.json",
+      "quizFile": "quizzes/q3-lifecycles-workflows-oir.json"
+    },
+    {
+      "id": "m4",
+      "title": "Change Management Configuration",
+      "description": "Configure association rules and mapping rules on custom change types. Walk through the Delta Drills scenario to see how traceability, process gates, and automatic data flow are enforced end to end.",
+      "estimatedMinutes": 35,
+      "topicCount": 6,
+      "contentFile": "modules/m4-change-management-config.json",
+      "quizFile": "quizzes/q4-change-management-config.json"
+    }
+  ]
+}

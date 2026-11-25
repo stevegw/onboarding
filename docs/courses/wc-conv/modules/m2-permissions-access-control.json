@@ -1,0 +1,287 @@
+{
+  "id": "m2",
+  "title": "Permissions & Access Control",
+  "description": "Understand the three-layer permission hierarchy — domain ACLs, life cycle state policies, and ad hoc ACLs. Learn why Windchill ACLs are grant-only and which strategies enforce state-based restrictions.",
+  "topics": [
+    {
+      "id": "m2t1",
+      "title": "The Three-Layer Permission Hierarchy",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Windchill evaluates permissions through three layers, combined <strong>additively</strong>. If any layer grants a permission, the user has it. Understanding which layers are active — and which are optional — is the foundation of all access control troubleshooting."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Layer 1 — Domain ACL Policies (Foundation)"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every object inherits permissions from the administrative domain it lives in, determined by folder and container context. These rules apply <strong>regardless of lifecycle state</strong>. This layer is always active — it cannot be turned off."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Layer 2 — Life Cycle State Policies (Optional Overlay)"
+        },
+        {
+          "type": "paragraph",
+          "text": "Configured per-state in the lifecycle template editor. These add permissions that only apply when an object is in a specific state. If no state policies are configured, this layer simply does not exist — it contributes nothing."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Layer 3 — Ad Hoc ACLs (Object-Specific)"
+        },
+        {
+          "type": "paragraph",
+          "text": "Set directly on individual objects. These add permissions for specific users or groups on that one object, independent of domain or lifecycle. Ad hoc ACLs are the most granular and the least scalable — they apply to a single object only."
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "The three layers are additive, not hierarchical. Layer 2 does not override Layer 1 — it adds to it. Layer 3 does not override Layers 1 and 2 — it adds to both. A permission granted at any layer cannot be revoked by another layer."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the permission layers from broadest scope to most specific:",
+          "items": [
+            "Domain ACL Policies — apply to all objects in a domain",
+            "Life Cycle State Policies — apply per state in a lifecycle",
+            "Ad Hoc ACLs — apply to a single specific object"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Windchill evaluates three permission layers additively — domain, lifecycle state, and ad hoc.",
+        "Domain ACL policies are always active and form the foundation of all access control.",
+        "Life cycle state policies are optional — if not configured, the layer does not exist.",
+        "Ad hoc ACLs are object-specific and the most granular level of control."
+      ]
+    },
+    {
+      "id": "m2t2",
+      "title": "A Basic Lifecycle Is Just a Status Label",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "One of the most important verified insights in Windchill administration is this: a lifecycle without state-based policies is just a status label. The state tracks where an object is. The domain controls what users can do to it. Only explicitly configured state-based policies bridge the two."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What a Basic Lifecycle Provides"
+        },
+        {
+          "type": "paragraph",
+          "text": "A basic lifecycle defines which states an object can be in (In Work, Under Review, Released), defines allowed transitions between states, can trigger workflows on transitions, and provides a visible status indicator in the UI."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What It Does NOT Provide Without Configuration"
+        },
+        {
+          "type": "paragraph",
+          "text": "A basic lifecycle does <strong>not</strong> restrict who can modify objects in any state, does <strong>not</strong> lock down Released objects automatically, and does <strong>not</strong> change any access control behavior. \"Released\" is just a label unless you wire up policies."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "The assumption that \"setting up a lifecycle with a Released state means released objects are protected\" is the single most common misconception in Windchill administration. The state name alone has zero effect on access control."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["What You Expect", "What Actually Happens", "Why"],
+          "rows": [
+            ["Released objects are read-only", "Engineers can still edit them", "No state-based policy restricts Modify permission"],
+            ["Under Review blocks changes", "Anyone with domain-level Modify can still edit", "State policies were never configured"],
+            ["Moving to Released protects the object", "The object gets a status label only", "Domain ACL still grants broad access"]
+          ]
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each lifecycle capability to whether it requires explicit configuration:",
+          "pairs": [
+            { "left": "Defining available states", "right": "Built into lifecycle template — no extra config" },
+            { "left": "Restricting Modify in Released state", "right": "Requires explicit state-based policy configuration" },
+            { "left": "Triggering workflows on transitions", "right": "Built into lifecycle template — no extra config" },
+            { "left": "Blocking edit access during Under Review", "right": "Requires explicit state-based policy configuration" }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "A lifecycle without state-based policies is just a status label with no enforcement.",
+        "State names like 'Released' have zero effect on access control by themselves.",
+        "State-based restriction requires explicit policy configuration in the lifecycle template.",
+        "This is the most common misconception in Windchill administration."
+      ]
+    },
+    {
+      "id": "m2t3",
+      "title": "The Common Mistake — Released but Still Editable",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "This topic walks through the most frequently encountered access control scenario in Windchill: an administrator sets up a lifecycle with a Released state, promotes a document to Released, and discovers that engineers can still edit it. Understanding why this happens — and how to fix it — is essential."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Scenario"
+        },
+        {
+          "type": "paragraph",
+          "text": "A document is promoted to the Released state. The expectation is that it should now be read-only. But engineers report they can still modify the document. The lifecycle shows the correct state. The transition worked. So why is the document still editable?"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Root Cause"
+        },
+        {
+          "type": "paragraph",
+          "text": "The lifecycle moved the object to the Released state, but no state-based access control policy was configured to restrict Modify permissions in that state. The domain-level ACL still grants edit access to the engineering role, and that permission applies in <strong>every</strong> state because nothing overrides it."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "When troubleshooting unexpected access, always check the domain first — it is the most common source of unexpected permissions. Then check whether state-based policies exist. Finally, check ad hoc ACLs on the specific object."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the troubleshooting steps in the correct order:",
+          "items": [
+            "Check the domain ACL policies for the object's domain",
+            "Check whether state-based policies exist in the lifecycle template",
+            "Check ad hoc ACLs on the specific object",
+            "Verify the object is actually in the expected lifecycle state"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "A Released state does not restrict access unless state-based policies are explicitly configured.",
+        "Domain-level permissions apply in every state regardless of lifecycle configuration.",
+        "When troubleshooting, check domain ACL first, then state policies, then ad hoc ACLs.",
+        "The root cause is almost always a missing state-based policy, not a broken lifecycle."
+      ]
+    },
+    {
+      "id": "m2t4",
+      "title": "Grant-Only ACLs and the Three Strategies",
+      "estimatedMinutes": 7,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Windchill ACLs are <strong>grant-only</strong>. You cannot use a state-based policy to remove a permission that the domain policy already grants. This single constraint shapes every access control strategy in Windchill — and is the source of most confusion when administrators try to restrict access by state."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What Grant-Only Means"
+        },
+        {
+          "type": "paragraph",
+          "text": "If the domain says \"Engineers can Modify,\" a state-based policy cannot say \"Engineers cannot Modify.\" State policies can only <strong>add</strong> additional grants. They cannot revoke, deny, or override what the domain already provides."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Three Strategies"
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Strategy", "Domain Approach", "State Policies", "Result"],
+          "rows": [
+            ["Strategy 1: Restrictive domain, permissive states", "Grants minimal access", "Add permissions for In Work, Under Review, etc.", "Clean enforcement — correct approach for state-based restriction"],
+            ["Strategy 2: Permissive domain, no state policies", "Grants broad access", "None configured", "Simple, but no state-based enforcement at all"],
+            ["Strategy 3: Permissive domain + state policies", "Grants broad access", "Attempt to restrict in certain states", "Does NOT work — state policies cannot revoke domain grants"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Strategy 3 is the common mistake. It feels like it should work — you configure a state policy expecting it to restrict access in the Released state. But because ACLs are grant-only, the domain permission is still active. The state policy adds nothing because it cannot subtract."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            { "front": "Strategy 1: Restrictive Domain", "back": "Domain grants minimal access (e.g., Read only). State policies add Modify for In Work, Create for Draft. Released state has no extra grants — users can only Read. This is the correct approach." },
+            { "front": "Strategy 2: Permissive Domain", "back": "Domain grants broad access (Read + Modify). No state policies configured. Simple setup, but Released objects are still editable. Works when state-based enforcement is not needed." },
+            { "front": "Strategy 3: The Trap", "back": "Domain grants broad access. State policies try to restrict Released state. Fails because Windchill ACLs are grant-only — you cannot remove what the domain already provides." }
+          ]
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each strategy to its outcome:",
+          "pairs": [
+            { "left": "Restrictive domain + permissive state policies", "right": "Correct enforcement — Released objects are protected" },
+            { "left": "Permissive domain + no state policies", "right": "No state-based enforcement — simple but open" },
+            { "left": "Permissive domain + restrictive state policies", "right": "Does not work — grant-only ACLs prevent restriction" }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Windchill ACLs are grant-only — state policies cannot revoke domain-level permissions.",
+        "Strategy 1 (restrictive domain, permissive states) is the correct approach for state-based enforcement.",
+        "Strategy 3 (permissive domain + state restrictions) is the most common mistake — it cannot work.",
+        "The grant-only constraint shapes every access control design decision in Windchill."
+      ]
+    },
+    {
+      "id": "m2t5",
+      "title": "Permission Quick Reference",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "This topic consolidates the permission model into a quick reference. Use it to rapidly diagnose where an object's permissions are coming from and what happens when an object moves between states or domains."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Scenario", "Permission Source", "Effect on Access"],
+          "rows": [
+            ["Basic lifecycle, no state policies", "Domain ACL only", "State does NOT affect permissions"],
+            ["Lifecycle with state-based policies configured", "Domain ACL + state policy overlay", "State DOES affect permissions (additive only)"],
+            ["Ad hoc ACL set on specific object", "Domain + state + ad hoc all combined", "Depends on all three layers"],
+            ["Object moved to new domain (re-foldered)", "New domain's ACL rules take over", "Resets the domain layer entirely"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "When troubleshooting, always check the domain first — it is the most common source of unexpected access. Re-foldering an object to a different domain changes its entire domain permission layer, which can produce surprising results."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Core Takeaway"
+        },
+        {
+          "type": "paragraph",
+          "text": "A lifecycle without state-based policies is just a status label. The state tracks where an object is. The domain controls what users can do to it. Only explicitly configured state-based policies bridge the two. This is the single most important sentence in Windchill access control."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange these actions in the order you would check them when debugging unexpected access:",
+          "items": [
+            "Check which domain the object lives in",
+            "Check the domain's ACL policies for the user's role",
+            "Check whether lifecycle state policies exist and what they grant",
+            "Check for ad hoc ACLs on the specific object"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Domain ACL is always the first thing to check when troubleshooting access.",
+        "Re-foldering an object resets its domain permission layer entirely.",
+        "State-based policies only add to domain permissions — they never subtract.",
+        "A lifecycle without state policies is just a status label with no enforcement."
+      ]
+    }
+  ]
+}

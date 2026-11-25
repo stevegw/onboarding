@@ -1,0 +1,259 @@
+{
+  "id": "m1",
+  "title": "Lifecycle Fundamentals",
+  "description": "Master the core terminology of Windchill lifecycles — phases, states, gates, and transitions. Learn to read the transition table and understand why access control is configured separately.",
+  "topics": [
+    {
+      "id": "m1t1",
+      "title": "Phase vs State — Same Concept, Different Angles",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Before configuring anything in a Windchill lifecycle, you need to speak the language. PTC documentation uses the terms <strong>phase</strong> and <strong>state</strong> in ways that seem contradictory until you understand the distinction. This topic clears up that confusion."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Phase — The Template View"
+        },
+        {
+          "type": "paragraph",
+          "text": "In the lifecycle template editor, the boxes in the visual diagram are called <strong>phases</strong>. A phase is the design-time label — the named box you drag, position, and connect when building or editing a lifecycle template. When you open the lifecycle editor and see \"In Work,\" \"Under Review,\" and \"Released\" as visual blocks, those are phases."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "State — The Runtime View"
+        },
+        {
+          "type": "paragraph",
+          "text": "When an object sits inside one of those boxes at runtime — when a document is actually \"Under Review\" — it is in a <strong>state</strong>. The state is the object's recorded condition at a point in time. The phase defines the box; the state is what it means for an object to be in that box."
+        },
+        {
+          "type": "callout",
+          "variant": "insight",
+          "text": "PTC uses both terms interchangeably depending on context. Documentation refers to \"lifecycle phases\" when discussing templates and \"object states\" when discussing runtime behavior. Recognizing this avoids confusion when reading PTC docs or configuring lifecycles."
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each term to when it applies:",
+          "pairs": [
+            { "left": "Phase", "right": "Design-time label in the template editor" },
+            { "left": "State", "right": "Object's recorded condition at runtime" },
+            { "left": "Lifecycle diagram box", "right": "Visual representation of a phase" },
+            { "left": "\"Under Review\"", "right": "Both a phase and a state depending on context" }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Phase and state refer to the same concept from different perspectives — template design vs. runtime behavior.",
+        "Phase is the term used in the lifecycle template editor and visual diagram.",
+        "State is the term used when describing an object's current condition.",
+        "PTC documentation uses both terms interchangeably, which is a known source of confusion."
+      ]
+    },
+    {
+      "id": "m1t2",
+      "title": "Gates and Transitions",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Phases define where an object can be. <strong>Gates</strong> and <strong>transitions</strong> define how an object moves between those positions. These two concepts are distinct but work together — understanding the difference is critical for lifecycle configuration."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What Is a Gate?"
+        },
+        {
+          "type": "paragraph",
+          "text": "A gate is the boundary between two phases — the colored vertical bar in the lifecycle diagram. A gate is <strong>not</strong> a state. It is where enforcement happens. In Advanced lifecycles, a workflow can be attached to a gate that must complete before the object proceeds to the next phase."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What Is a Transition?"
+        },
+        {
+          "type": "paragraph",
+          "text": "A transition is the named action that moves an object through a gate. These are the rows in the Transitions tab — <strong>Promote</strong>, <strong>Revise</strong>, <strong>Lock</strong>, <strong>Set State</strong>. The gate is the structural boundary; the transition is the specific operation that crosses it."
+        },
+        {
+          "type": "callout",
+          "variant": "tip",
+          "text": "Think of the gate as a doorway and the transition as the act of walking through it. The doorway can have conditions (a workflow that must complete). The act of walking through has a name (Promote, Revise) and permissions (who is allowed to do it)."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange these concepts from most structural (the container) to most operational (the action):",
+          "items": [
+            "Phase — the named position an object occupies",
+            "Gate — the boundary between two phases",
+            "Transition — the named action that crosses a gate",
+            "Workflow — the process that may execute during a transition"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "A gate is the boundary between two phases — not a state, but where enforcement happens.",
+        "A transition is the named action (Promote, Revise, Lock, Set State) that crosses a gate.",
+        "In Advanced lifecycles, workflows can be attached to gates as enforcement conditions.",
+        "Gates define the structure; transitions define the operations."
+      ]
+    },
+    {
+      "id": "m1t3",
+      "title": "Reading the Transition Table",
+      "estimatedMinutes": 6,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "The transition table in the lifecycle template editor controls which transitions can fire from which phases, and where they send the object. It is one of the most misread UIs in Windchill because the source state is implicit, not shown in the table itself."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "How the Table Works"
+        },
+        {
+          "type": "paragraph",
+          "text": "The selected phase in the lifecycle diagram is the implicit source state — it is <strong>not</strong> shown in the table. Columns represent destination states. Rows represent transition types (Promote, Revise, etc.). A checkmark means that transition type sends the object to that destination from the currently selected phase. Switching the selected phase changes the entire table."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "The diagram highlight can be hard to see. Always verify using the State dropdown before ticking checkboxes. Configuring transitions without confirming which phase is selected is a common mistake that leads to incorrect lifecycle behavior."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "The Multiple-Destination Gotcha"
+        },
+        {
+          "type": "paragraph",
+          "text": "You can check multiple destination columns for one transition type row. This presents the user with a choice at runtime — for example, a Promote action that could send the object to either \"Under Review\" or \"Released.\" This is rarely intentional and creates confusion for end users who expect a single destination."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Table Element", "What It Represents", "Common Mistake"],
+          "rows": [
+            ["Selected phase (diagram)", "Implicit source state", "Not verifying which phase is highlighted"],
+            ["Column headers", "Destination states", "Assuming they show source states"],
+            ["Row labels", "Transition types (Promote, Revise, etc.)", "Confusing with destination states"],
+            ["Checkmarks", "Allowed source → destination paths", "Checking multiple destinations unintentionally"]
+          ]
+        },
+        {
+          "type": "interactive-match",
+          "prompt": "Match each transition table element to its role:",
+          "pairs": [
+            { "left": "Selected phase in diagram", "right": "Implicit source state (not shown in table)" },
+            { "left": "Column headers", "right": "Destination states" },
+            { "left": "Row labels", "right": "Transition types like Promote or Revise" },
+            { "left": "Checkmark in a cell", "right": "This transition can send objects to this destination" }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The source state is the currently selected phase in the diagram — it is not displayed in the table.",
+        "Columns are destinations; rows are transition types.",
+        "Always verify the selected phase before modifying checkboxes.",
+        "Multiple destination checkmarks for one transition type create a user choice at runtime — usually unintentional."
+      ]
+    },
+    {
+      "id": "m1t4",
+      "title": "Access Control Is Separate from Transitions",
+      "estimatedMinutes": 5,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "A common assumption is that configuring a transition also configures who can use it. This is not the case. The Transitions tab and the Access Control tab are independent configurations, and confusing the two leads to lifecycle behavior that looks broken but is actually misconfigured."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What the Transitions Tab Controls"
+        },
+        {
+          "type": "paragraph",
+          "text": "The Transitions tab defines the <strong>structural rules</strong> — which transitions exist, which phases they connect, and in which direction. It answers the question: \"Is this movement possible in the lifecycle design?\""
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "What the Access Control Tab Controls"
+        },
+        {
+          "type": "paragraph",
+          "text": "The Access Control tab defines <strong>who can trigger</strong> each transition. It answers the question: \"Does this user or role have permission to perform this action?\" Even if a transition is structurally valid, a user without the right access control entry cannot execute it."
+        },
+        {
+          "type": "callout",
+          "variant": "warning",
+          "text": "Configuring a transition does <strong>not</strong> grant anyone permission to use it. If users report they cannot promote an object despite the transition existing, check the Access Control tab first — the transition configuration is not the problem."
+        },
+        {
+          "type": "reveal-cards",
+          "cards": [
+            { "front": "Transitions Tab", "back": "Defines which movements are structurally possible — source phases, destination phases, and transition types." },
+            { "front": "Access Control Tab", "back": "Defines who can trigger each transition — roles, groups, or users with permission to execute the action." },
+            { "front": "Common Symptom", "back": "\"Promote\" exists but users can't click it — the transition is configured but access control was never granted." },
+            { "front": "Best Practice", "back": "Always configure both tabs together. After adding a transition, immediately verify that the appropriate roles have permission to use it." }
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "The Transitions tab and Access Control tab are independent configurations.",
+        "Configuring a transition does not automatically grant permission to use it.",
+        "When users cannot execute a valid transition, check access control first.",
+        "Always configure both tabs together when setting up lifecycle transitions."
+      ]
+    },
+    {
+      "id": "m1t5",
+      "title": "Lifecycle Terminology Review",
+      "estimatedMinutes": 4,
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "This topic brings together all the lifecycle terminology covered in this module. Before moving on to permissions and access control, make sure you can confidently distinguish between phases, states, gates, transitions, and the two separate configuration surfaces."
+        },
+        {
+          "type": "comparison-table",
+          "headers": ["Term", "Definition", "Where You See It"],
+          "rows": [
+            ["Phase", "Named position in a lifecycle template", "Lifecycle template editor diagram"],
+            ["State", "Object's recorded condition at runtime", "Object properties, reports, search results"],
+            ["Gate", "Boundary between two phases where enforcement happens", "Colored vertical bar in the diagram"],
+            ["Transition", "Named action that moves an object through a gate", "Transitions tab rows (Promote, Revise, etc.)"],
+            ["Transition Table", "Grid showing allowed movements from the selected phase", "Lifecycle template editor Transitions tab"],
+            ["Access Control Tab", "Permission configuration for who can trigger transitions", "Lifecycle template editor Access Control tab"]
+          ]
+        },
+        {
+          "type": "callout",
+          "variant": "info",
+          "text": "These six terms form the vocabulary for every lifecycle discussion in Windchill. When PTC documentation or a colleague uses any of these terms, you should be able to identify exactly what they mean and where they are configured."
+        },
+        {
+          "type": "interactive-sort",
+          "prompt": "Arrange the lifecycle elements in order from broadest scope to most specific action:",
+          "items": [
+            "Lifecycle template — the overall design",
+            "Phase — a named position within the template",
+            "Gate — a boundary between phases",
+            "Transition — a specific action that crosses a gate"
+          ]
+        }
+      ],
+      "keyTakeaways": [
+        "Phase, state, gate, and transition are the four core lifecycle terms with distinct meanings.",
+        "The transition table and access control tab are separate configuration surfaces that must both be addressed.",
+        "PTC uses phase and state interchangeably — always clarify which context is being discussed."
+      ]
+    }
+  ]
+}

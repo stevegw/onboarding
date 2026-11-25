@@ -1,0 +1,71 @@
+{
+  "moduleId": "m1",
+  "title": "Lifecycle Fundamentals Knowledge Check",
+  "questions": [
+    {
+      "id": "m1-kc-001",
+      "question": "What is the difference between a 'phase' and a 'state' in Windchill?",
+      "options": [
+        "A phase is for documents and a state is for parts",
+        "They are the same concept — phase is the template-editor term, state is the runtime term",
+        "A phase contains multiple states",
+        "A state is a type of phase used only in Advanced lifecycles"
+      ],
+      "answerIndex": 1,
+      "rationale": "Phase and state refer to the same concept from different perspectives. Phase is the term used in the lifecycle template editor (the box in the diagram), while state describes the object's recorded condition at runtime. PTC uses both terms interchangeably depending on context.",
+      "topic": "m1t1"
+    },
+    {
+      "id": "m1-kc-002",
+      "question": "What is a 'gate' in a Windchill lifecycle?",
+      "options": [
+        "A special state where objects wait for approval",
+        "The boundary between two phases where enforcement happens",
+        "A transition type used to lock objects",
+        "A permission level required to modify objects"
+      ],
+      "answerIndex": 1,
+      "rationale": "A gate is the boundary between two phases — the colored vertical bar in the lifecycle diagram. It is not a state. It is where enforcement happens, such as attaching workflows that must complete before the object proceeds.",
+      "topic": "m1t2"
+    },
+    {
+      "id": "m1-kc-003",
+      "question": "In the lifecycle transition table, what does the currently selected phase in the diagram represent?",
+      "options": [
+        "The destination state for all transitions",
+        "The phase being deleted",
+        "The implicit source state — not shown in the table itself",
+        "The phase with the most restrictions"
+      ],
+      "answerIndex": 2,
+      "rationale": "The selected phase in the diagram is the implicit source state. It is not displayed in the table. Columns represent destination states, and rows represent transition types. Switching the selected phase changes the entire table.",
+      "topic": "m1t3"
+    },
+    {
+      "id": "m1-kc-004",
+      "question": "What happens when you configure a transition on the Transitions tab?",
+      "options": [
+        "The transition is created and all users can immediately use it",
+        "The transition is created but access control must be configured separately",
+        "The transition automatically inherits permissions from the domain",
+        "The transition is queued for administrator approval"
+      ],
+      "answerIndex": 1,
+      "rationale": "Configuring a transition does not grant anyone permission to use it. Who can trigger each transition is configured on the Access Control tab, not the Transitions tab. These are independent configurations.",
+      "topic": "m1t4"
+    },
+    {
+      "id": "m1-kc-005",
+      "question": "What happens if you check multiple destination columns for a single transition type row in the transition table?",
+      "options": [
+        "An error prevents saving the lifecycle template",
+        "The transition fires to all destinations simultaneously",
+        "The user is presented with a choice of destinations at runtime",
+        "Only the first checked destination is used"
+      ],
+      "answerIndex": 2,
+      "rationale": "Checking multiple destination columns for one transition type presents the user with a choice at runtime. This is rarely intentional and creates confusion for end users who expect a single destination from a transition action.",
+      "topic": "m1t3"
+    }
+  ]
+}

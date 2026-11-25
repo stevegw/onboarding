@@ -4,7 +4,7 @@ cd /d "%~dp0docs"
 
 REM Kill any existing process on port 8050
 for /f "tokens=5" %%a in ('netstat -aon ^| findstr ":8050 " ^| findstr "LISTENING"') do (
-    echo Stopping existing server (PID %%a)...
+    echo Stopping existing server ^(PID %%a^)...
     taskkill /PID %%a /F >nul 2>&1
     timeout /t 1 /nobreak >nul
 )

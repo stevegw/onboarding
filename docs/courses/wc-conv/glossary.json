@@ -1,0 +1,25 @@
+{
+  "terms": [
+    { "term": "Phase", "definition": "A named position in a lifecycle template, represented as a box in the visual diagram. Phase is the design-time term for what becomes a state at runtime." },
+    { "term": "State", "definition": "An object's recorded condition at runtime. When a document is 'Under Review,' it is in the Under Review state. State is the runtime term for what is called a phase in the template editor." },
+    { "term": "Gate", "definition": "The boundary between two phases in a lifecycle diagram, represented as a colored vertical bar. Gates are where enforcement happens — workflows can be attached that must complete before an object proceeds." },
+    { "term": "Transition", "definition": "A named action that moves an object through a gate from one phase to another. Common transitions include Promote, Revise, Lock, and Set State." },
+    { "term": "Transition Table", "definition": "The grid in the lifecycle template editor that shows allowed transitions from the currently selected phase. Columns are destination states; rows are transition types." },
+    { "term": "Domain ACL Policy", "definition": "The foundational permission layer in Windchill. Every object inherits permissions from its administrative domain based on folder and container context. These rules apply regardless of lifecycle state." },
+    { "term": "Life Cycle State Policy", "definition": "An optional permission overlay configured per-state in the lifecycle template editor. Adds permissions that only apply when an object is in a specific state. Cannot revoke domain-level permissions." },
+    { "term": "Ad Hoc ACL", "definition": "A permission grant set directly on an individual object for specific users or groups. The most granular and least scalable permission layer — applies to a single object only." },
+    { "term": "Grant-Only ACL", "definition": "The fundamental constraint of Windchill access control: permissions can only be granted, never denied. A state-based policy cannot remove a permission that the domain already provides." },
+    { "term": "Object Initialization Rules (OIR)", "definition": "Rules that determine what happens when a new object is created — which lifecycle it receives, which team template, default folder, and whether a workflow starts automatically." },
+    { "term": "Set State Robot Activity", "definition": "A workflow step that tells Windchill to move an object to a specific lifecycle state. References the state by name as text — no cross-validation exists between the workflow and lifecycle template." },
+    { "term": "Association Rule", "definition": "A change management configuration that defines which object types can be attached to a change object, whether the attachment is required, and whether it gates lifecycle promotion." },
+    { "term": "Mapping Rule", "definition": "A change management configuration that defines what data flows automatically when one change type creates the next — attributes, associations, and release targets." },
+    { "term": "Attribute Mapping", "definition": "A type of mapping rule that copies field values from a source change type to a target change type. Breaks silently if attributes are renamed after configuration." },
+    { "term": "Association Mapping", "definition": "A type of mapping rule that inherits affected objects (parts, documents) from a source change to a new child change. Off by default in most Windchill installs." },
+    { "term": "Release Target Mapping", "definition": "A type of mapping rule that controls when and how associated objects are released with a change event. Configured using Source Value, Mapped Value, and Default fields." },
+    { "term": "Lifecycle Gate", "definition": "An enforcement mechanism in association rules that blocks lifecycle promotion until a required association exists. Creates a hard process stop, not just a suggestion." },
+    { "term": "Problem Report", "definition": "A Windchill change object that captures an identified issue. In a regulatory context, it links to the triggering regulation and initiates the change process." },
+    { "term": "ECR (Engineering Change Request)", "definition": "A change object that plans the response to a Problem Report. Scopes affected parts and documents but may not require them to be finalized." },
+    { "term": "ECN (Engineering Change Notice)", "definition": "A change object that implements and releases the change. Requires locked scope (affected parts confirmed) and controls what gets released with the change event." },
+    { "term": "Branch ID", "definition": "An internal identifier format used by Windchill for soft types in the OIR table (e.g., wt.doc.WTDocument|8666). Not human-readable — a known gap in OIR usability." }
+  ]
+}

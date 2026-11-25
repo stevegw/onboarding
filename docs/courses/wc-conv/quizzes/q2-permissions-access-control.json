@@ -1,0 +1,71 @@
+{
+  "moduleId": "m2",
+  "title": "Permissions & Access Control Knowledge Check",
+  "questions": [
+    {
+      "id": "m2-kc-001",
+      "question": "How does Windchill combine the three permission layers (domain ACL, lifecycle state, ad hoc)?",
+      "options": [
+        "Hierarchically — higher layers override lower layers",
+        "Additively — if any layer grants a permission, the user has it",
+        "Exclusively — only the most specific layer applies",
+        "Sequentially — each layer is checked in order and the first match wins"
+      ],
+      "answerIndex": 1,
+      "rationale": "The three layers are combined additively. If any layer grants a permission, the user has it. A permission granted at any layer cannot be revoked by another layer because Windchill ACLs are grant-only.",
+      "topic": "m2t1"
+    },
+    {
+      "id": "m2-kc-002",
+      "question": "What happens when a lifecycle has a 'Released' state but no state-based access control policies are configured?",
+      "options": [
+        "Released objects are automatically set to read-only",
+        "The domain ACL is suspended for released objects",
+        "The state is just a label — domain permissions still apply unchanged",
+        "Users receive a warning that no policies are configured"
+      ],
+      "answerIndex": 2,
+      "rationale": "A lifecycle without state-based policies is just a status label. 'Released' has zero effect on access control by itself. Domain ACL permissions apply in every state because nothing overrides them. State-based restriction requires explicit policy configuration.",
+      "topic": "m2t2"
+    },
+    {
+      "id": "m2-kc-003",
+      "question": "Why can't you use a state-based policy to restrict Modify permission that the domain already grants?",
+      "options": [
+        "State policies can only apply to Read permission",
+        "Windchill ACLs are grant-only — state policies can add but never revoke permissions",
+        "Domain policies always take priority over state policies",
+        "State policies are only evaluated for ad hoc access"
+      ],
+      "answerIndex": 1,
+      "rationale": "Windchill ACLs are grant-only. If the domain says 'Engineers can Modify,' a state-based policy cannot revoke that. State policies can only add additional grants. This is why Strategy 1 (restrictive domain, permissive states) is the correct approach.",
+      "topic": "m2t4"
+    },
+    {
+      "id": "m2-kc-004",
+      "question": "Which strategy correctly enforces state-based access restrictions?",
+      "options": [
+        "Permissive domain + state policies that restrict in Released state",
+        "Restrictive domain + state policies that add permissions for In Work and other active states",
+        "Permissive domain + no state policies",
+        "Ad hoc ACLs on every Released object"
+      ],
+      "answerIndex": 1,
+      "rationale": "Strategy 1 (restrictive domain, permissive states) is correct. The domain grants minimal access, and state policies add permissions for active states like In Work. In the Released state, no extra grants are added, so users can only do what the restricted domain allows. Strategy 3 (permissive domain + restriction attempt) cannot work because ACLs are grant-only.",
+      "topic": "m2t4"
+    },
+    {
+      "id": "m2-kc-005",
+      "question": "What happens to an object's domain-level permissions when it is moved to a different folder in a new domain?",
+      "options": [
+        "Permissions from the old domain are preserved",
+        "The object inherits both old and new domain permissions",
+        "The new domain's ACL rules take over entirely",
+        "A manual permission reassignment is required"
+      ],
+      "answerIndex": 2,
+      "rationale": "When an object is re-foldered to a different domain, the new domain's ACL rules take over entirely. This resets the domain permission layer, which can produce surprising results if the new domain has different policies.",
+      "topic": "m2t5"
+    }
+  ]
+}

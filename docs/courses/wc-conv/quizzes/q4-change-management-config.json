@@ -1,0 +1,71 @@
+{
+  "moduleId": "m4",
+  "title": "Change Management Configuration Knowledge Check",
+  "questions": [
+    {
+      "id": "m4-kc-001",
+      "question": "What is the recommended approach for creating custom change types in Windchill?",
+      "options": [
+        "Build new types from scratch using the Type Manager",
+        "Copy OOTB types and make targeted configuration changes",
+        "Modify the OOTB types directly",
+        "Import change types from a third-party template library"
+      ],
+      "answerIndex": 1,
+      "rationale": "Copying OOTB types preserves standard behavior (reports, integrations, lifecycle patterns) while giving a clean surface for customization. Building from scratch loses the proven foundation. Modifying OOTB types directly risks breaking standard functionality.",
+      "topic": "m4t1"
+    },
+    {
+      "id": "m4-kc-002",
+      "question": "Which combination of association rule settings creates the strongest process enforcement?",
+      "options": [
+        "Optional + Propagation enabled",
+        "Required + Lifecycle Gate enabled",
+        "Prohibited + One-to-one cardinality",
+        "Required + One-to-many cardinality"
+      ],
+      "answerIndex": 1,
+      "rationale": "Required + Lifecycle Gate is the most powerful enforcement combination. Required alone means the attachment should exist but doesn't block promotion. Lifecycle Gate alone blocks without explaining why. Together, they create a hard stop: the change cannot proceed without the required association.",
+      "topic": "m4t2"
+    },
+    {
+      "id": "m4-kc-003",
+      "question": "What is the most commonly missed mapping rule setting in Windchill?",
+      "options": [
+        "Attribute Mapping — copying field values",
+        "Association Mapping — inheriting affected objects",
+        "Release Target Mapping — controlling release behavior",
+        "Lifecycle Mapping — assigning lifecycle templates"
+      ],
+      "answerIndex": 1,
+      "rationale": "Association Mapping is off by default in most Windchill installs and must be explicitly enabled. It is the most common cause of 'why do I have to re-enter all the parts?' complaints when an ECR creates an ECN.",
+      "topic": "m4t3"
+    },
+    {
+      "id": "m4-kc-004",
+      "question": "When do mapping rules fire?",
+      "options": [
+        "Every time the source change object is modified",
+        "Only at creation time when a new change object is created from the source",
+        "On a scheduled nightly batch process",
+        "When the target change object is promoted"
+      ],
+      "answerIndex": 1,
+      "rationale": "Mapping rules only fire at creation time. When an ECN is created from an ECR, mapping rules execute once. Changes to mapping rules after creation do not affect existing objects — only new ones going forward.",
+      "topic": "m4t5"
+    },
+    {
+      "id": "m4-kc-005",
+      "question": "In the Delta Drills configuration, why are Affected Parts optional at the ECR stage but required at the ECN stage?",
+      "options": [
+        "ECR types cannot support required associations",
+        "Parts are not relevant until the ECN stage",
+        "At ECR stage, engineering scope is still being defined; by ECN, scope must be locked",
+        "Required associations would slow down the ECR creation workflow"
+      ],
+      "answerIndex": 2,
+      "rationale": "Gating at the ECN level rather than ECR gives engineers room to work during the scoping phase. At ECR stage, affected parts may not be fully identified. By the time an ECN is created, scope must be locked — required associations with lifecycle gates enforce this.",
+      "topic": "m4t4"
+    }
+  ]
+}
